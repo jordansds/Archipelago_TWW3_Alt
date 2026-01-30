@@ -36,7 +36,7 @@ class TWW3World(World):
     def generate_early(self) -> None:
         self.player_faction = settlements.lord_name_to_faction_dict[self.options.starting_faction]
         self.sm: settlements.Settlement_Manager = settlements.Settlement_Manager(self.random)
-        self.settlement_table, self.horde_table = self.sm.shuffle_settlements(self.player_faction, self.options.max_range.value)
+        self.settlement_table, self.horde_table = self.sm.shuffleSettlements(self.player_faction, self.options.max_range.value)
 
     def create_regions(self) -> None:
         
