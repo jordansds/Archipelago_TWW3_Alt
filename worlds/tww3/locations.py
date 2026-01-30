@@ -54,4 +54,6 @@ def createEvents(world: TWW3World) -> None:
     location.place_locked_item(victory)
     
     rules.setVictoryEvent(world)
+
+def createSphereLocations
     

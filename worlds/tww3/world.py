@@ -26,8 +26,6 @@ class TWW3World(World):
     topology_present = False # show path to required location checks in spoiler
     
     item_list = []
-    #Need to check each progressive trigger and add items to item_table if required
-
     item_name_to_id = {item.name: key for key, item in items.item_table.items()}
 
     locations = [f"Empire Size {i} ({j})" for i in range(1,566) for j in range(10)]
