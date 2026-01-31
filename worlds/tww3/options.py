@@ -354,4 +354,5 @@ class TWW3Options(PerGameCommonOptions):
     balance: balance
     force_early_buildings: forceEarlyBuildings
     force_early_units: forceEarlyUnits
+
     force_early_techs: forceEarlyTechs

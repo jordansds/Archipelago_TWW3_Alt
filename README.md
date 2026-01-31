@@ -1,42 +1,103 @@
 # Total War: Warhammer 3 Archipelago Alt.
-##
-You must download the pack file included in the latest release. Do not use the workshop mod or this alt will not work.
-Include the mod in the pack file in the warhammer 3 data folder and enable it in your mod manager.
+This is an alternate implementation of the original TWW3 world which includes all features of the original mod as well
+as an alternate mode that works better for syncs.
 
 ## How does this work?
 Upon starting a new game, all factions have their start positions randomised. Units, buildings, and technologies are
-shuffled into the item pool meaning that you can't access them until the corresponding items are found in the multiworld.
+placed into the item pool meaning that you can't access them until the corresponding items are found in the multiworld.
 The goal of this apworld is to conquer a certain number of settlements simultaneously, configurable in the yaml.
-Additionally, your checks are determined by the goal - if your goal is 50 settlements, every settlement from 5-49 will
-grant checks (unless your faction doesn't start with a home region, in which case it's 1-49). The number of checks you
-send per settlement can be modified in the yaml - this is to account for how slow TWW3 can be to play and allows you to
-tailor the pacing of checks to match other games in the multiworld.
 
-**Playing beastmen is not recommended at this time.**
+Additionally, your checks are determined by the selected game mode - in conquest mode if your goal is 50 settlements,
+every settlement from 5-49 will grant checks (unless your faction doesn't start with a home region, in which case it's
+1-49). The number of checks you send per settlement can be modified in the yaml - this is to account for how slow TWW3
+can be to play and allows you to tailor the pacing of checks to match other games in the multiworld.
+
+In sphere mode every unique settlement in the world can be a check, though only a certain amount will be active based
+on your current diplomatic radius.
+
+**Playing beastmen is currently not recommended.**
+
+## Installation and setup
+If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
+install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
+the APWorld. If you're not hosting the session, the host that is generating the multiworld will also need this file! After
+downloading the APWorld, double click the file to install it. Depending on which game mode you want to play you may only
+need one of the two .pack files, but it's recommended to download both for ease of use. Place both .pack files in the `data`
+folder inside your Total War Warhammer 3 install directory (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
+
+Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
+with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
+before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
+it works. For more detailed information on what the yaml settings do, check below.
+
+After creating your yaml the multiworld needs to be generated - if you're creating a multiworld yourself, simply move your yaml
+up one folder (from `Players/Template` to just `Players`) and then run "Generate" in the launcher. This will create a .zip
+file in `Archipelago/output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
+game, or host locally with the "Host" option in the launcher. If you're not creating the multiworld then you will need to
+send the yaml to the person in charge (alongside the .apworld if they don't already have it, as mentioned earlier).
+
+Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
+website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
+displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
+mode has been selected. Launch the game with the correct mod loaded, select the correct leader, and start playing!
 
 ## What the yaml do
 
-**starting_faction**: Pick who you wanna play!
+**starting_faction**: Select the faction you're going to play as.
 
 **faction_shuffle**: Randomize starting positions. Recommended to be on.
 
 *It's recommended that you use the [No Climate Penalties mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460)
 with this setting turned on.*
 
-**number_of_locations**: How many settlements you need to own simultaneously to reach your goal and determines the base number
+**game_mode**: `conquest` is the new mode offered by this implementation and consists of owning a certain number of settlements
+to win. The number of settlements needed is determined by `number_of_locations`. Checks are granted as your empire size grows.
+This lends itself to faster paced games and plays better in synchronous multiworlds.
+
+`spheres` is the original game mode. This mode starts with a limited radius in which you can interact with other factions, which
+grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
+you win. Every settlement on the map is a unique check. This is a *much* slower paced game that is better suited to asyncs.
+Additionally this mode is prone to causing softlocks if you don't have many extra spheres, as AI factions can claim razed settlements
+causing them to become out of logic and impossible to collect items from. If this happens you will have to either release the location
+manually with `send_location` in the server console, or forceably send a diplomatic radius upgrade instead.
+
+### Conquest settings
+**number_of_settlements**: How many settlements you need to own simultaneously to reach your goal and determines the base number
 of checks. Decrease this for a shorter game, increase for a longer one.
 
-**checks_per_location**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
+**checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
 to slow down the pace of your checks.
 
 *Note that these two options, number_of_locations and checks_per_location, will need to be set appropriately for your faction -
 some factions have a lot of items that need generating while other factions need less. If world generation fails due to running
-out of locations and you don't want to increase the number of settlements needed to goal, try increasing checks_per_location
-instead.*
+out of locations and you don't want to increase the number of settlements needed to win, try increasing checks_per_location
+instead!*
 
-**balance**: Holdover from the original apworld. Might not do anything.
+**admin_capacity**: To stop you from conquering the whole map immediately there are special items called **Administration Capacity**.
+Each Admin Capacity received will let you conquer more settlements, and going over the limit forces economic penalties. This setting
+controls how many settlements each admin capacity item will let you own.
 
-**max_range**: How far away settlements can be from each other during randomization.
+### Spheres settings
+
+**spheres_count**: How many diplomatic radius upgrades are needed to have access to every location. Doesn't necessarily cover the
+entire map unless you configure `sphere_radius` to do so.
+
+**extra_sphere_count**: How many extra radius upgrades are added to the multiworld. This can reduce the chance of softlocks.
+
+**sphere_radius**: How much extra distance each radius upgrade adds. 1500 is the longest distance between two settlements, so a
+total radius of 750 would cover the whole map assuming you spawn near the middle. With a radius size of 300 this means a single
+radius upgrade would bring you up to 600 (300 starting radius + 300 from upgrade) and you would have access to about half the map.
+For this reason it's highly recommended to keep this setting somewhere around 100, as going too high causes the entire world to
+be in logic and you may have to embark on an epic quest just to find a progression item for someone else.
+
+**orb_count**: How many orbs of domination are generated. Collecting this many causes you to win.
+
+**extra_orb_count**: Additional orbs that count to the victory condition but don't affect the amount needed to win. Gives you
+some leeway so you don't necessarily need to collect *every* single orb.
+
+### Global settings
+
+**max_range**: How far away settlements can be from each other during world generation.
 
 **tech_shuffle**: Locks the tech tree behind multiworld items.
 
@@ -60,14 +121,20 @@ progressive items for each unit type (progressive infantry, progressive cavalry,
 
 **starting_tier**: Start with buildings and units of this tier already unlocked.
 
-**filler and traps**: Set to your own liking.
-(you can reload a previous save, traps wont trigger twice). Filler items include all equipment items. The
-[No Item Requirement submod](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601) is recommended to
-make sure you can equip every item you get.
+**filler and traps**: Adjust the weights of traps and filler. Traps only trigger once so they don't softlock you if you need
+to start over or load a save. Filler items include all equipment items.
+The [No Item Requirement submod](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601)
+is recommended to make sure you can equip every item you get.
 
-**RandomizePersonalities**: Give AI factions random personalities. Makes the game less predictable.
+**randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
 
-**ritual_shuffle**: Locks certain faction mechanics behind multiworld items. Possibly broken right now.
+**ritual_shuffle**: Locks certain faction mechanics behind multiworld items. Possibly doesn't work.
+
+**balance**: Forces unlocks to be near the start of the multiworld so you're guaranteed to get useful items early.
+In a multiworld setting, 20 is probably the highest you'd want this. If you're not sure what to do with this option,
+either set it to 10 or leave it off. For singleplayer games a value of at least 40 should guarantee a smooth early game.
+
+**force_early_buildings/units/techs**: Choose which unlocks are forced. Only applies if balance is not zero.
 
 ## Recommended mods: 
 
@@ -80,5 +147,3 @@ Oxyotl which are related to specific places on the map you probably can't reach.
 [No Item Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601): Lets you equip all items, even if they are restricted to a different Legendary Lord.
 
 [No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460): Removes all climate penalties so your start position is not as bad as it seems.
-
-*The version of the main mod that enables this apworld to work correctly is currently not on the Steam workshop or available anywhere else.*
