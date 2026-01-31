@@ -227,7 +227,7 @@ class buildingShuffle(DefaultOnToggle):
     """If Buildings should be shuffled."""
     display_name = "Building Shuffle"
 
-class progressiveBuildings(DefaultOnToggle):
+class progressiveBuildings(Toggle):
     """If Buildings should be progressive. Requires BuildingShuffle to be on."""
     display_name = "Progressive Buildings"
 
@@ -235,7 +235,7 @@ class unitShuffle(DefaultOnToggle):
     """If Units should be shuffled."""
     display_name = "Unit Shuffle"
 
-class progressiveUnits(DefaultOnToggle):
+class progressiveUnits(Toggle):
     """If Units should be progressive. Requires UnitShuffle to be on."""
     display_name = "Progressive Units"
 
@@ -295,7 +295,7 @@ class fillerWeak(Range):
     display_name = "Weak Filler Weight"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 40
 
 class fillerStrong(Range):
     """Weight of strong filler items."""
@@ -310,23 +310,23 @@ class trapHarmless(Range):
     display_name = "Harmless Trap Weight"
     range_start = 0
     range_end = 100
-    default = 0
+    default = 10
 
 class trapWeak(Range):
     """Weight of weak traps.
-    Be careful, collecting a vast amount of them may require you to start a new save."""
+    Be careful, collecting a vast amount of them in a short timeframe may require you to reload a previous save."""
     display_name = "Weak Trap Weight"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 20
 
 class trapStrong(Range):
-    """Weight of weak traps.
-    Be careful, collecting a medium amount of them may require you to start a new save."""
+    """Weight of strong traps.
+    Be careful, a few poorly time strong traps may require you to reload a previous save."""
     display_name = "Strong Trap Weight"
     range_start = 0
     range_end = 100
-    default = 20
+    default = 10
 
 class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities."""
