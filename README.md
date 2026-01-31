@@ -131,10 +131,8 @@ is recommended to make sure you can equip every item you get.
 **ritual_shuffle**: Locks certain faction mechanics behind multiworld items. Possibly doesn't work.
 
 **balance**: Forces unlocks to be near the start of the multiworld so you're guaranteed to get useful items early.
-Values that work vary depending on the other games in the multiworld - if there's a lot of filler then going above 30 is
-*possible* but not strictly recommended. If the other games don't have a lot of filler then 20 is the highest reasonable
-value, but even then not really recommended. If you're not really sure what to do with this setting, either set it to 10
-or leave it off. If you're playing solo you probably want to bump this up to at least 40.
+In a multiworld setting 20 is probably the highest you'd want to set this. If you're not sure what to do with this option,
+either set it to 10 or leave it off. For singleplayer games a value of at least 40 should give you a smooth early game.
 
 **force_early_buildings/units/techs**: Choose which unlocks are forced. Only applies if balance is not zero.
 
