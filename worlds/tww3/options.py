@@ -111,7 +111,7 @@ class faction(Choice):
     option_dolgan = 101
     option_the_tormentors = 102
     option_masque_of_slaanesh = 103
-    default = 0
+    default = 1
 
 class gameMode(Choice):
     """Select which game mode you want to use.
@@ -370,6 +370,7 @@ class TWW3Options(PerGameCommonOptions):
     force_early_units: forceEarlyUnits
 
     force_early_techs: forceEarlyTechs
+
 
 
 
