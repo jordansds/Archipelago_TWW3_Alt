@@ -184,7 +184,7 @@ class sphereRadius(Range):
     # Min Range between Settlements is 24. Max Range is 1300.
     range_start = 20
     range_end = 500
-    default = 300
+    default = 150
 
 class orbCount(Range):
     """SPHERE MODE ONLY
@@ -342,4 +342,5 @@ class TWW3Options(PerGameCommonOptions):
     balance: balance
     force_early_buildings: forceEarlyBuildings
     force_early_units: forceEarlyUnits
+
     force_early_techs: forceEarlyTechs
