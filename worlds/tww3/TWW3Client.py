@@ -110,8 +110,6 @@ class TWW3Context(CommonContext):
         self.waaaghWatcher = WaaaghWatcher(self.path + '\\engine.out', self)
         waaaghWatcher_task = asyncio.create_task(self.waaaghWatcher.watch(), name='WaaaghWatcher')
         self.waaaghMessenger = WaaaghMessenger(self.path + '\\engine.in')
-        self.settlements = args['slot_data']['settlements']
-        self.hordes = args['slot_data']['hordes']
 
         self.locationLookup = dict()
         for key, settlement in enumerate(settlementTable):
@@ -123,9 +121,14 @@ class TWW3Context(CommonContext):
         for key, value in lordToFactionDict.items():
             if value == self.playerFaction:
                 factionReadable = factionNameToReadable[key]
-        logger.info("The Player Faction is: " + factionReadable)
-        self.itemKeys = args['slot_data']['items']
+        logger.info("The player faction is: " + factionReadable)
 
+        self.gameMode = args['slot_data']['game_mode']
+        logger.info("The game mode is: " + self.gameMode)
+
+        self.settlements = args['slot_data']['settlements']
+        self.hordes = args['slot_data']['hordes']
+        self.itemKeys = args['slot_data']['items']
         self.capitals = args['slot_data']['faction_capitals']
         self.progressiveTechs = args['slot_data']['progressive_technologies']
         self.progressiveBuildings = args['slot_data']['progressive_buildings']
@@ -133,7 +136,6 @@ class TWW3Context(CommonContext):
         self.startingTier = args['slot_data']['starting_tier']
         self.shuffleRituals = args['slot_data']['ritual_shuffle']
         self.randomizePersonalities = args['slot_data']['randomize_personalities']
-        self.gameMode = args['slot_data']['game_mode']
         self.factionShuffle = args['slot_data']['faction_shuffle']
 
         if self.gameMode == "conquest":
