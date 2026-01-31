@@ -134,7 +134,8 @@ is recommended to make sure you can equip every item you get.
 In a multiworld setting, 20 is probably the highest you'd want this. If you're not sure what to do with this option,
 either set it to 10 or leave it off. For singleplayer games a value of at least 40 should guarantee a smooth early game.
 
-**force_early_buildings/units/techs**: Choose which unlocks are forced. Only applies if balance is not zero.
+**force_early_buildings/units/techs**: Sets the max tiers that can be forced to generate early.
+5 allows all tiers to generate, 0 disables early generation for the respective setting.
 
 ## Recommended mods: 
 
