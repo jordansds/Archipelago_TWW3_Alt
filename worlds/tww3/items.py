@@ -76,17 +76,17 @@ def createAllItems(world: TWW3World) -> None:
                     for i in range(item.count):
                         tww3_item = world.create_item(item.name)
                         pool.append(tww3_item)
-                        #world.item_list.append(key)
+                        world.itemKeys.append(key)
                 elif (item.tier + 1 > world.options.starting_tier.value) and (item.type == ItemType.building) and world.options.building_shuffle and not world.options.progressive_buildings:
                     for i in range(item.count):
                         tww3_item = world.create_item(item.name)
                         pool.append(tww3_item)
-                        #world.item_list.append(key)
+                        world.itemKeys.append(key)
                 elif (world.options.tech_shuffle.value == True) and (item.type == ItemType.tech) and  not world.options.progressive_technologies:
                     for i in range(item.count):
                         tww3_item = world.create_item(item.name)
                         pool.append(tww3_item)
-                        #world.item_list.append(key)
+                        world.itemKeys.append(key)
 
     pool = generateTechnologyItems(world, pool)
     pool = generateUnitItems(world, pool)

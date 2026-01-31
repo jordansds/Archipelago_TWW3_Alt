@@ -113,10 +113,6 @@ class faction(Choice):
     option_the_tormentors = 102
     option_masque_of_slaanesh = 103
     default = 1
-    
-class factionShuffle(DefaultOnToggle):
-    """If you want to shuffle the settlements for each faction"""
-    display_name = "FactionShuffle"
 
 class gameMode(Choice):
     """Select which game mode you want to use.
@@ -128,7 +124,12 @@ class gameMode(Choice):
     option_conquest = "conquest"
     option_spheres = "spheres"
 
-    default = option_spheres
+    default = option_conquest
+
+class factionShuffle(DefaultOnToggle):
+    """CONQUEST MODE ONLY
+    If you want to shuffle the settlements for each faction"""
+    display_name = "FactionShuffle"
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY

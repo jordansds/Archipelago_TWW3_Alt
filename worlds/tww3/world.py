@@ -24,8 +24,10 @@ class TWW3World(World):
     settings: ClassVar[TWW3Settings]  # will be automatically assigned from type hint
     origin_region_name = "Old World"
     topology_present = False # show path to required location checks in spoiler
-    
-    item_list = []
+
+    #Holds the keys that will be sent to the client for locking techs/buildings/units
+    #Will be populated in items.createAllItems
+    itemKeys = []
     #Need to check each progressive trigger and add items to item_table if required
 
     item_name_to_id = {item.name: key for key, item in items.itemDict.items()}
@@ -40,7 +42,9 @@ class TWW3World(World):
     def generate_early(self) -> None:
         self.player_faction = settlements.lordToFactionDict[self.options.starting_faction]
         self.settlementManager: settlements.Settlement_Manager = settlements.Settlement_Manager(self.random)
-        self.settlement_table, self.horde_table = self.settlementManager.shuffle_settlements(self.player_faction, self.options.max_range.value)
+
+        self.settlement_table, self.horde_table = self.settlementManager.shuffleSettlements(self.player_faction, self.options.max_range.value)
+
         self.locationToDiploRange = {}
 
     def create_regions(self) -> None:
@@ -81,12 +85,14 @@ class TWW3World(World):
             slotData["admin_capacity"] = self.options.admin_capacity.value
         elif self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
-            slotData["spheres"] = self.settlementManager.factions_to_spheres(self.options.sphere_count, self.options.sphere_radius)
+            slotData["spheres"] = self.settlementManager.factionsToSpheres(self.options.sphere_count, self.options.sphere_radius)
         slotData["settlements"] = self.settlement_table
         slotData["hordes"] = self.horde_table
-        slotData["faction_capitals"] = self.settlementManager.get_capital_dict()
-        slotData["items"] = self.item_list
+        slotData["faction_capitals"] = self.settlementManager.getCapitalDict()
+        slotData["items"] = self.itemKeys
+
         slotData["game_mode"] = self.options.game_mode.value
+        slotData["faction_shuffle"] = self.options.faction_shuffle.value
 
         return slotData
 

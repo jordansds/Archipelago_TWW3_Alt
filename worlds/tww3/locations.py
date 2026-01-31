@@ -1,7 +1,8 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from .locations_table.settlements import settlementTable, lordToFactionDict
+
+from .locations_table import settlements
 
 if TYPE_CHECKING:
     from .world import TWW3World
@@ -29,8 +30,8 @@ def createRegularLocations(world: TWW3World) -> None:
     # Check if player has a starting region. If they do, then skip the first few checks to prevent the game from fulfilling checks before game start.
     # If the player is really lucky and starts with more than 4 settlements, then they will still autocomplete some checks, but not as many.    
     startingCheck = 5
-    for horde in world.horde_table.items():
-        if horde[1] == world.player_faction:
+    for faction in settlements.factionTable:
+        if not faction[2] and faction[0] == world.player_faction:
             startingCheck = 1
     
     # Generate all but last location, which is saved for the victory event
@@ -76,7 +77,7 @@ def createEvents(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World, locationToDiploRange) -> None:
     worldRegion = world.get_region("Old World")
 
-    for location in settlementTable:
+    for location in settlements.settlementTable:
         locId = world.location_name_to_id[location[0]]
         location = TWW3Location(world.player, location[0], locId, worldRegion)
 
@@ -87,7 +88,7 @@ def createDiploRangeLocations(world: TWW3World, locationToDiploRange) -> None:
             worldRegion.locations.append(location)
 
         elif 0 < requiredDiploRange < world.options.sphere_count:
-            if faction != lordToFactionDict[world.options.starting_faction]:
+            if faction != settlements.lordToFactionDict[world.options.starting_faction]:
                 set_rule(location, lambda state, spheres=requiredDiploRange: state.has("Diplomatic Range", world.player, spheres))
                 locationToDiploRange[location] = requiredDiploRange
                 worldRegion.locations.append(location)
