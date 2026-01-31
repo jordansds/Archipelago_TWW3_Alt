@@ -3,7 +3,7 @@ from typing import NamedTuple, Dict, Set, List
 
 from .item_types import ItemType, ItemData
 
-progressive_buildings_table: dict[int, ItemData] = {
+progressiveBuildingsDict: dict[int, ItemData] = {
     250000: ItemData(IC.useful, 1, "Progressive sch_special_nuln_throne_of_chaos", ItemType.building, "wh3_main_dae_daemon_prince", 0, None),
     250001: ItemData(IC.useful, 1, "Progressive dae_advanced_2_kho", ItemType.building, "wh3_main_dae_daemon_prince", 0, None),
     250002: ItemData(IC.useful, 1, "Progressive dae_advanced_2_kho", ItemType.building, "wh3_main_dae_daemon_prince", 1, None),

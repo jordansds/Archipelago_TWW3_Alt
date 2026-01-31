@@ -3,7 +3,7 @@ from typing import NamedTuple, Dict, Set, List
 
 from .item_types import ItemType, ItemData
 
-ancillaries_regular_table: Dict[int, ItemData] = {
+ancillariesRegularTable: Dict[int, ItemData] = {
     470000: ItemData(IC.filler, 0, "wh2_dlc09_anc_enchanted_item_ouroboros", ItemType.ancillaries_regular, "None", None, "None"),
     470001: ItemData(IC.filler, 0, "wh2_dlc17_anc_armour_cloak_of_unreality", ItemType.ancillaries_regular, "None", None, "None"),
     470002: ItemData(IC.filler, 0, "wh2_main_anc_weapon_executioners_axe", ItemType.ancillaries_regular, "None", None, "None"),
@@ -124,7 +124,7 @@ ancillaries_regular_table: Dict[int, ItemData] = {
     470117: ItemData(IC.filler, 0, "wh3_main_anc_enchanted_item_scrap", ItemType.ancillaries_regular, "None", None, "None")
 }
 
-ancillaries_legendary_table: Dict[int, ItemData] = {
+ancillariesLegendaryTable: Dict[int, ItemData] = {
     471000: ItemData(IC.filler, 0, "wh2_dlc10_anc_talisman_stone_of_midnight", ItemType.ancillaries_legendary, "None", None, "None"),
     471001: ItemData(IC.filler, 0, "wh2_dlc10_anc_weapon_the_widowmaker_1", ItemType.ancillaries_legendary, "None", None, "None"),
     471002: ItemData(IC.filler, 0, "wh2_dlc10_anc_weapon_the_widowmaker_2", ItemType.ancillaries_legendary, "None", None, "None"),

@@ -72,12 +72,12 @@ class GraphBuilder(object):
                 itemPoolCounts[item.Type] = itemPoolCounts.get(item.Type, 0) + 1
         itemLocsCounts = {}
         for il in itemLocs:
-            if il.Item.Code is not None and il.player == container.sm.player:
+            if il.Item.Code is not None and il.player == container.settlementManager.player:
                 itemLocsCounts[il.Item.Type] = itemLocsCounts.get(il.Item.Type, 0) + 1
 
         for item, count in itemPoolCounts.items():
             for n in range(max(0, count - itemLocsCounts.get(item, 0))):
-                container.sm.addItem(item)
+                container.settlementManager.addItem(item)
 
     # fills in escape transitions if escape rando is enabled
     # escapeTrigger = None or (itemLocs, progItemlocs) couple from filler
@@ -115,7 +115,7 @@ class GraphBuilder(object):
         return possibleTargets
 
     def getPossibleEscapeTargets(self, emptyContainer, graph, maxDiff):
-        sm = emptyContainer.sm
+        sm = emptyContainer.settlementManager
         # setup smbm with item pool:
         # - Ice not usable because of hyper beam
         # - remove energy to avoid hell runs
@@ -130,7 +130,7 @@ class GraphBuilder(object):
 
     def escapeTrigger(self, emptyContainer, graph, maxDiff, escapeTrigger):
         container = emptyContainer
-        sm = container.sm
+        sm = container.settlementManager
         allItemLocs,progItemLocs,split = escapeTrigger[0],escapeTrigger[1],escapeTrigger[2]
         # check if crateria is connected, if not replace Tourian
         # connection with Climb and add special escape patch to Climb

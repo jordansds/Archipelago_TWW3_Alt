@@ -3,7 +3,7 @@ from typing import NamedTuple, Dict, Set, List
 
 from .item_types import ItemType, ItemData
 
-ritual_table: Dict[int, ItemData] = {
+ritualDict: Dict[int, ItemData] = {
     500000: ItemData(IC.useful, 1, "wh2_dlc16_ritual_rebirth_athel_loren", ItemType.ritual, "wh_dlc05_wef_argwylon", None, "None"),
     500001: ItemData(IC.useful, 1, "wh2_dlc16_ritual_rebirth_emerald_pools", ItemType.ritual, "wh_dlc05_wef_argwylon", None, "None"),
     500002: ItemData(IC.useful, 1, "wh2_dlc16_ritual_rebirth_gaean_vale", ItemType.ritual, "wh_dlc05_wef_argwylon", None, "None"),

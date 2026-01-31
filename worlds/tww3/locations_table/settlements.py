@@ -2,7 +2,7 @@ from typing import TypedDict
 from .forest_locations import forest_location_table
 import math
 
-lord_name_to_faction_dict = {
+lordToFactionDict = {
     1: "wh_dlc03_bst_beastmen",
     2: "wh_dlc05_bst_morghur_herd",
     3: "wh_dlc05_wef_argwylon",
@@ -552,7 +552,7 @@ woodelve_table = [
 ]
 
 # settlement table with columns settlement_key, x_coord, y_coord
-settlement_table = [
+settlementTable = [
     ["wh3_main_combi_region_zlatlan", 610, 123],
     ["wh3_main_combi_region_floating_village", 683, 372],
     ["wh3_main_combi_region_shrine_of_khaine", 258, 663],
@@ -1131,11 +1131,11 @@ class SettlementDict(TypedDict, total=False):
     settlement: str
     faction: str
 
-class Settlement_Manager():
+class Settlement_Manager:
 
     def __init__(self, random):
         self.faction_table = faction_table
-        self.settlement_table = settlement_table
+        self.settlement_table = settlementTable
         self.new_settlement_dict = {}
         self.new_horde_dict = {}
         self.faction_distance_dict = {}
@@ -1162,12 +1162,12 @@ class Settlement_Manager():
                 return row[2]
     
     def settlement_to_id(self, settlement: str) -> int:
-        for i in range(len(settlement_table)):
-            if settlement_table[i][0] == settlement:
+        for i in range(len(settlementTable)):
+            if settlementTable[i][0] == settlement:
                 return i
         raise Exception("Settlement " + str(settlement) + " not found in faction table")
     
-    def settlement_to_faction(self, settlement_name: str) -> str:
+    def settlementToFaction(self, settlement_name: str) -> str:
         return self.new_settlement_dict[settlement_name]
 
     def get_major_faction_ids(self):
@@ -1198,7 +1198,7 @@ class Settlement_Manager():
                 shuffled_minor_faction_ids.append(i)
         return shuffled_minor_faction_ids
         
-    def get_distance(self, faction_key: str) -> int:
+    def getDistance(self, faction_key: str) -> int:
         return self.faction_distance_dict[faction_key]
     
     def factions_to_spheres(self, sphere_amount: int, sphere_distance: int):
@@ -1244,10 +1244,10 @@ class Settlement_Manager():
         return False
 
     def shuffle_settlements(self, player_faction: str, max_range: int):
-        remaining_settlements = len(settlement_table)
-        remaining_settlements_ids = [i for i in range(len(settlement_table))]
-        remaining_horde_settlement_ids = [i for i in range(len(settlement_table))]
-        new_settlement_table = [[settlement[0], 0] for settlement in settlement_table]
+        remaining_settlements = len(settlementTable)
+        remaining_settlements_ids = [i for i in range(len(settlementTable))]
+        remaining_horde_settlement_ids = [i for i in range(len(settlementTable))]
+        new_settlement_table = [[settlement[0], 0] for settlement in settlementTable]
         new_horde_table = []
         remaining_forests_ids = [i for i in range(len(forest_location_table))]
         if (self.is_woodelve(player_faction)):
@@ -1361,9 +1361,10 @@ class Settlement_Manager():
                         faction_settlement_list.append(self.settlement_to_id(new_settlement_table[i][0]))
                 r = self.random.randint(0, len(faction_settlement_list) - 1)
                 if (breakout_counter < 7):
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range)
+                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range * breakout_counter)
                 else:
                     closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    breakout_counter = 0
                 if closest_Settlement != None:
                     new_settlement_table[closest_Settlement][1] = faction
                     remaining_settlements_ids.remove(closest_Settlement)
@@ -1378,9 +1379,10 @@ class Settlement_Manager():
                         faction_settlement_list.append(self.settlement_to_id(new_settlement_table[i][0]))
                 r = self.random.randint(0, len(faction_settlement_list) - 1)
                 if (breakout_counter < 7):
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range)
+                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range * breakout_counter)
                 else:
                     closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    breakout_counter = 0
                 if closest_Settlement != None:
                     new_settlement_table[closest_Settlement][1] = faction
                     remaining_settlements_ids.remove(closest_Settlement)
@@ -1404,3 +1406,20 @@ class Settlement_Manager():
                 new_horde_table[i][1] = self.faction_id_to_faction(new_horde_table[i][1])
         self.new_horde_dict = {row[0]: row[1] for row in new_horde_table}
         return self.new_settlement_dict, self.new_horde_dict
+
+    def get_settlement_spheres(self):
+        self.settlement_spheres = {}
+        for settlement, faction in self.new_settlement_dict.items():
+            sphere = self.factions_to_spheres[faction]
+            self.settlement_spheres[settlement] = sphere
+        return self.settlement_spheres
+
+    def count_settlements_per_sphere(self, sphere_amount):
+        settlements_per_sphere = {}
+        for i in range(sphere_amount):
+            sum = 0
+            for settlement, sphere in self.settlement_spheres.items():
+                if sphere == i:
+                    sum += 1
+            settlements_per_sphere[i] = sum
+        return settlements_per_sphere
