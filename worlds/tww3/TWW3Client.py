@@ -5,9 +5,9 @@ import colorama
 import logging
 from .locations_table.settlements import lordToFactionDict, factionNameToReadable, settlementTable
 from .item_tables.item_types import ItemType
-from .item_tables.filler_item_table import fillerWeakTable, fillerStrongTable, trapHarmlessTable, trapWeakTable, trapStrongDict
+from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.effect_table import globalEffectTable
-from .item_tables.ancillaries_table import ancillariesRegularTable, ancillariesLegendaryTable
+from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.unique_item_table import unique_item_table
 from .item_tables.progressive_buildings_table import progressiveBuildingsDict
 from .item_tables.progressive_units_table import progressiveUnitsDict
@@ -70,13 +70,13 @@ class TWW3Context(CommonContext):
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
         self.initialized = False
-        self.itemDict = dict(fillerWeakTable)
-        self.itemDict.update(fillerStrongTable)
+        self.itemDict = dict(fillerWeakDict)
+        self.itemDict.update(fillerStrongDict)
         #self.item_table.update(globalEffectTable) #disabled as a large number of these checks don't do anything
-        self.itemDict.update(ancillariesRegularTable)
-        self.itemDict.update(ancillariesLegendaryTable)
-        self.itemDict.update(trapHarmlessTable)
-        self.itemDict.update(trapWeakTable)
+        self.itemDict.update(ancillariesRegularDict)
+        self.itemDict.update(ancillariesLegendaryDict)
+        self.itemDict.update(trapHarmlessDict)
+        self.itemDict.update(trapWeakDict)
         self.itemDict.update(trapStrongDict)
         self.itemDict.update(unique_item_table)
         self.itemDict.update(progressiveBuildingsDict)
@@ -170,7 +170,7 @@ class TWW3Context(CommonContext):
                     self.waaaghMessenger.run("cm:unlock_technology(\"%s\", \"%s\")" % (self.playerFaction, item.name))
             elif item.type == ItemType.unit:
                 if self.progressiveUnits:
-                    self.send_next_progressive_units(item.name)
+                    self.send_next_progressiveUnits(item.name)
                 else:
                     self.waaaghMessenger.run("cm:remove_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
             elif item.type == ItemType.progression:
@@ -258,7 +258,7 @@ class TWW3Context(CommonContext):
                 return
         raise Exception("Progressive Building " + progressionGroup + " not found in item_table")
     
-    def send_next_progressive_units(self, progressionGroup):
+    def send_next_progressiveUnits(self, progressionGroup):
         # The Amount of progressive Items per Group is saved on the first index with that progression Group
         for key, item in self.itemDict.items():
             if (item.faction == self.playerFaction) and (item.progressionGroup == progressionGroup):
@@ -393,17 +393,17 @@ class EngineInitializer:
             itemData = context.itemDict[key]
             if (itemData.type == ItemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
                 waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (playerFaction, itemData.name))
-            elif (itemData.type == ItemType.building) and (not context.progressive_buildings) and (itemData.progressionGroup is not None):
+            elif (itemData.type == ItemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
                 waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, playerFaction))
-            elif (itemData.type == ItemType.unit) and (not context.progressive_units) and (itemData.progressionGroup is not None):
+            elif (itemData.type == ItemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
                 waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, playerFaction))
                 
         if context.progressiveTechs:
-            cls.lock_progressive_techs(playerFaction, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+            cls.lock_progressiveTechs(playerFaction, waaaghMessenger, context.itemDict, context.progressive_items_flags)
         if context.progressiveBuildings:
-            cls.lock_progressive_buildings(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+            cls.lock_progressiveBuildings(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
         if context.progressiveUnits:
-            cls.lock_progressive_units(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+            cls.lock_progressiveUnits(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
 
         if context.gameMode == "conquest":
             ###
@@ -428,13 +428,13 @@ class EngineInitializer:
                             factionZero, faction))
             waaaghMessenger.flush()
 
-    def lock_progressive_techs(playerFaction, waaaghMessenger, item_table, progressive_items_flags):
+    def lock_progressiveTechs(playerFaction, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if (item.faction == playerFaction) and (item.type == ItemType.tech) and (item.progressionGroup != None):
                 # The Amount of progressive Items per Group is saved on the first index with that progression Group, but since we don't know the first item of each progression Group, we set all items to the starting Tier for now.
                 waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (playerFaction, item.name))
 
-    def lock_progressive_buildings(playerFaction, startingTier, waaaghMessenger, item_table, progressive_items_flags):
+    def lock_progressiveBuildings(playerFaction, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if (item.faction == playerFaction) and (item.type == ItemType.building) and (item.progressionGroup != None):
                 if item.tier + 1 > startingTier:
@@ -442,7 +442,7 @@ class EngineInitializer:
                 else:
                     progressive_items_flags[key] = 1
 
-    def lock_progressive_units(playerFaction, startingTier, waaaghMessenger, item_table, progressive_items_flags):
+    def lock_progressiveUnits(playerFaction, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if (item.faction == playerFaction) and (item.type == ItemType.unit) and (item.progressionGroup != None):
                 # The Amount of progressive Items per Group is saved on the first index with that progression Group, but since we don't know the first item of each progression Group, we set all items to the starting Tier for now.

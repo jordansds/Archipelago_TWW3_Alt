@@ -551,6 +551,12 @@ woodElvesTable = [
     ["wh_dlc05_wef_wydrioth", False, True]
 ]
 
+tombKingsTable = [
+    ["wh2_dlc09_tmb_khemri", True, True],
+    ["wh2_dlc09_tmb_lybaras", True, True],
+    ["wh2_dlc09_tmb_followers_of_nagash", True, True],
+    ["wh2_dlc09_tmb_exiles_of_nehek", True, True]
+]
 # settlement table with columns settlement_key, x_coord, y_coord
 settlementTable = [
     ["wh3_main_combi_region_zlatlan", 610, 123],

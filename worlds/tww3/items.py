@@ -6,28 +6,31 @@ if TYPE_CHECKING:
 from BaseClasses import Item, ItemClassification as IC
 import math
 
-from .item_tables.filler_item_table import fillerWeakTable, fillerStrongTable, trapHarmlessTable, trapWeakTable, trapStrongDict
-from .item_tables.effect_table import globalEffectTable
-from .item_tables.ancillaries_table import ancillariesRegularTable, ancillariesLegendaryTable
+from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, \
+    trapStrongDict, trapWeakDict
+from .item_tables.faction_item_table import factionItemDict
+from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.unique_item_table import unique_item_table
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progressive_buildings_table import progressiveBuildingsDict
 from .item_tables.progressive_units_table import progressiveUnitsDict
 from .item_tables.progressive_techs_table import progressiveTechsDict
 from .item_tables.progression_table import progressionDict
+from .locations_table import settlements
 
 from .item_tables.item_types import ItemType, ItemData
 from .options import TWW3Options
 
 itemDict = {}
-itemDict.update(fillerWeakTable)
-itemDict.update(fillerStrongTable)
-itemDict.update(trapHarmlessTable)
-itemDict.update(trapWeakTable)
+itemDict.update(factionItemDict)
+itemDict.update(fillerWeakDict)
+itemDict.update(fillerStrongDict)
+itemDict.update(trapHarmlessDict)
+itemDict.update(trapWeakDict)
 itemDict.update(trapStrongDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
-itemDict.update(ancillariesRegularTable)
-itemDict.update(ancillariesLegendaryTable)
+itemDict.update(ancillariesRegularDict)
+itemDict.update(ancillariesLegendaryDict)
 itemDict.update(unique_item_table)
 itemDict.update(progressiveBuildingsDict)
 itemDict.update(progressiveUnitsDict)
@@ -97,6 +100,7 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateBuildingItems(world, pool)
     pool = generateRitualItems(world, pool)
     pool = generateExpansionItems(world, pool)
+    pool = generateFactionSpecificItems(world, pool)
     pool = generateFillerItems(world, pool)
 
     world.multiworld.itempool += pool
@@ -170,6 +174,15 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
             pool.append(item)
     return pool
 
+def generateFactionSpecificItems(world: TWW3World, pool: list) -> list:
+    for faction in settlements.tombKingsTable:
+        if faction[0] == world.player_faction:
+            item = world.create_item("wh2_dlc09_ritual_crafting_tmb_army_capacity_25")
+            world.multiworld.local_early_items[world.player][item.name] = 1
+            pool.append(item)
+            break
+    return pool
+
 def generateFillerItems(world: TWW3World, pool: list) -> list:
 
     fillerFunctions = [generateFillerWeak, generateFillerStrong, generateTrapHarmless, generateTrapWeak, generateTrapStrong] #List of functions for generating filler
@@ -188,7 +201,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateFillerWeak(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(fillerWeakTable.keys()))
+    key = world.random.choice(tuple(fillerWeakDict.keys()))
 
     # apply random effect
     """
@@ -199,7 +212,7 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
     """
     # get random ancillary
     if key == 2003 or key == 2001:
-        ancillaries_table = ancillariesRegularTable
+        ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).name
         key = world.item_name_to_id[name]
     else:
@@ -209,10 +222,10 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
     return item
 
 def generateFillerStrong(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(fillerStrongTable.keys()))
+    key = world.random.choice(tuple(fillerStrongDict.keys()))
     # get legendary ancillary
     if key == 2502:
-        ancillaries_table = ancillariesLegendaryTable
+        ancillaries_table = ancillariesLegendaryDict
         name = world.random.choice(tuple(ancillaries_table.values())).name
         key = world.item_name_to_id[name]
     else:
@@ -222,14 +235,14 @@ def generateFillerStrong(world: TWW3World) -> TWW3Item:
     return item
 
 def generateTrapHarmless(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapHarmlessTable.keys()))
+    key = world.random.choice(tuple(trapHarmlessDict.keys()))
     name = itemDict[key].name
 
     item = world.create_item(name)
     return item
 
 def generateTrapWeak(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapWeakTable.keys()))
+    key = world.random.choice(tuple(trapWeakDict.keys()))
     name = itemDict[key].name
     
     item = world.create_item(name)
