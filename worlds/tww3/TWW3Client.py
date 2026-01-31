@@ -305,12 +305,9 @@ class TWW3Context(CommonContext):
         try:
             if self.gameMode == "conquest":
 
-                print(location)
-                print(self.numberOfLocations)
-
                 if str(location) != str(self.numberOfLocations):
                     for i in range(int(self.checksPerLocation)):
-                        logger.info(f"Sending Location Empire Size {location} ({i})")
+                        #logger.info(f"Sending Location Empire Size {location} ({i})")
                         #logger.info([int(location)*10-9 + i])
                         await self.check_locations([int(location)*10-9 + i])
                 else:
