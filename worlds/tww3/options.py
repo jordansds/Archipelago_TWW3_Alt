@@ -129,7 +129,7 @@ class gameMode(Choice):
 class factionShuffle(DefaultOnToggle):
     """CONQUEST MODE ONLY
     If you want to shuffle the settlements for each faction"""
-    display_name = "FactionShuffle"
+    display_name = "Faction Shuffle"
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
@@ -138,7 +138,7 @@ class numberOfSettlements(Range):
     If world generation fails, then you will need to increase either this option or the next option.
     Items will start being found after settlement 5 (unless you don't start with a settlement, in which case
     you will receive them starting from settlement 1)."""
-    display_name = "NumberOfSettlements"
+    display_name = "Number Of Settlements (CONQUEST)"
     range_start = 20
     range_end = len(settlementTable)
     default = 100
@@ -149,7 +149,7 @@ class checksPerSettlement(Range):
     Depending on YAML settings and the chosen faction, you will likely have around 100-200 non-filler items.
     Make sure to change this value based on how many apworld "locations" you want your game to have.
     If world generation fails, then you will need to increase either this option or the previous option."""
-    display_name = "ChecksPerSettlement"
+    display_name = "Checks Per Settlement (CONQUEST)"
     range_start = 1
     range_end = 10
     default = 3
@@ -158,7 +158,7 @@ class adminCapacity(Range):
     """CONQUEST MODE ONLY
     Set how many settlements you can own before needing an additional admin capacity item to avoid economic debuffs.
     The player will start with 2 admin capacity items to prevent early game being unable to do anything"""
-    display_name = "SettlementsPerAdminCapacity"
+    display_name = "Settlements Per Admin Capacity (CONQUEST)"
     range_start = 1
     range_end = len(settlementTable)
     default = 5
@@ -167,6 +167,7 @@ class sphereCount(Range):
     """SPHERE MODE ONLY
     How many diplomatic Spheres are required to reach the maximum radius. You can only engage in Diplomacy with factions that are in your sphere.
     Collect Spheres of Influence to expand your Sphere."""
+    display_name = "Max Spheres (SPHERES)"
     range_start = 1
     range_end = 65
     default = 7
@@ -174,6 +175,7 @@ class sphereCount(Range):
 class extraSphereCount(Range):
     """SPHERE MODE ONLY
     How many extra diplomatic Spheres are in the game in addition to the ones required. Since there is at the moment a small chance to softlock, a few extra spheres should be chosen."""
+    display_name = "Extra Spheres (SPHERES)"
     range_start = 0
     range_end = 50
     default = 0
@@ -182,6 +184,7 @@ class sphereRadius(Range):
     """SPHERE MODE ONLY
     Radius of each Sphere."""
     # Min Range between Settlements is 24. Max Range is 1300.
+    display_name = "Sphere Radius (SPHERES)"
     range_start = 20
     range_end = 500
     default = 150
@@ -190,6 +193,7 @@ class orbCount(Range):
     """SPHERE MODE ONLY
     How many Orb of Domination items are generated in the multiworld.
     Once you have collected all of your orbs of domination, you win."""
+    display_name = "Max Orbs (SPHERES)"
     range_start = 1
     range_end = 100
     default = 20
@@ -197,6 +201,7 @@ class orbCount(Range):
 class extraOrbCount(Range):
     """SPHERE MODE ONLY
     How many extra Domination Orbs should be in the game in addition to the ones required."""
+    display_name = "Extra Orbs (SPHERES)"
     range_start = 0
     range_end = 50
     default = 0
@@ -205,13 +210,14 @@ class maxRange(Range):
     """How far away a Settlement can be from a factions other settlements during generation.
     The smallest in-game distance between two settlements is around 23 units.
     The maximum distance is around 1500 units."""
+    display_name = "Max Settlement Distance"
     range_start = 50
     range_end = 1500
     default = 200
 
 class techShuffle(DefaultOnToggle):
     """If Technologies should be shuffled."""
-    display_name = "TechShuffle"
+    display_name = "Tech Shuffle"
 
 class progressiveTechnologies(Toggle):
     """If Technologies should be progressive. Requires TechShuffle to be on."""
@@ -219,7 +225,7 @@ class progressiveTechnologies(Toggle):
 
 class buildingShuffle(DefaultOnToggle):
     """If Buildings should be shuffled."""
-    display_name = "BuildingShuffle"
+    display_name = "Building Shuffle"
 
 class progressiveBuildings(DefaultOnToggle):
     """If Buildings should be progressive. Requires BuildingShuffle to be on."""
@@ -227,7 +233,7 @@ class progressiveBuildings(DefaultOnToggle):
 
 class unitShuffle(DefaultOnToggle):
     """If Units should be shuffled."""
-    display_name = "UnitShuffle"
+    display_name = "Unit Shuffle"
 
 class progressiveUnits(DefaultOnToggle):
     """If Units should be progressive. Requires UnitShuffle to be on."""
@@ -236,10 +242,11 @@ class progressiveUnits(DefaultOnToggle):
 class ritualShuffle(Toggle):
     """Should Faction Mechanics like Rituals be shuffled? Will make game probably harder.
     Experimental feature, report to the discord if this does/does not work.."""
-    display_name ="Shuffle Faction Mechanics like Rituals"
+    display_name = "Shuffle Faction Mechanics"
 
 class startingTier(Range):
     """Start with Buildings and Units with the specified Tier."""
+    display_name = "Starting Tier"
     range_start = 0
     range_end = 5
     default = 1
@@ -248,7 +255,7 @@ class balance(Range):
     """If you want to balance the unlocks closer to the start of the multiworld.
     0 introduces no forced balancing. 100 introduces maximised balancing.
     High values are not recommended and may result in crashes during multiworld generation."""
-    display_name = "balance"
+    display_name = "Force Early Upgrades"
     range_start = 0
     range_end = 100
     default = 0
@@ -259,10 +266,10 @@ class forceEarlyBuildings(Range):
     Requires building shuffle to be on and balance to be greater than 0.
     The value sets the highest tier buildings that will be forced.
     E.g. 2 means that only tier 1 and 2 buildings will be forced."""
-    display_name = "ForceEarlyBuildings"
+    display_name = "Early Building Tiers"
     range_start = 0
     range_end = 5
-    default = 2
+    default = 0
 
 class forceEarlyUnits(Range):
     """SET TO O TO DISABLE
@@ -270,27 +277,29 @@ class forceEarlyUnits(Range):
     Requires unit shuffle to be on and balance to be greater than 0.
     The value sets the highest tier units that will be forced.
     E.g. 2 means that only tier 1 and 2 units will be forced."""
-    display_name = "ForceEarlyUnits"
+    display_name = "Early Unit Tiers"
     range_start = 0
     range_end = 5
-    default = 2
+    default = 0
 
 class forceEarlyTechs(Toggle):
     """If Buildings should be forced to generate near the start of the multiworld.
     Requires tech shuffle to be on and balance to be greater than 0."""
-    display_name = "ForceEarlyTechs"
+    display_name = "Early Tech"
 
 class fillerWeak(Range):
     """Weight of weak filler items.
     Example: filler_weak: 30, filler_strong: 20, trap_harmless: 0, trap_weak: 30, trap_strong: 20
     Would mean, that approximately 30% are weak filler, 20% are strong filler, etc, since the weights add up to 100.
     You can deviate from that, but it will be less intuitive if the total number of weights is not 100."""
+    display_name = "Weak Filler Weight"
     range_start = 0
     range_end = 100
     default = 30
 
 class fillerStrong(Range):
     """Weight of strong filler items."""
+    display_name = "Strong Filler Weight"
     range_start = 0
     range_end = 100
     default = 20
@@ -298,6 +307,7 @@ class fillerStrong(Range):
 class trapHarmless(Range):
     """Weight of harmless traps Not currently implemented.
     These won't disrupt your game. They may, however, induce minor irritation."""
+    display_name = "Harmless Trap Weight"
     range_start = 0
     range_end = 100
     default = 0
@@ -305,6 +315,7 @@ class trapHarmless(Range):
 class trapWeak(Range):
     """Weight of weak traps.
     Be careful, collecting a vast amount of them may require you to start a new save."""
+    display_name = "Weak Trap Weight"
     range_start = 0
     range_end = 100
     default = 30
@@ -312,13 +323,14 @@ class trapWeak(Range):
 class trapStrong(Range):
     """Weight of weak traps.
     Be careful, collecting a medium amount of them may require you to start a new save."""
+    display_name = "Strong Trap Weight"
     range_start = 0
     range_end = 100
     default = 20
 
 class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities."""
-    display_name = "Randomize Personality of each AI faction"
+    display_name = "Randomize AI Personalities"
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -356,3 +368,4 @@ class TWW3Options(PerGameCommonOptions):
     force_early_units: forceEarlyUnits
 
     force_early_techs: forceEarlyTechs
+
