@@ -18,15 +18,14 @@ on your current diplomatic radius.
 **Playing beastmen is currently not recommended.**
 
 ## Installation and setup
-Go to the [latest release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download the APWorld.
-If you're not hosting the session, the host that is generating the multiworld will also need this file! After downloading
-the APWorld, double click the file to install it. Depending on which game mode you want to play you may only need one of
-the two .pack files, but it's recommended to download both for ease of use. Place both .pack files in the `data` folder
-inside your Total War Warhammer 3 install directory (`...\Steam\steamapps\common\Total War WARHAMMER III\data`
-for Steam).
-
 If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
-install it. Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
+install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
+the APWorld. If you're not hosting the session, the host that is generating the multiworld will also need this file! After
+downloading the APWorld, double click the file to install it. Depending on which game mode you want to play you may only
+need one of the two .pack files, but it's recommended to download both for ease of use. Place both .pack files in the `data`
+folder inside your Total War Warhammer 3 install directory (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
+
+Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
 with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
 before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
 it works. For more detailed information on what the yaml settings do, check below.
