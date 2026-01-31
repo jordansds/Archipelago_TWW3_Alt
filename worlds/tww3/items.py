@@ -46,21 +46,25 @@ def updateItemDict(world: TWW3World) -> None:
     for key, item in unique_item_table.items():
         if item.type == ItemType.tech and world.options.force_early_techs and not world.options.progressive_technologies:
             itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-        elif item.type == ItemType.unit and world.options.force_early_units and not world.options.progressive_units:
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-        elif item.type == ItemType.building and world.options.force_early_buildings and not world.options.progressive_buildings:
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
+        elif item.type == ItemType.unit and world.options.force_early_units > 0 and not world.options.progressive_units:
+            if item.tier <= world.options.force_early_units:
+                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
+        elif item.type == ItemType.building and world.options.force_early_buildings > 0 and not world.options.progressive_buildings:
+            if item.tier <= world.options.force_early_buildings:
+                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
 
     # Handle progressive items
     if world.options.tech_shuffle and world.options.force_early_techs and world.options.progressive_technologies:
         for key, item in progressiveTechsDict.items():
             itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-    if world.options.unit_shuffle and world.options.force_early_units and world.options.progressive_units:
+    if world.options.unit_shuffle and world.options.force_early_units > 0 and world.options.progressive_units:
         for key, item in progressiveUnitsDict.items():
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-    if world.options.building_shuffle and world.options.force_early_buildings and world.options.progressive_buildings:
+            if item.tier <= world.options.force_early_units:
+                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
+    if world.options.building_shuffle and world.options.force_early_buildings > 0 and world.options.progressive_buildings:
         for key, item in progressiveBuildingsDict.items():
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
+            if item.tier <= world.options.force_early_buildings:
+                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
 
 def createAllItems(world: TWW3World) -> None:
     pool: list[TWW3Item] = []

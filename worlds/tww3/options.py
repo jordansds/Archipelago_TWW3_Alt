@@ -184,7 +184,7 @@ class sphereRadius(Range):
     # Min Range between Settlements is 24. Max Range is 1300.
     range_start = 20
     range_end = 500
-    default = 300
+    default = 150
 
 class orbCount(Range):
     """SPHERE MODE ONLY
@@ -253,19 +253,31 @@ class balance(Range):
     range_end = 100
     default = 0
 
-class forceEarlyBuildings(Toggle):
-    """If Buildings should be forced to generate near the start of the multiworld.
-    Requires BuildingShuffle to be on and balance to be greater than 0."""
+class forceEarlyBuildings(Range):
+    """SET TO 0 TO DISABLE
+    If Buildings should be forced to generate near the start of the multiworld.
+    Requires building shuffle to be on and balance to be greater than 0.
+    The value sets the highest tier buildings that will be forced.
+    E.g. 2 means that only tier 1 and 2 buildings will be forced."""
     display_name = "ForceEarlyBuildings"
+    range_start = 0
+    range_end = 5
+    default = 2
 
-class forceEarlyUnits(Toggle):
-    """If Buildings should be forced to generate near the start of the multiworld.
-    Requires UnitShuffle to be on and balance to be greater than 0."""
+class forceEarlyUnits(Range):
+    """SET TO O TO DISABLE
+    If Buildings should be forced to generate near the start of the multiworld.
+    Requires unit shuffle to be on and balance to be greater than 0.
+    The value sets the highest tier units that will be forced.
+    E.g. 2 means that only tier 1 and 2 units will be forced."""
     display_name = "ForceEarlyUnits"
+    range_start = 0
+    range_end = 5
+    default = 2
 
 class forceEarlyTechs(Toggle):
     """If Buildings should be forced to generate near the start of the multiworld.
-    Requires TechShuffle to be on and balance to be greater than 0."""
+    Requires tech shuffle to be on and balance to be greater than 0."""
     display_name = "ForceEarlyTechs"
 
 class fillerWeak(Range):
