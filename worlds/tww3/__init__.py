@@ -1,4 +1,4 @@
-from worlds.LauncherComponents import components, Component, launch_subprocess, Type
+from worlds.LauncherComponents import components, Component, launch_subprocess, Type, icon_paths
 from .world import TWW3World as TWW3World
 
 def launch_client():
@@ -9,4 +9,5 @@ components.append(Component("TWW3 Client",
                             func=launch_client,
                             component_type=Type.CLIENT,
                             description="Launches the Total War Warhammer 3 client.",
-                            icon=f"ap:{__name__}/tww3client.png"))
+                            icon="TWW3"))
+icon_paths["TWW3"] = f"ap:{__name__}/tww3client.png"
