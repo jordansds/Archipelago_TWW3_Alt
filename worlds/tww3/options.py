@@ -126,7 +126,7 @@ class gameMode(Choice):
     default = option_conquest
 
 class factionShuffle(DefaultOnToggle):
-    """CONQUEST MODE ONLY
+    """CONQUEST MODE ONLY (IS ALWAYS ENABLED IN SPHERE MODE)
     If you want to shuffle the settlements for each faction"""
     display_name = "Faction Shuffle"
     
@@ -337,9 +337,9 @@ class randomizePersonalities(DefaultOnToggle):
 @dataclass
 class TWW3Options(PerGameCommonOptions):
     starting_faction: faction
+    game_mode: gameMode
     faction_shuffle: factionShuffle
 
-    game_mode: gameMode
     number_of_settlements: numberOfSettlements
     checks_per_settlement: checksPerSettlement
     admin_capacity: adminCapacity
