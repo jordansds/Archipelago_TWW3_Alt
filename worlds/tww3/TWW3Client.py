@@ -41,7 +41,7 @@ class WaaaghMessenger:
     def run(self, message):
         self.file.write(message + '\n')
 
-    def flush(self):    
+    def flush(self):
         self.file.flush()
 
 class WaaaghWatcher:
@@ -49,7 +49,7 @@ class WaaaghWatcher:
         self.file = open(path, 'w+')
         self.context = context
 
-    async def watch(self):
+    async def watch(self, gameMode):
         print('Watching for Waaagh...')
         self.file.seek(0, 2)
         while True:
@@ -57,8 +57,12 @@ class WaaaghWatcher:
             if not line:
                 await asyncio.sleep(0.5)
                 continue
-            logger.info("Sending Location " + line.strip())
-            # self.context.waaaghMessenger.run("cm:get_campaign_ui_manager():unhighlight_settlement(cm:get_region(\"%s\"):settlement():key())" % (line.strip()))
+            if gameMode == "conquest":
+                logger.info("Sending Empire Size " + line.strip())
+            elif gameMode == "spheres":
+                logger.info("Sending Location " + line.strip())
+            #self.context.waaaghMessenger.run("cm:get_campaign_ui_manager():unhighlight_settlement(cm:get_region(\"%s\"):settlement():key())" % (line.strip()))
+
             await self.context.check(line.strip())
 
 class TWW3Context(CommonContext):
@@ -106,9 +110,12 @@ class TWW3Context(CommonContext):
             logger.error('Path does not point to a directory. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
         if not os.path.isfile(self.path + '\\Warhammer3.exe'):
             logger.error('No TWW3 exe in Path. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
+
+        self.gameMode = args['slot_data']['game_mode']
+        logger.info("The game mode is: " + self.gameMode)
             
         self.waaaghWatcher = WaaaghWatcher(self.path + '\\engine.out', self)
-        waaaghWatcher_task = asyncio.create_task(self.waaaghWatcher.watch(), name='WaaaghWatcher')
+        waaaghWatcher_task = asyncio.create_task(self.waaaghWatcher.watch(self.gameMode), name='WaaaghWatcher')
         self.waaaghMessenger = WaaaghMessenger(self.path + '\\engine.in')
 
         self.locationLookup = dict()
@@ -123,8 +130,6 @@ class TWW3Context(CommonContext):
                 factionReadable = factionNameToReadable[key]
         logger.info("The player faction is: " + factionReadable)
 
-        self.gameMode = args['slot_data']['game_mode']
-        logger.info("The game mode is: " + self.gameMode)
 
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
@@ -426,7 +431,7 @@ class EngineInitializer:
                     waaaghMessenger.run(
                         "cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (
                             factionZero, faction))
-            waaaghMessenger.flush()
+        waaaghMessenger.flush()
 
     def lock_progressiveTechs(playerFaction, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
