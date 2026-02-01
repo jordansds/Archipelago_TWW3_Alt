@@ -45,13 +45,14 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
 
         elif world.options.game_mode == "spheres":
 
+            world.settlementManager.factionsToSpheres(world.options.sphere_count, world.options.sphere_radius)
+            world.settlementManager.get_settlement_spheres()
+
             settlementsPerDiploRange = world.settlementManager.count_settlements_per_sphere(world.options.sphere_count)
 
             itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
 
-            world.settlementManager.get_settlement_spheres()
-
-            for location, requiredDiploRange in locationToDiploRange:
+            for location, requiredDiploRange in locationToDiploRange.items():
 
                 if itemsPerDiploRange[requiredDiploRange - 1] != 0:
                     requiredUnlockItems = 0
