@@ -7,4 +7,6 @@ def launch_client():
 
 components.append(Component("TWW3 Client",
                             func=launch_client,
-                            component_type=Type.CLIENT))
+                            component_type=Type.CLIENT,
+                            description="Launches the Total War Warhammer 3 client.",
+                            icon=f"ap:{__name__}/tww3client.png"))
