@@ -135,7 +135,7 @@ class numberOfSettlements(Range):
     Set how large your empire needs to be for victory. The maximum value is the entire map.
     Make sure to change this based on how fast you want your game to be.
     If world generation fails, then you will need to increase this option or the next option.
-    Items will start being found after settlement 5 (unless you don't start with a settlement,
+    Items will start being found after settlement 3 (unless you don't start with a settlement,
     in which case you will receive them starting from settlement 1)."""
     display_name = "Number Of Settlements (CONQUEST)"
     range_start = 20

@@ -28,8 +28,8 @@ def createAllLocations(world: TWW3World, locationToDiploRange) -> None:
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
     # Check if player has a starting region. If they do, then skip the first few checks to prevent the game from fulfilling checks before game start.
-    # If the player is really lucky and starts with more than 4 settlements, then they will still autocomplete some checks, but not as many.    
-    startingCheck = 5
+    # If the player is really lucky and starts with more than 3 settlements, then they will still autocomplete some checks, but not as many.
+    startingCheck = 4
     for faction in settlements.factionTable:
         if not faction[2] and faction[0] == world.player_faction:
             startingCheck = 1
