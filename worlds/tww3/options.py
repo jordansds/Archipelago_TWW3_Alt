@@ -351,25 +351,28 @@ class TWW3Options(PerGameCommonOptions):
     extra_orb_count: extraOrbCount
 
     max_range: maxRange
+
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
     building_shuffle: buildingShuffle
     progressive_buildings: progressiveBuildings
     unit_shuffle: unitShuffle
     progressive_units: progressiveUnits
+
     starting_tier: startingTier
+    balance: balance
+    force_early_buildings: forceEarlyBuildings
+    force_early_units: forceEarlyUnits
+    force_early_techs: forceEarlyTechs
+
     filler_weak: fillerWeak
     filler_strong: fillerStrong
     trap_harmless: trapHarmless
     trap_weak: trapWeak
     trap_strong: trapStrong
+
     randomize_personalities: randomizePersonalities
     ritual_shuffle: ritualShuffle
-    balance: balance
-    force_early_buildings: forceEarlyBuildings
-    force_early_units: forceEarlyUnits
-
-    force_early_techs: forceEarlyTechs
 
 
 
