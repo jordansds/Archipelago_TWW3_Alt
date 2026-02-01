@@ -5,8 +5,7 @@ from dataclasses import dataclass
 from .locations_table.settlements import settlementTable
 
 class faction(Choice):
-    """Choose your faction. In case you pick multiple factions, the client will tell you after connecting which one you play.
-    Don't forget to remove the weight from the first entry.
+    """Choose your faction. If you pick multiple the client will tell you which one you need to play.
     The last 4 options were introduced in the Tides of Torment DLC, this apworld may not randomise all content from that DLC at this time."""
     display_name = "Player Faction"
     option_beastmen = 1
@@ -118,7 +117,7 @@ class gameMode(Choice):
     """Select which game mode you want to use.
     Conquest: No restrictions, checks are based on total settlements conquered.
     Spheres:  You can only interact with factions near your start position,
-              all unique settlements are checks. [UNSTABLE]"""
+             all unique settlements are checks. [UNSTABLE]"""
     display_name = "Game Mode"
 
     option_conquest = "conquest"
@@ -134,8 +133,8 @@ class factionShuffle(DefaultOnToggle):
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
     Set how large your empire needs to be for victory. The maximum value is the entire map.
-    Make sure to change this value based on how fast you want your game to be.
-    If world generation fails, then you will need to increase either this option or the next option.
+    Make sure to change this based on how fast you want your game to be.
+    If world generation fails, then you will need to increase this option or the next option.
     Items will start being found after settlement 5 (unless you don't start with a settlement,
     in which case you will receive them starting from settlement 1)."""
     display_name = "Number Of Settlements (CONQUEST)"
@@ -196,7 +195,7 @@ class sphereRadius(Range):
 class orbCount(Range):
     """SPHERE MODE ONLY
     How many orbs of domination are generated.
-    Once you have this number of orbs, you win."""
+    Once you have this many orbs, you win."""
     display_name = "Max Orbs (SPHERES)"
     range_start = 1
     range_end = 100
@@ -255,9 +254,9 @@ class startingTier(Range):
     default = 1
 
 class balance(Range):
-    """Percentage of early items that are guaranteed to be forced unlocks.
+    """Percentage of your early items that are forced unlocks.
     0 doesn't force unlocks at all. 100 means that all of your early items will be unlocks.
-    High values are """
+    High values are not recommended."""
     display_name = "Force Early Upgrades"
     range_start = 0
     range_end = 100
@@ -309,7 +308,7 @@ class fillerStrong(Range):
 
 class trapHarmless(Range):
     """Weight of harmless traps.
-    These won't disrupt your game, but they may be annoying."""
+    These won't disrupt your game, but may be annoying."""
     display_name = "Harmless Trap Weight"
     range_start = 0
     range_end = 100
@@ -371,5 +370,7 @@ class TWW3Options(PerGameCommonOptions):
     force_early_units: forceEarlyUnits
 
     force_early_techs: forceEarlyTechs
+
+
 
 
