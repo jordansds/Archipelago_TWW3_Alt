@@ -1,8 +1,14 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 from typing import TypedDict
 #from .forest_locations import forest_location_table
 import math
 import sys
 from item_tables.item_types import factionData, settlementData
+from collections import Counter
+import time
+start = time.time()
 
 factionDict: dict[int, factionData] = {
     0: factionData("wh3_main_dae_daemon_prince", True, False, "daemons"),
@@ -396,7 +402,7 @@ settlementDict: dict[int, settlementData] = {
      89: settlementData('wh3_main_combi_region_flayed_rock', 'regular', 992, 471, 'wh3_main_skv_clan_treecherik', 'mountain', 'Flayed Rock'),
      90: settlementData('wh3_main_combi_region_eldar_spire', 'regular', 15, 815, 'wh2_main_skv_clan_septik', 'mountain', 'Eldar Spire'),
      91: settlementData('wh3_main_combi_region_city_of_the_shugengan', 'regular', 1295, 614, 'wh3_main_cth_celestial_loyalists', 'temperate', 'City of The Shugengan'),
-     92: settlementData('wh3_main_combi_region_laurelorn_forest', 'regular', 527, 730, 'wh3_main_wef_laurelorn', 'magical forest', 'Laurelorn Forest'),
+     92: settlementData('wh3_main_combi_region_laurelorn_forest', 'magical forest', 527, 730, 'wh3_main_wef_laurelorn', 'magical forest', 'Laurelorn Forest'),
      93: settlementData('wh3_main_combi_region_monument_of_izzatal', 'regular', 105, 352, 'wh2_dlc12_skv_clan_mange', 'mountain', 'Monument of Izzatal'),
      94: settlementData('wh3_main_combi_region_karaz_a_karak', 'regular', 736, 549, '', '', ''),
      95: settlementData('wh3_main_combi_region_dread_rock', 'regular', 972, 399, 'wh3_main_lzd_tepoks_spawn', 'jungle', 'Dread Rock'),
@@ -468,7 +474,7 @@ settlementDict: dict[int, settlementData] = {
      161: settlementData('wh3_main_combi_region_fortress_of_the_damned', 'regular', 375, 870, 'wh2_main_def_deadwood_sentinels', 'chaotic wasteland', 'Fortress of the Damned'),
      162: settlementData('wh3_main_combi_region_yuatek', 'regular', 602, 101, '', '', ''),
      163: settlementData('wh3_main_combi_region_the_blood_swamps', 'regular', 239, 235, None, 'jungle', 'The Blood Swamps'),
-     164: settlementData('wh3_main_combi_region_red_fortress', 'regular', 1317, 663, 'wh3_main_cth_imperial_wardens', 'chaotic wasteland', 'Red Fortress'),
+     164: settlementData('wh3_main_combi_region_red_fortress', 'dark fortress', 1317, 663, 'wh3_main_cth_imperial_wardens', 'chaotic wasteland', 'Red Fortress'),
      165: settlementData('wh3_main_combi_region_desolation_of_drakenmoor', 'regular', 833, 611, 'wh3_main_grn_drippin_fangs', 'wasteland', 'Desolation of Drakenmoor'),
      166: settlementData('wh3_main_combi_region_tor_finu', 'regular', 299, 585, 'wh2_main_hef_saphery', 'temperate island', 'Tor Finu'),
      167: settlementData('wh3_main_combi_region_grimhold', 'regular', 546, 530, 'wh_main_dwf_karak_norn', 'mountain', 'Grimhold'),
@@ -560,7 +566,7 @@ settlementDict: dict[int, settlementData] = {
      253: settlementData('wh3_main_combi_region_grey_rock_point', 'regular', 106, 543, '', '', ''),
      254: settlementData('wh3_main_combi_region_vauls_anvil_naggaroth', 'regular', 126, 670, '', '', ''),
      255: settlementData('wh3_main_combi_region_the_never_ending_chasm', 'regular', 281, 18, 'wh3_main_kho_brazen_throne', 'chaotic wasteland', 'The Never Ending Chasm'),
-     256: settlementData('wh3_main_combi_region_waterfall_palace', 'regular', 515, 566, 'wh_dlc05_wef_argwylon', 'magical forest', 'Waterfall Palace'),
+     256: settlementData('wh3_main_combi_region_waterfall_palace', 'magical forest', 515, 566, 'wh_dlc05_wef_argwylon', 'magical forest', 'Waterfall Palace'),
      257: settlementData('wh3_main_combi_region_fort_bergbres', 'regular', 449, 636, 'wh_main_emp_marienburg', 'temperate', 'Fort Bergbres'),
      258: settlementData('wh3_dlc20_combi_region_glacial_gardens', 'regular', 173, 892, None, 'frozen', 'Glacial Gardens'),
      259: settlementData('wh3_main_combi_region_serpent_jetty', 'regular', 416, 848, 'wh_main_nor_varg', 'frozen', 'Serpent Jetty'),
@@ -621,16 +627,16 @@ settlementDict: dict[int, settlementData] = {
      314: settlementData('wh3_main_combi_region_bitter_bay', 'regular', 884, 404, None, 'wasteland', 'Bitter Bay'),
      315: settlementData('wh3_main_combi_region_altdorf', 'regular', 527, 648, 'wh_main_emp_empire', '', ''),
      316: settlementData('wh3_main_combi_region_altar_of_facades', 'regular', 826, 30, 'wh3_main_sla_rapturous_excess', 'chaotic wasteland', 'Altar of Facades'),
-     317: settlementData('wh3_main_combi_region_the_sacred_pools', 'regular', 153, 261, 'wh2_dlc16_lzd_wardens_of_the_living_pools', 'magical forest', 'The Sacred Pools'),
+     317: settlementData('wh3_main_combi_region_the_sacred_pools', 'magical forest', 153, 261, 'wh2_dlc16_lzd_wardens_of_the_living_pools', 'magical forest', 'The Sacred Pools'),
      318: settlementData('wh3_main_combi_region_the_skull_carvers_abode', 'regular', 664, 12, '', '', ''),
-     319: settlementData('wh3_main_combi_region_the_haunted_forest', 'regular', 1066, 418, 'wh3_main_vmp_caravan_of_blue_roses', 'magical forest', 'The Haunted Forest'),
+     319: settlementData('wh3_main_combi_region_the_haunted_forest', 'magical forest', 1066, 418, 'wh3_main_vmp_caravan_of_blue_roses', 'magical forest', 'The Haunted Forest'),
      320: settlementData('wh3_main_combi_region_temple_of_skulls', 'regular', 771, 248, 'wh2_main_skv_clan_mordkin', 'jungle', 'Temple of Skulls'),
      321: settlementData('wh3_main_combi_region_dusk_peaks', 'regular', 281, 105, 'wh2_main_hef_citadel_of_dusk', 'savannah', 'Dusk Peaks'),
      322: settlementData('wh3_main_combi_region_yetchitch', 'regular', 742, 798, None, 'frozen', 'Yetchitch'),
      323: settlementData('wh3_main_combi_region_itza', 'regular', 168, 239, 'wh2_main_lzd_itza', 'jungle', 'Itza'),
      324: settlementData('wh3_main_combi_region_grung_zint', 'regular', 434, 650, 'wh_main_grn_skullsmasherz', 'mountain', 'Grung Zint'),
      325: settlementData('wh3_main_combi_region_bhagar', 'regular', 598, 246, 'wh2_dlc09_tmb_dune_kingdoms', 'desert', 'Bhagar'),
-     326: settlementData('wh3_main_combi_region_crag_halls_of_findol', 'regular', 528, 544, 'wh_dlc05_wef_wydrioth', 'magical forest', 'Crag Halls of Findol'),
+     326: settlementData('wh3_main_combi_region_crag_halls_of_findol', 'magical forest', 528, 544, 'wh_dlc05_wef_wydrioth', 'magical forest', 'Crag Halls of Findol'),
      327: settlementData('wh3_main_combi_region_el_kalabad', 'regular', 532, 273, 'wh2_dlc09_tmb_rakaph_dynasty', 'desert', 'El Kalabad'),
      328: settlementData('wh3_main_combi_region_thrice_cursed_peak', 'regular', 151, 172, 'wh2_main_dwf_spine_of_sotek_dwarfs', 'mountain', 'Thrice Cursed Peak'),
      329: settlementData('wh3_main_combi_region_cragroth_deep', 'regular', 103, 766, None, 'mountain', 'Cragroth Deep'),
@@ -642,7 +648,7 @@ settlementDict: dict[int, settlementData] = {
      335: settlementData('wh3_main_combi_region_ming_zhu', 'regular', 1242, 612, 'wh3_main_cth_celestial_loyalists', 'temperate', 'Ming Zhu'),
      336: settlementData('wh3_main_combi_region_parravon', 'regular', 483, 575, 'wh_main_brt_parravon', 'temperate', 'Parravon'),
      337: settlementData('wh3_main_combi_region_barak_varr', 'regular', 672, 512, 'wh_main_dwf_barak_varr', 'mountain', 'Barak Varr'),
-     338: settlementData('wh3_main_combi_region_gaean_vale', 'regular', 256, 579, 'wh2_main_hef_avelorn', 'magical forest', 'Gaean Vale'),
+     338: settlementData('wh3_main_combi_region_gaean_vale', 'magical forest', 256, 579, 'wh2_main_hef_avelorn', 'magical forest', 'Gaean Vale'),
      339: settlementData('wh3_main_combi_region_fuming_serpent', 'regular', 286, 232, None, 'jungle', 'Fuming Serpent'),
      340: settlementData('wh3_main_combi_region_village_of_the_tigermen', 'regular', 1189, 414, 'wh3_main_cth_burning_wind_nomads', 'temperate', 'Village of The Tigermen'),
      341: settlementData('wh3_main_combi_region_castle_bastonne', 'regular', 428, 602, 'wh_main_brt_bastonne', 'temperate', 'Castle Bastonne'),
@@ -738,7 +744,7 @@ settlementDict: dict[int, settlementData] = {
      431: settlementData('wh3_main_combi_region_altar_of_the_horned_rat', 'regular', 245, 206, 'wh2_main_skv_clan_spittel', 'jungle', 'Altar of The Horned Rat'),
      432: settlementData('wh3_main_combi_region_cliff_of_beasts', 'regular', 527, 933, '', '', ''),
      433: settlementData('wh3_main_combi_region_fallen_king_mountain', 'regular', 788, 627, 'wh_main_grn_red_eye', 'mountain', 'Fallen King Mountain'),
-     434: settlementData('wh3_main_combi_region_forest_of_gloom', 'regular', 703, 549, 'wh2_dlc16_grn_creeping_death', 'magical forest', 'Forest of Gloom'),
+     434: settlementData('wh3_main_combi_region_forest_of_gloom', 'magical forest', 703, 549, 'wh2_dlc16_grn_creeping_death', 'magical forest', 'Forest of Gloom'),
      435: settlementData('wh3_main_combi_region_bilious_cliffs', 'regular', 608, 922, '', '', ''),
      436: settlementData('wh3_main_combi_region_baleful_hills', 'regular', 1190, 503, 'wh3_dlc21_vmp_jiangshi_rebels', 'savannah', 'Baleful Hills'),
      437: settlementData('wh3_main_combi_region_the_silvered_tower_of_sorcerers', 'regular', 377, 937, 'wh3_main_kho_crimson_skull', 'chaotic wasteland', 'The Silvered Tower of Sorcerers'),
@@ -881,41 +887,117 @@ shuffledSettlementDict: dict[int, settlementData] = {
 
 import random
 
-shuffleKeys = list(factionDict.keys())
-random.shuffle(shuffleKeys)
-shuffledFactionList = []
-hordeFactionCount = sum(not faction.hasHome for key, faction in factionDict.items()) #number of non-horde factions in the game.
-homedFactionCount = len(factionDict) - hordeFactionCount
+factionKeys: list[int] = list(factionDict.keys())
+random.shuffle(factionKeys)
 
-#assigns each faction their first settlement
-for sKey, settlement in settlementDict.items():
-    #Once all factions with a home have been assigned a settlement, breakout of the loop
-    #The homeless don't get a home, who do you think I am? A filthy commie?
-    if len(shuffledFactionList) >= homedFactionCount:
-        break
-    elif settlement.climate == "magical forest":
-        for i, fKey in enumerate(shuffleKeys):
-            if factionDict[fKey].name not in shuffledFactionList and factionDict[fKey].hasHome and factionDict[fKey].race == "woodElves":
+settlementKeys: list[int] = list(settlementDict.keys())
+random.shuffle(settlementKeys)
+
+shuffledFactionList: list[str] = []
+#hordeFactionCount = sum(not faction.hasHome for key, faction in factionDict.items()) #number of non-horde factions in the game.
+#homedFactionCount = len(factionDict) - hordeFactionCount
+
+remove: list[int] = []
+# Assigns each wood elf a magical forest
+for i, sKey in enumerate(settlementKeys):
+    settlement = settlementDict[sKey]
+    if settlement.type == "magical forest":
+        for j, fKey in enumerate(factionKeys):
+            faction = factionDict[fKey]
+            if faction.race == "woodElves" and faction.hasHome and faction.name not in shuffledFactionList:
                 shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
-                                                             settlement.y, factionDict[fKey].name, settlement.climate,
-                                                             settlement.readableName)
-                shuffledFactionList.append(factionDict[fKey].name)
-                shuffleKeys.pop(i)
-                break
-    else:
-        for i, fKey in enumerate(shuffleKeys):
-            if factionDict[fKey].name not in shuffledFactionList and factionDict[fKey].hasHome:
-                shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
-                                                             settlement.y, factionDict[fKey].name, settlement.climate,
-                                                             settlement.readableName)
-                shuffledFactionList.append(factionDict[fKey].name)
-                shuffleKeys.pop(i)
+                                                              settlement.y, faction.name,
+                                                              settlement.climate,
+                                                              settlement.readableName)
+                shuffledFactionList.append(faction.name)
+                factionKeys.pop(j)
+                remove.append(sKey)
                 break
 
-print(len(shuffleKeys))
+#Remove the magical forests that have been assigned.
+for key in remove:
+    if key in settlementKeys:
+        settlementKeys.remove(key)
+remove: list[int] = []
 
-for index, (key, settlement) in enumerate(settlementDict.items(), start = homedFactionCount):
-    print(settlement)
+# Assigns all other factions their first settlement (if they start with one normally)
+# The homeless don't get a home, who do you think I am? A filthy commie?
+for i, sKey in enumerate(settlementKeys):
+    settlement = settlementDict[sKey]
+
+    for j, fKey in enumerate(factionKeys):
+        faction = factionDict[fKey]
+        if faction.hasHome and faction.name not in shuffledFactionList:
+            shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
+                                                          settlement.y, faction.name,
+                                                          settlement.climate,
+                                                          settlement.readableName)
+            shuffledFactionList.append(faction.name)
+            factionKeys.pop(j)
+            remove.append(sKey)
+            break
+
+#Remove the settlements that have been assigned.
+for key in remove:
+    if key in settlementKeys:
+        settlementKeys.remove(key)
+remove: list[int] = []
+
+# Return the distance between two settlements
+def getDistance(s1: settlementData, s2: settlementData) -> int:
+    return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
+
+blackList: list[str] = []
+#Asign each faction new settlements, based on distance from their capital
+for i, sKey in enumerate(settlementKeys):
+    settlement: settlementData = settlementDict[sKey]
+    distance: int = 10000
+    for aKey, assignedSettlement in dict(shuffledSettlementDict.items()).items(): #Shallow copy of dictionary
+        faction: str = assignedSettlement.faction
+        settlementsOwned: int = 0
+
+        # need to check if faction already has too many settlements.
+        for fKey, factionSettlement in shuffledSettlementDict.items():
+            if shuffledSettlementDict[fKey].faction == faction:
+                settlementsOwned += 1
+                if settlementsOwned == 3:
+                    blackList.append(faction)
+                    break
+
+        if settlementsOwned == 3:
+            continue
+
+        newDistance: int = getDistance(settlement, assignedSettlement)
+
+        if newDistance < distance and settlementsOwned < 3:
+            distance = newDistance
+            closestFaction = assignedSettlement.faction
+    shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
+                                                  settlement.y, closestFaction,
+                                                  settlement.climate,
+                                                  settlement.readableName)
+    shuffledFactionList.append(closestFaction)
+
+x = []
+for i, d in shuffledSettlementDict.items():
+    x.append(d.faction)
+counter = Counter(x)
+
+print(counter)
+
+print(time.time() - start)
+
+
+#print(len(factionKeys))
+
+#for index, (key, settlement) in enumerate(shuffledSettlementDict.items()):
+#    print(key, settlement)
+#print(len(shuffledSettlementDict.items()))
+
+
+#for i, sKey in enumerate(settlementKeys[homedFactionCount:]):
+#    print(shuffledSettlementDict[settlementKeys[homedFactionCount]])
+#    break
 
 #print(shuffledSettlementDict)
 #for key, settlement in shuffledSettlementDict.items():
