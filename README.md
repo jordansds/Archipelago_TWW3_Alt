@@ -26,8 +26,8 @@ need one of the two .pack files found on the GitHub release, but it's recommende
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
-**The .pack files are required as they are the mods needed for the two game modes to function. Make sure you *don't* use
-the mod found on the Steam workshop, as it does not work correctly with this implementation.**
+**The .pack files are required because they are the mods needed for the two game modes to function. Make sure you *don't*
+use the mod found on the Steam workshop, as it does not work correctly with this implementation.**
 
 Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
 with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
