@@ -31,3 +31,19 @@ class ItemData(NamedTuple):
     faction: str
     tier: int
     progressionGroup: str
+
+class factionData(NamedTuple):
+    name: str
+    isPlayable: bool
+    hasHome: bool
+    race: str
+
+class settlementData(NamedTuple):
+    name: str
+    type: str
+    x: int
+    y: int
+    faction: str
+    climate: str
+    readableName: str
+

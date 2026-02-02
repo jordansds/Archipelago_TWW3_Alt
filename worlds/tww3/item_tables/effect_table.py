@@ -3,7 +3,7 @@ from typing import NamedTuple, Dict, Set, List
 
 from .item_types import ItemType, ItemData
 
-global_effect_table: Dict[int, ItemData] = {
+globalEffectTable: Dict[int, ItemData] = {
     400000: ItemData(IC.filler, 0, "wh2_dlc09_bundle_anc_magic_standard_banner_of_the_hidden_dead", ItemType.effect_faction, "None", None, "None"),
     400001: ItemData(IC.filler, 1, "wh2_dlc09_bundle_anc_magic_standard_standard_of_the_undying_legion", ItemType.effect_faction, "None", None, "None"),
     400002: ItemData(IC.filler, 2, "wh2_dlc09_bundle_book_rogue_army", ItemType.effect_faction, "None", None, "None"),

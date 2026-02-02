@@ -2,10 +2,10 @@ from random import choice
 
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle
 from dataclasses import dataclass
+from .locations_table.settlements import settlementTable
 
-class Faction(Choice):
-    """Choose your Player Faction. In case you pick multiple factions, the Client will tell you after connecting which one you play.
-    Don't forget to remove the weight from the first entry.
+class faction(Choice):
+    """Choose your faction. If you pick multiple the client will tell you which one you need to play.
     The last 4 options were introduced in the Tides of Torment DLC, this apworld may not randomise all content from that DLC at this time."""
     display_name = "Player Faction"
     option_beastmen = 1
@@ -112,173 +112,268 @@ class Faction(Choice):
     option_the_tormentors = 102
     option_masque_of_slaanesh = 103
     default = 1
-    
-class FactionShuffle(DefaultOnToggle):
-    """If you want to shuffle the settlements for each faction"""
-    display_name = "FactionShuffle"
+
+class gameMode(Choice):
+    """Select which game mode you want to use.
+    Conquest: No restrictions, checks are based on total settlements conquered.
+    Spheres:  You can only interact with factions near your start position,
+             all unique settlements are checks. [UNSTABLE]"""
+    display_name = "Game Mode"
+
+    option_conquest = "conquest"
+    option_spheres = "spheres"
+
+    default = option_conquest
+
+class factionShuffle(DefaultOnToggle):
+    """CONQUEST MODE ONLY (IS ALWAYS ENABLED IN SPHERE MODE)
+    If you want to shuffle the settlements for each faction"""
+    display_name = "Faction Shuffle"
     
 class numberOfSettlements(Range):
-    """Set how large your empire needs to be for victory. 565 Is the entire map.
-    Make sure to change this value based on how fast you want your game to be.
-    If world generation fails, then you will need to increase either this option or the next option.
-    Items will start being found after settlement 5 (unless you don't start with a settlement, in which case
-    you will receive them starting from settlement 1)."""
-    display_name = "NumberOfSettlements"
+    """CONQUEST MODE ONLY
+    Set how large your empire needs to be for victory. The maximum value is the entire map.
+    Make sure to change this based on how fast you want your game to be.
+    If world generation fails, then you will need to increase this option or the next option.
+    Items will start being found after settlement 3 (unless you don't start with a settlement,
+    in which case you will receive them starting from settlement 1)."""
+    display_name = "Number Of Settlements (CONQUEST)"
     range_start = 20
-    range_end = 565
+    range_end = len(settlementTable)
     default = 100
     
 class checksPerSettlement(Range):
-    """Set how many checks are triggered per empire size increase (empire size being the number of settlements you own).
-    Depending on Yaml settings and the chosen faction, you will likely have around 100-200 non-filler items.
-    Make sure to change this value based on how many apworld "locations" you want your game to have.
-    If world generation fails, then you will need to increase either this option or the previous option."""
-    display_name = "ChecksPerSettlement"
+    """CONQUEST MODE ONLY
+    Set how many checks are triggered per empire size increase (empire size being the number of settlements you own).
+    Depending on YAML settings and the chosen faction, you will likely have around 100-200 non-filler items.
+    Make sure to change this value based on how many locations you want your game to have.
+    If world generation fails, then you will either need to increase this option or the previous option."""
+    display_name = "Checks Per Settlement (CONQUEST)"
     range_start = 1
     range_end = 10
     default = 3
 
 class adminCapacity(Range):
-    """Set how many settlements you can own before needing an additional admin capacity item to avoid debuffs.
-    Currently, is forced to 5 until I get around to updating the lua mod.
-    The player will start with 2 admin capacity items to prevent early game being unable to do anything"""
-    display_name = "SettlementsPerAdminCapacity"
+    """CONQUEST MODE ONLY
+    How many settlements each Administration Capacity item allows you to own.
+    Going over the empire size limit will incur heavy penalties.
+    You start with 2 admin capacity items to avoid early BK."""
+    display_name = "Settlements Per Admin Capacity (CONQUEST)"
     range_start = 1
-    range_end = 565
+    range_end = len(settlementTable)
     default = 5
 
-class MaxRange(Range):
-    """How far away a Settlement can be from a factions other settlements during generation.
-    The samllest in-game distance between two settlements is around 23 units.
-    The maximum distance is around 1500 units."""
+class sphereCount(Range):
+    """SPHERE MODE ONLY
+    How many diplomatic radius upgrades are required to access all checks.
+    You can only interact with factions that are in your radius."""
+    display_name = "Radius Upgrades (SPHERES)"
+    range_start = 1
+    range_end = 65
+    default = 7
+
+class extraSphereCount(Range):
+    """SPHERE MODE ONLY
+    How many extra diplomatic radius upgrades are generated.
+    Without these you are more likely to softlock."""
+    display_name = "Extra Spheres (SPHERES)"
+    range_start = 0
+    range_end = 50
+    default = 0
+
+class sphereRadius(Range):
+    """SPHERE MODE ONLY
+    Determines your starting radius and radius added with each upgrade.
+    The smallest distance between settlements is 25. The largest is 1400.
+    If you spawn in the middle of the map it only takes a radius of 700
+    for the entire world to be in logic."""
+    display_name = "Diplomatic Radius Size (SPHERES)"
+    range_start = 50
+    range_end = 500
+    default = 150
+
+class orbCount(Range):
+    """SPHERE MODE ONLY
+    How many orbs of domination are generated.
+    Once you have this many orbs, you win."""
+    display_name = "Max Orbs (SPHERES)"
+    range_start = 1
+    range_end = 100
+    default = 20
+
+class extraOrbCount(Range):
+    """SPHERE MODE ONLY
+    How many extra orbs should be generated."""
+    display_name = "Extra Orbs (SPHERES)"
+    range_start = 0
+    range_end = 50
+    default = 0
+
+class maxRange(Range):
+    """The furthest away two settlements can be during world generation.
+    The smallest distance between settlements is 25. The largest is 1400."""
+    display_name = "Max Settlement Distance"
     range_start = 50
     range_end = 1500
     default = 200
 
-class TechShuffle(DefaultOnToggle):
-    """If Technologies should be shuffled."""
-    display_name = "TechShuffle"
+class techShuffle(DefaultOnToggle):
+    """Whether technologies should be included in the item pool."""
+    display_name = "Tech Shuffle"
 
-class ProgressiveTechnologies(Toggle):
-    """If Technologies should be progressive. Requires TechShuffle to be on."""
+class progressiveTechnologies(Toggle):
+    """If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
 
-class BuildingShuffle(DefaultOnToggle):
-    """If Buildings should be shuffled."""
-    display_name = "BuildingShuffle"
+class buildingShuffle(DefaultOnToggle):
+    """Whether buildings should be included in the item pool."""
+    display_name = "Building Shuffle"
 
-class ProgressiveBuildings(DefaultOnToggle):
-    """If Buildings should be progressive. Requires BuildingShuffle to be on."""
+class progressiveBuildings(Toggle):
+    """If buildings should be progressive. Requires Building Shuffle to be on."""
     display_name = "Progressive Buildings"
 
-class UnitShuffle(DefaultOnToggle):
-    """If Units should be shuffled."""
-    display_name = "UnitShuffle"
+class unitShuffle(DefaultOnToggle):
+    """Whether units should be included in the item pool."""
+    display_name = "Unit Shuffle"
 
-class ProgressiveUnits(DefaultOnToggle):
-    """If Units should be progressive. Requires UnitShuffle to be on."""
+class progressiveUnits(Toggle):
+    """If units should be progressive. Requires Unit Shuffle to be on."""
     display_name = "Progressive Units"
 
-class RitualShuffle(Toggle):
-    """Should Faction Mechanics like Rituals be shuffled? Will make game probably harder. Also experimental Feature."""
-    display_name ="Shuffle Faction Mechanics like Rituals"
+class ritualShuffle(Toggle):
+    """Should faction mechanics like rituals be shuffled? Will make the game harder.
+    Experimental feature, report on Discord if this does/does not work."""
+    display_name = "Shuffle Faction Mechanics"
 
-class StartingTier(Range):
-    """Start with Buildings and Units with the specified Tier."""
+class startingTier(Range):
+    """Start with buildings and units of this tier already unlocked."""
+    display_name = "Starting Tier"
     range_start = 0
     range_end = 5
     default = 1
 
-class fillerWeak(Range):
-    """Weight of weak filler items.
-    Example: filler_weak: 30, filler_strong: 20, trap_harmless: 0, trap_weak: 30, trap_strong: 20
-    Would mean, that approximately 30% are weak filler, 20% are strong filler, etc, since the weights add up to 100.
-    You can deviate from that, but it will be less intuitive if the total number of weights is not 100."""
+class balance(Range):
+    """Percentage of your early items that are forced unlocks.
+    0 doesn't force unlocks at all. 100 means that all of your early items will be unlocks.
+    High values are not recommended."""
+    display_name = "Force Early Upgrades"
     range_start = 0
     range_end = 100
-    default = 30
+    default = 0
+
+class forceEarlyBuildings(Range):
+    """SET TO 0 TO DISABLE
+    Whether buildings should be a forced unlock and determines the tier.
+    Building shuffle must be on and balance must be greater than 0.
+    The value sets the highest tier of buildings that will be forced.
+    E.g. 2 means that only tier 1 and 2 buildings will be forced."""
+    display_name = "Early Building Tiers"
+    range_start = 0
+    range_end = 5
+    default = 0
+
+class forceEarlyUnits(Range):
+    """SET TO 0 TO DISABLE
+    Whether units should be a forced unlock and determines the tier.
+    Unit shuffle must be on and balance must be greater than 0.
+    The value sets the highest tier of units that will be forced.
+    E.g. 2 means that only tier 1 and 2 units will be forced."""
+    display_name = "Early Unit Tiers"
+    range_start = 0
+    range_end = 5
+    default = 0
+
+class forceEarlyTechs(Toggle):
+    """Whether tech should be a forced unlock.
+    Tech shuffle must be on and balance must be greater than 0."""
+    display_name = "Early Tech"
+
+class fillerWeak(Range):
+    """Weight of weak filler items.
+    For example: filler_weak: 15, filler_strong: 10, trap_harmless: 0, trap_weak: 15, trap_strong: 10
+    Would mean: 30% weak filler, 20% strong filler, 0% harmless traps, 30% weak traps, 20% strong traps
+    because the weights add up to 50."""
+    display_name = "Weak Filler Weight"
+    range_start = 0
+    range_end = 100
+    default = 40
 
 class fillerStrong(Range):
-    """Weight of strong filler items.
-    Experimental Feature."""
+    """Weight of strong filler items."""
+    display_name = "Strong Filler Weight"
     range_start = 0
     range_end = 100
     default = 20
 
 class trapHarmless(Range):
-    """Weight of harmless traps Not currently implemented.
-    These won't disrupt your game. They may, however, induce minor irritation."""
+    """Weight of harmless traps.
+    These won't disrupt your game, but may be annoying."""
+    display_name = "Harmless Trap Weight"
     range_start = 0
-    range_end = 0
-    default = 0
+    range_end = 100
+    default = 10
 
 class trapWeak(Range):
     """Weight of weak traps.
-    Be careful, collecting a vast amount of them may require you to start a new save.
-    Experimental Feature."""
-    range_start = 0
-    range_end = 100
-    default = 30
-
-class trapStrong(Range):
-    """Weight of weak traps.
-    Be careful, collecting a medium amount of them may require you to start a new save.
-    Experimental Feature."""
+    Receiving a lot of them very quickly may require you to reload a previous save."""
+    display_name = "Weak Trap Weight"
     range_start = 0
     range_end = 100
     default = 20
 
-class RandomizePersonalities(DefaultOnToggle):
-    """Randomize AI Personalities."""
-    display_name = "Randomize Personality of each AI faction"
-
-class balance(Range):
-    """If you want to balance the unlocks closer to the start of the multiworld.
-    0 introduces no forced balancing. 100 introduces maximised balancing.
-    High values are not recommended and may result in crashes during multiworld generation."""
-    display_name = "balance"
+class trapStrong(Range):
+    """Weight of strong traps.
+    A few badly timed strong traps may require you to reload a previous save."""
+    display_name = "Strong Trap Weight"
     range_start = 0
     range_end = 100
-    default = 0
+    default = 10
 
-class forceEarlyBuildings(Toggle):
-    """If Buildings should be forced to generate near the start of the multiworld.
-    Requires BuildingShuffle to be on and balance to be greater than 0."""
-    display_name = "ForceEarlyBuildings"
-
-class forceEarlyUnits(Toggle):
-    """If Buildings should be forced to generate near the start of the multiworld.
-    Requires UnitShuffle to be on and balance to be greater than 0."""
-    display_name = "ForceEarlyUnits"
-
-class forceEarlyTechs(Toggle):
-    """If Buildings should be forced to generate near the start of the multiworld.
-    Requires TechShuffle to be on and balance to be greater than 0."""
-    display_name = "ForceEarlyTechs"
+class randomizePersonalities(DefaultOnToggle):
+    """Randomize AI Personalities."""
+    display_name = "Randomize AI Personalities"
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
-    starting_faction: Faction
-    faction_shuffle: FactionShuffle
+    starting_faction: faction
+    game_mode: gameMode
+    faction_shuffle: factionShuffle
+
     number_of_settlements: numberOfSettlements
     checks_per_settlement: checksPerSettlement
     admin_capacity: adminCapacity
-    max_range: MaxRange
-    tech_shuffle: TechShuffle
-    progressive_technologies: ProgressiveTechnologies
-    building_shuffle: BuildingShuffle
-    progressive_buildings: ProgressiveBuildings
-    unit_shuffle: UnitShuffle
-    progressive_units: ProgressiveUnits
-    starting_tier: StartingTier
+
+    sphere_count: sphereCount
+    extra_sphere_count: extraSphereCount
+    sphere_radius: sphereRadius
+    orb_count: orbCount
+    extra_orb_count: extraOrbCount
+
+    max_range: maxRange
+
+    tech_shuffle: techShuffle
+    progressive_technologies: progressiveTechnologies
+    building_shuffle: buildingShuffle
+    progressive_buildings: progressiveBuildings
+    unit_shuffle: unitShuffle
+    progressive_units: progressiveUnits
+
+    starting_tier: startingTier
+    balance: balance
+    force_early_buildings: forceEarlyBuildings
+    force_early_units: forceEarlyUnits
+    force_early_techs: forceEarlyTechs
+
     filler_weak: fillerWeak
     filler_strong: fillerStrong
     trap_harmless: trapHarmless
     trap_weak: trapWeak
     trap_strong: trapStrong
-    randomize_personalities: RandomizePersonalities
-    ritual_shuffle: RitualShuffle
-    balance: balance
-    force_early_buildings: forceEarlyBuildings
-    force_early_units: forceEarlyUnits
-    force_early_techs: forceEarlyTechs
+
+    randomize_personalities: randomizePersonalities
+    ritual_shuffle: ritualShuffle
+
+
+
+

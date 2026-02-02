@@ -2,7 +2,7 @@ from typing import TypedDict
 from .forest_locations import forest_location_table
 import math
 
-lord_name_to_faction_dict = {
+lordToFactionDict = {
     1: "wh_dlc03_bst_beastmen",
     2: "wh_dlc05_bst_morghur_herd",
     3: "wh_dlc05_wef_argwylon",
@@ -108,7 +108,7 @@ lord_name_to_faction_dict = {
     103: "wh3_dlc27_sla_masque_of_slaanesh"
 }
 
-faction_name_to_readable = {
+factionNameToReadable = {
     1: "Khazrak the One-Eye (Beastmen)",
     2: "Morghur the Shadowgave (Beastmen)",
     3: "Durthu (Wood Elves)",
@@ -240,7 +240,7 @@ faction_name_to_readable = {
 }
 
 # faction table with columns faction_key, is_playable, has_home
-faction_table = [
+factionTable = [
     ["wh3_main_dae_daemon_prince", True, False],
     ["wh3_main_kho_exiles_of_khorne", True, True],
     ["wh3_dlc26_kho_skulltaker", True, True],
@@ -551,8 +551,14 @@ woodElvesTable = [
     ["wh_dlc05_wef_wydrioth", False, True]
 ]
 
+tombKingsTable = [
+    ["wh2_dlc09_tmb_khemri", True, True],
+    ["wh2_dlc09_tmb_lybaras", True, True],
+    ["wh2_dlc09_tmb_followers_of_nagash", True, True],
+    ["wh2_dlc09_tmb_exiles_of_nehek", True, True]
+]
 # settlement table with columns settlement_key, x_coord, y_coord
-settlement_table = [
+settlementTable = [
     ["wh3_main_combi_region_zlatlan", 610, 123],
     ["wh3_main_combi_region_floating_village", 683, 372],
     ["wh3_main_combi_region_shrine_of_khaine", 258, 663],
@@ -1131,11 +1137,11 @@ class SettlementDict(TypedDict, total=False):
     settlement: str
     faction: str
 
-class Settlement_Manager():
+class Settlement_Manager:
 
     def __init__(self, random):
-        self.faction_table = faction_table
-        self.settlement_table = settlement_table
+        self.faction_table = factionTable
+        self.settlement_table = settlementTable
         self.new_settlement_dict = {}
         self.new_horde_dict = {}
         self.faction_distance_dict = {}
@@ -1146,62 +1152,62 @@ class Settlement_Manager():
         st = self.settlement_table
         return int(math.hypot(st[s2][1] - st[s1][1], st[s2][2] - st[s1][2]))
 
-    def faction_to_faction_id(self,faction):
-        for i in range(len(faction_table)):
-            if faction_table[i][0] == faction:
+    def factionToFactionId(self, faction):
+        for i in range(len(factionTable)):
+            if factionTable[i][0] == faction:
                 return i
         raise Exception("Faction " + str(faction) + " not found in faction table")
 
-    def faction_id_to_faction(self, faction_id):
-        i = faction_table[faction_id][0]
+    def factionIdToFaction(self, faction_id):
+        i = factionTable[faction_id][0]
         return i
      
-    def has_home_region(self, playerFaction):
-        for row in faction_table:
+    def hasHome(self, playerFaction):
+        for row in factionTable:
             if row[0] == playerFaction:
                 return row[2]
     
-    def settlement_to_id(self, settlement: str) -> int:
-        for i in range(len(settlement_table)):
-            if settlement_table[i][0] == settlement:
+    def settlementToId(self, settlement: str) -> int:
+        for i in range(len(settlementTable)):
+            if settlementTable[i][0] == settlement:
                 return i
         raise Exception("Settlement " + str(settlement) + " not found in faction table")
     
-    def settlement_to_faction(self, settlement_name: str) -> str:
+    def settlementToFaction(self, settlement_name: str) -> str:
         return self.new_settlement_dict[settlement_name]
 
-    def get_major_faction_ids(self):
+    def getMajorFactionIds(self):
         shuffled_major_faction_ids = []
-        for i in range(len(faction_table)):
-            if faction_table[i][1] == True and faction_table[i][2] == True:
+        for i in range(len(factionTable)):
+            if factionTable[i][1] == True and factionTable[i][2] == True:
                 shuffled_major_faction_ids.append(i)
         return shuffled_major_faction_ids
 
-    def get_minor_faction_ids(self):
+    def getMinorFactionIds(self):
         shuffled_minor_faction_ids = []
-        for i in range(len(faction_table)):
-            if faction_table[i][1] == False and faction_table[i][2] == True:
+        for i in range(len(factionTable)):
+            if factionTable[i][1] == False and factionTable[i][2] == True:
                 shuffled_minor_faction_ids.append(i)
         return shuffled_minor_faction_ids
 
-    def get_major_horde_faction_ids(self):
+    def getMajorHordeFactionIds(self):
         shuffled_major_faction_ids = []
-        for i in range(len(faction_table)):
-            if faction_table[i][1] == True and faction_table[i][2] == False:
+        for i in range(len(factionTable)):
+            if factionTable[i][1] == True and factionTable[i][2] == False:
                 shuffled_major_faction_ids.append(i)
         return shuffled_major_faction_ids
 
-    def get_minor_horde_faction_ids(self):
+    def getMinorHordeFactionIds(self):
         shuffled_minor_faction_ids = []
-        for i in range(len(faction_table)):
-            if faction_table[i][1] == False and faction_table[i][2] == False:
+        for i in range(len(factionTable)):
+            if factionTable[i][1] == False and factionTable[i][2] == False:
                 shuffled_minor_faction_ids.append(i)
         return shuffled_minor_faction_ids
         
-    def get_distance(self, faction_key: str) -> int:
+    def getDistance(self, faction_key: str) -> int:
         return self.faction_distance_dict[faction_key]
     
-    def factions_to_spheres(self, sphere_amount: int, sphere_distance: int):
+    def factionsToSpheres(self, sphere_amount: int, sphere_distance: int):
         self.factions_to_spheres = {}
         for key, value in self.faction_distance_dict.items():
             sphere = int(value/sphere_distance)
@@ -1211,7 +1217,7 @@ class Settlement_Manager():
                 self.factions_to_spheres[key] = sphere_amount -1
         return self.factions_to_spheres
 
-    def table_to_dict(self, table) -> TypedDict:
+    def tableToDict(self, table) -> TypedDict:
         settlement_table: dict[int, SettlementDict] = {}
         for i,settlement in enumerate(table):
             settlement_table[i] = {
@@ -1220,10 +1226,10 @@ class Settlement_Manager():
             }
         return settlement_table
     
-    def get_capital_dict(self):
+    def getCapitalDict(self):
         return self.capital_dict
     
-    def get_closest_available_settlement(self, target_settlement_id: int, remaining_settlements_ids, new_settlement_table, max_range):
+    def getClosestFreeSettlement(self, target_settlement_id: int, remaining_settlements_ids, new_settlement_table, max_range):
         if not remaining_settlements_ids:
             return None
         sorted_settlements = sorted(
@@ -1236,54 +1242,43 @@ class Settlement_Manager():
             return sorted_settlements[0]
         else:
             return None
-
-    """def factionIsWoodElves(self, faction):
+        
+    def isWoodElf(self, faction):
         for i in range(len(woodElvesTable)):
             if faction == woodElvesTable[i][0]:
                 return True
-        return False"""
+        return False
 
     def shuffleSettlements(self, player_faction: str, max_range: int):
-
-        remaining_settlements = len(settlement_table)
-        remaining_settlements_ids = [i for i in range(len(settlement_table))]
-        remaining_horde_settlement_ids = [i for i in range(len(settlement_table))]
-        new_settlement_table = [[settlement[0], 0] for settlement in settlement_table]
+        remaining_settlements = len(settlementTable)
+        remaining_settlements_ids = [i for i in range(len(settlementTable))]
+        remaining_horde_settlement_ids = [i for i in range(len(settlementTable))]
+        new_settlement_table = [[settlement[0], 0] for settlement in settlementTable]
         new_horde_table = []
         remaining_forests_ids = [i for i in range(len(forest_location_table))]
-
-        #I think this is checking if the player is a wood elf, and if so, putting them in a forest first, before anything else.
-        if any(faction[0] == player_faction for faction in woodElvesTable):
-
+        if self.isWoodElf(player_faction):
             i = self.random.randint(0, len(remaining_forests_ids) - 1)
-
-            forest_name = forest_location_table[remaining_forests_ids[i]]
-
-            for index, settlement in enumerate(new_settlement_table):
-                if settlement[0] == forest_name:
-                    new_settlement_table[index][1] = self.faction_to_faction_id(player_faction)
-                    player_settlement = new_settlement_table[index][0]
+            forestName = forest_location_table[remaining_forests_ids[i]]
+            for number, settlement in enumerate(new_settlement_table):
+                if settlement[0] == forestName:
+                    new_settlement_table[number][1] = self.factionToFactionId(player_faction)
+                    playerSettlement = new_settlement_table[number][0]
                     remaining_forests_ids.pop(i)
                     remaining_settlements -= 1
-                    remaining_settlements_ids.remove(index)
+                    remaining_settlements_ids.remove(number)
                     self.capital_dict[player_faction] = settlement[0]
                     self.faction_distance_dict[player_faction] = 0
                     break
-
-            location = self.random.choice(forest_location_table)
-
-
-
         else:
             i = self.random.randint(0, len(new_settlement_table) - 1)
-            if self.has_home_region(player_faction):
-                new_settlement_table[i][1] = self.faction_to_faction_id(player_faction)
+            if self.hasHome(player_faction):
+                new_settlement_table[i][1] = self.factionToFactionId(player_faction)
             else:
-                new_horde_table.append([new_settlement_table[i][0], self.faction_to_faction_id(player_faction)])
-            player_settlement = new_settlement_table[i][0]
-            self.capital_dict[player_faction] = player_settlement
+                new_horde_table.append([new_settlement_table[i][0], self.factionToFactionId(player_faction)])
+            playerSettlement = new_settlement_table[i][0]
+            self.capital_dict[player_faction] = playerSettlement
             self.faction_distance_dict[player_faction] = 0
-            if self.has_home_region(player_faction):
+            if self.hasHome(player_faction):
                 remaining_settlements_ids.pop(i)
                 remaining_settlements -= 1
             else:
@@ -1291,46 +1286,44 @@ class Settlement_Manager():
         
         # Force Woodelves to be in forest_regions
         for i in range(len(woodElvesTable)):
-            woodelve_faction = woodElvesTable[i][0]
-            if woodelve_faction == player_faction :
+            woodElfFaction = woodElvesTable[i][0]
+            if woodElfFaction == player_faction :
                 continue
             j = self.random.randint(0, len(remaining_forests_ids) - 1)
-            forest_name = forest_location_table[remaining_forests_ids[j]]
+            forestName = forest_location_table[remaining_forests_ids[j]]
             for number, settlement in enumerate(new_settlement_table):
-                if settlement[0] == forest_name:
-                    new_settlement_table[number][1] = self.faction_to_faction_id(woodelve_faction)
+                if settlement[0] == forestName:
+                    new_settlement_table[number][1] = self.factionToFactionId(woodElfFaction)
                     remaining_forests_ids.pop(j)
                     remaining_settlements -= 1
                     remaining_settlements_ids.remove(number)
-                    self.capital_dict[woodelve_faction] = settlement[0]
-                    self.faction_distance_dict[woodelve_faction] = (
-                        self.calculateDistance(self.settlement_to_id(player_settlement), self.settlement_to_id(forest_name))
+                    self.capital_dict[woodElfFaction] = settlement[0]
+                    self.faction_distance_dict[woodElfFaction] = (
+                        self.calculateDistance(self.settlementToId(playerSettlement), self.settlementToId(forestName))
                     )
                     break
 
-        first_loop = True
-        major_factions_keys = self.get_major_faction_ids()
-        minor_factions_keys = self.get_minor_faction_ids()
+        major_factions_keys = self.getMajorFactionIds()
+        minor_factions_keys = self.getMinorFactionIds()
         self.random.shuffle(major_factions_keys)
-        if self.has_home_region(player_faction):
-            major_factions_keys.remove(self.faction_to_faction_id(player_faction))
+        if self.hasHome(player_faction):
+            major_factions_keys.remove(self.factionToFactionId(player_faction))
         self.random.shuffle(minor_factions_keys)
         # Remove Woodelves from first iteration
         for i in range(0, 4):
             if not woodElvesTable[i][0] == player_faction :
-                major_factions_keys.remove(self.faction_to_faction_id(woodElvesTable[i][0]))
+                major_factions_keys.remove(self.factionToFactionId(woodElvesTable[i][0]))
         for i in range(4, 9):
-            minor_factions_keys.remove(self.faction_to_faction_id(woodElvesTable[i][0]))
+            minor_factions_keys.remove(self.factionToFactionId(woodElvesTable[i][0]))
         for i in range(len(major_factions_keys)):
                 if (remaining_settlements > 0):
                     a = self.random.randint(0, len(remaining_settlements_ids) - 1)
                     new_settlement_table[remaining_settlements_ids[a]][1] = major_factions_keys[i]
-                    if first_loop == True:
-                        faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
-                        self.faction_distance_dict[self.faction_id_to_faction(major_factions_keys[i])] = (
-                            self.calculateDistance(self.settlement_to_id(player_settlement), self.settlement_to_id(faction_settlement))
-                        )
-                        self.capital_dict[self.faction_id_to_faction(major_factions_keys[i])] = faction_settlement
+                    faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
+                    self.faction_distance_dict[self.factionIdToFaction(major_factions_keys[i])] = (
+                        self.calculateDistance(self.settlementToId(playerSettlement), self.settlementToId(faction_settlement))
+                    )
+                    self.capital_dict[self.factionIdToFaction(major_factions_keys[i])] = faction_settlement
                     remaining_settlements_ids.pop(a)
                     remaining_settlements -= 1
                 else:
@@ -1339,68 +1332,73 @@ class Settlement_Manager():
             if (remaining_settlements > 0):
                 a = self.random.randint(0, len(remaining_settlements_ids) - 1)
                 new_settlement_table[remaining_settlements_ids[a]][1] = minor_factions_keys[i]
-                if first_loop == True:
-                    faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
-                    self.faction_distance_dict[self.faction_id_to_faction(minor_factions_keys[i])] = (
-                        self.calculateDistance(self.settlement_to_id(player_settlement), self.settlement_to_id(faction_settlement))
-                    )
-                    self.capital_dict[self.faction_id_to_faction(minor_factions_keys[i])] = faction_settlement
+                faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
+                self.faction_distance_dict[self.factionIdToFaction(minor_factions_keys[i])] = (
+                    self.calculateDistance(self.settlementToId(playerSettlement), self.settlementToId(faction_settlement))
+                )
+                self.capital_dict[self.factionIdToFaction(minor_factions_keys[i])] = faction_settlement
                 remaining_settlements_ids.pop(a)
                 remaining_settlements -= 1
             else:
                 break
-        if self.has_home_region(player_faction):
-            major_factions_keys.append(self.faction_to_faction_id(player_faction))
+        if self.hasHome(player_faction):
+            major_factions_keys.append(self.factionToFactionId(player_faction))
                 
         # Add Woodelves from first iteration
         for i in range(0, 4):
             if not woodElvesTable[i][0] == player_faction :
-                major_factions_keys.append(self.faction_to_faction_id(woodElvesTable[i][0]))
+                major_factions_keys.append(self.factionToFactionId(woodElvesTable[i][0]))
         for i in range(4, 9):
-            minor_factions_keys.append(self.faction_to_faction_id(woodElvesTable[i][0]))
+            minor_factions_keys.append(self.factionToFactionId(woodElvesTable[i][0]))
 
         breakout_counter = 0
         while (remaining_settlements > 0):
             # Randomize faction order
             self.random.shuffle(major_factions_keys)
+
             for faction in major_factions_keys:
                 if (remaining_settlements == 0):
                     break
                 faction_settlement_list = []
                 for i in range(len(new_settlement_table)):
                     if new_settlement_table[i][1] == faction:
-                        faction_settlement_list.append(self.settlement_to_id(new_settlement_table[i][0]))
+                        faction_settlement_list.append(self.settlementToId(new_settlement_table[i][0]))
                 r = self.random.randint(0, len(faction_settlement_list) - 1)
                 if (breakout_counter < 7):
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range)
+                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range * breakout_counter)
                 else:
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    breakout_counter = 0
                 if closest_Settlement != None:
                     new_settlement_table[closest_Settlement][1] = faction
                     remaining_settlements_ids.remove(closest_Settlement)
                     remaining_settlements -= 1
             self.random.shuffle(minor_factions_keys)
+
             for faction in minor_factions_keys:
                 if (remaining_settlements == 0):
                     break
                 faction_settlement_list = []
                 for i in range(len(new_settlement_table)):
                     if new_settlement_table[i][1] == faction:
-                        faction_settlement_list.append(self.settlement_to_id(new_settlement_table[i][0]))
+                        faction_settlement_list.append(self.settlementToId(new_settlement_table[i][0]))
                 r = self.random.randint(0, len(faction_settlement_list) - 1)
                 if (breakout_counter < 7):
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range)
+                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, max_range * breakout_counter)
                 else:
-                    closest_Settlement = self.get_closest_available_settlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r], remaining_settlements_ids, new_settlement_table, 1500)
+                    breakout_counter = 0
                 if closest_Settlement != None:
                     new_settlement_table[closest_Settlement][1] = faction
                     remaining_settlements_ids.remove(closest_Settlement)
                     remaining_settlements -= 1
             breakout_counter += 1
-        horde_keys = self.get_major_horde_faction_ids()
-        horde_keys.append(self.get_minor_faction_ids())
-        if (not self.has_home_region(player_faction)):
-            horde_keys.remove(self.faction_to_faction_id(player_faction))
+        horde_keys = self.getMajorHordeFactionIds()
+        horde_keys.append(self.getMinorFactionIds())
+
+        if (not self.hasHome(player_faction)):
+            horde_keys.remove(self.factionToFactionId(player_faction))
+
         for faction in horde_keys:
             i = self.random.randint(0, len(remaining_horde_settlement_ids) - 1)
             new_horde_table.append([new_settlement_table[i][0], faction])
@@ -1408,10 +1406,28 @@ class Settlement_Manager():
 
         for i in range(len(new_settlement_table)):
             if isinstance(new_settlement_table[i][1], int):
-                new_settlement_table[i][1] = self.faction_id_to_faction(new_settlement_table[i][1])
+                new_settlement_table[i][1] = self.factionIdToFaction(new_settlement_table[i][1])
         self.new_settlement_dict = {row[0]: row[1] for row in new_settlement_table}
         for i in range(len(new_horde_table)):
             if isinstance(new_horde_table[i][1], int):
-                new_horde_table[i][1] = self.faction_id_to_faction(new_horde_table[i][1])
+                new_horde_table[i][1] = self.factionIdToFaction(new_horde_table[i][1])
         self.new_horde_dict = {row[0]: row[1] for row in new_horde_table}
+
         return self.new_settlement_dict, self.new_horde_dict
+
+    def get_settlement_spheres(self):
+        self.settlement_spheres = {}
+        for settlement, faction in self.new_settlement_dict.items():
+            sphere = self.factions_to_spheres[faction]
+            self.settlement_spheres[settlement] = sphere
+        return self.settlement_spheres
+
+    def count_settlements_per_sphere(self, sphere_amount):
+        settlements_per_sphere = {}
+        for i in range(sphere_amount):
+            sum = 0
+            for settlement, sphere in self.settlement_spheres.items():
+                if sphere == i:
+                    sum += 1
+            settlements_per_sphere[i] = sum
+        return settlements_per_sphere
