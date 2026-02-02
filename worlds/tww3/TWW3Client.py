@@ -40,6 +40,7 @@ class WaaaghMessenger:
 
     def run(self, message):
         self.file.write(message + '\n')
+        #self.file.flush()
 
     def flush(self):
         self.file.flush()
@@ -249,6 +250,8 @@ class TWW3Context(CommonContext):
             elif item.type == ItemType.ritual:
                 self.waaaghMessenger.run("cm:unlock_ritual(cm:get_faction(\"%s\"), \"%s\", 0)" % (self.playerFaction, item.name))
 
+            self.waaaghMessenger.flush()
+
         if self.gameMode == "spheres":
             if self.numberOfOrbs == self.orbGoal:
                 asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
@@ -415,6 +418,7 @@ class EngineInitializer:
             #Set Administrative Capacity
             ###
             waaaghMessenger.run(f"set_settlements_per_admin_capacity({context.adminCapacity})")
+            waaaghMessenger.run(f"set_admin_capacity({context.expansionItems})")
 
         elif context.gameMode == "spheres":
             sphereZeroFactions = []
