@@ -8,7 +8,7 @@ placed into the item pool meaning that you can't access them until the correspon
 The goal of this apworld is to conquer a certain number of settlements simultaneously, configurable in the yaml.
 
 Additionally, your checks are determined by the selected game mode - in conquest mode if your goal is 50 settlements,
-every settlement from 5-49 will grant checks (unless your faction doesn't start with a home region, in which case it's
+every settlement from 4-49 will grant checks (unless your faction doesn't start with a home region, in which case it's
 1-49). The number of checks you send per settlement can be modified in the yaml - this is to account for how slow TWW3
 can be to play and allows you to tailor the pacing of checks to match other games in the multiworld.
 
