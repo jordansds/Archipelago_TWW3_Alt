@@ -25,8 +25,8 @@ downloading the APWorld, double click the file to install it. Depending on which
 need one of the two .pack files found on the GitHub release, but it's recommended to download both for ease of use. Place
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
-**These .pack files are required as they are the mods needed for the game to function. Make sure you *don't* use the mod
-found on the Steam workshop, as it does not work correctly with this implementation.**
+**These .pack files are required as they are the mods needed for the two game modes to function. Make sure you *don't* use
+the mod found on the Steam workshop, as it does not work correctly with this implementation.**
 
 Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
 with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
@@ -42,7 +42,8 @@ send the yaml to the person in charge (alongside the .apworld if they don't alre
 Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
-mode has been selected. Launch the game with the correct mod loaded, select the correct leader, and start playing!
+mode has been selected. Launch the game with the correct mod loaded for your chosen mode, select the correct leader, and
+start playing!
 
 ## What the yaml do
 
