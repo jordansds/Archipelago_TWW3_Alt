@@ -25,7 +25,8 @@ downloading the APWorld, double click the file to install it. Depending on which
 need one of the two .pack files found on the GitHub release, but it's recommended to download both for ease of use. Place
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
-**These .pack files are required as they are the mods needed for the two game modes to function. Make sure you *don't* use
+
+**The .pack files are required as they are the mods needed for the two game modes to function. Make sure you *don't* use
 the mod found on the Steam workshop, as it does not work correctly with this implementation.**
 
 Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
