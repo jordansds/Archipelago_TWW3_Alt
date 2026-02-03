@@ -106,7 +106,7 @@ def createDiploRangeLocationsNew(world: TWW3World) -> None:
             worldRegion.locations.append(location)
 
         elif 0 < requiredDiploRange[key] <= world.options.sphere_count:
-            if factionSpheres[key][0] != settlements.lordToFactionDict[world.options.starting_faction]:
+            if factionSpheres[key][0] != world.playerFaction:
                 set_rule(location,
                          lambda state, count=requiredDiploRange[key]: state.has("Diplomatic Range", world.player, count))
                 worldRegion.locations.append(location)
