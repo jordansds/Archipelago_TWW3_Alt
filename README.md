@@ -59,7 +59,7 @@ with this setting turned on.*
 to win. The number of settlements needed is determined by `number_of_locations`. Checks are granted as your empire size grows.
 This lends itself to faster paced games and plays better in synchronous multiworlds.
 
-`spheres` is the original game mode. This mode starts with a limited radius in which you can interact with other factions, which
+`spheres` is the original game mode developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
 grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
 you win. Every settlement on the map is a unique check. This is a *much* slower paced game that is better suited to asyncs.
 Additionally this mode is prone to causing softlocks if you don't have many extra spheres, as AI factions can claim razed settlements
