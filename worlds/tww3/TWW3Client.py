@@ -1,0 +1,494 @@
+from CommonClient import CommonContext, ClientCommandProcessor, server_loop, get_base_parser, gui_enabled, logger
+import Utils
+import asyncio
+import colorama
+import logging
+from .item_tables.item_types import ItemType
+from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
+from .item_tables.effect_table import globalEffectTable
+from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
+from .item_tables.unique_item_table import unique_item_table
+from .item_tables.progressive_buildings_table import progressiveBuildingsDict
+from .item_tables.progressive_units_table import progressiveUnitsDict
+from .item_tables.ritual_table import ritualDict
+from .item_tables.progressive_techs_table import progressiveTechsDict
+from .item_tables.progression_table import progressionDict
+from . import TWW3World
+from . import settlementManager as sm
+import os
+from NetUtils import ClientStatus
+
+path = "."
+
+class TWW3CommandProcessor(ClientCommandProcessor):    
+
+    def _cmd_traps(self):
+        """Turn Traps off and on."""
+        if isinstance(self.ctx, TWW3Context):
+            self.ctx.are_traps_enabled = not self.ctx.are_traps_enabled
+            logger.info(f"Traps are now turned {'on' if self.ctx.are_traps_enabled else 'off'}.")
+
+    def _cmd_capitals(self):
+        """Prints a list of starting Capitals."""
+        if isinstance(self.ctx, TWW3Context):
+            for faction, capital in self.ctx.capitals.items():
+                logger.info("Faction: " + faction + " Capital: " + capital)
+
+class WaaaghMessenger:
+    def __init__(self, path):
+        self.file = open(path, 'w+')
+
+    def run(self, message):
+        self.file.write(message + '\n')
+        #self.file.flush()
+
+    def flush(self):
+        self.file.flush()
+
+class WaaaghWatcher:
+    def __init__(self, path, context):
+        self.file = open(path, 'w+')
+        self.context = context
+
+    async def watch(self, gameMode):
+        print('Watching for Waaagh...')
+        self.file.seek(0, 2)
+        while True:
+            line = self.file.readline()
+            if not line:
+                await asyncio.sleep(0.5)
+                continue
+            if gameMode == "conquest":
+                logger.info("Sending Empire Size " + line.strip())
+            elif gameMode == "spheres":
+                logger.info("Sending Location " + line.strip())
+            #self.context.waaaghMessenger.run("cm:get_campaign_ui_manager():unhighlight_settlement(cm:get_region(\"%s\"):settlement():key())" % (line.strip()))
+
+            await self.context.check(line.strip())
+
+class TWW3Context(CommonContext):
+    game = 'Total War Warhammer 3'
+    command_processor = TWW3CommandProcessor
+    items_handling = 0b111
+    are_traps_enabled = True
+
+    def __init__(self, server_address, password):
+        super().__init__(server_address, password)
+        self.initialized = False
+        self.itemDict = dict(fillerWeakDict)
+        self.itemDict.update(fillerStrongDict)
+        #self.item_table.update(globalEffectTable) #disabled as a large number of these checks don't do anything
+        self.itemDict.update(ancillariesRegularDict)
+        self.itemDict.update(ancillariesLegendaryDict)
+        self.itemDict.update(trapHarmlessDict)
+        self.itemDict.update(trapWeakDict)
+        self.itemDict.update(trapStrongDict)
+        self.itemDict.update(unique_item_table)
+        self.itemDict.update(progressiveBuildingsDict)
+        self.itemDict.update(progressiveUnitsDict)
+        self.itemDict.update(progressiveTechsDict)
+        self.itemDict.update(ritualDict)
+        self.itemDict.update(progressionDict)
+
+    async def server_auth(self, password_requested: bool = False):
+        if password_requested and not self.password:
+            await super(TWW3Context, self).server_auth(password_requested)
+        await self.get_username()
+#        await self.get_path()
+        await self.send_connect()
+
+    def on_package(self, cmd: str, args: dict):
+        if cmd == 'Connected':
+            self.on_connected(args)
+        elif cmd == "ReceivedItems":
+            self.on_received_items(args)
+
+    def on_connected(self, args: dict):
+        self.path = TWW3World.settings.tww3_path
+        self.progressive_items_flags = {key: 0 for key in self.itemDict.keys()}
+        
+        if not self.path or not os.path.exists(self.path):
+            logger.error('Path does not point to a directory. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
+        if not os.path.isfile(self.path + '\\Warhammer3.exe'):
+            logger.error('No TWW3 exe in Path. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
+
+        self.gameMode = args['slot_data']['game_mode']
+        logger.info("The game mode is: " + self.gameMode)
+            
+        self.waaaghWatcher = WaaaghWatcher(self.path + '\\engine.out', self)
+        waaaghWatcher_task = asyncio.create_task(self.waaaghWatcher.watch(self.gameMode), name='WaaaghWatcher')
+        self.waaaghMessenger = WaaaghMessenger(self.path + '\\engine.in')
+        
+        self.playerFaction = sm.lordToFactionDict[args['slot_data']['starting_faction']]
+
+        factionReadable = self.playerFaction #In case anything is broken
+        for key, value in sm.lordToFactionDict.items():
+            if value == self.playerFaction:
+                factionReadable = sm.factionNameToReadable[key]
+        logger.info("The player faction is: " + factionReadable)
+
+
+        self.settlements = args['slot_data']['settlements']
+        self.hordes = args['slot_data']['hordes']
+        self.itemKeys = args['slot_data']['items']
+        self.capitals = args['slot_data']['faction_capitals']
+        self.progressiveTechs = args['slot_data']['progressive_technologies']
+        self.progressiveBuildings = args['slot_data']['progressive_buildings']
+        self.progressiveUnits = args['slot_data']['progressive_units']
+        self.startingTier = args['slot_data']['starting_tier']
+        self.shuffleRituals = args['slot_data']['ritual_shuffle']
+        self.randomizePersonalities = args['slot_data']['randomize_personalities']
+        self.factionShuffle = args['slot_data']['faction_shuffle']
+
+        if self.gameMode == "conquest":
+            self.checksPerLocation = args['slot_data']['checks_per_settlement']
+            self.numberOfLocations = args['slot_data']['number_of_settlements']
+            self.adminCapacity = args['slot_data']['admin_capacity']
+
+            self.expansionItems = 2  # Begins with 2 fake items so that the player can own up to 10 settlements at the start
+        elif self.gameMode == "spheres":
+            self.orbGoal = args['slot_data']['orbs']
+            self.spheres = args['slot_data']['spheres']
+
+            self.numberOfOrbs = 0
+            self.numberOfDiploRanges = 0
+            #self.settlementToId = [key for key, settlement in sm.settlementDict.items() if settlement.name in self.settlements]
+
+            self.locationLookup = dict()
+            offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
+            for key, settlement in sm.settlementDict.items():
+                self.locationLookup[settlement.name] = key + offset
+        EngineInitializer.initialize(self)
+
+    def on_received_items(self, args: dict):
+        # for entry in self.items_received:
+        for entry in args["items"]:
+            item = self.itemDict[entry.item]
+            sender = "You" if entry.player == self.slot else f"Player {entry.player}"
+            logger.info(f"From: {sender} | Item: {item.name}")
+            if item.type == ItemType.building:
+                if self.progressiveBuildings:
+                    self.send_next_progressive_building(item.name)
+                else:
+                    self.waaaghMessenger.run("cm:remove_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+            elif item.type == ItemType.tech:
+                if self.progressiveTechs:
+                    self.send_next_progressive_tech(item.name)
+                else:
+                    self.waaaghMessenger.run("cm:unlock_technology(\"%s\", \"%s\")" % (self.playerFaction, item.name))
+            elif item.type == ItemType.unit:
+                if self.progressiveUnits:
+                    self.send_next_progressiveUnits(item.name)
+                else:
+                    self.waaaghMessenger.run("cm:remove_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+            elif item.type == ItemType.progression:
+                if self.gameMode == "conquest":
+                    self.expansionItems += 1
+                    self.waaaghMessenger.run(f"set_admin_capacity({self.expansionItems})")
+                    logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
+                    logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
+                elif self.gameMode == "spheres":
+                    self.numberOfDiploRanges += 1
+                    self.triggerProgressionEvents(self.numberOfDiploRanges)
+                    logger.info("You now have: " + str(self.numberOfDiploRanges) + " Spheres of Influence")
+            elif item.type == ItemType.goal:
+                if self.gameMode == "spheres":
+                    self.numberOfOrbs += 1
+                    logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
+
+            elif item.type == ItemType.filler_weak:
+                if item.name == "Get-Rich-Quick Scroll":
+                    self.waaaghMessenger.run("cm:treasury_mod(\"%s\", cm:random_number(10000,1))" % self.playerFaction)
+                elif item.name == "Handful of Order" :
+                    self.waaaghMessenger.run("set_random_positive_public_order()")
+                elif item.name == "The GroBro 3000":
+                    self.waaaghMessenger.run("add_random_growth_to_player()")
+
+            elif (item.type == ItemType.ancillaries_regular) or (item.type == ItemType.ancillaries_legendary):
+                self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.name)
+
+            elif item.type == ItemType.effect_faction:
+                self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.name)
+
+            elif item.type == ItemType.filler_strong:
+                if item.name == "Give me that":
+                    self.waaaghMessenger.run("force_settlement_transfer_from_random_enemy_to_player()")
+                elif item.name == "Make Love, Not War":
+                    self.waaaghMessenger.run("force_alliance_with_random_enemy()")
+
+            elif item.type == ItemType.trap_harmless:
+                if self.are_traps_enabled:
+                    if item.name == "Look! What\'s that?":
+                        self.waaaghMessenger.run("scroll_camera_to_random_region()")
+                    if item.name == "Spoiler Alert!":
+                        self.waaaghMessenger.run("play_random_movie()")
+                else:
+                    self.waaaghMessenger.run("out(\"Skipped a Trap\")")
+
+            elif item.type == ItemType.trap_weak:
+                if self.are_traps_enabled:
+                    if item.name == "Handful of Unrest":
+                        self.waaaghMessenger.run("set_random_negative_public_order()")
+                    elif item.name == "Unionize This!":
+                        self.waaaghMessenger.run("force_random_weak_rebellion_for_player()")
+                    elif item.name == "Where is our Map?":
+                        self.waaaghMessenger.run("cm:reset_shroud()")
+                    elif item.name == "Schizophrenia!":
+                        self.waaaghMessenger.run("cm:cai_force_personality_change(\"All\")")
+                else:
+                    self.waaaghMessenger.run("out(\"Skipped a Trap\")")
+
+            elif item.type == ItemType.trap_strong:
+                if self.are_traps_enabled:
+                    if item.name == "Torches and Pitchforks!":
+                        self.waaaghMessenger.run("force_random_strong_rebellion_for_player()")
+                    elif item.name == "Let\'s trade!":
+                        self.waaaghMessenger.run("force_settlement_trade_with_random_enemy()")
+                    elif item.name == "You too, Brutus?":
+                        self.waaaghMessenger.run("force_war_with_random_ally()")
+                else:
+                    self.waaaghMessenger.run("out(\"Skipped a Trap\")")
+
+            elif item.type == ItemType.ritual:
+                self.waaaghMessenger.run("cm:unlock_ritual(cm:get_faction(\"%s\"), \"%s\", 0)" % (self.playerFaction, item.name))
+
+            self.waaaghMessenger.flush()
+
+        if self.gameMode == "spheres":
+            if self.numberOfOrbs == self.orbGoal:
+                asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
+
+        self.waaaghMessenger.flush()
+
+    def send_next_progressive_building(self, progressionGroup):
+        for key, item in self.itemDict.items():
+            if (item.faction == self.playerFaction) and (item.progressionGroup == progressionGroup) and (self.progressive_items_flags[key] == 0):
+                self.progressive_items_flags[key] = 1
+                self.waaaghMessenger.run("cm:remove_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+                return
+        raise Exception("Progressive Building " + progressionGroup + " not found in item_table")
+    
+    def send_next_progressiveUnits(self, progressionGroup):
+        # The Amount of progressive Items per Group is saved on the first index with that progression Group
+        for key, item in self.itemDict.items():
+            if (item.faction == self.playerFaction) and (item.progressionGroup == progressionGroup):
+                level_to_unlock = self.progressive_items_flags[key]
+                self.progressive_items_flags[key] += 1
+                break
+        for key, item in self.itemDict.items():
+            if item.faction == self.playerFaction and item.progressionGroup == progressionGroup and item.tier == level_to_unlock:
+                #print("cm:remove_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+                self.waaaghMessenger.run("cm:remove_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+
+    def send_next_progressive_tech(self, progressionGroup):
+    # The Amount of progressive Items per Group is saved on the first index with that progression Group
+        for key, item in self.itemDict.items():
+            if (item.faction == self.playerFaction) and (item.progressionGroup == progressionGroup):
+                level_to_unlock = self.progressive_items_flags[key]
+                self.progressive_items_flags[key] += 1
+                break
+        for key, item in self.itemDict.items():
+            if (item.faction == self.playerFaction) and (item.progressionGroup == progressionGroup) and (item.tier == level_to_unlock):
+                self.waaaghMessenger.run("cm:unlock_technology(\"%s\", \"%s\")" % (self.playerFaction, item.name))
+
+    def triggerProgressionEvents(self, numberOfSphereItems):
+        oldSphere = []
+        newSphere = []
+        allOthers = []
+        for faction, sphere in self.spheres.items():
+            if sphere < numberOfSphereItems:
+                oldSphere.append(faction)
+            elif sphere == numberOfSphereItems:
+                newSphere.append(faction)
+            else:
+                allOthers.append(faction)
+        for oldFaction in oldSphere:
+            for newFaction in newSphere:
+                self.waaaghMessenger.run("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
+        for newFaction in newSphere:
+            for otherFaction in allOthers:
+                self.waaaghMessenger.run("cm:force_make_peace(\"%s\", \"%s\")" % (newFaction, otherFaction))
+                self.waaaghMessenger.run("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (newFaction, otherFaction))
+        return
+
+    async def check(self, location):
+        try:
+            if self.gameMode == "conquest":
+
+                if str(location) != str(self.numberOfLocations):
+                    for i in range(int(self.checksPerLocation)):
+                        #logger.info(f"Sending Location Empire Size {location} ({i})")
+                        #logger.info([int(location)*10-9 + i])
+                        await self.check_locations([int(location)*10-9 + i])
+                else:
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+
+            elif self.gameMode == "spheres":
+                await self.check_locations([self.locationLookup[location]])
+                
+        except KeyError as err:
+            logger.error(err)
+            logger.error("There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: " + location)
+
+
+    def run_gui(self):
+        from kvui import GameManager
+
+        class TWW3Manager(GameManager):
+            logging_pairs = [
+                ("Client", "Archipelago")
+            ]
+            base_title = "Archipelago " + self.game + " Client"
+
+        self.ui = TWW3Manager(self)
+        self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
+
+class EngineInitializer:
+
+    @classmethod
+    def initialize(cls, context):
+        settlements = context.settlements
+        hordes = context.hordes
+        playerFaction = context.playerFaction
+        capitals = context.capitals
+        startingTier = context.startingTier
+        waaaghMessenger = context.waaaghMessenger
+        isFirstPlayerSettlement = True
+        
+        ###
+        #Randomise AI Personalities
+        ###
+        if context.randomizePersonalities:
+            waaaghMessenger.run("cm:cai_force_personality_change(\"All\")")
+
+        if context.factionShuffle:# or context.gameMode == "spheres":
+            ###
+            #Randomise Settlements
+            ###
+            #Ignore the player on the first sweep to prevent early check triggers
+            for settlement, faction in settlements.items():
+                if faction == playerFaction:
+                    continue
+                waaaghMessenger.run("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
+                waaaghMessenger.run("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+
+            for settlement, faction in settlements.items():
+                waaaghMessenger.run("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
+                waaaghMessenger.run("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+                if faction == playerFaction and isFirstPlayerSettlement:
+                    waaaghMessenger.run("cm:scroll_camera_to_region(\"%s\", \"%s\", 1)" % (faction, settlement))
+                    isFirstPlayerSettlement = False
+
+            ###
+            #Teleport armies to new settlement
+            ###
+            for faction, settlement in capitals.items():
+                waaaghMessenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                waaaghMessenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+
+            ###
+            #Teleports Hordes to random regions
+            ###
+            for faction, settlement in hordes.items():
+                waaaghMessenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                waaaghMessenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+            waaaghMessenger.run("cm:reset_shroud()")
+                
+        ###
+        #Locks rituals if randomised
+        ###            
+        if context.shuffleRituals:
+            for key, ritual in ritualDict.items():
+                if ritual.faction == playerFaction:
+                    waaaghMessenger.run("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (playerFaction, ritual.name))
+                    
+        ###
+        #Disables techs/buildings/units if randomised
+        ###
+        for key in context.itemKeys:
+            itemData = context.itemDict[key]
+            if (itemData.type == ItemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
+                waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (playerFaction, itemData.name))
+            elif (itemData.type == ItemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
+                waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, playerFaction))
+            elif (itemData.type == ItemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
+                waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, playerFaction))
+                
+        if context.progressiveTechs:
+            cls.lock_progressiveTechs(playerFaction, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+        if context.progressiveBuildings:
+            cls.lock_progressiveBuildings(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+        if context.progressiveUnits:
+            cls.lock_progressiveUnits(playerFaction, startingTier, waaaghMessenger, context.itemDict, context.progressive_items_flags)
+
+        if context.gameMode == "conquest":
+            ###
+            #Set Administrative Capacity
+            ###
+            waaaghMessenger.run(f"set_settlements_per_admin_capacity({context.adminCapacity})")
+            waaaghMessenger.run(f"set_admin_capacity({context.expansionItems})")
+
+        elif context.gameMode == "spheres":
+            sphereZeroFactions = []
+            sphereAllOthers = []
+            for faction, sphere in context.spheres.items():
+                if sphere == 0:
+                    sphereZeroFactions.append(faction)
+                else:
+                    sphereAllOthers.append(faction)
+                continue
+            for factionZero in sphereZeroFactions:
+                for faction in sphereAllOthers:
+                    waaaghMessenger.run("cm:force_make_peace(\"%s\", \"%s\")" % (factionZero, faction))
+                    waaaghMessenger.run(
+                        "cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (
+                            factionZero, faction))
+        waaaghMessenger.flush()
+
+    def lock_progressiveTechs(self, waaaghMessenger, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if (item.faction == self.playerFaction) and (item.type == ItemType.tech) and (item.progressionGroup != None):
+                # The Amount of progressive Items per Group is saved on the first index with that progression Group, but since we don't know the first item of each progression Group, we set all items to the starting Tier for now.
+                waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
+
+    def lock_progressiveBuildings(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if (item.faction == self.playerFaction) and (item.type == ItemType.building) and (item.progressionGroup != None):
+                if item.tier + 1 > startingTier:
+                    waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+                else:
+                    progressive_items_flags[key] = 1
+
+    def lock_progressiveUnits(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if (item.faction == self.playerFaction) and (item.type == ItemType.unit) and (item.progressionGroup != None):
+                # The Amount of progressive Items per Group is saved on the first index with that progression Group, but since we don't know the first item of each progression Group, we set all items to the starting Tier for now.
+                progressive_items_flags[key] = startingTier + 1
+                if item.tier > startingTier:
+                    waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+
+def launch(*launch_args: str):
+    Utils.init_logging('TWW3Client')
+    logging.getLogger().setLevel(logging.INFO)
+
+    async def main(args):
+        ctx = TWW3Context(args.connect, args.password)
+        ctx.server_task = asyncio.create_task(server_loop(ctx), name='ServerLoop')
+
+        if gui_enabled:
+            ctx.run_gui()
+        ctx.run_cli()
+
+        await ctx.exit_event.wait()
+        ctx.server_address = None
+        await ctx.shutdown()
+
+    parser = get_base_parser()
+    args = parser.parse_args()
+    colorama.just_fix_windows_console()
+
+    asyncio.run(main(args))
+    colorama.deinit()
+
+if __name__ == '__main__':
+    launch(*args)
