@@ -21,17 +21,17 @@ def createAllLocations(world: TWW3World, locationToDiploRange) -> None:
         createRegularLocations(world)
 
     elif world.options.game_mode == "spheres":
-        createDiploRangeLocations(world, locationToDiploRange)
+        #createDiploRangeLocations(world, locationToDiploRange)
+        createDiploRangeLocationsNew(world)
 
     createEvents(world)
     
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
-    # Check if player has a starting region. If they do, then skip the first few checks to prevent the game from fulfilling checks before game start.
-    # If the player is really lucky and starts with more than 3 settlements, then they will still autocomplete some checks, but not as many.
-    startingCheck = 4
+    # Check if player has a starting region. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
+    startingCheck = len(world.playerSettlements)
     for faction in settlements.factionTable:
-        if not faction[2] and faction[0] == world.player_faction:
+        if not faction[2] and faction[0] == world.playerFaction.name:
             startingCheck = 1
     
     # Generate all but last location, which is saved for the victory event
@@ -92,3 +92,24 @@ def createDiploRangeLocations(world: TWW3World, locationToDiploRange) -> None:
                 set_rule(location, lambda state, spheres=requiredDiploRange: state.has("Diplomatic Range", world.player, spheres))
                 locationToDiploRange[location] = requiredDiploRange
                 worldRegion.locations.append(location)
+
+def createDiploRangeLocationsNew(world: TWW3World) -> None:
+    worldRegion = world.get_region("Old World")
+
+    requiredDiploRange, factionSpheres = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
+
+    for key, settlement in world.settlements.items():
+        locId = world.location_name_to_id[settlement.name]
+        location = TWW3Location(world.player, settlement.name, locId, worldRegion)
+
+        if requiredDiploRange[key] == 0:
+            worldRegion.locations.append(location)
+
+        elif 0 < requiredDiploRange[key] <= world.options.sphere_count:
+            if factionSpheres[key][0] != settlements.lordToFactionDict[world.options.starting_faction]:
+                set_rule(location,
+                         lambda state, count=requiredDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+                worldRegion.locations.append(location)
+
+
+

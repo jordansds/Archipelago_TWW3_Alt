@@ -5,10 +5,115 @@ from typing import TypedDict
 #from .forest_locations import forest_location_table
 import math
 import sys
-from item_tables.item_types import factionData, settlementData
+from .item_tables.item_types import factionData, settlementData
 from collections import Counter
 import time
-start = time.time()
+
+lordToFactionDict = {
+    1: "wh_dlc03_bst_beastmen",
+    2: "wh_dlc05_bst_morghur_herd",
+    3: "wh_dlc05_wef_argwylon",
+    4: "wh_dlc05_wef_wood_elves",
+    5: "wh_dlc08_nor_norsca",
+    6: "wh_dlc08_nor_wintertooth",
+    7: "wh_main_brt_bordeleaux",
+    8: "wh_main_brt_bretonnia",
+    9: "wh_main_brt_carcassonne",
+    10: "wh_main_chs_chaos",
+    11: "wh_main_dwf_dwarfs",
+    12: "wh_main_dwf_karak_izor",
+    13: "wh_main_dwf_karak_kadrin",
+    14: "wh_main_emp_empire",
+    15: "wh_main_emp_wissenland",
+    16: "wh_main_grn_crooked_moon",
+    17: "wh_main_grn_greenskins",
+    18: "wh_main_grn_orcs_of_the_bloody_hand",
+    19: "wh_main_vmp_schwartzhafen",
+    20: "wh_main_vmp_vampire_counts",
+    21: "wh2_dlc09_skv_clan_rictus",
+    22: "wh2_dlc09_tmb_exiles_of_nehek",
+    23: "wh2_dlc09_tmb_followers_of_nagash",
+    24: "wh2_dlc09_tmb_khemri",
+    25: "wh2_dlc09_tmb_lybaras",
+    26: "wh2_dlc11_cst_noctilus",
+    27: "wh2_dlc11_cst_pirates_of_sartosa",
+    28: "wh2_dlc11_cst_the_drowned",
+    29: "wh2_dlc11_cst_vampire_coast",
+    30: "wh2_dlc11_def_the_blessed_dread",
+    31: "wh2_dlc11_vmp_the_barrow_legion",
+    32: "wh2_dlc12_lzd_cult_of_sotek",
+    33: "wh2_dlc13_emp_golden_order",
+    34: "wh2_dlc13_emp_the_huntmarshals_expedition",
+    35: "wh2_dlc13_lzd_spirits_of_the_jungle",
+    36: "wh2_dlc14_brt_chevaliers_de_lyonesse",
+    37: "wh2_dlc15_grn_bonerattlaz",
+    38: "wh2_dlc15_grn_broken_axe",
+    39: "wh2_dlc15_hef_imrik",
+    40: "wh2_dlc16_wef_drycha",
+    41: "wh2_dlc16_wef_sisters_of_twilight",
+    42: "wh2_dlc17_bst_malagor",
+    43: "wh2_dlc17_bst_taurox",
+    44: "wh2_dlc17_dwf_thorek_ironbrow",
+    45: "wh2_dlc17_lzd_oxyotl",
+    46: "wh2_main_def_cult_of_pleasure",
+    47: "wh2_main_def_hag_graef",
+    48: "wh2_main_def_har_ganeth",
+    49: "wh2_main_def_naggarond",
+    50: "wh2_main_hef_avelorn",
+    51: "wh2_main_hef_eataine",
+    52: "wh2_main_hef_nagarythe",
+    53: "wh2_main_hef_order_of_loremasters",
+    54: "wh2_main_hef_yvresse",
+    55: "wh2_main_lzd_hexoatl",
+    56: "wh2_main_lzd_itza",
+    57: "wh2_main_lzd_last_defenders",
+    58: "wh2_main_lzd_tlaqua",
+    59: "wh2_main_skv_clan_eshin",
+    60: "wh2_main_skv_clan_mors",
+    61: "wh2_main_skv_clan_moulder",
+    62: "wh2_main_skv_clan_pestilens",
+    63: "wh2_main_skv_clan_skryre",
+    64: "wh2_twa03_def_rakarth",
+    65: "wh3_dlc20_chs_azazel",
+    66: "wh3_dlc20_chs_festus",
+    67: "wh3_dlc20_chs_kholek",
+    68: "wh3_dlc20_chs_sigvald",
+    69: "wh3_dlc20_chs_valkia",
+    70: "wh3_dlc20_chs_vilitch",
+    71: "wh3_dlc23_chd_astragoth",
+    72: "wh3_dlc23_chd_legion_of_azgorh",
+    73: "wh3_dlc23_chd_zhatan",
+    74: "wh3_dlc24_cth_the_celestial_court",
+    75: "wh3_dlc24_ksl_daughters_of_the_forest",
+    76: "wh3_dlc24_tze_the_deceivers",
+    77: "wh3_dlc25_dwf_malakai",
+    78: "wh3_dlc25_nur_epidemius",
+    79: "wh3_dlc25_nur_tamurkhan",
+    80: "wh3_dlc26_grn_gorbad_ironclaw",
+    81: "wh3_dlc26_kho_arbaal",
+    82: "wh3_dlc26_kho_skulltaker",
+    83: "wh3_dlc26_ogr_golgfag",
+    84: "wh3_main_chs_shadow_legion",
+    85: "wh3_main_cth_the_northern_provinces",
+    86: "wh3_main_cth_the_western_provinces",
+    87: "wh3_main_dae_daemon_prince",
+    88: "wh3_main_dwf_the_ancestral_throng",
+    89: "wh3_main_emp_cult_of_sigmar",
+    90: "wh3_main_kho_exiles_of_khorne",
+    91: "wh3_main_ksl_the_great_orthodoxy",
+    92: "wh3_main_ksl_the_ice_court",
+    93: "wh3_main_ksl_ursun_revivalists",
+    94: "wh3_main_nur_poxmakers_of_nurgle",
+    95: "wh3_main_ogr_disciples_of_the_maw",
+    96: "wh3_main_ogr_goldtooth",
+    97: "wh3_main_sla_seducers_of_slaanesh",
+    98: "wh3_main_tze_oracles_of_tzeentch",
+    99: "wh3_main_vmp_caravan_of_blue_roses",
+    100: "wh3_dlc27_hef_aislinn",
+    101: "wh3_dlc27_nor_sayl",
+    102: "wh3_dlc27_sla_the_tormentors",
+    103: "wh3_dlc27_sla_masque_of_slaanesh"
+}
 
 factionDict: dict[int, factionData] = {
     0: factionData("wh3_main_dae_daemon_prince", True, False, "daemons"),
@@ -881,463 +986,199 @@ settlementDict: dict[int, settlementData] = {
      568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone')
 }
 
-shuffledSettlementDict: dict[int, settlementData] = {
 
-}
 
-import random
+class SettlementManager:
 
-factionKeys: list[int] = list(factionDict.keys())
-random.shuffle(factionKeys)
+    def __init__(self, random, playerKey):
+        self.start = time.time()
+        self.random = random
+        self.playerKey = playerKey
+        self.factionKeys: list[int] = list(factionDict.keys())
+        random.shuffle(self.factionKeys)
+        self.settlementKeys: list[int] = list(settlementDict.keys())
+        random.shuffle(self.settlementKeys)
 
-settlementKeys: list[int] = list(settlementDict.keys())
-random.shuffle(settlementKeys)
+        self.shuffledFactionList: list[str] = []
+        self.shuffledSettlementDict: dict[int, settlementData] = {}
 
-shuffledFactionList: list[str] = []
-#hordeFactionCount = sum(not faction.hasHome for key, faction in factionDict.items()) #number of non-horde factions in the game.
-#homedFactionCount = len(factionDict) - hordeFactionCount
+        self.keysToRemove: list[int] = []
 
-remove: list[int] = []
-# Assigns each wood elf a magical forest
-for i, sKey in enumerate(settlementKeys):
-    settlement = settlementDict[sKey]
-    if settlement.type == "magical forest":
-        for j, fKey in enumerate(factionKeys):
-            faction = factionDict[fKey]
-            if faction.race == "woodElves" and faction.hasHome and faction.name not in shuffledFactionList:
-                shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
-                                                              settlement.y, faction.name,
-                                                              settlement.climate,
-                                                              settlement.readableName)
-                shuffledFactionList.append(faction.name)
-                factionKeys.pop(j)
-                remove.append(sKey)
-                break
+    def getSettlements(self):
+        self.shuffledSettlementDict = settlementDict
+        return self.shuffledSettlementDict
+    # Return the distance between two settlements
+    def getDistance(self, s1: settlementData, s2: settlementData) -> int:
+        return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
+    #Remove the settlements that have been assigned.
+    def removeKeys(self) -> None:
+        for key in self.keysToRemove:
+            if key in self.settlementKeys:
+                self.settlementKeys.remove(key)
+        self.keysToRemove: list[int] = []
 
-#Remove the magical forests that have been assigned.
-for key in remove:
-    if key in settlementKeys:
-        settlementKeys.remove(key)
-remove: list[int] = []
+    def assignSettlement(self, key, settlement, faction) -> None:
+        try:
+            factionName = faction.name
+        except AttributeError:
+            factionName = faction
+        self.shuffledSettlementDict[key] = settlementData(settlement.name, settlement.type, settlement.x,
+                                                      settlement.y, factionName,
+                                                      settlement.climate,
+                                                      settlement.readableName)
+        self.shuffledFactionList.append(factionName)
+        self.keysToRemove.append(key)
 
-# Assigns all other factions their first settlement (if they start with one normally)
-# The homeless don't get a home, who do you think I am? A filthy commie?
-for i, sKey in enumerate(settlementKeys):
-    settlement = settlementDict[sKey]
+    def randomisePlayer(self):
+        playerFaction = factionDict[self.playerKey]
+        if playerFaction.hasHome:
+            # Assign player their first settlement
+            if playerFaction.race == "woodElves":
+                for i, sKey in enumerate(self.settlementKeys):
+                    playerSettlement: settlementData = settlementDict[sKey]
+                    if playerSettlement.type == "magical forest":
+                        self.assignSettlement(sKey, playerSettlement, playerFaction)
+                        break
+            else:
+                sKey = self.settlementKeys[0]
+                playerSettlement: settlementData = settlementDict[sKey]
+                self.assignSettlement(sKey, settlementDict[sKey], playerFaction)
+            self.removeKeys()
 
-    for j, fKey in enumerate(factionKeys):
-        faction = factionDict[fKey]
-        if faction.hasHome and faction.name not in shuffledFactionList:
-            shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
-                                                          settlement.y, faction.name,
-                                                          settlement.climate,
-                                                          settlement.readableName)
-            shuffledFactionList.append(faction.name)
-            factionKeys.pop(j)
-            remove.append(sKey)
-            break
+            # Assign the player 2 more settlements
+            for i in range(2):
+                distance: int = 10000
+                for i, sKey in enumerate(self.settlementKeys):
+                    settlement: settlementData = settlementDict[sKey]
 
-#Remove the settlements that have been assigned.
-for key in remove:
-    if key in settlementKeys:
-        settlementKeys.remove(key)
-remove: list[int] = []
+                    settlementDistance: int = self.getDistance(settlement, playerSettlement)
 
-# Return the distance between two settlements
-def getDistance(s1: settlementData, s2: settlementData) -> int:
-    return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
+                    if settlementDistance < distance:
+                        distance = settlementDistance
+                        closestKey = sKey
+                        closestSettlement = settlement
 
-blackList: list[str] = []
-#Asign each faction new settlements, based on distance from their capital
-for i, sKey in enumerate(settlementKeys):
-    settlement: settlementData = settlementDict[sKey]
-    distance: int = 10000
-    for aKey, assignedSettlement in dict(shuffledSettlementDict.items()).items(): #Shallow copy of dictionary
-        faction: str = assignedSettlement.faction
-        settlementsOwned: int = 0
+                self.assignSettlement(closestKey, closestSettlement, playerFaction)
+                self.removeKeys()
 
-        # need to check if faction already has too many settlements.
-        for fKey, factionSettlement in shuffledSettlementDict.items():
-            if shuffledSettlementDict[fKey].faction == faction:
-                settlementsOwned += 1
+    def randomiseWoodElves(self) -> None:
+        # Assigns each wood elf a magical forest
+        for sKey in self.settlementKeys:
+            settlement: settlementData = settlementDict[sKey]
+            if settlement.type == "magical forest":
+                for i, fKey in enumerate(self.factionKeys):
+                    faction: factionData = factionDict[fKey]
+                    if faction.race == "woodElves" and faction.hasHome and faction.name not in self.shuffledFactionList:
+                        self.assignSettlement(sKey, settlement, faction)
+                        self.factionKeys.pop(i)
+                        break
+        self.removeKeys() # Remove the magical forests that have been assigned.
+
+    def randomiseChaos(self):
+        pass
+
+    # Assigns all other factions their first settlement (if they start with one normally)
+    # The homeless don't get a home, who do you think I am? A filthy commie?
+    def randomiseFirstSettlement(self) -> None:
+        for sKey in self.settlementKeys:
+            settlement: settlementData = settlementDict[sKey]
+
+            for i, fKey in enumerate(self.factionKeys):
+                faction: factionData = factionDict[fKey]
+                if faction.hasHome and faction.name not in self.shuffledFactionList:
+                    self.assignSettlement(sKey, settlement, faction)
+                    self.factionKeys.pop(i)
+                    break
+        self.removeKeys() #Remove the settlements that have been assigned
+
+    def randomiseRemainingSettlements(self) -> None:
+        blackList: list[str] = []
+        shuffledSettlementDict = self.shuffledSettlementDict
+        shuffledSettlementList = list(shuffledSettlementDict.items())
+        #print(shuffledSettlementList)
+        #random.shuffle(shuffledSettlementList)
+        #print(shuffledSettlementList)
+
+        #Asign each faction new settlements, based on distance from their capital
+        for i, sKey in enumerate(self.settlementKeys):
+            settlement: settlementData = settlementDict[sKey]
+            distance: int = 10000
+
+            for aKey, assignedSettlement in shuffledSettlementList:
+                faction: str = assignedSettlement.faction
+                settlementsOwned: int = 0
+
+                #shuffledSettlementList2 = list(shuffledSettlementDict.keys())
+                # need to check if faction already has too many settlements.
+                for fKey in shuffledSettlementDict.keys():
+                    if shuffledSettlementDict[fKey].faction == faction:
+                        settlementsOwned += 1
+                        if settlementsOwned == 3:
+                            blackList.append(faction)
+                            break
+
                 if settlementsOwned == 3:
-                    blackList.append(faction)
-                    break
+                    continue
 
-        if settlementsOwned == 3:
-            continue
+                newDistance: int = self.getDistance(settlement, assignedSettlement)
 
-        newDistance: int = getDistance(settlement, assignedSettlement)
+                if newDistance < distance and settlementsOwned < 3:
+                    distance = newDistance
+                    closestFaction = assignedSettlement.faction
 
-        if newDistance < distance and settlementsOwned < 3:
-            distance = newDistance
-            closestFaction = assignedSettlement.faction
-    shuffledSettlementDict[sKey] = settlementData(settlement.name, settlement.type, settlement.x,
-                                                  settlement.y, closestFaction,
-                                                  settlement.climate,
-                                                  settlement.readableName)
-    shuffledFactionList.append(closestFaction)
+            self.assignSettlement(sKey, settlement, closestFaction)
+            #self.shuffledFactionList.append(closestFaction)
 
-x = []
-for i, d in shuffledSettlementDict.items():
-    x.append(d.faction)
-counter = Counter(x)
+    def randomiseHordes(self) -> list[list[str]]:
+        hordes = []
+        for fKey in self.factionKeys:
+            faction = factionDict[fKey]
+            if not faction.hasHome:
+                settlement = self.random.choice(settlementDict)
+                hordes.append([faction.name, settlement.name])
+        return hordes
 
-print(counter)
+    def randomiseSettlements(self):
+        self.randomisePlayer()
+        self.randomiseWoodElves()
+        #self.randomiseChaos()
+        #self.random.shuffle(self.settlementKeys)
+        self.randomiseFirstSettlement()
+        self.randomiseRemainingSettlements()
 
-print(time.time() - start)
+        return self.shuffledSettlementDict
 
-
-#print(len(factionKeys))
-
-#for index, (key, settlement) in enumerate(shuffledSettlementDict.items()):
-#    print(key, settlement)
-#print(len(shuffledSettlementDict.items()))
-
-
-#for i, sKey in enumerate(settlementKeys[homedFactionCount:]):
-#    print(shuffledSettlementDict[settlementKeys[homedFactionCount]])
-#    break
-
-#print(shuffledSettlementDict)
-#for key, settlement in shuffledSettlementDict.items():
-#    print(key, settlement.faction)
-#print(shuffledFactionList)
-
-sys.exit()
-
-count = 0
-for key, value in settlementDict.items():
-    if value.climate == "":
-        count += 1
-print(count)
-
-sys.exit()
-
-
-"""class settlementManager:
-
-    def __init__(self, random):
-        newSettlementTable = []
-        newHordeTable = []
-        self.random = random
-
-    def shuffleFactionLocations(self):
-        for faction in factionTable:
-            pass
-
-
-class DistancesDict(TypedDict):
-    distance: int
-
-
-class SettlementDict(TypedDict, total=False):
-    settlement: str
-    faction: str
-
-
-class Settlement_Manager:
-
-    def __init__(self, random):
-        self.faction_table = factionTable
-        self.settlement_table = settlementTable
-        self.new_settlement_dict = {}
-        self.new_horde_dict = {}
-        self.faction_distance_dict = {}
-        self.capital_dict = {}
-        self.random = random
-
-    def calculateDistance(self, s1: int, s2: int) -> int:
-        st = self.settlement_table
-        return int(math.hypot(st[s2][1] - st[s1][1], st[s2][2] - st[s1][2]))
-
-    def factionToFactionId(self, faction):
-        for i in range(len(factionTable)):
-            if factionTable[i][0] == faction:
-                return i
-        raise Exception("Faction " + str(faction) + " not found in faction table")
-
-    def factionIdToFaction(self, faction_id):
-        i = factionTable[faction_id][0]
-        return i
-
-    def hasHome(self, playerFaction):
-        for row in factionTable:
-            if row[0] == playerFaction:
-                return row[2]
-
-    def settlementToId(self, settlement: str) -> int:
-        for i in range(len(settlementTable)):
-            if settlementTable[i][0] == settlement:
-                return i
-        raise Exception("Settlement " + str(settlement) + " not found in faction table")
-
-    def settlementToFaction(self, settlement_name: str) -> str:
-        return self.new_settlement_dict[settlement_name]
-
-    def getMajorFactionIds(self):
-        shuffled_major_faction_ids = []
-        for i in range(len(factionTable)):
-            if factionTable[i][1] == True and factionTable[i][2] == True:
-                shuffled_major_faction_ids.append(i)
-        return shuffled_major_faction_ids
-
-    def getMinorFactionIds(self):
-        shuffled_minor_faction_ids = []
-        for i in range(len(factionTable)):
-            if factionTable[i][1] == False and factionTable[i][2] == True:
-                shuffled_minor_faction_ids.append(i)
-        return shuffled_minor_faction_ids
-
-    def getMajorHordeFactionIds(self):
-        shuffled_major_faction_ids = []
-        for i in range(len(factionTable)):
-            if factionTable[i][1] == True and factionTable[i][2] == False:
-                shuffled_major_faction_ids.append(i)
-        return shuffled_major_faction_ids
-
-    def getMinorHordeFactionIds(self):
-        shuffled_minor_faction_ids = []
-        for i in range(len(factionTable)):
-            if factionTable[i][1] == False and factionTable[i][2] == False:
-                shuffled_minor_faction_ids.append(i)
-        return shuffled_minor_faction_ids
-
-    def getDistance(self, faction_key: str) -> int:
-        return self.faction_distance_dict[faction_key]
-
-    def factionsToSpheres(self, sphere_amount: int, sphere_distance: int):
-        self.factions_to_spheres = {}
-        for key, value in self.faction_distance_dict.items():
-            sphere = int(value / sphere_distance)
-            if (sphere < sphere_amount):
-                self.factions_to_spheres[key] = sphere
+    def getRequiredDiploRange(self, sphereCount: int, sphereRadius: int) -> tuple[list[int], list[list[str]]]:
+        factionSpheres: list[list[str]] = []
+        settlementSpheres: list[int] = []
+        playerCapital = next(iter(self.shuffledSettlementDict.values()))
+        for settlement in self.shuffledSettlementDict.values():
+            distance = self.getDistance(playerCapital, settlement)
+            sphere = int(distance / sphereRadius)
+            if sphere <= sphereCount:
+                factionSpheres.append([settlement.faction, str(sphere)])
+                settlementSpheres.append(sphere)
             else:
-                self.factions_to_spheres[key] = sphere_amount - 1
-        return self.factions_to_spheres
+                factionSpheres.append([settlement.faction, str(sphereCount)])
+                settlementSpheres.append(sphereCount + 1)
+        return settlementSpheres, factionSpheres
 
-    def tableToDict(self, table) -> TypedDict:
-        settlement_table: dict[int, SettlementDict] = {}
-        for i, settlement in enumerate(table):
-            settlement_table[i] = {
-                "settlement": settlement[0],
-                "faction": settlement[1]
-            }
-        return settlement_table
+    def debug(self):
+        x = []
+        for i, d in self.shuffledSettlementDict.items():
+            x.append(d.faction)
+        counter = Counter(x)
 
-    def getCapitalDict(self):
-        return self.capital_dict
+        print(counter)
 
-    def getClosestFreeSettlement(self, target_settlement_id: int, remaining_settlements_ids, new_settlement_table,
-                                 max_range):
-        if not remaining_settlements_ids:
-            return None
-        sorted_settlements = sorted(
-            remaining_settlements_ids,
-            key=lambda sid: self.calculateDistance(
-                target_settlement_id, sid
-            )
-        )
-        if (sorted_settlements[0] <= max_range):
-            return sorted_settlements[0]
-        else:
-            return None
+        print(time.time() - self.start)
 
-    def isWoodElf(self, faction):
-        for i in range(len(woodElvesTable)):
-            if faction == woodElvesTable[i][0]:
-                return True
-        return False
-
-    def shuffleSettlements(self, player_faction: str, max_range: int):
-        remaining_settlements = len(settlementTable)
-        remaining_settlements_ids = [i for i in range(len(settlementTable))]
-        remaining_horde_settlement_ids = [i for i in range(len(settlementTable))]
-        new_settlement_table = [[settlement[0], 0] for settlement in settlementTable]
-        new_horde_table = []
-        remaining_forests_ids = [i for i in range(len(forest_location_table))]
-        if self.isWoodElf(player_faction):
-            i = self.random.randint(0, len(remaining_forests_ids) - 1)
-            forestName = forest_location_table[remaining_forests_ids[i]]
-            for number, settlement in enumerate(new_settlement_table):
-                if settlement[0] == forestName:
-                    new_settlement_table[number][1] = self.factionToFactionId(player_faction)
-                    playerSettlement = new_settlement_table[number][0]
-                    remaining_forests_ids.pop(i)
-                    remaining_settlements -= 1
-                    remaining_settlements_ids.remove(number)
-                    self.capital_dict[player_faction] = settlement[0]
-                    self.faction_distance_dict[player_faction] = 0
-                    break
-        else:
-            i = self.random.randint(0, len(new_settlement_table) - 1)
-            if self.hasHome(player_faction):
-                new_settlement_table[i][1] = self.factionToFactionId(player_faction)
-            else:
-                new_horde_table.append([new_settlement_table[i][0], self.factionToFactionId(player_faction)])
-            playerSettlement = new_settlement_table[i][0]
-            self.capital_dict[player_faction] = playerSettlement
-            self.faction_distance_dict[player_faction] = 0
-            if self.hasHome(player_faction):
-                remaining_settlements_ids.pop(i)
-                remaining_settlements -= 1
-            else:
-                remaining_horde_settlement_ids.pop(i)
-
-        # Force Woodelves to be in forest_regions
-        for i in range(len(woodElvesTable)):
-            woodElfFaction = woodElvesTable[i][0]
-            if woodElfFaction == player_faction:
-                continue
-            j = self.random.randint(0, len(remaining_forests_ids) - 1)
-            forestName = forest_location_table[remaining_forests_ids[j]]
-            for number, settlement in enumerate(new_settlement_table):
-                if settlement[0] == forestName:
-                    new_settlement_table[number][1] = self.factionToFactionId(woodElfFaction)
-                    remaining_forests_ids.pop(j)
-                    remaining_settlements -= 1
-                    remaining_settlements_ids.remove(number)
-                    self.capital_dict[woodElfFaction] = settlement[0]
-                    self.faction_distance_dict[woodElfFaction] = (
-                        self.calculateDistance(self.settlementToId(playerSettlement), self.settlementToId(forestName))
-                    )
-                    break
-
-        major_factions_keys = self.getMajorFactionIds()
-        minor_factions_keys = self.getMinorFactionIds()
-        self.random.shuffle(major_factions_keys)
-        if self.hasHome(player_faction):
-            major_factions_keys.remove(self.factionToFactionId(player_faction))
-        self.random.shuffle(minor_factions_keys)
-        # Remove Woodelves from first iteration
-        for i in range(0, 4):
-            if not woodElvesTable[i][0] == player_faction:
-                major_factions_keys.remove(self.factionToFactionId(woodElvesTable[i][0]))
-        for i in range(4, 9):
-            minor_factions_keys.remove(self.factionToFactionId(woodElvesTable[i][0]))
-        for i in range(len(major_factions_keys)):
-            if (remaining_settlements > 0):
-                a = self.random.randint(0, len(remaining_settlements_ids) - 1)
-                new_settlement_table[remaining_settlements_ids[a]][1] = major_factions_keys[i]
-                faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
-                self.faction_distance_dict[self.factionIdToFaction(major_factions_keys[i])] = (
-                    self.calculateDistance(self.settlementToId(playerSettlement),
-                                           self.settlementToId(faction_settlement))
-                )
-                self.capital_dict[self.factionIdToFaction(major_factions_keys[i])] = faction_settlement
-                remaining_settlements_ids.pop(a)
-                remaining_settlements -= 1
-            else:
-                break
-        for i in range(len(minor_factions_keys)):
-            if (remaining_settlements > 0):
-                a = self.random.randint(0, len(remaining_settlements_ids) - 1)
-                new_settlement_table[remaining_settlements_ids[a]][1] = minor_factions_keys[i]
-                faction_settlement = new_settlement_table[remaining_settlements_ids[a]][0]
-                self.faction_distance_dict[self.factionIdToFaction(minor_factions_keys[i])] = (
-                    self.calculateDistance(self.settlementToId(playerSettlement),
-                                           self.settlementToId(faction_settlement))
-                )
-                self.capital_dict[self.factionIdToFaction(minor_factions_keys[i])] = faction_settlement
-                remaining_settlements_ids.pop(a)
-                remaining_settlements -= 1
-            else:
-                break
-        if self.hasHome(player_faction):
-            major_factions_keys.append(self.factionToFactionId(player_faction))
-
-        # Add Woodelves from first iteration
-        for i in range(0, 4):
-            if not woodElvesTable[i][0] == player_faction:
-                major_factions_keys.append(self.factionToFactionId(woodElvesTable[i][0]))
-        for i in range(4, 9):
-            minor_factions_keys.append(self.factionToFactionId(woodElvesTable[i][0]))
-
-        breakout_counter = 0
-        while (remaining_settlements > 0):
-            # Randomize faction order
-            self.random.shuffle(major_factions_keys)
-
-            for faction in major_factions_keys:
-                if (remaining_settlements == 0):
-                    break
-                faction_settlement_list = []
-                for i in range(len(new_settlement_table)):
-                    if new_settlement_table[i][1] == faction:
-                        faction_settlement_list.append(self.settlementToId(new_settlement_table[i][0]))
-                r = self.random.randint(0, len(faction_settlement_list) - 1)
-                if (breakout_counter < 7):
-                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r],
-                                                                       remaining_settlements_ids, new_settlement_table,
-                                                                       max_range * breakout_counter)
-                else:
-                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r],
-                                                                       remaining_settlements_ids, new_settlement_table,
-                                                                       1500)
-                    breakout_counter = 0
-                if closest_Settlement != None:
-                    new_settlement_table[closest_Settlement][1] = faction
-                    remaining_settlements_ids.remove(closest_Settlement)
-                    remaining_settlements -= 1
-            self.random.shuffle(minor_factions_keys)
-
-            for faction in minor_factions_keys:
-                if (remaining_settlements == 0):
-                    break
-                faction_settlement_list = []
-                for i in range(len(new_settlement_table)):
-                    if new_settlement_table[i][1] == faction:
-                        faction_settlement_list.append(self.settlementToId(new_settlement_table[i][0]))
-                r = self.random.randint(0, len(faction_settlement_list) - 1)
-                if (breakout_counter < 7):
-                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r],
-                                                                       remaining_settlements_ids, new_settlement_table,
-                                                                       max_range * breakout_counter)
-                else:
-                    closest_Settlement = self.getClosestFreeSettlement(faction_settlement_list[r],
-                                                                       remaining_settlements_ids, new_settlement_table,
-                                                                       1500)
-                    breakout_counter = 0
-                if closest_Settlement != None:
-                    new_settlement_table[closest_Settlement][1] = faction
-                    remaining_settlements_ids.remove(closest_Settlement)
-                    remaining_settlements -= 1
-            breakout_counter += 1
-        horde_keys = self.getMajorHordeFactionIds()
-        horde_keys.append(self.getMinorFactionIds())
-
-        if (not self.hasHome(player_faction)):
-            horde_keys.remove(self.factionToFactionId(player_faction))
-
-        for faction in horde_keys:
-            i = self.random.randint(0, len(remaining_horde_settlement_ids) - 1)
-            new_horde_table.append([new_settlement_table[i][0], faction])
-            remaining_horde_settlement_ids.pop(i)
-
-        for i in range(len(new_settlement_table)):
-            if isinstance(new_settlement_table[i][1], int):
-                new_settlement_table[i][1] = self.factionIdToFaction(new_settlement_table[i][1])
-        self.new_settlement_dict = {row[0]: row[1] for row in new_settlement_table}
-        for i in range(len(new_horde_table)):
-            if isinstance(new_horde_table[i][1], int):
-                new_horde_table[i][1] = self.factionIdToFaction(new_horde_table[i][1])
-        self.new_horde_dict = {row[0]: row[1] for row in new_horde_table}
-
-        return self.new_settlement_dict, self.new_horde_dict
-
-    def get_settlement_spheres(self):
-        self.settlement_spheres = {}
-        for settlement, faction in self.new_settlement_dict.items():
-            sphere = self.factions_to_spheres[faction]
-            self.settlement_spheres[settlement] = sphere
-        return self.settlement_spheres
-
-    def count_settlements_per_sphere(self, sphere_amount):
-        settlements_per_sphere = {}
-        for i in range(sphere_amount):
-            sum = 0
-            for settlement, sphere in self.settlement_spheres.items():
-                if sphere == i:
-                    sum += 1
-            settlements_per_sphere[i] = sum
-        return settlements_per_sphere"""
+"""
+for i in range(2):
+    test = settlementRandomiser(random, 92) #92 = "wh_dlc05_wef_wood_elves"
+    settlements = test.randomiseSettlements()
+    hordes = test.randomiseHordes()
+    factionSpheres = test.getRequiredDiploRange(5, 100)
+    print(factionSpheres)
+    test.debug()
+"""

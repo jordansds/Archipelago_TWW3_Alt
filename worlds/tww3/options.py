@@ -157,7 +157,8 @@ class adminCapacity(Range):
     """CONQUEST MODE ONLY
     How many settlements each Administration Capacity item allows you to own.
     Going over the empire size limit will incur heavy penalties.
-    You start with 2 admin capacity items to avoid early BK."""
+    You start with 2 admin capacity items to avoid early BK.
+    If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
     display_name = "Settlements Per Admin Capacity (CONQUEST)"
     range_start = 1
     range_end = len(settlementTable)

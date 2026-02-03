@@ -5,6 +5,7 @@ from .options import TWW3Options
 from .locations_table import settlements
 import settings
 from . import items, locations, rules
+from . import settlementManager as sm
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
 #    game = "Total War Warhammer 3"  # name of the game/world this location is in
@@ -37,13 +38,24 @@ class TWW3World(World):
 
     location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
 
-    settlementManager: settlements.Settlement_Manager = None
+    #settlementManager: settlements.Settlement_Manager = None
+    settlementManager: sm.SettlementManager = None
 
     def generate_early(self) -> None:
-        self.player_faction = settlements.lordToFactionDict[self.options.starting_faction]
-        self.settlementManager: settlements.Settlement_Manager = settlements.Settlement_Manager(self.random)
+        #self.player_faction = settlements.lordToFactionDict[self.options.starting_faction]
+        #self.player_faction =
+        self.playerFaction = [faction for faction in sm.factionDict.values() if faction.name == sm.lordToFactionDict[self.options.starting_faction]][0]
+        self.playerKey = [key for key, faction in sm.factionDict.items() if faction.name == self.playerFaction.name][0]
+        #self.settlementManager: settlements.Settlement_Manager = settlements.Settlement_Manager(self.random)
 
-        self.settlement_table, self.horde_table = self.settlementManager.shuffleSettlements(self.player_faction, self.options.max_range.value)
+        #self.settlement_table, self.horde_table = self.settlementManager.shuffleSettlements(self.player_faction, self.options.max_range.value)
+
+        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerKey)
+        if self.options.faction_shuffle:
+            self.settlements = self.settlementManager.randomiseSettlements()
+        else:
+            self.settlements = self.settlementManager.getSettlements()
+        self.playerSettlements = [settlement for settlement in self.settlements.values() if settlement.faction == self.playerFaction.name]
 
         self.locationToDiploRange = {}
 
@@ -85,12 +97,11 @@ class TWW3World(World):
             slotData["admin_capacity"] = self.options.admin_capacity.value
         elif self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
-            slotData["spheres"] = self.settlementManager.factionsToSpheres(self.options.sphere_count, self.options.sphere_radius)
-        slotData["settlements"] = self.settlement_table
-        slotData["hordes"] = self.horde_table
-        slotData["faction_capitals"] = self.settlementManager.getCapitalDict()
+            #slotData["spheres"] = self.settlementManager.factionsToSpheres(self.options.sphere_count, self.options.sphere_radius)
+        slotData["settlements"] = [settlement.name for settlement in self.settlements.values()]
+        slotData["hordes"] = self.settlementManager.randomiseHordes()
+        #slotData["faction_capitals"] = self.settlementManager.getCapitalDict()
         slotData["items"] = self.itemKeys
-
         slotData["game_mode"] = self.options.game_mode.value
         slotData["faction_shuffle"] = self.options.faction_shuffle.value
 
