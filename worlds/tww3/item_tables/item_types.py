@@ -37,7 +37,6 @@ class factionData(NamedTuple):
     isPlayable: bool
     hasHome: bool
     race: str
-    lord: str
     readableName: str
 
 class settlementData(NamedTuple):
