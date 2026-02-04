@@ -33,7 +33,7 @@ class TWW3World(World):
     item_name_to_id = {item.name: key for key, item in items.itemDict.items()}
 
     locations = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locations += [settlement.name for key, settlement in sm.settlementDict.items()]  # spheres gamemode locations
+    locations += [settlement.readableName for key, settlement in sm.settlementDict.items()]  # spheres gamemode locations
 
     location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
     #print(location_name_to_id)
@@ -41,10 +41,8 @@ class TWW3World(World):
     settlementManager: sm.SettlementManager = None
 
     def generate_early(self) -> None:
-        self.playerFaction = [faction for faction in sm.factionDict.values() if faction.name == sm.lordToFactionDict[self.options.starting_faction]][0]
-        self.playerKey = [key for key, faction in sm.factionDict.items() if faction.name == self.playerFaction.name][0]
-        #print(self.playerFaction)
-        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction, self.playerKey, self.options.starting_settlements)
+        self.playerFaction = sm.factionDict[self.options.starting_faction.value]
+        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction, self.options.starting_faction.value, self.options.starting_settlements)
 
         if self.options.faction_shuffle:
             self.settlements = self.settlementManager.randomiseSettlements()
