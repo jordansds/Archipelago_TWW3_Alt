@@ -2,7 +2,7 @@ from enum import Enum
 from BaseClasses import ItemClassification as IC
 import pprint
 
-import brettonia as brt
+import bretonnia as brt
 
 dictionary = brt.brt_techs
 newDictionary = {}

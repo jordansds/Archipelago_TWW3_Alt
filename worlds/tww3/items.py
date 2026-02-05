@@ -95,9 +95,9 @@ def createAllItems(world: TWW3World) -> None:
                         pool.append(tww3_item)
                         world.itemKeys.append(key)
 
-    pool = generateTechnologyItems(world, pool)
-    pool = generateUnitItems(world, pool)
-    pool = generateBuildingItems(world, pool)
+    pool = generateTechnologyItems(world, pool) #Generate Progressive Techs
+    pool = generateUnitItems(world, pool) #Generate Progressive Units
+    pool = generateBuildingItems(world, pool) #Generate Progressive Buildings
     pool = generateRitualItems(world, pool)
     pool = generateExpansionItems(world, pool)
     pool = generateFactionSpecificItems(world, pool)
