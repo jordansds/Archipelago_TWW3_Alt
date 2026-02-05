@@ -17,11 +17,14 @@ from .item_tables.progressive_units_table import progressiveUnitsDict
 from .item_tables.progressive_techs_table import progressiveTechsDict
 from .item_tables.progression_table import progressionDict
 from . import settlementManager as sm
+from .faction_tables import factionTables
 
 from .item_tables.item_types import ItemType, ItemData
 from .options import TWW3Options
 
 itemDict = {}
+itemDict.update(factionTables.getAllItems())
+#print(itemDict)
 itemDict.update(factionItemDict)
 itemDict.update(fillerWeakDict)
 itemDict.update(fillerStrongDict)
@@ -31,11 +34,11 @@ itemDict.update(trapStrongDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
 itemDict.update(ancillariesRegularDict)
 itemDict.update(ancillariesLegendaryDict)
-itemDict.update(unique_item_table)
-itemDict.update(progressiveBuildingsDict)
-itemDict.update(progressiveUnitsDict)
-itemDict.update(progressiveTechsDict)
-itemDict.update(ritualDict)
+#itemDict.update(unique_item_table)
+#itemDict.update(progressiveBuildingsDict)
+#itemDict.update(progressiveUnitsDict)
+#itemDict.update(progressiveTechsDict)
+#itemDict.update(ritualDict)
 itemDict.update(progressionDict)
 
 class TWW3Item(Item):  # or from Items import MyGameItem
@@ -45,59 +48,23 @@ class TWW3Item(Item):  # or from Items import MyGameItem
     options: TWW3Options  # typing hints for option results
 
 def updateItemDict(world: TWW3World) -> None:
-    # Handle non-progressive items
-    for key, item in unique_item_table.items():
-        if item.type == ItemType.tech and world.options.force_early_techs and not world.options.progressive_technologies:
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-        elif item.type == ItemType.unit and world.options.force_early_units > 0 and not world.options.progressive_units:
-            if item.tier <= world.options.force_early_units:
-                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-        elif item.type == ItemType.building and world.options.force_early_buildings > 0 and not world.options.progressive_buildings:
-            if item.tier <= world.options.force_early_buildings:
-                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-
-    # Handle progressive items
-    if world.options.tech_shuffle and world.options.force_early_techs and world.options.progressive_technologies:
-        for key, item in progressiveTechsDict.items():
-            itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-    if world.options.unit_shuffle and world.options.force_early_units > 0 and world.options.progressive_units:
-        for key, item in progressiveUnitsDict.items():
-            if item.tier <= world.options.force_early_units:
-                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
-    if world.options.building_shuffle and world.options.force_early_buildings > 0 and world.options.progressive_buildings:
-        for key, item in progressiveBuildingsDict.items():
-            if item.tier <= world.options.force_early_buildings:
-                itemDict[key] = ItemData(IC.progression, item[1], item[2], item[3], item[4], item[5], item[6])
+    if world.options.force_early_units:
+        for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
+            itemDict[key] = ItemData(IC.progression, *item[1:])
+    if world.options.force_early_buildings:
+        for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+            itemDict[key] = ItemData(IC.progression, *item[1:])
+    if world.options.force_early_techs:
+        for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+            itemDict[key] = ItemData(IC.progression, *item[1:])
 
 def createAllItems(world: TWW3World) -> None:
     pool: list[TWW3Item] = []
 
-    for key, item in unique_item_table.items():
-        if (item.faction == world.playerFaction.name or
-            (world.playerFaction.name == "wh3_dlc27_hef_aislinn" and item.faction == "wh2_main_hef_eataine") or
-            (world.playerFaction.name == "wh3_dlc27_nor_sayl" and item.faction == "wh_dlc08_nor_norsca") or
-            (world.playerFaction.name == "wh3_dlc27_sla_the_tormentors" and item.faction == "wh3_main_sla_seducers_of_slaanesh") or
-            (world.playerFaction.name == "wh3_dlc27_sla_masque_of_slaanesh" and item.faction == "wh3_main_sla_seducers_of_slaanesh")):
-            if item.tier is not None:
-                if (item.tier > world.options.starting_tier) and (item.type == ItemType.unit) and world.options.unit_shuffle and not world.options.progressive_units:
-                    for i in range(item.count):
-                        tww3_item = world.create_item(item.name)
-                        pool.append(tww3_item)
-                        world.itemKeys.append(key)
-                elif (item.tier + 1 > world.options.starting_tier.value) and (item.type == ItemType.building) and world.options.building_shuffle and not world.options.progressive_buildings:
-                    for i in range(item.count):
-                        tww3_item = world.create_item(item.name)
-                        pool.append(tww3_item)
-                        world.itemKeys.append(key)
-                elif (world.options.tech_shuffle.value == True) and (item.type == ItemType.tech) and  not world.options.progressive_technologies:
-                    for i in range(item.count):
-                        tww3_item = world.create_item(item.name)
-                        pool.append(tww3_item)
-                        world.itemKeys.append(key)
-
-    pool = generateTechnologyItems(world, pool) #Generate Progressive Techs
-    pool = generateUnitItems(world, pool) #Generate Progressive Units
-    pool = generateBuildingItems(world, pool) #Generate Progressive Buildings
+    pool = generateUnitItems(world, pool)
+    pool = generateBuildingItems(world, pool)
+    pool = generateTechnologyItems(world, pool)
+    #pool = generateSpecialItems(world, pool)
     pool = generateRitualItems(world, pool)
     pool = generateExpansionItems(world, pool)
     pool = generateFactionSpecificItems(world, pool)
@@ -105,46 +72,44 @@ def createAllItems(world: TWW3World) -> None:
 
     world.multiworld.itempool += pool
 
-def generateTechnologyItems(world: TWW3World, pool: list) -> list:
-    if world.options.progressive_technologies and world.options.tech_shuffle:
-        for key, item in progressiveTechsDict.items():
-            if ((item.faction == world.playerFaction.name or 
-                (world.playerFaction.name == "wh3_dlc27_hef_aislinn" and item.faction == "wh2_main_hef_eataine") or 
-                (world.playerFaction.name == "wh3_dlc27_nor_sayl" and item.faction == "wh_dlc08_nor_norsca") or
-                (world.playerFaction.name == "wh3_dlc27_sla_the_tormentors" and item.faction == "wh3_main_sla_seducers_of_slaanesh") or
-                (world.playerFaction.name == "wh3_dlc27_sla_masque_of_slaanesh" and item.faction == "wh3_main_sla_seducers_of_slaanesh"))
-                and (world.options.tech_shuffle.value == True)):
-                for i in range(item.count):
-                    tww3_item = world.create_item(item.name)
-                    pool.append(tww3_item)
+def generateUnitItems(world: TWW3World, pool: list) -> list:
+    if world.options.unit_shuffle:
+        for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
+            for i in range(item.count):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if world.options.progressive_units:
+                    world.itemKeys.append(key)
     return pool
 
-def generateUnitItems(world: TWW3World, pool: list) -> list:
-    if world.options.progressive_units and world.options.unit_shuffle:
-        for key, item in progressiveUnitsDict.items():
-            if ((item.faction == world.playerFaction.name or 
-                (world.playerFaction.name == "wh3_dlc27_hef_aislinn" and item.faction == "wh2_main_hef_eataine") or 
-                (world.playerFaction.name == "wh3_dlc27_nor_sayl" and item.faction == "wh_dlc08_nor_norsca") or
-                (world.playerFaction.name == "wh3_dlc27_sla_the_tormentors" and item.faction == "wh3_main_sla_seducers_of_slaanesh") or
-                (world.playerFaction.name == "wh3_dlc27_sla_masque_of_slaanesh" and item.faction == "wh3_main_sla_seducers_of_slaanesh"))
-                and (item.tier > world.options.starting_tier.value) and (world.options.unit_shuffle.value == True)):
-                for i in range(item.count):
-                    tww3_item = world.create_item(item.name)
-                    pool.append(tww3_item)
-    return pool
-    
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
-    if world.options.progressive_buildings and world.options.building_shuffle:
-        for key, item in progressiveBuildingsDict.items():
-            if ((item.faction == world.playerFaction.name or 
-                (world.playerFaction.name == "wh3_dlc27_hef_aislinn" and item.faction == "wh2_main_hef_eataine") or 
-                (world.playerFaction.name == "wh3_dlc27_nor_sayl" and item.faction == "wh_dlc08_nor_norsca") or
-                (world.playerFaction.name == "wh3_dlc27_sla_the_tormentors" and item.faction == "wh3_main_sla_seducers_of_slaanesh") or
-                (world.playerFaction.name == "wh3_dlc27_sla_masque_of_slaanesh" and item.faction == "wh3_main_sla_seducers_of_slaanesh"))
-                and (item.tier +1 > world.options.starting_tier.value) and (world.options.building_shuffle.value == True)):
-                for i in range(item.count):
-                    tww3_item = world.create_item(item.name)
-                    pool.append(tww3_item)
+    if world.options.building_shuffle:
+        for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+            for i in range(item.count):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if world.options.progressive_buildings:
+                    world.itemKeys.append(key)
+    return pool
+
+def generateTechnologyItems(world: TWW3World, pool: list) -> list:
+    if world.options.tech_shuffle:
+        for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+            for i in range(item.count):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if world.options.progressive_technologies:
+                    world.itemKeys.append(key)
+    return pool
+
+def generateSpecialItems(world: TWW3World, pool: list) -> list:
+    for key, item in factionTables.getSpecial(world.playerFaction.race, world.playerFaction.name):
+        if item.forceEarly:
+            world.multiworld.local_early_items[world.player][item.readableName] = item.count
+        for i in range(item.count):
+            tww3_item = world.create_item(item.readableName)
+            pool.append(tww3_item)
+
     return pool
 
 def generateRitualItems(world: TWW3World, pool: list) -> list:

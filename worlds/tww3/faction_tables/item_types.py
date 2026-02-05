@@ -39,6 +39,7 @@ class specialItemData(NamedTuple):
     type: ItemType
     tier: int
     progressionGroup: str
+    forceEarly: bool
     readableName: str
 
 class factionData(NamedTuple):

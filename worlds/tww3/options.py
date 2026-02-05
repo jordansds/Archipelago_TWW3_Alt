@@ -232,8 +232,8 @@ class progressiveTechnologies(Choice):
     """CURRENTLY DISABLED
     If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
-    option_false = 0
-    default = 0
+    option_false = 1
+    default = 1
 
 
 class buildingShuffle(DefaultOnToggle):

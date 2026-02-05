@@ -1,11 +1,12 @@
 from __future__ import annotations
-from item_types import ItemData, specialItemData
+from .item_types import ItemData
 from typing import TYPE_CHECKING
 from types import ModuleType
 if TYPE_CHECKING:
     from ..world import TWW3World
 
-from . import beastmen
+from . import bretonnia
+"""from . import beastmen
 from . import bretonnia
 from . import cathay
 from . import chaosDwarfs
@@ -56,28 +57,42 @@ factionModuleDict: dict[str, ModuleType] = {
     "warriorsOfChaos": warriorsOfChaos,
     "woodElves": woodElves
 }
+"""
+factionModuleDict: dict[str, ModuleType] = {"bretonnia": bretonnia}
+
+def getAllItems():
+    itemDict: dict[int, ItemData] = {}
+    for faction in factionModuleDict.values():
+        itemDict.update(faction.units)
+        itemDict.update(faction.buildings)
+        itemDict.update(faction.techs)
+        itemDict.update(faction.progUnits)
+        itemDict.update(faction.progBuildings)
+        itemDict.update(faction.progTechs)
+        itemDict.update({key: ItemData(*item[:1], *item[2:6], *item[7:]) for key, item in faction.special.items()}) #Turn special item into regular item
+    return itemDict
 
 def getUnits(race, progressive):
     if progressive:
-        return factionModuleDict[race].progUnits
+        return factionModuleDict[race].progUnits.items()
     else:
-        return factionModuleDict[race].units
+        return factionModuleDict[race].units.items()
 
 def getBuildings(race, progressive):
     if progressive:
-        return factionModuleDict[race].progBuildings
+        return factionModuleDict[race].progBuildings.items()
     else:
-        return factionModuleDict[race].buildings
+        return factionModuleDict[race].buildings.items()
 
 def getTechs(race, progressive):
     if progressive:
-        return factionModuleDict[race].progTechs
+        return factionModuleDict[race].progTechs.items()
     else:
-        return factionModuleDict[race].techs
+        return factionModuleDict[race].techs.items()
 
 def getSpecial(race, faction):
     specialItems: dict[int, ItemData] = {}
     for key, item in factionModuleDict[race].special:
         if item.faction == faction:
-            specialItems.update({key: ItemData(*item[:1], *item[2:])}) #remove the faction tag from the item, we don't need it anymore.
-    return specialItems
+            specialItems.update({key: item})
+    return specialItems.items()

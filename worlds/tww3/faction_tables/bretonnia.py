@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from item_types import ItemType, ItemData, specialItemData
+from .item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     11024: ItemData(IC.useful, 1, "wh_dlc07_brt_peasant_mob_0", ItemType.unit, 1, "Progressive brt_inf", "Brt Unit: Peasant Mob"),
@@ -148,7 +148,7 @@ buildings: dict[int, ItemData] = {
 }
 
 techs: dict[int, ItemData] = {
-11600: ItemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_start', ItemType.tech, 1, 'Progressive tech_brt', 'Brt Tech: '),
+ 11600: ItemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_start', ItemType.tech, 1, 'Progressive tech_brt', 'Brt Tech: '),
  11601: ItemData(IC.useful, 1, 'tech_dlc14_brt_heraldry_oversea_repanse', ItemType.tech, 2, 'Progressive brt_heraldry', 'Brt Tech: Overseas Diplomacy'),
  11602: ItemData(IC.useful, 1, 'wh2_dlc12_tech_brt_heraldry_oversea_dwf', ItemType.tech, 2, 'Progressive tech_brt', 'Brt Tech: Kings of the Mountains Diplomacy'),
  11603: ItemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_errantry', ItemType.tech, 3, 'Progressive tech_brt', 'Brt Tech: Support Religious Errantry'),
@@ -262,9 +262,9 @@ progBuildings: dict[int, ItemData] = {
 }
 
 progTechs: dict[int, ItemData] = {
-    11800: ItemData(IC.useful, 5, "Progressive tech_brt", ItemType.unit, 4, None, "Progressive Technology"),
+    11800: ItemData(IC.useful, 5, "Progressive tech_brt", ItemType.unit, 4, None, "Progressive Brt Technology"),
 }
 
 special: dict[int, specialItemData] = {
-    11900: specialItemData(IC.useful, 4, "Placeholder", "Special Placeholder", ItemType.unit, 4, None, "Special Brt Building: Placeholder"),
+    11900: specialItemData(IC.useful, 4, "Placeholder", "Special Placeholder", ItemType.unit, 4, None, False, "Special Brt Building: Placeholder"),
 }
