@@ -206,13 +206,13 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
 
     # apply random effect
     """
-    if key == 2001:
+    if key == 1201:
         effect_table = globalEffectTable
         name = world.random.choice(tuple(effect_table.values())).name
         key = world.item_name_to_id[name]
     """
     # get random ancillary
-    if key == 2003 or key == 2001:
+    if key == 1203 or key == 1201:
         ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).name
         key = world.item_name_to_id[name]
@@ -225,7 +225,7 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
 def generateFillerStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerStrongDict.keys()))
     # get legendary ancillary
-    if key == 2502:
+    if key == 1302:
         ancillaries_table = ancillariesLegendaryDict
         name = world.random.choice(tuple(ancillaries_table.values())).name
         key = world.item_name_to_id[name]

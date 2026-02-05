@@ -228,9 +228,13 @@ class techShuffle(DefaultOnToggle):
     """Whether technologies should be included in the item pool."""
     display_name = "Tech Shuffle"
 
-class progressiveTechnologies(Toggle):
-    """If technologies should be progressive. Requires Tech Shuffle to be on."""
+class progressiveTechnologies(Choice):
+    """CURRENTLY DISABLED
+    If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
+    option_false = 0
+    default = 0
+
 
 class buildingShuffle(DefaultOnToggle):
     """Whether buildings should be included in the item pool."""

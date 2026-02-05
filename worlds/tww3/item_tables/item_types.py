@@ -2,7 +2,6 @@ from typing import NamedTuple
 from enum import IntEnum
 from BaseClasses import ItemClassification
 
-
 class ItemType(IntEnum):
     tech = 1
     building = 2
@@ -47,4 +46,13 @@ class settlementData(NamedTuple):
     faction: str
     climate: str
     readableName: str
+
+
+#Progression items: 1000
+#Goal items: 1100
+#Filler items: 1200, 1300, 1400, 1500, 1600
+#Ancillaries: 2000, 2500
+#Beastmen: 10000
+#Brettonia: 11000
+
 
