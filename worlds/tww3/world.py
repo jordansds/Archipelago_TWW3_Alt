@@ -67,8 +67,6 @@ class TWW3World(World):
         if self.options.balance > 0:
             rules.setBalance(self, self.locationToDiploRange)
 
-        self.item_name_to_id = {}
-
     def fill_slot_data(self) -> Mapping[str, Any]:
         """
         Return the `slot_data` field that will be in the `Connected` network package.
