@@ -48,24 +48,44 @@ class WaaaghMessenger:
 
 class WaaaghWatcher:
     def __init__(self, path, context):
-        self.file = open(path, 'w+')
+        self.file = open(path, "r", encoding="utf-8", errors="replace")#open(path, 'w+')
         self.context = context
 
     async def watch(self, gameMode):
         print('Watching for Waaagh...')
         self.file.seek(0, 2)
+        activeInode = os.fstat(self.file.fileno()).st_ino
+        path = self.file.name
         while True:
             line = self.file.readline()
-            if not line:
-                await asyncio.sleep(0.5)
+            if line:
+                if gameMode == "conquest":
+                    logger.info("Sending Empire Size " + line.strip())
+                elif gameMode == "spheres":
+                    logger.info("Sending Location " + line.strip())
+                #self.context.waaaghMessenger.run("cm:get_campaign_ui_manager():unhighlight_settlement(cm:get_region(\"%s\"):settlement():key())" % (line.strip()))
+                await self.context.check(line.strip())
                 continue
-            if gameMode == "conquest":
-                logger.info("Sending Empire Size " + line.strip())
-            elif gameMode == "spheres":
-                logger.info("Sending Location " + line.strip())
-            #self.context.waaaghMessenger.run("cm:get_campaign_ui_manager():unhighlight_settlement(cm:get_region(\"%s\"):settlement():key())" % (line.strip()))
+            await asyncio.sleep(1)
 
-            await self.context.check(line.strip())
+            try:
+                st = os.stat(path)
+            except FileNotFoundError:
+                # File temporarily missing during rotation
+                continue
+            try:
+                rotated = st.st_ino != activeInode
+                truncated = self.file.tell() > st.st_size
+
+                if rotated or truncated:
+                    # Reopen the file
+                    self.file.close()
+                    self.file = open(path, "r", encoding="utf-8", errors="replace")
+                    activeInode = os.fstat(self.file.fileno()).st_ino
+                    self.file.seek(0, os.SEEK_END)
+            except Exception as e:
+                print(e)
+
 
 class TWW3Context(CommonContext):
     game = 'Total War Warhammer 3'
