@@ -232,25 +232,30 @@ class progressiveTechnologies(Choice):
     """CURRENTLY DISABLED
     If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
-    option_false = 1
-    default = 1
-
+    option_false = 0
+    default = 0
 
 class buildingShuffle(DefaultOnToggle):
     """Whether buildings should be included in the item pool."""
     display_name = "Building Shuffle"
 
-class progressiveBuildings(Toggle):
-    """If buildings should be progressive. Requires Building Shuffle to be on."""
+class progressiveBuildings(Choice):
+    """CURRENTLY DISABLED
+    If buildings should be progressive. Requires Building Shuffle to be on."""
     display_name = "Progressive Buildings"
+    option_false = 0
+    default = 0
 
 class unitShuffle(DefaultOnToggle):
     """Whether units should be included in the item pool."""
     display_name = "Unit Shuffle"
 
-class progressiveUnits(Toggle):
-    """If units should be progressive. Requires Unit Shuffle to be on."""
+class progressiveUnits(Choice):
+    """CURRENTLY DISABLED
+    If units should be progressive. Requires Unit Shuffle to be on."""
     display_name = "Progressive Units"
+    option_false = 0
+    default = 0
 
 class ritualShuffle(Toggle):
     """Should faction mechanics like rituals be shuffled? Will make the game harder.

@@ -10,11 +10,11 @@ from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, tra
     trapStrongDict, trapWeakDict
 from .item_tables.faction_item_table import factionItemDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from .item_tables.unique_item_table import unique_item_table
+#from .item_tables.unique_item_table import unique_item_table
 from .item_tables.ritual_table import ritualDict
-from .item_tables.progressive_buildings_table import progressiveBuildingsDict
-from .item_tables.progressive_units_table import progressiveUnitsDict
-from .item_tables.progressive_techs_table import progressiveTechsDict
+#from .item_tables.progressive_buildings_table import progressiveBuildingsDict
+#from .item_tables.progressive_units_table import progressiveUnitsDict
+#from .item_tables.progressive_techs_table import progressiveTechsDict
 from .item_tables.progression_table import progressionDict
 from . import settlementManager as sm
 from .faction_tables import factionTables
@@ -62,13 +62,22 @@ def createAllItems(world: TWW3World) -> None:
     pool: list[TWW3Item] = []
 
     pool = generateUnitItems(world, pool)
+    print(len(pool))
     pool = generateBuildingItems(world, pool)
+    print(len(pool))
     pool = generateTechnologyItems(world, pool)
+    print(len(pool))
     #pool = generateSpecialItems(world, pool)
     pool = generateRitualItems(world, pool)
+    print(len(pool))
     pool = generateExpansionItems(world, pool)
+    print(len(pool))
     pool = generateFactionSpecificItems(world, pool)
+
     pool = generateFillerItems(world, pool)
+
+    print(pool)
+    print(len(world.get_region("Old World").locations))
 
     world.multiworld.itempool += pool
 
@@ -78,7 +87,7 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
-                if world.options.progressive_units:
+                if not world.options.progressive_units:
                     world.itemKeys.append(key)
     return pool
 
@@ -88,7 +97,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
-                if world.options.progressive_buildings:
+                if not world.options.progressive_buildings:
                     world.itemKeys.append(key)
     return pool
 
@@ -98,7 +107,7 @@ def generateTechnologyItems(world: TWW3World, pool: list) -> list:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
-                if world.options.progressive_technologies:
+                if not world.options.progressive_technologies:
                     world.itemKeys.append(key)
     return pool
 
@@ -179,10 +188,10 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
     # get random ancillary
     if key == 1203 or key == 1201:
         ancillaries_table = ancillariesRegularDict
-        name = world.random.choice(tuple(ancillaries_table.values())).name
+        name = world.random.choice(tuple(ancillaries_table.values())).readableName
         key = world.item_name_to_id[name]
     else:
-        name = itemDict[key].name
+        name = itemDict[key].readableName
 
     item = world.create_item(name)
     return item
@@ -192,31 +201,31 @@ def generateFillerStrong(world: TWW3World) -> TWW3Item:
     # get legendary ancillary
     if key == 1302:
         ancillaries_table = ancillariesLegendaryDict
-        name = world.random.choice(tuple(ancillaries_table.values())).name
+        name = world.random.choice(tuple(ancillaries_table.values())).readableName
         key = world.item_name_to_id[name]
     else:
-        name = itemDict[key].name
+        name = itemDict[key].readableName
         
     item = world.create_item(name)
     return item
 
 def generateTrapHarmless(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(trapHarmlessDict.keys()))
-    name = itemDict[key].name
+    name = itemDict[key].readableName
 
     item = world.create_item(name)
     return item
 
 def generateTrapWeak(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(trapWeakDict.keys()))
-    name = itemDict[key].name
+    name = itemDict[key].readableName
     
     item = world.create_item(name)
     return item
 
 def generateTrapStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(trapStrongDict.keys()))
-    name = itemDict[key].name
+    name = itemDict[key].readableName
     
     item = world.create_item(name)
     return item

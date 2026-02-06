@@ -22,14 +22,14 @@ class ItemType(IntEnum):
     ancillaries_legendary = 17
     ritual = 18
 
-"""class ItemData(NamedTuple):
+class oldItemData(NamedTuple):
     classification: ItemClassification
     count: int
     name: str
     type: ItemType
     faction: str
     tier: int
-    progressionGroup: str"""
+    progressionGroup: str
 
 class ItemData(NamedTuple):
     classification: ItemClassification

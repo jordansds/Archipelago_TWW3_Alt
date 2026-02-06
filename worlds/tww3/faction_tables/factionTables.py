@@ -1,12 +1,9 @@
 from __future__ import annotations
 from .item_types import ItemData
-from typing import TYPE_CHECKING
 from types import ModuleType
-if TYPE_CHECKING:
-    from ..world import TWW3World
 
-from . import bretonnia
-"""from . import beastmen
+from . import bretonnia, warriorsOfChaosKhorne, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch
+from . import beastmen
 from . import bretonnia
 from . import cathay
 from . import chaosDwarfs
@@ -29,6 +26,10 @@ from . import tzeentch
 from . import vampireCoast
 from . import vampireCounts
 from . import warriorsOfChaos
+from . import warriorsOfChaosKhorne
+from . import warriorsOfChaosNurgle
+from . import warriorsOfChaosSlaanesh
+from . import warriorsOfChaosTzeentch
 from . import woodElves
 
 factionModuleDict: dict[str, ModuleType] = {
@@ -54,11 +55,13 @@ factionModuleDict: dict[str, ModuleType] = {
     "tzeentch": tzeentch,
     "vampireCoast": vampireCoast,
     "VampireCounts": vampireCounts,
-    "warriorsOfChaos": warriorsOfChaos,
-    "woodElves": woodElves
+    "woodElves": woodElves,
+    "chaos": warriorsOfChaos,
+    "chaosKhorne": warriorsOfChaosKhorne,
+    "chaosNurgle": warriorsOfChaosNurgle,
+    "chaosSlaanesh": warriorsOfChaosSlaanesh,
+    "chaosTzeentch": warriorsOfChaosTzeentch,
 }
-"""
-factionModuleDict: dict[str, ModuleType] = {"bretonnia": bretonnia}
 
 def getAllItems():
     itemDict: dict[int, ItemData] = {}

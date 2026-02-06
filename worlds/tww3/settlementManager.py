@@ -93,7 +93,7 @@ factionDict: dict[int, factionData] = {
     82: factionData('wh3_dlc20_chs_sigvald', True, False, 'chaos', 'Prince Sigvald the Magnificent (Warriors of Chaos)'),
     83: factionData('wh3_dlc20_chs_azazel', True, False, 'chaos', 'Azazel (Warriors of Chaos)'),
     84: factionData('wh3_dlc20_chs_festus', True, True, 'chaos', 'Festus the Leechlord (Warriors of Chaos)'),
-    85: factionData('wh3_dlc20_chs_valkia', True, False, 'chaos', 'Valkia the Bloody (Warriors of Chaos)'),
+    85: factionData('wh3_dlc20_chs_valkia', True, False, 'chaosKhorne', 'Valkia the Bloody (Warriors of Chaos)'),
     86: factionData('wh3_dlc20_chs_vilitch', True, False, 'chaos', 'Vilitch the Cursling (Warriors of Chaos)'),
     87: factionData('wh3_main_chs_shadow_legion', True, False, 'chaos', "Be'lakor (Warriors of Chaos)"),
     88: factionData('wh_dlc03_bst_beastmen', True, False, 'beastmen', 'Khazrak the One-Eye (Beastmen)'),
@@ -1011,6 +1011,10 @@ class SettlementManager:
                 #shuffledSettlementList2 = list(shuffledSettlementDict.keys())
                 # need to check if faction already has too many settlements.
                 for fKey in shuffledSettlementDict.keys():
+                    if faction == self.playerFaction.name:
+                        settlementsOwned = 3
+                        break
+
                     if shuffledSettlementDict[fKey].faction == faction:
                         settlementsOwned += 1
                         if settlementsOwned == 3:

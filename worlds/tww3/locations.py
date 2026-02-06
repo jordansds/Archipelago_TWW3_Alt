@@ -28,7 +28,7 @@ def createAllLocations(world: TWW3World, locationToDiploRange) -> None:
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
-    startingCheck = world.options.starting_settlements
+    startingCheck = world.options.starting_settlements + 1
     for faction in sm.factionDict.values():
         if not faction.hasHome and faction.name == world.playerFaction.name:
             startingCheck = 1

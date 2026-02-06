@@ -28,16 +28,13 @@ class TWW3World(World):
     #Holds the keys that will be sent to the client for locking techs/buildings/units
     #Will be populated in items.createAllItems
     itemKeys = []
-    print({item.readableName: key for key, item in items.itemDict.items()})
 
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
-    #print(item_name_to_id[11600])
 
     locations = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
     locations += [settlement.readableName for key, settlement in sm.settlementDict.items()]  # spheres gamemode locations
 
     location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
-    #print(location_name_to_id)
 
     settlementManager: sm.SettlementManager = None
 

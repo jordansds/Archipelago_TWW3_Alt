@@ -4,10 +4,10 @@ import pprint
 
 import bretonnia as brt
 
-dictionary = brt.brt_techs
+dictionary = brt.techs
 newDictionary = {}
 
-newKey = 11600
+newKey = 12800
 for key, value in dictionary.items():
     newDictionary.update({newKey: value})
     newKey += 1
