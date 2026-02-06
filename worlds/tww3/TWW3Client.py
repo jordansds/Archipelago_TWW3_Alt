@@ -48,7 +48,7 @@ class WaaaghMessenger:
 
 class WaaaghWatcher:
     def __init__(self, path, context):
-        self.file = open(path, "r", encoding="utf-8", errors="replace")#open(path, 'w+')
+        self.file = open(path, "w+")
         self.context = context
 
     async def watch(self, gameMode):

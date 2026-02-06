@@ -10,12 +10,8 @@ units: dict[int, ItemData] = {
     30034: ItemData(IC.useful, 1, 'wh2_dlc15_hef_inf_silverin_guard_0', ItemType.unit, 3, 'Progressive hef_inf', 'Hef Unit: Silverin Guard'),
     30006: ItemData(IC.useful, 1, 'wh2_main_hef_inf_white_lions_of_chrace_0', ItemType.unit, 2, 'Progressive hef_inf', 'Hef Unit: White Lions of Chrace'),
 
-    30053: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', ItemType.unit, 1, 'Progressive hef_inf', 'Hef Unit: Dryads'),
     30007: ItemData(IC.useful, 1, 'wh2_main_hef_inf_swordmasters_of_hoeth_0', ItemType.unit, 3, 'Progressive hef_inf', 'Hef Unit: Swordmasters of Hoeth'),
-
     30009: ItemData(IC.useful, 1, 'wh2_main_hef_inf_phoenix_guard', ItemType.unit, 5, 'Progressive hef_inf', 'Hef Unit: Phoenix Guard'),
-
-    30012: ItemData(IC.useful, 1, 'wh2_main_hef_inf_gate_guard', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: Gate Guard'),
 
     30013: ItemData(IC.useful, 1, 'wh2_main_hef_inf_archers_1', ItemType.unit, 1, 'Progressive hef_rng', 'Hef Unit: Archers (Light Armour)'),
     30014: ItemData(IC.useful, 1, 'wh2_main_hef_inf_archers_0', ItemType.unit, 1, 'Progressive hef_rng', 'Hef Unit: Archers'),
@@ -36,8 +32,6 @@ units: dict[int, ItemData] = {
     30005: ItemData(IC.useful, 1, 'wh2_main_hef_mon_great_eagle', ItemType.unit, 2, 'Progressive hef_bst', 'Hef Unit: Great Eagle'),
     30032: ItemData(IC.useful, 1, 'wh2_dlc15_hef_mon_war_lions_of_chrace_0', ItemType.unit, 2, 'Progressive hef_bst', 'Hef Unit: War Lions of Chrace'),
     30033: ItemData(IC.useful, 1, 'wh2_dlc15_hef_mon_arcane_phoenix_0', ItemType.unit, 4, 'Progressive hef_bst', 'Hef Unit: Arcane Phoenix'),
-    30042: ItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', ItemType.unit, 4, 'Progressive hef_bst', 'Hef Unit: Treeman'),
-    30043: ItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', ItemType.unit, 2, 'Progressive hef_bst', 'Hef Unit: Tree Kin'),
 
     30023: ItemData(IC.useful, 1, 'wh2_main_hef_cav_tiranoc_chariot', ItemType.unit, 2, 'Progressive hef_veh', 'Hef Unit: Tiranoc Chariots'),
     30026: ItemData(IC.useful, 1, 'wh2_main_hef_cav_ithilmar_chariot', ItemType.unit, 2, 'Progressive hef_veh', 'Hef Unit: Ithilmar Chariots'),
@@ -49,7 +43,6 @@ units: dict[int, ItemData] = {
     30047: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_grey_ror_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: The Grey (Shadow Warriors)'),
     30048: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_sisters_of_avelorn_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: Sisters of Avelorn'),
     30049: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_warriors_0', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: Shadow Warriors'),
-    30050: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_walkers_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: Shadow-walkers'),
     30051: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_keepers_of_the_flame_ror_0', ItemType.unit, 5, 'Progressive hef_inf', 'Hef Unit: Keepers of the Flame (Phoenix Guard)'),
     30052: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_everqueens_court_guards_ror_0', ItemType.unit, 3, 'Progressive hef_rng', "Hef Unit: Everqueen's Court Guards (Sisters of Avelorn)"),
     30057: ItemData(IC.useful, 1, 'wh2_dlc10_hef_cav_the_heralds_of_the_wind_ror_0', ItemType.unit, 2, 'Progressive her_cav', 'Hef Unit: Heralds of the Wind (Ellyrian Reavers â€“ Bows)'),
@@ -289,7 +282,6 @@ progUnits: dict[int, ItemData] = {
     31204: ItemData(IC.useful, 4, "Progressive hef_veh", ItemType.unit, 4, "", "Progressive Hef Unit: War Machine"),
     31205: ItemData(IC.useful, 4, "Progressive hef_bst", ItemType.unit, 4, "", "Progressive Hef Unit: Beast"),
     31206: ItemData(IC.useful, 1, "Progressive hef_hro", ItemType.unit, 1, "", "Progressive Hef Unit: Hero"),
-
 }
 
 progBuildings: dict[int, ItemData] = {
@@ -342,8 +334,12 @@ progTechs: dict[int, ItemData] = {
 
 special: dict[int, specialItemData] = {
     30036: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_spireguard_0', ItemType.unit, 2, 'Progressive hef_rng', False, 'Hef Unit: Spire Guard of Tor Yvresse'),
-    30037: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_skyhawks_0', ItemType.unit, 3, 'Progressive hef_rng', False, 'Hef Unit: The Skyhawks'),
+    30037: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_skyhawks_0', ItemType.unit, 3, 'Progressive hef_inf', False, 'Hef Unit: The Skyhawks'),
     30038: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_sentinels_0', ItemType.unit, 2, 'Progressive hef_rng', False, 'Hef Unit: Sentinels of Astaril'),
     30039: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_griffon_knights_0', ItemType.unit, 3, 'Progressive hef_bst', False, 'Hef Unit: Knights of Tor Gaval'),
     30040: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_faithbearers_0', ItemType.unit, 3, 'Progressive hef_inf', False, 'Hef Unit: Athel Tamarha Faithbearers'),
+    30050: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_walkers_0', "wh2_main_hef_nagarythe", ItemType.unit, 3, 'Progressive hef_rng', False, 'Hef Unit: Shadow-walkers'),
+    30053: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', ItemType.unit, 1, 'Progressive hef_inf', 'Hef Unit: Dryads'),
+    30042: ItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', ItemType.unit, 4, 'Progressive hef_bst', 'Hef Unit: Treeman'),
+    30043: ItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', ItemType.unit, 2, 'Progressive hef_bst', 'Hef Unit: Tree Kin'),
 }
