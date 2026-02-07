@@ -3,6 +3,8 @@ import Utils
 import asyncio
 import colorama
 import logging
+
+from worlds.hk.Items import item_type
 from .item_tables.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
@@ -182,15 +184,7 @@ class TWW3Context(CommonContext):
                 self.locationLookup[settlement.readableName] = key + offset
 
 
-        self.itemDict = dict(fillerWeakDict)
-        self.itemDict.update(fillerStrongDict)
-        self.itemDict.update(ancillariesRegularDict)
-        self.itemDict.update(ancillariesLegendaryDict)
-        self.itemDict.update(trapHarmlessDict)
-        self.itemDict.update(trapWeakDict)
-        self.itemDict.update(trapStrongDict)
-        #self.itemDict.update(factionTables.getAllItems())
-
+        self.itemDict = {}
         #Pull Non-Progressive Items
         self.itemDict.update(factionTables.getUnits(self.playerRace, False))
         self.itemDict.update(factionTables.getBuildings(self.playerRace, False))
@@ -204,6 +198,13 @@ class TWW3Context(CommonContext):
         if self.progressiveTechs:
             self.itemDict.update(factionTables.getTechs(self.playerRace, True))
 
+        self.itemDict.update(fillerWeakDict)
+        self.itemDict.update(fillerStrongDict)
+        self.itemDict.update(ancillariesRegularDict)
+        self.itemDict.update(ancillariesLegendaryDict)
+        self.itemDict.update(trapHarmlessDict)
+        self.itemDict.update(trapWeakDict)
+        self.itemDict.update(trapStrongDict)
         self.itemDict.update(ritualDict)
         self.itemDict.update(progressionDict)
 
@@ -535,7 +536,6 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.building and item.progressionGroup is not None:
-                print(item.tier)
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
                 else:

@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from item_types import ItemType, ItemData, specialItemData
+from .item_types import ItemType, ItemData, specialItemData
 
 # @formatter:off
 units: dict[int, ItemData] = {
@@ -166,8 +166,9 @@ buildings: dict[int, ItemData] = {
     30502: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_1', ItemType.building, 0, 'Progressive hef_settlement_minor', 'Hef Building: Hamlet (minor)'),
     30503: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_2', ItemType.building, 1, 'Progressive hef_settlement_minor', 'Hef Building: Haven (minor)'),
     30504: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_3', ItemType.building, 2, 'Progressive hef_settlement_minor', 'Hef Building: Tower (minor)'),
-    30505: ItemData(IC.useful, 1, 'wh2_main_hef_smith_1', ItemType.building, 0, 'Progressive hef_smith', 'Hef Building: Elven Forge'),
-    30506: ItemData(IC.useful, 1, 'wh2_main_hef_smith_2', ItemType.building, 1, 'Progressive hef_smith', 'Hef Building: Ithilmar Smith'),
+    30568: ItemData(IC.useful, 1, 'wh3_dlc27_hef_smith_0', ItemType.building, 2, 'Progressive hef_smith', 'Hef Building: Elven Workshop'),
+    30505: ItemData(IC.useful, 1, 'wh2_main_hef_smith_1', ItemType.building, 1, 'Progressive hef_smith', 'Hef Building: Elven Forge'),
+    30506: ItemData(IC.useful, 1, 'wh2_main_hef_smith_2', ItemType.building, 2, 'Progressive hef_smith', 'Hef Building: Ithilmar Smith'),
     30507: ItemData(IC.useful, 1, 'wh2_main_hef_stables_1', ItemType.building, 0, 'Progressive hef_stables', 'Hef Building: Grazing Meadows'),
     30508: ItemData(IC.useful, 1, 'wh2_main_hef_stables_2', ItemType.building, 1, 'Progressive hef_stables', 'Hef Building: Farrier'),
     30509: ItemData(IC.useful, 1, 'wh2_main_hef_worship_1', ItemType.building, 0, 'Progressive hef_worship', 'Hef Building: Shrine of Asuryan'),
@@ -333,7 +334,7 @@ progBuildings: dict[int, ItemData] = {
     31328: ItemData(IC.useful, 3, 'Progressive hef_resource_wood', ItemType.building, 3, None, 'Progressive Hef Building: Wood'),
     31329: ItemData(IC.useful, 5, 'Progressive hef_settlement_major', ItemType.building, 5, None, 'Progressive Hef Building: Settlement Major'),
     31330: ItemData(IC.useful, 3, 'Progressive hef_settlement_minor', ItemType.building, 3, None, 'Progressive Hef Building: Settlement Minor'),
-    31331: ItemData(IC.useful, 2, 'Progressive hef_smith', ItemType.building, 2, None, 'Progressive Hef Building: Smith'),
+    31331: ItemData(IC.useful, 3, 'Progressive hef_smith', ItemType.building, 3, None, 'Progressive Hef Building: Smith'),
     31332: ItemData(IC.useful, 2, 'Progressive hef_stables', ItemType.building, 2, None, 'Progressive Hef Building: Stables'),
     31333: ItemData(IC.useful, 3, 'Progressive hef_worship', ItemType.building, 3, None, 'Progressive Hef Building: Worship'),
     31334: ItemData(IC.useful, 3, 'Progressive hef_allied_outpost', ItemType.building, 3, None, 'Progressive Hef Building: Allied Outpost'),

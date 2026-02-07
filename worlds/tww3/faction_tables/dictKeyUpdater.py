@@ -8,7 +8,7 @@ import highElvesAislinn as hef
 dictionary = hef.buildings
 newDictionary = {}
 
-newKey = 66800
+newKey = 66400
 for key, value in dictionary.items():
     newDictionary.update({newKey: value})
     newKey += 1

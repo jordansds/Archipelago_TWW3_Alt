@@ -73,6 +73,8 @@ def createAllItems(world: TWW3World) -> None:
 
     world.multiworld.itempool += pool
 
+    print(pool)
+
 def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
         for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
