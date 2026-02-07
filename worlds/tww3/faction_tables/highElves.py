@@ -268,17 +268,17 @@ techs: dict[int, ItemData] = {
 
     30854: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_00', ItemType.tech, 1, 'Progressive tech_hef_trade', 'Hef Tech: Trade Advancements'),
     30844: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_01', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Call the Great Herds'),
-    30845: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_02', ItemType.tech, 3, 'Progressive tech_hef_trade', 'Hef Tech: Awakening the Ancient Ones'),
-    30846: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_03', ItemType.tech, 4, 'Progressive tech_hef_trade', 'Hef Tech: Great Weapons'),
-    30847: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_04', ItemType.tech, 5, 'Progressive tech_hef_trade', 'Hef Tech: Gemsetting'),
-    30848: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_05', ItemType.tech, 6, 'Progressive tech_hef_trade', 'Hef Tech: Marble Stockpiles'),
-    30849: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_06', ItemType.tech, 7, 'Progressive tech_hef_trade', 'Hef Tech: Healing Salve'),
+    30845: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_02', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Awakening the Ancient Ones'),
+    30846: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_03', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Great Weapons'),
+    30847: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_04', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Gemsetting'),
+    30848: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_05', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Marble Stockpiles'),
+    30849: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_06', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Healing Salve'),
     30855: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_07', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Hardwood Construction'),
-    30856: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_08', ItemType.tech, 3, 'Progressive tech_hef_trade', 'Hef Tech: Eastern Trade Contracts'),
-    30857: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_09', ItemType.tech, 4, 'Progressive tech_hef_trade', 'Hef Tech: Preserved Seafood'),
-    30858: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_10', ItemType.tech, 5, 'Progressive tech_hef_trade', 'Hef Tech: Monthly Festivals'),
-    30859: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_11', ItemType.tech, 6, 'Progressive tech_hef_trade', 'Hef Tech: Extravagant Murals'),
-    30860: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_12', ItemType.tech, 7, 'Progressive tech_hef_trade', 'Hef Tech: Porcelain Kilns'),
+    30856: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_08', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Eastern Trade Contracts'),
+    30857: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_09', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Preserved Seafood'),
+    30858: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_10', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Monthly Festivals'),
+    30859: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_11', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Extravagant Murals'),
+    30860: ItemData(IC.useful, 1, 'wh2_main_tech_hef_4_12', ItemType.tech, 2, 'Progressive tech_hef_trade', 'Hef Tech: Porcelain Kilns'),
 
     30861: ItemData(IC.useful, 1, 'wh2_main_tech_hef_5_00', ItemType.tech, 1, 'Progressive tech_hef_culture', 'Hef Tech: Cultural Advancements'),
     30862: ItemData(IC.useful, 1, 'wh2_main_tech_hef_5_06', ItemType.tech, 2, 'Progressive tech_hef_culture', 'Hef Tech: Heralds of Civilisation'),
@@ -343,7 +343,7 @@ progBuildings: dict[int, ItemData] = {
 
 progTechs: dict[int, ItemData] = {
     31400: ItemData(IC.useful, 6, "Progressive tech_hef_hosts", ItemType.tech, 6, None, "Progressive Hef Tech: The Hosts"),
-    31401: ItemData(IC.useful, 7, "Progressive tech_hef_trade", ItemType.tech, 7, None, "Progressive Hef Tech: Trade"),
+    31401: ItemData(IC.useful, 2, "Progressive tech_hef_trade", ItemType.tech, 2, None, "Progressive Hef Tech: Trade"),
     31402: ItemData(IC.useful, 7, "Progressive tech_hef_culture", ItemType.tech, 7, None, "Progressive Hef Tech: Culture"),
 }
 

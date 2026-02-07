@@ -325,7 +325,7 @@ progBuildings: dict[int, ItemData] = {
 }
 
 progTechs: dict[int, ItemData] = {
-
+    55400: ItemData(IC.useful, 15, "Progressive tech_wef", ItemType.tech, 15, None, "Progressive Wef Tech"),
 }
 
 special: dict[int, ItemData] = {

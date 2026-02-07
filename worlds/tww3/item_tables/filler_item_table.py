@@ -25,7 +25,7 @@ trapWeakDict: dict[int, ItemData] = {
     1501: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Unionize This!"), #Weak rebellion
     1502: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Where is our Map?"), #Resets fog of war
     1503: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Schizophrenia!"), #Randomise AI personalities
-    1504: ItemData(IC.filler, 0, "", ItemType.trap_weak, None, "None", "Make Love, Not War"), #Makes random enemy an ally
+    1504: ItemData(IC.filler, 0, "", ItemType.trap_weak, None, "None", "Make Love, Not War (Trap)"), #Makes random enemy an ally
 }
 
 trapStrongDict: dict[int, ItemData] = {

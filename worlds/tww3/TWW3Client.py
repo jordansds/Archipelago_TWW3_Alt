@@ -217,7 +217,6 @@ class TWW3Context(CommonContext):
     def on_received_items(self, args: dict):
         # for entry in self.items_received:
         for entry in args["items"]:
-            print(entry)
             try:
                 item = self.itemDict[entry.item]
             except KeyError as e:
@@ -260,54 +259,56 @@ class TWW3Context(CommonContext):
                     logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
 
             elif item.type == ItemType.filler_weak:
-                if item.name == "Get-Rich-Quick Scroll":
+                if item.readableName == "Get-Rich-Quick Scroll":
                     self.waaaghMessenger.run("cm:treasury_mod(\"%s\", cm:random_number(10000,1))" % self.playerFaction)
-                elif item.name == "Handful of Order" :
+                elif item.readableName == "Handful of Order" :
                     self.waaaghMessenger.run("set_random_positive_public_order()")
-                elif item.name == "The GroBro 3000":
+                elif item.readableName == "The GroBro 3000":
                     self.waaaghMessenger.run("add_random_growth_to_player()")
 
             elif (item.type == ItemType.ancillaries_regular) or (item.type == ItemType.ancillaries_legendary):
-                self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.name)
+                self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.readableName)
 
             elif item.type == ItemType.effect_faction:
-                self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.name)
+                self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.readableName)
 
             elif item.type == ItemType.filler_strong:
-                if item.name == "Give me that":
+                if item.readableName == "Give me that":
                     self.waaaghMessenger.run("force_settlement_transfer_from_random_enemy_to_player()")
-                elif item.name == "Make Love, Not War":
+                elif item.readableName == "Make Love, Not War":
                     self.waaaghMessenger.run("force_alliance_with_random_enemy()")
 
             elif item.type == ItemType.trap_harmless:
                 if self.are_traps_enabled:
-                    if item.name == "Look! What\'s that?":
+                    if item.readableName == "Look! What\'s that?":
                         self.waaaghMessenger.run("scroll_camera_to_random_region()")
-                    if item.name == "Spoiler Alert!":
+                    if item.readableName == "Spoiler Alert!":
                         self.waaaghMessenger.run("play_random_movie()")
                 else:
                     self.waaaghMessenger.run("out(\"Skipped a Trap\")")
 
             elif item.type == ItemType.trap_weak:
                 if self.are_traps_enabled:
-                    if item.name == "Handful of Unrest":
+                    if item.readableName == "Handful of Unrest":
                         self.waaaghMessenger.run("set_random_negative_public_order()")
-                    elif item.name == "Unionize This!":
+                    elif item.readableName == "Unionize This!":
                         self.waaaghMessenger.run("force_random_weak_rebellion_for_player()")
-                    elif item.name == "Where is our Map?":
+                    elif item.readableName == "Where is our Map?":
                         self.waaaghMessenger.run("cm:reset_shroud()")
-                    elif item.name == "Schizophrenia!":
+                    elif item.readableName == "Schizophrenia!":
                         self.waaaghMessenger.run("cm:cai_force_personality_change(\"All\")")
+                    elif item.readableName == "Make Love, Not War":
+                        self.waaaghMessenger.run("force_alliance_with_random_enemy()")
                 else:
                     self.waaaghMessenger.run("out(\"Skipped a Trap\")")
 
             elif item.type == ItemType.trap_strong:
                 if self.are_traps_enabled:
-                    if item.name == "Torches and Pitchforks!":
+                    if item.readableName == "Torches and Pitchforks!":
                         self.waaaghMessenger.run("force_random_strong_rebellion_for_player()")
-                    elif item.name == "Let\'s trade!":
+                    elif item.readableName == "Let\'s trade!":
                         self.waaaghMessenger.run("force_settlement_trade_with_random_enemy()")
-                    elif item.name == "You too, Brutus?":
+                    elif item.readableName == "You too, Brutus?":
                         self.waaaghMessenger.run("force_war_with_random_ally()")
                 else:
                     self.waaaghMessenger.run("out(\"Skipped a Trap\")")

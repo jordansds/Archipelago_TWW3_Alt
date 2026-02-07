@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .world import TWW3World
 
-from BaseClasses import Item, ItemClassification as IC
+from BaseClasses import Item, ItemClassification as IC, ItemClassification
 import math
 
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, \
@@ -53,7 +53,8 @@ def updateItemDict(world: TWW3World) -> None:
             itemDict[key] = ItemData(IC.progression, *item[1:])
     if world.options.force_early_buildings:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            itemDict[key] = ItemData(IC.progression, *item[1:])
+            if item.classification != ItemClassification.progression:
+                itemDict[key] = ItemData(IC.progression, *item[1:])
     if world.options.force_early_techs:
         for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = ItemData(IC.progression, *item[1:])
@@ -89,6 +90,11 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+            if "settlement_major" in item.name:
+                if item.classification is None:
+                        world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
+                elif item.tier <= 2:
+                    world.multiworld.local_early_items[world.player][item.readableName] = 1
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                     tww3_item = world.create_item(item.readableName)
