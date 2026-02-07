@@ -32,6 +32,10 @@ units: dict[int, ItemData] = {
     12027: ItemData(IC.useful, 1, 'wh_pro04_brt_inf_battle_pilgrims_ror_0', ItemType.unit, 3, 'Progressive brt_cav', 'Brt Unit: The Companions of Quenelles (Questing Knights)'),
     12028: ItemData(IC.useful, 1, 'wh_pro04_brt_inf_foot_squires_ror_0', ItemType.unit, 3, 'Progressive brt_inf', 'Brt Unit: The Holy Wardens of La Maisontaal (Battle Pilgrims)'),
     12029: ItemData(IC.useful, 1, 'wh_pro04_bst_inf_bestigor_herd_ror_0', ItemType.unit, 4, 'Progressive brt_inf', 'Brt Unit: Beastslayers of Bastonne (Foot Squires)'),
+    12030: ItemData(IC.useful, 1, "wh_main_brt_cha_paladin_0", ItemType.unit, 1, "Progressive brt_hro", "Brt Unit: Paladin"),
+    12031: ItemData(IC.useful, 1, "wh_main_brt_cha_damsel_0", ItemType.unit, 2, "Progressive brt_hro", "Brt Unit: Damsel (Heavens)"),
+    12032: ItemData(IC.useful, 1, "wh_dlc07_brt_cha_damsel_life_0", ItemType.unit, 2, "Progressive brt_hro", "Brt Unit: Damsel (Life)"),
+    12033: ItemData(IC.useful, 1, "wh_dlc07_brt_cha_damsel_beasts_0", ItemType.unit, 2, "Progressive brt_hro", "Brt Unit: Damsel (Beasts)")
 }
 
 buildings: dict[int, ItemData] = {
@@ -216,7 +220,8 @@ progUnits: dict[int, ItemData] = {
     13200: ItemData(IC.useful, 4, "Progressive brt_inf", ItemType.unit, 4, None, "Progressive Brt Unit: Infantry"),
     13201: ItemData(IC.useful, 4, "Progressive brt_rng", ItemType.unit, 2, None, "Progressive Brt Unit: Ranged"),
     13202: ItemData(IC.useful, 5, "Progressive brt_cav", ItemType.unit, 5, None, "Progressive Brt Unit: Cavalry"),
-    13203: ItemData(IC.useful, 2, "Progressive brt_art", ItemType.unit, 2, None, "Progressive Brt Unit: Artillery")
+    13203: ItemData(IC.useful, 2, "Progressive brt_art", ItemType.unit, 2, None, "Progressive Brt Unit: Artillery"),
+    31206: ItemData(IC.useful, 1, "Progressive brt_hro", ItemType.unit, 1, "", "Progressive Brt Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {

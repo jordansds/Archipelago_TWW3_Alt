@@ -15,7 +15,8 @@ units: dict[int, ItemData] = {
 
     30013: ItemData(IC.useful, 1, 'wh2_main_hef_inf_archers_1', ItemType.unit, 1, 'Progressive hef_rng', 'Hef Unit: Archers (Light Armour)'),
     30014: ItemData(IC.useful, 1, 'wh2_main_hef_inf_archers_0', ItemType.unit, 1, 'Progressive hef_rng', 'Hef Unit: Archers'),
-    30050: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_warriors_0', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: Shadow-walkers'),
+    30050: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_warriors_0', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: Shadow Warriors'),
+    30048: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_sisters_of_avelorn_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: Sisters of Avelorn'),
 
     30028: ItemData(IC.useful, 1, 'wh2_main_hef_cav_ellyrian_reavers_0', ItemType.unit, 1, 'Progressive her_cav', 'Hef Unit: Ellyrian Reavers'),
     30027: ItemData(IC.useful, 1, 'wh2_main_hef_cav_ellyrian_reavers_1', ItemType.unit, 1, 'Progressive her_cav', 'Hef Unit: Ellyrian Reaver Archers'),
@@ -46,13 +47,11 @@ units: dict[int, ItemData] = {
     30044: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_storm_riders_ror_0', ItemType.unit, 2, 'Progressive hef_inf', 'Hef Unit: The Storm Riders (Lothern Sea Guard)'),
     30045: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_silverpelts_ror_0', ItemType.unit, 3, 'Progressive hef_inf', 'Hef Unit: The Puremane Company (White Lions of Chrace)'),
     30046: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_scions_of_mathlann_ror_0', ItemType.unit, 1, 'Progressive hef_inf', 'Hef Unit: The Scions of Mathlann (Spearmen)'),
-    30047: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_grey_ror_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: The Grey (Shadow Warriors)'),
-    30048: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_sisters_of_avelorn_0', ItemType.unit, 3, 'Progressive hef_rng', 'Hef Unit: Sisters of Avelorn'),
-    30049: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_warriors_0', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: Shadow Warriors'),
-    30051: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_keepers_of_the_flame_ror_0', ItemType.unit, 5, 'Progressive hef_inf', 'Hef Unit: Keepers of the Flame (Phoenix Guard)'),
+    30047: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_the_grey_ror_0', ItemType.unit, 2, 'Progressive hef_rng', 'Hef Unit: The Grey (Shadow Warriors)'),
+    30051: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_keepers_of_the_flame_ror_0', ItemType.unit, 4, 'Progressive hef_inf', 'Hef Unit: Keepers of the Flame (Phoenix Guard)'),
     30052: ItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_everqueens_court_guards_ror_0', ItemType.unit, 3, 'Progressive hef_rng', "Hef Unit: Everqueen's Court Guards (Sisters of Avelorn)"),
-    30057: ItemData(IC.useful, 1, 'wh2_dlc10_hef_cav_the_heralds_of_the_wind_ror_0', ItemType.unit, 2, 'Progressive her_cav', 'Hef Unit: Heralds of the Wind (Ellyrian Reavers â€“ Bows)'),
-    30058: ItemData(IC.useful, 1, 'wh2_dlc10_hef_cav_the_fireborn_ror_0', ItemType.unit, 4, 'Progressive her_cav', 'Hef Unit: The Fireborn (Dragon Princes)'),
+    30057: ItemData(IC.useful, 1, 'wh2_dlc10_hef_cav_the_heralds_of_the_wind_ror_0', ItemType.unit, 1, 'Progressive her_cav', 'Hef Unit: Heralds of the Wind (Ellyrian Reavers - Bows)'),
+    30058: ItemData(IC.useful, 1, 'wh2_dlc10_hef_cav_the_fireborn_ror_0', ItemType.unit, 3, 'Progressive her_cav', 'Hef Unit: The Fireborn (Dragon Princes)'),
     30075: ItemData(IC.useful, 1, 'wh3_dlc27_hef_inf_ships_company_ror', ItemType.unit, 1, 'Progressive her_inf', "Hef Unit: Company of the Kalendirian (Ship's Company)"),
     30076: ItemData(IC.useful, 1, 'wh3_dlc27_hef_inf_swordmasters_of_hoeth_ror', ItemType.unit, 4, 'Progressive her_inf', 'Hef Unit: Blades of Hoeth (Swordmasters of Hoeth)'),
     30077: ItemData(IC.useful, 1, 'wh3_dlc27_hef_mon_merwyrm_ror', ItemType.unit, 4, 'Progressive her_bst', 'Hef Unit: Silak One-eye (Merwyrm)'),
@@ -300,7 +299,7 @@ progUnits: dict[int, ItemData] = {
     31203: ItemData(IC.useful, 4, "Progressive hef_art", ItemType.unit, 4, "", "Progressive Hef Unit: Artillery"),
     31204: ItemData(IC.useful, 4, "Progressive hef_veh", ItemType.unit, 4, "", "Progressive Hef Unit: War Machine"),
     31205: ItemData(IC.useful, 4, "Progressive hef_bst", ItemType.unit, 4, "", "Progressive Hef Unit: Beast"),
-    31206: ItemData(IC.useful, 1, "Progressive hef_hro", ItemType.unit, 1, "", "Progressive Hef Unit: Hero")
+    31206: ItemData(IC.useful, 3, "Progressive hef_hro", ItemType.unit, 3, "", "Progressive Hef Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
