@@ -2,12 +2,13 @@ from enum import Enum
 from BaseClasses import ItemClassification as IC
 import pprint
 
-import bretonnia as brt
+#import bretonnia as brt
+import highElves as hef
 
-dictionary = brt.techs
+dictionary = hef.progBuildings
 newDictionary = {}
 
-newKey = 12800
+newKey = 31300
 for key, value in dictionary.items():
     newDictionary.update({newKey: value})
     newKey += 1

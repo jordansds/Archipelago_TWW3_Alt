@@ -232,6 +232,7 @@ class progressiveTechnologies(Choice):
     """CURRENTLY DISABLED
     If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
+    option_true = 1
     option_false = 0
     default = 0
 
@@ -243,6 +244,7 @@ class progressiveBuildings(Choice):
     """CURRENTLY DISABLED
     If buildings should be progressive. Requires Building Shuffle to be on."""
     display_name = "Progressive Buildings"
+    option_true = 1
     option_false = 0
     default = 0
 
@@ -254,6 +256,7 @@ class progressiveUnits(Choice):
     """CURRENTLY DISABLED
     If units should be progressive. Requires Unit Shuffle to be on."""
     display_name = "Progressive Units"
+    option_true = 1
     option_false = 0
     default = 0
 

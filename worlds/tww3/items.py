@@ -62,22 +62,15 @@ def createAllItems(world: TWW3World) -> None:
     pool: list[TWW3Item] = []
 
     pool = generateUnitItems(world, pool)
-    print(len(pool))
     pool = generateBuildingItems(world, pool)
-    print(len(pool))
     pool = generateTechnologyItems(world, pool)
-    print(len(pool))
-    #pool = generateSpecialItems(world, pool)
+    pool = generateSpecialItems(world, pool)
     pool = generateRitualItems(world, pool)
-    print(len(pool))
     pool = generateExpansionItems(world, pool)
-    print(len(pool))
-    pool = generateFactionSpecificItems(world, pool)
+    #pool = generateFactionSpecificItems(world, pool)
+    print(pool)
 
     pool = generateFillerItems(world, pool)
-
-    print(pool)
-    print(len(world.get_region("Old World").locations))
 
     world.multiworld.itempool += pool
 

@@ -260,9 +260,9 @@ progBuildings: dict[int, ItemData] = {
 }
 
 progTechs: dict[int, ItemData] = {
-    13400: ItemData(IC.useful, 5, "Progressive tech_brt_heraldry", ItemType.unit, 5, None, "Progressive Brt Technology"),
-    13401: ItemData(IC.useful, 5, "Progressive tech_brt_chivalry", ItemType.unit, 5, None, "Progressive Brt Technology"),
-    13402: ItemData(IC.useful, 5, "Progressive tech_brt_economy", ItemType.unit, 5, None, "Progressive Brt Technology"),
+    13400: ItemData(IC.useful, 5, "Progressive tech_brt_heraldry", ItemType.tech, 5, None, "Progressive Brt Tech: Heraldry"),
+    13401: ItemData(IC.useful, 5, "Progressive tech_brt_chivalry", ItemType.tech, 5, None, "Progressive Brt Tech: Chivalry"),
+    13402: ItemData(IC.useful, 5, "Progressive tech_brt_economy", ItemType.tech, 5, None, "Progressive Brt Tech: Economy"),
 }
 
 special: dict[int, specialItemData] = {

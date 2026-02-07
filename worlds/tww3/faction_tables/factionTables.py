@@ -95,7 +95,7 @@ def getTechs(race, progressive):
 
 def getSpecial(race, faction):
     specialItems: dict[int, ItemData] = {}
-    for key, item in factionModuleDict[race].special:
+    for key, item in factionModuleDict[race].special.items():
         if item.faction == faction:
             specialItems.update({key: item})
     return specialItems.items()
