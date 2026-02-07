@@ -11,7 +11,7 @@ fillerWeakDict: dict[int, ItemData] = {
 
 fillerStrongDict: dict[int, ItemData] = {
     1300: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Give me that"), #Gives player random enemy city
-    #1301: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Make Love, Not War"), #Makes random enemy an ally
+    1301: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Make Love, Not War"), #Makes random enemy an ally
     1302: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Something Shiny") #Random legendary item/ancillary
 }
 
@@ -24,8 +24,8 @@ trapWeakDict: dict[int, ItemData] = {
     1500: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Handful of Unrest"), #Random amount of negative public order to random region
     1501: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Unionize This!"), #Weak rebellion
     1502: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Where is our Map?"), #Resets fog of war
-    1503: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Schizophrenia!") #Randomise AI personalities
-    #1504: ItemData(IC.filler, 0, "", ItemType.trap_weak, None, "None", "Make Love, Not War"), #Makes random enemy an ally
+    1503: ItemData(IC.trap, 0, "", ItemType.trap_weak, None, "None", "Schizophrenia!"), #Randomise AI personalities
+    1504: ItemData(IC.filler, 0, "", ItemType.trap_weak, None, "None", "Make Love, Not War"), #Makes random enemy an ally
 }
 
 trapStrongDict: dict[int, ItemData] = {

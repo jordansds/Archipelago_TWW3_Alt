@@ -192,6 +192,8 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
 
 def generateFillerStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerStrongDict.keys()))
+    if key == 1301 and world.options.game_mode == "conquest":
+        key = 1302
     # get legendary ancillary
     if key == 1302:
         ancillaries_table = ancillariesLegendaryDict
@@ -212,8 +214,11 @@ def generateTrapHarmless(world: TWW3World) -> TWW3Item:
 
 def generateTrapWeak(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(trapWeakDict.keys()))
+    if key == 1504 and world.options.game_mode == "spheres":
+        key = world.random.randint(1500, 1503)
+
     name = itemDict[key].readableName
-    
+
     item = world.create_item(name)
     return item
 
