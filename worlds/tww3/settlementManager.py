@@ -5,7 +5,7 @@ from .item_tables.item_types import factionData, settlementData
 from collections import Counter
 import time
 
-trueHordeList = ["wh_dlc03_bst_beastmen", "wh2_dlc17_bst_malagor", "wh_dlc05_bst_morghur_herd", "wh2_dlc17_bst_taurox", "wh2_dlc13_lzd_spirits_of_the_jungle", "wh3_dlc26_ogr_golgfag"]
+trueHordeList = ["wh_dlc03_bst_beastmen", "wh2_dlc17_bst_malagor", "wh_dlc05_bst_morghur_herd", "wh2_dlc17_bst_taurox", "wh2_dlc13_lzd_spirits_of_the_jungle", "wh3_dlc26_ogr_golgfag", "wh3_dlc27_hef_aislinn"]
 
 factionDict: dict[int, factionData] = {
     0: factionData('wh3_main_dae_daemon_prince', True, False, 'daemons', 'The Daemon Prince (Daemons of Chaos)'),
@@ -39,7 +39,7 @@ factionDict: dict[int, factionData] = {
     28: factionData('wh2_main_hef_nagarythe', True, True, 'highElves', 'Alith Anar (High Elves)'),
     29: factionData('wh2_main_hef_yvresse', True, True, 'highElves', 'Eltharion the Grim (High Elves)'),
     30: factionData('wh2_dlc15_hef_imrik', True, True, 'highElves', 'Imrik (High Elves)'),
-    31: factionData('wh3_dlc27_hef_aislinn', True, False, 'highElves', 'Sea Lord Aislinn (High Elves)'),
+    31: factionData('wh3_dlc27_hef_aislinn', True, False, 'highElvesAislinn', 'Sea Lord Aislinn (High Elves)'),
     32: factionData('wh2_dlc17_lzd_oxyotl', True, True, 'lizardmen', 'Oxyotl (Lizardmen)'),
     33: factionData('wh2_main_lzd_hexoatl', True, True, 'lizardmen', 'Lord Mazdamundi (Lizardmen)'),
     34: factionData('wh2_main_lzd_last_defenders', True, True, 'lizardmen', 'Kroq-Gar (Lizardmen)'),

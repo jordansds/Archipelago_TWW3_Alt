@@ -156,7 +156,7 @@ class checksPerSettlement(Range):
     If world generation fails, then you will either need to increase this option or the previous option."""
     display_name = "Checks Per Settlement (CONQUEST)"
     range_start = 1
-    range_end = 10
+    range_end = 50
     default = 3
 
 class adminCapacity(Range):

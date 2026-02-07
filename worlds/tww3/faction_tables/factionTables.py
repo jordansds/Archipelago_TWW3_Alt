@@ -2,7 +2,6 @@ from __future__ import annotations
 from .item_types import ItemData
 from types import ModuleType
 
-from . import bretonnia, warriorsOfChaosKhorne, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch
 from . import beastmen
 from . import bretonnia
 from . import cathay
@@ -13,6 +12,7 @@ from . import dwarfs
 from . import empire
 from . import greenskins
 from . import highElves
+from . import highElvesAislinn
 from . import khorne
 from . import kislev
 from . import lizardmen
@@ -43,6 +43,7 @@ factionModuleDict: dict[str, ModuleType] = {
     "empire": empire,
     "greenskins": greenskins,
     "highElves": highElves,
+    "highElvesAislinn": highElvesAislinn,
     "khorne": khorne,
     "kislev": kislev,
     "lizardmen": lizardmen,

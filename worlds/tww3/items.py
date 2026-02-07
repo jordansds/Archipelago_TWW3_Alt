@@ -77,7 +77,7 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
         for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
             if item.tier > world.options.starting_tier:
-                for i in range(item.count):
+                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                     tww3_item = world.create_item(item.readableName)
                     pool.append(tww3_item)
                     if not world.options.progressive_units:
@@ -88,7 +88,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                for i in range(item.count):
+                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                     tww3_item = world.create_item(item.readableName)
                     pool.append(tww3_item)
                     if not world.options.progressive_buildings:
