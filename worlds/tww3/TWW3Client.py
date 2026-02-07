@@ -55,8 +55,8 @@ class WaaaghWatcher:
     async def watch(self, gameMode):
         print('Watching for Waaagh...')
         self.file.seek(0, 2)
-        #activeInode = os.fstat(self.file.fileno()).st_ino
-        #path = self.file.name
+        activeInode = os.fstat(self.file.fileno()).st_ino
+        path = self.file.name
         while True:
             line = self.file.readline()
             if line:
@@ -69,7 +69,7 @@ class WaaaghWatcher:
                 continue
             await asyncio.sleep(0.1)
 
-            """try:
+            try:
                 st = os.stat(path)
             except FileNotFoundError:
                 # File temporarily missing during rotation
@@ -85,7 +85,7 @@ class WaaaghWatcher:
                     activeInode = os.fstat(self.file.fileno()).st_ino
                     self.file.seek(0, os.SEEK_END)
             except Exception as e:
-                print(e)"""
+                print(e)
 
 
 class TWW3Context(CommonContext):

@@ -271,5 +271,5 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    13500: specialItemData(IC.useful, 4, "Placeholder", "Special Placeholder", ItemType.unit, 4, None, False, "Special Brt Building: Placeholder"),
+
 }
