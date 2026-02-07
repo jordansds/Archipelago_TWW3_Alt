@@ -216,7 +216,16 @@ class TWW3Context(CommonContext):
     def on_received_items(self, args: dict):
         # for entry in self.items_received:
         for entry in args["items"]:
-            item = self.itemDict[entry.item]
+            print(entry)
+            try:
+                item = self.itemDict[entry.item]
+            except KeyError as e:
+                logger.error(e)
+                logger.error(f"There is a Key Mismatch. This item has a false key, please report the false Key and the faction you were playing to the discord server (@jordansds). Key is: {entry.item}")
+                continue
+            except Exception as e:
+                logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key is: {entry.item}, faction is {self.playerFaction}")
+                continue
             #sender = "You" if entry.player == self.slot else f"Player {entry.player}"
             #logger.info(f"From: {sender} | Item: {item.name}")
             if item.type == ItemType.building:
@@ -398,9 +407,9 @@ class TWW3Context(CommonContext):
             elif self.gameMode == "spheres":
                 await self.check_locations([self.locationLookup[location]])
                 
-        except KeyError as err:
-            logger.error(err)
-            logger.error("There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: " + location)
+        except KeyError as e:
+            logger.error(e)
+            logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
 
     def run_gui(self):
@@ -526,6 +535,7 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.building and item.progressionGroup is not None:
+                print(item.tier)
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
                 else:

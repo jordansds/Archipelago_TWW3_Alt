@@ -5,7 +5,7 @@ from .item_tables.item_types import factionData, settlementData
 from collections import Counter
 import time
 
-trueHordeList = ["wh_dlc03_bst_beastmen", "wh2_dlc17_bst_malagor", "wh_dlc05_bst_morghur_herd", "wh2_dlc17_bst_taurox", "wh2_dlc13_lzd_spirits_of_the_jungle", "wh3_dlc26_ogr_golgfag", "wh3_dlc27_hef_aislinn"]
+trueHordeList = ["wh_dlc03_bst_beastmen", "wh2_dlc17_bst_malagor", "wh_dlc05_bst_morghur_herd", "wh2_dlc17_bst_taurox", "wh2_dlc13_lzd_spirits_of_the_jungle", "wh3_dlc26_ogr_golgfag"]
 
 factionDict: dict[int, factionData] = {
     0: factionData('wh3_main_dae_daemon_prince', True, False, 'daemons', 'The Daemon Prince (Daemons of Chaos)'),
@@ -91,10 +91,10 @@ factionDict: dict[int, factionData] = {
     80: factionData('wh_main_chs_chaos', True, False, 'chaos', 'Archaon the Everchosen (Warriors of Chaos)'),
     81: factionData('wh3_dlc20_chs_kholek', True, False, 'chaos', 'Kholek Suneater (Warriors of Chaos)'),
     82: factionData('wh3_dlc20_chs_sigvald', True, False, 'chaos', 'Prince Sigvald the Magnificent (Warriors of Chaos)'),
-    83: factionData('wh3_dlc20_chs_azazel', True, False, 'chaos', 'Azazel (Warriors of Chaos)'),
-    84: factionData('wh3_dlc20_chs_festus', True, True, 'chaos', 'Festus the Leechlord (Warriors of Chaos)'),
+    83: factionData('wh3_dlc20_chs_azazel', True, False, 'chaosSlaanesh', 'Azazel (Warriors of Chaos)'),
+    84: factionData('wh3_dlc20_chs_festus', True, True, 'chaosNurgle', 'Festus the Leechlord (Warriors of Chaos)'),
     85: factionData('wh3_dlc20_chs_valkia', True, False, 'chaosKhorne', 'Valkia the Bloody (Warriors of Chaos)'),
-    86: factionData('wh3_dlc20_chs_vilitch', True, False, 'chaos', 'Vilitch the Cursling (Warriors of Chaos)'),
+    86: factionData('wh3_dlc20_chs_vilitch', True, False, 'chaosTzeentch', 'Vilitch the Cursling (Warriors of Chaos)'),
     87: factionData('wh3_main_chs_shadow_legion', True, False, 'chaos', "Be'lakor (Warriors of Chaos)"),
     88: factionData('wh_dlc03_bst_beastmen', True, False, 'beastmen', 'Khazrak the One-Eye (Beastmen)'),
     89: factionData('wh2_dlc17_bst_malagor', True, False, 'beastmen', 'Malagor the Dark Omen (Beastmen)'),
@@ -319,7 +319,7 @@ settlementDict: dict[int, settlementData] = {
      6: settlementData('wh3_main_combi_region_hanyu_port', 'regular', 1127, 494, 'wh3_main_cth_dissenter_lords_of_jinshen', 'temperate', 'Hanyu Port'),
      7: settlementData('wh3_main_combi_region_tor_yvresse', 'regular', 316, 574, 'wh2_main_hef_yvresse', 'temperate island', 'Tor Yvresse'),
      8: settlementData('wh3_main_combi_region_aquitaine', 'regular', 421, 569, 'wh3_main_brt_aquitaine', 'temperate', 'Aquitaine'),
-     9: settlementData('wh3_main_combi_region_the_monolith_of_katam', 'regular', 451, 864, 'wh_main_nor_varg', 'frozen', 'The Monolith of Katam'),
+     9: settlementData('wh3_main_combi_region_the_monolith_of_katam', 'dark fortress', 451, 864, 'wh_main_nor_varg', 'frozen', 'The Monolith of Katam'),
      10: settlementData('wh3_main_combi_region_helmgart', 'regular', 487, 603, 'wh_main_emp_empire', 'temperate', 'Helmgart'),
      11: settlementData('wh3_main_combi_region_beichai', 'regular', 1356, 554, 'wh3_dlc21_cst_dead_flag_fleet', 'temperate', 'Beichai'),
      12: settlementData('wh3_main_combi_region_lashiek', 'regular', 448, 315, 'wh2_main_brt_knights_of_the_flame', 'desert', 'Lashiek'),
@@ -327,7 +327,7 @@ settlementDict: dict[int, settlementData] = {
      14: settlementData('wh3_main_combi_region_floating_mountain', 'regular', 1025, 790, 'wh3_dlc20_nor_dolgan', 'chaotic wasteland', 'Floating Mountain'),
      15: settlementData('wh3_main_combi_region_shrine_of_ladrielle', 'regular', 224, 777, 'wh2_main_def_karond_kar', 'frozen', 'Shrine of Ladrielle'),
      16: settlementData('wh3_main_combi_region_quatar', 'regular', 678, 277, 'wh2_dlc09_tmb_numas', 'desert', 'Quatar'),
-     17: settlementData('wh3_main_combi_region_ancient_city_of_quintex', 'regular', 73, 592, 'wh2_main_def_cult_of_pleasure', 'frozen', 'Ancient City of Quintex'),
+     17: settlementData('wh3_main_combi_region_ancient_city_of_quintex', 'dark fortress', 73, 592, 'wh2_main_def_cult_of_pleasure', 'frozen', 'Ancient City of Quintex'),
      18: settlementData('wh3_main_combi_region_southern_outpost', 'regular', 1280, 328, 'wh3_dlc26_grn_cluster_eye_tribe', 'jungle', 'Southern Outpost'),
      19: settlementData('wh3_main_combi_region_black_iron_mine', 'regular', 797, 481, 'wh_main_dwf_karak_azul', 'mountain', 'Black Iron Mine'),
      20: settlementData('wh3_main_combi_region_vulture_mountain', 'regular', 454, 289, 'wh2_main_dwf_greybeards_prospectors', 'mountain', 'Vulture Mountain'),
@@ -349,11 +349,11 @@ settlementDict: dict[int, settlementData] = {
      36: settlementData('wh3_main_combi_region_kemperbad', 'regular', 565, 637, 'wh_main_emp_talabecland', 'temperate', 'Kemperbad'),
      37: settlementData('wh3_main_combi_region_shrine_of_loec', 'regular', 311, 511, 'wh2_dlc15_grn_skull_crag', 'temperate island', 'Shrine of Loec'),
      38: settlementData('wh3_main_combi_region_karak_eight_peaks', 'regular', 761, 459, 'wh_main_grn_necksnappers', 'mountain', 'Karak Eight Peaks'),
-     39: settlementData('wh3_main_combi_region_the_palace_of_ruin', 'regular', 230, 904, None, 'frozen', 'The Palace of Ruin'),
+     39: settlementData('wh3_main_combi_region_the_palace_of_ruin', 'dark fortress', 230, 904, None, 'frozen', 'The Palace of Ruin'),
      40: settlementData('wh3_main_combi_region_barag_dawazbag', 'regular', 709, 509, 'wh_main_grn_scabby_eye', 'wasteland', 'Barag Dawazbag'),
      41: settlementData('wh3_main_combi_region_nahuontl', 'regular', 562, 146, 'wh2_dlc12_grn_leaf_cutterz_tribe', 'jungle', 'Nahuontl'),
      42: settlementData('wh3_main_combi_region_deff_gorge', 'regular', 717, 354, 'wh3_main_kho_exiles_of_khorne', 'mountain', 'Deff Gorge'),
-     43: settlementData('wh3_main_combi_region_wei_jin', 'regular', 1276, 649, 'wh3_main_cth_celestial_loyalists', 'temperate', 'Wei Jin'),
+     43: settlementData('wh3_main_combi_region_wei_jin', 'dark fortress', 1276, 649, 'wh3_main_cth_celestial_loyalists', 'temperate', 'Wei Jin'),
      44: settlementData('wh3_main_combi_region_griffon_gate', 'regular', 196, 594, 'wh2_main_hef_tiranoc', 'temperate island', 'Griffon Gate'),
      45: settlementData('wh3_main_combi_region_shattered_cove', 'regular', 999, 417, 'wh3_main_lzd_tepoks_spawn', 'temperate', 'Shattered Stone Bay'),
      46: settlementData('wh3_main_combi_region_wurtbad', 'regular', 607, 634, 'wh_main_emp_stirland', 'temperate', 'Wurtbad'),
@@ -370,11 +370,11 @@ settlementDict: dict[int, settlementData] = {
      57: settlementData('wh3_main_combi_region_the_awakening', 'regular', 276, 262, 'wh2_dlc11_cst_vampire_coast', 'jungle', 'The Awakening'),
      58: settlementData('wh3_main_combi_region_palace_of_princes', 'regular', 404, 893, 'wh3_main_sla_subtle_torture', 'chaotic wasteland', 'Palace of Princes'),
      59: settlementData('wh3_main_combi_region_xahutec', 'regular', 204, 307, 'wh2_main_lzd_tlaxtlan', 'jungle', 'Xahutec'),
-     60: settlementData('wh3_main_combi_region_the_writhing_fortress', 'regular', 915, 887, 'wh3_main_sla_exquisite_pain', 'chaotic wasteland', 'The Writhing Fortress'),
+     60: settlementData('wh3_main_combi_region_the_writhing_fortress', 'dark fortress', 915, 887, 'wh3_main_sla_exquisite_pain', 'chaotic wasteland', 'The Writhing Fortress'),
      61: settlementData('wh3_main_combi_region_elisia', 'regular', 299, 640, 'wh2_main_hef_chrace', 'temperate island', 'Elisia'),
      62: settlementData('wh3_main_combi_region_mount_silverspear', 'regular', 831, 541, 'wh3_main_grn_moon_howlerz', 'mountain', 'Mount Silverspear'),
      63: settlementData('wh3_main_combi_region_wellsprings_of_eternity', 'regular', 71, 357, 'wh2_main_def_blood_hall_coven', 'jungle', 'Wellsprings of Eternity'),
-     64: settlementData('wh3_main_combi_region_tower_of_gorgoth', 'regular', 904, 527, 'wh3_dlc23_chd_minor_faction', 'mountain', 'Tower of Gorgoth'),
+     64: settlementData('wh3_main_combi_region_tower_of_gorgoth', 'dark fortress', 904, 527, 'wh3_dlc23_chd_minor_faction', 'mountain', 'Tower of Gorgoth'),
      65: settlementData('wh3_main_combi_region_sarl_encampment', 'regular', 586, 846, 'wh_main_nor_sarl', 'mountain', 'Sarl Encampment'),
      66: settlementData('wh3_main_combi_region_fort_jakova', 'regular', 740, 702, 'wh_main_nor_baersonling', 'temperate', 'Fort Jakova'),
      67: settlementData('wh3_main_combi_region_miragliano', 'regular', 497, 456, 'wh_main_teb_tilea', 'temperate', 'Miragliano'),
@@ -388,7 +388,7 @@ settlementDict: dict[int, settlementData] = {
      75: settlementData('wh3_main_combi_region_grenzstadt', 'regular', 648, 573, 'wh_main_emp_averland', 'temperate', 'Grenzstadt'),
      76: settlementData('wh3_main_combi_region_the_dust_gate', 'regular', 140, 156, 'wh3_main_tmb_deserters_of_khatep', 'desert', 'The Dust Gate'),
      77: settlementData('wh3_main_combi_region_kappelburg', 'regular', 653, 708, 'wh_main_emp_talabecland', 'temperate', 'Kappelburg'),
-     78: settlementData('wh3_main_combi_region_nan_gau', 'regular', 1138, 656, 'wh3_main_cth_the_northern_provinces', 'temperate', 'Nan Gau'),
+     78: settlementData('wh3_main_combi_region_nan_gau', 'dark fortress', 1138, 656, 'wh3_main_cth_the_northern_provinces', 'temperate', 'Nan Gau'),
      79: settlementData('wh3_main_combi_region_numas', 'regular', 651, 297, 'wh2_dlc09_tmb_numas', 'desert', 'Numas'),
      80: settlementData('wh3_main_combi_region_lyonesse', 'regular', 362, 631, 'wh_main_brt_lyonesse', 'temperate', 'Lyonesse'),
      81: settlementData('wh3_main_combi_region_lybaras', 'regular', 825, 317, 'wh2_dlc09_tmb_lybaras', 'desert', 'Lybaras'),
@@ -415,9 +415,9 @@ settlementDict: dict[int, settlementData] = {
      102: settlementData('wh3_main_combi_region_troll_fjord', 'regular', 386, 795, 'wh_dlc08_nor_norsca', 'frozen', 'Troll Fjord'),
      103: settlementData('wh3_main_combi_region_rackdo_gorge', 'regular', 55, 812, 'wh2_main_skv_clan_septik', 'mountain', 'Rackdo Gorge'),
      104: settlementData('wh3_main_combi_region_zandri', 'regular', 541, 325, 'wh2_main_brt_knights_of_origo', 'desert', 'Zandri'),
-     105: settlementData('wh3_main_combi_region_zanbaijin', 'regular', 1002, 838, 'wh3_dlc25_nur_tamurkhan', 'chaotic wasteland', 'Zanbaijin'),
+     105: settlementData('wh3_main_combi_region_zanbaijin', 'dark fortress', 1002, 838, 'wh3_dlc25_nur_tamurkhan', 'chaotic wasteland', 'Plains of Zanbaijin'),
      106: settlementData('wh3_main_combi_region_kunlan', 'regular', 1251, 587, 'wh3_main_grn_dimned_sun', 'temperate', 'Kunlan'),
-     107: settlementData('wh3_main_combi_region_monolith_of_borkill_the_bloody_handed', 'regular', 450, 801, 'wh_main_nor_bjornling', 'mountain', 'Monolith of Borkill The Bloody Handed'),
+     107: settlementData('wh3_main_combi_region_monolith_of_borkill_the_bloody_handed', 'dark fortress', 450, 801, 'wh_main_nor_bjornling', 'mountain', 'Monolith of Borkill The Bloody Handed'),
      108: settlementData('wh3_main_combi_region_venom_glade', 'regular', 142, 709, 'wh2_main_def_clar_karond', 'frozen', 'Venom Glade'),
      109: settlementData('wh3_main_combi_region_xhotl', 'regular', 133, 238, 'wh3_dlc20_nur_pallid_nurslings', 'jungle', 'Xhotl'),
      110: settlementData('wh3_main_combi_region_lost_plateau', 'regular', 704, 243, 'wh2_main_grn_arachnos', 'mountain', 'Lost Plateau'),
@@ -427,8 +427,8 @@ settlementDict: dict[int, settlementData] = {
      114: settlementData('wh3_main_combi_region_castle_carcassonne', 'regular', 465, 503, 'wh_main_brt_carcassonne', 'temperate', 'Castle Carcassonne'),
      115: settlementData('wh3_main_combi_region_shrine_of_sotek', 'regular', 47, 427, 'wh2_main_grn_blue_vipers', 'savannah', 'Shrine of Sotek'),
      116: settlementData('wh3_main_combi_region_tower_of_the_sun', 'regular', 981, 133, 'wh3_dlc27_hef_aislinn', 'temperate island', ' Tower of the Sun'),
-     117: settlementData('wh3_main_combi_region_fateweavers_crevasse', 'regular', 510, 27, 'wh3_main_tze_oracles_of_tzeentch', 'chaotic wasteland', "Fateweaver's Crevasse"),
-     118: settlementData('wh3_main_combi_region_the_godless_crater', 'regular', 235, 22, 'wh2_dlc17_lzd_oxyotl', 'chaotic wasteland', 'The Godless Crater'),
+     117: settlementData('wh3_main_combi_region_fateweavers_crevasse', 'dark fortress', 510, 27, 'wh3_main_tze_oracles_of_tzeentch', 'chaotic wasteland', "Fateweaver's Crevasse"),
+     118: settlementData('wh3_main_combi_region_the_godless_crater', 'dark fortress', 235, 22, 'wh2_dlc17_lzd_oxyotl', 'chaotic wasteland', 'The Godless Crater'),
      119: settlementData('wh3_main_combi_region_stonemine_tower', 'regular', 626, 482, 'wh3_main_skv_clan_verms', 'wasteland', 'Stonemine Tower'),
      120: settlementData('wh3_main_combi_region_zavastra', 'regular', 674, 736, 'wh3_main_ksl_the_ice_court', 'temperate', 'Zavastra'),
      121: settlementData('wh3_main_combi_region_rothkar_spire', 'regular', 13, 733, 'wh2_dlc16_grn_naggaroth_orcs', 'desert', 'Rothkar Spire'),
@@ -445,7 +445,7 @@ settlementDict: dict[int, settlementData] = {
      132: settlementData('wh3_main_combi_region_dok_karaz', 'regular', 668, 497, 'wh_main_grn_scabby_eye', 'wasteland', 'Dok Karaz'),
      133: settlementData('wh3_main_combi_region_argalis', 'regular', 538, 417, 'wh_main_teb_border_princes', 'temperate', 'Argalis'),
      134: settlementData('wh3_main_combi_region_storag_kor', 'regular', 72, 727, None, 'mountain', 'Storag Kor'),
-     135: settlementData('wh3_main_combi_region_middenheim', 'regular', 554, 706, 'wh_main_emp_middenland', 'temperate', 'Middenheim'),
+     135: settlementData('wh3_main_combi_region_middenheim', 'dark fortress', 554, 706, 'wh_main_emp_middenland', 'temperate', 'Middenheim'),
      136: settlementData('wh3_main_combi_region_languille', 'regular', 384, 661, 'wh_main_vmp_mousillon', 'temperate', "L'Anguille"),
      137: settlementData('wh3_main_combi_region_karak_azorn', 'regular', 996, 567, 'wh3_main_dwf_karak_azorn', 'mountain', 'Karak Azorn'),
      138: settlementData('wh3_main_combi_region_black_tower_of_arkhan', 'regular', 550, 294, 'wh2_dlc09_tmb_rakaph_dynasty', 'desert', 'Black Tower of Arkhan'),
@@ -471,7 +471,7 @@ settlementDict: dict[int, settlementData] = {
      158: settlementData('wh3_main_combi_region_great_skull_lakes', 'regular', 853, 692, 'wh3_main_grn_slaves_of_zharr', 'wasteland', 'Great Skull Lakes'),
      159: settlementData('wh3_main_combi_region_swartzhafen', 'regular', 674, 593, 'wh_main_vmp_schwartzhafen', 'temperate', 'Schwartzhafen'),
      160: settlementData('wh3_main_combi_region_eye_of_the_panther', 'regular', 481, 307, 'wh2_main_dwf_greybeards_prospectors', 'mountain', 'Eye of the Panther'),
-     161: settlementData('wh3_main_combi_region_fortress_of_the_damned', 'regular', 375, 870, 'wh2_main_def_deadwood_sentinels', 'chaotic wasteland', 'Fortress of the Damned'),
+     161: settlementData('wh3_main_combi_region_fortress_of_the_damned', 'dark fortress', 375, 870, 'wh2_main_def_deadwood_sentinels', 'chaotic wasteland', 'Fortress of the Damned'),
      162: settlementData('wh3_main_combi_region_yuatek', 'regular', 602, 101, 'wh2_main_lzd_zlatan', 'jungle', 'Yuatek'),
      163: settlementData('wh3_main_combi_region_the_blood_swamps', 'regular', 239, 235, None, 'jungle', 'The Blood Swamps'),
      164: settlementData('wh3_main_combi_region_red_fortress', 'dark fortress', 1317, 663, 'wh3_main_cth_imperial_wardens', 'chaotic wasteland', 'Red Fortress'),
@@ -487,7 +487,7 @@ settlementDict: dict[int, settlementData] = {
      174: settlementData('wh3_main_combi_region_bechafen', 'regular', 677, 716, 'wh_main_emp_ostermark', 'temperate', 'Bechafen'),
      175: settlementData('wh3_main_combi_region_krugenheim', 'regular', 634, 654, 'wh_main_emp_talabecland', 'temperate', 'Krugenheim'),
      176: settlementData('wh3_main_combi_region_mahrak', 'regular', 772, 320, 'wh2_main_vmp_the_silver_host', 'desert', 'Mahrak'),
-     177: settlementData('wh3_main_combi_region_daemons_gate', 'regular', 463, 57, 'wh3_main_tze_flaming_scribes', 'chaotic wasteland', "Daemon's Gate"),
+     177: settlementData('wh3_main_combi_region_daemons_gate', 'dark fortress', 463, 57, 'wh3_main_tze_flaming_scribes', 'chaotic wasteland', "Daemon's Gate"),
      178: settlementData('wh3_main_combi_region_mine_of_the_bearded_skulls', 'regular', 120, 217, 'wh2_main_dwf_spine_of_sotek_dwarfs', 'mountain', 'Mine of The Bearded Skulls'),
      179: settlementData('wh3_main_combi_region_tor_koruali', 'regular', 331, 606, 'wh2_main_hef_cothique', 'temperate island', 'Tor Koruali'),
      180: settlementData('wh3_main_combi_region_hell_pit', 'regular', 705, 807, 'wh2_main_skv_clan_moulder', 'wasteland', 'Hell Pit'),
@@ -501,7 +501,7 @@ settlementDict: dict[int, settlementData] = {
      188: settlementData('wh3_main_combi_region_kraka_drak', 'regular', 709, 841, 'wh3_dlc25_dwf_malakai', 'mountain', 'Kraka Drak'),
      189: settlementData('wh3_main_combi_region_tor_elasor', 'regular', 911, 78, 'wh3_main_cst_dread_rock_privateers', 'temperate island', 'Tor Elasor'),
      190: settlementData('wh3_main_combi_region_tor_elyr', 'regular', 206, 558, 'wh2_main_hef_ellyrion', 'temperate island', 'Tor Elyr'),
-     191: settlementData('wh3_main_combi_region_karak_vlag', 'regular', 817, 756, 'wh_dlc08_nor_goromadny_tribe', 'mountain', 'Karak Vlag'),
+     191: settlementData('wh3_main_combi_region_karak_vlag', 'dark fortress', 817, 756, 'wh_dlc08_nor_goromadny_tribe', 'mountain', 'Karak Vlag'),
      192: settlementData('wh3_main_combi_region_karak_vrag', 'regular', 1010, 656, 'wh3_main_ogr_fulg', 'mountain', 'Karak Vrag'),
      193: settlementData('wh3_main_combi_region_the_cursed_jungle', 'regular', 744, 215, 'wh2_main_skv_clan_mordkin', 'jungle', 'The Cursed Jungle'),
      194: settlementData('wh3_main_combi_region_karag_dromar', 'regular', 675, 562, 'wh_main_dwf_zhufbar', 'mountain', 'Karag Dromar'),
@@ -518,7 +518,7 @@ settlementDict: dict[int, settlementData] = {
      205: settlementData('wh3_main_combi_region_karak_azul', 'regular', 799, 452, 'wh_main_dwf_karak_azul', 'mountain', 'Karak Azul'),
      206: settlementData('wh3_main_combi_region_brionne', 'regular', 420, 527, 'wh2_dlc14_grn_red_cloud', 'temperate', 'Brionne'),
      207: settlementData('wh3_main_combi_region_wizard_caliphs_palace', 'regular', 437, 269, 'wh2_dlc09_tmb_followers_of_nagash', 'desert', "Wizard Caliph's Palace"),
-     208: settlementData('wh3_main_combi_region_the_frozen_city', 'regular', 284, 872, 'wh2_main_def_deadwood_sentinels', 'frozen', 'The Frozen City'),
+     208: settlementData('wh3_main_combi_region_the_frozen_city', 'dark fortress', 284, 872, 'wh2_main_def_deadwood_sentinels', 'frozen', 'The Frozen City'),
      209: settlementData('wh3_main_combi_region_ruins_end', 'regular', 947, 427, 'wh3_main_ogr_thunderguts', 'wasteland', "Ruin's End"),
      210: settlementData('wh3_main_combi_region_the_high_sentinel', 'regular', 120, 404, 'wh2_main_grn_blue_vipers', 'savannah', 'The High Sentinel'),
      211: settlementData('wh3_main_combi_region_black_creek_spire', 'regular', 269, 768, 'wh2_main_def_karond_kar', 'frozen', 'Black Creek Spire'),
@@ -552,13 +552,13 @@ settlementDict: dict[int, settlementData] = {
      239: settlementData('wh3_main_combi_region_blood_mountain', 'regular', 420, 923, 'wh3_main_kho_crimson_skull', 'chaotic wasteland', 'Blood Mountain'),
      240: settlementData('wh3_main_combi_region_the_blood_hall', 'regular', 26, 332, 'wh3_dlc27_sla_masque_of_slaanesh', 'temperate island', 'The Blood Hall'),
      241: settlementData('wh3_main_combi_region_volcanos_heart', 'regular', 697, 941, 'wh3_main_tze_all_seeing_eye', 'chaotic wasteland', "Volcano's Heart"),
-     242: settlementData('wh3_main_combi_region_altar_of_the_crimson_harvest', 'regular', 503, 783, 'wh_main_nor_skaeling', 'frozen', 'Altar of The Crimson Harvest'),
+     242: settlementData('wh3_main_combi_region_altar_of_the_crimson_harvest', 'dark fortress', 503, 783, 'wh_main_nor_skaeling', 'frozen', 'Altar of The Crimson Harvest'),
      243: settlementData('wh3_main_combi_region_salzenmund', 'regular', 557, 757, 'wh_main_emp_nordland', 'temperate', 'Salzenmund'),
      244: settlementData('wh3_main_combi_region_sjoktraken', 'regular', 726, 828, 'wh3_main_nur_maggoth_kin', 'frozen', 'Sjoktraken'),
      245: settlementData('wh3_main_combi_region_dringorackaz', 'regular', 756, 416, 'wh_main_dwf_karak_azul', 'mountain', 'Dringorackaz'),
      246: settlementData('wh3_main_combi_region_granite_massif', 'regular', 755, 306, None, 'mountain', 'Granite Massif'),
      247: settlementData('wh3_main_combi_region_chimai', 'regular', 1313, 521, 'wh3_dlc21_cst_dead_flag_fleet', 'temperate', 'Chimai'),
-     248: settlementData('wh3_main_combi_region_okkams_forever_maze', 'regular', 709, 28, 'wh3_main_sla_rapturous_excess', 'chaotic wasteland', "Okkam's Forever Maze"),
+     248: settlementData('wh3_main_combi_region_okkams_forever_maze', 'dark fortress', 709, 28, 'wh3_main_sla_rapturous_excess', 'chaotic wasteland', "Okkam's Forever Maze"),
      249: settlementData('wh3_main_combi_region_sorcerers_islands', 'regular', 420, 309, 'wh2_dlc09_tmb_followers_of_nagash', 'desert', "Sorcerer's Island"),
      250: settlementData('wh3_main_combi_region_the_southern_sentinels', 'regular', 224, 133, 'wh2_main_lzd_southern_sentinels', 'savannah', 'The Southern Sentinels'),
      251: settlementData('wh3_main_combi_region_chamber_of_visions', 'regular', 71, 273, 'wh2_main_lzd_sentinels_of_xeti', 'jungle', 'Chamber of Visions'),
@@ -577,7 +577,7 @@ settlementDict: dict[int, settlementData] = {
      264: settlementData('wh3_main_combi_region_snake_gate', 'regular', 1175, 665, 'wh3_main_cth_imperial_wardens', 'temperate', 'Snake Gate'),
      265: settlementData('wh3_main_combi_region_port_elistor', 'regular', 284, 541, 'wh2_main_hef_saphery', 'temperate island', 'Port Elistor'),
      266: settlementData('wh3_main_combi_region_eilhart', 'regular', 482, 639, 'wh_main_emp_empire_separatists', 'temperate', 'Eilhart'),
-     267: settlementData('wh3_main_combi_region_black_rock', 'regular', 583, 938, 'wh3_main_tze_broken_wheel', 'chaotic wasteland', 'Black Rock'),
+     267: settlementData('wh3_main_combi_region_black_rock', 'dark fortress', 583, 938, 'wh3_main_tze_broken_wheel', 'chaotic wasteland', 'Black Rock'),
      268: settlementData('wh3_main_combi_region_grom_peak', 'regular', 768, 589, 'wh_main_grn_red_eye', 'mountain', 'Grom Peak'),
      269: settlementData('wh3_main_combi_region_valley_of_horns', 'regular', 1000, 523, 'wh3_main_ogr_sons_of_the_mountain', 'mountain', 'Valley of Horns'),
      270: settlementData('wh3_main_combi_region_celestial_monastery', 'regular', 1234, 533, 'wh3_main_cth_the_jade_custodians', 'temperate', 'Celestial Monastery'),
@@ -594,10 +594,10 @@ settlementDict: dict[int, settlementData] = {
      281: settlementData('wh3_main_combi_region_karak_kadrin', 'regular', 748, 644, 'wh_main_dwf_karak_kadrin', 'mountain', 'Karak Kadrin'),
      282: settlementData('wh3_main_combi_region_granite_spikes', 'regular', 1076, 703, 'wh3_dlc23_chd_zhatan', 'chaotic wasteland', 'Granite Spikes'),
      283: settlementData('wh3_main_combi_region_xlanzec', 'regular', 241, 109, 'wh2_dlc12_lzd_cult_of_sotek', 'savannah', 'Xlanzec'),
-     284: settlementData('wh3_main_combi_region_bloodwind_keep', 'regular', 1244, 719, 'wh3_main_chs_khazag', 'chaotic wasteland', 'Bloodwind Keep'),
+     284: settlementData('wh3_main_combi_region_bloodwind_keep', 'dark fortress', 1244, 719, 'wh3_main_chs_khazag', 'chaotic wasteland', 'Bloodwind Keep'),
      285: settlementData('wh3_main_combi_region_dotternbach', 'regular', 546, 583, 'wh3_dlc25_vmp_the_court_of_night', 'temperate', 'Dotternbach'),
      286: settlementData('wh3_main_combi_region_dietershafen', 'regular', 526, 762, 'wh_main_emp_nordland', 'temperate', 'Dietershafen'),
-     287: settlementData('wh3_main_combi_region_nuln', 'regular', 553, 607, 'wh_main_emp_wissenland', 'temperate', 'Nuln'),
+     287: settlementData('wh3_main_combi_region_nuln', 'dark fortress', 553, 607, 'wh_main_emp_wissenland', 'temperate', 'Nuln'),
      288: settlementData('wh3_main_combi_region_karak_krakaten', 'regular', 1003, 491, 'wh3_main_ogr_goldtooth', 'mountain', 'Karak Krakaten'),
      289: settlementData('wh3_main_combi_region_mountain_pass', 'regular', 1322, 335, 'wh3_dlc26_grn_cluster_eye_tribe', 'mountain', 'Mountain Pass'),
      290: settlementData('wh3_main_combi_region_citadel_of_lead', 'regular', 355, 763, 'wh3_dlc20_tze_the_sightless', 'frozen', 'Citadel of Lead'),
@@ -613,7 +613,7 @@ settlementDict: dict[int, settlementData] = {
      300: settlementData('wh3_main_combi_region_castle_alexandronov', 'regular', 613, 792, 'wh3_main_ksl_the_great_orthodoxy', 'frozen', 'Castle Alexandronov'),
      301: settlementData('wh3_main_combi_region_eagle_gate', 'regular', 189, 572, 'wh2_main_hef_ellyrion', 'temperate island', 'Eagle Gate'),
      302: settlementData('wh3_main_combi_region_spite_reach', 'regular', 190, 845, 'wh3_main_grn_da_cage_breakaz', 'frozen', 'Spite Reach'),
-     303: settlementData('wh3_main_combi_region_zharr_naggrund', 'regular', 943, 628, 'wh3_dlc23_chd_conclave', 'wasteland', 'Zharr Naggrund'),
+     303: settlementData('wh3_main_combi_region_zharr_naggrund', 'dark fortress', 943, 628, 'wh3_dlc23_chd_conclave', 'wasteland', 'Zharr Naggrund'),
      304: settlementData('wh3_main_combi_region_eschen', 'regular', 714, 635, 'wh_main_vmp_rival_sylvanian_vamps', 'temperate', 'Eschen'),
      305: settlementData('wh3_main_combi_region_montenas', 'regular', 414, 454, 'wh_main_teb_estalia', 'temperate', 'Montenas'),
      306: settlementData('wh3_main_combi_region_al_haikk', 'regular', 511, 332, 'wh2_main_vmp_strygos_empire', 'desert', 'Al Haikk'),
@@ -644,7 +644,7 @@ settlementDict: dict[int, settlementData] = {
      331: settlementData('wh3_main_combi_region_crookback_mountain', 'regular', 844, 520, 'wh2_dlc09_skv_clan_rictus', 'mountain', 'Crookback Mountain'),
      332: settlementData('wh3_main_combi_region_volksgrad', 'regular', 749, 778, 'wh3_main_ksl_ropsmenn_clan', 'frozen', 'Volksgrad'),
      333: settlementData('wh3_main_combi_region_hoteks_column', 'regular', 173, 718, 'wh2_main_def_the_forgebound', 'frozen', "Hotek's Column"),
-     334: settlementData('wh3_main_combi_region_the_crystal_spires', 'regular', 749, 926, 'wh3_main_tze_all_seeing_eye', 'chaotic wasteland', 'The Crystal Spires'),
+     334: settlementData('wh3_main_combi_region_the_crystal_spires', 'dark fortress', 749, 926, 'wh3_main_tze_all_seeing_eye', 'chaotic wasteland', 'The Crystal Spires'),
      335: settlementData('wh3_main_combi_region_ming_zhu', 'regular', 1242, 612, 'wh3_main_cth_celestial_loyalists', 'temperate', 'Ming Zhu'),
      336: settlementData('wh3_main_combi_region_parravon', 'regular', 483, 575, 'wh_main_brt_parravon', 'temperate', 'Parravon'),
      337: settlementData('wh3_main_combi_region_barak_varr', 'regular', 672, 512, 'wh_main_dwf_barak_varr', 'mountain', 'Barak Varr'),
@@ -670,7 +670,7 @@ settlementDict: dict[int, settlementData] = {
      357: settlementData('wh3_main_combi_region_the_blighted_grove', 'regular', 560, 953, 'wh3_main_tze_broken_wheel', 'chaotic wasteland', 'The Blighted Grove'),
      358: settlementData('wh3_main_combi_region_talabheim', 'regular', 604, 690, 'wh_main_emp_talabecland', 'temperate', 'Talabheim'),
      359: settlementData('wh3_main_combi_region_rasetra', 'regular', 766, 287, 'wh2_main_vmp_the_silver_host', 'desert', 'Rasetra'),
-     360: settlementData('wh3_main_combi_region_the_twisted_towers', 'regular', 485, 939, 'wh3_main_sla_subtle_torture', 'chaotic wasteland', 'The Twisted Towers'),
+     360: settlementData('wh3_main_combi_region_the_twisted_towers', 'dark fortress', 485, 939, 'wh3_main_sla_subtle_torture', 'chaotic wasteland', 'The Twisted Towers'),
      361: settlementData('wh3_main_combi_region_the_bone_gulch', 'regular', 841, 423, 'wh2_dlc15_dwf_clan_helhein', 'mountain', 'The Bone Gulch'),
      362: settlementData('wh3_main_combi_region_tlaxtlan', 'regular', 164, 324, 'wh2_main_lzd_tlaxtlan', 'jungle', 'Tlaxtlan'),
      363: settlementData('wh3_main_combi_region_the_sentinel_of_time', 'regular', 190, 152, 'wh2_main_lzd_southern_sentinels', 'savannah', 'The Sentinel of Time'),
@@ -712,7 +712,7 @@ settlementDict: dict[int, settlementData] = {
      399: settlementData('wh3_main_combi_region_karag_orrud', 'regular', 720, 309, 'wh2_main_grn_arachnos', 'mountain', 'Karag Orrud'),
      400: settlementData('wh3_main_combi_region_mount_athull', 'regular', 299, 36, 'wh3_main_kho_brazen_throne', 'chaotic wasteland', 'Mount Athull'),
      401: settlementData('wh3_main_combi_region_worlds_edge_archway', 'regular', 819, 563, 'wh_main_grn_bloody_spearz', '', ''),
-     402: settlementData('wh3_main_combi_region_black_fortress', 'regular', 950, 479, 'wh3_dlc23_chd_legion_of_azgorh', 'wasteland', 'Black Fortress'),
+     402: settlementData('wh3_main_combi_region_black_fortress', 'dark fortress', 950, 479, 'wh3_dlc23_chd_legion_of_azgorh', 'wasteland', 'Black Fortress'),
      403: settlementData('wh3_main_combi_region_port_reaver', 'regular', 98, 481, 'wh2_main_emp_new_world_colonies', 'savannah', 'Port Reaver'),
      404: settlementData('wh3_main_combi_region_chaqua', 'regular', 174, 273, 'wh3_dlc20_tze_apostles_of_change', 'jungle', 'Chaqua'),
      405: settlementData('wh3_main_combi_region_vitevo', 'regular', 709, 711, 'wh_main_nor_baersonling', 'temperate', 'Vitevo'),
@@ -720,9 +720,9 @@ settlementDict: dict[int, settlementData] = {
      407: settlementData('wh3_main_combi_region_kradtommen', 'regular', 747, 392, 'wh_main_grn_red_fangs', 'mountain', 'Kradtommen'),
      408: settlementData('wh3_main_combi_region_ekrund', 'regular', 634, 444, 'wh_main_grn_teef_snatchaz', 'wasteland', 'Ekrund'),
      409: settlementData('wh3_main_combi_region_khazid_bordkarag', 'regular', 687, 823, 'wh3_main_nur_maggoth_kin', 'mountain', 'Lair of the Troll King'),
-     410: settlementData('wh3_main_combi_region_shang_yang', 'regular', 1127, 554, 'wh3_main_cth_dissenter_lords_of_jinshen', 'desert', 'Shang Yang'),
+     410: settlementData('wh3_main_combi_region_shang_yang', 'dark fortress', 1127, 554, 'wh3_main_cth_dissenter_lords_of_jinshen', 'desert', 'Shang Yang'),
      411: settlementData('wh3_main_combi_region_blacklight_tower', 'regular', 210, 793, 'wh2_main_def_karond_kar', 'frozen', 'Blacklight Tower'),
-     412: settlementData('wh3_main_combi_region_the_howling_citadel', 'regular', 790, 913, 'wh3_main_kho_bloody_sword', 'chaotic wasteland', 'The Howling Citadel'),
+     412: settlementData('wh3_main_combi_region_the_howling_citadel', 'dark fortress', 790, 913, 'wh3_main_kho_bloody_sword', 'chaotic wasteland', 'The Howling Citadel'),
      413: settlementData('wh3_main_combi_region_monolith_of_bubonicus', 'regular', 853, 848, 'wh3_main_sla_exquisite_pain', 'chaotic wasteland', 'Monolith of Bubonicus'),
      414: settlementData('wh3_main_combi_region_statues_of_the_gods', 'regular', 545, 175, 'wh2_dlc12_grn_leaf_cutterz_tribe', 'jungle', 'Statues of The Gods'),
      415: settlementData('wh3_main_combi_region_infernius', 'regular', 430, 946, 'wh3_main_kho_crimson_skull', 'chaotic wasteland', 'Infernius'),
@@ -740,16 +740,16 @@ settlementDict: dict[int, settlementData] = {
      427: settlementData('wh3_main_combi_region_wissenburg', 'regular', 577, 586, 'wh3_dlc25_vmp_the_court_of_night', 'temperate', 'Wissenburg'),
      428: settlementData('wh3_main_combi_region_fortress_of_dawn', 'regular', 545, 68, 'wh2_main_hef_order_of_loremasters', 'temperate island', 'Fortress of Dawn'),
      429: settlementData('wh3_main_combi_region_fyrus', 'regular', 495, 350, 'wh2_main_vmp_strygos_empire', 'desert', 'Fyrus'),
-     430: settlementData('wh3_main_combi_region_the_volary', 'regular', 1111, 716, 'wh3_dlc23_chd_zhatan', 'chaotic wasteland', 'The Volary'),
+     430: settlementData('wh3_main_combi_region_the_volary', 'dark fortress', 1111, 716, 'wh3_dlc23_chd_zhatan', 'chaotic wasteland', 'The Volary'),
      431: settlementData('wh3_main_combi_region_altar_of_the_horned_rat', 'regular', 245, 206, 'wh2_main_skv_clan_spittel', 'jungle', 'Altar of The Horned Rat'),
      432: settlementData('wh3_main_combi_region_cliff_of_beasts', 'regular', 527, 933, 'wh3_main_tze_broken_wheel', 'chaotic wasteland', 'Cliff of Beasts'),
      433: settlementData('wh3_main_combi_region_fallen_king_mountain', 'regular', 788, 627, 'wh_main_grn_red_eye', 'mountain', 'Fallen King Mountain'),
      434: settlementData('wh3_main_combi_region_forest_of_gloom', 'magical forest', 703, 549, 'wh2_dlc16_grn_creeping_death', 'magical forest', 'Forest of Gloom'),
      435: settlementData('wh3_main_combi_region_bilious_cliffs', 'regular', 608, 922, 'wh3_dlc25_nur_epidemius', 'chaotic wasteland', 'Bilious Cliffs'),
      436: settlementData('wh3_main_combi_region_baleful_hills', 'regular', 1190, 503, 'wh3_dlc21_vmp_jiangshi_rebels', 'savannah', 'Baleful Hills'),
-     437: settlementData('wh3_main_combi_region_the_silvered_tower_of_sorcerers', 'regular', 377, 937, 'wh3_main_kho_crimson_skull', 'chaotic wasteland', 'The Silvered Tower of Sorcerers'),
+     437: settlementData('wh3_main_combi_region_the_silvered_tower_of_sorcerers', 'dark fortress', 377, 937, 'wh3_main_kho_crimson_skull', 'chaotic wasteland', 'The Silvered Tower of Sorcerers'),
      438: settlementData('wh3_main_combi_region_silver_pinnacle', 'regular', 824, 660, 'wh3_main_vmp_lahmian_sisterhood', 'mountain', 'Silver Pinnacle'),
-     439: settlementData('wh3_main_combi_region_konquata', 'regular', 345, 745, 'wh3_dlc20_tze_the_sightless', 'jungle', 'Konquata'),
+     439: settlementData('wh3_main_combi_region_konquata', 'dark fortress', 345, 745, 'wh3_dlc20_tze_the_sightless', 'jungle', 'Konquata'),
      440: settlementData('wh3_main_combi_region_castle_drakenhof', 'regular', 716, 612, 'wh_main_vmp_schwartzhafen', 'temperate', 'Castle Drakenhof'),
      441: settlementData('wh3_main_combi_region_hidden_landing', 'regular', 1373, 325, 'wh3_dlc27_sla_the_tormentors', 'jungle', 'Hidden Landing'),
      442: settlementData('wh3_main_combi_region_sabre_mountain', 'regular', 935, 700, 'wh3_main_ogr_sabreskin', 'mountain', 'Sabre Mountain'),
@@ -765,7 +765,7 @@ settlementDict: dict[int, settlementData] = {
      452: settlementData('wh3_main_combi_region_valayas_sorrow', 'regular', 737, 446, 'wh_main_grn_necksnappers', 'wasteland', "Valaya's Sorrow"),
      453: settlementData('wh3_main_combi_region_the_forbidden_citadel', 'regular', 619, 849, 'wh_main_nor_aesling', 'mountain', 'The Forbidden Citadel'),
      454: settlementData('wh3_main_combi_region_shi_wu', 'regular', 1365, 417, 'wh3_main_cth_eastern_river_lords', 'mountain', 'Shi Wu'),
-     455: settlementData('wh3_main_combi_region_karak_dum', 'regular', 887, 764, 'wh3_main_ogr_lazarghs', 'mountain', 'Karak Dum'),
+     455: settlementData('wh3_main_combi_region_karak_dum', 'dark fortress', 887, 764, 'wh3_main_ogr_lazarghs', 'mountain', 'Karak Dum'),
      456: settlementData('wh3_main_combi_region_springs_of_eternal_life', 'regular', 628, 268, 'wh2_main_vmp_necrarch_brotherhood', 'desert', 'Springs of Eternal Life'),
      457: settlementData('wh3_main_combi_region_spektazuma', 'regular', 87, 378, 'wh2_dlc12_skv_clan_mange', 'jungle', 'Spektazuma'),
      458: settlementData('wh3_main_combi_region_plain_of_dogs', 'regular', 40, 633, 'wh2_dlc16_skv_clan_gritus', 'mountain', 'Plain of Dogs'),
@@ -794,7 +794,7 @@ settlementDict: dict[int, settlementData] = {
      481: settlementData('wh3_main_combi_region_whitepeak', 'regular', 171, 571, 'wh2_main_hef_tiranoc', 'temperate island', 'Whitepeak'),
      482: settlementData('wh3_main_combi_region_couronne', 'regular', 410, 675, 'wh_main_brt_bretonnia', 'temperate', 'Couronne'),
      483: settlementData('wh3_main_combi_region_mount_thug', 'regular', 1053, 461, 'wh3_main_skv_clan_treecherik', 'temperate', 'Shambletown'),
-     484: settlementData('wh3_main_combi_region_the_challenge_stone', 'regular', 1021, 726, 'wh3_main_ogr_fleshgreeders', 'chaotic wasteland', 'The Challenge Stone'),
+     484: settlementData('wh3_main_combi_region_the_challenge_stone', 'dark fortress', 1021, 726, 'wh3_main_ogr_fleshgreeders', 'chaotic wasteland', 'The Challenge Stone'),
      485: settlementData('wh3_main_combi_region_petrified_forest', 'regular', 77, 557, 'wh2_main_def_ssildra_tor', 'frozen', 'Petrified Forest'),
      486: settlementData('wh3_main_combi_region_ashrak', 'regular', 135, 862, 'wh2_main_def_ghrond', 'frozen', 'Ashrak'),
      487: settlementData('wh3_main_combi_region_mount_squighorn', 'regular', 779, 535, 'wh_main_grn_bloody_spearz', 'mountain', 'Mount Squighorn'),
@@ -850,7 +850,7 @@ settlementDict: dict[int, settlementData] = {
      537: settlementData('wh3_main_combi_region_sulpharets', 'regular', 22, 532, 'wh2_dlc16_skv_clan_gritus', 'mountain', 'Sulpharets'),
      538: settlementData('wh3_dlc23_combi_region_blasted_expanse', 'regular', 858, 634, 'wh3_main_grn_drippin_fangs', 'wasteland', 'The Blasted Expanse'),
      539: settlementData('wh3_main_combi_region_angerrial', 'regular', 269, 529, 'wh2_main_def_cult_of_excess', 'temperate island', 'Angerrial'),
-     540: settlementData('wh3_main_combi_region_dagraks_end', 'regular', 128, 909, 'wh2_main_def_ghrond', 'frozen', "Dagrak's End"),
+     540: settlementData('wh3_main_combi_region_dagraks_end', 'dark fortress', 128, 909, 'wh2_main_def_ghrond', 'frozen', "Dagrak's End"),
      541: settlementData('wh3_main_combi_region_mount_grey_hag', 'regular', 879, 515, 'wh3_main_grn_moon_howlerz', 'mountain', 'Mount Grey Hag'),
      542: settlementData('wh3_main_combi_region_wreckers_point', 'regular', 474, 748, 'wh_dlc03_grn_black_pit', 'temperate', "Wrecker's Point"),
      543: settlementData('wh3_main_combi_region_sudenburg', 'regular', 550, 254, 'wh3_main_emp_cult_of_sigmar', 'desert', 'Sudenburg'),
@@ -864,7 +864,7 @@ settlementDict: dict[int, settlementData] = {
      551: settlementData('wh3_main_combi_region_the_golden_tower', 'regular', 680, 198, 'wh2_main_lzd_last_defenders', 'jungle', 'The Golden Tower'),
      552: settlementData('wh3_main_combi_region_shi_long', 'regular', 1239, 460, 'wh3_dlc21_vmp_jiangshi_rebels', 'savannah', 'Shi Long'),
      553: settlementData('wh3_main_combi_region_the_high_place', 'regular', 795, 550, 'wh_main_grn_bloody_spearz', 'mountain', 'The High Place'),
-     554: settlementData('wh3_main_combi_region_doomkeep', 'regular', 514, 836, 'wh_dlc08_nor_naglfarlings', 'mountain', 'Doomkeep'),
+     554: settlementData('wh3_main_combi_region_doomkeep', 'dark fortress', 514, 836, 'wh_dlc08_nor_naglfarlings', 'mountain', 'Doomkeep'),
      555: settlementData('wh3_main_combi_region_the_fetid_catacombs', 'regular', 441, 896, 'wh3_main_sla_subtle_torture', 'chaotic wasteland', 'The Fetid Catacombs'),
      556: settlementData('wh3_main_combi_region_varg_camp', 'regular', 514, 874, 'wh_main_nor_varg', 'frozen', 'Varg Camp'),
      557: settlementData('wh3_main_combi_region_circle_of_destruction', 'regular', 159, 757, 'wh2_main_def_clar_karond', 'frozen', 'Circle of Destruction'),
@@ -936,12 +936,19 @@ class SettlementManager:
                     if playerSettlement.type == "magical forest":
                         self.assignSettlement(sKey, playerSettlement, playerFaction)
                         break
+            elif playerFaction.race[:5] == "chaos":
+                for i, sKey in enumerate(self.settlementKeys):
+                    playerSettlement: settlementData = settlementDict[sKey]
+                    if playerSettlement.type == "dark fortress":
+                        self.assignSettlement(sKey, playerSettlement, playerFaction)
+                        break
             else:
                 sKey = self.settlementKeys[0]
                 playerSettlement: settlementData = settlementDict[sKey]
                 self.assignSettlement(sKey, settlementDict[sKey], playerFaction)
             self.removeKeys()
             self.capitals.update({playerFaction.name: playerSettlement.name})
+
 
             # Assign the player 2 more settlements
             for i in range(self.startingSettlementCount - 1):
@@ -966,25 +973,36 @@ class SettlementManager:
             if settlement.type == "magical forest":
                 for i, fKey in enumerate(self.factionKeys):
                     faction: factionData = factionDict[fKey]
-                    if faction.race == "woodElves" and faction.hasHome and faction.name not in self.shuffledFactionList:
+                    if faction.race == "woodElves" and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
                         break
                 self.capitals.update({faction.name: settlement.name})
         self.removeKeys() # Remove the magical forests that have been assigned.
 
-    def randomiseChaos(self):
-        pass
+    def randomiseChaos(self) -> None:
+        # Assigns each chaos faction a magical forest
+        for sKey in self.settlementKeys:
+            settlement: settlementData = settlementDict[sKey]
+            if settlement.type == "dark fortress":
+                for i, fKey in enumerate(self.factionKeys):
+                    faction: factionData = factionDict[fKey]
+                    if faction.race[:5] == "chaos" and faction.name not in self.shuffledFactionList:
+                        self.assignSettlement(sKey, settlement, faction)
+                        self.factionKeys.pop(i)
+                        break
+                self.capitals.update({faction.name: settlement.name})
+        self.removeKeys() # Remove the magical forests that have been assigned.
 
-    # Assigns all other factions their first settlement (if they start with one normally)
-    # The homeless don't get a home, who do you think I am? A filthy commie?
+
+    # Assigns all other factions their first settlement (if they aren't a horde)
     def randomiseFirstSettlement(self) -> None:
         for sKey in self.settlementKeys:
             settlement: settlementData = settlementDict[sKey]
 
             for i, fKey in enumerate(self.factionKeys):
                 faction: factionData = factionDict[fKey]
-                if faction.hasHome and faction.name not in self.shuffledFactionList:
+                if faction.name not in trueHordeList and faction.name not in self.shuffledFactionList:
                     self.assignSettlement(sKey, settlement, faction)
                     self.factionKeys.pop(i)
                     break
@@ -1006,6 +1024,9 @@ class SettlementManager:
 
             for aKey, assignedSettlement in shuffledSettlementList:
                 faction: str = assignedSettlement.faction
+                if faction in trueHordeList:
+                    continue
+
                 settlementsOwned: int = 0
 
                 #shuffledSettlementList2 = list(shuffledSettlementDict.keys())
@@ -1037,7 +1058,7 @@ class SettlementManager:
         hordes: dict[str, str] = {}
         for fKey in self.factionKeys:
             faction = factionDict[fKey]
-            if not faction.hasHome:
+            if faction.name in trueHordeList:
                 settlement = self.random.choice(settlementDict)
                 hordes.update({faction.name: settlement.name})
         return hordes
@@ -1045,7 +1066,7 @@ class SettlementManager:
     def randomiseSettlements(self):
         self.randomisePlayer()
         self.randomiseWoodElves()
-        #self.randomiseChaos()
+        self.randomiseChaos()
         #self.random.shuffle(self.settlementKeys)
         self.randomiseFirstSettlement()
         self.randomiseRemainingSettlements()

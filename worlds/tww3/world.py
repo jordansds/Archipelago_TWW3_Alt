@@ -95,7 +95,7 @@ class TWW3World(World):
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementManager.randomiseHordes()
         slotData["faction_capitals"] = self.settlementManager.capitals
-        slotData["items"] = self.itemKeys
+        slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["game_mode"] = self.options.game_mode.value
         slotData["faction_shuffle"] = self.options.faction_shuffle.value
 

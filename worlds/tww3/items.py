@@ -68,7 +68,6 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateRitualItems(world, pool)
     pool = generateExpansionItems(world, pool)
     #pool = generateFactionSpecificItems(world, pool)
-    print(pool)
 
     pool = generateFillerItems(world, pool)
 
@@ -77,21 +76,23 @@ def createAllItems(world: TWW3World) -> None:
 def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
         for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
-            for i in range(item.count):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
-                if not world.options.progressive_units:
-                    world.itemKeys.append(key)
+            if item.tier > world.options.starting_tier:
+                for i in range(item.count):
+                    tww3_item = world.create_item(item.readableName)
+                    pool.append(tww3_item)
+                    if not world.options.progressive_units:
+                        world.itemKeys.append(key)
     return pool
 
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            for i in range(item.count):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
-                if not world.options.progressive_buildings:
-                    world.itemKeys.append(key)
+            if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                for i in range(item.count):
+                    tww3_item = world.create_item(item.readableName)
+                    pool.append(tww3_item)
+                    if not world.options.progressive_buildings:
+                        world.itemKeys.append(key)
     return pool
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:

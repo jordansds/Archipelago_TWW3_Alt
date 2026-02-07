@@ -151,7 +151,7 @@ class numberOfSettlements(Range):
 class checksPerSettlement(Range):
     """CONQUEST MODE ONLY
     Set how many checks are triggered per empire size increase (empire size being the number of settlements you own).
-    Depending on YAML settings and the chosen faction, you will likely have around 100-200 non-filler items.
+    Depending on YAML settings and the chosen faction, you will likely have around 200-300 non-filler items.
     Make sure to change this value based on how many locations you want your game to have.
     If world generation fails, then you will either need to increase this option or the previous option."""
     display_name = "Checks Per Settlement (CONQUEST)"
