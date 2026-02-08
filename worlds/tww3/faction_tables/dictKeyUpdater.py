@@ -3,12 +3,13 @@ from BaseClasses import ItemClassification as IC
 import pprint
 
 #import bretonnia as brt
-import highElvesAislinn as hef
+#import highElvesAislinn as hef
+import skaven as skv
 
-dictionary = hef.buildings
+dictionary = skv.progBuildings
 newDictionary = {}
 
-newKey = 66400
+newKey = 43300
 for key, value in dictionary.items():
     newDictionary.update({newKey: value})
     newKey += 1
