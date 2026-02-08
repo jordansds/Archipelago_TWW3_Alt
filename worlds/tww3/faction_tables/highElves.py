@@ -294,11 +294,11 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-    31200: ItemData(IC.useful, 5, "Progressive hef_inf", ItemType.unit, 5, "", "Progressive Hef Unit: Infantry"),
-    31201: ItemData(IC.useful, 4, "Progressive hef_rng", ItemType.unit, 4, "", "Progressive Hef Unit: Ranged"),
-    31202: ItemData(IC.useful, 4, "Progressive hef_cav", ItemType.unit, 4, "", "Progressive Hef Unit: Cavalry"),
-    31203: ItemData(IC.useful, 4, "Progressive hef_art", ItemType.unit, 4, "", "Progressive Hef Unit: Artillery"),
-    31204: ItemData(IC.useful, 4, "Progressive hef_veh", ItemType.unit, 4, "", "Progressive Hef Unit: War Machine"),
+    31200: ItemData(IC.useful, 4, "Progressive hef_inf", ItemType.unit, 4, "", "Progressive Hef Unit: Infantry"),
+    31201: ItemData(IC.useful, 3, "Progressive hef_rng", ItemType.unit, 3, "", "Progressive Hef Unit: Ranged"),
+    31202: ItemData(IC.useful, 3, "Progressive hef_cav", ItemType.unit, 3, "", "Progressive Hef Unit: Cavalry"),
+    31203: ItemData(IC.useful, 1, "Progressive hef_art", ItemType.unit, 1, "", "Progressive Hef Unit: Artillery"),
+    31204: ItemData(IC.useful, 3, "Progressive hef_veh", ItemType.unit, 3, "", "Progressive Hef Unit: Chariot"),
     31205: ItemData(IC.useful, 4, "Progressive hef_bst", ItemType.unit, 4, "", "Progressive Hef Unit: Beast"),
     31206: ItemData(IC.useful, 3, "Progressive hef_hro", ItemType.unit, 3, "", "Progressive Hef Unit: Hero")
 }
