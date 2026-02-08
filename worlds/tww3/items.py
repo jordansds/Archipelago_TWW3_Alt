@@ -57,7 +57,6 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateSpecialItems(world, pool)
     pool = generateRitualItems(world, pool)
     pool = generateExpansionItems(world, pool)
-    #pool = generateFactionSpecificItems(world, pool)
 
     pool = generateFillerItems(world, pool)
 
@@ -80,7 +79,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if "settlement_major" in item.name:
-                if item.classification is None:
+                if item.progressionGroup is None:
                         world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
                 elif item.tier <= 2:
                     world.multiworld.local_early_items[world.player][item.readableName] = 1
@@ -137,16 +136,6 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
         for i in range(world.options.orb_count + world.options.extra_orb_count):
             item = world.create_item("Orb of Domination")
             pool.append(item)
-    return pool
-
-def generateFactionSpecificItems(world: TWW3World, pool: list) -> list:
-    for faction in sm.factionDict.values():
-        if faction.race == "tombKings":
-            if faction.name == world.playerFaction.name:
-                item = world.create_item("wh2_dlc09_ritual_crafting_tmb_army_capacity_25")
-                world.multiworld.local_early_items[world.player][item.name] = 1
-                pool.append(item)
-                break
     return pool
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
