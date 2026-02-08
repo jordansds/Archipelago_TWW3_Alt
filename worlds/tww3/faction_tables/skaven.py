@@ -227,7 +227,7 @@ progUnits: dict[int, ItemData] = {
     43203: ItemData(IC.useful, 2, "Progressive skv_art", ItemType.unit, 2, None, "Progressive Skv Unit: Artillery"),
     43204: ItemData(IC.useful, 5, "Progressive skv_veh", ItemType.unit, 5, None, "Progressive Skv Unit: War Machine"),
     43207: ItemData(IC.useful, 5, "Progressive skv_hro", ItemType.unit, 5, None, "Progressive Skv Unit: Hero"),
-    43208: ItemData(IC.useful, 5, "Progressive skv_veh", ItemType.unit, 5, None, "Progressive Skv Unit: Weapon Team")
+    43208: ItemData(IC.useful, 5, "Progressive skv_wpn", ItemType.unit, 5, None, "Progressive Skv Unit: Weapon Team")
 }
 progBuildings: dict[int, ItemData] = {
     43300: ItemData(IC.useful, 3, 'Progressive foreign_slot_discovery_skv', ItemType.building, 3, None, 'Progressive Skv Building: Foreign Slot Discovery Skv'),
