@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
 from typing import NamedTuple, Dict, Set, List
 
-from .item_types import ItemType, ItemData
+from ..faction_tables.item_types import ItemType, ItemData
 
 ancillariesRegularDict: Dict[int, ItemData] = {
     2000: ItemData(IC.filler, 0, "", ItemType.ancillaries_regular, None, "None", "wh2_dlc09_anc_enchanted_item_ouroboros"),

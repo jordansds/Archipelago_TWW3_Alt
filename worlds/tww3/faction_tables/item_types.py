@@ -64,6 +64,6 @@ class settlementData(NamedTuple):
 #Filler items: 1200, 1300, 1400, 1500, 1600
 #Ancillaries: 2000, 2500
 #Beastmen: 10000
-#Brettonia: 11000
+#Brettonia: 12000
 
 

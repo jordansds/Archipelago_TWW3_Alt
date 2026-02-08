@@ -5,7 +5,7 @@ import colorama
 import logging
 
 from worlds.hk.Items import item_type
-from .item_tables.item_types import ItemType
+from .faction_tables.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .faction_tables import factionTables

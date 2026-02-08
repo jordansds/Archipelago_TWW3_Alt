@@ -8,24 +8,17 @@ import math
 
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, \
     trapStrongDict, trapWeakDict
-from .item_tables.faction_item_table import factionItemDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-#from .item_tables.unique_item_table import unique_item_table
 from .item_tables.ritual_table import ritualDict
-#from .item_tables.progressive_buildings_table import progressiveBuildingsDict
-#from .item_tables.progressive_units_table import progressiveUnitsDict
-#from .item_tables.progressive_techs_table import progressiveTechsDict
 from .item_tables.progression_table import progressionDict
 from . import settlementManager as sm
 from .faction_tables import factionTables
 
-from .item_tables.item_types import ItemType, ItemData
+from .faction_tables.item_types import ItemType, ItemData
 from .options import TWW3Options
 
 itemDict = {}
 itemDict.update(factionTables.getAllItems())
-#print(itemDict)
-itemDict.update(factionItemDict)
 itemDict.update(fillerWeakDict)
 itemDict.update(fillerStrongDict)
 itemDict.update(trapHarmlessDict)
@@ -34,10 +27,6 @@ itemDict.update(trapStrongDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
 itemDict.update(ancillariesRegularDict)
 itemDict.update(ancillariesLegendaryDict)
-#itemDict.update(unique_item_table)
-#itemDict.update(progressiveBuildingsDict)
-#itemDict.update(progressiveUnitsDict)
-#itemDict.update(progressiveTechsDict)
 #itemDict.update(ritualDict)
 itemDict.update(progressionDict)
 

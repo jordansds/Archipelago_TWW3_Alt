@@ -1,6 +1,6 @@
 from BaseClasses import ItemClassification as IC
 
-from .item_types import ItemType, ItemData
+from ..faction_tables.item_types import ItemType, ItemData
 fillerWeakDict: dict[int, ItemData] = {
     1200: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Get-Rich-Quick Scroll"), #Gold
     1201: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Something Happened"), #Random event - not currently included as most don't do anything

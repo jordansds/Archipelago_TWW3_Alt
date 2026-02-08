@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
 from typing import NamedTuple, Dict, Set, List
 
-from .item_types import ItemType, ItemData
+from ..faction_tables.item_types import ItemType, ItemData
 
 globalEffectTable: Dict[int, ItemData] = {
     400000: ItemData(IC.filler, 0, "wh2_dlc09_bundle_anc_magic_standard_banner_of_the_hidden_dead", ItemType.effect_faction, None, "None", "None"),

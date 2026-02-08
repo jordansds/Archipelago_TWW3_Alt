@@ -1,4 +1,4 @@
-from .item_types import ItemType, ItemData
+from ..faction_tables.item_types import ItemType, ItemData
 from BaseClasses import ItemClassification as IC
 
 progressionDict: dict[int, ItemData] = {

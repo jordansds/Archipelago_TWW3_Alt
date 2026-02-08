@@ -334,6 +334,6 @@ progTechs: dict[int, ItemData] = {
     47500: ItemData(IC.useful, 15, "Progressive tech_tmb", ItemType.tech, 15, None, "Progressive Tmb Tech"),
 }
 
-special: dict[int, ItemData] = {
-
+special: dict[int, specialItemData] = {
+    47600: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, None, None, True, "Tmb Effect: +1 Army Capacity"),
 }

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from .item_tables.item_types import factionData, settlementData
+from .faction_tables.item_types import factionData, settlementData
 from collections import Counter
 import time
 

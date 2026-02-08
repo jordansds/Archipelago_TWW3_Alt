@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
 from typing import NamedTuple, Dict, Set, List
 
-from .item_types import ItemType, ItemData
+from ..faction_tables.item_types import ItemType, ItemData
 
 ritualDict: Dict[int, ItemData] = {
     500000: ItemData(IC.useful, 1, "wh2_dlc16_ritual_rebirth_athel_loren", ItemType.ritual, 1, None, "Ritual: placeholder"),
