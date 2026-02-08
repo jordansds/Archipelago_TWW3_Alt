@@ -270,7 +270,10 @@ class TWW3Context(CommonContext):
                 self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.readableName)
 
             elif item.type == ItemType.effect_faction:
-                self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.readableName)
+                if item.name == "":
+                    self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.readableName)
+                else:
+                    self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.name)
 
             elif item.type == ItemType.filler_strong:
                 if item.readableName == "Give me that":
