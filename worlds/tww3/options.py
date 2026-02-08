@@ -260,10 +260,13 @@ class progressiveUnits(Choice):
     option_false = 0
     default = 0
 
-class ritualShuffle(Toggle):
-    """Should faction mechanics like rituals be shuffled? Will make the game harder.
+class ritualShuffle(Choice):
+    """CURRENTLY DISABLED - I don't think this ever worked.
+    Should faction mechanics like rituals be shuffled? Will make the game harder.
     Experimental feature, report on Discord if this does/does not work."""
     display_name = "Shuffle Faction Mechanics"
+    option_false = 0
+    default = 0
 
 class startingTier(Range):
     """Start with buildings and units of this tier already unlocked."""
