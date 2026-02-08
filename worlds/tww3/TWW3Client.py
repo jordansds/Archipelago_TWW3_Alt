@@ -267,13 +267,10 @@ class TWW3Context(CommonContext):
                     self.waaaghMessenger.run("add_random_growth_to_player()")
 
             elif (item.type == ItemType.ancillaries_regular) or (item.type == ItemType.ancillaries_legendary):
-                self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.readableName)
+                self.waaaghMessenger.run("give_player_ancillary(\"%s\")" % item.name)
 
             elif item.type == ItemType.effect_faction:
-                if item.name == "":
-                    self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.readableName)
-                else:
-                    self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.name)
+                self.waaaghMessenger.run("give_player_faction_effect(\"%s\")" % item.name)
 
             elif item.type == ItemType.filler_strong:
                 if item.readableName == "Give me that":
