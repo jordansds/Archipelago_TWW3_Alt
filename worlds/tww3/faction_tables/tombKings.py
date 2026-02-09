@@ -261,5 +261,5 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    47500: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, None, None, True, "Tmb Effect: +1 Army Capacity"),
+    47500: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, None, None, True, False, "Tmb Effect: +1 Army Capacity"),
 }

@@ -348,13 +348,13 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    31500: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_spireguard_0', ItemType.unit, 2, 'Progressive hef_rng', False, 'Hef Unit: Spire Guard of Tor Yvresse'),
-    31501: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_skyhawks_0', ItemType.unit, 3, 'Progressive hef_inf', False, 'Hef Unit: The Skyhawks'),
-    31502: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_sentinels_0', ItemType.unit, 2, 'Progressive hef_rng', False, 'Hef Unit: Sentinels of Astaril'),
-    31503: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_griffon_knights_0', ItemType.unit, 3, 'Progressive hef_bst', False, 'Hef Unit: Knights of Tor Gaval'),
-    31504: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_faithbearers_0', ItemType.unit, 3, 'Progressive hef_inf', False, 'Hef Unit: Athel Tamarha Faithbearers'),
-    31505: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_walkers_0', "wh2_main_hef_nagarythe", ItemType.unit, 3, 'Progressive hef_rng', False, 'Hef Unit: Shadow-walkers'),
-    31506: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', "wh2_main_hef_avelorn", ItemType.unit, 1, 'Progressive hef_inf', False, 'Hef Unit: Dryads'),
-    31507: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', "wh2_main_hef_avelorn", ItemType.unit, 4, 'Progressive hef_bst', False, 'Hef Unit: Treeman'),
-    31508: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', "wh2_main_hef_avelorn", ItemType.unit, 2, 'Progressive hef_bst', False, 'Hef Unit: Tree Kin'),
+    31500: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_spireguard_0', ItemType.unit, 2, 'Progressive hef_rng', False, False, 'Hef Unit: Spire Guard of Tor Yvresse'),
+    31501: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_skyhawks_0', ItemType.unit, 3, 'Progressive hef_inf', False, False, 'Hef Unit: The Skyhawks'),
+    31502: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_sentinels_0', ItemType.unit, 2, 'Progressive hef_rng', False, False, 'Hef Unit: Sentinels of Astaril'),
+    31503: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_griffon_knights_0', ItemType.unit, 3, 'Progressive hef_bst', False, False, 'Hef Unit: Knights of Tor Gaval'),
+    31504: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_faithbearers_0', ItemType.unit, 3, 'Progressive hef_inf', False, False, 'Hef Unit: Athel Tamarha Faithbearers'),
+    31505: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_walkers_0', "wh2_main_hef_nagarythe", ItemType.unit, 3, 'Progressive hef_rng', False, False, 'Hef Unit: Shadow-walkers'),
+    31506: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', "wh2_main_hef_avelorn", ItemType.unit, 1, 'Progressive hef_inf', False, False, 'Hef Unit: Dryads'),
+    31507: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', "wh2_main_hef_avelorn", ItemType.unit, 4, 'Progressive hef_bst', False, False, 'Hef Unit: Treeman'),
+    31508: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', "wh2_main_hef_avelorn", ItemType.unit, 2, 'Progressive hef_bst', False, False, 'Hef Unit: Tree Kin'),
 }
