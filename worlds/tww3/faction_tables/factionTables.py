@@ -1,5 +1,5 @@
 from __future__ import annotations
-from .item_types import ItemData
+from .item_types import ItemData, ItemType
 from types import ModuleType
 
 from . import beastmen
@@ -32,7 +32,7 @@ from . import warriorsOfChaosSlaanesh
 from . import warriorsOfChaosTzeentch
 from . import woodElves
 
-factionModuleDict: dict[str, ModuleType] = {
+raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen,
     "bretonnia": bretonnia,
     "cathay": cathay,
@@ -66,37 +66,50 @@ factionModuleDict: dict[str, ModuleType] = {
 
 def getAllItems():
     itemDict: dict[int, ItemData] = {}
-    for faction in factionModuleDict.values():
-        itemDict.update(faction.units)
-        itemDict.update(faction.buildings)
-        itemDict.update(faction.techs)
-        itemDict.update(faction.progUnits)
-        itemDict.update(faction.progBuildings)
-        itemDict.update(faction.progTechs)
-        itemDict.update({key: ItemData(*item[:1], *item[2:6], *item[7:]) for key, item in faction.special.items()}) #Turn special item into regular item
+    for race in raceModuleDict.values():
+        itemDict.update(race.units)
+        itemDict.update(race.buildings)
+        itemDict.update(race.techs)
+        itemDict.update(race.progUnits)
+        itemDict.update(race.progBuildings)
+        itemDict.update(race.progTechs)
+        itemDict.update({key: ItemData(*item[:1], *item[2:6], item[7], item[9]) for key, item in race.special.items()}) #Turn special item into regular item
     return itemDict
 
 def getUnits(race, progressive):
     if progressive:
-        return factionModuleDict[race].progUnits.items()
+        return raceModuleDict[race].progUnits.items()
     else:
-        return factionModuleDict[race].units.items()
+        return raceModuleDict[race].units.items()
 
 def getBuildings(race, progressive):
     if progressive:
-        return factionModuleDict[race].progBuildings.items()
+        return raceModuleDict[race].progBuildings.items()
     else:
-        return factionModuleDict[race].buildings.items()
+        return raceModuleDict[race].buildings.items()
 
 def getTechs(race, progressive):
     if progressive:
-        return factionModuleDict[race].progTechs.items()
+        return raceModuleDict[race].progTechs.items()
     else:
-        return factionModuleDict[race].techs.items()
+        return raceModuleDict[race].techs.items()
 
-def getSpecial(race, faction):
+def getSpecial(world):
     specialItems: dict[int, ItemData] = {}
-    for key, item in factionModuleDict[race].special.items():
-        if item.faction == faction or item.faction == "":
+    for key, item in raceModuleDict[world.playerFaction.race].special.items():
+        if item.faction == world.playerFaction.name or item.faction == "":
+            if item.type == ItemType.unit:
+                if world.options.progressive_units:
+                    specialItems.update({key: item})
+                continue
+            elif item.type == ItemType.building:
+                if world.options.progressive_buildings:
+                    specialItems.update({key: item})
+                continue
+            elif item.type == ItemType.tech:
+                if world.options.progressive_technologies:
+                    specialItems.update({key: item})
+                continue
             specialItems.update({key: item})
+
     return specialItems.items()

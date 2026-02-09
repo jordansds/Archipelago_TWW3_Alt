@@ -3,7 +3,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .world import TWW3World
 
-from BaseClasses import Item, ItemClassification as IC, ItemClassification
+from BaseClasses import Item
+from BaseClasses import ItemClassification as IC
 import math
 
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, \
@@ -42,7 +43,7 @@ def updateItemDict(world: TWW3World) -> None:
             itemDict[key] = ItemData(IC.progression, *item[1:])
     if world.options.force_early_buildings:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            if item.classification != ItemClassification.progression:
+            if item.classification != IC.progression:
                 itemDict[key] = ItemData(IC.progression, *item[1:])
     if world.options.force_early_techs:
         for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
@@ -102,9 +103,11 @@ def generateTechnologyItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
-    for key, item in factionTables.getSpecial(world.playerFaction.race, world.playerFaction.name):
+    for key, item in factionTables.getSpecial(world):
         if item.forceEarly:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
+        if not item.isProgressionItem:
+            world.itemKeys.append(key)
         for i in range(item.count):
             tww3_item = world.create_item(item.readableName)
             pool.append(tww3_item)
