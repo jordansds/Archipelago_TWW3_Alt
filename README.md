@@ -26,7 +26,7 @@ need one of the two .pack files found on the GitHub release, but it's recommende
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
-**.pack files are mods and contain the code needed for the game modes to function. Make sure you *don't*
+**.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the mod found on the Steam workshop, as it does not work correctly with this implementation.**
 
 Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
