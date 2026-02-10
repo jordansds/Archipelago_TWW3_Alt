@@ -236,7 +236,7 @@ class TWW3Context(CommonContext):
                 if self.progressiveTechs:
                     self.sendProgressiveItem(item.name)
                 else:
-                    self.waaaghMessenger.run(f'cm:unlock_technology("{self.playerFaction}", "{item.name})"')
+                    self.waaaghMessenger.run(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
             elif item.type == ItemType.progression:
                 if self.gameMode == "conquest":
