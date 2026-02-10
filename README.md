@@ -35,8 +35,8 @@ before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advance
 it works. For more detailed information on what the yaml settings do, check below.
 
 After creating your yaml the multiworld needs to be generated - if you're creating a multiworld yourself, simply move your yaml
-up one folder (from `Players/Template` to just `Players`) and then run "Generate" in the launcher. This will create a .zip
-file in `Archipelago/output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
+up one folder (from `Archipelago\Players\Templates` to `Archipelago\Players`) and then run "Generate" in the launcher. This will create a .zip
+file in `Archipelago\output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
 game, or host locally with the "Host" option in the launcher. If you're not creating the multiworld then you will need to
 send the yaml to the person in charge (alongside the .apworld if they don't already have it, as mentioned earlier).
 
