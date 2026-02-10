@@ -43,7 +43,7 @@ send the yaml to the person in charge (alongside the .apworld if they don't alre
 Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
-mode has been selected. Launch the game with the correct mod loaded for your chosen mode, select the correct leader, and
+mode has been selected. Enable the correct mod for the game mode you will be playing, launch the game, select the correct leader, and
 start playing!
 
 ## What the yaml do
