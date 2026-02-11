@@ -27,7 +27,7 @@ need one of the two .pack files found on the GitHub release, but it's recommende
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
-**The .pack files are required because they are the mods needed for the two game modes to function. Make sure you *don't*
+**.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the mod found on the Steam workshop, as it does not work correctly with this implementation.**
 
 Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
@@ -36,15 +36,15 @@ before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advance
 it works. For more detailed information on what the yaml settings do, check below.
 
 After creating your yaml the multiworld needs to be generated - if you're creating a multiworld yourself, simply move your yaml
-up one folder (from `Players/Template` to just `Players`) and then run "Generate" in the launcher. This will create a .zip
-file in `Archipelago/output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
+up one folder (from `Archipelago\Players\Templates` to `Archipelago\Players`) and then run "Generate" in the launcher. This will create a .zip
+file in `Archipelago\output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
 game, or host locally with the "Host" option in the launcher. If you're not creating the multiworld then you will need to
 send the yaml to the person in charge (alongside the .apworld if they don't already have it, as mentioned earlier).
 
 Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
-mode has been selected. Launch the game with the correct mod loaded for your chosen mode, select the correct leader, and
+mode has been selected. Enable the correct mod for the game mode you will be playing, launch the game, select the correct leader, and
 start playing!
 
 ## What the yaml do
