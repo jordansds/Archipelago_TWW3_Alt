@@ -172,7 +172,11 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-
+    55200: ItemData(IC.useful, 3, "Progressive wef_inf", ItemType.unit, 3, "", "Progressive Wef Unit: Infantry"),
+    55201: ItemData(IC.useful, 3, "Progressive wef_rng", ItemType.unit, 3, "", "Progressive Wef Unit: Ranged"),
+    55202: ItemData(IC.useful, 4, "Progressive wef_cav", ItemType.unit, 4, "", "Progressive Wef Unit: Cavalry"),
+    55205: ItemData(IC.useful, 4, "Progressive wef_bst", ItemType.unit, 4, "", "Progressive Wef Unit: Beast"),
+    55206: ItemData(IC.useful, 2, "Progressive wef_hro", ItemType.unit, 2, "", "Progressive Wef Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
@@ -230,27 +234,27 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    55500: specialItemData(IC.useful, 1, 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', 'Wef Unit: Dryads'),
-    55501: specialItemData(IC.useful, 1, 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Branchwraith'),
-    55502: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_inf', 'Wef Unit: Treeman'),
-    55503: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_inf', 'Wef Unit: Tree Kin'),
+    55500: specialItemData(IC.useful, 1, "wh_dlc05_wef_wood_elves", 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', False, False, 'Wef Unit: Dryads'),
+    55501: specialItemData(IC.useful, 1, "wh_dlc05_wef_wood_elves", 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Branchwraith'),
+    55502: specialItemData(IC.useful, 1, "wh_dlc05_wef_wood_elves", 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_bst', False, False, 'Wef Unit: Treeman'),
+    55503: specialItemData(IC.useful, 1, "wh_dlc05_wef_wood_elves", 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Tree Kin'),
 
-    55500: specialItemData(IC.useful, 1, 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', 'Wef Unit: Dryads'),
-    55501: specialItemData(IC.useful, 1, 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Branchwraith'),
-    55502: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_inf', 'Wef Unit: Treeman'),
-    55503: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_inf', 'Wef Unit: Tree Kin'),
+    55504: specialItemData(IC.useful, 1, "wh_dlc05_wef_argwylon", 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', False, False, 'Wef Unit: Dryads'),
+    55505: specialItemData(IC.useful, 1, "wh_dlc05_wef_argwylon", 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Branchwraith'),
+    55506: specialItemData(IC.useful, 1, "wh_dlc05_wef_argwylon", 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_bst', False, False, 'Wef Unit: Treeman'),
+    55507: specialItemData(IC.useful, 1, "wh_dlc05_wef_argwylon", 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Tree Kin'),
 
-    55500: specialItemData(IC.useful, 1, 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', 'Wef Unit: Dryads'),
-    55501: specialItemData(IC.useful, 1, 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Branchwraith'),
-    55502: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_inf', 'Wef Unit: Treeman'),
-    55503: specialItemData(IC.useful, 1, 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_inf', 'Wef Unit: Tree Kin'),
+    55508: specialItemData(IC.useful, 1, "wh2_dlc16_wef_sisters_of_twilight", 'wh_dlc05_wef_inf_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', False, False, 'Wef Unit: Dryads'),
+    55509: specialItemData(IC.useful, 1, "wh2_dlc16_wef_sisters_of_twilight", 'wh_dlc05_wef_cha_branchwraith_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Branchwraith'),
+    55510: specialItemData(IC.useful, 1, "wh2_dlc16_wef_sisters_of_twilight", 'wh_dlc05_wef_mon_treeman_0', ItemType.unit, 4, 'Progressive wef_bst', False, False, 'Wef Unit: Treeman'),
+    55511: specialItemData(IC.useful, 1, "wh2_dlc16_wef_sisters_of_twilight", 'wh_dlc05_wef_mon_treekin_0', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Tree Kin'),
 
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_inf_malicious_dryads_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Dryads'),
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_mon_malicious_treekin_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Tree Kin'),
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_mon_malicious_treeman_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Treeman'),
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_cha_malicious_branchwraith_beasts_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Branchwraith (Beasts)'),
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_cha_malicious_branchwraith_life_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Branchwraith (Life)'),
-    54041: specialItemData(IC.useful, 1, 'wh2_dlc16_wef_cha_malicious_branchwraith_shadows_0', ItemType.unit, 2, 'Progressive wef_hro', 'Wef Unit: Malevolent Branchwraith (Shadows)'),
-    54041: specialItemData(IC.useful, 1, 'tech_dlc16_wef_ancients_addaivoch', ItemType.tech, 1, 'Progressive tech_wef_wisdom', 'Wef Tech: Wisdom of Addaivoch'),
-    54041: specialItemData(IC.useful, 1, 'tech_dlc16_wef_ancients_wildwood', ItemType.tech, 1, 'Progressive tech_wef_wisdom', 'Wef Tech: Wisdom of the Wildwood'),
+    54012: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_inf_malicious_dryads_0', ItemType.unit, 1, 'Progressive wef_inf', False, False, 'Wef Unit: Malevolent Dryads'),
+    54013: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_malicious_treekin_0', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Malevolent Tree Kin'),
+    54014: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_malicious_treeman_0', ItemType.unit, 4, 'Progressive wef_bst', False, False, 'Wef Unit: Malevolent Treeman'),
+    54015: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_cha_malicious_branchwraith_beasts_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Malevolent Branchwraith (Beasts)'),
+    54016: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_cha_malicious_branchwraith_life_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Malevolent Branchwraith (Life)'),
+    54017: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_cha_malicious_branchwraith_shadows_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Malevolent Branchwraith (Shadows)'),
+    54018: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'tech_dlc16_wef_ancients_addaivoch', ItemType.tech, 1, 'Progressive tech_wef_wisdom', False, False, 'Wef Tech: Wisdom of Addaivoch'),
+    54019: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'tech_dlc16_wef_ancients_wildwood', ItemType.tech, 1, 'Progressive tech_wef_wisdom', False, False, 'Wef Tech: Wisdom of the Wildwood'),
 }
