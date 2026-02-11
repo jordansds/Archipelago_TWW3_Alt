@@ -5,6 +5,7 @@ from .options import TWW3Options
 import settings
 from . import items, locations, rules
 from . import settlementManager as sm
+from .version import version
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
 #    game = "Total War Warhammer 3"  # name of the game/world this location is in
@@ -98,6 +99,7 @@ class TWW3World(World):
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["game_mode"] = self.options.game_mode.value
         slotData["faction_shuffle"] = self.options.faction_shuffle.value
+        slotData["version"] = version
 
         return slotData
 

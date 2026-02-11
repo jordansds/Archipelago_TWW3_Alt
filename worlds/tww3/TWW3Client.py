@@ -16,6 +16,7 @@ from . import TWW3World
 from . import settlementManager as sm
 import os
 from NetUtils import ClientStatus
+from .version import version
 
 path = "."
 
@@ -122,6 +123,11 @@ class TWW3Context(CommonContext):
             self.on_received_items(args)
 
     def on_connected(self, args: dict):
+        if version != args['slot_data']['version']:
+            logger.error("Server and Client APWorld versions do not match.")
+        else:
+            logger.info(f"The client version is: {self.version}")
+
         self.path = TWW3World.settings.tww3_path
         
         if not self.path or not os.path.exists(self.path):
@@ -130,7 +136,7 @@ class TWW3Context(CommonContext):
             logger.error('No TWW3 exe in Path. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
 
         self.gameMode = args['slot_data']['game_mode']
-        logger.info("The game mode is: " + self.gameMode)
+        logger.info(f"The game mode is: {self.gameMode}")
             
         self.waaaghWatcher = WaaaghWatcher(self.path + '\\engine.out', self)
         waaaghWatcher_task = asyncio.create_task(self.waaaghWatcher.watch(self.gameMode), name='WaaaghWatcher')
@@ -482,12 +488,12 @@ class EngineInitializer:
 
     def lock_progressiveTechs(self, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.tech and item.progressionGroup is not None:
+            if item.type == ItemType.tech and item.progressionGroup is not None and item.faction == self.playerFaction:
                 waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
     def lock_progressiveBuildings(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.building and item.progressionGroup is not None:
+            if item.type == ItemType.building and item.progressionGroup is not None and item.faction == self.playerFaction:
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
                 else:
@@ -495,7 +501,7 @@ class EngineInitializer:
 
     def lock_progressiveUnits(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.unit and item.progressionGroup is not None:
+            if item.type == ItemType.unit and item.progressionGroup is not None and item.faction == self.playerFaction:
                 progressive_items_flags[key] = startingTier
                 if item.tier > startingTier:
                     waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
