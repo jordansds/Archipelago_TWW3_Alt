@@ -2,43 +2,50 @@ from BaseClasses import ItemClassification as IC
 from .item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
-    50000: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_terrorgheist', ItemType.unit, 5, 'Progressive cst_inf', 'Cst Unit: Death Shriek Terrorgheist'),
-    50001: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_scurvy_dogs', ItemType.unit, 2, 'Progressive cst_inf', 'Cst Unit: Scurvy Dogs'),
-    50002: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_prometheans_gunnery_mob_ror', ItemType.unit, 4, 'war_beast', "Cst Unit: The Lamprey's Revenge (Rotting Promethean Gunnery Mob)"),
-    50003: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_prometheans_gunnery_mob_0', ItemType.unit, 3, 'war_beast', 'Cst Unit: Rotting Prometheans (Gunnery Mob)'),
     50004: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_prometheans_0', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Rotting Prometheans'),
-    50005: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_leviathan_0', ItemType.unit, 5, 'war_beast', 'Cst Unit: Rotting Leviathan'),
-    50006: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_necrofex_colossus_ror_0', ItemType.unit, 5, 'war_beast', 'Cst Unit: Gallows Giant (Necrofex Colossus)'),
-    50007: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_necrofex_colossus_0', ItemType.unit, 4, 'war_beast', 'Cst Unit: Necrofex Colossus'),
-    50008: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_ror_0', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Night Terrors (Mournguls)'),
-    50009: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_0', ItemType.unit, 2, 'Progressive cst_inf', 'Cst Unit: Mournguls'),
-    50010: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_fell_bats', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: Fell Bats'),
-    50011: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_bloated_corpse_0', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: Bloated Corpse'),
-    50012: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_animated_hulks_0', ItemType.unit, 2, 'Progressive cst_inf', 'Cst Unit: Animated Hulks'),
-    50013: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_ror_0', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: The Black Spot (Zombie Pirate Gunnery Mob â€“ Handgunners)'),
-    50014: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_3', ItemType.unit, 1, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Bombers)'),
-    50015: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_2', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Hand Cannons)'),
-    50016: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_1', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Handgunners)'),
-    50017: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_0', ItemType.unit, 1, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob'),
-    50018: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_deckhands_mob_ror_0', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: The Tide of Skjold (Zombie Pirate Deckhand Mob)'),
     50019: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_deckhands_mob_1', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: Zombie Pirate Deckhand Mob (Polearms)'),
     50020: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_deckhands_mob_0', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: Zombie Pirate Deckhand Mob'),
     50021: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_syreens', ItemType.unit, 2, 'Progressive cst_inf', 'Cst Unit: Syreens'),
-    50022: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_depth_guard_ror_0', ItemType.unit, 4, 'Progressive cst_inf', 'Cst Unit: The Bloody Reaver Deck Guard (Depth Guard)'),
-    50023: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_depth_guard_1', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Depth Guard (Polearms)'),
     50024: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_depth_guard_0', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Depth Guard'),
-    50025: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_deck_gunners_ror_0', ItemType.unit, 3, 'Progressive cst_rng', 'Cst Unit: Shadewraith Gunners (Deck Gunners)'),
+    50023: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_depth_guard_1', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Depth Guard (Polearms)'),
+
+    50017: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_0', ItemType.unit, 1, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob'),
+    50014: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_3', ItemType.unit, 1, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Bombers)'),
+    50016: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_1', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Handgunners)'),
+    50015: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_2', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: Zombie Pirate Gunnery Mob (Hand Cannons)'),
     50026: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_deck_gunners_0', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: Deck Gunners'),
+
+    50030: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_ror_0', ItemType.unit, 2, 'Progressive cst_cav', 'Cst Unit: Salt Lord Scuttlers (Deck Droppers - Bombers)'),
+    50031: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_2', ItemType.unit, 2, 'Progressive cst_cav', 'Cst Unit: Deck Droppers (Handgunners)'),
+    50032: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_1', ItemType.unit, 2, 'Progressive cst_cav', 'Cst Unit: Deck Droppers (Bombers)'),
+    50033: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_0', ItemType.unit, 1, 'Progressive cst_cav', 'Cst Unit: Deck Droppers'),
+
     50027: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cha_vampire_fleet_captain_0', ItemType.unit, 0, 'Progressive cst_inf', 'Cst Unit: Vampire Fleet Captain (Vampires)'),
-    50028: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cha_mourngul_haunter', ItemType.unit, 0, 'Progressive cst_inf', 'Cst Unit: Mourngul Haunter'),
-    50029: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cha_gunnery_wight_0', ItemType.unit, 0, 'Progressive cst_rng', 'Cst Unit: Gunnery Wight'),
-    50030: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_ror_0', ItemType.unit, 2, 'cavalry', 'Cst Unit: Salt Lord Scuttlers (Deck Droppers â€“ Bombers)'),
-    50031: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_2', ItemType.unit, 2, 'cavalry', 'Cst Unit: Deck Droppers (Handgunners)'),
-    50032: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_1', ItemType.unit, 2, 'cavalry', 'Cst Unit: Deck Droppers (Bombers)'),
-    50033: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cav_deck_droppers_0', ItemType.unit, 1, 'cavalry', 'Cst Unit: Deck Droppers'),
+
+    50028: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cha_mourngul_haunter', ItemType.unit, 0, 'Progressive cst_hro', 'Cst Unit: Mourngul Haunter'),
+    50029: ItemData(IC.useful, 1, 'wh2_dlc11_cst_cha_gunnery_wight_0', ItemType.unit, 0, 'Progressive cst_hro', 'Cst Unit: Gunnery Wight'),
+
     50034: ItemData(IC.useful, 1, 'wh2_dlc11_cst_art_queen_bess', ItemType.unit, 4, 'Progressive cst_art', 'Cst Unit: Queen Bess'),
     50035: ItemData(IC.useful, 1, 'wh2_dlc11_cst_art_mortar', ItemType.unit, 2, 'Progressive cst_art', 'Cst Unit: Mortars'),
-    50036: ItemData(IC.useful, 1, 'wh2_dlc11_cst_art_carronade', ItemType.unit, 2, 'Progressive cst_art', 'Cst Unit: Carronades')
+    50036: ItemData(IC.useful, 1, 'wh2_dlc11_cst_art_carronade', ItemType.unit, 2, 'Progressive cst_art', 'Cst Unit: Carronades'),
+
+    50001: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_scurvy_dogs', ItemType.unit, 2, 'Progressive cst_bst', 'Cst Unit: Scurvy Dogs'),
+    50011: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_bloated_corpse_0', ItemType.unit, 1, 'Progressive cst_bst', 'Cst Unit: Bloated Corpse'),
+    50010: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_fell_bats', ItemType.unit, 1, 'Progressive cst_bst', 'Cst Unit: Fell Bats'),
+    50009: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_0', ItemType.unit, 2, 'Progressive cst_bst', 'Cst Unit: Mournguls'),
+    50012: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_animated_hulks_0', ItemType.unit, 2, 'Progressive cst_bst', 'Cst Unit: Animated Hulks'),
+    50005: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_leviathan_0', ItemType.unit, 5, 'Progressive cst_bst', 'Cst Unit: Rotting Leviathan'),
+    50007: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_necrofex_colossus_0', ItemType.unit, 4, 'Progressive cst_bst', 'Cst Unit: Necrofex Colossus'),
+    50000: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_terrorgheist', ItemType.unit, 5, 'Progressive cst_bst', 'Cst Unit: Death Shriek Terrorgheist'),
+
+    50022: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_depth_guard_ror_0', ItemType.unit, 4, 'Progressive cst_inf', 'Cst Unit: The Bloody Reaver Deck Guard (Depth Guard)'),
+    50025: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_deck_gunners_ror_0', ItemType.unit, 3, 'Progressive cst_rng', 'Cst Unit: Shadewraith Gunners (Deck Gunners)'),
+    50018: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_deckhands_mob_ror_0', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: The Tide of Skjold (Zombie Pirate Deckhand Mob)'),
+    50013: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_gunnery_mob_ror_0', ItemType.unit, 2, 'Progressive cst_rng', 'Cst Unit: The Black Spot (Zombie Pirate Gunnery Mob - Handgunners)'),
+    50008: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_ror_0', ItemType.unit, 3, 'Progressive cst_inf', 'Cst Unit: Night Terrors (Mournguls)'),
+    50006: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_necrofex_colossus_ror_0', ItemType.unit, 5, 'Progressive cst_bst', 'Cst Unit: Gallows Giant (Necrofex Colossus)'),
+    50002: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_prometheans_gunnery_mob_ror', ItemType.unit, 4, 'Progressive cst_bst', "Cst Unit: The Lamprey's Revenge (Rotting Promethean Gunnery Mob)"),
+    50003: ItemData(IC.useful, 1, 'wh2_dlc11_cst_mon_rotting_prometheans_gunnery_mob_0', ItemType.unit, 3, 'Progressive cst_bst', 'Cst Unit: Rotting Prometheans (Gunnery Mob)'),
 }
 
 buildings: dict[int, ItemData] = {
