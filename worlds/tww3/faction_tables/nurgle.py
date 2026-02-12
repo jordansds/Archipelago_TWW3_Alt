@@ -71,7 +71,6 @@ buildings: dict[int, ItemData] = {
     40403: ItemData(IC.useful, 1, 'wh3_dlc25_nur_walls_1', ItemType.building, 0, 'Progressive nur_walls', 'Nur Building: Spiked Palisade'),
     40404: ItemData(IC.useful, 1, 'wh3_dlc25_nur_walls_2', ItemType.building, 1, 'Progressive nur_walls', 'Nur Building: Barricade of Bones'),
     40405: ItemData(IC.useful, 1, 'wh3_dlc25_nur_walls_3', ItemType.building, 2, 'Progressive nur_walls', 'Nur Building: Rotten Ramparts'),
-    40406: ItemData(IC.useful, 1, 'wh3_dlc25_sch_special_nuln_throne_of_chaos_nur', ItemType.building, 0, 'Progressive sch_special_nuln_throne_of_chaos', 'Nur Building: {{tr:building_culture_variants_name_wh3_dlc25_sch_special_nuln_throne_of_chaoswh_main_chs_chaos}}'),
     40407: ItemData(IC.useful, 1, 'wh3_dlc25_special_the_gallows_tree', ItemType.building, 0, 'Progressive special_the_gallows', 'Nur Building: The Gallows Tree'),
     40408: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_nur_1', ItemType.building, 0, 'Progressive foreign_slot_discovery_nur', 'Nur Building: Warpstone Locus'),
     40409: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_nur_2', ItemType.building, 1, 'Progressive foreign_slot_discovery_nur', 'Nur Building: Warpstone Traps'),
@@ -256,7 +255,6 @@ progUnits: dict[int, ItemData] = {
 }
 
 progBuildings: dict[int, ItemData] = {
-    41300: ItemData(IC.useful, 5, 'Progressive nur_7', ItemType.building, 5, None, 'Progressive Nur Building: 7'),
     41302: ItemData(IC.useful, 2, 'Progressive nur_garrison', ItemType.building, 2, None, 'Progressive Nur Building: Garrison'),
     41303: ItemData(IC.useful, 1, 'Progressive nur_walls', ItemType.building, 1, None, 'Progressive Nur Building: Walls'),
     41304: ItemData(IC.useful, 2, 'Progressive nur_walls', ItemType.building, 2, None, 'Progressive Nur Building: Walls'),
