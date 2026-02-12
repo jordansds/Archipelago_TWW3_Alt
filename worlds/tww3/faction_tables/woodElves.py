@@ -257,4 +257,11 @@ special: dict[int, specialItemData] = {
     54017: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_cha_malicious_branchwraith_shadows_0', ItemType.unit, 2, 'Progressive wef_hro', False, False, 'Wef Unit: Malevolent Branchwraith (Shadows)'),
     54018: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'tech_dlc16_wef_ancients_addaivoch', ItemType.tech, 1, 'Progressive tech_wef_wisdom', False, False, 'Wef Tech: Wisdom of Addaivoch'),
     54019: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'tech_dlc16_wef_ancients_wildwood', ItemType.tech, 1, 'Progressive tech_wef_wisdom', False, False, 'Wef Tech: Wisdom of the Wildwood'),
+
+    54020: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_cave_bats', ItemType.unit, 1, 'Progressive wef_bst', False, False, 'Wef Unit: Cave Bats'),
+    54021: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_feral_manticore', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Feral Manticore'),
+    54022: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_giant_spiders_0', ItemType.unit, 1, 'Progressive wef_bst', False, False, 'Wef Unit: Giant Spiders'),
+    54023: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_wolves_0', ItemType.unit, 1, 'Progressive wef_bst', False, False, 'Wef Unit: Giant Wolves'),
+    54024: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh3_main_monster_feral_bears', ItemType.unit, 2, 'Progressive wef_bst', False, False, 'Wef Unit: Feral Bears'),
+    54025: specialItemData(IC.useful, 1, "wh2_dlc16_wef_drycha", 'wh2_dlc16_wef_mon_hawks_0', ItemType.unit, 1, 'Progressive wef_bst', False, False, 'Wef Unit: Great Hawks'),
 }
