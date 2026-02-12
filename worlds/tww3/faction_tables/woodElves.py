@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from item_types import ItemType, ItemData, specialItemData
+from .item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     54023: ItemData(IC.useful, 1, 'wh_dlc05_wef_inf_eternal_guard_0', ItemType.unit, 1, 'Progressive wef_inf', 'Wef Unit: Eternal Guard'),
