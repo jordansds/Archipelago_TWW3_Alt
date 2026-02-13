@@ -57,8 +57,6 @@ units: dict[int, ItemData] = {
 }
 
 buildings: dict[int, ItemData] = {
-    44400: ItemData(IC.useful, 1, 'wh2_main_special_ellyrian_stables_sla', ItemType.building, 0, 'Progressive special_ellyrian_stables', 'Sla Building: Defiled Ellyrian Stables'),
-    44401: ItemData(IC.useful, 1, 'wh3_dlc25_sch_special_nuln_throne_of_chaos_sla', ItemType.building, 0, 'Progressive sch_special_nuln_throne_of_chaos', 'Sla Building: {{tr:building_culture_variants_name_wh3_dlc25_sch_special_nuln_throne_of_chaoswh_main_chs_chaos}}'),
     44402: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', ItemType.building, 0, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Warpstone Locus'),
     44403: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', ItemType.building, 1, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Warpstone Traps'),
     44404: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', ItemType.building, 2, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Guarded Warpstone'),
