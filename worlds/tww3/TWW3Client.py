@@ -4,7 +4,6 @@ import asyncio
 import colorama
 import logging
 
-from worlds.hk.Items import item_type
 from BaseClasses import ItemClassification as IC
 from .faction_tables.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
@@ -126,7 +125,7 @@ class TWW3Context(CommonContext):
         if version != args['slot_data']['version']:
             logger.error("Server and Client APWorld versions do not match.")
         else:
-            logger.info(f"The client version is: {self.version}")
+            logger.info(f"The client version is: {version}")
 
         self.path = TWW3World.settings.tww3_path
         
@@ -194,8 +193,8 @@ class TWW3Context(CommonContext):
 
         self.itemDict = {}
         #Pull unit/building/tech Items
-        self.itemDict.update(factionTables.getAllItems())
-
+        self.itemDict.update(factionTables.getAllItems(self.playerRace))
+        #print(self.itemDict)
         self.itemDict.update(fillerWeakDict)
         self.itemDict.update(fillerStrongDict)
         self.itemDict.update(ancillariesRegularDict)
@@ -386,11 +385,12 @@ class TWW3Context(CommonContext):
 class EngineInitializer:
 
     @classmethod
-    def initialize(self, context, itemDict, progressiveItemFlags):
+    def initialize(self, context, itemDictionary, progressiveItemFlags):
         settlements = context.settlements
         hordes = context.hordes
         self.playerFaction = context.playerFaction
         self.playerRace = context.playerRace
+        self.itemDict = itemDictionary
         capitals = context.capitals
         startingTier = context.startingTier
         waaaghMessenger = context.waaaghMessenger
@@ -447,7 +447,7 @@ class EngineInitializer:
         #Disables techs/buildings/units if randomised
         ###
         for key in context.itemKeys:
-            itemData = itemDict[key]
+            itemData = self.itemDict[key]
             if (itemData.type == ItemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
                 waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, itemData.name))
             elif (itemData.type == ItemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
@@ -488,12 +488,12 @@ class EngineInitializer:
 
     def lock_progressiveTechs(self, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.tech and item.progressionGroup is not None and item.faction == self.playerFaction:
+            if item.type == ItemType.tech and item.progressionGroup is not None:# and item.race == self.playerRace:
                 waaaghMessenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
     def lock_progressiveBuildings(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.building and item.progressionGroup is not None and item.faction == self.playerFaction:
+            if item.type == ItemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     waaaghMessenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
                 else:
@@ -501,7 +501,7 @@ class EngineInitializer:
 
     def lock_progressiveUnits(self, startingTier, waaaghMessenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.unit and item.progressionGroup is not None and item.faction == self.playerFaction:
+            if item.type == ItemType.unit and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier
                 if item.tier > startingTier:
                     waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))

@@ -63,7 +63,7 @@ def createAllItems(world: TWW3World) -> None:
 
     world.multiworld.itempool += pool
 
-    print(pool)
+    #print(pool)
 
 def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
@@ -106,11 +106,11 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionTables.getSpecial(world):
         if item.forceEarly:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
-        if not item.isProgressionItem:
-            world.itemKeys.append(key)
         for i in range(item.count):
             tww3_item = world.create_item(item.readableName)
             pool.append(tww3_item)
+            if not item.isProgressionItem:
+                world.itemKeys.append(key)
 
     return pool
 

@@ -31,6 +31,7 @@ from . import warriorsOfChaosNurgle
 from . import warriorsOfChaosSlaanesh
 from . import warriorsOfChaosTzeentch
 from . import woodElves
+from ..locations import createDiploRangeLocationsNew
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen,
@@ -64,16 +65,19 @@ raceModuleDict: dict[str, ModuleType] = {
     "chaosTzeentch": warriorsOfChaosTzeentch,
 }
 
-def getAllItems():
+def getAllItems(playerRace = ""):
     itemDict: dict[int, ItemData] = {}
-    for race in raceModuleDict.values():
-        itemDict.update(race.units)
-        itemDict.update(race.buildings)
-        itemDict.update(race.techs)
-        itemDict.update(race.progUnits)
-        itemDict.update(race.progBuildings)
-        itemDict.update(race.progTechs)
-        itemDict.update({key: ItemData(*item[:1], *item[2:6], item[7], item[9]) for key, item in race.special.items()}) #Turn special item into regular item
+    for race, module in raceModuleDict.items():
+        if playerRace != race and playerRace != "":
+            continue
+        itemDict.update(module.units)
+        itemDict.update(module.buildings)
+        itemDict.update(module.techs)
+        itemDict.update(module.progUnits)
+        itemDict.update(module.progBuildings)
+        itemDict.update(module.progTechs)
+        itemDict.update({key: ItemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
+        #print({key: ItemData(*item[:2], *item[3:6], item[7], item[9]) for key, item in race.special.items()})
     return itemDict
 
 def getUnits(race, progressive):
@@ -99,17 +103,22 @@ def getSpecial(world):
     for key, item in raceModuleDict[world.playerFaction.race].special.items():
         if item.faction == world.playerFaction.name or item.faction == "":
             if item.type == ItemType.unit:
-                if world.options.progressive_units:
+                if world.options.progressive_units and item.isProgressionItem:
+                    specialItems.update({key: item})
+                elif not (world.options.progressive_units or item.isProgressionItem):
                     specialItems.update({key: item})
                 continue
             elif item.type == ItemType.building:
-                if world.options.progressive_buildings:
+                if world.options.progressive_buildings and item.isProgressionItem:
+                    specialItems.update({key: item})
+                elif not (world.options.progressive_buildings or item.isProgressionItem):
                     specialItems.update({key: item})
                 continue
             elif item.type == ItemType.tech:
-                if world.options.progressive_technologies:
+                if world.options.progressive_technologies and item.isProgressionItem:
+                    specialItems.update({key: item})
+                elif not (world.options.progressive_technologies or item.isProgressionItem):
                     specialItems.update({key: item})
                 continue
             specialItems.update({key: item})
-
     return specialItems.items()
