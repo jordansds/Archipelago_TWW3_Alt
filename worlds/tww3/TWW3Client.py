@@ -456,11 +456,11 @@ class EngineInitializer:
                 waaaghMessenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
 
         if context.progressiveTechs:
-            self.lock_progressiveTechs(self, waaaghMessenger, itemDict, progressiveItemFlags)
+            self.lock_progressiveTechs(self, waaaghMessenger, self.itemDict, progressiveItemFlags)
         if context.progressiveBuildings:
-            self.lock_progressiveBuildings(self, startingTier, waaaghMessenger, itemDict, progressiveItemFlags)
+            self.lock_progressiveBuildings(self, startingTier, waaaghMessenger, self.itemDict, progressiveItemFlags)
         if context.progressiveUnits:
-            self.lock_progressiveUnits(self, startingTier, waaaghMessenger, itemDict, progressiveItemFlags)
+            self.lock_progressiveUnits(self, startingTier, waaaghMessenger, self.itemDict, progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###
