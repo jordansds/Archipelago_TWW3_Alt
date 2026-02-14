@@ -262,8 +262,11 @@ progTechs: dict[int, ItemData] = {
 
 special: dict[int, specialItemData] = {
     47500: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, None, None, True, False, "Tmb Effect: +1 Army Capacity"),
-    47501: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_inf_crypt_ghouls", ItemType.unit, None, "Progressive tmb_inf", False, False, "Tmb Unit: Crypt Ghouls"),
-    47502: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_cav_hexwraiths", ItemType.unit, None, "Progressive tmb_cav", False, False, "Tmb Unit: Hexwraiths"),
-    47503: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_mon_dire_wolves", ItemType.unit, None, "Progressive tmb_bst", False, False, "Tmb Unit: Hexwraiths"),
-    47504: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_mon_fell_bats", ItemType.unit, None, "Progressive tmb_bst", False, False, "Tmb Unit: Hexwraiths"),
+    47501: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_inf_crypt_ghouls", ItemType.unit, 1, "Progressive tmb_inf", False, False, "Tmb Unit: Crypt Ghouls"),
+    47502: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_cav_hexwraiths", ItemType.unit, 3, "Progressive tmb_cav", False, False, "Tmb Unit: Hexwraiths"),
+    47503: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_mon_dire_wolves", ItemType.unit, 1, "Progressive tmb_bst", False, False, "Tmb Unit: Hexwraiths"),
+    47504: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_mon_fell_bats", ItemType.unit, 1, "Progressive tmb_bst", False, False, "Tmb Unit: Hexwraiths"),
+    46505: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_arkhan_burial_mound", ItemType.building, 0, "Progressive tmb_creatures", False, False, "Tmb Building: Grave Hill"),
+    46506: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_arkhan_burial_mound_2", ItemType.building, 1, "Progressive tmb_creatures", False, False, "Tmb Building: Ancient Burial Mound"),
+    46507: specialItemData(IC.useful, 2, "wh2_dlc09_tmb_followers_of_nagash", "Progressive tmb_creatures", ItemType.building, 2, "Progressive tmb_creatures", False, True, "Progressive Tmb Building: Dark Creatures")
 }
