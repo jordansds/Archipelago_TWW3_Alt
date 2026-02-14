@@ -11,8 +11,6 @@ units: dict[int, ItemData] = {
     28005: ItemData(IC.useful, 1, 'wh3_dlc26_grn_inf_rugluds_armoured_orcs', ItemType.unit, 2, 'Progressive grn_rng', "Grn Unit: Ruglud's Armoured Orcs"),
     28006: ItemData(IC.useful, 1, 'wh3_dlc26_grn_inf_black_orcs_shield', ItemType.unit, 3, 'Progressive grn_inf', 'Grn Unit: Black Orcs'),
     28007: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_snagla_grobspit', ItemType.unit, 0, 'cavalry', 'Grn Unit: Snagla Grobspit'),
-    28008: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_savage_orc_great_shaman_wyvern', ItemType.unit, 0, 'war_beast', 'Grn Unit: {{tr:land_units_onscreen_name_wh3_dlc26_grn_cha_savage_orc_great_shaman}}'),
-    28009: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_savage_orc_great_shaman_boar', ItemType.unit, 0, 'cavalry', 'Grn Unit: {{tr:land_units_onscreen_name_wh3_dlc26_grn_cha_savage_orc_great_shaman}}'),
     28010: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_savage_orc_great_shaman', ItemType.unit, 0, 'Progressive grn_inf', 'Grn Unit: Savage Orc Great Shaman'),
     28011: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_night_goblin_big_boss_squig', ItemType.unit, 0, 'cavalry', 'Grn Unit: Night Goblin Big Boss'),
     28012: ItemData(IC.useful, 1, 'wh3_dlc26_grn_cha_night_goblin_big_boss', ItemType.unit, 0, 'Progressive grn_inf', 'Grn Unit: Night Goblin Big Boss'),
