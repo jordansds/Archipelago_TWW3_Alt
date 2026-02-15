@@ -29,8 +29,7 @@ trapWeakDict: dict[int, ItemData] = {
 }
 
 trapStrongDict: dict[int, ItemData] = {
-    1600: ItemData(IC.trap, 0, "Torches and Pitchforks!", ItemType.trap_strong, None, "None", "Torches and Pitchforks!"), #Strong rebellion
+    1600: ItemData(IC.trap, 0, "force_random_strong_rebellion_for_player()", ItemType.trap_strong, None, "None", "Torches and Pitchforks!"), #Strong rebellion
     1601: ItemData(IC.trap, 0, "force_settlement_trade_with_random_enemy()", ItemType.trap_strong, None, "None", "Let's trade!"), #Swaps random city with random enemy city
     1602: ItemData(IC.trap, 0, "force_war_with_random_ally()", ItemType.trap_strong, None, "None", "You too, Brutus?") #Ally declares war on player
-
 }
