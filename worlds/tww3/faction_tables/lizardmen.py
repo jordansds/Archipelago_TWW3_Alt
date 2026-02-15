@@ -275,11 +275,11 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-    55200: ItemData(IC.useful, 4, "Progressive lzd_inf", ItemType.unit, 4, "", "Progressive Lzd Unit: Infantry"),
-    55201: ItemData(IC.useful, 2, "Progressive lzd_rng", ItemType.unit, 2, "", "Progressive Lzd Unit: Ranged"),
-    55202: ItemData(IC.useful, 3, "Progressive lzd_cav", ItemType.unit, 3, "", "Progressive Lzd Unit: Cavalry"),
-    55205: ItemData(IC.useful, 4, "Progressive lzd_bst", ItemType.unit, 4, "", "Progressive Lzd Unit: Beasts"),
-    55206: ItemData(IC.useful, 3, "Progressive lzd_hro", ItemType.unit, 3, "", "Progressive Lzd Unit: Hero")
+    37200: ItemData(IC.useful, 4, "Progressive lzd_inf", ItemType.unit, 4, "", "Progressive Lzd Unit: Infantry"),
+    37201: ItemData(IC.useful, 2, "Progressive lzd_rng", ItemType.unit, 2, "", "Progressive Lzd Unit: Ranged"),
+    37202: ItemData(IC.useful, 3, "Progressive lzd_cav", ItemType.unit, 3, "", "Progressive Lzd Unit: Cavalry"),
+    37205: ItemData(IC.useful, 4, "Progressive lzd_bst", ItemType.unit, 4, "", "Progressive Lzd Unit: Beasts"),
+    37206: ItemData(IC.useful, 3, "Progressive lzd_hro", ItemType.unit, 3, "", "Progressive Lzd Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
