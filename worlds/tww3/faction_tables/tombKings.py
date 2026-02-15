@@ -207,13 +207,13 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-    47200: ItemData(IC.useful, 5, "Progressive tmb_inf", ItemType.unit, 3, "", "Progressive Tmb Unit: Infantry"),
-    47201: ItemData(IC.useful, 4, "Progressive tmb_rng", ItemType.unit, 2, "", "Progressive Tmb Unit: Ranged"),
+    47200: ItemData(IC.useful, 3, "Progressive tmb_inf", ItemType.unit, 3, "", "Progressive Tmb Unit: Infantry"),
+    47201: ItemData(IC.useful, 2, "Progressive tmb_rng", ItemType.unit, 2, "", "Progressive Tmb Unit: Ranged"),
     47202: ItemData(IC.useful, 4, "Progressive tmb_cav", ItemType.unit, 4, "", "Progressive Tmb Unit: Cavalry"),
-    47203: ItemData(IC.useful, 4, "Progressive tmb_art", ItemType.unit, 2, "", "Progressive Tmb Unit: Artillery"),
-    47204: ItemData(IC.useful, 4, "Progressive tmb_veh", ItemType.unit, 2, "", "Progressive Tmb Unit: Chariot"),
-    47205: ItemData(IC.useful, 4, "Progressive tmb_bst", ItemType.unit, 3, "", "Progressive Tmb Unit: Beast"),
-    47206: ItemData(IC.useful, 3, "Progressive tmb_hro", ItemType.unit, 1, "", "Progressive Tmb Unit: Hero")
+    47203: ItemData(IC.useful, 2, "Progressive tmb_art", ItemType.unit, 2, "", "Progressive Tmb Unit: Artillery"),
+    47204: ItemData(IC.useful, 2, "Progressive tmb_veh", ItemType.unit, 2, "", "Progressive Tmb Unit: Chariot"),
+    47205: ItemData(IC.useful, 3, "Progressive tmb_bst", ItemType.unit, 3, "", "Progressive Tmb Unit: Beast"),
+    47206: ItemData(IC.useful, 1, "Progressive tmb_hro", ItemType.unit, 1, "", "Progressive Tmb Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
