@@ -1,14 +1,15 @@
-from CommonClient import CommonContext, ClientCommandProcessor, server_loop, get_base_parser, gui_enabled, logger
+from CommonClient import CommonContext, ClientCommandProcessor, server_loop, get_base_parser, gui_enabled, logger, handle_url_arg
 import Utils
 import asyncio
 import colorama
 import logging
+from collections.abc import Sequence
 
 from BaseClasses import ItemClassification as IC
+from .faction_tables import factionTables
 from .faction_tables.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from .faction_tables import factionTables
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
 from . import TWW3World
@@ -107,6 +108,7 @@ class TWW3Context(CommonContext):
         self.expansionItems = 0
         self.numberOfOrbs = 0
         self.numberOfDiploRanges = 0
+        self.itemDict = {}
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -122,10 +124,13 @@ class TWW3Context(CommonContext):
 
     def on_connected(self, args: dict):
         version = TWW3World.world_version.as_simple_string()
-        if version != args['slot_data']['version']:
-            logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions!")
-        else:
-            logger.info(f"The client version is: {version}")
+        try:
+            if version != args['slot_data']['version']:
+                logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions of the TWW3 APWorld!")
+            else:
+                logger.info(f"The client is running: {version} of the TWW3 APWorld")
+        except:
+            logger.error(f"WARNING: Client ({version}) does not match the server. Server must be using the old TWW3 APWorld!")
 
         self.path = TWW3World.settings.tww3_path
         
@@ -140,7 +145,7 @@ class TWW3Context(CommonContext):
         logger.info(f"The game mode is: {self.gameMode}")
             
         self.watcher = Watcher(self.path + '\\engine.out', self)
-        watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='WaaaghWatcher')
+        watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
         self.messenger = Messenger(self.path + '\\engine.in')
 
         self.playerFaction = sm.factionDict[args["slot_data"]["starting_faction"]].name
@@ -192,8 +197,6 @@ class TWW3Context(CommonContext):
             for key, settlement in sm.settlementDict.items():
                 self.locationLookup[settlement.readableName] = key + offset
 
-
-        self.itemDict = {}
         #Pull unit/building/tech Items
         self.itemDict.update(factionTables.getAllItems(self.playerRace))
         #print(self.itemDict)
@@ -347,7 +350,7 @@ class TWW3Context(CommonContext):
             logging_pairs = [
                 ("Client", "Archipelago")
             ]
-            base_title = "Archipelago " + self.game + " Client"
+            base_title = self.game + " Client"
 
         self.ui = TWW3Manager(self)
         self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
@@ -396,13 +399,10 @@ class EngineInitializer:
             for faction, settlement in capitals.items():
                 messenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
                 messenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
-
-            ###
-            #Teleports Hordes to random regions
-            ###
             for faction, settlement in hordes.items():
                 messenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
                 messenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+
             messenger.run("cm:reset_shroud()")
                 
         ###
@@ -476,7 +476,7 @@ class EngineInitializer:
                 if item.tier > startingTier:
                     messenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
-def launch(*launch_args: str):
+def launchClient(*args: Sequence[str]):
     Utils.init_logging('TWW3Client')
     logging.getLogger().setLevel(logging.INFO)
 
@@ -489,16 +489,15 @@ def launch(*launch_args: str):
         ctx.run_cli()
 
         await ctx.exit_event.wait()
-        ctx.server_address = None
         await ctx.shutdown()
 
     parser = get_base_parser()
-    args = parser.parse_args()
+    parser.add_argument("--name", default=None, help="Slot Name to connect as.")
+    parser.add_argument("url", nargs="?", help="Archipelago connection url")
+
+    launch_args = handle_url_arg(parser.parse_args(args))
+
     colorama.just_fix_windows_console()
 
-    asyncio.run(main(args))
+    asyncio.run(main(launch_args))
     colorama.deinit()
-
-if __name__ == '__main__':
-
-    launch(*args)
