@@ -108,5 +108,4 @@ class TWW3World(World):
 
     def get_filler_item_name(self) -> str:
         item = items.generateFillerItems(self, [])[0]
-
         return item.readableName
