@@ -15,7 +15,6 @@ from . import TWW3World
 from . import settlementManager as sm
 import os
 from NetUtils import ClientStatus
-from .version import version
 
 path = "."
 
@@ -122,17 +121,20 @@ class TWW3Context(CommonContext):
             self.on_received_items(args)
 
     def on_connected(self, args: dict):
+        version = TWW3World.world_version.as_simple_string()
         if version != args['slot_data']['version']:
-            logger.error("Server and Client APWorld versions do not match.")
+            logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions!")
         else:
             logger.info(f"The client version is: {version}")
 
         self.path = TWW3World.settings.tww3_path
         
         if not self.path or not os.path.exists(self.path):
-            logger.error('Path does not point to a directory. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
+            logger.error('ERROR: Could not find Warhammer folder. Please remove path from host.yaml.')
+            Utils.async_start(self.disconnect())
         if not os.path.isfile(self.path + '\\Warhammer3.exe'):
-            logger.error('No TWW3 exe in Path. Please remove Path from host.yaml. If you need help, ask in the Discord channel.')
+            logger.error('ERROR: Could not find Warhammer3.exe. Please remove path from host.yaml.')
+            Utils.async_start(self.disconnect())
 
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
@@ -530,4 +532,5 @@ def launch(*launch_args: str):
     colorama.deinit()
 
 if __name__ == '__main__':
+
     launch(*args)
