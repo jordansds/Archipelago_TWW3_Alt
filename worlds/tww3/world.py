@@ -56,7 +56,7 @@ class TWW3World(World):
         worldRegion = Region("Old World", self.player, self.multiworld)
         self.multiworld.regions.append(worldRegion)
 
-        locations.createAllLocations(self, self.locationToDiploRange)
+        locations.createAllLocations(self)#, self.locationToDiploRange)
         rules.setVictoryEvent(self)
 
     def create_items(self) -> None:
