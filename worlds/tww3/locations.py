@@ -43,7 +43,8 @@ def createRegularLocations(world: TWW3World) -> None:
             #    location.access_rule = lambda state: state.can_reach(f"Empire Size {i-1} (0)", locName, world.player)
 
             requiredAdminCapacity = max(0, math.floor(i / world.options.admin_capacity) - 1)
-            set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
+            #set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
+            set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
 
             worldRegion.locations.append(location)
 
@@ -54,7 +55,7 @@ def createEvents(world: TWW3World) -> None:
         locName = f"Empire Size {world.options.number_of_settlements}"
         location = TWW3Location(world.player, locName, None, worldRegion)
         count = math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1
-        set_rule(location, lambda state: state.has("Administrative Capacity", world.player, count))
+        set_rule(location, lambda state, count=math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1: state.has("Administrative Capacity", world.player, count))
 
     elif world.options.game_mode == "spheres":
         location = TWW3Location(world.player, "Victory", None, worldRegion)
@@ -79,8 +80,7 @@ def createDiploRangeLocations(world: TWW3World) -> None:
 
         elif 0 < settlementDiploRange[key] <= world.options.sphere_count:
             if settlement.faction != world.playerFaction.name:
-                set_rule(location,
-                         lambda state: state.has("Diplomatic Range", world.player, settlementDiploRange[key]))
+                set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
                 worldRegion.locations.append(location)
 
 
