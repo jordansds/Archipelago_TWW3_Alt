@@ -243,12 +243,12 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-    44200: ItemData(IC.useful, 3, "Progressive sla_inf", ItemType.unit, 3, "", "Progressive Sla Unit: Infantry"),
-    44201: ItemData(IC.useful, 1, "Progressive sla_rng", ItemType.unit, 1, "", "Progressive Sla Unit: Ranged"),
-    44202: ItemData(IC.useful, 5, "Progressive sla_cav", ItemType.unit, 5, "", "Progressive Sla Unit: Cavalry"),
-    44204: ItemData(IC.useful, 2, "Progressive sla_veh", ItemType.unit, 2, "", "Progressive Sla Unit: Chariot"),
-    44205: ItemData(IC.useful, 4, "Progressive sla_bst", ItemType.unit, 4, "", "Progressive Sla Unit: Beast"),
-    44206: ItemData(IC.useful, 1, "Progressive sla_hro", ItemType.unit, 1, "", "Progressive Sla Unit: Hero")
+    45200: ItemData(IC.useful, 3, "Progressive sla_inf", ItemType.unit, 3, "", "Progressive Sla Unit: Infantry"),
+    45201: ItemData(IC.useful, 1, "Progressive sla_rng", ItemType.unit, 1, "", "Progressive Sla Unit: Ranged"),
+    45202: ItemData(IC.useful, 5, "Progressive sla_cav", ItemType.unit, 5, "", "Progressive Sla Unit: Cavalry"),
+    45204: ItemData(IC.useful, 2, "Progressive sla_veh", ItemType.unit, 2, "", "Progressive Sla Unit: Chariot"),
+    45205: ItemData(IC.useful, 4, "Progressive sla_bst", ItemType.unit, 4, "", "Progressive Sla Unit: Beast"),
+    45206: ItemData(IC.useful, 1, "Progressive sla_hro", ItemType.unit, 1, "", "Progressive Sla Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
