@@ -292,12 +292,9 @@ class TWW3Context(CommonContext):
 
     def sendProgressiveItem(self, progressionGroup):
         for key, item in self.itemDict.items():
-            unlockTier = 0
             if item.progressionGroup == progressionGroup:
-                if unlockTier == 0:
-                    self.progressiveItemFlags[key] += 1
-                    unlockTier = self.progressiveItemFlags[key]
-                if item.tier == unlockTier:
+                self.progressiveItemFlags[key] += 1
+                if item.tier == self.progressiveItemFlags[key]:
                     if item.type == ItemType.building:
                         self.messenger.run(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
                     elif item.type == ItemType.unit:
@@ -464,10 +461,11 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, messenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
+                progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     messenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
-                else:
-                    progressive_items_flags[key] = 0
+                #else:
+                #    progressive_items_flags[key] = 0
 
     def lock_progressiveUnits(self, startingTier, messenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
