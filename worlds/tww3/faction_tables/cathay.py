@@ -18,7 +18,7 @@ units: dict[int, ItemData] = {
     14013: ItemData(IC.useful, 1, 'wh3_main_cth_cav_jade_lancers_0', ItemType.unit, 2, 'Progressive cth_cav', 'Cth Unit: Jade Lancers'),
     14014: ItemData(IC.useful, 1, 'wh3_main_cth_cav_jade_longma_riders_0', ItemType.unit, 3, 'Progressive cth_cav', 'Cth Unit: Great Longma Riders'),
     14015: ItemData(IC.useful, 1, 'wh3_main_cth_art_grand_cannon_0', ItemType.unit, 1, 'Progressive cth_art', 'Cth Unit: Grand Cannons'),
-    14016: ItemData(IC.useful, 1, 'wh3_main_cth_art_fire_rain_rocket_battery_0', ItemType.unit, 3, 'Progressive cth_art', 'Cth Unit: Fire Rain Rocket Battery'),
+    14016: ItemData(IC.useful, 1, 'wh3_main_cth_art_fire_rain_rocket_battery_0', ItemType.unit, 2, 'Progressive cth_art', 'Cth Unit: Fire Rain Rocket Battery'),
     14017: ItemData(IC.useful, 1, 'wh3_dlc24_cth_veh_zhangu_war_drum', ItemType.unit, 1, 'Progressive cth_veh', 'Cth Unit: Zhangu War Drum'),
     14018: ItemData(IC.useful, 1, 'wh3_main_cth_veh_sky_lantern_0', ItemType.unit, 2, 'Progressive cth_veh', 'Cth Unit: Sky Lantern'),
     14019: ItemData(IC.useful, 1, 'wh3_main_cth_veh_war_compass_0', ItemType.unit, 3, 'Progressive cth_veh', 'Cth Unit: Wu Xing War Compass'),
@@ -250,12 +250,13 @@ techs: dict[int, ItemData] = {
 }
 
 progUnits: dict[int, ItemData] = {
-    15200: ItemData(IC.useful, 3, "Progressive sla_inf", ItemType.unit, 3, "", "Progressive Sla Unit: Infantry"),
-    15201: ItemData(IC.useful, 1, "Progressive sla_rng", ItemType.unit, 1, "", "Progressive Sla Unit: Ranged"),
-    15202: ItemData(IC.useful, 5, "Progressive sla_cav", ItemType.unit, 5, "", "Progressive Sla Unit: Cavalry"),
-    15204: ItemData(IC.useful, 2, "Progressive sla_veh", ItemType.unit, 2, "", "Progressive Sla Unit: Chariot"),
-    15205: ItemData(IC.useful, 4, "Progressive sla_bst", ItemType.unit, 4, "", "Progressive Sla Unit: Beast"),
-    15206: ItemData(IC.useful, 1, "Progressive sla_hro", ItemType.unit, 1, "", "Progressive Sla Unit: Hero")
+    15200: ItemData(IC.useful, 4, "Progressive cth_inf", ItemType.unit, 4, "", "Progressive Cth Unit: Infantry"),
+    15201: ItemData(IC.useful, 4, "Progressive cth_rng", ItemType.unit, 4, "", "Progressive Cth Unit: Ranged"),
+    15202: ItemData(IC.useful, 3, "Progressive cth_cav", ItemType.unit, 3, "", "Progressive Cth Unit: Cavalry"),
+    15203: ItemData(IC.useful, 2, "Progressive cth_art", ItemType.unit, 2, "", "Progressive Cth Unit: Artillery"),
+    15204: ItemData(IC.useful, 4, "Progressive cth_veh", ItemType.unit, 4, "", "Progressive Cth Unit: War Machine"),
+    15205: ItemData(IC.useful, 3, "Progressive cth_bst", ItemType.unit, 3, "", "Progressive Cth Unit: Beast"),
+    15206: ItemData(IC.useful, 1, "Progressive cth_hro", ItemType.unit, 1, "", "Progressive Cth Unit: Hero")
 }
 
 progBuildings: dict[int, ItemData] = {
