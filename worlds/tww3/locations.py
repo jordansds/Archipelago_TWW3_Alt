@@ -20,7 +20,7 @@ def createAllLocations(world: TWW3World) -> None:
         createRegularLocations(world)
 
     elif world.options.game_mode == "spheres":
-        createDiploRangeLocationsNew(world)
+        createDiploRangeLocations(world)
 
     createEvents(world)
     
@@ -64,7 +64,7 @@ def createEvents(world: TWW3World) -> None:
     victory = items.TWW3Item("Victory", ItemClassification.progression, None, world.player)
     location.place_locked_item(victory)
 
-def createDiploRangeLocationsNew(world: TWW3World) -> None:
+def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
 
     settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)

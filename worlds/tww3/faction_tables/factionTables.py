@@ -31,7 +31,7 @@ from . import warriorsOfChaosNurgle
 from . import warriorsOfChaosSlaanesh
 from . import warriorsOfChaosTzeentch
 from . import woodElves
-from ..locations import createDiploRangeLocationsNew
+from ..locations import createDiploRangeLocations
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen,
