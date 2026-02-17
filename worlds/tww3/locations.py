@@ -14,13 +14,12 @@ import math
 class TWW3Location(Location):
     game = "Total War Warhammer 3"
     
-def createAllLocations(world: TWW3World, locationToDiploRange) -> None:
+def createAllLocations(world: TWW3World) -> None:
 
     if world.options.game_mode == "conquest":
         createRegularLocations(world)
 
     elif world.options.game_mode == "spheres":
-        #createDiploRangeLocations(world, locationToDiploRange)
         createDiploRangeLocationsNew(world)
 
     createEvents(world)
@@ -31,10 +30,6 @@ def createRegularLocations(world: TWW3World) -> None:
     startingCheck = world.options.starting_settlements + 1
     if world.playerFaction.name in sm.trueHordeList:
         startingCheck = 1
-    #for faction in sm.factionDict.values():
-    #    if not faction.hasHome and faction.name == world.playerFaction.name:
-    #        startingCheck = 1
-    
     # Generate all but last location, which is saved for the victory event
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, world.options.number_of_settlements):
@@ -44,11 +39,11 @@ def createRegularLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            if i > startingCheck:
-                location.access_rule = lambda state: state.can_reach(f"Empire Size {i-1} (0)", locName, world.player)
+            #if i > startingCheck:
+            #    location.access_rule = lambda state: state.can_reach(f"Empire Size {i-1} (0)", locName, world.player)
 
             requiredAdminCapacity = max(0, math.floor(i / world.options.admin_capacity) - 1)
-            set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
+            set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
 
             worldRegion.locations.append(location)
 
@@ -57,23 +52,17 @@ def createEvents(world: TWW3World) -> None:
     if world.options.game_mode == "conquest":
         # Add victory event in the last location
         locName = f"Empire Size {world.options.number_of_settlements}"
-
         location = TWW3Location(world.player, locName, None, worldRegion)
-        set_rule(location, lambda state, count=math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1: state.has("Administrative Capacity", world.player, count))
-        #print(f"{locName}: {math.floor(world.options.number_of_locations/5) - 1}")
-        worldRegion.locations.append(location)
-
-        # Create Victory item and place it in the last location
-        victory = items.TWW3Item("Victory", ItemClassification.progression, None, world.player)
-        location.place_locked_item(victory)
+        count = math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1
+        set_rule(location, lambda state: state.has("Administrative Capacity", world.player, count))
 
     elif world.options.game_mode == "spheres":
-
         location = TWW3Location(world.player, "Victory", None, worldRegion)
-        worldRegion.locations.append(location)
 
-        victory = items.TWW3Item("Victory", ItemClassification.progression, None, player=world.player)
-        location.place_locked_item(victory)
+    worldRegion.locations.append(location)
+    # Create Victory item and place it in the last location
+    victory = items.TWW3Item("Victory", ItemClassification.progression, None, world.player)
+    location.place_locked_item(victory)
 
 def createDiploRangeLocationsNew(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
@@ -89,10 +78,9 @@ def createDiploRangeLocationsNew(world: TWW3World) -> None:
             print(location)
 
         elif 0 < settlementDiploRange[key] <= world.options.sphere_count:
-            #if factionSpheres[key][0] != world.playerFaction.name:
             if settlement.faction != world.playerFaction.name:
                 set_rule(location,
-                         lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+                         lambda state: state.has("Diplomatic Range", world.player, settlementDiploRange[key]))
                 worldRegion.locations.append(location)
 
 
