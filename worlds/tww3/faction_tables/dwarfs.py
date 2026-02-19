@@ -324,7 +324,7 @@ progUnits: dict[int, ItemData] = {
     21200: ItemData(IC.useful, 3, "Progressive dwf_inf", ItemType.unit, 3, "", "Progressive Dwf Unit: Infantry"),
     21201: ItemData(IC.useful, 2, "Progressive dwf_rng", ItemType.unit, 2, "", "Progressive Dwf Unit: Ranged"),
     21203: ItemData(IC.useful, 3, "Progressive dwf_art", ItemType.unit, 3, "", "Progressive Dwf Unit: Artillery"),
-    21204: ItemData(IC.useful, 4, "Progressive dwf_veh", ItemType.unit, 4, "", "Progressive Dwf Unit: Chariot"),
+    21204: ItemData(IC.useful, 4, "Progressive dwf_veh", ItemType.unit, 4, "", "Progressive Dwf Unit: War Machine"),
     21206: ItemData(IC.useful, 2, "Progressive dwf_hro", ItemType.unit, 2, "", "Progressive Dwf Unit: Hero")
 }
 
