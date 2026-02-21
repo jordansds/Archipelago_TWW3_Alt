@@ -16,7 +16,7 @@ games in the multiworld.
 In sphere mode every unique settlement in the world can be a check, though only a certain amount will be active based
 on your current diplomatic radius.
 
-**Playing beastmen is currently not recommended.**
+**Playing beastmen is currently not recommended in Conquest.**
 
 ## Installation and setup
 If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
