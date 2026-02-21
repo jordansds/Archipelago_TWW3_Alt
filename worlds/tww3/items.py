@@ -172,7 +172,7 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
     if key == 1203 or key == 1201:
         ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
-        key = world.item_name_to_id[name]
+        #key = world.item_name_to_id[name]
     else:
         name = itemDict[key].readableName
 

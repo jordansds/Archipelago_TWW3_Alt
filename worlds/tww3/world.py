@@ -5,6 +5,7 @@ from .options import TWW3Options
 import settings
 from . import items, locations, rules
 from . import settlementManager as sm
+from .item_tables.ancillaries_table import ancillariesRegularDict
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
 #    game = "Total War Warhammer 3"  # name of the game/world this location is in
@@ -107,5 +108,11 @@ class TWW3World(World):
         return items.TWW3Item(name, items.itemDict[key].classification, key, player=self.player)
 
     def get_filler_item_name(self) -> str:
-        item = items.generateFillerItems(self, [])[0]
-        return item.readableName
+        fillerFunctions = [items.generateFillerWeak, items.generateFillerStrong, items.generateTrapHarmless,
+                           items.generateTrapWeak, items.generateTrapStrong]  # List of functions for generating filler
+        weights = [self.options.filler_weak.value, self.options.filler_strong.value, self.options.trap_harmless.value,
+                   self.options.trap_weak.value, self.options.trap_strong.value]  # list of weights defined in YAML
+        fillerFunction = self.random.choices(fillerFunctions, weights=weights, k=1)[0]
+        item = fillerFunction(self)
+        return item.name
+        #item = items.generateFillerWeak(self)
