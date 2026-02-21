@@ -45,7 +45,7 @@ factionDict: dict[int, factionData] = {
     34: factionData('wh2_main_lzd_last_defenders', True, True, 'lizardmen', 'Kroq-Gar (Lizardmen)'),
     35: factionData('wh2_dlc12_lzd_cult_of_sotek', True, True, 'lizardmen', 'Tehenhauin (Lizardmen)'),
     36: factionData('wh2_main_lzd_tlaqua', True, True, 'lizardmen', "Tiktaq'to (Lizardmen)"),
-    37: factionData('wh2_dlc13_lzd_spirits_of_the_jungle', True, False, 'lizardmen', 'Nakai the Wanderer (Lizardmen)'),
+    37: factionData('wh2_dlc13_lzd_spirits_of_the_jungle', True, False, 'lizardmenNakai', 'Nakai the Wanderer (Lizardmen)'),
     38: factionData('wh2_main_lzd_itza', True, True, 'lizardmen', 'Gor-Rok (Lizardmen)'),
     39: factionData('wh2_main_def_naggarond', True, True, 'darkElves', 'Malekith (Dark Elves)'),
     40: factionData('wh2_main_def_cult_of_pleasure', True, True, 'darkElves', 'Morathi (Dark Elves)'),
