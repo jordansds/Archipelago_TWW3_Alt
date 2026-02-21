@@ -337,14 +337,5 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    37502: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_nakai_itzl', ItemType.building, 0, 'Progressive lzd_nakai', False, False, 'Lzd Building: Temple of Itzl'),
-    37503: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_nakai_quetzl', ItemType.building, 0, 'Progressive lzd_nakai', False, False, 'Lzd Building: Temple of Quetzl'),
-    37504: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_nakai_xholankha', ItemType.building, 0, 'Progressive lzd_nakai', False, False, 'Lzd Building: Temple of Xholankha'),
-    37505: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_port_nakai_itzl', ItemType.building, 0, 'Progressive lzd_port_nakai', False, False, 'Lzd Building: Temple of Itzl'),
-    37506: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_port_nakai_quetzl', ItemType.building, 0, 'Progressive lzd_port_nakai', False, False, 'Lzd Building: Temple of Quetzl'),
-    37507: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_port_nakai_xholankha', ItemType.building, 0, 'Progressive lzd_port_nakai', False, False, 'Lzd Building: Temple of Xholankha'),
-    37508: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_port_nakai_xholankha', ItemType.building, 0, 'Progressive lzd_port_nakai', False, False, 'Lzd Building: Temple of Xholankha'),
-    37509: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'wh2_dlc13_lzd_port_nakai_xholankha', ItemType.building, 0, 'Progressive lzd_port_nakai', False, False, 'Lzd Building: Temple of Xholankha'),
-    37510: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'Progressive lzd_nakai', ItemType.building, 0, None, False, True, 'Lzd Building: Temple of Xholankha'),
-    37511: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'Progressive lzd_port_nakai', ItemType.building, 0, None, False, True, 'Lzd Building: Temple of Xholankha'),
+
 }
