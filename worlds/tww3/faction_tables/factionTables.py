@@ -58,11 +58,11 @@ raceModuleDict: dict[str, ModuleType] = {
     "vampireCoast": vampireCoast,
     "VampireCounts": vampireCounts,
     "woodElves": woodElves,
-    "chaos": warriorsOfChaos,
-    "chaosKhorne": warriorsOfChaosKhorne,
-    "chaosNurgle": warriorsOfChaosNurgle,
-    "chaosSlaanesh": warriorsOfChaosSlaanesh,
-    "chaosTzeentch": warriorsOfChaosTzeentch,
+    #"chaos": warriorsOfChaos,
+    #"chaosKhorne": warriorsOfChaosKhorne,
+    #"chaosNurgle": warriorsOfChaosNurgle,
+    #"chaosSlaanesh": warriorsOfChaosSlaanesh,
+    #"chaosTzeentch": warriorsOfChaosTzeentch,
 }
 
 def getAllItems(playerRace = ""):

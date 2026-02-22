@@ -1,62 +1,22 @@
 from BaseClasses import ItemClassification as IC
 from .item_types import ItemType, ItemData, specialItemData
+from .warriorsOfChaos import baseUnits, tzeentchUnits
+
 # @formatter:off
-units: dict[int, ItemData] = {
-    64000: ItemData(IC.useful, 1, 'wh3_twa08_tze_mon_lord_of_change_0_ror', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: The Golden Griffin of Theurgy (Lord of Change)'),
-    64001: ItemData(IC.useful, 1, 'wh3_main_tze_mon_spawn_of_tzeentch_0', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Spawn of Tzeentch'),
-    64002: ItemData(IC.useful, 1, 'wh3_main_tze_mon_soul_grinder_0', ItemType.unit, 4, 'Progressive chs_rng', 'Ctz Unit: Soul Grinder of Tzeentch'),
-    64003: ItemData(IC.useful, 1, 'wh3_main_tze_mon_lord_of_change_0', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: Lord of Change'),
-    64004: ItemData(IC.useful, 1, 'wh3_main_tze_mon_flamers_0', ItemType.unit, 2, 'Progressive chs_rng', 'Ctz Unit: Flamers of Tzeentch'),
-    64005: ItemData(IC.useful, 1, 'wh3_main_tze_inf_pink_horrors_1', ItemType.unit, 3, 'Progressive chs_rng', 'Ctz Unit: Exalted Pink Horrors of Tzeentch'),
-    64006: ItemData(IC.useful, 1, 'wh3_main_tze_inf_pink_horrors_0', ItemType.unit, 2, 'Progressive chs_rng', 'Ctz Unit: Pink Horrors of Tzeentch'),
-    64007: ItemData(IC.useful, 1, 'wh3_main_tze_inf_forsaken_0', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Forsaken of Tzeentch'),
-    64008: ItemData(IC.useful, 1, 'wh3_main_tze_cav_doom_knights_0', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: Doom Knights of Tzeentch'),
-    64009: ItemData(IC.useful, 1, 'wh3_main_tze_cav_chaos_knights_0', ItemType.unit, 3, 'war_beast', 'Ctz Unit: Chaos Knights of Tzeentch'),
-    64010: ItemData(IC.useful, 1, 'wh3_main_dae_inf_chaos_furies_0', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Furies'),
-    64011: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_mutalith_vortex_beast', ItemType.unit, 5, 'Progressive chs_inf', 'Ctz Unit: Mutalith Vortex Beast'),
-    64012: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_flamers_changebringers', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: Changebringers'),
-    64013: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_cockatrice', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Cockatrice'),
-    64014: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Tzaangors'),
-    64015: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_centigors_great_weapons', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Centigors of Tzeentch'),
-    64016: ItemData(IC.useful, 1, 'wh3_dlc20_tze_cha_vilitch', ItemType.unit, 0, 'Progressive chs_inf', 'Ctz Unit: Vilitch the Curseling'),
-    64017: ItemData(IC.useful, 1, 'wh3_dlc20_tze_cha_cultist_mtze_warshrine', ItemType.unit, 0, 'war_beast', 'Ctz Unit: Cultist of Tzeentch'),
-    64018: ItemData(IC.useful, 1, 'wh3_dlc20_chs_mon_warshrine_mtze', ItemType.unit, 3, 'war_beast', 'Ctz Unit: Chaos Warshrine of Tzeentch'),
-    64019: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chosen_mtze_halberds', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: Chosen of Tzeentch (Halberds)'),
-    64020: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chosen_mtze', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chosen of Tzeentch'),
-    64021: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chaos_warriors_mtze_halberds', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Warriors of Tzeentch (Halberds)'),
-    64022: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chaos_warriors_mtze', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Warriors of Tzeentch'),
-    64023: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chaos_marauders_mtze_spears', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Marauders of Tzeentch (Spears)'),
-    64024: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chaos_marauders_mtze', ItemType.unit, 1, 'Progressive chs_inf', 'Ctz Unit: Marauders of Tzeentch'),
-    64025: ItemData(IC.useful, 1, 'wh3_dlc20_chs_inf_aspiring_champions_mtze_ror', ItemType.unit, 4, 'Progressive chs_inf', 'Ctz Unit: The Severed Claw (Aspiring Champions)'),
-    64051: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cav_marauder_horsemen_mtze_javelins', ItemType.unit, 2, 'war_beast', 'Ctz Unit: Marauder Horsemen of Tzeentch'),
-    64052: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cav_chaos_knights_mtze_lances', ItemType.unit, 4, 'war_beast', 'Ctz Unit: Chaos Knights of Tzeentch (Lances)'),
-    64053: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cav_chaos_chariot_mtze', ItemType.unit, 2, 'Progressive chs_veh', 'Ctz Unit: Chaos Chariots of Tzeentch'),
-    64054: ItemData(IC.useful, 1, 'wh_main_chs_mon_trolls', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Trolls'),
-    64055: ItemData(IC.useful, 1, 'wh_main_chs_mon_giant', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chaos Giant'),
-    64056: ItemData(IC.useful, 1, 'wh_main_chs_mon_chaos_warhounds_1', ItemType.unit, 1, 'Progressive chs_inf', 'Ctz Unit: Chaos Warhounds (Poison)'),
-    64057: ItemData(IC.useful, 1, 'wh_main_chs_mon_chaos_warhounds_0', ItemType.unit, 1, 'Progressive chs_inf', 'Ctz Unit: Chaos Warhounds'),
-    64058: ItemData(IC.useful, 1, 'wh_main_chs_mon_chaos_spawn', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chaos Spawn'),
-    64059: ItemData(IC.useful, 1, 'wh_main_chs_inf_chosen_1', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chosen (Great Weapons)'),
-    64060: ItemData(IC.useful, 1, 'wh_main_chs_inf_chosen_0', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chosen'),
-    64061: ItemData(IC.useful, 1, 'wh_main_chs_inf_chaos_warriors_1', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Warriors (Halberds)'),
-    64062: ItemData(IC.useful, 1, 'wh_main_chs_inf_chaos_warriors_0', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Warriors'),
-    64063: ItemData(IC.useful, 1, 'wh_main_chs_inf_chaos_marauders_1', ItemType.unit, 1, 'Progressive chs_inf', 'Ctz Unit: Marauders (Great Weapons)'),
-    64064: ItemData(IC.useful, 1, 'wh_main_chs_inf_chaos_marauders_0', ItemType.unit, 1, 'Progressive chs_inf', 'Ctz Unit: Marauders'),
-    64088: ItemData(IC.useful, 1, 'wh_main_chs_cav_marauder_horsemen_1', ItemType.unit, 2, 'war_beast', 'Ctz Unit: Marauder Horsemen (Throwing Axes)'),
-    64089: ItemData(IC.useful, 1, 'wh_main_chs_cav_marauder_horsemen_0', ItemType.unit, 2, 'war_beast', 'Ctz Unit: Marauder Horsemen'),
-    64090: ItemData(IC.useful, 1, 'wh_main_chs_cav_chaos_knights_1', ItemType.unit, 3, 'war_beast', 'Ctz Unit: Chaos Knights (Lances)'),
-    64091: ItemData(IC.useful, 1, 'wh_main_chs_cav_chaos_knights_0', ItemType.unit, 3, 'war_beast', 'Ctz Unit: Chaos Knights'),
-    64092: ItemData(IC.useful, 1, 'wh_main_chs_cav_chaos_chariot', ItemType.unit, 2, 'Progressive chs_veh', 'Ctz Unit: Chaos Chariots'),
-    64093: ItemData(IC.useful, 1, 'wh_dlc06_chs_inf_aspiring_champions_0', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Aspiring Champions'),
-    64094: ItemData(IC.useful, 1, 'wh_dlc06_chs_feral_manticore', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Feral Manticore'),
-    64095: ItemData(IC.useful, 1, 'wh_dlc06_chs_cav_marauder_horsemasters_0', ItemType.unit, 2, 'war_beast', 'Ctz Unit: Marauder Horsemasters'),
-    64096: ItemData(IC.useful, 1, 'wh_dlc01_chs_mon_trolls_1', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Trolls (Armoured)'),
-    64097: ItemData(IC.useful, 1, 'wh_dlc01_chs_inf_forsaken_0', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Forsaken'),
-    64098: ItemData(IC.useful, 1, 'wh_dlc01_chs_inf_chosen_2', ItemType.unit, 3, 'Progressive chs_inf', 'Ctz Unit: Chosen (Halberds)'),
-    64099: ItemData(IC.useful, 1, 'wh_dlc01_chs_inf_chaos_warriors_2', ItemType.unit, 2, 'Progressive chs_inf', 'Ctz Unit: Chaos Warriors (Great Weapons)'),
-    64100: ItemData(IC.useful, 1, 'wh_dlc01_chs_cha_qb_lord_of_change_0', ItemType.unit, 0, 'Progressive chs_inf', 'Ctz Unit: Lord of Change'),
-    64141: ItemData(IC.useful, 1, 'wh_dlc01_chs_cav_gorebeast_chariot', ItemType.unit, 3, 'Progressive chs_veh', 'Ctz Unit: Gorebeast Chariots')
-}
+units: dict[int, ItemData] = baseUnits
+units.update(tzeentchUnits)
+units.update({
+    48009: ItemData(IC.useful, 1, 'wh3_main_tze_inf_blue_horrors_0', ItemType.unit, 1, 'Progressive chs_inf', 'Chs Unit: Blue Horrors of Tzeentch'),
+    56029: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Tzaangors'),
+    56030: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_centigors_great_weapons', ItemType.unit, 2, 'Progressive chs_cav', 'Chs Unit: Centigors of Tzeentch'),
+    48011: ItemData(IC.useful, 1, 'wh3_main_tze_inf_pink_horrors_1', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Exalted Pink Horrors of Tzeentch'),
+
+    48035: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_pink_horrors_ror', ItemType.unit, 2, 'Progressive chs_inf', 'Chs Unit: The Sourguts (Pink Horrors of Tzeentch)'),
+    48038: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_screamers_ror', ItemType.unit, 2, 'Progressive chs_bst', 'Chs Unit: Shrieking Skyrays (Screamers of Tzeentch)'),
+    48041: ItemData(IC.useful, 1, 'wh3_twa06_tze_inf_pink_horrors_ror_0', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Blazing Squealers (Exalted Pink Horrors of Tzeentch)'),
+    48043: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_mutalith_vortex_beast_ror', ItemType.unit, 5, 'Progressive chs_bst', 'Chs Unit: Aeson the Fallen (Mutalith Vortex Beast)'),
+})
+
 
 buildings: dict[int, ItemData] = {
     64400: ItemData(IC.useful, 1, 'wh3_dlc20_foreign_slot_discovery_woc_1', ItemType.building, 0, 'Progressive foreign_slot_discovery_woc', 'Ctz Building: Rat Catcher Outpost'),
