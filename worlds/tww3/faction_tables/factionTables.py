@@ -16,6 +16,7 @@ from . import highElvesAislinn
 from . import khorne
 from . import kislev
 from . import lizardmen
+from . import lizardmenNakai
 from . import norsca
 from . import nurgle
 from . import ogreKingdoms
@@ -34,35 +35,36 @@ from . import woodElves
 from ..locations import createDiploRangeLocations
 
 raceModuleDict: dict[str, ModuleType] = {
-    "beastmen": beastmen,
-    "bretonnia": bretonnia,
-    "cathay": cathay,
-    "chaosDwarfs": chaosDwarfs,
-    "daemons": daemons,
-    "darkElves": darkElves,
-    "dwarfs": dwarfs,
-    "empire": empire,
-    "greenskins": greenskins,
-    "highElves": highElves,
-    "highElvesAislinn": highElvesAislinn,
-    "khorne": khorne,
-    "kislev": kislev,
-    "lizardmen": lizardmen,
-    "norsca": norsca,
-    "nurgle": nurgle,
-    "ogreKingdoms": ogreKingdoms,
-    "skaven": skaven,
-    "slaanesh": slaanesh,
-    "tombKings": tombKings,
-    "tzeentch": tzeentch,
-    "vampireCoast": vampireCoast,
-    "VampireCounts": vampireCounts,
-    "woodElves": woodElves,
-    #"chaos": warriorsOfChaos,
-    #"chaosKhorne": warriorsOfChaosKhorne,
-    #"chaosNurgle": warriorsOfChaosNurgle,
-    #"chaosSlaanesh": warriorsOfChaosSlaanesh,
-    #"chaosTzeentch": warriorsOfChaosTzeentch,
+    "beastmen": beastmen, #10000
+    "bretonnia": bretonnia, #12000
+    "cathay": cathay, #14000
+    "chaosDwarfs": chaosDwarfs, #16000
+    "daemons": daemons, #18000
+    "darkElves": darkElves, #20000
+    "dwarfs": dwarfs, #22000
+    "empire": empire, #24000
+    "greenskins": greenskins, #28000
+    "highElves": highElves, #30000
+    "highElvesAislinn": highElvesAislinn, #66000
+    "khorne": khorne, #32000
+    "kislev": kislev, #34000
+    "lizardmen": lizardmen, #36000
+    "lizardmenNakai": lizardmenNakai, #68000
+    "norsca": norsca, #38000
+    "nurgle": nurgle, #40000
+    "ogreKingdoms": ogreKingdoms, #26000
+    "skaven": skaven, #42000
+    "slaanesh": slaanesh, #44000
+    "tombKings": tombKings, #46000
+    "tzeentch": tzeentch, #48000
+    "vampireCoast": vampireCoast, #50000
+    "VampireCounts": vampireCounts, #52000
+    "woodElves": woodElves, #54000
+    "chaos": warriorsOfChaos, #56000
+    "chaosKhorne": warriorsOfChaosKhorne, #58000
+    "chaosNurgle": warriorsOfChaosNurgle, #60000
+    "chaosSlaanesh": warriorsOfChaosSlaanesh, #62000
+    "chaosTzeentch": warriorsOfChaosTzeentch, #64000
 }
 
 def getAllItems(playerRace = ""):
