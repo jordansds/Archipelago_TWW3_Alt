@@ -229,8 +229,7 @@ class techShuffle(DefaultOnToggle):
     display_name = "Tech Shuffle"
 
 class progressiveTechnologies(Choice):
-    """CURRENTLY DISABLED
-    If technologies should be progressive. Requires Tech Shuffle to be on."""
+    """If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
     option_true = 1
     option_false = 0
@@ -241,8 +240,7 @@ class buildingShuffle(DefaultOnToggle):
     display_name = "Building Shuffle"
 
 class progressiveBuildings(Choice):
-    """CURRENTLY DISABLED
-    If buildings should be progressive. Requires Building Shuffle to be on."""
+    """If buildings should be progressive. Requires Building Shuffle to be on."""
     display_name = "Progressive Buildings"
     option_true = 1
     option_false = 0
@@ -253,8 +251,7 @@ class unitShuffle(DefaultOnToggle):
     display_name = "Unit Shuffle"
 
 class progressiveUnits(Choice):
-    """CURRENTLY DISABLED
-    If units should be progressive. Requires Unit Shuffle to be on."""
+    """If units should be progressive. Requires Unit Shuffle to be on."""
     display_name = "Progressive Units"
     option_true = 1
     option_false = 0
