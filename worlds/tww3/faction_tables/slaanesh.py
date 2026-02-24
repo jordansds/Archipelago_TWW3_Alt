@@ -58,9 +58,9 @@ units: dict[int, ItemData] = {
 }
 
 buildings: dict[int, ItemData] = {
-    44402: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', ItemType.building, 0, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Warpstone Locus'),
-    44403: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', ItemType.building, 1, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Warpstone Traps'),
-    44404: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', ItemType.building, 2, 'Progressive foreign_slot_discovery_sla', 'Sla Building: Guarded Warpstone'),
+    44402: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', ItemType.building, 0, 'Progressive sla_foreign_slot_discovery', 'Sla Building: Warpstone Locus'),
+    44403: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', ItemType.building, 1, 'Progressive sla_foreign_slot_discovery', 'Sla Building: Warpstone Traps'),
+    44404: ItemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', ItemType.building, 2, 'Progressive sla_foreign_slot_discovery', 'Sla Building: Guarded Warpstone'),
     44405: ItemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_1', ItemType.building, 0, 'Progressive sla_allied_outpost', 'Sla Building: Slaaneshi Outpost'),
     44406: ItemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_2', ItemType.building, 1, 'Progressive sla_allied_outpost', 'Sla Building: Slaaneshi District'),
     44407: ItemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_3', ItemType.building, 2, 'Progressive sla_allied_outpost', 'Sla Building: Slaaneshi Colony'),
@@ -164,9 +164,9 @@ buildings: dict[int, ItemData] = {
     44505: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_major_4', ItemType.building, 3, 'Progressive sla_settlement_major', 'Sla Building: Dimensional Nexus'),
     44506: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_major_5_a', ItemType.building, 4, 'Progressive sla_settlement_major', 'Sla Building: Chaos Dreadhold'),
     44507: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_major_5', ItemType.building, 4, 'Progressive sla_settlement_major', 'Sla Building: Dimensional Cascade'),
-    44508: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_1', ItemType.building, 0, 'Progressive sla_settlement_minor', 'Sla Building: {{tr:building_culture_variants_name_wh3_main_sla_settlement_major_1wh3_main_sla_slaanesh}}'),
-    44509: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_2', ItemType.building, 1, 'Progressive sla_settlement_minor', 'Sla Building: {{tr:building_culture_variants_name_wh3_main_sla_settlement_major_2wh3_main_sla_slaanesh}}'),
-    44510: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_3', ItemType.building, 2, 'Progressive sla_settlement_minor', 'Sla Building: {{tr:building_culture_variants_name_wh3_main_sla_settlement_major_3wh3_main_sla_slaanesh}}'),
+    44508: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_1', ItemType.building, 0, 'Progressive sla_settlement_minor', 'Sla Building: Dimensional Tear'),
+    44509: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_2', ItemType.building, 1, 'Progressive sla_settlement_minor', 'Sla Building: Dimensional Breach'),
+    44510: ItemData(IC.useful, 1, 'wh3_main_sla_settlement_minor_3', ItemType.building, 2, 'Progressive sla_settlement_minor', 'Sla Building: Dimensional Rift'),
     44511: ItemData(IC.useful, 1, 'wh3_main_sla_walls_major_1', ItemType.building, 0, 'Progressive sla_walls_major', 'Sla Building: Daemonic Lurkers'),
     44512: ItemData(IC.useful, 1, 'wh3_main_sla_walls_major_2', ItemType.building, 1, 'Progressive sla_walls_major', 'Sla Building: Daemonic Gathering'),
     44513: ItemData(IC.useful, 1, 'wh3_main_sla_walls_major_3', ItemType.building, 2, 'Progressive sla_walls_major', 'Sla Building: Daemonic Locus'),
@@ -252,7 +252,7 @@ progUnits: dict[int, ItemData] = {
 }
 
 progBuildings: dict[int, ItemData] = {
-    45300: ItemData(IC.useful, 3, 'Progressive foreign_slot_discovery_sla', ItemType.building, 3, None, 'Progressive Sla Building: Foreign Slot Discovery Sla'),
+    45300: ItemData(IC.useful, 3, 'Progressive sla_foreign_slot_discovery', ItemType.building, 3, None, 'Progressive Sla Building: Foreign Slot Discovery'),
     45301: ItemData(IC.useful, 3, 'Progressive sla_allied_outpost', ItemType.building, 3, None, 'Progressive Sla Building: Allied Outpost'),
     45302: ItemData(IC.useful, 1, 'Progressive sla_barracks', ItemType.building, 1, None, 'Progressive Sla Building: Barracks'),
     45303: ItemData(IC.useful, 1, 'Progressive sla_cav', ItemType.building, 1, None, 'Progressive Sla Building: Cav'),

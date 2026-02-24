@@ -22,6 +22,7 @@ from . import nurgle
 from . import ogreKingdoms
 from . import skaven
 from . import slaanesh
+from . import slaaneshDechala
 from . import tombKings
 from . import tzeentch
 from . import vampireCoast
@@ -32,7 +33,6 @@ from . import warriorsOfChaosNurgle
 from . import warriorsOfChaosSlaanesh
 from . import warriorsOfChaosTzeentch
 from . import woodElves
-from ..locations import createDiploRangeLocations
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -55,6 +55,7 @@ raceModuleDict: dict[str, ModuleType] = {
     "ogreKingdoms": ogreKingdoms, #26000
     "skaven": skaven, #42000
     "slaanesh": slaanesh, #44000
+    "slaaneshDechala": slaaneshDechala, #70000
     "tombKings": tombKings, #46000
     "tzeentch": tzeentch, #48000
     "vampireCoast": vampireCoast, #50000
