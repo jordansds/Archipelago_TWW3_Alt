@@ -109,6 +109,7 @@ class TWW3Context(CommonContext):
         self.numberOfOrbs = 0
         self.numberOfDiploRanges = 0
         self.itemDict = {}
+        self.deathlink_pending = False
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -339,6 +340,28 @@ class TWW3Context(CommonContext):
             logger.error(e)
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
+    def on_deathlink(self, data: dict):
+        # What should be done when a deathlink message is recieved
+        if self.deathlink_pending:
+            return
+        self.deathlink_pending = True
+        #self.messenger.run(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(-10000,-1))')
+        #Do Deathlink stuff
+        #Tell Player Deathlink Received
+        super().on_deathlink(data)
+        asyncio.create_task(self.wait_and_lower_deathlink_flag())
+
+    def send_death(self, death_text: str = ""):
+        # Avoid sending death if we died from a deathlink
+        if self.deathlink_pending or not self.deathlink_enabled:
+            return
+        self.deathlink_pending = True
+        asyncio.create_task(super().send_death(death_text))
+        asyncio.create_task(self.wait_and_lower_deathlink_flag())
+
+    async def wait_and_lower_deathlink_flag(self):
+        await asyncio.sleep(3)
+        self.deathlink_pending = False
 
     def run_gui(self):
         from kvui import GameManager
