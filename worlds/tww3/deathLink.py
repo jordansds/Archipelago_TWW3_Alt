@@ -5,12 +5,12 @@ if TYPE_CHECKING:
     from .TWW3Client import TWW3Context
     from .world import TWW3World
 
-deathLinkFunctions: list[str] = [""]
+deathLinkFunctions: list[str] = ["", "", ""]
 #deathLinkOptions: list[str] = []
 
 #Pull the enabled deathlink functions chosen in the yaml
 def createDeathLinkFunctions(world: TWW3World):
-    deathLinkOptions: list[bool] = [world.options]
+    deathLinkOptions: list[bool] = [*world.options.death_link_effect]
     return [func for index, func in enumerate(deathLinkFunctions) if deathLinkOptions[index]]
 
 async def receiveDeathLink(ctx: 'CivVIContext', message: str):
@@ -25,3 +25,4 @@ async def checkDeathLink(ctx: 'CivVIContext', message: str):
     if ctx.death_link_just_changed:
         ctx.death_link_just_changed = False
         return
+

@@ -1,5 +1,6 @@
 from random import choice
-from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle
+from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
+    OptionSet
 from dataclasses import dataclass
 from . import settlementManager as sm
 
@@ -353,6 +354,16 @@ class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities."""
     display_name = "Randomize AI Personalities"
 
+class deathLink(DefaultOnToggle):
+    """NOT CURRENTLY ENABLED
+    Enable or Disable death linking."""
+    display_name = "Death Link"
+
+class deathLinkEffect(OptionSet):
+    display_name = "Death Link Effect"
+    valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury"]
+    default = frozenset({"25% Treasury"})
+
 @dataclass
 class TWW3Options(PerGameCommonOptions):
     starting_faction: faction
@@ -390,6 +401,9 @@ class TWW3Options(PerGameCommonOptions):
     trap_harmless: trapHarmless
     trap_weak: trapWeak
     trap_strong: trapStrong
+
+    death_link: deathLink
+    death_link_effect: deathLinkEffect
 
     randomize_personalities: randomizePersonalities
     ritual_shuffle: ritualShuffle
