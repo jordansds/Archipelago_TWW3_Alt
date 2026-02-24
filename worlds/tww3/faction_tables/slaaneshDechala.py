@@ -133,3 +133,7 @@ progBuildings: dict[int, ItemData] = {
 }
 
 progTechs: dict[int, ItemData] = slaanesh.progTechs
+
+special: dict[int, specialItemData] = {
+
+}
