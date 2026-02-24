@@ -85,7 +85,11 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
                 elif item.tier <= 2:
                     world.multiworld.local_early_items[world.player][item.readableName] = 1
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
+                #Need to change so that if progressive buildings, generate 1 less item
+                reduce = 0
+                if world.options.progressive_buildings: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                    reduce = 1
+                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1 - reduce):
                     tww3_item = world.create_item(item.readableName)
                     pool.append(tww3_item)
                     if not world.options.progressive_buildings:
