@@ -68,12 +68,16 @@ class Watcher:
         while True:
             line = self.file.readline()
             if line:
-                if gameMode == "conquest":
-                    logger.info("Sending Empire Size " + line.strip())
-                elif gameMode == "spheres":
-                    logger.info("Sending Location " + line.strip())
-                await self.context.check(line.strip())
-                continue
+                line = line.strip()
+                if line.split(" ")[0]  == "deathlink":
+                    await self.context.send_death(line.split(" ")[1])
+                else:
+                    if gameMode == "conquest":
+                        logger.info("Sending Empire Size " + line)
+                    elif gameMode == "spheres":
+                        logger.info("Sending Location " + line)
+                    await self.context.check(line)
+                    continue
             await asyncio.sleep(0.1)
 
             try:
@@ -109,7 +113,7 @@ class TWW3Context(CommonContext):
         self.numberOfOrbs = 0
         self.numberOfDiploRanges = 0
         self.itemDict = {}
-        self.deathlink_pending = False
+        self.deathLinkPending = False
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -122,6 +126,10 @@ class TWW3Context(CommonContext):
             self.on_connected(args)
         elif cmd == "ReceivedItems":
             self.on_received_items(args)
+        elif cmd == "Bounced":
+            if "tags" in args:
+                if "DeathLink" in args["tags"]:
+                    self.on_deathlink(args["data"])
 
     def on_connected(self, args: dict):
         version = TWW3World.world_version.as_simple_string()
@@ -134,6 +142,7 @@ class TWW3Context(CommonContext):
             logger.error(f"WARNING: Client ({version}) does not match the server. Server must be using the old TWW3 APWorld!")
 
         self.path = TWW3World.settings.tww3_path
+
         
         if not self.path or not os.path.exists(self.path):
             logger.error('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
@@ -144,6 +153,12 @@ class TWW3Context(CommonContext):
 
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
+
+        self.deathLinkEnabled = args['slot_data']["death_link"]
+        if self.deathLinkEnabled:
+        #if "death_link" in self.hades_slot_data and self.hades_slot_data["death_link"]:
+            asyncio.create_task(self.update_death_link(True))
+            logger.info("DeathLink is enabled, good luck...")
             
         self.watcher = Watcher(os.path.join(self.path, "engine.out"), self)
         watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
@@ -340,28 +355,28 @@ class TWW3Context(CommonContext):
             logger.error(e)
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
-    def on_deathlink(self, data: dict):
+    async def on_deathlink(self, data: dict):
         # What should be done when a deathlink message is recieved
-        if self.deathlink_pending:
+        if self.deathLinkPending:
             return
-        self.deathlink_pending = True
+        self.deathLinkPending = True
         #self.messenger.run(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(-10000,-1))')
         #Do Deathlink stuff
         #Tell Player Deathlink Received
         super().on_deathlink(data)
-        asyncio.create_task(self.wait_and_lower_deathlink_flag())
+        asyncio.create_task(self.resetDeathLinkFlag())
 
-    def send_death(self, death_text: str = ""):
+    async def send_death(self, death_text: str = ""):
         # Avoid sending death if we died from a deathlink
-        if self.deathlink_pending or not self.deathlink_enabled:
+        if self.deathLinkPending or not self.deathLinkEnabled:
             return
-        self.deathlink_pending = True
+        self.deathLinkPending = True
         asyncio.create_task(super().send_death(death_text))
-        asyncio.create_task(self.wait_and_lower_deathlink_flag())
+        asyncio.create_task(self.resetDeathLinkFlag())
 
-    async def wait_and_lower_deathlink_flag(self):
+    async def resetDeathLinkFlag(self):
         await asyncio.sleep(3)
-        self.deathlink_pending = False
+        self.deathLinkPending = False
 
     def run_gui(self):
         from kvui import GameManager

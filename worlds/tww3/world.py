@@ -81,7 +81,8 @@ class TWW3World(World):
                                         "progressive_units",
                                         "starting_tier",
                                         "randomize_personalities",
-                                        "ritual_shuffle"
+                                        "ritual_shuffle",
+                                        "death_link"
                                          )
 
         if self.options.game_mode == "conquest":
