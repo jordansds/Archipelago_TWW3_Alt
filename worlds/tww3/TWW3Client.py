@@ -360,7 +360,7 @@ class TWW3Context(CommonContext):
         if self.deathLinkPending:
             return
         self.deathLinkPending = True
-        #self.messenger.run(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(-10000,-1))')
+        self.messenger.run(f'remove_treasury_percentage(25)')
         #Do Deathlink stuff
         #Tell Player Deathlink Received
         super().on_deathlink(data)
