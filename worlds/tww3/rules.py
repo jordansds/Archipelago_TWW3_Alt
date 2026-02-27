@@ -6,6 +6,7 @@ from BaseClasses import ItemClassification
 import math
 from worlds.generic.Rules import add_rule, set_rule
 from .item_tables.progression_table import progressionDict
+from collections import Counter
 
 def setVictoryEvent(world: TWW3World) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
@@ -20,9 +21,7 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
     if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
         worldRegion = world.get_region("Old World")
 
-        world.item_name_groups = {
-            "Unlocks": set()
-        }
+        world.item_name_groups.update({"Unlocks": set()})
         #The counter that will determine the maximum number of items that can be prioritised
         counter = 0
         for item in world.multiworld.itempool:
@@ -45,12 +44,15 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
 
         elif world.options.game_mode == "spheres":
 
-            world.settlementManager.factionsToSpheres(world.options.sphere_count, world.options.sphere_radius)
-            world.settlementManager.get_settlement_spheres()
+            #world.settlementManager.factionsToSpheres(world.options.sphere_count, world.options.sphere_radius)
+            #world.settlementManager.get_settlement_spheres()
 
-            settlementsPerDiploRange = world.settlementManager.count_settlements_per_sphere(world.options.sphere_count)
+            settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
+            settlementsPerDiploRange = Counter(settlementDiploRange)
 
-            itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
+            #settlementsPerDiploRange = world.settlementManager.count_settlements_per_sphere(world.options.sphere_count)
+
+            itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange.values()]
 
             for location, requiredDiploRange in locationToDiploRange.items():
 
