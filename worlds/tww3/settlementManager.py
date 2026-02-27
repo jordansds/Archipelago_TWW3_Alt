@@ -408,7 +408,7 @@ settlementDict: dict[int, settlementData] = {
      95: settlementData('wh3_main_combi_region_dread_rock', 'regular', 972, 399, 'wh3_main_lzd_tepoks_spawn', 'jungle', 'Dread Rock'),
      96: settlementData('wh3_main_combi_region_village_of_the_moon', 'regular', 1251, 551, 'wh3_main_grn_dimned_sun', 'temperate', 'Village of the Moon'),
      97: settlementData('wh3_main_combi_region_fu_hung', 'regular', 1230, 376, 'wh3_main_cth_burning_wind_nomads', 'temperate', 'Fu Hung'),
-     98: settlementData('wh3_main_combi_region_great_desert_of_araby', 'regular', 487, 267, 'wh3_main_ogre_the_famished', '', ''),
+     98: settlementData('wh3_main_combi_region_great_desert_of_araby', 'regular', 487, 267, 'wh3_main_ogre_the_famished', 'desert', 'Great Desert of Araby'),
      99: settlementData('wh3_main_combi_region_tlaqua', 'regular', 544, 203, 'wh2_main_lzd_tlaqua', 'jungle', 'Tlaqua'),
      100: settlementData('wh3_main_combi_region_skrap_towers', 'regular', 1014, 449, 'wh3_main_skv_clan_treecherik', 'temperate', 'Skrap Towers'),
      101: settlementData('wh3_main_combi_region_fort_oberstyre', 'regular', 668, 621, 'wh_main_vmp_rival_sylvanian_vamps', 'temperate', 'Fort Oberstyre'),
@@ -711,7 +711,7 @@ settlementDict: dict[int, settlementData] = {
      398: settlementData('wh3_main_combi_region_har_ganeth', 'regular', 212, 827, 'wh2_main_def_har_ganeth', 'frozen', 'Har Ganeth'),
      399: settlementData('wh3_main_combi_region_karag_orrud', 'regular', 720, 309, 'wh2_main_grn_arachnos', 'mountain', 'Karag Orrud'),
      400: settlementData('wh3_main_combi_region_mount_athull', 'regular', 299, 36, 'wh3_main_kho_brazen_throne', 'chaotic wasteland', 'Mount Athull'),
-     401: settlementData('wh3_main_combi_region_worlds_edge_archway', 'regular', 819, 563, 'wh_main_grn_bloody_spearz', '', ''),
+     401: settlementData('wh3_main_combi_region_worlds_edge_archway', 'regular', 819, 563, 'wh_main_grn_bloody_spearz', 'mountain', "World's Edge Archway"),
      402: settlementData('wh3_main_combi_region_black_fortress', 'dark fortress', 950, 479, 'wh3_dlc23_chd_legion_of_azgorh', 'wasteland', 'Black Fortress'),
      403: settlementData('wh3_main_combi_region_port_reaver', 'regular', 98, 481, 'wh2_main_emp_new_world_colonies', 'savannah', 'Port Reaver'),
      404: settlementData('wh3_main_combi_region_chaqua', 'regular', 174, 273, 'wh3_dlc20_tze_apostles_of_change', 'jungle', 'Chaqua'),
@@ -1074,7 +1074,7 @@ class SettlementManager:
 
         return self.shuffledSettlementDict
 
-    def getRequiredDiploRange(self, sphereCount: int, sphereRadius: int) -> tuple[list[int], dict[str, int]]:
+    def getRequiredDiploRange(self, sphereCount, sphereRadius: int) -> tuple[list[int], dict[str, int]]:
         #factionSpheres: list[list[str]] = []
         factionSpheres: dict[str, int] = {}
         settlementSpheres: list[int] = []
@@ -1089,7 +1089,8 @@ class SettlementManager:
             else:
                 factionSpheres.update({settlement.faction: sphere})
                 #factionSpheres.append([settlement.faction, str(sphereCount)])
-                settlementSpheres.append(sphereCount)
+                settlementSpheres.append(sphereCount.value + 1)
+
         return settlementSpheres, factionSpheres
 
     def debug(self):
