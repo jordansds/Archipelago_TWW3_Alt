@@ -881,6 +881,10 @@ settlementDict: dict[int, settlementData] = {
      568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone')
 }
 
+# Return the distance between two settlements
+def getDistance(s1: settlementData, s2: settlementData) -> int:
+    return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
+
 class SettlementManager:
 
     def __init__(self, random, playerFaction, playerKey, startingSettlementCount):
@@ -904,9 +908,6 @@ class SettlementManager:
     def getSettlements(self):
         self.shuffledSettlementDict = settlementDict
         return self.shuffledSettlementDict
-    # Return the distance between two settlements
-    def getDistance(self, s1: settlementData, s2: settlementData) -> int:
-        return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
     #Remove the settlements that have been assigned.
     def removeKeys(self) -> None:
         for key in self.keysToRemove:
@@ -953,10 +954,10 @@ class SettlementManager:
             # Assign the player 2 more settlements
             for i in range(self.startingSettlementCount - 1):
                 distance: int = 10000
-                for i, sKey in enumerate(self.settlementKeys):
+                for j, sKey in enumerate(self.settlementKeys):
                     settlement: settlementData = settlementDict[sKey]
 
-                    settlementDistance: int = self.getDistance(settlement, playerSettlement)
+                    settlementDistance: int = getDistance(settlement, playerSettlement)
 
                     if settlementDistance < distance:
                         distance = settlementDistance
@@ -1045,7 +1046,7 @@ class SettlementManager:
                 if settlementsOwned == 3:
                     continue
 
-                newDistance: int = self.getDistance(settlement, assignedSettlement)
+                newDistance: int = getDistance(settlement, assignedSettlement)
 
                 if newDistance < distance and settlementsOwned < 3:
                     distance = newDistance
@@ -1054,7 +1055,7 @@ class SettlementManager:
             self.assignSettlement(sKey, settlement, closestFaction)
             #self.shuffledFactionList.append(closestFaction)
 
-    def randomiseHordes(self) -> list[list[str]]:
+    def randomiseHordes(self) -> dict[str, str]:
         hordes: dict[str, str] = {}
         for fKey in self.factionKeys:
             faction = factionDict[fKey]
@@ -1073,14 +1074,14 @@ class SettlementManager:
 
         return self.shuffledSettlementDict
 
-    def getRequiredDiploRange(self, sphereCount: int, sphereRadius: int) -> tuple[list[int], list[list[str]]]:
-        factionSpheres: list[list[str]] = []
+    def getRequiredDiploRange(self, sphereCount: int, sphereRadius: int) -> tuple[list[int], dict[str, int]]:
+        #factionSpheres: list[list[str]] = []
         factionSpheres: dict[str, int] = {}
         settlementSpheres: list[int] = []
         #playerCapital = next(iter(self.shuffledSettlementDict.values()))
         playerCapital = [settlement for settlement in self.shuffledSettlementDict.values() if settlement.faction == self.playerFaction.name][0]
         for settlement in self.shuffledSettlementDict.values():
-            distance = self.getDistance(playerCapital, settlement)
+            distance = getDistance(playerCapital, settlement)
             sphere = int(distance / sphereRadius)
             if sphere <= sphereCount:
                 factionSpheres.update({settlement.faction: sphere})
