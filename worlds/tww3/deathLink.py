@@ -9,6 +9,8 @@ deathLinkFunctionDict: dict[str, str] = {
     "10% Treasury" : "remove_treasury_percentage(10)",
     "25% Treasury": "remove_treasury_percentage(25)",
     "50% Treasury": "remove_treasury_percentage(50)",
+    "Wound Hero": "wound_random_hero()",
+    "Wound Lord": "wound_random_lord()",
 }
 #deathLinkOptions: list[str] = []
 
