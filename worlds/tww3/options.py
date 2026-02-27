@@ -361,7 +361,7 @@ class deathLink(DefaultOnToggle):
 
 class deathLinkEffect(OptionSet):
     display_name = "Death Link Effect"
-    valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury"]
+    valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement"]
     default = frozenset({"25% Treasury"})
 
 @dataclass

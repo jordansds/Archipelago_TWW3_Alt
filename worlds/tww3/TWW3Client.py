@@ -14,6 +14,7 @@ from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
 from . import TWW3World
 from . import settlementManager as sm
+from . import deathLink
 import os
 from NetUtils import ClientStatus
 
@@ -143,13 +144,12 @@ class TWW3Context(CommonContext):
 
         self.path = TWW3World.settings.tww3_path
 
-        
+
         if not self.path or not os.path.exists(self.path):
-            logger.error('ERROR: Could not find Warhammer folder. Please remove path from host.yaml.')
+            logger.error('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
             Utils.async_start(self.disconnect())
-        if not os.path.isfile(os.path.join(self.path, 'Warhammer3.exe')):
-        #if not os.path.isfile(self.path + '\\Warhammer3.exe'):
-            logger.error('ERROR: Could not find Warhammer3.exe. Please remove path from host.yaml.')
+        if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")):
+            logger.error('ERROR: Could not find Warhammer3.exe. Please correct the path in your host.yaml.')
             Utils.async_start(self.disconnect())
 
         self.gameMode = args['slot_data']['game_mode']
@@ -157,13 +157,16 @@ class TWW3Context(CommonContext):
 
         self.deathLinkEnabled = args['slot_data']["death_link"]
         if self.deathLinkEnabled:
-        #if "death_link" in self.hades_slot_data and self.hades_slot_data["death_link"]:
             asyncio.create_task(self.update_death_link(True))
             logger.info("DeathLink is enabled, good luck...")
-            
-        self.watcher = Watcher(os.path.join(self.path, 'engine.out'), self)
+
+        self.deathLinkEffects = args['slot_data']["death_link_effects"]
+
+        self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
+
+        self.watcher = Watcher(os.path.join(self.path, "engine.out"), self)
         watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
-        self.messenger = Messenger(os.path.join(self.path, 'engine.in'))
+        self.messenger = Messenger(os.path.join(self.path, "engine.in"))
 
         self.playerFaction = sm.factionDict[args["slot_data"]["starting_faction"]].name
 

@@ -11,11 +11,13 @@ deathLinkFunctionDict: dict[str, str] = {
     "50% Treasury": "remove_treasury_percentage(50)",
     "Wound Hero": "wound_random_hero()",
     "Wound Lord": "wound_random_lord()",
+    "Rebellion": "force_random_strong_rebellion_for_player()",
+    "Raze Random Settlement": "raze_random_settlement()"
 }
 #deathLinkOptions: list[str] = []
 
 #Pull the enabled deathlink functions chosen in the yaml
-def createDeathLinkFunctions(world: TWW3World):
-    return [deathLinkFunctionDict[key] for key in world.options.death_link_effect]
+def createDeathLinkFunctions(deathLinkEffects):
+    return [deathLinkFunctionDict[key] for key in deathLinkEffects]
     #deathLinkOptions: list[bool] = [*world.options.death_link_effect]
     #return [func for key, func in enumerate(deathLinkFunctions) if deathLinkOptions[index]]
