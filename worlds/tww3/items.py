@@ -7,15 +7,14 @@ from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
 import math
 
-from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, \
-    trapStrongDict, trapWeakDict
+from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapStrongDict, trapWeakDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
-from . import settlementManager as sm
+#from . import settlementManager as sm
 from .faction_tables import factionTables
 
-from .faction_tables.item_types import ItemType, ItemData
+from .faction_tables.item_types import ItemData
 from .options import TWW3Options
 
 itemDict = {}
@@ -118,14 +117,11 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
 
     return pool
 
+#Unused - code does not appear to have ever worked since Sinthoras began
 def generateRitualItems(world: TWW3World, pool: list) -> list:
     if world.options.ritual_shuffle:
         for key, item in ritualDict.items():
-            if (item.faction == world.playerFaction.name or 
-                (world.playerFaction.name == "wh3_dlc27_hef_aislinn" and item.faction == "wh2_main_hef_eataine") or 
-                (world.playerFaction.name == "wh3_dlc27_nor_sayl" and item.faction == "wh_dlc08_nor_norsca") or
-                (world.playerFaction.name == "wh3_dlc27_sla_the_tormentors" and item.faction == "wh3_main_sla_seducers_of_slaanesh") or
-                (world.playerFaction.name == "wh3_dlc27_sla_masque_of_slaanesh" and item.faction == "wh3_main_sla_seducers_of_slaanesh")):
+            if item.faction == world.playerFaction.name:
                 for i in range(item.count):
                     tww3_item = world.create_item(item.name)
                     pool.append(tww3_item)
@@ -185,13 +181,14 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
 
 def generateFillerStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerStrongDict.keys()))
+    #This item is considered a trap in conquest
     if key == 1301 and world.options.game_mode == "conquest":
         key = 1302
     # get legendary ancillary
     if key == 1302:
         ancillaries_table = ancillariesLegendaryDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
-        key = world.item_name_to_id[name]
+        #key = world.item_name_to_id[name]
     else:
         name = itemDict[key].readableName
         
