@@ -408,7 +408,7 @@ settlementDict: dict[int, settlementData] = {
      95: settlementData('wh3_main_combi_region_dread_rock', 'regular', 972, 399, 'wh3_main_lzd_tepoks_spawn', 'jungle', 'Dread Rock'),
      96: settlementData('wh3_main_combi_region_village_of_the_moon', 'regular', 1251, 551, 'wh3_main_grn_dimned_sun', 'temperate', 'Village of the Moon'),
      97: settlementData('wh3_main_combi_region_fu_hung', 'regular', 1230, 376, 'wh3_main_cth_burning_wind_nomads', 'temperate', 'Fu Hung'),
-     98: settlementData('wh3_main_combi_region_great_desert_of_araby', 'regular', 487, 267, 'wh3_main_ogre_the_famished', '', ''),
+     98: settlementData('wh3_main_combi_region_great_desert_of_araby', 'regular', 487, 267, 'wh3_main_ogre_the_famished', 'desert', 'Great Desert of Araby'),
      99: settlementData('wh3_main_combi_region_tlaqua', 'regular', 544, 203, 'wh2_main_lzd_tlaqua', 'jungle', 'Tlaqua'),
      100: settlementData('wh3_main_combi_region_skrap_towers', 'regular', 1014, 449, 'wh3_main_skv_clan_treecherik', 'temperate', 'Skrap Towers'),
      101: settlementData('wh3_main_combi_region_fort_oberstyre', 'regular', 668, 621, 'wh_main_vmp_rival_sylvanian_vamps', 'temperate', 'Fort Oberstyre'),
@@ -711,7 +711,7 @@ settlementDict: dict[int, settlementData] = {
      398: settlementData('wh3_main_combi_region_har_ganeth', 'regular', 212, 827, 'wh2_main_def_har_ganeth', 'frozen', 'Har Ganeth'),
      399: settlementData('wh3_main_combi_region_karag_orrud', 'regular', 720, 309, 'wh2_main_grn_arachnos', 'mountain', 'Karag Orrud'),
      400: settlementData('wh3_main_combi_region_mount_athull', 'regular', 299, 36, 'wh3_main_kho_brazen_throne', 'chaotic wasteland', 'Mount Athull'),
-     401: settlementData('wh3_main_combi_region_worlds_edge_archway', 'regular', 819, 563, 'wh_main_grn_bloody_spearz', '', ''),
+     401: settlementData('wh3_main_combi_region_worlds_edge_archway', 'regular', 819, 563, 'wh_main_grn_bloody_spearz', 'mountain', "World's Edge Archway"),
      402: settlementData('wh3_main_combi_region_black_fortress', 'dark fortress', 950, 479, 'wh3_dlc23_chd_legion_of_azgorh', 'wasteland', 'Black Fortress'),
      403: settlementData('wh3_main_combi_region_port_reaver', 'regular', 98, 481, 'wh2_main_emp_new_world_colonies', 'savannah', 'Port Reaver'),
      404: settlementData('wh3_main_combi_region_chaqua', 'regular', 174, 273, 'wh3_dlc20_tze_apostles_of_change', 'jungle', 'Chaqua'),
@@ -881,6 +881,10 @@ settlementDict: dict[int, settlementData] = {
      568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone')
 }
 
+# Return the distance between two settlements
+def getDistance(s1: settlementData, s2: settlementData) -> int:
+    return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
+
 class SettlementManager:
 
     def __init__(self, random, playerFaction, playerKey, startingSettlementCount):
@@ -904,9 +908,6 @@ class SettlementManager:
     def getSettlements(self):
         self.shuffledSettlementDict = settlementDict
         return self.shuffledSettlementDict
-    # Return the distance between two settlements
-    def getDistance(self, s1: settlementData, s2: settlementData) -> int:
-        return ((s1.x-s2.x)**2 + (s1.y-s2.y)**2)**0.5
     #Remove the settlements that have been assigned.
     def removeKeys(self) -> None:
         for key in self.keysToRemove:
@@ -953,10 +954,10 @@ class SettlementManager:
             # Assign the player 2 more settlements
             for i in range(self.startingSettlementCount - 1):
                 distance: int = 10000
-                for i, sKey in enumerate(self.settlementKeys):
+                for j, sKey in enumerate(self.settlementKeys):
                     settlement: settlementData = settlementDict[sKey]
 
-                    settlementDistance: int = self.getDistance(settlement, playerSettlement)
+                    settlementDistance: int = getDistance(settlement, playerSettlement)
 
                     if settlementDistance < distance:
                         distance = settlementDistance
@@ -1045,7 +1046,7 @@ class SettlementManager:
                 if settlementsOwned == 3:
                     continue
 
-                newDistance: int = self.getDistance(settlement, assignedSettlement)
+                newDistance: int = getDistance(settlement, assignedSettlement)
 
                 if newDistance < distance and settlementsOwned < 3:
                     distance = newDistance
@@ -1054,7 +1055,7 @@ class SettlementManager:
             self.assignSettlement(sKey, settlement, closestFaction)
             #self.shuffledFactionList.append(closestFaction)
 
-    def randomiseHordes(self) -> list[list[str]]:
+    def randomiseHordes(self) -> dict[str, str]:
         hordes: dict[str, str] = {}
         for fKey in self.factionKeys:
             faction = factionDict[fKey]
@@ -1073,14 +1074,14 @@ class SettlementManager:
 
         return self.shuffledSettlementDict
 
-    def getRequiredDiploRange(self, sphereCount: int, sphereRadius: int) -> tuple[list[int], list[list[str]]]:
-        factionSpheres: list[list[str]] = []
+    def getRequiredDiploRange(self, sphereCount, sphereRadius: int) -> tuple[list[int], dict[str, int]]:
+        #factionSpheres: list[list[str]] = []
         factionSpheres: dict[str, int] = {}
         settlementSpheres: list[int] = []
         #playerCapital = next(iter(self.shuffledSettlementDict.values()))
         playerCapital = [settlement for settlement in self.shuffledSettlementDict.values() if settlement.faction == self.playerFaction.name][0]
         for settlement in self.shuffledSettlementDict.values():
-            distance = self.getDistance(playerCapital, settlement)
+            distance = getDistance(playerCapital, settlement)
             sphere = int(distance / sphereRadius)
             if sphere <= sphereCount:
                 factionSpheres.update({settlement.faction: sphere})
@@ -1088,7 +1089,8 @@ class SettlementManager:
             else:
                 factionSpheres.update({settlement.faction: sphere})
                 #factionSpheres.append([settlement.faction, str(sphereCount)])
-                settlementSpheres.append(sphereCount)
+                settlementSpheres.append(sphereCount.value + 1)
+
         return settlementSpheres, factionSpheres
 
     def debug(self):

@@ -70,18 +70,29 @@ def createDiploRangeLocations(world: TWW3World) -> None:
 
     settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
 
-    for key, settlement in world.settlements.items():
-        locId = world.location_name_to_id[settlement.name]
-        location = TWW3Location(world.player, settlement.name, locId, worldRegion)
+    key = -1
+    for settlement in world.settlements.values():
+        key += 1
+        from collections import Counter
+        locId = world.location_name_to_id[settlement.readableName]
+        location = TWW3Location(world.player, settlement.readableName, locId, worldRegion)
 
-        if settlementDiploRange[key] == 0:
+        #print(f"{location} : {settlementDiploRange[key]}")
+
+        if settlementDiploRange[key] > world.options.sphere_count:
+            continue
+
+        elif settlementDiploRange[key] == 0:
             worldRegion.locations.append(location)
-            print(location)
+            #print(location)
 
-        elif 0 < settlementDiploRange[key] <= world.options.sphere_count:
+        elif settlementDiploRange[key] > 0:
             if settlement.faction != world.playerFaction.name:
                 set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
-                worldRegion.locations.append(location)
+            worldRegion.locations.append(location)
+                #print(location)
+
+    print(len(worldRegion.locations))
 
 
 

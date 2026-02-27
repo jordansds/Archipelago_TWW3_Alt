@@ -6,6 +6,7 @@ from BaseClasses import ItemClassification
 import math
 from worlds.generic.Rules import add_rule, set_rule
 from .item_tables.progression_table import progressionDict
+from collections import Counter
 
 def setVictoryEvent(world: TWW3World) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
@@ -20,9 +21,7 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
     if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
         worldRegion = world.get_region("Old World")
 
-        world.item_name_groups = {
-            "Unlocks": set()
-        }
+        world.item_name_groups.update({"Unlocks": set()})
         #The counter that will determine the maximum number of items that can be prioritised
         counter = 0
         for item in world.multiworld.itempool:
@@ -38,25 +37,29 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
                 empireSizeInterval = math.floor(index / (world.options.admin_capacity * world.options.checks_per_settlement))
                 # This sets the weighting for the item balancing.
                 # The -1 ensures space is left for the admin capacity items.
-                weight = world.options.checks_per_settlement * world.options.admin_capacity * world.options.balance / 100 - 1
+                weight = world.options.checks_per_settlement * world.options.admin_capacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 #print(f"{location}: {requiredUnlockItems}")
                 add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
 
         elif world.options.game_mode == "spheres":
 
-            world.settlementManager.factionsToSpheres(world.options.sphere_count, world.options.sphere_radius)
-            world.settlementManager.get_settlement_spheres()
+            settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
 
-            settlementsPerDiploRange = world.settlementManager.count_settlements_per_sphere(world.options.sphere_count)
+            #Number of settlements contained within each diplo range
+            settlementsPerDiploRange = Counter(settlementDiploRange)
+            settlementsPerDiploRange = [value for key, value in sorted(settlementsPerDiploRange.items())]
 
+            #Number of items to assign to the locations within each diplo range
             itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
 
-            for location, requiredDiploRange in locationToDiploRange.items():
+            settlementToDiploRange = [settlement.readableName for settlement in world.settlementManager.shuffledSettlementDict.values()]
+            settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(settlementDiploRange) if count <= world.options.sphere_count}
 
-                if itemsPerDiploRange[requiredDiploRange - 1] != 0:
-                    requiredUnlockItems = 0
-                    for i in range(0, requiredDiploRange - 1):
-                        requiredUnlockItems += itemsPerDiploRange[requiredDiploRange - 1]
-                    requiredUnlockItems = min(requiredUnlockItems, counter)
-                    add_rule(location, lambda state, new_sum=requiredUnlockItems: state.has_group("Unlocks", world.player, requiredUnlockItems))
+            for locationName, requiredDiploRange in settlementToDiploRange.items():
+
+                if requiredDiploRange > 0:
+                    location = world.get_location(locationName)
+                    requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
+
+                    add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))

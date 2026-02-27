@@ -5,7 +5,7 @@ from .options import TWW3Options
 import settings
 from . import items, locations, rules
 from . import settlementManager as sm
-from .item_tables.ancillaries_table import ancillariesRegularDict
+#from .item_tables.ancillaries_table import ancillariesRegularDict
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
 #    game = "Total War Warhammer 3"  # name of the game/world this location is in
