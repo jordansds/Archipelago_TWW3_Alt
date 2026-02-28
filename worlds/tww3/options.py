@@ -355,14 +355,14 @@ class randomizePersonalities(DefaultOnToggle):
     display_name = "Randomize AI Personalities"
 
 class deathLink(DefaultOnToggle):
-    """NOT CURRENTLY ENABLED
-    Enable or Disable death linking."""
+    """Enable or Disable death linking."""
     display_name = "Death Link"
 
 class deathLinkEffect(OptionSet):
+    """Valid options for death link effect. Include as many or as few as you like in the list."""
     display_name = "Death Link Effect"
     valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)"]
-    default = frozenset({"25% Treasury"})
+    #default = frozenset({"10% Treasury", "25% Treasury"})
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -403,7 +403,7 @@ class TWW3Options(PerGameCommonOptions):
     trap_strong: trapStrong
 
     death_link: deathLink
-    death_link_effect: deathLinkEffect
+    death_link_effects: deathLinkEffect
 
     randomize_personalities: randomizePersonalities
     ritual_shuffle: ritualShuffle

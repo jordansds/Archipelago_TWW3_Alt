@@ -4,6 +4,7 @@ import asyncio
 import colorama
 import logging
 from collections.abc import Sequence
+import random
 
 from BaseClasses import ItemClassification as IC
 from .faction_tables import factionTables
@@ -155,6 +156,10 @@ class TWW3Context(CommonContext):
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
 
+        self.watcher = Watcher(os.path.join(self.path, "engine.out"), self)
+        watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
+        self.messenger = Messenger(os.path.join(self.path, "engine.in"))
+
         self.deathLinkEnabled = args['slot_data']["death_link"]
         if self.deathLinkEnabled:
             asyncio.create_task(self.update_death_link(True))
@@ -163,10 +168,6 @@ class TWW3Context(CommonContext):
         self.deathLinkEffects = args['slot_data']["death_link_effects"]
 
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
-
-        self.watcher = Watcher(os.path.join(self.path, "engine.out"), self)
-        watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
-        self.messenger = Messenger(os.path.join(self.path, "engine.in"))
 
         self.playerFaction = sm.factionDict[args["slot_data"]["starting_faction"]].name
 
@@ -364,7 +365,8 @@ class TWW3Context(CommonContext):
         if self.deathLinkPending:
             return
         self.deathLinkPending = True
-        self.messenger.run(f'remove_treasury_percentage(25)')
+        self.messenger.run(random.choice(self.deathLinkOptions))
+        #self.messenger.run(f'remove_treasury_percentage(25)')
         #Do Deathlink stuff
         #Tell Player Deathlink Received
         super().on_deathlink(data)
