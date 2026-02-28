@@ -85,6 +85,7 @@ class TWW3World(World):
                                         "death_link",
                                         "death_link_effects"
                                          )
+        print(self.options.death_link_effects.value)
 
         if self.options.game_mode == "conquest":
             slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
