@@ -43,6 +43,17 @@ class specialItemData(NamedTuple):
     isProgressionItem: bool
     readableName: str
 
+class modItemData(NamedTuple):
+    classification: ItemClassification
+    count: int
+    race: str
+    faction: str
+    name: str
+    type: ItemType
+    tier: int
+    progressionGroup: str
+    readableName: str
+
 class factionData(NamedTuple):
     name: str
     isPlayable: bool

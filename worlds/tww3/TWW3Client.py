@@ -199,7 +199,7 @@ class TWW3Context(CommonContext):
         self.progressiveBuildings = args['slot_data']['progressive_buildings']
         self.progressiveUnits = args['slot_data']['progressive_units']
         self.startingTier = args['slot_data']['starting_tier']
-        self.shuffleRituals = args['slot_data']['ritual_shuffle']
+        #self.shuffleRituals = args['slot_data']['ritual_shuffle']
         self.randomizePersonalities = args['slot_data']['randomize_personalities']
         self.factionShuffle = args['slot_data']['faction_shuffle']
 
@@ -218,8 +218,10 @@ class TWW3Context(CommonContext):
             for key, settlement in sm.settlementDict.items():
                 self.locationLookup[settlement.readableName] = key + offset
 
+        self.modList = args['slot_data']['mod_list']
+        logger.info(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
-        self.itemDict.update(factionTables.getAllItems(self.playerRace))
+        self.itemDict.update(factionTables.getAllItems(self.playerRace, self.modList))
         #print(self.itemDict)
         self.itemDict.update(fillerWeakDict)
         self.itemDict.update(fillerStrongDict)
@@ -449,10 +451,10 @@ class EngineInitializer:
         ###
         #Locks rituals if randomised
         ###            
-        if context.shuffleRituals:
-            for key, ritual in ritualDict.items():
-                if ritual.faction == self.playerFaction:
-                    messenger.run("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (self.playerFaction, ritual.name))
+        #if context.shuffleRituals:
+        #    for key, ritual in ritualDict.items():
+        #        if ritual.faction == self.playerFaction:
+        #            messenger.run("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (self.playerFaction, ritual.name))
                     
         ###
         #Disables techs/buildings/units if randomised

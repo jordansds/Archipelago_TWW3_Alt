@@ -14,7 +14,7 @@ from .item_tables.progression_table import progressionDict
 #from . import settlementManager as sm
 from .faction_tables import factionTables
 
-from .faction_tables.item_types import ItemData
+from .faction_tables.item_types import ItemData, ItemType
 from .options import TWW3Options
 
 itemDict = {}
@@ -55,7 +55,8 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateBuildingItems(world, pool)
     pool = generateTechnologyItems(world, pool)
     pool = generateSpecialItems(world, pool)
-    pool = generateRitualItems(world, pool)
+    pool = generateModdedItems(world, pool)
+
     pool = generateExpansionItems(world, pool)
 
     pool = generateFillerItems(world, pool)
@@ -109,15 +110,27 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionTables.getSpecial(world):
         if item.forceEarly:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
-        for i in range(item.count):
-            tww3_item = world.create_item(item.readableName)
-            pool.append(tww3_item)
-            if not item.isProgressionItem:
-                world.itemKeys.append(key)
+        if item.tier > world.options.starting_tier or item.type == ItemType.tech:
+            for i in range(item.count):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if not item.isProgressionItem:
+                    world.itemKeys.append(key)
 
     return pool
 
-#Unused - code does not appear to have ever worked since Sinthoras began
+def generateModdedItems(world: TWW3World, pool: list) -> list:
+    for key, item in factionTables.getModdedItems(world.playerFaction.race, world.playerFaction.race, world.options.mod_list):
+        if item.tier > world.options.starting_tier:
+            for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if not world.options.progressive_units:
+                    world.itemKeys.append(key)
+
+    return pool
+
+#Unused - code does not appear to have ever worked since Sinthoras created mod
 def generateRitualItems(world: TWW3World, pool: list) -> list:
     if world.options.ritual_shuffle:
         for key, item in ritualDict.items():

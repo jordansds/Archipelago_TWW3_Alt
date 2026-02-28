@@ -258,14 +258,6 @@ class progressiveUnits(Choice):
     option_false = 0
     default = 0
 
-class ritualShuffle(Choice):
-    """CURRENTLY DISABLED - I don't think this ever worked.
-    Should faction mechanics like rituals be shuffled? Will make the game harder.
-    Experimental feature, report on Discord if this does/does not work."""
-    display_name = "Shuffle Faction Mechanics"
-    option_false = 0
-    default = 0
-
 class startingTier(Range):
     """Start with buildings and units of this tier already unlocked."""
     display_name = "Starting Tier"
@@ -360,11 +352,18 @@ class deathLink(DefaultOnToggle):
 
 class deathLinkEffect(OptionSet):
     """Valid options for death link effect. Include as many or as few as you like in the list.
-    "10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)
+    "10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)"
     E.g. ["10% Treasury", "Wound Lord"]"""
     display_name = "Death Link Effect"
     valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)"]
-    #default = frozenset({"10% Treasury", "25% Treasury"})
+    default = frozenset({"10% Treasury"})
+
+class modList(OptionSet):
+    """List of mods with built-in support. Please add them to this list if you have them installed and enabled.
+    "expanded roster"
+    E.g. ["expanded roster"]"""
+    display_name = "Supported Mods"
+    valid_keys = ["expanded roster"]
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -408,7 +407,8 @@ class TWW3Options(PerGameCommonOptions):
     death_link_effects: deathLinkEffect
 
     randomize_personalities: randomizePersonalities
-    ritual_shuffle: ritualShuffle
+
+    mod_list: modList
 
 
 

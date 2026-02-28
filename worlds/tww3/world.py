@@ -81,11 +81,12 @@ class TWW3World(World):
                                         "progressive_units",
                                         "starting_tier",
                                         "randomize_personalities",
-                                        "ritual_shuffle",
+                                        #"ritual_shuffle",
                                         "death_link",
-                                        "death_link_effects"
+                                        "death_link_effects",
+                                        "mod_list"
                                          )
-        print(self.options.death_link_effects.value)
+        #print(self.options.death_link_effects.value)
 
         if self.options.game_mode == "conquest":
             slotData["checks_per_settlement"] = self.options.checks_per_settlement.value

@@ -2,37 +2,14 @@ from __future__ import annotations
 from .item_types import ItemData, ItemType
 from types import ModuleType
 
-from . import beastmen
-from . import bretonnia
-from . import cathay
-from . import chaosDwarfs
-from . import daemons
-from . import darkElves
-from . import dwarfs
-from . import empire
-from . import greenskins
-from . import highElves
-from . import highElvesAislinn
-from . import khorne
-from . import kislev
-from . import lizardmen
-from . import lizardmenNakai
-from . import norsca
-from . import nurgle
-from . import ogreKingdoms
-from . import skaven
-from . import slaanesh
-from . import slaaneshDechala
-from . import tombKings
-from . import tzeentch
-from . import vampireCoast
-from . import vampireCounts
-from . import warriorsOfChaos
-from . import warriorsOfChaosKhorne
-from . import warriorsOfChaosNurgle
-from . import warriorsOfChaosSlaanesh
-from . import warriorsOfChaosTzeentch
-from . import woodElves
+#Base Game
+from . import beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs, empire, greenskins, highElves
+from . import highElvesAislinn, khorne, kislev, lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven
+from . import slaanesh, slaaneshDechala, tombKings, tzeentch, vampireCoast, vampireCounts, warriorsOfChaos
+from . import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
+
+#Mod Support
+from . import expandedRoster
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -68,20 +45,37 @@ raceModuleDict: dict[str, ModuleType] = {
     "chaosTzeentch": warriorsOfChaosTzeentch, #64000
 }
 
-def getAllItems(playerRace = ""):
+moddedItemDict: dict[str, ModuleType] = {
+    "expanded roster": expandedRoster, #72000
+}
+
+def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:
     itemDict: dict[int, ItemData] = {}
     for race, module in raceModuleDict.items():
-        if playerRace != race and playerRace != "":
-            continue
-        itemDict.update(module.units)
-        itemDict.update(module.buildings)
-        itemDict.update(module.techs)
-        itemDict.update(module.progUnits)
-        itemDict.update(module.progBuildings)
-        itemDict.update(module.progTechs)
-        itemDict.update({key: ItemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
-        #print({key: ItemData(*item[:2], *item[3:6], item[7], item[9]) for key, item in race.special.items()})
+        if playerRace == race or playerRace == "":
+            itemDict.update(module.units)
+            itemDict.update(module.buildings)
+            itemDict.update(module.techs)
+            itemDict.update(module.progUnits)
+            itemDict.update(module.progBuildings)
+            itemDict.update(module.progTechs)
+            itemDict.update({key: ItemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
+
+    for modName, module in moddedItemDict.items():
+        if modList is None or modName in modList:
+            for table in module.dicts:
+                itemDict.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items()}) #Turn mod item into regular item
     return itemDict
+
+def getModdedItems(playerRace = "", playerFaction = "", modList = []):
+    modList = [mod.lower() for mod in modList] #In case the player used capitalisation in the name
+    #modList = ["expanded roster"]
+    moddedItems: dict[int, ItemData] = {}
+    for modName, module in moddedItemDict.items():
+        if modList != [] and modName in modList:
+            for table in module.dicts:
+                moddedItems.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items() if item.race == playerRace and (item.faction == playerFaction or item.faction == "")})
+    return moddedItems.items()
 
 def getUnits(race, progressive):
     if progressive:
