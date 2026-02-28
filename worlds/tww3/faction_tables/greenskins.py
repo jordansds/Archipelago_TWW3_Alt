@@ -73,7 +73,7 @@ units: dict[int, ItemData] = {
     28067: ItemData(IC.useful, 1, 'wh_dlc06_grn_cav_teef_robbers_0', ItemType.unit, 1, 'Progressive grn_veh', 'Grn Unit: Teef Robbers (Goblin Wolf Chariots)'),
     28068: ItemData(IC.useful, 1, 'wh_dlc06_grn_art_hammer_of_gork_0', ItemType.unit, 1, 'Progressive grn_art', 'Grn Unit: Hammer of Gork (Goblin Rock Lobbers)'),
     28069: ItemData(IC.useful, 1, 'wh3_dlc26_grn_mon_colossal_squig_ror', ItemType.unit, 4, 'Progressive grn_bst', 'Grn Unit: Da Acid Burpa (Colossal Squig)'),
-    28070: ItemData(IC.useful, 1, 'wh_dlc06_grn_inf_krimson_killerz_0', ItemType.unit, 3, 'Progressive grn_inf', 'Grn Unit: Krimson Killerz (Black Orcs)'),
+    28070: ItemData(IC.useful, 1, 'wh_dlc06_grn_inf_krimson_killerz_0', ItemType.unit, 3, 'Progressive grn_inf', 'Grn Unit: Krimson Killerz (Black Orcs - Dual Weapons)'),
     28071: ItemData(IC.useful, 1, 'wh_dlc06_grn_cav_broken_tusks_mob_0', ItemType.unit, 3, 'Progressive grn_cav', "Grn Unit: Broken Tusks Mob (Orc Boar Boy Big 'Uns)"),
     28072: ItemData(IC.useful, 1, 'wh2_dlc15_grn_mon_rogue_idol_ror_0', ItemType.unit, 5, 'Progressive grn_bst', 'Grn Unit: Da Big Un (Rogue Idol)'),
     28073: ItemData(IC.useful, 1, 'wh_dlc06_grn_mon_venom_queen_0', ItemType.unit, 4, 'Progressive grn_bst', 'Grn Unit: The Arachnarok Queen (Arachnarok Spider)')
