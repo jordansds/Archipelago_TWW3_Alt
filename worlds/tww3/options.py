@@ -359,7 +359,9 @@ class deathLink(DefaultOnToggle):
     display_name = "Death Link"
 
 class deathLinkEffect(OptionSet):
-    """Valid options for death link effect. Include as many or as few as you like in the list."""
+    """Valid options for death link effect. Include as many or as few as you like in the list.
+    "10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)
+    E.g. ["10% Treasury", "Wound Lord"]"""
     display_name = "Death Link Effect"
     valid_keys = ["10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)"]
     #default = frozenset({"10% Treasury", "25% Treasury"})
