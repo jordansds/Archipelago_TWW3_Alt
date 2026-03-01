@@ -44,7 +44,13 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_orbs(self):
         """Prints the current number of orbs of dominance that you own"""
         if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You currently hold: {self.numberOfOrbs} Orbs of dominance")
+            logger.info(f"You currently hold: {self.ctx.numberOfOrbs} Orbs of dominance")
+
+    def _cmd_logging(self):
+        """Toggles location logging"""
+        if isinstance(self.ctx, TWW3Context):
+            self.ctx.logChecks = not self.ctx.logChecks
+            logger.info(f"Location logging is now set to {self.ctx.logChecks}")
 
 class Messenger:
     def __init__(self, path):
@@ -61,6 +67,7 @@ class Watcher:
     def __init__(self, path, context):
         self.file = open(path, "w+")
         self.context = context
+        self.logChecks = context.logChecks
 
     async def watch(self, gameMode):
         print('Watching for Waaagh...')
@@ -74,10 +81,11 @@ class Watcher:
                 if line.split(" ")[0]  == "deathlink":
                     await self.context.send_death(line.split(" ")[1])
                 else:
-                    if gameMode == "conquest":
-                        logger.info("Sending Empire Size " + line)
-                    elif gameMode == "spheres":
-                        logger.info("Sending Location " + line)
+                    if self.logChecks:
+                        if gameMode == "conquest":
+                            logger.info("Sending Empire Size " + line)
+                        elif gameMode == "spheres":
+                            logger.info("Sending Location " + line)
                     await self.context.check(line)
                     continue
             await asyncio.sleep(0.1)
@@ -116,6 +124,7 @@ class TWW3Context(CommonContext):
         self.numberOfDiploRanges = 0
         self.itemDict = {}
         self.deathLinkPending = False
+        self.logChecks = False
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -144,6 +153,7 @@ class TWW3Context(CommonContext):
             logger.error(f"WARNING: Client ({version}) does not match the server. Server must be using the old TWW3 APWorld!")
 
         self.path = TWW3World.settings.tww3_path
+        self.path.replace("\\", "/")
 
 
         if not self.path or not os.path.exists(self.path):
