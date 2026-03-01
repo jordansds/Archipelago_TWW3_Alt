@@ -977,8 +977,8 @@ class SettlementManager:
                     if faction.race == "woodElves" and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
+                        self.capitals.update({faction.name: settlement.name})
                         break
-                self.capitals.update({faction.name: settlement.name})
         self.removeKeys() # Remove the magical forests that have been assigned.
 
     def randomiseChaos(self) -> None:
@@ -991,8 +991,8 @@ class SettlementManager:
                     if faction.race[:5] == "chaos" and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
+                        self.capitals.update({faction.name: settlement.name})
                         break
-                self.capitals.update({faction.name: settlement.name})
         self.removeKeys() # Remove the magical forests that have been assigned.
 
 
@@ -1006,8 +1006,8 @@ class SettlementManager:
                 if faction.name not in trueHordeList and faction.name not in self.shuffledFactionList:
                     self.assignSettlement(sKey, settlement, faction)
                     self.factionKeys.pop(i)
+                    self.capitals.update({faction.name: settlement.name})
                     break
-            self.capitals.update({faction.name: settlement.name})
         self.removeKeys() #Remove the settlements that have been assigned
 
     def randomiseRemainingSettlements(self) -> None:
