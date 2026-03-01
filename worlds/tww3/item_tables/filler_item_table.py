@@ -11,8 +11,8 @@ fillerWeakDict: dict[int, ItemData] = {
 
 fillerStrongDict: dict[int, ItemData] = {
     1300: ItemData(IC.filler, 0, "force_settlement_transfer_from_random_enemy_to_player()", ItemType.filler_strong, None, "None", "Give me that"), #Gives player random enemy city
-    1301: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Make Love, Not War"), #Makes random enemy an ally
-    1302: ItemData(IC.filler, 0, "force_alliance_with_random_enemy()", ItemType.filler_strong, None, "None", "Something Shiny") #Random legendary item/ancillary
+    1301: ItemData(IC.filler, 0, "force_alliance_with_random_enemy()", ItemType.filler_strong, None, "None", "Make Love, Not War"), #Makes random enemy an ally
+    1302: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Something Shiny") #Random legendary item/ancillary
 }
 
 trapHarmlessDict: dict[int, ItemData] = {
