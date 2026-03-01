@@ -36,7 +36,7 @@ raceModuleDict: dict[str, ModuleType] = {
     "tombKings": tombKings, #46000
     "tzeentch": tzeentch, #48000
     "vampireCoast": vampireCoast, #50000
-    "VampireCounts": vampireCounts, #52000
+    "vampireCounts": vampireCounts, #52000
     "woodElves": woodElves, #54000
     "chaos": warriorsOfChaos, #56000
     "chaosKhorne": warriorsOfChaosKhorne, #58000
