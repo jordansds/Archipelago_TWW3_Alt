@@ -105,6 +105,9 @@ class TWW3World(World):
         slotData["faction_shuffle"] = self.options.faction_shuffle.value
         slotData["version"] = self.world_version.as_simple_string()
 
+        print(slotData["settlements"])
+        print(slotData["faction_capitals"])
+
         return slotData
 
     def create_item(self, name: str) -> items.TWW3Item:
