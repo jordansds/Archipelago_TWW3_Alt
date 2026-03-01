@@ -112,7 +112,7 @@ class Watcher:
 
 
 class TWW3Context(CommonContext):
-    game = 'Total War Warhammer 3'
+    game = 'Total War Warhammer: 3'
     command_processor = TWW3CommandProcessor
     items_handling = 0b111
     are_traps_enabled = True
