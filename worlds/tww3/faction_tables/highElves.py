@@ -166,7 +166,7 @@ buildings: dict[int, ItemData] = {
     30502: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_1', ItemType.building, 0, 'Progressive hef_settlement_minor', 'Hef Building: Hamlet (minor)'),
     30503: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_2', ItemType.building, 1, 'Progressive hef_settlement_minor', 'Hef Building: Haven (minor)'),
     30504: ItemData(IC.useful, 1, 'wh2_main_hef_settlement_minor_3', ItemType.building, 2, 'Progressive hef_settlement_minor', 'Hef Building: Tower (minor)'),
-    30568: ItemData(IC.useful, 1, 'wh3_dlc27_hef_smith_0', ItemType.building, 2, 'Progressive hef_smith', 'Hef Building: Elven Workshop'),
+    30568: ItemData(IC.useful, 1, 'wh3_dlc27_hef_smith_0', ItemType.building, 0, 'Progressive hef_smith', 'Hef Building: Elven Workshop'),
     30505: ItemData(IC.useful, 1, 'wh2_main_hef_smith_1', ItemType.building, 1, 'Progressive hef_smith', 'Hef Building: Elven Forge'),
     30506: ItemData(IC.useful, 1, 'wh2_main_hef_smith_2', ItemType.building, 2, 'Progressive hef_smith', 'Hef Building: Ithilmar Smith'),
     30507: ItemData(IC.useful, 1, 'wh2_main_hef_stables_1', ItemType.building, 0, 'Progressive hef_stables', 'Hef Building: Grazing Meadows'),
@@ -357,4 +357,6 @@ special: dict[int, specialItemData] = {
     31506: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', "wh2_main_hef_avelorn", ItemType.unit, 1, 'Progressive hef_inf', False, False, 'Hef Unit: Dryads'),
     31507: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', "wh2_main_hef_avelorn", ItemType.unit, 4, 'Progressive hef_bst', False, False, 'Hef Unit: Treeman'),
     31508: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', "wh2_main_hef_avelorn", ItemType.unit, 2, 'Progressive hef_bst', False, False, 'Hef Unit: Tree Kin'),
+
+    #Add Mistwalkers Buildings
 }
