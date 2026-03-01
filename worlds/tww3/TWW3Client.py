@@ -38,6 +38,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_ac(self):
         """Prints the current number of settlements you can control"""
         if isinstance(self.ctx, TWW3Context):
+            self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
+            self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
 
@@ -67,7 +69,6 @@ class Watcher:
     def __init__(self, path, context):
         self.file = open(path, "w+")
         self.context = context
-        self.logChecks = context.logChecks
 
     async def watch(self, gameMode):
         print('Watching for Waaagh...')
@@ -81,6 +82,7 @@ class Watcher:
                 if line.split(" ")[0]  == "deathlink":
                     await self.context.send_death(line.split(" ")[1])
                 else:
+                    self.logChecks = self.context.logChecks
                     if self.logChecks:
                         if gameMode == "conquest":
                             logger.info("Sending Empire Size " + line)
@@ -141,6 +143,7 @@ class TWW3Context(CommonContext):
             if "tags" in args:
                 if "DeathLink" in args["tags"]:
                     self.on_deathlink(args["data"])
+
 
     def on_connected(self, args: dict):
         version = TWW3World.world_version.as_simple_string()
@@ -283,6 +286,7 @@ class TWW3Context(CommonContext):
                 if self.gameMode == "conquest":
                     self.expansionItems += 1
                     self.messenger.run(f"set_admin_capacity({self.expansionItems})")
+                    self.messenger.run(f"set_settlements_per_admin_capacity({self.adminCapacity})")
                     logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
                     logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                 elif self.gameMode == "spheres":
@@ -372,28 +376,28 @@ class TWW3Context(CommonContext):
             logger.error(e)
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
-    async def on_deathlink(self, data: dict):
-        # What should be done when a deathlink message is recieved
+
+    #Deathlink handlers
+    def on_deathlink(self, data: dict):
         if self.deathLinkPending:
             return
         self.deathLinkPending = True
-        self.messenger.run(random.choice(self.deathLinkOptions))
-        #self.messenger.run(f'remove_treasury_percentage(25)')
-        #Do Deathlink stuff
-        #Tell Player Deathlink Received
+        effectKey = random.choice([key for key in self.deathLinkOptions.keys()])
+        logger.info(f"Death Link Received, triggering {effectKey}")
         super().on_deathlink(data)
+        self.messenger.run(self.deathLinkOptions[effectKey])
         asyncio.create_task(self.resetDeathLinkFlag())
 
     async def send_death(self, death_text: str = ""):
-        # Avoid sending death if we died from a deathlink
-        if self.deathLinkPending or not self.deathLinkEnabled:
+        if self.deathLinkPending:
             return
-        self.deathLinkPending = True
-        asyncio.create_task(super().send_death(death_text))
-        asyncio.create_task(self.resetDeathLinkFlag())
+        if self.deathLinkEnabled:
+            self.deathLinkPending = True
+            asyncio.create_task(super().send_death(death_text))
+            asyncio.create_task(self.resetDeathLinkFlag())
 
     async def resetDeathLinkFlag(self):
-        await asyncio.sleep(3)
+        await asyncio.sleep(1)
         self.deathLinkPending = False
 
     def run_gui(self):

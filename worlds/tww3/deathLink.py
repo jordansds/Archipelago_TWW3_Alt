@@ -14,4 +14,4 @@ deathLinkFunctionDict: dict[str, str] = {
 
 #Pull the enabled deathlink functions chosen in the yaml
 def createDeathLinkFunctions(deathLinkEffects):
-    return [deathLinkFunctionDict[key] for key in deathLinkEffects]
+    return {key: deathLinkFunctionDict[key] for key in deathLinkEffects}
