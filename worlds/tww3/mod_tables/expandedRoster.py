@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, modItemData
+from worlds.tww3.faction_tables.item_types import ItemType, modItemData
 # @formatter:off
 
 items: dict[int, modItemData] = {
