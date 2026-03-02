@@ -362,7 +362,7 @@ class deathLinkEffect(OptionSet):
 
 class modList(OptionSet):
     """List of mods with built-in support. Please add them to this list if you have them installed and enabled.
-    "expanded roster"
+    "expanded roster", "mixu mousillon"
     E.g. ["expanded roster"]"""
     display_name = "Supported Mods"
     valid_keys = ["expanded roster", "mixu mousillon"]

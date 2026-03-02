@@ -353,10 +353,13 @@ special: dict[int, specialItemData] = {
     31502: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_sentinels_0', ItemType.unit, 2, 'Progressive hef_rng', False, False, 'Hef Unit: Sentinels of Astaril'),
     31503: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_griffon_knights_0', ItemType.unit, 3, 'Progressive hef_bst', False, False, 'Hef Unit: Knights of Tor Gaval'),
     31504: specialItemData(IC.useful, 1, "wh2_main_hef_yvresse", 'wh2_dlc15_hef_inf_mistwalkers_faithbearers_0', ItemType.unit, 3, 'Progressive hef_inf', False, False, 'Hef Unit: Athel Tamarha Faithbearers'),
-    31505: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_shadow_walkers_0', "wh2_main_hef_nagarythe", ItemType.unit, 3, 'Progressive hef_rng', False, False, 'Hef Unit: Shadow-walkers'),
-    31506: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_inf_dryads_0', "wh2_main_hef_avelorn", ItemType.unit, 1, 'Progressive hef_inf', False, False, 'Hef Unit: Dryads'),
-    31507: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treeman_0', "wh2_main_hef_avelorn", ItemType.unit, 4, 'Progressive hef_bst', False, False, 'Hef Unit: Treeman'),
-    31508: specialItemData(IC.useful, 1, 'wh2_dlc10_hef_mon_treekin_0', "wh2_main_hef_avelorn", ItemType.unit, 2, 'Progressive hef_bst', False, False, 'Hef Unit: Tree Kin'),
+    31505: specialItemData(IC.useful, 1, 'wh2_main_hef_nagarythe', "wh2_dlc10_hef_inf_shadow_walkers_0", ItemType.unit, 3, 'Progressive hef_rng', False, False, 'Hef Unit: Shadow-walkers'),
+    31506: specialItemData(IC.useful, 1, 'wh2_main_hef_avelorn', "wh2_dlc10_hef_inf_dryads_0", ItemType.unit, 1, 'Progressive hef_inf', False, False, 'Hef Unit: Dryads'),
+    31507: specialItemData(IC.useful, 1, 'wh2_main_hef_avelorn', "wh2_dlc10_hef_mon_treeman_0", ItemType.unit, 4, 'Progressive hef_bst', False, False, 'Hef Unit: Treeman'),
+    31508: specialItemData(IC.useful, 1, 'wh2_main_hef_avelorn', "wh2_dlc10_hef_mon_treekin_0", ItemType.unit, 2, 'Progressive hef_bst', False, False, 'Hef Unit: Tree Kin'),
 
-    #Add Mistwalkers Buildings
+    31509: specialItemData(IC.useful, 1, 'wh2_main_hef_yvresse', "wh2_dlc15_hef_field_hq_1", ItemType.building, 0, 'Progressive hef_mistwalker', False, False, "Hef Building: Mistwalkers' Sanctum"),
+    31510: specialItemData(IC.useful, 1, 'wh2_main_hef_yvresse', "wh2_dlc15_hef_field_hq_2", ItemType.building, 1, 'Progressive hef_mistwalker', False, False, "Hef Building: Mistwalkers' Keep"),
+    31511: specialItemData(IC.useful, 1, 'wh2_main_hef_yvresse', "wh2_dlc15_hef_field_hq_3", ItemType.building, 2, 'Progressive hef_mistwalker', False, False, "Hef Building: Mistwalkers' Citadel"),
+    31512: specialItemData(IC.useful, 1, 'wh2_main_hef_yvresse', "Progressive hef_mistwalker", ItemType.building, 3, None, False, True, "Progressive Hef Building: Mistwalkers"),
 }

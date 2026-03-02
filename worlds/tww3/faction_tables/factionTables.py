@@ -69,6 +69,7 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:
         if modList is None or modName in modList:
             for table in module.dicts:
                 itemDict.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items()}) #Turn mod item into regular item
+
     return itemDict
 
 def getModdedItems(playerRace = "", playerFaction = "", modList = []):
@@ -104,21 +105,21 @@ def getSpecial(world):
     for key, item in raceModuleDict[world.playerFaction.race].special.items():
         if item.faction == world.playerFaction.name or item.faction == "":
             if item.type == ItemType.unit:
-                if world.options.progressive_units and item.isProgressionItem:
+                if world.options.progressive_units and item.isProgressiveItem:
                     specialItems.update({key: item})
-                elif not (world.options.progressive_units or item.isProgressionItem):
+                elif not (world.options.progressive_units or item.isProgressiveItem):
                     specialItems.update({key: item})
                 continue
             elif item.type == ItemType.building:
-                if world.options.progressive_buildings and item.isProgressionItem:
+                if world.options.progressive_buildings and item.isProgressiveItem:
                     specialItems.update({key: item})
-                elif not (world.options.progressive_buildings or item.isProgressionItem):
+                elif not (world.options.progressive_buildings or item.isProgressiveItem):
                     specialItems.update({key: item})
                 continue
             elif item.type == ItemType.tech:
-                if world.options.progressive_technologies and item.isProgressionItem:
+                if world.options.progressive_technologies and item.isProgressiveItem:
                     specialItems.update({key: item})
-                elif not (world.options.progressive_technologies or item.isProgressionItem):
+                elif not (world.options.progressive_technologies or item.isProgressiveItem):
                     specialItems.update({key: item})
                 continue
             specialItems.update({key: item})

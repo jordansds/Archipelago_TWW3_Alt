@@ -40,7 +40,7 @@ class specialItemData(NamedTuple):
     tier: int
     progressionGroup: str
     forceEarly: bool
-    isProgressionItem: bool
+    isProgressiveItem: bool
     readableName: str
 
 class modItemData(NamedTuple):

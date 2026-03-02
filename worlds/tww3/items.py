@@ -114,7 +114,7 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
-                if not item.isProgressionItem:
+                if not item.isProgressiveItem:
                     world.itemKeys.append(key)
 
     return pool
