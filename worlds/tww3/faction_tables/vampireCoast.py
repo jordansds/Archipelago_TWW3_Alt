@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     50000: ItemData(IC.useful, 1, 'wh2_dlc11_cst_inf_zombie_deckhands_mob_0', ItemType.unit, 1, 'Progressive cst_inf', 'Cst Unit: Zombie Pirate Deckhand Mob'),

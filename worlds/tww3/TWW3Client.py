@@ -8,7 +8,7 @@ import random
 
 from BaseClasses import ItemClassification as IC
 from .faction_tables import factionTables
-from .faction_tables.item_types import ItemType
+from worlds.tww3.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.ritual_table import ritualDict
@@ -112,7 +112,7 @@ class Watcher:
 
 
 class TWW3Context(CommonContext):
-    game = 'Total War Warhammer: 3'
+    game = 'Total War Warhammer III'
     command_processor = TWW3CommandProcessor
     items_handling = 0b111
     are_traps_enabled = True
@@ -182,6 +182,8 @@ class TWW3Context(CommonContext):
 
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
 
+        self.modList = args['slot_data']['mod_list']
+        sm.addModdedFactions(self.modList)
         self.playerFaction = sm.factionDict[args["slot_data"]["starting_faction"]].name
 
         #The Settra handler
@@ -231,7 +233,6 @@ class TWW3Context(CommonContext):
             for key, settlement in sm.settlementDict.items():
                 self.locationLookup[settlement.readableName] = key + offset
 
-        self.modList = args['slot_data']['mod_list']
         logger.info(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
         self.itemDict.update(factionTables.getAllItems(self.playerRace, self.modList))

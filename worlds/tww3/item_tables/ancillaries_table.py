@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
-from typing import NamedTuple, Dict, Set, List
+from typing import Dict
 
-from ..faction_tables.item_types import ItemType, ItemData
+from worlds.tww3.item_types import ItemType, ItemData
 # @formatter:off
 
 ancillariesRegularDict: Dict[int, ItemData] = {

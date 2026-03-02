@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     20008: ItemData(IC.useful, 1, 'wh2_main_def_inf_dreadspears_0', ItemType.unit, 1, 'Progressive def_inf', 'Def Unit: Dreadspears'),

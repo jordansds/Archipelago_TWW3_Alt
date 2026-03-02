@@ -6,7 +6,7 @@ def runClient(*args: str) -> None:
     launch(launchClient, name="TWW3 Client", args=args)
 
 components.append(Component("TWW3 Client",
-                            game_name="Total War Warhammer 3",
+                            game_name="Total War Warhammer III",
                             func=runClient,
                             component_type=Type.CLIENT,
                             supports_uri=True,

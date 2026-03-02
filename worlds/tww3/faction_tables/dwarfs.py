@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     22000: ItemData(IC.useful, 1, 'wh_main_dwf_inf_miners_0', ItemType.unit, 1, 'Progressive dwf_inf', 'Dwf Unit: Miners'),

@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 from . import slaanesh
 # @formatter:off
 

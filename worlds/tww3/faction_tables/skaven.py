@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 units: dict[int, ItemData] = {
     42000: ItemData(IC.useful, 1, 'wh2_main_skv_veh_doomwheel', ItemType.unit, 2, 'Progressive skv_veh', 'Skv Unit: Doomwheel'),

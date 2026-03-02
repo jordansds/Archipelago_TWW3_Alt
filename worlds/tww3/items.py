@@ -14,7 +14,7 @@ from .item_tables.progression_table import progressionDict
 #from . import settlementManager as sm
 from .faction_tables import factionTables
 
-from .faction_tables.item_types import ItemData, ItemType
+from worlds.tww3.item_types import ItemData, ItemType
 from .options import TWW3Options
 
 itemDict = {}

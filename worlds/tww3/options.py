@@ -6,7 +6,7 @@ from . import settlementManager as sm
 
 class faction(Choice):
     """Choose your faction. If you pick multiple the client will tell you which one you need to play.
-    The last 4 options were introduced in the Tides of Torment DLC, this apworld may not randomise all content from that DLC at this time."""
+    All options after "Throgg" require you to have the enabled mod installed and enabled at the bottom of this yaml"""
     display_name = "Player Faction"
     option_The_Daemon_Prince = 0
     option_Skarbrand = 1
@@ -111,6 +111,8 @@ class faction(Choice):
     option_Wulfrik_the_Wanderer = 100
     option_Sayl_the_Faithless = 101
     option_Throgg = 102
+    option_Mixu_Mousillon_Mallobaude = 1000
+    option_Mixu_Mousillon_Lady_of_the_Black_Grail = 1001
     default = 0
 
 class gameMode(Choice):
@@ -363,7 +365,7 @@ class modList(OptionSet):
     "expanded roster"
     E.g. ["expanded roster"]"""
     display_name = "Supported Mods"
-    valid_keys = ["expanded roster"]
+    valid_keys = ["expanded roster", "mixu mousillon"]
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -409,7 +411,3 @@ class TWW3Options(PerGameCommonOptions):
     randomize_personalities: randomizePersonalities
 
     mod_list: modList
-
-
-
-

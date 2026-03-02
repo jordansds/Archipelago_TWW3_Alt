@@ -1,5 +1,6 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData
+
 # @formatter:off
 units: dict[int, ItemData] = {
     10000: ItemData(IC.useful, 1, 'wh_dlc03_bst_inf_ungor_herd_1', ItemType.unit, 1, 'Progressive bst_inf', 'Bst Unit: Ungor Herd'),

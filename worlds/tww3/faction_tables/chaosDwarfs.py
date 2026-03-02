@@ -1,5 +1,6 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData
+
 # @formatter:off
 units: dict[int, ItemData] = {
     16024: ItemData(IC.useful, 1, 'wh3_dlc23_chd_inf_goblin_labourers', ItemType.unit, 1, 'Progressive chd_inf', 'Chd Unit: Goblin Labourers'),

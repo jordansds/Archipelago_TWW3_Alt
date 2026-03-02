@@ -19,7 +19,7 @@ class TWW3Settings(settings.Group):
 
 class TWW3World(World):
     """Insert description of the world/game here."""
-    game = "Total War Warhammer 3"  # name of the game/world
+    game = "Total War Warhammer III"  # name of the game/world
     options_dataclass = TWW3Options  # options the player can set
     options: TWW3Options  # typing hints for option results
     settings: ClassVar[TWW3Settings]  # will be automatically assigned from type hint
@@ -40,6 +40,8 @@ class TWW3World(World):
     settlementManager: sm.SettlementManager = None
 
     def generate_early(self) -> None:
+        sm.addModdedFactions(self.options.mod_list)
+
         self.playerFaction = sm.factionDict[self.options.starting_faction.value]
         self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction, self.options.starting_faction.value, self.options.starting_settlements)
 

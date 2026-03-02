@@ -1,17 +1,25 @@
 from enum import Enum
-from BaseClasses import ItemClassification as IC
 import pprint
+from worlds.tww3.item_types import ItemData
 
-#import bretonnia as brt
-#import highElvesAislinn as hef
-import skaven as skv
+import warriorsOfChaos as fac
 
-dictionary = skv.progBuildings
+dictionary = fac.tzeentchUnits
 newDictionary = {}
 
-newKey = 43300
+#    classification: ItemClassification
+#    count: int
+#    name: str
+#    type: ItemType
+#    tier: int
+#    progressionGroup: str
+#    readableName: str
+#FIX BEASTMEN
+#FIX DWARFS
+newKey = 56350
 for key, value in dictionary.items():
-    newDictionary.update({newKey: value})
+    #newDictionary.update({newKey: specialItemData(*value)})
+    newDictionary.update({newKey: ItemData(*value[:4], value[4], *value[5:])})
     newKey += 1
 
 #Thanks Gemini, you eventually wrote the correct code I wanted. This is why I don't vibecode...
@@ -39,3 +47,28 @@ def clean_for_print(obj):
 
 cleaned = clean_for_print(newDictionary)
 pprint.pprint(cleaned, width=1) # Width=1 forces it to multi-line if you prefer
+
+"""    name = value.readableName
+    readableName = name.split("anc_")[-1].replace("_", " ").title().split(" ")
+    if readableName[0] == "Magic" or readableName[0] == "Blessing":
+        readableName = "Standard: " + " ".join(readableName[2:])
+    elif readableName[0] == "Weapon":
+        readableName = "Weapon: " + " ".join(readableName[1:])
+    elif readableName[0] == "Armour":
+        readableName = "Armour: " + " ".join(readableName[1:])
+    elif readableName[0] == "Talisman":
+        readableName = "Talisman: " + " ".join(readableName[1:])
+    elif readableName[0] == "Follower":
+        readableName = "Follower: " + " ".join(readableName[1:])
+    elif readableName[0] == "Dread":
+        readableName = "Follower: " + " ".join(readableName[2:])
+    elif readableName[0] == "Cth":
+        readableName = "Follower: " + " ".join(readableName[3:])
+    elif readableName[0] == "Enchanted":
+        readableName = "Enchanted Item: " + " ".join(readableName[2:])
+    elif readableName[0] == "Arcane":
+        readableName = "Arcane Item: " + " ".join(readableName[2:])
+    elif readableName[0] == "Banner":
+        readableName = "Banner: " + " ".join(readableName[1:])
+
+    newDictionary.update({newKey: ItemData(value.classification, value.count, name, value.type, value.tier, value.progressionGroup, readableName)})"""

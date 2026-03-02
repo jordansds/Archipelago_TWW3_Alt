@@ -1,7 +1,6 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
-from .faction_tables.item_types import factionData, settlementData
+from worlds.tww3.item_types import factionData, settlementData
 from collections import Counter
 import time
 
@@ -880,6 +879,17 @@ settlementDict: dict[int, settlementData] = {
      567: settlementData('wh3_main_combi_region_desolation_ridge', 'regular', 1199, 728, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Desolation Ridge'),
      568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone')
 }
+
+modDict: dict[str, dict[int, factionData]] = {
+    "mixu mousillon": {1000: factionData('mixer_msl_mallobaude', True, False, 'mousillon', 'Mallobaude (Mousillon)'), 1001: factionData('mixer_msl_cult_of_the_bloody_grail', True, False, 'mousillon', 'Lady of the Black Grail (Mousillon)')},
+}
+
+def addModdedFactions(modList):
+    for modName, modFactionDict in modDict.items():
+        if modName in modList:
+            for key, faction in modFactionDict.items():
+                factionDict.update({key: faction})
+
 
 # Return the distance between two settlements
 def getDistance(s1: settlementData, s2: settlementData) -> int:

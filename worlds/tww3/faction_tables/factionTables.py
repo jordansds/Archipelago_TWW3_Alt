@@ -1,5 +1,5 @@
 from __future__ import annotations
-from .item_types import ItemData, ItemType
+from worlds.tww3.item_types import ItemData, ItemType
 from types import ModuleType
 
 #Base Game
@@ -9,7 +9,7 @@ from . import slaanesh, slaaneshDechala, tombKings, tzeentch, vampireCoast, vamp
 from . import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
 
 #Mod Support
-from . import expandedRoster
+from ..mod_tables import expandedRoster, mousillon
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -45,8 +45,12 @@ raceModuleDict: dict[str, ModuleType] = {
     "chaosTzeentch": warriorsOfChaosTzeentch, #64000
 }
 
+raceModuleDict.update({
+    "mousillon": mousillon,  #102000
+})
+
 moddedItemDict: dict[str, ModuleType] = {
-    "expanded roster": expandedRoster, #72000
+    "expanded roster": expandedRoster, #100000
 }
 
 def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:

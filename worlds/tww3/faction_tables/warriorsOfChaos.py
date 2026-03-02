@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from .item_types import ItemType, ItemData, specialItemData
+from worlds.tww3.item_types import ItemType, ItemData, specialItemData
 # @formatter:off
 baseUnits: dict[int, ItemData] = {
     56000: ItemData(IC.useful, 1, 'wh_main_chs_inf_chaos_marauders_0', ItemType.unit, 1, 'Progressive chs_inf', 'Chs Unit: Marauders'),
