@@ -884,12 +884,12 @@ modDict: dict[str, dict[int, factionData]] = {
     "mixu mousillon": {1000: factionData('mixer_msl_mallobaude', True, False, 'mousillon', 'Mallobaude (Mousillon)'), 1001: factionData('mixer_msl_cult_of_the_bloody_grail', True, False, 'mousillon', 'Lady of the Black Grail (Mousillon)')},
 }
 
+# Insert modded factions into the faction table
 def addModdedFactions(modList):
     for modName, modFactionDict in modDict.items():
         if modName in modList:
             for key, faction in modFactionDict.items():
                 factionDict.update({key: faction})
-
 
 # Return the distance between two settlements
 def getDistance(s1: settlementData, s2: settlementData) -> int:
@@ -1024,9 +1024,6 @@ class SettlementManager:
         blackList: list[str] = []
         shuffledSettlementDict = self.shuffledSettlementDict
         shuffledSettlementList = list(shuffledSettlementDict.items())
-        #print(shuffledSettlementList)
-        #random.shuffle(shuffledSettlementList)
-        #print(shuffledSettlementList)
 
         #Asign each faction new settlements, based on distance from their capital
         for i, sKey in enumerate(self.settlementKeys):
@@ -1109,16 +1106,15 @@ class SettlementManager:
             x.append(d.faction)
         counter = Counter(x)
 
-        print(counter)
+        #print(counter)
 
-        print(time.time() - self.start)
+        #print(time.time() - self.start)
 
-"""
+"""import random
 for i in range(2):
-    test = settlementRandomiser(random, 92) #92 = "wh_dlc05_wef_wood_elves"
+    test = SettlementManager(random, factionDict[92], 92, 3) #92 = "wh_dlc05_wef_wood_elves"
     settlements = test.randomiseSettlements()
     hordes = test.randomiseHordes()
     factionSpheres = test.getRequiredDiploRange(5, 100)
     print(factionSpheres)
-    test.debug()
-"""
+    test.debug()"""
