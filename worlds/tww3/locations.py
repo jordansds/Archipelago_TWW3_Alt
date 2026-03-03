@@ -39,9 +39,6 @@ def createRegularLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            #if i > startingCheck:
-            #    location.access_rule = lambda state: state.can_reach(f"Empire Size {i-1} (0)", locName, world.player)
-
             requiredAdminCapacity = max(0, math.floor(i / world.options.admin_capacity) - 1)
             #set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
             set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
