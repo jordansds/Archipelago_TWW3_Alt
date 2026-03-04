@@ -254,6 +254,7 @@ progUnits: dict[int, ItemData] = {
     39201: ItemData(IC.useful, 1, "Progressive nor_rng", ItemType.unit, 1, "", "Progressive Nor Unit: Ranged"),
     39202: ItemData(IC.useful, 3, "Progressive nor_cav", ItemType.unit, 3, "", "Progressive Nor Unit: Cavalry"),
     39203: ItemData(IC.useful, 1, "Progressive nor_art", ItemType.unit, 1, "", "Progressive Nor Unit: Artillery"),
+    39204: ItemData(IC.useful, 2, "Progressive nor_veh", ItemType.unit, 2, "", "Progressive Nor Unit: Chariot"),
     39205: ItemData(IC.useful, 5, "Progressive nor_bst", ItemType.unit, 5, "", "Progressive Nor Unit: Beast"),
     39206: ItemData(IC.useful, 3, "Progressive nor_hro", ItemType.unit, 3, "", "Progressive Nor Unit: Hero")
 }

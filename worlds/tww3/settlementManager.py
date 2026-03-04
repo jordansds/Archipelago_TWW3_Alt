@@ -938,7 +938,7 @@ modDict: dict[str, dict[int, factionData]] = {
         148: factionData('wh2_main_hef_citadel_of_dusk', False, True, 'highElves', 'Althran Stormrider (High Elves)', False)
     },
     "medusa0 surtha ek": {
-        287: factionData('wh_main_nor_varg', False, True, 'norsca', 'Surtha Ek (Norsca)', False)
+        287: factionData('wh_main_nor_varg', False, True, 'norscaSurtha', 'Surtha Ek (Norsca)', False)
     },
     "Pegaz The Crustacean Nation": {
         1008: factionData('mixer_cn_ancient', True, False, 'crustacean', 'Ancient Wardens (Crustaceans)', True),

@@ -370,7 +370,8 @@ class TWW3Context(CommonContext):
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
-                await self.check_locations([self.locationLookup[location]])
+                key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
+                await self.check_locations([self.locationLookup[sm.settlementDict[key].readableName]])
                 
         except KeyError as e:
             logger.error(e)

@@ -9,7 +9,7 @@ from worlds.tww3.faction_tables import slaanesh, slaaneshDechala, tombKings, tze
 from worlds.tww3.faction_tables import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
 
 #Mod Support
-from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, surthaEk
+from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, norscaSurtha
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -49,11 +49,11 @@ raceModuleDict.update({
     "mousillon": mousillon,  #102000
     "empireEdvard": empireEdvard, #104000
     "tzeentchEgrimm": empireEdvard, #106000
+    "norscaSurtha": norscaSurtha, #108000
 })
 
 moddedItemDict: dict[str, ModuleType] = {
     "expanded roster": expandedRoster, #100000
-    "surtha Ek": surthaEk, #108000
 }
 
 def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:
@@ -67,6 +67,12 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:
             itemDict.update(module.progBuildings)
             itemDict.update(module.progTechs)
             itemDict.update({key: ItemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
+        if playerRace == race:
+            try:
+                for key in module.removeKeys:
+                    itemDict.pop(key)
+            except AttributeError:
+                pass
 
     for modName, module in moddedItemDict.items():
         if modList is None or modName in modList:
