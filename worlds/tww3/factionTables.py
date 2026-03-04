@@ -53,7 +53,7 @@ raceModuleDict.update({
 })
 
 moddedItemDict: dict[str, ModuleType] = {
-    "expanded roster": expandedRoster, #100000
+    "decomposed expanded roster": expandedRoster, #100000
 }
 
 def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:

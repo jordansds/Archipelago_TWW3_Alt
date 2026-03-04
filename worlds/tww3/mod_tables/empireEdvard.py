@@ -26,7 +26,14 @@ land_units_onscreen_name_mixu_emp_mon_prometheans	Prometheans
 land_units_onscreen_name_mixu_emp_mon_leviathan	Leviathan
 """
 
-units: dict[int, ItemData] = empire.units
+units: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
+                                                  unit.count,
+                                                  unit.name,
+                                                  unit.type,
+                                                  unit.tier,
+                                                  unit.progressionGroup,
+                                                  unit.readableName.replace("Tze", "Egrimm"))
+                              for key, unit in empire.units.items()}
 units.update({})
 
 buildings: dict[int, ItemData] = {}
