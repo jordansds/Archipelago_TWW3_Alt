@@ -9,7 +9,7 @@ from worlds.tww3.faction_tables import slaanesh, slaaneshDechala, tombKings, tze
 from worlds.tww3.faction_tables import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
 
 #Mod Support
-from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, norscaSurtha
+from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, tzeentchEgrimm, norscaSurtha
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -48,7 +48,7 @@ raceModuleDict: dict[str, ModuleType] = {
 raceModuleDict.update({
     "mousillon": mousillon,  #102000
     "empireEdvard": empireEdvard, #104000
-    "tzeentchEgrimm": empireEdvard, #106000
+    "tzeentchEgrimm": tzeentchEgrimm, #106000
     "norscaSurtha": norscaSurtha, #108000
 })
 
