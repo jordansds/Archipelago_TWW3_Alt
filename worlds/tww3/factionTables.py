@@ -3,13 +3,13 @@ from worlds.tww3.item_types import ItemData, ItemType
 from types import ModuleType
 
 #Base Game
-from . import beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs, empire, greenskins, highElves
-from . import highElvesAislinn, khorne, kislev, lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven
-from . import slaanesh, slaaneshDechala, tombKings, tzeentch, vampireCoast, vampireCounts, warriorsOfChaos
-from . import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
+from worlds.tww3.faction_tables import beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs, empire, greenskins, highElves
+from worlds.tww3.faction_tables import highElvesAislinn, khorne, kislev, lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven
+from worlds.tww3.faction_tables import slaanesh, slaaneshDechala, tombKings, tzeentch, vampireCoast, vampireCounts, warriorsOfChaos
+from worlds.tww3.faction_tables import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
 
 #Mod Support
-from ..mod_tables import expandedRoster, mousillon
+from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, surthaEk
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -47,10 +47,13 @@ raceModuleDict: dict[str, ModuleType] = {
 
 raceModuleDict.update({
     "mousillon": mousillon,  #102000
+    "empireEdvard": empireEdvard, #104000
+    "tzeentchEgrimm": empireEdvard, #106000
 })
 
 moddedItemDict: dict[str, ModuleType] = {
     "expanded roster": expandedRoster, #100000
+    "surtha Ek": surthaEk, #108000
 }
 
 def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:

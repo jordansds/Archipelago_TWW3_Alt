@@ -60,6 +60,7 @@ class factionData(NamedTuple):
     hasHome: bool
     race: str
     readableName: str
+    isHorde: bool
 
 class settlementData(NamedTuple):
     name: str

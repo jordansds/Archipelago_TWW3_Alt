@@ -153,14 +153,14 @@ buildings: dict[int, ItemData] = {
     102491: ItemData(IC.useful, 1, 'mixu_msl_resource_wine_2', ItemType.building, 1, 'Progressive msl_resource_wine', 'Msl Building: Thorny Orchard'),
     102492: ItemData(IC.useful, 1, 'mixu_msl_resource_wine_3', ItemType.building, 2, 'Progressive msl_resource_wine', 'Msl Building: Animated Winepress'),
 
-    102493: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_1', ItemType.building, 0, 'Progressive msl_settlement_major', 'Msl Building: Crumbling Hamlet'),
-    102494: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_2', ItemType.building, 1, 'Progressive msl_settlement_major', 'Msl Building: Corrupted Village'),
-    102495: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_3', ItemType.building, 2, 'Progressive msl_settlement_major', 'Msl Building: Shady Township'),
-    102496: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_4', ItemType.building, 3, 'Progressive msl_settlement_major', 'Msl Building: Accursed City'),
-    102497: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_5', ItemType.building, 4, 'Progressive msl_settlement_major', 'Msl Building: Dark Castle'),
-    102498: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_1', ItemType.building, 0, 'Progressive msl_settlement_minor', 'Msl Building: Crumbling Hamlet'),
-    102499: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_2', ItemType.building, 1, 'Progressive msl_settlement_minor', 'Msl Building: Corrupted Village'),
-    102500: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_3', ItemType.building, 2, 'Progressive msl_settlement_minor', 'Msl Building: Shady Township'),
+    #102493: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_1', ItemType.building, 0, 'Progressive msl_settlement_major', 'Msl Building: Crumbling Hamlet'),
+    102494: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_2', ItemType.building, 0, 'Progressive msl_settlement_major', 'Msl Building: Corrupted Village'),
+    102495: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_3', ItemType.building, 1, 'Progressive msl_settlement_major', 'Msl Building: Shady Township'),
+    102496: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_4', ItemType.building, 2, 'Progressive msl_settlement_major', 'Msl Building: Accursed City'),
+    102497: ItemData(IC.useful, 1, 'mixu_msl_settlement_major_5', ItemType.building, 3, 'Progressive msl_settlement_major', 'Msl Building: Dark Castle'),
+    #102498: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_1', ItemType.building, 0, 'Progressive msl_settlement_minor', 'Msl Building: Crumbling Hamlet'),
+    102499: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_2', ItemType.building, 0, 'Progressive msl_settlement_minor', 'Msl Building: Corrupted Village'),
+    102500: ItemData(IC.useful, 1, 'mixu_msl_settlement_minor_3', ItemType.building, 1, 'Progressive msl_settlement_minor', 'Msl Building: Shady Township'),
 }
 """
 mixu_special_settlement_altdorf_1_msl
@@ -284,8 +284,8 @@ progBuildings: dict[int, ItemData] = {
     103432: ItemData(IC.useful, 1, 'Progressive msl_resource_timber', ItemType.building, 3, '', 'Progressive Msl Building: Timber'),
     103433: ItemData(IC.useful, 1, 'Progressive msl_resource_wine', ItemType.building, 3, '', 'Progressive Msl Building: Wine'),
 
-    103434: ItemData(IC.useful, 1, 'Progressive msl_settlement_major', ItemType.building, 5, '', 'Vmp Building: Settlement Major'),
-    103535: ItemData(IC.useful, 1, 'Progressive msl_settlement_minor', ItemType.building, 3, '', 'Vmp Building: Settlement Minor'),
+    103434: ItemData(IC.useful, 1, 'Progressive msl_settlement_major', ItemType.building, 4, '', 'Vmp Building: Settlement Major'),
+    103535: ItemData(IC.useful, 1, 'Progressive msl_settlement_minor', ItemType.building, 2, '', 'Vmp Building: Settlement Minor'),
 }
 
 progTechs: dict[int, ItemData] = {

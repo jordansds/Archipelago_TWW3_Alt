@@ -7,13 +7,12 @@ from collections.abc import Sequence
 import random
 
 from BaseClasses import ItemClassification as IC
-from .faction_tables import factionTables
 from worlds.tww3.item_types import ItemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
-from . import TWW3World
+from . import TWW3World, factionTables
 from . import settlementManager as sm
 from . import deathLink
 import os
