@@ -88,7 +88,7 @@ def getModdedItems(playerRace = "", playerFaction = "", modList = []):
     for modName, module in moddedItemDict.items():
         if modList != [] and modName in modList:
             for table in module.dicts:
-                moddedItems.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items() if item.race == playerRace and (item.faction == playerFaction or item.faction == "")})
+                moddedItems.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items() if playerRace in item.race and (item.faction == playerFaction or item.faction == "")})
     return moddedItems.items()
 
 def getUnits(race, progressive):

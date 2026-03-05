@@ -6,58 +6,58 @@ from . import warriorsOfChaos
 units: dict[int, ItemData] = warriorsOfChaos.baseUnits
 units.update(warriorsOfChaos.tzeentchUnits)
 units.update({
-    64000: ItemData(IC.useful, 1, 'wh3_main_tze_inf_blue_horrors_0', ItemType.unit, 1, 'Progressive chs_inf', 'Chs Unit: Blue Horrors of Tzeentch'),
-    64001: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Tzaangors'),
-    64002: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_centigors_great_weapons', ItemType.unit, 2, 'Progressive chs_cav', 'Chs Unit: Centigors of Tzeentch'),
-    64003: ItemData(IC.useful, 1, 'wh3_main_tze_inf_pink_horrors_1', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Exalted Pink Horrors of Tzeentch'),
+    64000: ItemData(IC.useful, 1, 'wh3_main_tze_inf_blue_horrors_0', ItemType.unit, 1, 'Progressive chs_inf', 'Chaos Unit: Blue Horrors of Tzeentch'),
+    64001: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', ItemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Tzaangors'),
+    64002: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_centigors_great_weapons', ItemType.unit, 2, 'Progressive chs_cav', 'Chaos Unit: Centigors of Tzeentch'),
+    64003: ItemData(IC.useful, 1, 'wh3_main_tze_inf_pink_horrors_1', ItemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Exalted Pink Horrors of Tzeentch'),
 
-    64004: ItemData(IC.useful, 1, 'wh3_dlc24_chs_cha_exalted_hero_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chs Unit: Exalted Hero of Tzeentch'),
-    64005: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cha_chaos_sorcerer_tzeentch_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chs Unit: Chaos Sorcerer of Tzeentch (Tzeentch)'),
-    64006: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cha_chaos_sorcerer_metal_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chs Unit: Chaos Sorcerer of Tzeentch (Metal)'),
+    64004: ItemData(IC.useful, 1, 'wh3_dlc24_chs_cha_exalted_hero_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chaos Unit: Exalted Hero of Tzeentch'),
+    64005: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cha_chaos_sorcerer_tzeentch_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chaos Unit: Chaos Sorcerer of Tzeentch (Tzeentch)'),
+    64006: ItemData(IC.useful, 1, 'wh3_dlc20_chs_cha_chaos_sorcerer_metal_mtze', ItemType.unit, 1, 'Progressive chs_hro', 'Chaos Unit: Chaos Sorcerer of Tzeentch (Metal)'),
 
-    64007: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_pink_horrors_ror', ItemType.unit, 2, 'Progressive chs_inf', 'Chs Unit: The Sourguts (Pink Horrors of Tzeentch)'),
-    64008: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_screamers_ror', ItemType.unit, 2, 'Progressive chs_bst', 'Chs Unit: Shrieking Skyrays (Screamers of Tzeentch)'),
-    64009: ItemData(IC.useful, 1, 'wh3_twa06_tze_inf_pink_horrors_ror_0', ItemType.unit, 3, 'Progressive chs_inf', 'Chs Unit: Blazing Squealers (Exalted Pink Horrors of Tzeentch)'),
-    64010: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_mutalith_vortex_beast_ror', ItemType.unit, 5, 'Progressive chs_bst', 'Chs Unit: Aeson the Fallen (Mutalith Vortex Beast)'),
+    64007: ItemData(IC.useful, 1, 'wh3_dlc24_tze_inf_pink_horrors_ror', ItemType.unit, 2, 'Progressive chs_inf', 'Chaos Unit: The Sourguts (Pink Horrors of Tzeentch)'),
+    64008: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_screamers_ror', ItemType.unit, 2, 'Progressive chs_bst', 'Chaos Unit: Shrieking Skyrays (Screamers of Tzeentch)'),
+    64009: ItemData(IC.useful, 1, 'wh3_twa06_tze_inf_pink_horrors_ror_0', ItemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Blazing Squealers (Exalted Pink Horrors of Tzeentch)'),
+    64010: ItemData(IC.useful, 1, 'wh3_dlc24_tze_mon_mutalith_vortex_beast_ror', ItemType.unit, 5, 'Progressive chs_bst', 'Chaos Unit: Aeson the Fallen (Mutalith Vortex Beast)'),
 })
 
 buildings: dict[int, ItemData] = warriorsOfChaos.buildings
 
 techs: dict[int, ItemData] = {
-    64800: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_marks_tzeentch', ItemType.tech, 1, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Arcane Branding Iron'),
-    64801: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_authority', ItemType.tech, 2, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Mystical Banner'),
-    64802: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_corruption', ItemType.tech, 3, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Enchanted Idols'),
-    64803: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_buildings', ItemType.tech, 4, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Arcane Construction'),
-    64804: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_1', ItemType.tech, 5, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Dark Meditation'),
-    64805: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_heroes_lords', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', "Chs Tech: Summoning Rite"),
-    64806: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_diplomacy', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Sacrificial Prophecy'),
-    64807: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_teleport', ItemType.tech, 7, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Teleportation Stone'),
-    64808: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_military_1', ItemType.tech, 3, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Temple of Tzeentch'),
-    64809: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_spells', ItemType.tech, 4, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Twisted Tome'),
-    64810: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_2', ItemType.tech, 5, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Attuning Ritual'),
-    64811: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_weapons', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Ritual Staff'),
-    64812: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_summons', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Pink Horrors'),
-    64813: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_military_2', ItemType.tech, 7, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Enchanted Armour'),
-    64814: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_3', ItemType.tech, 8, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Chaos Moon'),
-    64815: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_ultimate', ItemType.tech, 9, 'Progressive tech_chs_tze_tzeentch', 'Chs Tech: Unholy Intervention'),
+    64800: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_marks_tzeentch', ItemType.tech, 1, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Arcane Branding Iron'),
+    64801: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_authority', ItemType.tech, 2, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Mystical Banner'),
+    64802: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_corruption', ItemType.tech, 3, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Enchanted Idols'),
+    64803: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_buildings', ItemType.tech, 4, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Arcane Construction'),
+    64804: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_1', ItemType.tech, 5, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Dark Meditation'),
+    64805: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_heroes_lords', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', "Chaos Tech: Summoning Rite"),
+    64806: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_diplomacy', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Sacrificial Prophecy'),
+    64807: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_teleport', ItemType.tech, 7, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Teleportation Stone'),
+    64808: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_military_1', ItemType.tech, 3, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Temple of Tzeentch'),
+    64809: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_spells', ItemType.tech, 4, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Twisted Tome'),
+    64810: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_2', ItemType.tech, 5, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Attuning Ritual'),
+    64811: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_weapons', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Ritual Staff'),
+    64812: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_summons', ItemType.tech, 6, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Pink Horrors'),
+    64813: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_military_2', ItemType.tech, 7, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Enchanted Armour'),
+    64814: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_gift_slot_3', ItemType.tech, 8, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Chaos Moon'),
+    64815: ItemData(IC.useful, 1, 'wh3_dlc20_chs_tze_vilitch_ultimate', ItemType.tech, 9, 'Progressive tech_chs_tze_tzeentch', 'Chaos Tech: Unholy Intervention'),
 
-    64816: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_marauders', ItemType.tech, 1, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Scrutiny of the Dark Gods'),
-    64817: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_chariots', ItemType.tech, 2, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Charioteer'),
-    64818: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_mutants', ItemType.tech, 3, 'Progressive tech_chs_tze_undivided', 'Chs Tech: A Thousand Twisted Blessings'),
-    64819: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_chosen', ItemType.tech, 3, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Rite of Ascension'),
-    64820: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_diplomacy', ItemType.tech, 4, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Dark Diplomacy'),
-    64821: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_movement', ItemType.tech, 4, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Infernal March'),
-    64822: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_gift_slot_1', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Daemonic Pact'),
-    64823: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_knights', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Profane Weaponry'),
-    64824: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_daemonic_mounts', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Daemon Mounts'),
-    64825: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_corruption', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Malignant Totems'),
-    64826: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_vassals', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Slaves to Darkness'),
-    64827: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_beasts', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Unchained Beasts'),
-    64828: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_building', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Erection of Ruinous Monuments'),
-    64829: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_upgrades', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Inscribed Chaos Armour'),
-    64830: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_souls', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Culling of the Weak'),
-    64831: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_monsters', ItemType.tech, 7, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Giant Manacles'),
-    64832: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_gift_slot_2', ItemType.tech, 8, 'Progressive tech_chs_tze_undivided', 'Chs Tech: Gaze of the Dark Gods'),
+    64816: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_marauders', ItemType.tech, 1, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Scrutiny of the Dark Gods'),
+    64817: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_chariots', ItemType.tech, 2, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Charioteer'),
+    64818: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_mutants', ItemType.tech, 3, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: A Thousand Twisted Blessings'),
+    64819: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_chosen', ItemType.tech, 3, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Rite of Ascension'),
+    64820: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_diplomacy', ItemType.tech, 4, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Dark Diplomacy'),
+    64821: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_movement', ItemType.tech, 4, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Infernal March'),
+    64822: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_gift_slot_1', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Daemonic Pact'),
+    64823: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_knights', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Profane Weaponry'),
+    64824: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_daemonic_mounts', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Daemon Mounts'),
+    64825: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_corruption', ItemType.tech, 5, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Malignant Totems'),
+    64826: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_vassals', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Slaves to Darkness'),
+    64827: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_beasts', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Unchained Beasts'),
+    64828: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_building', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Erection of Ruinous Monuments'),
+    64829: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_upgrades', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Inscribed Chaos Armour'),
+    64830: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_souls', ItemType.tech, 6, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Culling of the Weak'),
+    64831: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_monsters', ItemType.tech, 7, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Giant Manacles'),
+    64832: ItemData(IC.useful, 1, 'wh3_dlc20_chs_und_shared_gift_slot_2', ItemType.tech, 8, 'Progressive tech_chs_tze_undivided', 'Chaos Tech: Gaze of the Dark Gods'),
 }
 
 progUnits: dict[int, ItemData] = warriorsOfChaos.progUnits
@@ -65,8 +65,8 @@ progUnits: dict[int, ItemData] = warriorsOfChaos.progUnits
 progBuildings: dict[int, ItemData] = warriorsOfChaos.progBuildings
 
 progTechs: dict[int, ItemData] = {
-    65400: ItemData(IC.useful, 9, "Progressive tech_chs_tze_undivided", ItemType.tech, 8, None, "Progressive Chs Tech: Undivided"),
-    65401: ItemData(IC.useful, 9, "Progressive tech_chs_tze_tzeentch", ItemType.tech, 9, None, "Progressive Chs Tech: Tzeentch"),
+    65400: ItemData(IC.useful, 9, "Progressive tech_chs_tze_undivided", ItemType.tech, 8, None, "Progressive Chaos Tech: Undivided"),
+    65401: ItemData(IC.useful, 9, "Progressive tech_chs_tze_tzeentch", ItemType.tech, 9, None, "Progressive Chaos Tech: Tzeentch"),
 }
 
 special: dict[int, ItemData] = {
