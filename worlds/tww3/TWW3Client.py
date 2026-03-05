@@ -53,6 +53,19 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             self.ctx.logChecks = not self.ctx.logChecks
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
 
+    def _cmd_teleport(self):
+        """Teleports lords and heroes to starting location (use if your lord did not teleport)"""
+        if isinstance(self.ctx, TWW3Context):
+            for faction, settlement in self.ctx.capitals.items():
+                if faction == self.ctx.playerFaction:
+                    self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    break
+            for faction, settlement in self.ctx.hordes.items():
+                if faction == self.ctx.playerFaction:
+                    self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    break
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
@@ -204,6 +217,7 @@ class TWW3Context(CommonContext):
             logger.info("The player faction is: " + sm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
         self.playerRace = sm.factionDict[args["slot_data"]["starting_faction"]].race
+        print(self.playerRace)
 
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
@@ -522,6 +536,7 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, messenger, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
+                print(item.readableName)
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     messenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))

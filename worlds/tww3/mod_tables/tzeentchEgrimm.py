@@ -33,10 +33,10 @@ buildings.update({
     106408: ItemData(IC.useful, 1, 'mixu_tze_cabal_cult_1', ItemType.building, 0, 'Progressive tze_cabal_cult', 'Tzeentch Egrimm Building: Cult of Deceits'),
     106409: ItemData(IC.useful, 1, 'mixu_tze_cabal_cult_2', ItemType.building, 1, 'Progressive tze_cabal_cult', 'Tzeentch Egrimm Building: Cult of Lies'),
     106410: ItemData(IC.useful, 1, 'mixu_tze_cabal_cult_3', ItemType.building, 2, 'Progressive tze_cabal_cult', 'Tzeentch Egrimm Building: Cult of Change'),
-    106411: ItemData(IC.useful, 1, 'mixu_tze_cabal_cult_4', ItemType.building, 3, 'Progressive tze_cabal_cult', 'Tzeentch Egrimm Building: Cult of Exchange'),
-    106412: ItemData(IC.useful, 1, 'mixu_tze_cabal_trolls_1', ItemType.building, 0, 'Progressive tze_cabal_trolls', 'Tzeentch Egrimm Building: Chaos Troll Lair'),
-    106413: ItemData(IC.useful, 1, 'mixu_tze_cabal_trolls_2', ItemType.building, 1, 'Progressive tze_cabal_trolls', 'Tzeentch Egrimm Building: Sorcerous Chaos Troll Lair'),
-    106433: ItemData(IC.useful, 1, 'mixu_tze_cabal_chaos_dragon', ItemType.building, 0, 'Progressive tze_cabal_dragons', 'Tzeentch Egrimm Building: Chaos Dragon Lair'),
+    106433: ItemData(IC.useful, 1, 'mixu_tze_cabal_cult_4', ItemType.building, 3, 'Progressive tze_cabal_cult', 'Tzeentch Egrimm Building: Cult of Exchange'),
+    106434: ItemData(IC.useful, 1, 'mixu_tze_cabal_trolls_1', ItemType.building, 0, 'Progressive tze_cabal_trolls', 'Tzeentch Egrimm Building: Chaos Troll Lair'),
+    106435: ItemData(IC.useful, 1, 'mixu_tze_cabal_trolls_2', ItemType.building, 1, 'Progressive tze_cabal_trolls', 'Tzeentch Egrimm Building: Sorcerous Chaos Troll Lair'),
+    106436: ItemData(IC.useful, 1, 'mixu_tze_cabal_chaos_dragon', ItemType.building, 0, 'Progressive tze_cabal_dragons', 'Tzeentch Egrimm Building: Chaos Dragon Lair'),
 })
 buildings.pop(106434)
 buildings.pop(106435)
@@ -69,8 +69,8 @@ progBuildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                               for key, unit in tzeentch.progBuildings.items()}
 progBuildings.update({
     107302: ItemData(IC.useful, 4, 'Progressive tze_cabal_cult', ItemType.building, 4, None, 'Progressive Tzeentch Egrimm Building: Caster'),
-    107303: ItemData(IC.useful, 2, 'Progressive tze_cabal_trolls', ItemType.building, 2, None, 'Progressive Tzeentch Egrimm Building: Trolls'),
-    107310: ItemData(IC.useful, 1, 'Progressive tze_cabal_trolls', ItemType.building, 1, None, 'Progressive Tzeentch Egrimm Building: Dragon Lair'),
+    107310: ItemData(IC.useful, 2, 'Progressive tze_cabal_trolls', ItemType.building, 2, None, 'Progressive Tzeentch Egrimm Building: Trolls'),
+    107311: ItemData(IC.useful, 1, 'Progressive tze_cabal_dragons', ItemType.building, 1, None, 'Progressive Tzeentch Egrimm Building: Dragon Lair'),
 })
 
 progTechs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,

@@ -30,3 +30,5 @@ progUnits: dict[int, ItemData] = {key+80000: ItemData(unit.classification,
 progBuildings: dict[int, ItemData] = highElves.progBuildings
 
 progTechs: dict[int, ItemData] = highElves.progTechs
+
+special: dict[int, specialItemData] = {}
