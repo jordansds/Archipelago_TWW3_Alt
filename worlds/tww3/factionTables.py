@@ -10,6 +10,7 @@ from worlds.tww3.faction_tables import warriorsOfChaosKhorne, warriorsOfChaosNur
 
 #Mod Support
 from worlds.tww3.mod_tables import expandedRoster, mousillon, empireEdvard, tzeentchEgrimm, norscaSurtha
+from worlds.tww3.mod_tables import highElvesBelannaer
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -50,7 +51,17 @@ raceModuleDict.update({
     "empireEdvard": empireEdvard, #104000
     "tzeentchEgrimm": tzeentchEgrimm, #106000
     "norscaSurtha": norscaSurtha, #108000
+    #"highElvesBelannaer": highElvesBelannaer #110000
 })
+
+raceToMainRaceDict: dict[str, str] = {
+    "highElvesAislinn": "highElves",
+    "lizardmenNakai": "lizardmen",
+    "slaaneshDechala": "slaanesh",
+    "empireEdvard": "empire",
+    "tzeentchEgrimm": "tzeentch",
+    "norscaSurtha": "norsca",
+}
 
 moddedItemDict: dict[str, ModuleType] = {
     "decomposed expanded roster": expandedRoster, #100000
@@ -83,12 +94,18 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, ItemData]:
 
 def getModdedItems(playerRace = "", playerFaction = "", modList = []):
     modList = [mod.lower() for mod in modList] #In case the player used capitalisation in the name
-    #modList = ["expanded roster"]
+
+    #If the player is playing a special subfaction that has it's own module, then we need to check the main faction mod content
+    try:
+        playerRace = raceToMainRaceDict[playerRace]
+    except KeyError:
+        pass
+
     moddedItems: dict[int, ItemData] = {}
     for modName, module in moddedItemDict.items():
         if modList != [] and modName in modList:
             for table in module.dicts:
-                moddedItems.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items() if playerRace in item.race and (item.faction == playerFaction or item.faction == "")})
+                moddedItems.update({key: ItemData(*item[:2], *item[4:]) for key, item in table.items() if item.race == playerRace and (item.faction == playerFaction or item.faction == "")})
     return moddedItems.items()
 
 def getUnits(race, progressive):

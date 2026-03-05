@@ -1,6 +1,6 @@
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.item_types import ItemType, ItemData, specialItemData
-import worlds.tww3.faction_tables.tzeentch as tzeentch
+from worlds.tww3.faction_tables import tzeentch
 
 units: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.count,
