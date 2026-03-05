@@ -398,9 +398,9 @@ class deathLinkEffect(OptionSet):
 class modList(OptionSet):
     """List of mods with built-in support. Please add them to this list if you have them installed and enabled.
     "decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek"
-    E.g. ["decomposed expanded roster"]"""
+    E.g. ["decomposed expanded roster", "mixu legendary lords"]"""
     display_name = "Supported Mods"
-    valid_keys = ["decomposed expanded roster", "mixu mousillon"]
+    valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek"]
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
