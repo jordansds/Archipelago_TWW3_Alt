@@ -47,7 +47,7 @@ techs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
                               for key, unit in tzeentch.techs.items()}
 
 progUnits: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
@@ -56,7 +56,7 @@ progUnits: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
                               for key, unit in tzeentch.progUnits.items()}
 
 progBuildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
@@ -65,7 +65,7 @@ progBuildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
                               for key, unit in tzeentch.progBuildings.items()}
 progBuildings.update({
     107302: ItemData(IC.useful, 4, 'Progressive tze_cabal_cult', ItemType.building, 4, None, 'Progressive Tzeentch Egrimm Building: Caster'),
@@ -79,7 +79,7 @@ progTechs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
                               for key, unit in tzeentch.progTechs.items()}
 
 special: dict[int, specialItemData] = {}

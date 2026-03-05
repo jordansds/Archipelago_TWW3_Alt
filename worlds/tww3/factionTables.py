@@ -51,7 +51,7 @@ raceModuleDict.update({
     "empireEdvard": empireEdvard, #104000
     "tzeentchEgrimm": tzeentchEgrimm, #106000
     "norscaSurtha": norscaSurtha, #108000
-    #"highElvesBelannaer": highElvesBelannaer #110000
+    "highElvesBelannaer": highElvesBelannaer #110000
 })
 
 raceToMainRaceDict: dict[str, str] = {
