@@ -924,7 +924,7 @@ modDict: dict[str, dict[int, factionData]] = {
 
                              1004: factionData('mixer_vmp_helsnicht', True, True, 'vampireCounts', 'Dieter Helsnicht (Vampire Counts)', False),
 
-                             1005: factionData('mixer_tze_van_horstmann', True, True, 'tzeentch', 'Egrimm van Horstmann (Tzeentch)', False),
+                             1005: factionData('mixer_tze_van_horstmann', True, True, 'tzeentchEgrimm', 'Egrimm van Horstmann (Tzeentch)', False),
 
                              1006: factionData('mixer_sla_nether_things', True, True, 'slaanesh', "Slaa'Ulaan (Slaanesh)", False),
 

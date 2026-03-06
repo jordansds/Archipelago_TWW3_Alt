@@ -8,7 +8,7 @@ units: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.units.items()}
 units.update({
     #Overwriting non-varg units
@@ -36,7 +36,7 @@ buildings: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.buildings.items()}
 
 techs: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
@@ -45,7 +45,7 @@ techs: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.techs.items()}
 
 progUnits: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
@@ -54,7 +54,7 @@ progUnits: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.progUnits.items()}
 progUnits.update({
     109201: ItemData(IC.useful, 2, "Progressive nor_rng", ItemType.unit, 2, "", "Progressive Norsca Surtha Unit: Ranged"),
@@ -68,7 +68,7 @@ progBuildings: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.progBuildings.items()}
 
 progTechs: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
@@ -77,7 +77,7 @@ progTechs: dict[int, ItemData] = {key+70000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Nor", "Norsca Surtha"))
+                                                  unit.readableName.replace("Norsca", "Norsca Surtha"))
                               for key, unit in norsca.progTechs.items()}
 
 special: dict[int, specialItemData] = {}

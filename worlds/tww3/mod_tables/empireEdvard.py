@@ -32,7 +32,7 @@ units: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Egrimm"))
+                                                  unit.readableName.replace("Empire", "Empire Edvard"))
                               for key, unit in empire.units.items()}
 units.update({})
 
