@@ -2,17 +2,17 @@ from BaseClasses import ItemClassification as IC
 
 from worlds.tww3.item_types import ItemType, ItemData
 fillerWeakDict: dict[int, ItemData] = {
-    1200: ItemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(10000,1))', ItemType.filler_weak, None, "None", "Get-Rich-Quick Scroll"), #Gold
     1201: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Something Happened"), #Random event - not currently included as most don't do anything
     1202: ItemData(IC.filler, 0, "set_random_positive_public_order()", ItemType.filler_weak, None, "None", "Handful of Order"), #Random amount of positive public order to random region
     1203: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Something Thingy"), #Random item/ancillary
-    1204: ItemData(IC.filler, 0, "add_random_growth_to_player()", ItemType.filler_weak, None, "None", "The GroBro 3000") #Growth boost to random region
+    1204: ItemData(IC.filler, 0, "add_random_growth_to_player()", ItemType.filler_weak, None, "None", "The GroBro 3000"), #Growth boost to random region
+    1205: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Something Shiny") #Random legendary item/ancillary
 }
 
 fillerStrongDict: dict[int, ItemData] = {
     1300: ItemData(IC.filler, 0, "force_settlement_transfer_from_random_enemy_to_player()", ItemType.filler_strong, None, "None", "Give me that"), #Gives player random enemy city
     1301: ItemData(IC.filler, 0, "force_alliance_with_random_enemy()", ItemType.filler_strong, None, "None", "Make Love, Not War"), #Makes random enemy an ally
-    1302: ItemData(IC.filler, 0, "", ItemType.filler_strong, None, "None", "Something Shiny") #Random legendary item/ancillary
+    1302: ItemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(10000,1000))', ItemType.filler_weak, None, "None", "Get-Rich-Quick Scroll"), #Gold
 }
 
 trapHarmlessDict: dict[int, ItemData] = {

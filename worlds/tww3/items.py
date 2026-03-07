@@ -186,6 +186,10 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
         ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
         #key = world.item_name_to_id[name]
+    elif key == 1205:
+        ancillaries_table = ancillariesLegendaryDict
+        name = world.random.choice(tuple(ancillaries_table.values())).readableName
+        # key = world.item_name_to_id[name]
     else:
         name = itemDict[key].readableName
 
@@ -196,9 +200,9 @@ def generateFillerStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerStrongDict.keys()))
     #This item is considered a trap in conquest
     if key == 1302 and world.options.game_mode == "conquest":
-        key = 1301
+        key = 1205
     # get legendary ancillary
-    if key == 1301:
+    if key == 1205:
         ancillaries_table = ancillariesLegendaryDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
         #key = world.item_name_to_id[name]
