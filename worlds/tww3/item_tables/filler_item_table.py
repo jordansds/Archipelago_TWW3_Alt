@@ -2,6 +2,7 @@ from BaseClasses import ItemClassification as IC
 
 from worlds.tww3.item_types import ItemType, ItemData
 fillerWeakDict: dict[int, ItemData] = {
+    1302: ItemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(2000,1))', ItemType.filler_weak, None, "None", "Get-Rich-Slow Scroll"), #Gold
     1201: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Something Happened"), #Random event - not currently included as most don't do anything
     1202: ItemData(IC.filler, 0, "set_random_positive_public_order()", ItemType.filler_weak, None, "None", "Handful of Order"), #Random amount of positive public order to random region
     1203: ItemData(IC.filler, 0, "", ItemType.filler_weak, None, "None", "Something Thingy"), #Random item/ancillary
