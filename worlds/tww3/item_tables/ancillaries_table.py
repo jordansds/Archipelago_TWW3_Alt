@@ -8,7 +8,7 @@ ancillariesRegularDict: Dict[int, ItemData] = {
     2000: ItemData(IC.filler, 0, 'wh2_dlc09_anc_enchanted_item_ouroboros', ItemType.ancillaries_regular, None, 'None', 'Enchanted Item: Ouroboros'),
     2001: ItemData(IC.filler, 0, 'wh2_dlc17_anc_armour_cloak_of_unreality', ItemType.ancillaries_regular, None, 'None', 'Armour: Cloak Of Unreality'),
     2002: ItemData(IC.filler, 0, 'wh2_main_anc_weapon_executioners_axe', ItemType.ancillaries_regular, None, 'None', 'Weapon: Executioners Axe'),
-    2003: ItemData(IC.filler, 0, 'wh2_dlc09_anc_armour_armour_armour_of_dawn', ItemType.ancillaries_regular, None, 'None', 'Armour: Armour Armour Of Dawn'),
+    2003: ItemData(IC.filler, 0, 'wh2_dlc09_anc_armour_armour_armour_of_dawn', ItemType.ancillaries_regular, None, 'None', 'Armour: Armour Of Dawn'),
     2004: ItemData(IC.filler, 0, 'wh_main_anc_weapon_obsidian_blade', ItemType.ancillaries_regular, None, 'None', 'Weapon: Obsidian Blade'),
     2005: ItemData(IC.filler, 0, 'wh2_dlc09_anc_talisman_collar_of_shakkara', ItemType.ancillaries_regular, None, 'None', 'Talisman: Collar Of Shakkara'),
     2006: ItemData(IC.filler, 0, 'wh2_dlc17_anc_armour_mutated_ghorgon_hide', ItemType.ancillaries_regular, None, 'None', 'Armour: Mutated Ghorgon Hide'),

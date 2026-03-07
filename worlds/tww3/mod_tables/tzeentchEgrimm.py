@@ -8,7 +8,7 @@ units: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.units.items()}
 units.update({
     106045: ItemData(IC.useful, 1, ' mixu_tze_inf_cultists', ItemType.unit, 1, 'Progressive tze_inf', 'Tzeentch Egrimm Unit: Cultists of Tzeentch'),
@@ -20,13 +20,15 @@ units.update({
     106049: ItemData(IC.useful, 1, 'mixu_tze_mon_chaos_dragon', ItemType.unit, 3, 'Progressive tze_bst', 'Tzeentch Egrimm Unit: Chaos Dragon'),
 })
 
+print(units)
+
 buildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.count,
                                                   unit.name,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tze", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.buildings.items()}
 
 buildings.update({
@@ -47,7 +49,7 @@ techs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.techs.items()}
 
 progUnits: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
@@ -56,7 +58,7 @@ progUnits: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.progUnits.items()}
 
 progBuildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
@@ -65,7 +67,7 @@ progBuildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.progBuildings.items()}
 progBuildings.update({
     107302: ItemData(IC.useful, 4, 'Progressive tze_cabal_cult', ItemType.building, 4, None, 'Progressive Tzeentch Egrimm Building: Caster'),
@@ -79,7 +81,7 @@ progTechs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.type,
                                                   unit.tier,
                                                   unit.progressionGroup,
-                                                  unit.readableName.replace("Tzeentch", "Tzeentch Egrimm"))
+                                                  unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.progTechs.items()}
 
 special: dict[int, specialItemData] = {}
