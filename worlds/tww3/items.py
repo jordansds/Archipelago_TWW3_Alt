@@ -199,7 +199,7 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
 def generateFillerStrong(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerStrongDict.keys()))
     #This item is considered a trap in conquest
-    if key == 1302 and world.options.game_mode == "conquest":
+    if key == 1301 and world.options.game_mode == "conquest":
         key = 1205
     # get legendary ancillary
     if key == 1205:

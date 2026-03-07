@@ -38,8 +38,8 @@ buildings.update({
     106435: ItemData(IC.useful, 1, 'mixu_tze_cabal_trolls_2', ItemType.building, 1, 'Progressive tze_cabal_trolls', 'Tzeentch Egrimm Building: Sorcerous Chaos Troll Lair'),
     106436: ItemData(IC.useful, 1, 'mixu_tze_cabal_chaos_dragon', ItemType.building, 0, 'Progressive tze_cabal_dragons', 'Tzeentch Egrimm Building: Chaos Dragon Lair'),
 })
-buildings.pop(106434)
-buildings.pop(106435)
+#buildings.pop(106434)
+#buildings.pop(106435)
 
 techs: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.count,
