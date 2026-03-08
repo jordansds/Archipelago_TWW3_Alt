@@ -135,7 +135,6 @@ class TWW3Context(CommonContext):
         self.adminCapacity = 0
         self.expansionItems = 0
         self.numberOfOrbs = 0
-        self.numberOfDiploRanges = 0
         self.itemDict = {}
         self.deathLinkPending = False
         self.logChecks = False
@@ -304,9 +303,9 @@ class TWW3Context(CommonContext):
                     logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
                     logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                 elif self.gameMode == "spheres":
-                    self.numberOfDiploRanges += 1
-                    self.triggerSphereExpansion(self.numberOfDiploRanges)
-                    logger.info("You now have: " + str(self.numberOfDiploRanges) + " Spheres of Influence")
+                    self.expansionItems += 1
+                    self.triggerSphereExpansion(self.expansionItems)
+                    logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
             elif item.type == ItemType.goal:
                 if self.gameMode == "spheres":
                     self.numberOfOrbs += 1
@@ -378,8 +377,12 @@ class TWW3Context(CommonContext):
             if self.gameMode == "conquest":
 
                 if str(location) != str(self.numberOfLocations):
-                    for i in range(int(self.checksPerLocation)):
-                        await self.check_locations([int(location)*10-9 + i])
+                    if location <= self.adminCapacity * self.expansionItems:
+                        for i in range(int(location)):
+                            for j in range(int(self.checksPerLocation)):
+                                await self.check_locations([int(location)*10-9 + j])
+                    else:
+                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 else:
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
