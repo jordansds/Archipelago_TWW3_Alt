@@ -385,7 +385,8 @@ class TWW3Context(CommonContext):
 
             elif self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
-                await self.check_locations([self.locationLookup[sm.settlementDict[key].readableName]])
+                for i in range(int(self.checksPerLocation)):
+                    await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])
                 
         except KeyError as e:
             logger.error(e)

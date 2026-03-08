@@ -71,25 +71,26 @@ def createDiploRangeLocations(world: TWW3World) -> None:
     for settlement in world.settlements.values():
         key += 1
         from collections import Counter
-        locId = world.location_name_to_id[settlement.readableName]
-        location = TWW3Location(world.player, settlement.readableName, locId, worldRegion)
+        for i in range(world.options.checks_per_settlement):
+            locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
+            location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
 
-        #print(f"{location} : {settlementDiploRange[key]}")
+            #print(f"{location} : {settlementDiploRange[key]}")
 
-        if settlementDiploRange[key] > world.options.sphere_count:
-            continue
+            if settlementDiploRange[key] > world.options.sphere_count:
+                continue
 
-        elif settlementDiploRange[key] == 0:
-            worldRegion.locations.append(location)
-            #print(location)
-
-        elif settlementDiploRange[key] > 0:
-            if settlement.faction != world.playerFaction.name:
-                set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
-            worldRegion.locations.append(location)
+            elif settlementDiploRange[key] == 0:
+                worldRegion.locations.append(location)
                 #print(location)
 
-    print(len(worldRegion.locations))
+            elif settlementDiploRange[key] > 0:
+                if settlement.faction != world.playerFaction.name:
+                    set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+                worldRegion.locations.append(location)
+                    #print(location)
+
+    #print(len(worldRegion.locations))
 
 
 

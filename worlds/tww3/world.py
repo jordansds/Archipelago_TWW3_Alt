@@ -31,15 +31,17 @@ class TWW3World(World):
     itemKeys = []
 
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
+    #item_name_to_id = {}
 
     locations = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locations += [settlement.readableName for key, settlement in sm.settlementDict.items()]  # spheres gamemode locations
+    locations += [f"{settlement.readableName} ({i})" for key, settlement in sm.settlementDict.items() for i in range(10)]  # spheres gamemode locations
 
     location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
 
     settlementManager: sm.SettlementManager = None
 
     def generate_early(self) -> None:
+        #self.item_name_to_id.update({item.readableName: key for key, item in items.itemDict.items()})
         sm.addModdedFactions(self.options.mod_list)
 
         self.playerFaction = sm.factionDict[self.options.starting_faction.value]
