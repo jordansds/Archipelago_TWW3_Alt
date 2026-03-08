@@ -19,6 +19,10 @@ from .options import TWW3Options
 
 itemDict: dict[int, ItemData] = {}
 itemDict.update(factionTables.getAllItems())
+#for item in itemDict.values():
+#    if item.tier == None:
+#        print(f"ERROR: {item}")
+
 itemDict.update(fillerWeakDict)
 itemDict.update(fillerStrongDict)
 itemDict.update(trapHarmlessDict)

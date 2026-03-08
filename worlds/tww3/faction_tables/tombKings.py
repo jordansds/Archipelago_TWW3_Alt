@@ -267,7 +267,7 @@ progTechs: dict[int, ItemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    47500: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, None, None, True, False, "TombKing Effect: +1 Army Capacity"),
+    47500: specialItemData(IC.useful, 1, "", "wh2_dlc09_ritual_crafting_tmb_army_capacity_25", ItemType.effect_faction, 0, None, True, False, "TombKing Effect: +1 Army Capacity"),
     47501: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_inf_crypt_ghouls", ItemType.unit, 1, "Progressive tmb_inf", False, False, "TombKing Unit: Crypt Ghouls"),
     47502: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_cav_hexwraiths", ItemType.unit, 3, "Progressive tmb_cav", False, False, "TombKing Unit: Hexwraiths"),
     47503: specialItemData(IC.useful, 1, "wh2_dlc09_tmb_followers_of_nagash", "wh2_dlc09_tmb_mon_dire_wolves", ItemType.unit, 1, "Progressive tmb_bst", False, False, "TombKing Unit: Hexwraiths"),
