@@ -166,6 +166,16 @@ class factionShuffle(DefaultOnToggle):
     """If you want to shuffle the settlements for each faction"""
     display_name = "Faction Shuffle"
 
+class checksPerSettlement(Range):
+    """Set how many checks are triggered per settlement captured.
+    Depending on YAML settings and the chosen faction, you will likely have around 150-300 non-filler items.
+    Make sure to change this value based on how many locations you want your game to have.
+    If world generation fails, then you will either need to increase this option."""
+    display_name = "Checks Per Settlement"
+    range_start = 1
+    range_end = 50
+    default = 3
+
 class startingSettlements(Range):
     """REQUIRES FACTION SHUFFLE TO BE ENABLED
     Set how many settlements the player will start with."""
@@ -185,17 +195,6 @@ class numberOfSettlements(Range):
     range_start = 20
     range_end = len(sm.settlementDict)
     default = 100
-    
-class checksPerSettlement(Range):
-    """CONQUEST MODE ONLY
-    Set how many checks are triggered per empire size increase (empire size being the number of settlements you own).
-    Depending on YAML settings and the chosen faction, you will likely have around 200-300 non-filler items.
-    Make sure to change this value based on how many locations you want your game to have.
-    If world generation fails, then you will either need to increase this option or the previous option."""
-    display_name = "Checks Per Settlement (CONQUEST)"
-    range_start = 1
-    range_end = 50
-    default = 3
 
 class adminCapacity(Range):
     """CONQUEST MODE ONLY
@@ -254,13 +253,13 @@ class extraOrbCount(Range):
     range_end = 50
     default = 0
 
-class maxRange(Range):
-    """The furthest away two settlements can be during world generation.
-    The smallest distance between settlements is 25. The largest is 1400."""
-    display_name = "Max Settlement Distance"
-    range_start = 50
-    range_end = 1500
-    default = 200
+#class maxRange(Range):
+#    """The furthest away two settlements can be during world generation.
+#    The smallest distance between settlements is 25. The largest is 1400."""
+#    display_name = "Max Settlement Distance"
+#    range_start = 50
+#    range_end = 1500
+#    default = 200
 
 class techShuffle(DefaultOnToggle):
     """Whether technologies should be included in the item pool."""
@@ -408,9 +407,9 @@ class TWW3Options(PerGameCommonOptions):
     game_mode: gameMode
     faction_shuffle: factionShuffle
     starting_settlements: startingSettlements
+    checks_per_settlement: checksPerSettlement
 
     number_of_settlements: numberOfSettlements
-    checks_per_settlement: checksPerSettlement
     admin_capacity: adminCapacity
 
     sphere_count: sphereCount
@@ -419,7 +418,7 @@ class TWW3Options(PerGameCommonOptions):
     orb_count: orbCount
     extra_orb_count: extraOrbCount
 
-    max_range: maxRange
+    #max_range: maxRange
 
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
