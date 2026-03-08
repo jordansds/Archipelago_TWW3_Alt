@@ -37,10 +37,11 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_ac(self):
         """Prints the current number of settlements you can control"""
         if isinstance(self.ctx, TWW3Context):
-            self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
-            self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
+            self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
+            self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
+            self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_orbs(self):
         """Prints the current number of orbs of dominance that you own"""
@@ -66,6 +67,18 @@ class TWW3CommandProcessor(ClientCommandProcessor):
                     self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
+            self.ctx.messenger.run("reduce_lines(2)")
+
+    #def _cmd_resync(self):
+    #    """Resyncs the number of lines read from the engine file"""
+    #    if isinstance(self.ctx, TWW3Context):
+    #        logger.info("Resynchronised")
+    #        self.ctx.messenger.run(f"set_line_offset({self.ctx.lineCount + 1})")
+
+    #def _cmd_rewind(self):
+    #    if isinstance(self.ctx, TWW3Context):
+    #        self.ctx.messenger.run("reduce_lines(2)")
+
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
@@ -154,7 +167,6 @@ class TWW3Context(CommonContext):
             if "tags" in args:
                 if "DeathLink" in args["tags"]:
                     self.on_deathlink(args["data"])
-
 
     def on_connected(self, args: dict):
         version = TWW3World.world_version.as_simple_string()
@@ -260,6 +272,7 @@ class TWW3Context(CommonContext):
         self.itemDict.update(progressionDict)
 
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
+        self.lineCount = 0
 
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
@@ -283,23 +296,23 @@ class TWW3Context(CommonContext):
                 if self.progressiveBuildings:
                     self.sendProgressiveItem(item.name)
                 else:
-                    self.messenger.run(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+                    self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
             elif item.type == ItemType.unit:
                 if self.progressiveUnits:
                     self.sendProgressiveItem(item.name)
                 else:
-                    self.messenger.run(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+                    self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
             elif item.type == ItemType.tech:
                 if self.progressiveTechs:
                     self.sendProgressiveItem(item.name)
                 else:
-                    self.messenger.run(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
             elif item.type == ItemType.progression:
                 if self.gameMode == "conquest":
                     self.expansionItems += 1
-                    self.messenger.run(f"set_admin_capacity({self.expansionItems})")
-                    self.messenger.run(f"set_settlements_per_admin_capacity({self.adminCapacity})")
+                    self.sendMessage(f"set_admin_capacity({self.expansionItems})")
+                    self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
                     logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
                     logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                 elif self.gameMode == "spheres":
@@ -313,24 +326,24 @@ class TWW3Context(CommonContext):
 
             elif item.classification == IC.filler:
                 if item.readableName == "Get-Rich-Quick Scroll":
-                    self.messenger.run(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
+                    self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
 
                 elif item.type == ItemType.ancillaries_regular or item.type == ItemType.ancillaries_legendary:
-                    self.messenger.run(f'give_player_ancillary("{item.name}")')
+                    self.sendMessage(f'give_player_ancillary("{item.name}")')
                 else:
-                    self.messenger.run(item.name)
+                    self.sendMessage(item.name)
 
             elif item.classification == IC.trap:
                 if self.are_traps_enabled:
-                    self.messenger.run(item.name)
+                    self.sendMessage(item.name)
                 else:
-                    self.messenger.run('out("Skipped a Trap")')
+                    self.sendMessage('out("Skipped a Trap")')
 
             elif item.type == ItemType.effect_faction:
-                self.messenger.run(f'give_player_faction_effect({item.name})')
+                self.sendMessage(f'give_player_faction_effect({item.name})')
 
             elif item.type == ItemType.ritual:
-                self.messenger.run(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
+                self.sendMessage(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
 
             self.messenger.flush()
 
@@ -340,17 +353,21 @@ class TWW3Context(CommonContext):
 
         self.messenger.flush()
 
+    def sendMessage(self, message):
+        self.messenger.run(message)
+        self.lineCount += 1
+
     def sendProgressiveItem(self, progressionGroup):
         for key, item in self.itemDict.items():
             if item.progressionGroup == progressionGroup:
                 self.progressiveItemFlags[key] += 1
                 if item.tier == self.progressiveItemFlags[key]:
                     if item.type == ItemType.building:
-                        self.messenger.run(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+                        self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
                     elif item.type == ItemType.unit:
-                        self.messenger.run(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+                        self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
                     else:
-                        self.messenger.run(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                        self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
     def triggerSphereExpansion(self, numberOfSphereItems):
         oldSphere = []
@@ -365,19 +382,18 @@ class TWW3Context(CommonContext):
                 allOthers.append(faction)
         for oldFaction in oldSphere:
             for newFaction in newSphere:
-                self.messenger.run("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
+                self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
         for newFaction in newSphere:
             for otherFaction in allOthers:
-                self.messenger.run("cm:force_make_peace(\"%s\", \"%s\")" % (newFaction, otherFaction))
-                self.messenger.run("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (newFaction, otherFaction))
+                self.sendMessage("cm:force_make_peace(\"%s\", \"%s\")" % (newFaction, otherFaction))
+                self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (newFaction, otherFaction))
         return
 
     async def check(self, location):
         try:
             if self.gameMode == "conquest":
-
                 if str(location) != str(self.numberOfLocations):
-                    if location <= self.adminCapacity * self.expansionItems:
+                    if int(location) <= self.adminCapacity * self.expansionItems:
                         for i in range(int(location)):
                             for j in range(int(self.checksPerLocation)):
                                 await self.check_locations([int(location)*10-9 + j])
@@ -404,7 +420,7 @@ class TWW3Context(CommonContext):
         effectKey = random.choice([key for key in self.deathLinkOptions.keys()])
         logger.info(f"Death Link Received, triggering {effectKey}")
         super().on_deathlink(data)
-        self.messenger.run(self.deathLinkOptions[effectKey])
+        self.sendMessage(self.deathLinkOptions[effectKey])
         asyncio.create_task(self.resetDeathLinkFlag())
 
     async def send_death(self, death_text: str = ""):
@@ -442,13 +458,14 @@ class EngineInitializer:
         self.itemDict = itemDictionary
         capitals = context.capitals
         startingTier = context.startingTier
+        sendMessage = context.sendMessage
         messenger = context.messenger
 
         ###
         #Randomise AI Personalities
         ###
         if context.randomizePersonalities:
-            messenger.run("cm:cai_force_personality_change(\"All\")")
+            sendMessage("cm:cai_force_personality_change(\"All\")")
 
         if context.factionShuffle:#
             ###
@@ -458,28 +475,28 @@ class EngineInitializer:
             for settlement, faction in settlements.items():
                 if faction == self.playerFaction:
                     continue
-                messenger.run("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
-                messenger.run("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+                sendMessage("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
+                sendMessage("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
 
             isFirstPlayerSettlement = True
             for settlement, faction in settlements.items():
-                messenger.run("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
-                messenger.run("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+                sendMessage("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
+                sendMessage("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
                 if faction == self.playerFaction and isFirstPlayerSettlement:
-                    messenger.run("cm:scroll_camera_to_region(\"%s\", \"%s\", 1)" % (faction, settlement))
+                    sendMessage("cm:scroll_camera_to_region(\"%s\", \"%s\", 1)" % (faction, settlement))
                     isFirstPlayerSettlement = False
 
             ###
             #Teleport armies to new settlement
             ###
             for faction, settlement in capitals.items():
-                messenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
-                messenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
             for faction, settlement in hordes.items():
-                messenger.run("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
-                messenger.run("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
 
-            messenger.run("cm:reset_shroud()")
+            sendMessage("cm:reset_shroud()")
                 
         ###
         #Locks rituals if randomised
@@ -487,7 +504,7 @@ class EngineInitializer:
         #if context.shuffleRituals:
         #    for key, ritual in ritualDict.items():
         #        if ritual.faction == self.playerFaction:
-        #            messenger.run("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (self.playerFaction, ritual.name))
+        #            sendMessage("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (self.playerFaction, ritual.name))
                     
         ###
         #Disables techs/buildings/units if randomised
@@ -495,25 +512,25 @@ class EngineInitializer:
         for key in context.itemKeys:
             itemData = self.itemDict[key]
             if (itemData.type == ItemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
-                messenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, itemData.name))
+                sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, itemData.name))
             elif (itemData.type == ItemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
-                messenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
+                sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
             elif (itemData.type == ItemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
-                messenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
+                sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
 
         if context.progressiveTechs:
-            self.lock_progressiveTechs(self, messenger, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveTechs(self, sendMessage, self.itemDict, progressiveItemFlags)
         if context.progressiveBuildings:
-            self.lock_progressiveBuildings(self, startingTier, messenger, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveBuildings(self, startingTier, sendMessage, self.itemDict, progressiveItemFlags)
         if context.progressiveUnits:
-            self.lock_progressiveUnits(self, startingTier, messenger, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveUnits(self, startingTier, sendMessage, self.itemDict, progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###
             #Set Administrative Capacity
             ###
-            messenger.run(f"set_settlements_per_admin_capacity({context.adminCapacity})")
-            messenger.run(f"set_admin_capacity({context.expansionItems})")
+            sendMessage(f"set_settlements_per_admin_capacity({context.adminCapacity})")
+            sendMessage(f"set_admin_capacity({context.expansionItems})")
 
         elif context.gameMode == "spheres":
             sphereZeroFactions = []
@@ -526,33 +543,33 @@ class EngineInitializer:
                 continue
             for factionZero in sphereZeroFactions:
                 for faction in sphereAllOthers:
-                    messenger.run("cm:force_make_peace(\"%s\", \"%s\")" % (factionZero, faction))
-                    messenger.run(
+                    sendMessage("cm:force_make_peace(\"%s\", \"%s\")" % (factionZero, faction))
+                    sendMessage(
                         "cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (
                             factionZero, faction))
         messenger.flush()
 
-    def lock_progressiveTechs(self, messenger, item_table, progressive_items_flags):
+    def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.tech and item.progressionGroup is not None:# and item.race == self.playerRace:
-                messenger.run("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
+                sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
-    def lock_progressiveBuildings(self, startingTier, messenger, item_table, progressive_items_flags):
+    def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 print(item.readableName)
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                    messenger.run("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+                    sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
                 #else:
                 #    progressive_items_flags[key] = 0
 
-    def lock_progressiveUnits(self, startingTier, messenger, item_table, progressive_items_flags):
+    def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == ItemType.unit and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier
                 if item.tier > startingTier:
-                    messenger.run("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+                    sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
 def launchClient(*args: Sequence[str]):
     Utils.init_logging('TWW3Client')
