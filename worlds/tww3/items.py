@@ -17,7 +17,7 @@ from . import factionTables
 from worlds.tww3.item_types import ItemData, ItemType
 from .options import TWW3Options
 
-itemDict = {}
+itemDict: dict[int, ItemData] = {}
 itemDict.update(factionTables.getAllItems())
 itemDict.update(fillerWeakDict)
 itemDict.update(fillerStrongDict)
