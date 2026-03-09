@@ -20,8 +20,6 @@ units.update({
     106049: ItemData(IC.useful, 1, 'mixu_tze_mon_chaos_dragon', ItemType.unit, 3, 'Progressive tze_bst', 'Tzeentch Egrimm Unit: Chaos Dragon'),
 })
 
-print(units)
-
 buildings: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.count,
                                                   unit.name,
