@@ -81,12 +81,11 @@ def createDiploRangeLocations(world: TWW3World) -> None:
                 continue
 
             elif settlementDiploRange[key] == 0:
-                worldRegion.locations.append(location)
-                #print(location)
+                if settlement.faction != world.playerFaction.name:
+                    worldRegion.locations.append(location)
 
             elif settlementDiploRange[key] > 0:
-                if settlement.faction != world.playerFaction.name:
-                    set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+                set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
                 worldRegion.locations.append(location)
                     #print(location)
 
