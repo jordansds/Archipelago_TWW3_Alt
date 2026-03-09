@@ -85,7 +85,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if "settlement_major" in item.name:
                 if item.progressionGroup is None:
-                        world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
+                    world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
                 elif item.tier <= 2:
                     world.multiworld.local_early_items[world.player][item.readableName] = 1
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
@@ -156,6 +156,9 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
         for i in range(world.options.orb_count + world.options.extra_orb_count):
             item = world.create_item("Orb of Domination")
             pool.append(item)
+        #world.multiworld.local_items[world.player]["Orb of Domination"] = world.options.orb_count + world.options.extra_orb_count
+        #world.multiworld.local_early_items[world.player][item.readableName] = max(
+        #    item.count - world.options.starting_tier - 2, 0)
     return pool
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
