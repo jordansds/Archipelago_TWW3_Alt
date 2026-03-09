@@ -58,7 +58,7 @@ class TWW3World(World):
 
         self.options.local_items.value.add("Orb of Domination")
         #self.options.non_local_items.value.add("Diplomatic Range")
-        #self.options.non_local_items.value.add("Administrative Capacity")
+        self.options.non_local_items.value.add("Administrative Capacity")
 
     def create_regions(self) -> None:
         
