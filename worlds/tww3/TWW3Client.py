@@ -185,8 +185,8 @@ class TWW3Context(CommonContext):
         if not self.path or not os.path.exists(self.path):
             logger.error('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
             Utils.async_start(self.disconnect())
-        if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")):
-            logger.error('ERROR: Could not find Warhammer3.exe. Please correct the path in your host.yaml.')
+        if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
+            logger.error('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
             Utils.async_start(self.disconnect())
 
         self.gameMode = args['slot_data']['game_mode']
