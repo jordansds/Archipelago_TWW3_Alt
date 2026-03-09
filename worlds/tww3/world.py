@@ -34,7 +34,7 @@ class TWW3World(World):
     #item_name_to_id = {}
 
     locations = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locations += [f"{settlement.readableName} ({i})" for key, settlement in sm.settlementDict.items() for i in range(10)]  # spheres gamemode locations
+    locations += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
 
     location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
 
@@ -91,9 +91,9 @@ class TWW3World(World):
                                         "mod_list"
                                          )
         #print(self.options.death_link_effects.value)
+        slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
 
         if self.options.game_mode == "conquest":
-            slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.options.admin_capacity.value
         elif self.options.game_mode == "spheres":

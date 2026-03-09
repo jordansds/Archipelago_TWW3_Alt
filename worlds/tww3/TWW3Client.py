@@ -241,9 +241,9 @@ class TWW3Context(CommonContext):
         #self.shuffleRituals = args['slot_data']['ritual_shuffle']
         self.randomizePersonalities = args['slot_data']['randomize_personalities']
         self.factionShuffle = args['slot_data']['faction_shuffle']
+        self.checksPerLocation = args['slot_data']['checks_per_settlement']
 
         if self.gameMode == "conquest":
-            self.checksPerLocation = args['slot_data']['checks_per_settlement']
             self.numberOfLocations = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
 
@@ -255,7 +255,9 @@ class TWW3Context(CommonContext):
             self.locationLookup = dict()
             offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
             for key, settlement in sm.settlementDict.items():
-                self.locationLookup[settlement.readableName] = key + offset
+                #self.locationLookup[settlement.readableName] = key + offset4
+                for i in range(10):
+                    self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
         logger.info(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
@@ -405,9 +407,11 @@ class TWW3Context(CommonContext):
             elif self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
                 for i in range(int(self.checksPerLocation)):
+                    #try:
                     await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])
-                
-        except KeyError as e:
+                    #except Exception as e:
+                    #    print(e)
+        except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
 
