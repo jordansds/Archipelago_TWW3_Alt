@@ -14,7 +14,7 @@ yaml - this is to account for how slow TWW3 can be to play and allows you to tai
 games in the multiworld.
 
 In sphere mode every unique settlement in the world can be a check, though only a certain amount will be active based
-on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECCOMENDED MODS TO
+on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECOMMENDED MODS TO
 PREVENT POTENTIAL SOFTLOCK.
 
 **Playing beastmen is currently not recommended in Conquest.**
@@ -148,9 +148,9 @@ either set it to 10 or leave it off. For singleplayer games a value of at least 
 
 ## Recommended mods: 
 
-[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set to 100 turn cooldown and enable for AI (not player). HIGHLY RECCOMENDED.
+[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set min and max to 100 turn cooldown and enable for AI (not player). HIGHLY RECOMMENDED.
 
-[Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECCOMENDED.
+[Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECOMMENDED.
 
 [Remove Tech Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3541110164): Lets you research all tech in any order. This is specifically intended to be used when
 using shuffled non-progressive tech so you can research them immediately.
