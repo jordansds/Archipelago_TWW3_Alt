@@ -408,7 +408,6 @@ class TWW3Context(CommonContext):
                     await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])
                 
         except KeyError as e:
-            logger.error(e)
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
 
