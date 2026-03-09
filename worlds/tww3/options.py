@@ -154,7 +154,8 @@ class gameMode(Choice):
     """Select which game mode you want to use.
     Conquest: No restrictions, checks are based on total settlements conquered.
     Spheres:  You can only interact with factions near your start position,
-             all unique settlements are checks. [UNSTABLE]"""
+             all unique settlements are checks.
+             [MAKE SURE YOU HAVE READ THE README TO PREVENT SOFTLOCKING]"""
     display_name = "Game Mode"
 
     option_conquest = "conquest"
@@ -218,8 +219,7 @@ class sphereCount(Range):
 
 class extraSphereCount(Range):
     """SPHERE MODE ONLY
-    How many extra diplomatic radius upgrades are generated.
-    Without these you are more likely to softlock."""
+    How many extra diplomatic radius upgrades are generated"""
     display_name = "Extra Spheres (SPHERES)"
     range_start = 0
     range_end = 50
