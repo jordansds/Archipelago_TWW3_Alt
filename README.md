@@ -148,7 +148,7 @@ either set it to 10 or leave it off. For singleplayer games a value of at least 
 
 ## Recommended mods: 
 
-[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set to 100 turn cooldown. HIGHLY RECCOMENDED.
+[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set to 100 turn cooldown and enable for AI (not player). HIGHLY RECCOMENDED.
 
 [Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECCOMENDED.
 
