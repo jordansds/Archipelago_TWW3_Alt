@@ -56,6 +56,10 @@ class TWW3World(World):
 
         self.locationToDiploRange = {}
 
+        self.options.local_items.value.add("Orb of Domination")
+        self.options.non_local_items.value.add("Diplomatic Range")
+        self.options.non_local_items.value.add("Administrative Capacity")
+
     def create_regions(self) -> None:
         
         worldRegion = Region("Old World", self.player, self.multiworld)
