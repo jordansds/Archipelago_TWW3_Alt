@@ -396,7 +396,7 @@ class TWW3Context(CommonContext):
                     if int(location) <= self.adminCapacity * self.expansionItems:
                         for i in range(int(location)):
                             for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([int(location)*10-9 + j])
+                                await self.check_locations([int(location+1)*10-9 + j])
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 else:
