@@ -940,12 +940,12 @@ modDict: dict[str, dict[int, factionData]] = {
         287: factionData('wh_main_nor_varg', False, True, 'norscaSurtha', 'Surtha Ek (Norsca)', False)
     },
     "Pegaz The Crustacean Nation": {
-        1008: factionData('mixer_cn_ancient', True, False, 'crustacean', 'Ancient Wardens (Crustaceans)', True),
-        1009: factionData('mixer_cn_king_crab', True, False, 'crustacean', 'King Crab (Crustaceans)', True),
-        1010: factionData('mixer_cn_reefspeaker', True, False, 'crustacean', 'Sentinels of the Great Reef (Crustaceans)', True),
-        1011: factionData('mixer_cn_hunter', True, False, 'crustacean', 'Beastslayers (Crustaceans)', True),
-        1012: factionData('mixer_cn_lobster', True, False, 'crustacean', 'The Lobster Horde (Crustaceans)', True),
-        1013: factionData('mixer_cn_nuja', True, False, 'crustacean', 'Oathsworn Crusaders (Crustaceans)', True),
+        1008: factionData('mixer_cn_ancient', True, False, 'crustaceans', 'Ancient Wardens (Crustaceans)', True),
+        1009: factionData('mixer_cn_king_crab', True, False, 'crustaceans', 'King Crab (Crustaceans)', True),
+        1010: factionData('mixer_cn_reefspeaker', True, False, 'crustaceans', 'Sentinels of the Great Reef (Crustaceans)', True),
+        1011: factionData('mixer_cn_hunter', True, False, 'crustaceans', 'Beastslayers (Crustaceans)', True),
+        1012: factionData('mixer_cn_lobster', True, False, 'crustaceans', 'The Lobster Horde (Crustaceans)', True),
+        1013: factionData('mixer_cn_nuja', True, False, 'crustaceans', 'Oathsworn Crusaders (Crustaceans)', True),
         1014: factionData('mixer_cn_rimeshell', True, False, 'ai', None, True), #Rimeshell Tribe
         1015: factionData('mixer_cn_hardshell', True, False, 'ai', None, True), #Hardshell Tribe
         1016: factionData('mixer_cn_shadowclaw', True, False, 'ai', None, True), #Shadowclaw Conclave
