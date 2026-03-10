@@ -2,7 +2,7 @@ from random import choice
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
     OptionSet
 from dataclasses import dataclass
-from . import settlementManager as sm
+from worlds.tww3 import settlementManager as sm
 
 class faction(Choice):
     """Choose your faction. If you pick multiple the client will tell you which one you need to play.

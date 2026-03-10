@@ -1,11 +1,11 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from .world import TWW3World
+    from worlds.tww3.world import TWW3World
 from BaseClasses import ItemClassification
 import math
 from worlds.generic.Rules import add_rule, set_rule
-from .item_tables.progression_table import progressionDict
+from worlds.tww3.item_tables.progression_table import progressionDict
 from collections import Counter
 
 def setVictoryEvent(world: TWW3World) -> None:
