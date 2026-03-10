@@ -8,13 +8,13 @@ import random
 
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.itemTypes import itemType
-from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
-from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from .item_tables.ritual_table import ritualDict
-from .item_tables.progression_table import progressionDict
-from . import TWW3World, factionItemManager
-from . import settlementManager as sm
-from . import deathLink
+from worlds.tww3.item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
+from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
+from worlds.tww3.item_tables.ritual_table import ritualDict
+from worlds.tww3.item_tables.progression_table import progressionDict
+from worlds.tww3 import TWW3World, factionItemManager
+from worlds.tww3 import settlementManager as sm
+from worlds.tww3 import deathLink
 import os
 from NetUtils import ClientStatus
 
@@ -261,7 +261,7 @@ class TWW3Context(CommonContext):
 
         logger.info(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
-        self.itemDict.update(factionTables.getAllItems(self.playerRace, self.modList))
+        self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.modList))
         #print(self.itemDict)
         self.itemDict.update(fillerWeakDict)
         self.itemDict.update(fillerStrongDict)

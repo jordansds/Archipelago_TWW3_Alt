@@ -1,24 +1,24 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from .world import TWW3World
+    from worlds.tww3.world import TWW3World
 
 from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
 import math
 
-from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapStrongDict, trapWeakDict
-from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from .item_tables.ritual_table import ritualDict
-from .item_tables.progression_table import progressionDict
+from worlds.tww3.item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapStrongDict, trapWeakDict
+from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
+from worlds.tww3.item_tables.ritual_table import ritualDict
+from worlds.tww3.item_tables.progression_table import progressionDict
 #from . import settlementManager as sm
-from . import factionItemManager
+from worlds.tww3 import factionItemManager
 
 from worlds.tww3.itemTypes import itemData, itemType
 from .options import TWW3Options
 
 itemDict: dict[int, itemData] = {}
-itemDict.update(factionTables.getAllItems())
+itemDict.update(factionItemManager.getAllItems())
 #for item in itemDict.values():
 #    if item.tier == None:
 #        print(f"ERROR: {item}")
@@ -42,14 +42,14 @@ class TWW3Item(Item):  # or from Items import MyGameItem
 
 def updateItemDict(world: TWW3World) -> None:
     if world.options.force_early_units:
-        for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
+        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
     if world.options.force_early_buildings:
-        for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if item.classification != IC.progression:
                 itemDict[key] = itemData(IC.progression, *item[1:])
     if world.options.force_early_techs:
-        for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
 
 def createAllItems(world: TWW3World) -> None:
@@ -71,7 +71,7 @@ def createAllItems(world: TWW3World) -> None:
 
 def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
-        for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
+        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
             if item.tier > world.options.starting_tier:
                 for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                     tww3_item = world.create_item(item.readableName)
@@ -82,7 +82,7 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
 
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
-        for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if "settlement_major" in item.name:
                 if item.progressionGroup is None:
                     world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
@@ -102,7 +102,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:
     if world.options.tech_shuffle:
-        for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
@@ -111,7 +111,7 @@ def generateTechnologyItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
-    for key, item in factionTables.getSpecial(world):
+    for key, item in factionItemManager.getSpecial(world):
         if item.forceEarly:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
         if item.tier > world.options.starting_tier or item.type == itemType.tech:
@@ -124,7 +124,7 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateModdedItems(world: TWW3World, pool: list) -> list:
-    for key, item in factionTables.getModdedItems(world.playerFaction.race, world.playerFaction.race, world.options.mod_list):
+    for key, item in factionItemManager.getModdedItems(world.playerFaction.race, world.playerFaction.race, world.options.mod_list):
         if item.tier > world.options.starting_tier:
             for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                 tww3_item = world.create_item(item.readableName)

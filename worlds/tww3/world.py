@@ -1,10 +1,10 @@
 from typing import Any, Mapping, ClassVar
 from worlds.AutoWorld import World
 from BaseClasses import Region
-from .options import TWW3Options
 import settings
-from . import items, locations, rules
-from . import settlementManager as sm
+from worlds.tww3.options import TWW3Options
+from worlds.tww3 import items, locations, rules
+from worlds.tww3 import settlementManager as sm
 #from .item_tables.ancillaries_table import ancillariesRegularDict
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation

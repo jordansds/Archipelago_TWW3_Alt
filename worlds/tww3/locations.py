@@ -1,14 +1,14 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from . import settlementManager as sm
+from worlds.tww3 import settlementManager as sm
 
 if TYPE_CHECKING:
-    from .world import TWW3World
+    from worlds.tww3.world import TWW3World
 
 from BaseClasses import Location, ItemClassification
 from worlds.generic.Rules import set_rule
-from . import items
+from worlds.tww3 import items
 import math
 
 class TWW3Location(Location):
