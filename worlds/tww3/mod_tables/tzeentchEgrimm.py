@@ -11,12 +11,12 @@ units: dict[int, ItemData] = {key+58000: ItemData(unit.classification,
                                                   unit.readableName.replace("Tzeentch ", "Tzeentch Egrimm "))
                               for key, unit in tzeentch.units.items()}
 units.update({
-    106045: ItemData(IC.useful, 1, ' mixu_tze_inf_cultists', ItemType.unit, 1, 'Progressive tze_inf', 'Tzeentch Egrimm Unit: Cultists of Tzeentch'),
+    106045: ItemData(IC.useful, 1, 'mixu_tze_inf_cultists', ItemType.unit, 1, 'Progressive tze_inf', 'Tzeentch Egrimm Unit: Cultists of Tzeentch'),
     106046: ItemData(IC.useful, 1, 'mixu_tze_mon_trolls', ItemType.unit, 3, 'Progressive tze_inf', 'Tzeentch Egrimm Unit: Sorcerous Trolls'),
 
-    106047: ItemData(IC.useful, 1, ' mixu_tze_inf_cultist_acolytes', ItemType.unit, 1, 'Progressive tze_rng', 'Tzeentch Egrimm Unit: Acolytes of Tzeentch'),
+    106047: ItemData(IC.useful, 1, 'mixu_tze_inf_cultist_acolytes', ItemType.unit, 1, 'Progressive tze_rng', 'Tzeentch Egrimm Unit: Acolytes of Tzeentch'),
 
-    106048: ItemData(IC.useful, 1, ' mixu_tze_mon_warhound', ItemType.unit, 1, 'Progressive tze_bst', 'Tzeentch Egrimm Unit: Chaos Warhounds of Tzeentch'),
+    106048: ItemData(IC.useful, 1, 'mixu_tze_mon_warhound', ItemType.unit, 1, 'Progressive tze_bst', 'Tzeentch Egrimm Unit: Chaos Warhounds of Tzeentch'),
     106049: ItemData(IC.useful, 1, 'mixu_tze_mon_chaos_dragon', ItemType.unit, 3, 'Progressive tze_bst', 'Tzeentch Egrimm Unit: Chaos Dragon'),
 })
 
