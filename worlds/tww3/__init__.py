@@ -3,13 +3,13 @@ from .world import TWW3World as TWW3World
 
 def runClient(*args: str) -> None:
     from .TWW3Client import launchClient
-    launch(launchClient, name="TWW3 Client", args=args)
+    launch(launchClient, name="Total War Warhammer III Client", args=args)
 
-components.append(Component("TWW3 Client",
+components.append(Component("Total War Warhammer III Client",
                             game_name="Total War Warhammer III",
                             func=runClient,
                             component_type=Type.CLIENT,
                             supports_uri=True,
-                            description="Launches the Total War Warhammer 3 client.",
+                            description="Launches the Total War Warhammer III client.",
                             icon="TWW3"))
 icon_paths["TWW3"] = f"ap:{__name__}/tww3client.png"
