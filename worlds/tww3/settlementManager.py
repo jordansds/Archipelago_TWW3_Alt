@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from worlds.tww3.item_types import factionData, settlementData
+from worlds.tww3.itemTypes import factionData, settlementData
 from collections import Counter
 import time
 
@@ -306,8 +306,7 @@ factionDict: dict[int, factionData] = {
     298: factionData('wh2_dlc11_cst_rogue_tyrants_of_the_black_ocean', False, False, 'aiHorde', None, True)
 }
 
-#trueHordeList = ["wh_dlc03_bst_beastmen", "wh2_dlc17_bst_malagor", "wh_dlc05_bst_morghur_herd", "wh2_dlc17_bst_taurox", "wh2_dlc13_lzd_spirits_of_the_jungle", "wh3_dlc26_ogr_golgfag", "wh3_dlc27_hef_aislinn"]
-trueHordeList = [faction.name for faction in factionDict.values() if faction.isHorde]
+hordeList = [faction.name for faction in factionDict.values() if faction.isHorde]
 
 settlementDict: dict[int, settlementData] = {
      0: settlementData('wh3_main_combi_region_zlatlan', 'regular', 610, 123, 'wh2_main_lzd_zlatan', 'jungle', 'Zlatlan'),
@@ -960,7 +959,7 @@ def addModdedFactions(modList):
         if modName in modList:
             for key, faction in modFactionDict.items():
                 factionDict.update({key: faction})
-    trueHordeList[:] = [faction.name for faction in factionDict.values() if faction.isHorde]
+    hordeList[:] = [faction.name for faction in factionDict.values() if faction.isHorde]
 
 # Return the distance between two settlements
 def getDistance(s1: settlementData, s2: settlementData) -> int:
@@ -1010,7 +1009,7 @@ class SettlementManager:
 
     def randomisePlayer(self):
         playerFaction = factionDict[self.playerKey]
-        if playerFaction.name not in trueHordeList:
+        if playerFaction.name not in hordeList:
             # Assign player their first settlement
             if playerFaction.race == "woodElves":
                 for i, sKey in enumerate(self.settlementKeys):
@@ -1084,7 +1083,7 @@ class SettlementManager:
 
             for i, fKey in enumerate(self.factionKeys):
                 faction: factionData = factionDict[fKey]
-                if faction.name not in trueHordeList and faction.name not in self.shuffledFactionList:
+                if faction.name not in hordeList and faction.name not in self.shuffledFactionList:
                     self.assignSettlement(sKey, settlement, faction)
                     self.factionKeys.pop(i)
                     self.capitals.update({faction.name: settlement.name})
@@ -1103,7 +1102,7 @@ class SettlementManager:
 
             for aKey, assignedSettlement in shuffledSettlementList:
                 faction: str = assignedSettlement.faction
-                if faction in trueHordeList:
+                if faction in hordeList:
                     continue
 
                 settlementsOwned: int = 0
@@ -1137,7 +1136,7 @@ class SettlementManager:
         hordes: dict[str, str] = {}
         for fKey in self.factionKeys:
             faction = factionDict[fKey]
-            if faction.name in trueHordeList:
+            if faction.name in hordeList:
                 settlement = self.random.choice(settlementDict)
                 hordes.update({faction.name: settlement.name})
         return hordes

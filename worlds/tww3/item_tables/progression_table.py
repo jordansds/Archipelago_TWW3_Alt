@@ -1,8 +1,8 @@
-from worlds.tww3.item_types import ItemType, ItemData
+from worlds.tww3.itemTypes import itemType, itemData
 from BaseClasses import ItemClassification as IC
 
-progressionDict: dict[int, ItemData] = {
-   1000: ItemData(IC.progression, 0, "None", ItemType.progression, None, "None", "Administrative Capacity"),
-   1001: ItemData(IC.progression, 0, "None", ItemType.progression, None, "None", "Diplomatic Range"),
-   1100: ItemData(IC.progression, 0, "None", ItemType.goal, None, "None", "Orb of Domination")
+progressionDict: dict[int, itemData] = {
+   1000: itemData(IC.progression, 0, "None", itemType.progression, None, "None", "Administrative Capacity"),
+   1001: itemData(IC.progression, 0, "None", itemType.progression, None, "None", "Diplomatic Range"),
+   1100: itemData(IC.progression, 0, "None", itemType.goal, None, "None", "Orb of Domination")
 }

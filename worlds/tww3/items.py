@@ -12,12 +12,12 @@ from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLe
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
 #from . import settlementManager as sm
-from . import factionTables
+from . import factionItemManager
 
-from worlds.tww3.item_types import ItemData, ItemType
+from worlds.tww3.itemTypes import itemData, itemType
 from .options import TWW3Options
 
-itemDict: dict[int, ItemData] = {}
+itemDict: dict[int, itemData] = {}
 itemDict.update(factionTables.getAllItems())
 #for item in itemDict.values():
 #    if item.tier == None:
@@ -43,14 +43,14 @@ class TWW3Item(Item):  # or from Items import MyGameItem
 def updateItemDict(world: TWW3World) -> None:
     if world.options.force_early_units:
         for key, item in factionTables.getUnits(world.playerFaction.race, world.options.progressive_units):
-            itemDict[key] = ItemData(IC.progression, *item[1:])
+            itemDict[key] = itemData(IC.progression, *item[1:])
     if world.options.force_early_buildings:
         for key, item in factionTables.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if item.classification != IC.progression:
-                itemDict[key] = ItemData(IC.progression, *item[1:])
+                itemDict[key] = itemData(IC.progression, *item[1:])
     if world.options.force_early_techs:
         for key, item in factionTables.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            itemDict[key] = ItemData(IC.progression, *item[1:])
+            itemDict[key] = itemData(IC.progression, *item[1:])
 
 def createAllItems(world: TWW3World) -> None:
     pool: list[TWW3Item] = []
@@ -114,7 +114,7 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionTables.getSpecial(world):
         if item.forceEarly:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
-        if item.tier > world.options.starting_tier or item.type == ItemType.tech:
+        if item.tier > world.options.starting_tier or item.type == itemType.tech:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)

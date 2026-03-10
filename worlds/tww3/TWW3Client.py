@@ -7,12 +7,12 @@ from collections.abc import Sequence
 import random
 
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.item_types import ItemType
+from worlds.tww3.itemTypes import itemType
 from .item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
 from .item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from .item_tables.ritual_table import ritualDict
 from .item_tables.progression_table import progressionDict
-from . import TWW3World, factionTables
+from . import TWW3World, factionItemManager
 from . import settlementManager as sm
 from . import deathLink
 import os
@@ -294,23 +294,23 @@ class TWW3Context(CommonContext):
             #sender = "You" if entry.player == self.slot else f"Player {entry.player}"
             #logger.info(f"From: {sender} | Item: {item.name}")
 
-            if item.type == ItemType.building:
+            if item.type == itemType.building:
                 if self.progressiveBuildings:
                     self.sendProgressiveItem(item.name)
                 else:
                     self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
-            elif item.type == ItemType.unit:
+            elif item.type == itemType.unit:
                 if self.progressiveUnits:
                     self.sendProgressiveItem(item.name)
                 else:
                     self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
-            elif item.type == ItemType.tech:
+            elif item.type == itemType.tech:
                 if self.progressiveTechs:
                     self.sendProgressiveItem(item.name)
                 else:
                     self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
-            elif item.type == ItemType.progression:
+            elif item.type == itemType.progression:
                 if self.gameMode == "conquest":
                     self.expansionItems += 1
                     self.sendMessage(f"set_admin_capacity({self.expansionItems})")
@@ -321,7 +321,7 @@ class TWW3Context(CommonContext):
                     self.expansionItems += 1
                     self.triggerSphereExpansion(self.expansionItems)
                     logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
-            elif item.type == ItemType.goal:
+            elif item.type == itemType.goal:
                 if self.gameMode == "spheres":
                     self.numberOfOrbs += 1
                     logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
@@ -330,7 +330,7 @@ class TWW3Context(CommonContext):
                 if item.readableName == "Get-Rich-Quick Scroll":
                     self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
 
-                elif item.type == ItemType.ancillaries_regular or item.type == ItemType.ancillaries_legendary:
+                elif item.type == itemType.ancillaries_regular or item.type == itemType.ancillaries_legendary:
                     self.sendMessage(f'give_player_ancillary("{item.name}")')
                 else:
                     self.sendMessage(item.name)
@@ -341,10 +341,10 @@ class TWW3Context(CommonContext):
                 else:
                     self.sendMessage('out("Skipped a Trap")')
 
-            elif item.type == ItemType.effect_faction:
+            elif item.type == itemType.effect_faction:
                 self.sendMessage(f'give_player_faction_effect({item.name})')
 
-            elif item.type == ItemType.ritual:
+            elif item.type == itemType.ritual:
                 self.sendMessage(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
 
             self.messenger.flush()
@@ -364,9 +364,9 @@ class TWW3Context(CommonContext):
             if item.progressionGroup == progressionGroup:
                 self.progressiveItemFlags[key] += 1
                 if item.tier == self.progressiveItemFlags[key]:
-                    if item.type == ItemType.building:
+                    if item.type == itemType.building:
                         self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
-                    elif item.type == ItemType.unit:
+                    elif item.type == itemType.unit:
                         self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
                     else:
                         self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
@@ -514,11 +514,11 @@ class EngineInitializer:
         ###
         for key in context.itemKeys:
             itemData = self.itemDict[key]
-            if (itemData.type == ItemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
+            if (itemData.type == itemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
                 sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, itemData.name))
-            elif (itemData.type == ItemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
+            elif (itemData.type == itemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
                 sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
-            elif (itemData.type == ItemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
+            elif (itemData.type == itemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
                 sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
 
         if context.progressiveTechs:
@@ -554,12 +554,12 @@ class EngineInitializer:
 
     def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.tech and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.tech and item.progressionGroup is not None:# and item.race == self.playerRace:
                 sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
     def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 print(item.readableName)
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
@@ -569,7 +569,7 @@ class EngineInitializer:
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == ItemType.unit and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.unit and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier
                 if item.tier > startingTier:
                     sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))

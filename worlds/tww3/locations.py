@@ -28,7 +28,7 @@ def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Old World")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
     startingCheck = world.options.starting_settlements + 1
-    if world.playerFaction.name in sm.trueHordeList:
+    if world.playerFaction.name in sm.hordeList:
         startingCheck = 1
     # Generate all but last location, which is saved for the victory event
     # Fill location checks based on number of locations and checks per location

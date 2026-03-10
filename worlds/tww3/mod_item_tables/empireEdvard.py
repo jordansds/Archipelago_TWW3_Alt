@@ -1,0 +1,125 @@
+from BaseClasses import ItemClassification as IC
+from worlds.tww3.itemTypes import itemType, itemData, specialItemData
+from worlds.tww3.faction_item_tables import empire
+"""
+land_units_onscreen_name_mixu_emp_inf_celebrants	Celebrants
+land_units_onscreen_name_mixu_emp_inf_horned_hunters	Horned Hunters
+land_units_onscreen_name_mixu_emp_cav_daughters_of_rhya	Daughters of Rhya
+
+land_units_onscreen_name_mixu_emp_art_carronade	Carronade
+land_units_onscreen_name_mixu_emp_art_mortar	Mortar
+
+land_units_onscreen_name_mixu_emp_mon_promethean_riders	Promethean Riders
+land_units_onscreen_name_mixu_emp_inf_norscan_reavers	Norscan Reavers
+
+land_units_onscreen_name_mixu_emp_inf_norscan_reavers	Norscan Reavers
+land_units_onscreen_name_mixu_emp_inf_norscan_reavers_great_weapons	Norscan Reavers (Great Weapons)
+land_units_onscreen_name_mixu_emp_inf_pirate_deckhands_swords	Pirate Deckhands
+land_units_onscreen_name_mixu_emp_inf_pirate_deckhands_polearms	Pirate Deckhands (Polearms)
+land_units_onscreen_name_mixu_emp_inf_gunnery_mob_pistols	Pirate Gunnery Mob (Pistols)
+land_units_onscreen_name_mixu_emp_inf_gunnery_mob_handguns	Pirate Gunnery Mob (Handguns)
+land_units_onscreen_name_mixu_emp_inf_gunnery_mob_blunderbuss	Pirate Gunnery Mob (Blunderbuss)
+land_units_onscreen_name_mixu_emp_inf_grog_carriers	Grog Carriers
+land_units_onscreen_name_mixu_emp_inf_buccaneers_great_axe	Buccaneers (Great Weapons)
+land_units_onscreen_name_mixu_emp_inf_buccaneers_sword_and_bombs	Buccaneers (Sword and Bombs)
+land_units_onscreen_name_mixu_emp_mon_prometheans	Prometheans
+land_units_onscreen_name_mixu_emp_mon_leviathan	Leviathan
+"""
+
+units: dict[int, itemData] = {key + 58000: itemData(unit.classification,
+                                                    unit.count,
+                                                    unit.name,
+                                                    unit.type,
+                                                    unit.tier,
+                                                    unit.progressionGroup,
+                                                    unit.readableName.replace("Empire", "Empire Edvard"))
+                              for key, unit in empire.units.items()}
+units.update({})
+
+buildings: dict[int, itemData] = {}
+
+techs: dict[int, itemData] = {}
+
+progUnits: dict[int, itemData] = empire.progUnits
+
+progBuildings: dict[int, itemData] = {}
+
+progTechs: dict[int, itemData] = {}
+
+special: dict[int, specialItemData]  = {}
+
+"""
+mixu_emp_pirate_flagship_captains_cabin_1
+mixu_emp_pirate_flagship_captains_cabin_2
+mixu_emp_pirate_flagship_captains_cabin_3
+mixu_emp_pirate_flagship_captains_cabin_4
+mixu_emp_pirate_flagship_captains_cabin_5
+mixu_emp_pirate_flagship_main_deck_1
+mixu_emp_pirate_flagship_main_deck_2
+mixu_emp_pirate_flagship_main_deck_3
+mixu_emp_pirate_flagship_main_deck_4
+mixu_emp_pirate_flagship_gunnery_deck_1
+mixu_emp_pirate_flagship_gunnery_deck_2
+mixu_emp_pirate_flagship_gunnery_deck_3
+mixu_emp_pirate_flagship_gunnery_deck_4
+mixu_emp_pirate_flagship_crows_nest_1
+mixu_emp_pirate_flagship_crows_nest_2
+mixu_emp_pirate_flagship_crows_nest_3
+mixu_emp_pirate_flagship_helm_1
+mixu_emp_pirate_flagship_helm_2
+mixu_emp_pirate_flagship_helm_3
+mixu_emp_pirate_flagship_hold_1
+mixu_emp_pirate_flagship_hold_2
+mixu_emp_pirate_flagship_hold_3
+mixu_emp_pirate_flagship_gunports_1
+mixu_emp_pirate_flagship_gunports_2
+mixu_emp_pirate_flagship_gunports_3
+mixu_emp_cove_pirates_1
+mixu_emp_cove_pirates_2
+mixu_emp_cove_pirates_3
+mixu_emp_cove_gunners_1
+mixu_emp_cove_gunners_2
+mixu_emp_cove_gunners_3
+mixu_emp_cove_smuggling_1
+mixu_emp_cove_smuggling_2
+mixu_emp_cove_smuggling_3
+mixu_emp_cove_raiding_1
+mixu_emp_cove_raiding_2
+mixu_emp_cove_raiding_3
+mixu_emp_cove_tavern_1
+mixu_emp_cove_tavern_2
+mixu_emp_cove_tavern_3
+mixu_emp_cove_mercenaries_1
+mixu_emp_cove_mercenaries_2
+mixu_emp_cove_mercenaries_3
+mixu_emp_pirate_flagship_fighting_pit_1
+mixu_emp_pirate_flagship_fighting_pit_2
+mixu_emp_pirate_flagship_fighting_pit_3
+mixu_emp_pirate_flagship_grog_storage_1
+mixu_emp_pirate_flagship_grog_storage_2
+mixu_emp_pirate_flagship_grog_storage_3
+mixu_emp_pirate_flagship_grog_storage_4
+mixu_emp_pirate_flagship_grog_storage_5
+mixu_emp_pirate_flagship_witch_doctor_1
+mixu_emp_pirate_flagship_witch_doctor_2
+mixu_emp_pirate_flagship_witch_doctor_3
+mixu_emp_cove_ogres_1
+mixu_emp_cove_ogres_2
+mixu_emp_cove_ogres_3
+mixu_emp_pirate_flagship_ogres_1
+mixu_emp_pirate_flagship_ogres_2
+mixu_emp_pirate_flagship_ogres_3
+mixu_emp_cove_cannons_1
+mixu_emp_cove_cannons_2
+mixu_emp_cove_witch_doctor_1
+mixu_emp_cove_witch_doctor_2
+mixu_emp_cove_witch_doctor_3
+mixu_emp_pirates_allied_outpost_1
+mixu_emp_pirates_allied_outpost_2
+mixu_emp_pirates_allied_outpost_3
+mixu_emp_cove_crabs_1
+mixu_emp_cove_crabs_2
+mixu_emp_cove_infamy_1
+mixu_emp_cove_infamy_2
+mixu_emp_cove_infamy_3
+"""
