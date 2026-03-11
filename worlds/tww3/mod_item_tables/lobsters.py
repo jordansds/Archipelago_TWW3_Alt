@@ -129,32 +129,32 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    115200: itemData(IC.useful, 1, "Progressive lob_inf", itemType.unit, 4, None, "Progressive Lobster Unit: Infantry"),
-    115201: itemData(IC.useful, 1, "Progressive lob_rng", itemType.unit, 4, None, "Progressive Lobster Unit: Ranged"),
+    115200: itemData(IC.useful, 4, "Progressive lob_inf", itemType.unit, 4, None, "Progressive Lobster Unit: Infantry"),
+    115201: itemData(IC.useful, 4, "Progressive lob_rng", itemType.unit, 4, None, "Progressive Lobster Unit: Ranged"),
     115203: itemData(IC.useful, 1, "Progressive lob_art", itemType.unit, 1, None, "Progressive Lobster Unit: Artillery"),
-    115205: itemData(IC.useful, 1, "Progressive lob_bst", itemType.unit, 2, None, "Progressive Lobster Unit: Beast"),
+    115205: itemData(IC.useful, 2, "Progressive lob_bst", itemType.unit, 2, None, "Progressive Lobster Unit: Beast"),
     115206: itemData(IC.useful, 1, "Progressive lob_hro", itemType.unit, 1, None, "Progressive Lobster Unit: Hero"),
 }
 
 progBuildings: dict[int, itemData] = {
-    115300: itemData(IC.useful, 1, "cn_lobster_settlement_5", itemType.building, 4, "Progressive lob_settlement_major", "Lobster Building: Lobster Fortress"),
-    115301: itemData(IC.useful, 1, "cn_lobster_gold_3", itemType.building, 2, "Progressive lob_gold", "Lobster Building: Slave Pens"),
-    115302: itemData(IC.useful, 1, "cn_lobster_income_5", itemType.building, 4, "Progressive lob_income", "Lobster Building: Hellish Overseers"),
-    115303: itemData(IC.useful, 1, "cn_lobster_loot_3", itemType.building, 2, "Progressive lob_loot", "Lobster Building: Ruinous Chapel"),
-    115304: itemData(IC.useful, 1, "cn_lobster_lords", itemType.building, 0, "Progressive lob_lords", "Lobster Building: Idol of Destruction"),
-    115305: itemData(IC.useful, 1, "cn_lobster_warriors_4", itemType.building, 3, "Progressive lob_warriors", "Lobster Building: The Great Hall"),
-    115306: itemData(IC.useful, 1, "cn_lobster_crabs_3", itemType.building, 2, "Progressive lob_crabs", "Lobster Building: Tower of Despair"),
-    115307: itemData(IC.useful, 1, "cn_lobster_monsters_4", itemType.building, 3, "Progressive lob_monsters", "Lobster Building: Ruinous Bestiary"),
-    115308: itemData(IC.useful, 1, "cn_lobster_missiles_4", itemType.building, 3, "Progressive lob_missiles", "Lobster Building: Infernal Foundry"),
-    115309: itemData(IC.useful, 1, "cn_lobster_hardshell_3", itemType.building, 2, "Progressive lob_hardshell", "Lobster Building: Hardshell Colosseum"),
-    115310: itemData(IC.useful, 1, "cn_lobster_resources_3", itemType.building, 2, "Progressive lob_resources", "Lobster Building: Infernal Labour Camp"),
-    115311: itemData(IC.useful, 1, "cn_lobster_port_3", itemType.building, 2, "Progressive lob_port", "Lobster Building: Lobster Harbour"),
+    115300: itemData(IC.useful, 5, "Progressive lob_settlement_major", itemType.building, 5, None, "Progressive Lobster Building: Settlement Major"),
+    115301: itemData(IC.useful, 3, "Progressive lob_gold", itemType.building, 3, None, "Progressive Lobster Building: Gold"),
+    115302: itemData(IC.useful, 5, "Progressive lob_income", itemType.building, 5, None, "Progressive Lobster Building: Income"),
+    115303: itemData(IC.useful, 3, "Progressive lob_loot", itemType.building, 3, None, "Progressive Lobster Building: Loot"),
+    115304: itemData(IC.useful, 1, "Progressive lob_lords", itemType.building, 1, None, "Progressive Lobster Building: Lords"),
+    115305: itemData(IC.useful, 4, "Progressive lob_warriors", itemType.building, 4, None, "Progressive Lobster Building: Warriors"),
+    115306: itemData(IC.useful, 3, "Progressive lob_crabs", itemType.building, 3, None, "Progressive Lobster Building: Crabs"),
+    115307: itemData(IC.useful, 4, "Progressive lob_monsters", itemType.building, 4, None, "Progressive Lobster Building: Monsters"),
+    115308: itemData(IC.useful, 4, "Progressive lob_missiles", itemType.building, 4, None, "Progressive Lobster Building: Missiles"),
+    115309: itemData(IC.useful, 3, "Progressive lob_hardshell", itemType.building, 3, None, "Progressive Lobster Building: Hardshells"),
+    115310: itemData(IC.useful, 3, "Progressive lob_resources", itemType.building, 3, None, "Progressive Lobster Building: Resources"),
+    115311: itemData(IC.useful, 3, "Progressive lob_port", itemType.building, 3, None, "Progressive Lobster Building: Port"),
 }
 
 progTechs: dict[int, itemData] = {
-    115400: itemData(IC.useful, 1, "Progressive tech_lob_main", itemType.tech, 5, None, "Lobster Tech: Ruinous Initiation"),
-    114401: itemData(IC.useful, 1, "Progressive tech_lob_offerings", itemType.tech, 1, None, "Lobster Tech: Ruinous Initiation"),
-    114402: itemData(IC.useful, 1, "Progressive tech_lob_economy", itemType.tech, 4, None, "Lobster Tech: Ruinous Initiation"),
+    115400: itemData(IC.useful, 5, "Progressive tech_lob_main", itemType.tech, 5, None, "Progressive Lobster Tech: Main"),
+    114401: itemData(IC.useful, 1, "Progressive tech_lob_offerings", itemType.tech, 1, None, "Progressive Lobster Tech: Offerings"),
+    114402: itemData(IC.useful, 4, "Progressive tech_lob_economy", itemType.tech, 4, None, "Progressive Lobster Tech: Economy"),
 }
 
 special: dict[int, specialItemData] = {
