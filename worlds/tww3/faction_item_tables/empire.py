@@ -65,7 +65,7 @@ units: dict[int, itemData] = {
 }
 
 buildings: dict[int, itemData] = {
-    24400: itemData(IC.useful, 1, 'wh2_main_emp_defence_norsca_1', itemType.building, 0, 'Progressive emp_defence_norsca', 'Empire Building: Outpost Garrison'),
+    #24400: itemData(IC.useful, 1, 'wh2_main_emp_defence_norsca_1', itemType.building, 0, 'Progressive emp_defence_norsca', 'Empire Building: Outpost Garrison'),
     24401: itemData(IC.useful, 1, 'wh2_main_emp_resource_animals_1', itemType.building, 0, 'Progressive emp_resource_animals', 'Empire Building: Exotic Animal Tamer'),
     24402: itemData(IC.useful, 1, 'wh2_main_emp_resource_animals_2', itemType.building, 1, 'Progressive emp_resource_animals', 'Empire Building: Exotic Animal Pen'),
     24403: itemData(IC.useful, 1, 'wh2_main_emp_resource_animals_3', itemType.building, 2, 'Progressive emp_resource_animals', 'Empire Building: Exotic Animal Market'),
