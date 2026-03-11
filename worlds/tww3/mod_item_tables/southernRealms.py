@@ -143,7 +143,49 @@ buildings: dict[int, itemData] = {
     110482: itemData(IC.useful, 1, "teb_resource_timber_2", itemType.building, 1, "Progressive teb_resource_timber", "SouthernRealms Building: Timber Mill"),
     110483: itemData(IC.useful, 1, "teb_resource_timber_3", itemType.building, 2, "Progressive teb_resource_timber", "SouthernRealms Building: Lumberyard"),
 
-    #110516
+    110484: itemData(IC.useful, 1, 'wh2_main_emp_resource_medicine_1', itemType.building, 0, 'Progressive teb_resource_medicine', "SouthernRealms Building: Herb Gatherer's Camp"),
+    110485: itemData(IC.useful, 1, 'wh2_main_emp_resource_medicine_2', itemType.building, 1, 'Progressive teb_resource_medicine', 'SouthernRealms Building: Exotic Hothouse'),
+    110486: itemData(IC.useful, 1, 'wh2_main_emp_resource_medicine_3', itemType.building, 2, 'Progressive teb_resource_medicine', 'SouthernRealms Building: Alchemy Workshop'),
+
+    110487: itemData(IC.useful, 1, 'wh2_main_emp_resource_obsidian_1', itemType.building, 0, 'Progressive teb_resource_obsidian', 'SouthernRealms Building: Obsidian Quarry'),
+    110488: itemData(IC.useful, 1, 'wh2_main_emp_resource_obsidian_2', itemType.building, 1, 'Progressive teb_resource_obsidian', 'SouthernRealms Building: Obsidian Trinket Maker'),
+    110489: itemData(IC.useful, 1, 'wh2_main_emp_resource_obsidian_3', itemType.building, 2, 'Progressive teb_resource_obsidian', 'SouthernRealms Building: Obsidian Amulet Carver'),
+
+    110490: itemData(IC.useful, 1, 'wh2_main_emp_resource_spices_1', itemType.building, 0, 'Progressive teb_resource_spices', 'SouthernRealms Building: Spice Market'),
+    110491: itemData(IC.useful, 1, 'wh2_main_emp_resource_spices_2', itemType.building, 1, 'Progressive teb_resource_spices', 'SouthernRealms Building: Spice Trading Post'),
+    110492: itemData(IC.useful, 1, 'wh2_main_emp_resource_spices_3', itemType.building, 2, 'Progressive teb_resource_spices', 'SouthernRealms Building: Eastern Bazaar'),
+
+    110493: itemData(IC.useful, 1, 'wh3_main_emp_resource_ivory_1', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: Animal Store'),
+    110494: itemData(IC.useful, 1, 'wh3_main_emp_resource_ivory_2', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: Tusk Market'),
+    110495: itemData(IC.useful, 1, 'wh3_main_emp_resource_ivory_3', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: Tusk Compound'),
+
+    110496: itemData(IC.useful, 1, 'wh2_main_HUMAN_resource_gemstones', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110497: itemData(IC.useful, 1, 'wh2_main_HUMAN_resource_gemstones', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110498: itemData(IC.useful, 1, 'wh2_main_HUMAN_resource_gemstones', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110499: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_dyes', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110500: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_dyes', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110501: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_dyes', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110502: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_furs', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110503: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_furs', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110504: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_furs', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110505: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_marble', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110506: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_marble', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110507: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_marble', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110508: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_pottery', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110509: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_pottery', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110510: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_pottery', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110511: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_salt', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110512: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_salt', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110513: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_salt', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+
+    110514: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_wine', itemType.building, 0, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110515: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_wine', itemType.building, 1, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
+    110516: itemData(IC.useful, 1, 'wh_main_HUMAN_resource_wine', itemType.building, 2, 'Progressive teb_resource_ivory', 'SouthernRealms Building: '),
 
     110517: itemData(IC.useful, 1, "teb_camp_main_1", itemType.building, 0, "Progressive teb_camp_main", "SouthernRealms Camp: Improvised Shacks"),
     110518: itemData(IC.useful, 1, "teb_camp_main_2", itemType.building, 1, "Progressive teb_camp_main", "SouthernRealms Camp: Small Mercenary Camp"),
@@ -200,11 +242,12 @@ buildings: dict[int, itemData] = {
     110559: itemData(IC.useful, 1, "teb_camp_scavenge", itemType.building, 0, "Progressive teb_camp_region", "SouthernRealms Camp: Organized Scavenging"),
 }
 """
-103419: itemData(IC.useful, 1, 'Progressive teb_resource_gemstones', itemType.building, 3, '', 'Progressive SouthernRealms Building: Gemstones'),
 103420: itemData(IC.useful, 1, 'Progressive teb_resource_medicine', itemType.building, 3, '', 'Progressive SouthernRealms Building: Medicine'),
 103421: itemData(IC.useful, 1, 'Progressive teb_resource_obsidian', itemType.building, 3, '', 'Progressive SouthernRealms Building: Obsidian'),
 103422: itemData(IC.useful, 1, 'Progressive teb_resource_spices', itemType.building, 3, '', 'Progressive SouthernRealms Building: Spices'),
 103423: itemData(IC.useful, 1, 'Progressive teb_resource_ivory', itemType.building, 3, '', 'Progressive SouthernRealms Building: Ivory'),
+
+103419: itemData(IC.useful, 1, 'Progressive teb_resource_gemstones', itemType.building, 3, '', 'Progressive SouthernRealms Building: Gemstones'),
 103424: itemData(IC.useful, 1, 'Progressive teb_resource_dyes', itemType.building, 3, '', "Progressive SouthernRealms Building: Dyes"),
 103425: itemData(IC.useful, 1, 'Progressive teb_resource_furs', itemType.building, 3, '', "Progressive SouthernRealms Building: Furs"),
 103427: itemData(IC.useful, 1, 'Progressive teb_resource_iron', itemType.building, 3, '', 'Progressive SouthernRealms Building: Iron'),
@@ -434,17 +477,18 @@ teb_galloper_limbered
 """
 
 """
+wh2_main_emp_resource_medicine
+wh2_main_emp_resource_obsidian
+wh2_main_emp_resource_spices
+wh3_main_emp_resource_ivory
+
 wh2_dlc11_special_settlement_galleons_graveyard_other
 wh2_dlc12_special_bordeleaux_manann_shrine
 wh2_dlc14_special_copher_port
 wh2_dlc14_special_dragon_isle_port
 wh2_dlc14_special_pigbarter_human
 wh2_main_EMPIRE_roads
-wh2_main_HUMAN_resource_gemstones
 wh2_main_emp_defence_norsca
-wh2_main_emp_resource_medicine
-wh2_main_emp_resource_obsidian
-wh2_main_emp_resource_spices
 wh2_main_foreign_slot_discovery_emp
 wh2_main_special_altdorf_imperial_palace
 wh2_main_special_chamber_of_visions
@@ -469,19 +513,12 @@ wh2_main_special_tower_of_hoeth_emp
 wh2_main_special_ziggurat_of_dawn_beacon
 wh2_main_wef_oak_of_ages_occupied
 wh2_twa03_special_ogham_stones
-wh3_main_emp_resource_ivory
 wh3_main_special_settlement_bastion_other
 wh3_main_special_settlement_fort_other
 wh3_main_special_standing_stones
 wh3_main_special_the_great_desert_other
 wh_main_EMPIRE_settlement_major
 wh_main_EMPIRE_settlement_minor
-wh_main_HUMAN_resource_dyes
-wh_main_HUMAN_resource_furs
-wh_main_HUMAN_resource_marble
-wh_main_HUMAN_resource_pottery
-wh_main_HUMAN_resource_salt
-wh_main_HUMAN_resource_wine
 wh_main_TEB_port
 wh_main_bretonnia_legendary_bordeleaux
 wh_main_sch_special_moot_cauldron
