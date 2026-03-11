@@ -939,20 +939,20 @@ modDict: dict[str, dict[int, factionData]] = {
     "medusa0 surtha ek": {
         287: factionData('wh_main_nor_varg', False, True, 'norscaSurtha', 'Surtha Ek (Norsca)', False)
     },
-    "Pegaz The Crustacean Nation": {
+    "pegaz the crustacean nation": {
         1008: factionData('mixer_cn_king_crab', True, False, 'crustaceans', 'King Crab (Crustaceans)', False),
         1009: factionData('mixer_cn_reefspeaker', True, False, 'crustaceans', 'Reefspeaker (Crustaceans)', False),
         1010: factionData('mixer_cn_ancient', True, False, 'crustaceans', 'Old Kelpbeard (Crustaceans)', False),
         1011: factionData('mixer_cn_warlord', True, False, 'crustaceans', 'Tidelord Anthron (Crustaceans)', False),
         1012: factionData('mixer_cn_hunter', True, False, 'crustaceans', 'Clawdius Beastslayer (Crustaceans)', False),
-        1013: factionData('mixer_cn_lobster', True, False, 'crustaceans', 'Lobstrogh the Betrayer (Crustaceans)', False),
+        1013: factionData('mixer_cn_lobster', True, False, 'lobsters', 'Lobstrogh the Betrayer (Crustaceans)', False),
         1014: factionData('mixer_cn_nuja', True, False, 'crustaceans', 'Grand Master Corallion (Crustaceans)', False),
         1015: factionData('mixer_cn_rimeshell', True, False, 'ai', None, False), #Rimeshell Tribe
         1016: factionData('mixer_cn_hardshell', True, False, 'ai', None, False), #Hardshell Tribe
         1017: factionData('mixer_cn_shadowclaw', True, False, 'ai', None, False), #Shadowclaw Conclave
         1018: factionData('mixer_cn_chaosbane', True, False, 'ai', None, False), #Followers of Chaosbane
     },
-    "Cataph Southern Realms": {
+    "cataph southern realms": {
         251: factionData("mixer_teb_border_princes", True, True, "southernRealms", "Valmir Gausser (Southern Realms)", False),
         252: factionData("mixer_teb_estalia", True, True, "southernRealms", "Lupio Sunscryer (Southern Realms)", False),
         253: factionData("cr_teb_miragliano", True, True, "southernRealms", "Borgio the Besieger (Southern Realms)", False),
@@ -1079,7 +1079,7 @@ class SettlementManager:
             if settlement.type == "dark fortress":
                 for i, fKey in enumerate(self.factionKeys):
                     faction: factionData = factionDict[fKey]
-                    if faction.race[:5] == "chaos" and faction.name not in self.shuffledFactionList:
+                    if (faction.race[:5] == "chaos" or faction.race == "lobsters") and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
                         self.capitals.update({faction.name: settlement.name})
