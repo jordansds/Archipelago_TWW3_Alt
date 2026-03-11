@@ -940,16 +940,26 @@ modDict: dict[str, dict[int, factionData]] = {
         287: factionData('wh_main_nor_varg', False, True, 'norscaSurtha', 'Surtha Ek (Norsca)', False)
     },
     "Pegaz The Crustacean Nation": {
-        1008: factionData('mixer_cn_ancient', True, False, 'crustaceans', 'Ancient Wardens (Crustaceans)', True),
-        1009: factionData('mixer_cn_king_crab', True, False, 'crustaceans', 'King Crab (Crustaceans)', True),
-        1010: factionData('mixer_cn_reefspeaker', True, False, 'crustaceans', 'Sentinels of the Great Reef (Crustaceans)', True),
-        1011: factionData('mixer_cn_hunter', True, False, 'crustaceans', 'Beastslayers (Crustaceans)', True),
-        1012: factionData('mixer_cn_lobster', True, False, 'crustaceans', 'The Lobster Horde (Crustaceans)', True),
-        1013: factionData('mixer_cn_nuja', True, False, 'crustaceans', 'Oathsworn Crusaders (Crustaceans)', True),
-        1014: factionData('mixer_cn_rimeshell', True, False, 'ai', None, True), #Rimeshell Tribe
-        1015: factionData('mixer_cn_hardshell', True, False, 'ai', None, True), #Hardshell Tribe
-        1016: factionData('mixer_cn_shadowclaw', True, False, 'ai', None, True), #Shadowclaw Conclave
-        1017: factionData('mixer_cn_chaosbane', True, False, 'ai', None, True), #Followers of Chaosbane
+        1008: factionData('mixer_cn_ancient', True, False, 'crustaceans', 'Ancient Wardens (Crustaceans)', False),
+        1009: factionData('mixer_cn_king_crab', True, False, 'crustaceans', 'King Crab (Crustaceans)', False),
+        1010: factionData('mixer_cn_reefspeaker', True, False, 'crustaceans', 'Sentinels of the Great Reef (Crustaceans)', False),
+        1011: factionData('mixer_cn_hunter', True, False, 'crustaceans', 'Beastslayers (Crustaceans)', False),
+        1012: factionData('mixer_cn_lobster', True, False, 'crustaceans', 'The Lobster Horde (Crustaceans)', False),
+        1013: factionData('mixer_cn_nuja', True, False, 'crustaceans', 'Oathsworn Crusaders (Crustaceans)', False),
+        1014: factionData('mixer_cn_rimeshell', True, False, 'ai', None, False), #Rimeshell Tribe
+        1015: factionData('mixer_cn_hardshell', True, False, 'ai', None, False), #Hardshell Tribe
+        1016: factionData('mixer_cn_shadowclaw', True, False, 'ai', None, False), #Shadowclaw Conclave
+        1017: factionData('mixer_cn_chaosbane', True, False, 'ai', None, False), #Followers of Chaosbane
+    },
+    "Cataph Southern Realms": {
+        251: factionData("mixer_teb_border_princes", True, True, "southernRealms", "Valmir Gausser (Southern Realms)", False),
+        252: factionData("mixer_teb_estalia", True, True, "southernRealms", "Lupio Sunscryer (Southern Realms)", False),
+        253: factionData("cr_teb_miragliano", True, True, "southernRealms", "Borgio the Besieger (Southern Realms)", False),
+        1018: factionData("mixer_teb_bilbali", True, True, "southernRealms", "Lucrezzia Belladonna (Southern Realms)", False),
+        1019: factionData("mixer_teb_catrazza", True, True, "southernRealms", "Leonardo Catrazza (Southern Realms)", False),
+        1020: factionData("mixer_teb_colombo", True, True, "southernRealms", "Marco Colombo (Southern Realms)", False),
+        1021: factionData("mixer_teb_gashnag", True, True, "southernRealms", "Gnashag the Black Prince (Southern Realms)", False),
+        1022: factionData("mixer_teb_new_world_colonies", True, True, "southernRealms", "El Cadavo (Southern Realms)", False)
     }
 }
 
