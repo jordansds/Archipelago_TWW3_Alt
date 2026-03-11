@@ -151,11 +151,11 @@ class faction(Choice):
     option_Cataph_Southern_Realms_Valmir_Gausser = 251
     option_Cataph_Southern_Realms_Lupio_Sunscryer = 252
     option_Cataph_Southern_Realms_Borgio_the_Besieger = 253
-    option_Cataph_Southern_Realms_Lucrezzia_Belladonna = 1018
-    option_Cataph_Southern_Realms_Leonardo_Catrazza = 1019
-    option_Cataph_Southern_Realms_Marco_Colombo = 1020
-    option_Cataph_Southern_Realms_Gnashag_the_Black_Prince = 1021
-    option_Cataph_Southern_Realms_El_Cadavo = 1022
+    option_Cataph_Southern_Realms_Lucrezzia_Belladonna = 1019
+    option_Cataph_Southern_Realms_Leonardo_Catrazza = 1020
+    option_Cataph_Southern_Realms_Marco_Colombo = 1021
+    option_Cataph_Southern_Realms_Gnashag_the_Black_Prince = 1022
+    option_Cataph_Southern_Realms_El_Cadavo = 1023
     default = 0
 
 class gameMode(Choice):
