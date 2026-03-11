@@ -156,6 +156,13 @@ class faction(Choice):
     option_Cataph_Southern_Realms_Marco_Colombo = 1021
     option_Cataph_Southern_Realms_Gnashag_the_Black_Prince = 1022
     option_Cataph_Southern_Realms_El_Cadavo = 1023
+    option_Pegaz_Crustacean_Nation_King_Crab = 1008
+    option_Pegaz_Crustacean_Nation_Reefspeaker = 1009
+    option_Pegaz_Crustacean_Nation_Old_Kelpbeard = 1010
+    option_Pegaz_Crustacean_Nation_Tidelord_Anthron = 1011
+    option_Pegaz_Crustacean_Nation_Clawdius_Beastslayer = 1012
+    option_Pegaz_Crustacean_Nation_Lobstrogh_the_Betrayer = 1013
+    option_Pegaz_Crustacean_Nation_Grand_Master_Corallion = 1014
     default = 0
 
 class gameMode(Choice):
@@ -404,10 +411,10 @@ class deathLinkEffect(OptionSet):
 
 class modList(OptionSet):
     """List of mods with built-in support. Please add them to this list if you have them installed and enabled.
-    "decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek"
+    "decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"
     E.g. ["decomposed expanded roster", "mixu legendary lords"]"""
     display_name = "Supported Mods"
-    valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek"]
+    valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"]
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
