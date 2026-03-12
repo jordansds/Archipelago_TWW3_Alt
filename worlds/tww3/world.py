@@ -72,7 +72,7 @@ class TWW3World(World):
         items.updateItemDict(self)
         items.createAllItems(self)
         if self.options.balance > 0:
-            rules.setBalance(self, self.locationToDiploRange)
+            rules.setBalance(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         """

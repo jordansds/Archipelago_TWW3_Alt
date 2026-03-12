@@ -1,4 +1,3 @@
-from random import choice
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
     OptionSet
 from dataclasses import dataclass

@@ -17,7 +17,7 @@ def setVictoryEvent(world: TWW3World) -> None:
 
         set_rule(victoryLocation, lambda state: state.has("Orb of Domination", world.player, world.options.orb_count))
 
-def setBalance(world: TWW3World, locationToDiploRange) -> None:
+def setBalance(world: TWW3World) -> None:
     if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
         worldRegion = world.get_region("Old World")
 
@@ -47,8 +47,7 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
             settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
 
             #Number of settlements contained within each diplo range
-            settlementsPerDiploRange = Counter(settlementDiploRange)
-            settlementsPerDiploRange = [value for key, value in sorted(settlementsPerDiploRange.items())]
+            settlementsPerDiploRange = [value for key, value in sorted(Counter(settlementDiploRange).items())]
 
             #Number of items to assign to the locations within each diplo range
             itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
@@ -57,7 +56,6 @@ def setBalance(world: TWW3World, locationToDiploRange) -> None:
             settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(settlementDiploRange) if count <= world.options.sphere_count}
 
             for locationName, requiredDiploRange in settlementToDiploRange.items():
-
                 if requiredDiploRange > 0:
                     for i in range(world.options.checks_per_settlement):
                         location = world.get_location(f"{locationName} ({i})")
