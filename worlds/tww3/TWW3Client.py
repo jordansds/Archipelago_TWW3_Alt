@@ -398,7 +398,7 @@ class TWW3Context(CommonContext):
                     if int(location) <= self.adminCapacity * self.expansionItems:
                         for i in range(int(location)):
                             for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([int(location+1)*10-9 + j])
+                                await self.check_locations([(int(location)+1)*10-9 + j])
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 else:
@@ -560,12 +560,9 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
-                print(item.readableName)
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
-                #else:
-                #    progressive_items_flags[key] = 0
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
