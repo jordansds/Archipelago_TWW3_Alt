@@ -1028,7 +1028,7 @@ class SettlementManager:
                     if playerSettlement.type == "magical forest":
                         self.assignSettlement(sKey, playerSettlement, playerFaction)
                         break
-            elif playerFaction.race[:5] == "chaos":
+            elif playerFaction.race[:5] == "chaos" or playerFaction.race == "lobsters":
                 for i, sKey in enumerate(self.settlementKeys):
                     playerSettlement: settlementData = settlementDict[sKey]
                     if playerSettlement.type == "dark fortress":

@@ -19,6 +19,8 @@ PREVENT POTENTIAL SOFTLOCK.
 
 **Playing beastmen is currently not recommended in Conquest.**
 
+**If your lord does not spawn next to your city, type /teleport into your client**
+
 ## Installation and setup
 If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
 install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
@@ -29,7 +31,7 @@ the .pack files in the `data` folder inside your Total War Warhammer 3 install d
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
-use the mod found on the Steam workshop, as it does not work correctly with this implementation.**
+use the mod found on the Steam workshop, as it may not work correctly with this implementation.**
 The .pack mods do not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
 to launch the mod such as [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14).
 
@@ -70,12 +72,12 @@ Additionally this mode is prone to causing softlocks if you don't have many extr
 causing them to become out of logic and impossible to collect items from. If this happens you will have to either release the location
 manually with `send_location` in the server console, or forceably send a diplomatic radius upgrade instead.
 
+**checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
+to slow down the pace of your checks.
+
 ### Conquest settings
 **number_of_settlements**: How many settlements you need to own simultaneously to reach your goal and determines the base number
 of checks. Decrease this for a shorter game, increase for a longer one.
-
-**checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
-to slow down the pace of your checks.
 
 *Note that these two options, number_of_locations and checks_per_location, will need to be set appropriately for your faction -
 some factions have a lot of items that need generating while other factions need less. If world generation fails due to running
