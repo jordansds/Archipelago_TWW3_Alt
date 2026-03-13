@@ -31,7 +31,7 @@ the .pack files in the `data` folder inside your Total War Warhammer 3 install d
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
-use the mod found on the Steam workshop, as it does not work correctly with this implementation.**
+use the mod found on the Steam workshop, as it may not work correctly with this implementation.**
 The .pack mods do not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
 to launch the mod such as [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14).
 
