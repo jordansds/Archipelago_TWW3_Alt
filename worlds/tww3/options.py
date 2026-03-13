@@ -189,7 +189,7 @@ class checksPerSettlement(Range):
     If world generation fails, then you will either need to increase this option."""
     display_name = "Checks Per Settlement"
     range_start = 1
-    range_end = 50
+    range_end = 10
     default = 3
 
 class startingSettlements(Range):
@@ -313,7 +313,7 @@ class startingTier(Range):
     """Start with buildings and units of this tier already unlocked."""
     display_name = "Starting Tier"
     range_start = 0
-    range_end = 5
+    range_end = 4
     default = 1
 
 class balance(Range):

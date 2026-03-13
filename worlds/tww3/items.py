@@ -86,8 +86,9 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
             if "settlement_major" in item.name:
                 if item.progressionGroup is None:
                     world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
-                elif item.tier <= 2:
+                elif world.options.starting_tier - 1 < item.tier <= 2:
                     world.multiworld.local_early_items[world.player][item.readableName] = 1
+                    #print(item.readableName)
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 #Need to change so that if progressive buildings, generate 1 less item
                 reduce = 0
