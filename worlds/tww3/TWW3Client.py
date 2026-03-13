@@ -468,7 +468,7 @@ class EngineInitializer:
         #Randomise AI Personalities
         ###
         if context.randomizePersonalities:
-            sendMessage("cm:cai_force_personality_change(\"All\")")
+            sendMessage('cm:cai_force_personality_change("All")')
 
         if context.factionShuffle:#
             ###
@@ -478,26 +478,26 @@ class EngineInitializer:
             for settlement, faction in settlements.items():
                 if faction == self.playerFaction:
                     continue
-                sendMessage("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
-                sendMessage("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+                sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
+                sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
 
             isFirstPlayerSettlement = True
             for settlement, faction in settlements.items():
-                sendMessage("cm:transfer_region_to_faction(\"%s\", \"%s\")" % (settlement, faction))
-                sendMessage("cm:heal_garrison(cm:get_region(\"%s\"):cqi())" % settlement)
+                sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
+                sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
                 if faction == self.playerFaction and isFirstPlayerSettlement:
-                    sendMessage("cm:scroll_camera_to_region(\"%s\", \"%s\", 1)" % (faction, settlement))
+                    sendMessage(f'cm:scroll_camera_to_region("{faction}", "{settlement}")')
                     isFirstPlayerSettlement = False
 
             ###
             #Teleport armies to new settlement
             ###
             for faction, settlement in capitals.items():
-                sendMessage("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
-                sendMessage("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                sendMessage(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
             for faction, settlement in hordes.items():
-                sendMessage("teleport_all_heroes_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
-                sendMessage("teleport_all_lords_of_faction_to_region(\"%s\", \"%s\")" % (faction, settlement))
+                sendMessage(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                sendMessage(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
 
             sendMessage("cm:reset_shroud()")
                 
@@ -520,6 +520,7 @@ class EngineInitializer:
                 sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
             elif (itemData.type == itemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
                 sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
+            #messenger.flush()
 
         if context.progressiveTechs:
             self.lock_progressiveTechs(self, sendMessage, self.itemDict, progressiveItemFlags)
@@ -546,10 +547,8 @@ class EngineInitializer:
                 continue
             for factionZero in sphereZeroFactions:
                 for faction in sphereAllOthers:
-                    sendMessage("cm:force_make_peace(\"%s\", \"%s\")" % (factionZero, faction))
-                    sendMessage(
-                        "cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (
-                            factionZero, faction))
+                    sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
+                    sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
         messenger.flush()
 
     def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
