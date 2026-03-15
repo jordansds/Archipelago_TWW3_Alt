@@ -237,3 +237,5 @@ progTechs: dict[int, itemData] = {
 special: dict[int, specialItemData] = {
 
 }
+
+rituals = highElves.rituals

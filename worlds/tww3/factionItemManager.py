@@ -79,6 +79,10 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, itemData]:
             itemDict.update(module.progBuildings)
             itemDict.update(module.progTechs)
             itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
+            try:
+                itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items()})
+            except AttributeError:
+                pass
         if playerRace == race:
             try:
                 for key in module.removeKeys:
@@ -127,10 +131,10 @@ def getTechs(race, progressive):
     else:
         return raceModuleDict[race].techs.items()
 
-def getSpecial(world):
+def getSpecial(world, bypass = False):
     specialItems: dict[int, itemData] = {}
     for key, item in raceModuleDict[world.playerFaction.race].special.items():
-        if item.faction == world.playerFaction.name or item.faction == "":
+        if world.playerFaction.name in item.faction or item.faction == []:
             if item.type == itemType.unit:
                 if world.options.progressive_units and item.isProgressiveItem:
                     specialItems.update({key: item})
@@ -138,16 +142,27 @@ def getSpecial(world):
                     specialItems.update({key: item})
                 continue
             elif item.type == itemType.building:
-                if world.options.progressive_buildings and item.isProgressiveItem:
+                if bypass:
+                    specialItems.update({key: item})
+                elif world.options.progressive_buildings and item.isProgressiveItem:
                     specialItems.update({key: item})
                 elif not (world.options.progressive_buildings or item.isProgressiveItem):
                     specialItems.update({key: item})
                 continue
             elif item.type == itemType.tech:
-                if world.options.progressive_technologies and item.isProgressiveItem:
+                if bypass:
+                    specialItems.update({key: item})
+                elif world.options.progressive_technologies and item.isProgressiveItem:
                     specialItems.update({key: item})
                 elif not (world.options.progressive_technologies or item.isProgressiveItem):
                     specialItems.update({key: item})
                 continue
             specialItems.update({key: item})
     return specialItems.items()
+
+def getRitualItems(world):
+    ritualItems: dict[int, itemData] = {}
+    for key, item in raceModuleDict[world.playerFaction.race].rituals.items():
+        if world.playerFaction.name in item.faction or item.faction == []:
+            ritualItems.update({key: item})
+    return ritualItems.items()

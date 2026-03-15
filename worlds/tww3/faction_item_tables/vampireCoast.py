@@ -297,10 +297,10 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    51500: specialItemData(IC.useful, 1, 'wh2_dlc11_cst_pirates_of_sartosa', 'wh2_dlc11_cst_inf_sartosa_militia_0', itemType.unit, 1, 'Progressive cst_inf', False, False, 'Pirate Unit: Sartosa Militia'),
-    51501: specialItemData(IC.useful, 1, 'wh2_dlc11_cst_pirates_of_sartosa', 'wh2_dlc11_cst_inf_sartosa_free_company_0', itemType.unit, 1, 'Progressive cst_rng', False, False, 'Pirate Unit: Sartosa Free Company'),
-    51502: specialItemData(IC.useful, 1, 'wh2_dlc11_cst_pirates_of_sartosa', 'wh3_main_ogr_inf_maneaters_0', itemType.unit, 3, 'Progressive cst_inf', False, False, 'Pirate Unit: Maneaters'),
-    51503: specialItemData(IC.useful, 1, 'wh2_dlc11_cst_pirates_of_sartosa', 'wh3_main_ogr_inf_maneaters_3', itemType.unit, 3, 'Progressive cst_rng', False, False, 'Pirate Unit: Maneaters (Ogre Pistols)'),
+    51500: specialItemData(IC.useful, 1, ['wh2_dlc11_cst_pirates_of_sartosa'], 'wh2_dlc11_cst_inf_sartosa_militia_0', itemType.unit, 1, 'Progressive cst_inf', False, False, 'Pirate Unit: Sartosa Militia'),
+    51501: specialItemData(IC.useful, 1, ['wh2_dlc11_cst_pirates_of_sartosa'], 'wh2_dlc11_cst_inf_sartosa_free_company_0', itemType.unit, 1, 'Progressive cst_rng', False, False, 'Pirate Unit: Sartosa Free Company'),
+    51502: specialItemData(IC.useful, 1, ['wh2_dlc11_cst_pirates_of_sartosa'], 'wh3_main_ogr_inf_maneaters_0', itemType.unit, 3, 'Progressive cst_inf', False, False, 'Pirate Unit: Maneaters'),
+    51503: specialItemData(IC.useful, 1, ['wh2_dlc11_cst_pirates_of_sartosa'], 'wh3_main_ogr_inf_maneaters_3', itemType.unit, 3, 'Progressive cst_rng', False, False, 'Pirate Unit: Maneaters (Ogre Pistols)'),
 }
 
 #

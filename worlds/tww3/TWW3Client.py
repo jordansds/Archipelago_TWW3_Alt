@@ -104,15 +104,30 @@ class Watcher:
             line = self.file.readline()
             if line:
                 line = line.strip()
-                if line.split(" ")[0]  == "deathlink":
+                prefix = line.split(" ")[0]
+                if prefix == "deathlink":
                     await self.context.send_death(line.split(" ")[1])
+                elif prefix == "building":
+                    if self.context.buildingSanity:
+                        if self.context.logChecks:
+                            logger.info(f"Sending {line}")
+                        await self.context.checkSanity(line.split(" ")[1])
+                elif prefix == "tech":
+                    if self.context.techSanity:
+                        if self.context.logChecks:
+                            logger.info(f"Sending {line}")
+                        await self.context.checkSanity(line.split(" ")[1])
+                elif prefix == "ritual":
+                    if self.context.ritualSanity:
+                        if self.context.logChecks:
+                            logger.info(f"Sending {line}")
+                        await self.context.checkSanity(line.split(" ")[1])
                 else:
-                    self.logChecks = self.context.logChecks
-                    if self.logChecks:
+                    if self.context.logChecks:
                         if gameMode == "conquest":
-                            logger.info("Sending Empire Size " + line)
+                            logger.info(f"Sending Empire Size {line}")
                         elif gameMode == "spheres":
-                            logger.info("Sending Location " + line)
+                            logger.info(f"Sending Location {line}")
                     await self.context.check(line)
                     continue
             await asyncio.sleep(0.1)
@@ -228,7 +243,7 @@ class TWW3Context(CommonContext):
             logger.info("The player faction is: " + sm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
         self.playerRace = sm.factionDict[args["slot_data"]["starting_faction"]].race
-        print(self.playerRace)
+        #print(self.playerRace)
 
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
@@ -243,16 +258,19 @@ class TWW3Context(CommonContext):
         self.factionShuffle = args['slot_data']['faction_shuffle']
         self.checksPerLocation = args['slot_data']['checks_per_settlement']
 
+        self.locationLookup = {}
+
+
+
         if self.gameMode == "conquest":
             self.numberOfLocations = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
 
-            self.expansionItems = 2  # Begins with 2 fake items so that the player can own settlements at the start and prevent early bk
+            self.expansionItems = 1  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
         elif self.gameMode == "spheres":
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
 
-            self.locationLookup = dict()
             offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
             for key, settlement in sm.settlementDict.items():
                 #self.locationLookup[settlement.readableName] = key + offset4
@@ -270,11 +288,31 @@ class TWW3Context(CommonContext):
         self.itemDict.update(trapHarmlessDict)
         self.itemDict.update(trapWeakDict)
         self.itemDict.update(trapStrongDict)
-        self.itemDict.update(ritualDict)
+        #self.itemDict.update(ritualDict)
         self.itemDict.update(progressionDict)
+
+        self.itemNameToReadableName = {item.name: item.readableName for item in self.itemDict.values()}
 
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
         self.lineCount = 0
+
+        self.buildingSanity = args['slot_data']['building_sanity']
+        self.techSanity = args['slot_data']['tech_sanity']
+        self.ritualSanity = args['slot_data']['ritual_sanity']
+        if self.buildingSanity:
+            for key, item in self.itemDict.items():
+                if item.type == itemType.building and item.progressionGroup is not None:
+                    self.locationLookup[item.readableName] = key + 1000000
+        if self.techSanity:
+            for key, item in self.itemDict.items():
+                if item.type == itemType.tech and item.progressionGroup is not None:
+                    self.locationLookup[item.readableName] = key + 1000000
+        if self.ritualSanity:
+            for key, item in self.itemDict.items():
+                if item.type == itemType.ritual and item.progressionGroup is not None:
+                    self.locationLookup[item.readableName] = key + 1000000
+
+        #print(self.locationLookup)
 
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
@@ -414,6 +452,11 @@ class TWW3Context(CommonContext):
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
+    async def checkSanity(self, location):
+        try:
+            await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
+        except KeyError:
+            logger.error(f"There is a Sanity Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
     #Deathlink handlers
     def on_deathlink(self, data: dict):
@@ -483,8 +526,8 @@ class EngineInitializer:
 
             isFirstPlayerSettlement = True
             for settlement, faction in settlements.items():
-                sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
-                sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
+                #sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
+                #sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
                 if faction == self.playerFaction and isFirstPlayerSettlement:
                     sendMessage(f'cm:scroll_camera_to_region("{faction}", "{settlement}")')
                     isFirstPlayerSettlement = False

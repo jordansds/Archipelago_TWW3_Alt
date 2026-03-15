@@ -5,6 +5,8 @@ import settings
 from worlds.tww3.options import TWW3Options
 from worlds.tww3 import items, locations, rules
 from worlds.tww3 import settlementManager as sm
+from worlds.tww3 import factionItemManager
+from worlds.tww3.itemTypes import itemType
 #from .item_tables.ancillaries_table import ancillariesRegularDict
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
@@ -33,10 +35,18 @@ class TWW3World(World):
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
     #item_name_to_id = {}
 
-    locations = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locations += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
+    locationNames = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
+    locationNames += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
 
-    location_name_to_id = {k: v for v, k in enumerate(locations, start=1)}
+    location_name_to_id = {location: index for index, location in enumerate(locationNames, start=1)}
+
+    sanityLocationNames = {}
+    for key, item in factionItemManager.getAllItems().items():
+        if (item.type == itemType.building or item.type == itemType.tech or item.type == itemType.ritual) and (item.progressionGroup is not None and item.progressionGroup != ""):
+            sanityLocationNames.update({key: item.readableName})
+    location_name_to_id.update({item: key + 1000000 for key, item in sanityLocationNames.items()})
+
+    #print(location_name_to_id)
 
     settlementManager: sm.SettlementManager = None
 
@@ -61,9 +71,22 @@ class TWW3World(World):
         self.options.non_local_items.value.add("Administrative Capacity")
 
     def create_regions(self) -> None:
-        
+
         worldRegion = Region("Old World", self.player, self.multiworld)
         self.multiworld.regions.append(worldRegion)
+
+        if self.options.building_sanity and self.options.building_shuffle:
+            region = Region("Buildings", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region)
+        if self.options.tech_sanity and self.options.tech_shuffle:
+            region = Region("Techs", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region)
+        if self.options.ritual_sanity and self.options.ritual_shuffle:
+            region = Region("Rituals", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region)
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
         rules.setVictoryEvent(self)
@@ -92,15 +115,24 @@ class TWW3World(World):
                                         #"ritual_shuffle",
                                         "death_link",
                                         "death_link_effects",
-                                        "mod_list"
-                                         )
+                                        "mod_list",
+                                        "game_mode",
+                                        "faction_shuffle",
+                                        "checks_per_settlement",
+                                        "building_sanity",
+                                        "tech_sanity",
+                                        "ritual_sanity")
+                                        #"number_of_settlements",
+                                        #"admin_capacity",
+                                        #"orbs"
+                                        #)
         #print(self.options.death_link_effects.value)
-        slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
+        #slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.options.admin_capacity.value
-        elif self.options.game_mode == "spheres":
+        if self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
             settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
                 self.options.sphere_count, self.options.sphere_radius)
@@ -109,8 +141,8 @@ class TWW3World(World):
         slotData["hordes"] = self.settlementManager.randomiseHordes()
         slotData["faction_capitals"] = self.settlementManager.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
-        slotData["game_mode"] = self.options.game_mode.value
-        slotData["faction_shuffle"] = self.options.faction_shuffle.value
+        #slotData["game_mode"] = self.options.game_mode.value
+        #slotData["faction_shuffle"] = self.options.faction_shuffle.value
         slotData["version"] = self.world_version.as_simple_string()
 
         return slotData

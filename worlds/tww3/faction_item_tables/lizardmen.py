@@ -82,7 +82,6 @@ units: dict[int, itemData] = {
 
 buildings: dict[int, itemData] = {
     36400: itemData(IC.useful, 1, 'wh2_dlc12_lzd_terradons_2', itemType.building, 1, 'Progressive lzd_terradons', 'Lizardmen Building: Ripperdactyl Hatchery'),
-    36401: itemData(IC.useful, 1, 'wh2_dlc12_lzd_terradons_2', itemType.building, 1, 'Progressive lzd_terradons', 'Lizardmen Building: Ripperdactyl Hatchery'),
     36408: itemData(IC.useful, 1, 'wh2_dlc14_special_lzd_konquata', itemType.building, 0, 'Progressive special_lzd', 'Lizardmen Building: Jungles of the Old Ones'),
     36409: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_lzd_1', itemType.building, 0, 'Progressive foreign_slot_discovery_lzd', 'Lizardmen Building: Reclaimed Tunnels'),
     36410: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_lzd_2', itemType.building, 1, 'Progressive foreign_slot_discovery_lzd', 'Lizardmen Building: Mapped Passageways'),
@@ -177,7 +176,6 @@ buildings: dict[int, itemData] = {
     36500: itemData(IC.useful, 1, 'wh2_main_lzd_slann_1', itemType.building, 0, 'Progressive lzd_slann', 'Lizardmen Building: Star Chamber'),
     36501: itemData(IC.useful, 1, 'wh2_main_lzd_smith_1', itemType.building, 0, 'Progressive lzd_smith', "Lizardmen Building: Weapon-Crafters' Commune"),
     36502: itemData(IC.useful, 1, 'wh2_main_lzd_terradons_1', itemType.building, 0, 'Progressive lzd_terradons', 'Lizardmen Building: Terradon Hatchery'),
-    36503: itemData(IC.useful, 1, 'wh2_main_lzd_terradons_1', itemType.building, 0, 'Progressive lzd_terradons', 'Lizardmen Building: Terradon Hatchery'),
     36504: itemData(IC.useful, 1, 'wh2_main_lzd_worship_oldones_1', itemType.building, 0, 'Progressive lzd_worship_oldones', 'Lizardmen Building: Shrine of the Old Ones'),
     36505: itemData(IC.useful, 1, 'wh2_main_lzd_worship_oldones_2', itemType.building, 1, 'Progressive lzd_worship_oldones', 'Lizardmen Building: Temple of the Old Ones'),
     36506: itemData(IC.useful, 1, 'wh2_main_lzd_worship_oldones_3', itemType.building, 2, 'Progressive lzd_worship_oldones', 'Lizardmen Building: Ziggurat of the Old Ones'),

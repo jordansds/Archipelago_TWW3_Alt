@@ -9,7 +9,7 @@ import math
 
 from worlds.tww3.item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapStrongDict, trapWeakDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from worlds.tww3.item_tables.ritual_table import ritualDict
+#from worlds.tww3.item_tables.ritual_table import ritualDict
 from worlds.tww3.item_tables.progression_table import progressionDict
 #from . import settlementManager as sm
 from worlds.tww3 import factionItemManager
@@ -51,8 +51,21 @@ def updateItemDict(world: TWW3World) -> None:
     if world.options.force_early_techs:
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
+    if world.options.building_sanity:
+        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_units):
+            itemDict[key] = itemData(IC.progression, *item[1:])
+        for key, item in factionItemManager.getSpecial(world, True):
+            if item.type == itemType.building:
+                itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
+    if world.options.tech_sanity:
+        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_units):
+            itemDict[key] = itemData(IC.progression, *item[1:])
+        for key, item in factionItemManager.getSpecial(world, True):
+            if item.type == itemType.tech:
+                itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
 
 def createAllItems(world: TWW3World) -> None:
+    world.itemKeys = []
     pool: list[TWW3Item] = []
 
     pool = generateUnitItems(world, pool)
@@ -62,6 +75,7 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateModdedItems(world, pool)
 
     pool = generateExpansionItems(world, pool)
+    pool = generateRitualItems(world, pool)
 
     pool = generateFillerItems(world, pool)
 
@@ -99,6 +113,8 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
                     pool.append(tww3_item)
                     if not world.options.progressive_buildings:
                         world.itemKeys.append(key)
+
+                    #print(f"{item.readableName} x {i+1}")
     return pool
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:
@@ -113,15 +129,20 @@ def generateTechnologyItems(world: TWW3World, pool: list) -> list:
 
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionItemManager.getSpecial(world):
-        if item.forceEarly:
+        if item.spcLogic:
             world.multiworld.local_early_items[world.player][item.readableName] = item.count
-        if item.tier > world.options.starting_tier or item.type == itemType.tech:
+        if item.type == itemType.building and item.tier > world.options.starting_tier - 1:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
                 if not item.isProgressiveItem:
                     world.itemKeys.append(key)
-
+        elif (item.type == itemType.unit and item.tier > world.options.starting_tier) or item.type == itemType.tech:
+            for i in range(item.count):
+                tww3_item = world.create_item(item.readableName)
+                pool.append(tww3_item)
+                if not item.isProgressiveItem:
+                    world.itemKeys.append(key)
     return pool
 
 def generateModdedItems(world: TWW3World, pool: list) -> list:
@@ -132,22 +153,23 @@ def generateModdedItems(world: TWW3World, pool: list) -> list:
                 pool.append(tww3_item)
                 if not world.options.progressive_units:
                     world.itemKeys.append(key)
-
     return pool
 
-#Unused - code does not appear to have ever worked since Sinthoras created mod
 def generateRitualItems(world: TWW3World, pool: list) -> list:
-    if world.options.ritual_shuffle:
-        for key, item in ritualDict.items():
-            if item.faction == world.playerFaction.name:
-                for i in range(item.count):
-                    tww3_item = world.create_item(item.name)
-                    pool.append(tww3_item)
+    try:
+        if world.options.ritual_shuffle:
+            for key, item in factionItemManager.getRitualItems(world):
+                if not item.spcLogic:
+                    for i in range(item.count):
+                        tww3_item = world.create_item(item.readableName)
+                        pool.append(tww3_item)
+    except AttributeError:
+        print(f"{world.playerFaction.race} Do not have a ritual table yet")
     return pool
 
 def generateExpansionItems(world: TWW3World, pool: list) -> list:
     if world.options.game_mode == "conquest":
-        for i in range(1, math.floor(world.options.number_of_settlements / world.options.admin_capacity)):
+        for i in range(math.floor(world.options.number_of_settlements / world.options.admin_capacity)):
             item = world.create_item("Administrative Capacity")
             pool.append(item)
     elif world.options.game_mode == "spheres":
@@ -170,7 +192,10 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     if sum(weights) == 0:
         raise Exception("Invalid YAML: Sum of all filler and trap weighting must not be zero.")
 
-    fillerCount = len(world.get_region("Old World").locations) - len(pool) - 1
+    fillerCount = - len(pool) - 1
+    for region in world.get_regions():
+        fillerCount += len(region.locations)
+    #fillerCount = len(world.get_region("Old World").locations) - len(pool) - 1
     fillerFunctions = world.random.choices(fillerFunctions, weights=weights, k=fillerCount)
     
     for func in fillerFunctions:

@@ -271,9 +271,9 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    43500: specialItemData(IC.useful, 1, "wh2_main_skv_clan_skryre", 'wh2_dlc12_skv_veh_doomwheel_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_veh', False, False, "Skaven Unit: Warpfire's Wheel (Doomwheel)"),
-    43501: specialItemData(IC.useful, 1, "wh2_main_skv_clan_skryre", 'wh2_dlc12_skv_veh_doom_flayer_ror_tech_lab_0', itemType.unit, 1, 'Progressive skv_veh', False, False, 'Skaven Unit: Blackhole Flayers (Doom-Flayers)'),
-    43502: specialItemData(IC.useful, 1, "wh2_main_skv_clan_skryre", 'wh2_dlc12_skv_art_warplock_jezzails_ror_tech_lab_0', itemType.unit, 3, 'Progressive skv_rng', False, False, 'Skaven Unit: Eye-Takers (Warplock Jezzails)'),
-    43503: specialItemData(IC.useful, 1, "wh2_main_skv_clan_skryre", 'wh2_dlc12_skv_inf_warpfire_thrower_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_wpn', False, False, 'Skaven Unit: The Doombringers (Warpfire Throwers)'),
-    43504: specialItemData(IC.useful, 1, "wh2_main_skv_clan_skryre", 'wh2_dlc12_skv_inf_ratling_gun_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_rng', False, False, 'Skaven Unit: Death Dealers (Ratling Guns)')
+    43500: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doomwheel_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_veh', False, False, "Skaven Unit: Warpfire's Wheel (Doomwheel)"),
+    43501: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doom_flayer_ror_tech_lab_0', itemType.unit, 1, 'Progressive skv_veh', False, False, 'Skaven Unit: Blackhole Flayers (Doom-Flayers)'),
+    43502: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_art_warplock_jezzails_ror_tech_lab_0', itemType.unit, 3, 'Progressive skv_rng', False, False, 'Skaven Unit: Eye-Takers (Warplock Jezzails)'),
+    43503: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_warpfire_thrower_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_wpn', False, False, 'Skaven Unit: The Doombringers (Warpfire Throwers)'),
+    43504: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_ratling_gun_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_rng', False, False, 'Skaven Unit: Death Dealers (Ratling Guns)')
 }

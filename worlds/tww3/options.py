@@ -198,6 +198,18 @@ class startingSettlements(Range):
     range_start = 1
     range_end = 5
     default = 2
+
+class buildingSanity(Toggle):
+    """If you want every building to be a location. [EXPERIMENTAL, REQUIRES BUILDING SHUFFLE TO BE ENABLED]"""
+    display_name = "BuildingSanity"
+
+class techSanity(Toggle):
+    """If you want every tech to be a location. [EXPERIMENTAL, REQUIRES TECH SHUFFLE TO BE ENABLED]"""
+    display_name = "TechSanity"
+
+class ritualSanity(Toggle):
+    """If you want unique faction mechanics to be locations. [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE TO BE ENABLED]"""
+    display_name = "RitualSanity"
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
@@ -215,7 +227,7 @@ class adminCapacity(Range):
     """CONQUEST MODE ONLY
     How many settlements each Administration Capacity item allows you to own.
     Going over the empire size limit will incur heavy penalties.
-    You start with 2 admin capacity items to avoid early BK.
+    You start with 1 admin capacity item so make sure that you set it higher than STARTING SETTLEMENTS.
     If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
     display_name = "Settlements Per Admin Capacity (CONQUEST)"
     range_start = 1
@@ -274,6 +286,10 @@ class extraOrbCount(Range):
 #    range_start = 50
 #    range_end = 1500
 #    default = 200
+class ritualShuffle(DefaultOnToggle):
+    """Whether faction mechanics should be included in the item pool.
+    Not all mechanics are shuffled as some cannot be locked."""
+    display_name = "Ritual Shuffle"
 
 class techShuffle(DefaultOnToggle):
     """Whether technologies should be included in the item pool."""
@@ -309,7 +325,8 @@ class progressiveUnits(Choice):
     default = 0
 
 class startingTier(Range):
-    """Start with buildings and units of this tier already unlocked."""
+    """Start with buildings and units of this tier already unlocked.
+    DO NOT SET THIS TO RANDOM, IT'S PURPOSE IS FOR MAKING THE GAME EASIER BY GIVING YOU ITEMS AT THE START"""
     display_name = "Starting Tier"
     range_start = 0
     range_end = 4
@@ -423,6 +440,10 @@ class TWW3Options(PerGameCommonOptions):
     starting_settlements: startingSettlements
     checks_per_settlement: checksPerSettlement
 
+    building_sanity: buildingSanity
+    tech_sanity: techSanity
+    ritual_sanity: ritualSanity
+
     number_of_settlements: numberOfSettlements
     admin_capacity: adminCapacity
 
@@ -434,6 +455,7 @@ class TWW3Options(PerGameCommonOptions):
 
     #max_range: maxRange
 
+    ritual_shuffle: ritualShuffle
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
     building_shuffle: buildingShuffle

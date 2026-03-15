@@ -34,12 +34,12 @@ class itemData(NamedTuple):
 class specialItemData(NamedTuple):
     classification: ItemClassification
     count: int
-    faction: str
+    faction: list[str]
     name: str
     type: itemType
     tier: int
     progressionGroup: str
-    forceEarly: bool
+    spcLogic: bool
     isProgressiveItem: bool
     readableName: str
 

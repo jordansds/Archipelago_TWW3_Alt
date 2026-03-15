@@ -96,7 +96,7 @@ buildings: dict[int, itemData] = {
     14451: itemData(IC.useful, 1, 'wh3_main_cth_income_yang_1', itemType.building, 0, 'Progressive cth_income_yang', 'Cathay Building: Wares Market'),
     14452: itemData(IC.useful, 1, 'wh3_main_cth_income_yang_2', itemType.building, 1, 'Progressive cth_income_yang', 'Cathay Building: Merchant Caravans'),
     14453: itemData(IC.useful, 1, 'wh3_main_cth_income_yang_3', itemType.building, 2, 'Progressive cth_income_yang', 'Cathay Building: Trade Exchange'),
-    14454: itemData(IC.useful, 1, 'wh3_main_cth_income_yin_1', itemType.building, 0, 'Progressive cth_income_yin', 'Cathay Building: Spice Market'),
+    14454: itemData(IC.useful, 1, 'wh3_main_cth_income_yin_1', itemType.building, 0, 'Progressive cth_income_yin', 'Cathay Building: Yin Spice Market'),
     14455: itemData(IC.useful, 1, 'wh3_main_cth_income_yin_2', itemType.building, 1, 'Progressive cth_income_yin', 'Cathay Building: Gem Factors'),
     14456: itemData(IC.useful, 1, 'wh3_main_cth_income_yin_3', itemType.building, 2, 'Progressive cth_income_yin', 'Cathay Building: Goods Emporium'),
     14457: itemData(IC.useful, 1, 'wh3_main_cth_jade_barracks_1', itemType.building, 0, 'Progressive cth_jade_barracks', 'Cathay Building: Training Camp'),
