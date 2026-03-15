@@ -121,6 +121,8 @@ class Watcher:
                     if self.context.ritualSanity:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
+                        if line.split("_")[-1] == "upgraded": #Check for Karl Franz upgraded rituals
+                            line = line[:-9]
                         await self.context.checkSanity(line.split(" ")[1])
                 else:
                     if self.context.logChecks:
@@ -502,6 +504,7 @@ class EngineInitializer:
         self.playerFaction = context.playerFaction
         self.playerRace = context.playerRace
         self.itemDict = itemDictionary
+        self.buildingSanity = context.buildingSanity
         capitals = context.capitals
         startingTier = context.startingTier
         sendMessage = context.sendMessage
@@ -526,9 +529,10 @@ class EngineInitializer:
 
             isFirstPlayerSettlement = True
             for settlement, faction in settlements.items():
-                #sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
-                #sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
-                if faction == self.playerFaction and isFirstPlayerSettlement:
+                if faction == self.playerFaction:
+                    sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
+                    sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
+                if isFirstPlayerSettlement:
                     sendMessage(f'cm:scroll_camera_to_region("{faction}", "{settlement}")')
                     isFirstPlayerSettlement = False
 
@@ -556,13 +560,15 @@ class EngineInitializer:
         #Disables techs/buildings/units if randomised
         ###
         for key in context.itemKeys:
-            itemData = self.itemDict[key]
-            if (itemData.type == itemType.tech) and (not context.progressiveTechs) and (itemData.progressionGroup is not None):
-                sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, itemData.name))
-            elif (itemData.type == itemType.building) and (not context.progressiveBuildings) and (itemData.progressionGroup is not None):
-                sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
-            elif (itemData.type == itemType.unit) and (not context.progressiveUnits) and (itemData.progressionGroup is not None):
-                sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (itemData.name, self.playerFaction))
+            item = self.itemDict[key]
+            if (item.type == itemType.tech) and (not context.progressiveTechs) and (item.progressionGroup is not None):
+                sendMessage(f'cm:lock_one_technology_node("{self.playerFaction}", "{item.name}")')
+            elif (item.type == itemType.building) and (not context.progressiveBuildings) and (item.progressionGroup is not None):
+                sendMessage(f'cm:add_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+            elif (item.type == itemType.unit) and (not context.progressiveUnits) and (item.progressionGroup is not None):
+                sendMessage(f'cm:add_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+            elif item.type == itemType.ritual:
+                sendMessage(f'cm:lock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}")')
             #messenger.flush()
 
         if context.progressiveTechs:
@@ -604,6 +610,8 @@ class EngineInitializer:
             if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                    if "settlement" in item.name and self.buildingSanity:
+                        continue
                     sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):

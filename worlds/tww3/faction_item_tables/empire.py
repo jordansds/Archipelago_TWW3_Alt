@@ -174,15 +174,10 @@ buildings: dict[int, itemData] = {
     24509: itemData(IC.useful, 1, 'wh_main_emp_wizards_1', itemType.building, 0, 'Progressive emp_wizards', "Empire Building: Wizard's Conclave"),
     24510: itemData(IC.useful, 1, 'wh_main_emp_wizards_2', itemType.building, 1, 'Progressive emp_wizards', "Empire Building: Wizard's Campus"),
     24511: itemData(IC.useful, 1, 'wh_main_emp_worship_1', itemType.building, 0, 'Progressive emp_worship', 'Empire Building: Shrine of Sigmar'),
-    24512: itemData(IC.useful, 1, 'wh_main_emp_worship_1', itemType.building, 0, 'Progressive emp_worship', 'Empire Building: Shrine of Sigmar'),
-    24513: itemData(IC.useful, 1, 'wh_main_emp_worship_1', itemType.building, 0, 'Progressive emp_worship', 'Empire Building: Shrine of Sigmar'),
     24514: itemData(IC.useful, 1, 'wh_main_emp_worship_2', itemType.building, 1, 'Progressive emp_worship', 'Empire Building: Temple of Sigmar'),
-    24515: itemData(IC.useful, 1, 'wh_main_emp_worship_2', itemType.building, 1, 'Progressive emp_worship', 'Empire Building: Temple of Sigmar'),
-    24516: itemData(IC.useful, 1, 'wh_main_emp_worship_2', itemType.building, 1, 'Progressive emp_worship', 'Empire Building: Temple of Sigmar')
 }
 
 techs: dict[int, itemData] = {
-    24800: itemData(IC.useful, 1, 'wh2_dlc13_tech_emp_academia_3_b', itemType.tech, 3, 'Progressive tech_emp', 'Empire Tech: Improved Piston Technology'),
     24803: itemData(IC.useful, 1, 'wh2_dlc13_tech_emp_infantry_1', itemType.tech, 1, 'Progressive tech_emp_infantry', 'Empire Tech: State Troop Standards'),
     24804: itemData(IC.useful, 1, 'wh2_dlc13_tech_emp_infantry_1_a', itemType.tech, 2, 'Progressive tech_emp_infantry', 'Empire Tech: State-Issued Infantry Armour'),
     24813: itemData(IC.useful, 1, 'wh2_dlc13_tech_emp_infantry_1_b', itemType.tech, 2, 'Progressive tech_emp_infantry', 'Empire Tech: State-Issued Weapons'),
@@ -337,4 +332,67 @@ special: dict[int, specialItemData] = {
     25575: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_5', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Riders of the Empire'),
     25576: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_6', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Knights of the Empire'),
     25577: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'Progressive tech_emp_troops', itemType.tech, 1, None, False, True, 'Progressive Empire Tech: State Troops'),
+}
+
+rituals: dict[int, specialItemData] = {
+    25600: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_call_to_arms', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Call to Arms'),
+    25601: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_casus_belli', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Casus Belli'),
+    25602: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_conscription', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Conscription'),
+    25603: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_imperial_commendation', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Commendation'),
+    25604: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_inquisition', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Inquisition'),
+    25605: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_open_the_gates', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Open the Gates'),
+    25606: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_requisition', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Requisition'),
+    25607: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_send_aid', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Send Aid'),
+    25608: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_unify', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Unify'),
+
+    25609: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_amber', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Amber Wizard'),
+    25610: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_amethyst', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Amethyst Wizard'),
+    25611: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_bright', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Bright Wizard'),
+    25612: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_celestial', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Celestial Wizard'),
+    25613: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_grey', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Grey Wizard'),
+    25614: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_jade', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Jade Wizard'),
+    25615: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_light', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Light Wizard'),
+    25616: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_metal', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Gold Wizard'),
+
+    25617: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amethyst_damage_enemies', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Shyish Storm'),
+    25618: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amethyst_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Ashes & Dust'),
+    25619: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amethyst_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Amethyst Magisters'),
+    25620: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amethyst_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Hourglass of the Shyish Sands'),
+
+    25621: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amber_summon', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Call of the Wild'),
+    25622: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amber_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, "Empire College of Magic: Merciw's Monstrous Regiment"),
+    25623: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amber_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Amber Magisters'),
+    25624: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_amber_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Cloak of Anraheir'),
+
+    25625: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_bright_damage_walls', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: The Bright Key'),
+    25626: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_bright_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Magma Storm'),
+    25627: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_bright_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Bright Magisters'),
+    25628: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_bright_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Torched Staff of Wrath'),
+
+    25629: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_celestial_action_points', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Celestial Scrying'),
+    25630: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_celestial_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, "Empire College of Magic: Thorsen's Thunderstorm"),
+    25631: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_celestial_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Celestial Magisters'),
+    25632: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_celestial_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Astrolobe of Tomorrows Moon'),
+
+    25633: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_grey_ambush_attack', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Mass Concealment'),
+    25634: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_grey_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Dance of Despair'),
+    25635: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_grey_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Grey Magisters'),
+    25636: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_grey_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: The Grey Wand'),
+
+    25637: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_jade_heal', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Restoration'),
+    25638: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_jade_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Storm of Renewal'),
+    25639: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_jade_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Jade Magisters'),
+    25640: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_jade_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Oaken Sickle of Ghyran'),
+
+    25641: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_light_barrier', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Barrier of Light'),
+    25642: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_light_cata_spell', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Time Amok'),
+    25643: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_light_costs', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Light Magisters'),
+    25644: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_light_item', itemType.tech, 2, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Amulet of Refraction'),
+
+    25645: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_transmutation', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Transmutation'),
+    25646: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_corrosion', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Compelled Corrosion'),
+    25647: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_costs', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Metal Magisters'),
+    25648: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_cata_spell', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, "Empire College of Magic: Gehenna's Golden Globe"),
+    25649: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_armour', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Robes of the Supreme Patriarch'),
+    25650: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_weapon', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Transmuted Blade'),
 }

@@ -187,12 +187,12 @@ def createRitualLocations(world: TWW3World) -> None:
         location = TWW3Location(world.player, locName, locId, region)
 
         if item.tier > 1 and not item.spcLogic:# and item.tier > world.options.starting_tier:
-            requiredItems = {}
+            #requiredItems = {}
             for ritual in rituals:
-                if ritual.progressionGroup == item.progressionGroup and ritual.tier <= item.tier:
-                    requiredItems.update({ritual.readableName: 1})
-            #print(f"{location}: {requiredItems}")
-            world.set_rule(location, HasAllCounts(requiredItems))
+                if ritual.progressionGroup == item.progressionGroup and ritual.tier == 1 and (ritual.tier < item.tier or ritual.readableName == item.readableName):
+                    #requiredItems.update({ritual.readableName: 1})
+                    world.set_rule(location, HasAllCounts(ritual.readableName))
+                    break
 
 
 

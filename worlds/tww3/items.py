@@ -97,6 +97,8 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+            if "settlement" in item.name and world.options.building_sanity:
+                continue
             if "settlement_major" in item.name:
                 if item.progressionGroup is None:
                     world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
@@ -163,6 +165,7 @@ def generateRitualItems(world: TWW3World, pool: list) -> list:
                     for i in range(item.count):
                         tww3_item = world.create_item(item.readableName)
                         pool.append(tww3_item)
+                        world.itemKeys.append(key)
     except AttributeError:
         print(f"{world.playerFaction.race} Do not have a ritual table yet")
     return pool
