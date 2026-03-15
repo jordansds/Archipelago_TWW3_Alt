@@ -122,7 +122,7 @@ def createBuildingLocations(world: TWW3World) -> None:
 
             location = TWW3Location(world.player, locName, locId, region)
 
-            if item.tier > 0 and item.tier > world.options.starting_tier - 1:
+            if item.tier > 0 and item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
 
                 if world.options.progressive_buildings:
                     progressiveItemCount = item.tier - (world.options.starting_tier - 1)
