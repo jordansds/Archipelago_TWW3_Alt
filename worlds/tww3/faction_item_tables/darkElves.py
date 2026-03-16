@@ -355,3 +355,15 @@ special: dict[int, specialItemData] = {
     21555: specialItemData(IC.useful, 1, ['wh2_main_def_cult_of_pleasure'], 'wh2_main_tech_def_3_3_2_slaanesh', itemType.tech, 3, 'Progressive tech_def_3', False, False, 'DarkElf Tech: Endless Debauchery')
 }
 
+rituals: dict[int, specialItemData] = {
+    21600: specialItemData(IC.useful, 1, ['wh2_main_def_har_ganeth'], 'wh2_dlc10_ritual_def_drakira', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Drakira'),
+    21601: specialItemData(IC.useful, 1, ['wh2_dlc11_def_the_blessed_dread'], 'wh2_dlc11_ritual_def_anath_raema', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Anath Raema'),
+    21602: specialItemData(IC.useful, 1, ['wh2_main_def_hag_graef'], 'wh2_dlc14_ritual_def_warmaster', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Rite of the Warmaster'),
+    21603: specialItemData(IC.useful, 1, ['wh2_main_def_hag_graef'], 'wh2_dlc14_ritual_def_witch_king', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Gift to the Witch King'),
+    21604: specialItemData(IC.useful, 1, ['wh2_main_def_naggarond', 'wh2_main_def_cult_of_pleasure', 'wh2_main_def_har_ganeth', 'wh2_dlc11_def_the_blessed_dread', 'wh2_twa03_def_rakarth'], 'wh2_main_ritual_def_atharti', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Atharti'),
+    21605: specialItemData(IC.useful, 1, ['wh2_main_def_naggarond', 'wh2_main_def_cult_of_pleasure', 'wh2_dlc11_def_the_blessed_dread'], 'wh2_main_ritual_def_hekarti', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Hekarti'),
+    21606: specialItemData(IC.useful, 1, ['wh2_main_def_naggarond', 'wh2_main_def_cult_of_pleasure', 'wh2_main_def_har_ganeth', 'wh2_twa03_def_rakarth', 'wh2_main_def_hag_graef', 'wh2_dlc11_def_the_blessed_dread'], 'wh2_main_ritual_def_khaine', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Khaine'),
+    21607: specialItemData(IC.useful, 1, ['wh2_main_def_naggarond', 'wh2_main_def_cult_of_pleasure', 'wh2_main_def_har_ganeth', 'wh2_main_def_hag_graef', 'wh2_twa03_def_rakarth'], 'wh2_main_ritual_def_mathlann', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Sacrifice to Mathlann'),
+    21608: specialItemData(IC.useful, 1, ['wh2_twa03_def_rakarth'], 'wh2_twa03_ritual_def_beasthunt', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, 'DarkElf Rite: Convocation of Hunters'),
+    21609: specialItemData(IC.useful, 1, ['wh2_main_def_hag_graef'], 'wh2_dlc14_malus_call_tzarkan', itemType.tech, 1, 'Progressive def_ritual_rite', False, False, "DarkElf Rite: Call upon Tz'arkan")
+}

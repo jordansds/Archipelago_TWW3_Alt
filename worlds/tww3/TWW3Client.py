@@ -39,9 +39,9 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
-            self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
-            self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
-            self.ctx.messenger.run("reduce_lines(2)")
+            #self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
+            #self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
+            #self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_orbs(self):
         """Prints the current number of orbs of dominance that you own"""
@@ -55,7 +55,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
 
     def _cmd_teleport(self):
-        """Teleports lords and heroes to starting location (use if your lord did not teleport)"""
+        """Teleports lords and heroes to starting location (use if your lord did not teleport).
+        DISCONNECT AND RECONNECT AFTER USE THEN SAVE AND RELOAD YOUR GAME"""
         if isinstance(self.ctx, TWW3Context):
             for faction, settlement in self.ctx.capitals.items():
                 if faction == self.ctx.playerFaction:
@@ -67,6 +68,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
                     self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
+            logger.info("DISCONNECT AND RECONNECT ON THE CLIENT THEN SAVE AND RELOAD YOUR GAME")
             self.ctx.messenger.run("reduce_lines(2)")
 
     #def _cmd_resync(self):
@@ -84,7 +86,11 @@ class Messenger:
         self.file = open(path, 'w+')
 
     def run(self, message):
-        self.file.write(message + '\n')
+        self.file.write(f"\n{message}")
+        self.file.flush()
+
+    def firstWrite(self, message):
+        self.file.write(message)
         self.file.flush()
 
     def flush(self):
@@ -396,7 +402,10 @@ class TWW3Context(CommonContext):
         self.messenger.flush()
 
     def sendMessage(self, message):
-        self.messenger.run(message)
+        if self.lineCount == 0:
+            self.messenger.firstWrite(message)
+        else:
+            self.messenger.run(message)
         self.lineCount += 1
 
     def sendProgressiveItem(self, progressionGroup):
@@ -512,6 +521,8 @@ class EngineInitializer:
         startingTier = context.startingTier
         sendMessage = context.sendMessage
         messenger = context.messenger
+
+
 
         ###
         #Randomise AI Personalities

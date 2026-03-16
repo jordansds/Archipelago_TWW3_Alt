@@ -335,15 +335,15 @@ special: dict[int, specialItemData] = {
 }
 
 rituals: dict[int, specialItemData] = {
-    25600: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_call_to_arms', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Call to Arms'),
-    25601: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_casus_belli', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Casus Belli'),
-    25602: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_conscription', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Conscription'),
-    25603: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_imperial_commendation', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Commendation'),
-    25604: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_inquisition', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Inquisition'),
-    25605: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_open_the_gates', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Open the Gates'),
-    25606: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_requisition', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Requisition'),
-    25607: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_send_aid', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Send Aid'),
-    25608: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_unify', itemType.tech, 1, 'Progressive emp_ritual_decree', False, False, 'Empire Decree: Unify'),
+    25600: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_call_to_arms', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Call to Arms'),
+    25601: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_casus_belli', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Casus Belli'),
+    25602: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_conscription', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Conscription'),
+    25603: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_imperial_commendation', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Commendation'),
+    25604: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_inquisition', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Inquisition'),
+    25605: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_open_the_gates', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Open the Gates'),
+    25606: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_requisition', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Requisition'),
+    25607: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_send_aid', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Send Aid'),
+    25608: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh3_dlc25_emperors_decrees_unify', itemType.tech, 1, 'Progressive emp_ritual_decree', True, False, 'Empire Decree: Unify'),
 
     25609: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_amber', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Amber Wizard'),
     25610: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_wizard_amethyst', itemType.tech, 1, 'Progressive emp_ritual_college', False, False, 'Empire College of Magic: Amethyst Wizard'),
@@ -395,4 +395,55 @@ rituals: dict[int, specialItemData] = {
     25648: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_cata_spell', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, "Empire College of Magic: Gehenna's Golden Globe"),
     25649: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_armour', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Robes of the Supreme Patriarch'),
     25650: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_weapon', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Transmuted Blade'),
+
+    25651: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_infantry', False, False, 'Empire Gunnery School: Artisan Firearm Shot'),
+    #25652: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_infantry', True, False, 'Empire Gunnery School: Quick-Load Mechanisms'),
+    #25653: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_infantry', True, False, 'Empire Gunnery School: Exploding Bullets'),
+    25654: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cavalry', False, False, 'Empire Gunnery School: Thoroughbred Steeds'),
+    #25655: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cavalry', True, False, 'Empire Gunnery School: Saddle Sack Munitions'),
+    #25656: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cavalry', True, False, 'Empire Gunnery School: Interference Tactics'),
+    25657: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_mortar', False, False, 'Empire Gunnery School: Extra Gunpowder'),
+    #25658: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_mortar', True, False, 'Empire Gunnery School: Camouflaged Netting'),
+    #25659: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_mortar', True, False, 'Empire Gunnery School: Concussive Blasts'),
+    25660: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cannon', False, False, 'Empire Gunnery School: Weighted Munitions'),
+    #25661: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cannon', True, False, 'Empire Gunnery School: High-Pressure Barrels'),
+    #25662: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cannon', True, False, 'Empire Gunnery School: Grapeshot'),
+    25663: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_blaster', False, False, 'Empire Gunnery School: Rapid Reposition Drills'),
+    #25664: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_blaster', True, False, 'Empire Gunnery School: Suppressive Fire'),
+    #25665: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_blaster', True, False, 'Empire Gunnery School: Penetrating Shots'),
+    25666: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_helstorm', False, False, 'Empire Gunnery School: More Rockets'),
+    #25667: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_helstorm', True, False, 'Empire Gunnery School: More Rockets!!'),
+    #25668: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_helstorm', True, False, 'Empire Gunnery School: MORE ROCKETS!!!'),
+    25669: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_tank', False, False, 'Empire Gunnery School: Better Engines'),
+    #25670: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_tank', True, False, 'Empire Gunnery School: Exploding Cannon Balls'),
+    #25671: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_tank', True, False, 'Empire Gunnery School: Field Engineers'),
+    25672: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_landship', False, False, 'Empire Gunnery School: External Spearports'),
+    #25673: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_landship', True, False, 'Empire Gunnery School: Reinforced Hulls'),
+    #25674: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_landship', True, False, 'Empire Gunnery School: Land Mines'),
 }
+
+"""
+wh3_dlc25_ritual_emp_don_amethyst_ironsides_1	Frontline Training
+wh3_dlc25_ritual_emp_don_amethyst_ironsides_2	Ballistics Plating
+wh3_dlc25_ritual_emp_don_amethyst_ironsides_3	Debilitating Shots
+wh3_dlc25_ritual_emp_don_amethyst_ironsides_4	Iron Resolve
+wh3_dlc25_ritual_emp_don_amethyst_ironsides_cap	Amethyst Ironsides Cap Increase
+wh3_dlc25_ritual_emp_don_bjuna_bombard	Bjuna Bombard
+wh3_dlc25_ritual_emp_don_black_rose_1	Sails of Shyish
+wh3_dlc25_ritual_emp_don_black_rose_2	Catacomb Cannon
+wh3_dlc25_ritual_emp_don_black_rose_3	Amethyst Admiral
+wh3_dlc25_ritual_emp_don_black_rose_4	Cremation Engines
+wh3_dlc25_ritual_emp_don_black_rose_cap	Amethyst Land Ship Cap Increase
+wh3_dlc25_ritual_emp_don_buckshot_reaper_1	Cycle Charge Drills
+wh3_dlc25_ritual_emp_don_buckshot_reaper_2	Guerrilla Warfare
+wh3_dlc25_ritual_emp_don_buckshot_reaper_3	Dreadknight
+wh3_dlc25_ritual_emp_don_buckshot_reaper_4	Flared Muzzles
+wh3_dlc25_ritual_emp_don_buckshot_reaper_cap	Amethyst Outriders Cap Increase
+wh3_dlc25_ritual_emp_don_deathstorm_battery_1	Improved Trajectories 
+wh3_dlc25_ritual_emp_don_deathstorm_battery_2	Extended Training Drills
+wh3_dlc25_ritual_emp_don_deathstorm_battery_3	Greater Infusions
+wh3_dlc25_ritual_emp_don_deathstorm_battery_4	Last Rites
+wh3_dlc25_ritual_emp_don_deathstorm_battery_cap	Amethyst Helstorm Rocket Battery Cap Increase
+wh3_dlc25_ritual_emp_don_purple_eclipse	The Purple Eclipse
+wh3_dlc25_ritual_emp_don_spirit_barrage	Spirit Barrage
+"""
