@@ -63,6 +63,9 @@ def updateItemDict(world: TWW3World) -> None:
         for key, item in factionItemManager.getSpecial(world, True):
             if item.type == itemType.tech:
                 itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
+    if world.options.ritual_sanity:
+        for key, item in factionItemManager.getRituals(world):
+            itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
 
 def createAllItems(world: TWW3World) -> None:
     world.itemKeys = []
@@ -97,14 +100,13 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            if "settlement" in item.name and world.options.building_sanity:
+            if "settlement" in item.name: #and world.options.building_sanity:
                 continue
-            if "settlement_major" in item.name:
-                if item.progressionGroup is None:
-                    world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
-                elif world.options.starting_tier - 1 < item.tier <= 2:
-                    world.multiworld.local_early_items[world.player][item.readableName] = 1
-                    #print(item.readableName)
+            #if "settlement_major" in item.name:
+            #    if item.progressionGroup is None:
+            #        world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
+            #    elif world.options.starting_tier - 1 < item.tier <= 2:
+            #        world.multiworld.local_early_items[world.player][item.readableName] = 1
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 #Need to change so that if progressive buildings, generate 1 less item
                 reduce = 0
@@ -148,8 +150,15 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateModdedItems(world: TWW3World, pool: list) -> list:
-    for key, item in factionItemManager.getModdedItems(world.playerFaction.race, world.playerFaction.race, world.options.mod_list):
+    for key, item in factionItemManager.getModdedItems(world):
         if item.tier > world.options.starting_tier:
+            if ((item.type == itemType.unit and item.progressionGroup is not None and world.options.progressive_units) or
+                (item.type == itemType.unit and item.progressionGroup is None and not world.options.progressive_units) or
+                (item.type == itemType.building and item.progressionGroup is not None and world.options.progressive_buildings) or
+                (item.type == itemType.building and item.progressionGroup is None and not world.options.progressive_buildings) or
+                (item.type == itemType.tech and item.progressionGroup is not None and world.options.progressive_technologies) or
+                (item.type == itemType.tech and item.progressionGroup is None and not world.options.progressive_technologies)):
+                continue
             for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
@@ -160,7 +169,7 @@ def generateModdedItems(world: TWW3World, pool: list) -> list:
 def generateRitualItems(world: TWW3World, pool: list) -> list:
     try:
         if world.options.ritual_shuffle:
-            for key, item in factionItemManager.getRitualItems(world):
+            for key, item in factionItemManager.getRituals(world):
                 if not item.spcLogic:
                     for i in range(item.count):
                         tww3_item = world.create_item(item.readableName)

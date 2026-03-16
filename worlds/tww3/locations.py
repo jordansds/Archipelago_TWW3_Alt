@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from worlds.tww3 import settlementManager as sm
 from worlds.tww3.itemTypes import itemType, itemData
 
 if TYPE_CHECKING:
@@ -10,7 +9,8 @@ if TYPE_CHECKING:
 from BaseClasses import Location, ItemClassification as IC
 from worlds.generic.Rules import set_rule, add_rule
 from rule_builder.rules import Has, HasAllCounts
-from worlds.tww3 import items, factionItemManager
+from worlds.tww3 import items, factionItemManager, settlementManager as sm
+from worlds.tww3.item_tables import sanityRules
 import math
 
 class TWW3Location(Location):
@@ -173,12 +173,20 @@ def createTechLocations(world: TWW3World) -> None:
 
                 else:
                     world.set_rule(location, Has(locName))
+                    world.set_rule(location, world.sanityRules.getTechRules(location)) #Get Specific Rules if they exist
+                    """requiredItems = {}
+                    for tech in techs:
+                        if tech.progressionGroup == item.progressionGroup and world.options.starting_tier < tech.tier <= item.tier:
+                            # print(f"{item.readableName} requires {building.readableName} to be reachable")
+                            requiredItems.update({tech.readableName: 1})
+                    # print(f"{location}: {requiredItems}")
+                    world.set_rule(location, HasAllCounts(requiredItems))"""
 
         region.locations.append(location)
 
 def createRitualLocations(world: TWW3World) -> None:
     region = world.get_region("Rituals")
-    rituals = [item for key, item in factionItemManager.getRitualItems(world)]
+    rituals = [item for key, item in factionItemManager.getRituals(world)]
 
     for item in rituals:
         locName = item.readableName

@@ -442,6 +442,8 @@ class TWW3Context(CommonContext):
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 else:
+                    self.expansionItems = 1000
+                    self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
@@ -458,7 +460,8 @@ class TWW3Context(CommonContext):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
-            logger.error(f"There is a Sanity Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
+            if not "special" in location:
+                logger.error(f"There is a Sanity Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
     #Deathlink handlers
     def on_deathlink(self, data: dict):
@@ -480,7 +483,7 @@ class TWW3Context(CommonContext):
             asyncio.create_task(self.resetDeathLinkFlag())
 
     async def resetDeathLinkFlag(self):
-        await asyncio.sleep(1)
+        await asyncio.sleep(2)
         self.deathLinkPending = False
 
     def run_gui(self):

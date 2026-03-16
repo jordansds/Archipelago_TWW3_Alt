@@ -85,11 +85,11 @@ units: dict[int, modItemData] = {
     100069: modItemData(IC.useful, 1, 'woodElves', 'wh_dlc05_wef_argwylon', 'deco_dryads_willow', itemType.unit, 3, 'Progressive wef_inf', 'WoodElf Unit: Dryads (Willow Aspect)'),
     100070: modItemData(IC.useful, 1, 'woodElves', 'wh2_dlc16_wef_sisters_of_twilight', 'deco_dryads_willow', itemType.unit, 3, 'Progressive wef_inf', 'WoodElf Unit: Dryads (Willow Aspect)'),
 
-    100071: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_griffon_knights', itemType.unit, 3, 'Progressive hef_cav', 'HighElf Unit: Griffon Knights'),
-    100072: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_high_helms', itemType.unit, 2, 'Progressive hef_cav', 'HighElf Unit: High Helms'),
-    100073: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_bladelords', itemType.unit, 4, 'Progressive hef_inf', 'HighElf Unit: Bladelords'),
-    100074: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_skywardens', itemType.unit, 2, 'Progressive hef_cav', 'HighElf Unit: Skywardens of Yvresse'),
-    100075: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_avelorn_maidens', itemType.unit, 2, 'Progressive hef_inf', 'HighElf Unit: Maidens of Avelorn'),
+    #100071: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_griffon_knights', itemType.unit, 3, 'Progressive hef_cav', 'HighElf Aislinn Unit: Griffon Knights'),
+    #100072: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_high_helms', itemType.unit, 2, 'Progressive hef_cav', 'HighElf Aislinn Unit: High Helms'),
+    #100073: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_bladelords', itemType.unit, 4, 'Progressive hef_inf', 'HighElf Aislinn Unit: Bladelords'),
+    #100074: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_skywardens', itemType.unit, 2, 'Progressive hef_cav', 'HighElf Aislinn Unit: Skywardens of Yvresse'),
+    #100075: modItemData(IC.useful, 1, 'highElvesAislinn', '', 'deco_avelorn_maidens', itemType.unit, 2, 'Progressive hef_inf', 'HighElf Aislinn Unit: Maidens of Avelorn'),
 }
 
 dicts = [units]

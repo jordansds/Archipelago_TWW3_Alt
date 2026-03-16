@@ -7,6 +7,7 @@ from worlds.tww3 import items, locations, rules
 from worlds.tww3 import settlementManager as sm
 from worlds.tww3 import factionItemManager
 from worlds.tww3.itemTypes import itemType
+from worlds.tww3.item_tables import sanityRules
 #from .item_tables.ancillaries_table import ancillariesRegularDict
 
 #class TWW3Location(Location):  # or from Locations import MyGameLocation
@@ -69,6 +70,9 @@ class TWW3World(World):
         self.options.local_items.value.add("Orb of Domination")
         #self.options.non_local_items.value.add("Diplomatic Range")
         self.options.non_local_items.value.add("Administrative Capacity")
+
+        if self.options.building_sanity or self.options.tech_sanity or self.options.ritual_sanity:
+            self.sanityRules = sanityRules.ruleManager(self)
 
     def create_regions(self) -> None:
 

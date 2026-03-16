@@ -97,20 +97,22 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, itemData]:
 
     return itemDict
 
-def getModdedItems(playerRace = "", playerFaction = "", modList = []):
-    modList = [mod.lower() for mod in modList] #In case the player used capitalisation in the name
+def getModdedItems(world):
+    modList = [mod.lower() for mod in world.options.mod_list] #In case the player used capitalisation in the name
 
     #If the player is playing a special subfaction that has it's own module, then we need to check the main faction mod content
     try:
-        playerRace = raceToMainRaceDict[playerRace]
+        playerRace = raceToMainRaceDict[world.playerFaction.race]
     except KeyError:
-        pass
+        playerRace = world.playerFaction.race
 
     moddedItems: dict[int, itemData] = {}
     for modName, module in moddedItemDict.items():
         if modList != [] and modName in modList:
             for table in module.dicts:
-                moddedItems.update({key: itemData(*item[:2], *item[4:]) for key, item in table.items() if item.race == playerRace and (item.faction == playerFaction or item.faction == "")})
+                moddedItems.update({key: itemData(*item[:2], *item[4:]) for key, item in table.items() if
+                                    item.race == playerRace and
+                                    (item.faction == world.playerFaction.name or item.faction == "")})
     return moddedItems.items()
 
 def getUnits(race, progressive):
@@ -160,7 +162,7 @@ def getSpecial(world, bypass = False):
             specialItems.update({key: item})
     return specialItems.items()
 
-def getRitualItems(world):
+def getRituals(world):
     ritualItems: dict[int, itemData] = {}
     for key, item in raceModuleDict[world.playerFaction.race].rituals.items():
         if world.playerFaction.name in item.faction or item.faction == []:
