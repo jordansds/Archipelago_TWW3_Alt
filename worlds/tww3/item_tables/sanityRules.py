@@ -19,6 +19,10 @@ class ruleManager:
             "HighElf Tech: Extravagant Murals": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Cinnabar Mine", "HighElf Building: Dyemaker") | Has("Progressive HighElf Building: Dyes", 3 - world.options.starting_tier)),
             "HighElf Tech: Porcelain Kilns": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Pottery Maker", "HighElf Building: Kilns") | Has("Progressive HighElf Building: Pottery", 3 - world.options.starting_tier)),
         }"""
+        self.rules = {
+            "Gunnery Workshop Tier 1": CanReachLocation("Empire Building: Firearms Academy") & (Has("Empire Unit: Handgunners") | Has("Progressive Empire Unit: Ranged", 2 - world.options.starting_tier)),
+        }
+        
         self.techSanityRules = {
             "HighElf Tech: Appoint Sea Masters": CanReachLocation("HighElf Building: Harbour"),
             "HighElf Tech: Dragon's Bond": CanReachLocation("HighElf Building: Dragon's Lair"),
@@ -37,5 +41,19 @@ class ruleManager:
             "HighElf Tech: Porcelain Kilns": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Kilns")
         }
 
+        self.ritualSanityRules = {
+            "Empire Gunnery School: Quick-Load Mechanisms": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: Saddle Sack Munitions": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: Camouflaged Netting": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: High-Pressure Barrels": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: Suppressive Fire": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: More Rockets!!": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: Exploding Cannon Balls": self.rules["Gunnery Workshop Tier 1"],
+            "Empire Gunnery School: Reinforced Hulls": self.rules["Gunnery Workshop Tier 1"],
+        }
+
     def getTechRules(self, location):
         return self.techSanityRules[location]
+
+    def getRitualRules(self, location):
+        return self.ritualSanityRules[location]
