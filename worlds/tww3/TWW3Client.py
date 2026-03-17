@@ -304,16 +304,11 @@ class TWW3Context(CommonContext):
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
         self.lineCount = 0
 
-        self.buildingSanity = args['slot_data']['building_sanity']
-        self.techSanity = args['slot_data']['tech_sanity']
+        self.sanity = args['slot_data']['sanity']
         self.ritualSanity = args['slot_data']['ritual_sanity']
-        if self.buildingSanity:
+        if self.sanity:
             for key, item in self.itemDict.items():
-                if item.type == itemType.building and item.progressionGroup is not None:
-                    self.locationLookup[item.readableName] = key + 1000000
-        if self.techSanity:
-            for key, item in self.itemDict.items():
-                if item.type == itemType.tech and item.progressionGroup is not None:
+                if (item.type == itemType.building or item.type == itemType.tech)and item.progressionGroup is not None:
                     self.locationLookup[item.readableName] = key + 1000000
         if self.ritualSanity:
             for key, item in self.itemDict.items():
@@ -375,7 +370,6 @@ class TWW3Context(CommonContext):
             elif item.classification == IC.filler:
                 if item.readableName == "Get-Rich-Quick Scroll":
                     self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
-
                 elif item.type == itemType.ancillaries_regular or item.type == itemType.ancillaries_legendary:
                     self.sendMessage(f'give_player_ancillary("{item.name}")')
                 else:
@@ -451,8 +445,9 @@ class TWW3Context(CommonContext):
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 else:
-                    self.expansionItems = 1000
-                    self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
+                    if self.expansionItems < 1000:
+                        self.expansionItems = 1000
+                        self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
@@ -516,7 +511,7 @@ class EngineInitializer:
         self.playerFaction = context.playerFaction
         self.playerRace = context.playerRace
         self.itemDict = itemDictionary
-        self.buildingSanity = context.buildingSanity
+        #self.sanity = context.sanity
         capitals = context.capitals
         startingTier = context.startingTier
         sendMessage = context.sendMessage
@@ -612,6 +607,16 @@ class EngineInitializer:
                 for faction in sphereAllOthers:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
+
+        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_being_rank_1", 0)')
+        sendMessage('cm:remove_event_restricted_building_record_for_faction("wh2_main_hef_resource_pottery_3", "wh2_main_hef_order_of_loremasters")')
+        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_darkness_ritual_2", 0)')
+        sendMessage('cm:remove_event_restricted_building_record_for_faction("wh3_main_hef_allied_outpost_3", "wh2_main_hef_order_of_loremasters")')
+        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_being_cata_spell_2", 0)')
+        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh3_dlc27_tech_hef_0_02")')
+        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh2_main_tech_hef_5_06")')
+        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh2_main_tech_hef_3_07")')
+
         messenger.flush()
 
     def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
@@ -624,8 +629,8 @@ class EngineInitializer:
             if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                    if "settlement" in item.name and self.buildingSanity:
-                        continue
+                    #if "settlement" in item.name and self.sanity:
+                    #    continue
                     sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):

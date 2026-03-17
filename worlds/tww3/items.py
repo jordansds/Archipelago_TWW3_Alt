@@ -44,25 +44,25 @@ def updateItemDict(world: TWW3World) -> None:
     if world.options.force_early_units:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
+
     if world.options.force_early_buildings:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if item.classification != IC.progression:
                 itemDict[key] = itemData(IC.progression, *item[1:])
+
     if world.options.force_early_techs:
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
-    if world.options.building_sanity:
+
+    if world.options.sanity:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getSpecial(world, True):
-            if item.type == itemType.building:
-                itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
-    if world.options.tech_sanity:
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
         for key, item in factionItemManager.getSpecial(world, True):
-            if item.type == itemType.tech:
+            if item.type == itemType.building or item.type == itemType.tech:
                 itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
+
     if world.options.ritual_sanity:
         for key, item in factionItemManager.getRituals(world):
             itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])

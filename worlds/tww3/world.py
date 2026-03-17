@@ -26,8 +26,8 @@ class TWW3World(World):
     options_dataclass = TWW3Options  # options the player can set
     options: TWW3Options  # typing hints for option results
     settings: ClassVar[TWW3Settings]  # will be automatically assigned from type hint
-    origin_region_name = "Old World"
-    topology_present = False # show path to required location checks in spoiler
+    origin_region_name = "Settlements"
+    topology_present = True # show path to required location checks in spoiler
 
     #Holds the keys that will be sent to the client for locking techs/buildings/units
     #Will be populated in items.createAllItems
@@ -71,26 +71,30 @@ class TWW3World(World):
         #self.options.non_local_items.value.add("Diplomatic Range")
         self.options.non_local_items.value.add("Administrative Capacity")
 
-        if self.options.building_sanity or self.options.tech_sanity or self.options.ritual_sanity:
+        if self.options.ritual_sanity:
+            self.options.sanity.Value = True
+            self.options.ritual_shuffle.Value = True
+        if self.options.sanity:
+            self.options.building_shuffle.Value = True
+            self.options.tech_shuffle.Value = True
             self.sanityRules = sanityRules.ruleManager(self)
 
     def create_regions(self) -> None:
 
-        worldRegion = Region("Old World", self.player, self.multiworld)
+        worldRegion = Region("Settlements", self.player, self.multiworld)
         self.multiworld.regions.append(worldRegion)
 
-        if self.options.building_sanity and self.options.building_shuffle:
+        if self.options.sanity:
             region = Region("Buildings", self.player, self.multiworld)
             self.multiworld.regions.append(region)
-            worldRegion.connect(region)
-        if self.options.tech_sanity and self.options.tech_shuffle:
+            worldRegion.connect(region, "Buildings")
             region = Region("Techs", self.player, self.multiworld)
             self.multiworld.regions.append(region)
-            worldRegion.connect(region)
-        if self.options.ritual_sanity and self.options.ritual_shuffle:
+            worldRegion.connect(region, "Techs")
+        if self.options.ritual_sanity:
             region = Region("Rituals", self.player, self.multiworld)
             self.multiworld.regions.append(region)
-            worldRegion.connect(region)
+            worldRegion.connect(region, "Rituals")
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
         rules.setVictoryEvent(self)
@@ -123,8 +127,7 @@ class TWW3World(World):
                                         "game_mode",
                                         "faction_shuffle",
                                         "checks_per_settlement",
-                                        "building_sanity",
-                                        "tech_sanity",
+                                        "sanity",
                                         "ritual_sanity")
                                         #"number_of_settlements",
                                         #"admin_capacity",

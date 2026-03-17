@@ -199,16 +199,29 @@ class startingSettlements(Range):
     range_end = 5
     default = 2
 
-class buildingSanity(Toggle):
-    """If you want every building to be a location. [EXPERIMENTAL, REQUIRES BUILDING SHUFFLE TO BE ENABLED]"""
-    display_name = "BuildingSanity"
+#class buildingSanity(Toggle):
+#    """If you want every building to be a location. [EXPERIMENTAL, REQUIRES BUILDING SHUFFLE TO BE ENABLED]
+#    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
+#    display_name = "BuildingSanity"
 
-class techSanity(Toggle):
-    """If you want every tech to be a location. [EXPERIMENTAL, REQUIRES TECH SHUFFLE TO BE ENABLED]"""
-    display_name = "TechSanity"
+#class techSanity(Toggle):
+#    """If you want every tech to be a location. [EXPERIMENTAL, REQUIRES TECH SHUFFLE TO BE ENABLED]
+#    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
+#    display_name = "TechSanity"
+
+#class ritualSanity(Toggle):
+#    """If you want unique faction mechanics to be locations. [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE TO BE ENABLED, NOT ALL FACTIONS IMPLEMENTED]
+#    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
+#    display_name = "RitualSanity"
+
+class sanity(Toggle):
+    """If you want every building and tech to be a location.
+    [EXPERIMENTAL, REQUIRES BUILDING AND TECH SHUFFLE TO BE ENABLED]"""
+    display_name = "BuildingTechSanity"
 
 class ritualSanity(Toggle):
-    """If you want unique faction mechanics to be locations. [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE TO BE ENABLED]"""
+    """If you want every faction mechanic to be a location.
+    [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE AND SANITY TO BE ENABLED]"""
     display_name = "RitualSanity"
     
 class numberOfSettlements(Range):
@@ -440,8 +453,9 @@ class TWW3Options(PerGameCommonOptions):
     starting_settlements: startingSettlements
     checks_per_settlement: checksPerSettlement
 
-    building_sanity: buildingSanity
-    tech_sanity: techSanity
+    #building_sanity: buildingSanity
+    #tech_sanity: techSanity
+    sanity: sanity
     ritual_sanity: ritualSanity
 
     number_of_settlements: numberOfSettlements

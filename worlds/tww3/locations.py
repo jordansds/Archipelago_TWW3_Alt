@@ -24,19 +24,17 @@ def createAllLocations(world: TWW3World) -> None:
     elif world.options.game_mode == "spheres":
         createDiploRangeLocations(world)
 
-    if world.options.building_sanity and world.options.building_shuffle:
+    if world.options.sanity:
         createBuildingLocations(world)
-
-    if world.options.tech_sanity and world.options.tech_shuffle:
         createTechLocations(world)
 
-    if world.options.ritual_sanity and world.options.ritual_shuffle:
+    if world.options.ritual_sanity:
         createRitualLocations(world)
 
     createEvents(world)
     
 def createRegularLocations(world: TWW3World) -> None:
-    worldRegion = world.get_region("Old World")
+    worldRegion = world.get_region("Settlements")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
     startingCheck = world.options.starting_settlements + 1
     if world.playerFaction.name in sm.hordeList:
@@ -57,7 +55,7 @@ def createRegularLocations(world: TWW3World) -> None:
             worldRegion.locations.append(location)
 
 def createEvents(world: TWW3World) -> None:
-    worldRegion = world.get_region("Old World")
+    worldRegion = world.get_region("Settlements")
     if world.options.game_mode == "conquest":
         # Add victory event in the last location
         locName = f"Empire Size {world.options.number_of_settlements}"
@@ -74,7 +72,7 @@ def createEvents(world: TWW3World) -> None:
     location.place_locked_item(victory)
 
 def createDiploRangeLocations(world: TWW3World) -> None:
-    worldRegion = world.get_region("Old World")
+    worldRegion = world.get_region("Settlements")
 
     settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
 

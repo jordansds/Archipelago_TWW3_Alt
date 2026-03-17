@@ -12,14 +12,14 @@ def setVictoryEvent(world: TWW3World) -> None:
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
 
     if world.options.game_mode == "spheres":
-        worldRegion = world.get_region("Old World")
+        worldRegion = world.get_region("Settlements")
         victoryLocation = [location for location in worldRegion.locations if location.name == "Victory"][0]
 
         set_rule(victoryLocation, lambda state: state.has("Orb of Domination", world.player, world.options.orb_count))
 
 def setBalance(world: TWW3World) -> None:
     if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
-        worldRegion = world.get_region("Old World")
+        worldRegion = world.get_region("Settlements")
 
         world.item_name_groups.update({"Unlocks": set()})
         #The counter that will determine the maximum number of items that can be prioritised

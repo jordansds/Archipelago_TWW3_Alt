@@ -293,10 +293,10 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    25500: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_art_helstorm_rocket_battery_morr', itemType.unit, 3, 'Progressive emp_art', False, False, 'Empire Unit: Amethyst Helstorm Rocket Battery'),
-    25501: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_cav_outriders_morr', itemType.unit, 2, 'Progressive emp_cav', False, False, 'Empire Unit: Amethyst Outriders'),
-    25502: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_inf_nuln_ironsides_morr', itemType.unit, 3, 'Progressive emp_rng', False, False, 'Empire Unit: Amethyst Ironsides'),
-    25503: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_veh_marienburg_land_ship_morr', itemType.unit, 4, 'Progressive emp_veh', False, False, 'Empire Unit: Amethyst Land Ship'),
+    #25500: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_art_helstorm_rocket_battery_morr', itemType.unit, 3, 'Progressive emp_art', False, False, 'Empire Unit: Amethyst Helstorm Rocket Battery'),
+    #25501: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_cav_outriders_morr', itemType.unit, 2, 'Progressive emp_cav', False, False, 'Empire Unit: Amethyst Outriders'),
+    #25502: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_inf_nuln_ironsides_morr', itemType.unit, 3, 'Progressive emp_rng', False, False, 'Empire Unit: Amethyst Ironsides'),
+    #25503: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_emp_veh_marienburg_land_ship_morr', itemType.unit, 4, 'Progressive emp_veh', False, False, 'Empire Unit: Amethyst Land Ship'),
     25504: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_the_huntmarshals_expedition'], 'wh2_dlc13_huntmarshall_veh_obsinite_gyrocopter_0', itemType.unit, 1, 'Progressive emp_veh', False, False, 'Empire Unit: Obsinite Gyrocopters'),
     25505: specialItemData(IC.useful, 1, ['wh_main_emp_empire', 'wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh2_dlc13_emp_inf_greatswords_ror_0', itemType.unit, 3, 'Progressive emp_inf', False, False, 'Empire Unit: Carroburg Greatswords (Greatswords)'),
     25506: specialItemData(IC.useful, 1, ['wh_main_emp_empire', 'wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh2_dlc13_emp_inf_halberdiers_ror_0', itemType.unit, 2, 'Progressive emp_inf', False, False, 'Empire Unit: Nordland Mariners (Halberdiers)'),
@@ -396,54 +396,57 @@ rituals: dict[int, specialItemData] = {
     25649: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_armour', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Robes of the Supreme Patriarch'),
     25650: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_college_of_magic_metal_weapon', itemType.tech, 1, 'Progressive emp_ritual_college', True, False, 'Empire College of Magic: Transmuted Blade'),
 
-    25651: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_infantry', False, False, 'Empire Gunnery School: Artisan Firearm Shot'),
-    25652: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_infantry', True, False, 'Empire Gunnery School: Quick-Load Mechanisms'),
-    #25653: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_infantry', True, False, 'Empire Gunnery School: Exploding Bullets'),
-    25654: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cavalry', False, False, 'Empire Gunnery School: Thoroughbred Steeds'),
-    25655: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cavalry', True, False, 'Empire Gunnery School: Saddle Sack Munitions'),
-    #25656: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cavalry', True, False, 'Empire Gunnery School: Interference Tactics'),
-    25657: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_mortar', False, False, 'Empire Gunnery School: Extra Gunpowder'),
-    25658: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_mortar', True, False, 'Empire Gunnery School: Camouflaged Netting'),
-    #25659: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_mortar', True, False, 'Empire Gunnery School: Concussive Blasts'),
-    25660: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cannon', False, False, 'Empire Gunnery School: Weighted Munitions'),
-    25661: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cannon', True, False, 'Empire Gunnery School: High-Pressure Barrels'),
-    #25662: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cannon', True, False, 'Empire Gunnery School: Grapeshot'),
-    25663: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_blaster', False, False, 'Empire Gunnery School: Rapid Reposition Drills'),
-    25664: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_blaster', True, False, 'Empire Gunnery School: Suppressive Fire'),
-    #25665: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_blaster', True, False, 'Empire Gunnery School: Penetrating Shots'),
-    25666: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_helstorm', False, False, 'Empire Gunnery School: More Rockets'),
-    25667: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_helstorm', True, False, 'Empire Gunnery School: More Rockets!!'),
-    #25668: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_helstorm', True, False, 'Empire Gunnery School: MORE ROCKETS!!!'),
-    25669: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_tank', False, False, 'Empire Gunnery School: Better Engines'),
-    25670: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_tank', True, False, 'Empire Gunnery School: Exploding Cannon Balls'),
-    #25671: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_tank', True, False, 'Empire Gunnery School: Field Engineers'),
-    25672: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_landship', False, False, 'Empire Gunnery School: External Spearports'),
-    25673: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_landship', True, False, 'Empire Gunnery School: Reinforced Hulls'),
-    #25674: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_landship', True, False, 'Empire Gunnery School: Land Mines'),
-}
+    25651: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_infantry', False, False, "Empire Gunnery School: Artisan Firearm Shot"),
+    25652: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_infantry', True, False, "Empire Gunnery School: Quick-Load Mechanisms"),
+    25653: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_inf_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_infantry', True, False, "Empire Gunnery School: Exploding Bullets"),
+    25654: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cavalry', False, False, "Empire Gunnery School: Thoroughbred Steeds"),
+    25655: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cavalry', True, False, "Empire Gunnery School: Saddle Sack Munitions"),
+    25656: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cav_guns_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cavalry', True, False, "Empire Gunnery School: Interference Tactics"),
+    25657: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_mortar', False, False, "Empire Gunnery School: Extra Gunpowder"),
+    25658: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_mortar', True, False, "Empire Gunnery School: Camouflaged Netting"),
+    25659: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_mortors_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_mortar', True, False, "Empire Gunnery School: Concussive Blasts"),
+    25660: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_cannon', False, False, "Empire Gunnery School: Weighted Munitions"),
+    25661: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_cannon', True, False, "Empire Gunnery School: High-Pressure Barrels"),
+    25662: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_cannons_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_cannon', True, False, "Empire Gunnery School: Grapeshot"),
+    25663: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_blaster', False, False, "Empire Gunnery School: Rapid Reposition Drills"),
+    25664: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_blaster', True, False, "Empire Gunnery School: Suppressive Fire"),
+    25665: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helblasters_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_blaster', True, False, "Empire Gunnery School: Penetrating Shots"),
+    25666: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_helstorm', False, False, "Empire Gunnery School: More Rockets"),
+    25667: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_helstorm', True, False, "Empire Gunnery School: More Rockets!!"),
+    25668: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_helstorm_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_helstorm', True, False, "Empire Gunnery School: MORE ROCKETS!!!"),
+    25669: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_tank', False, False, "Empire Gunnery School: Better Engines"),
+    25670: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_tank', True, False, "Empire Gunnery School: Exploding Cannon Balls"),
+    25671: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_steam_tank_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_tank', True, False, "Empire Gunnery School: Field Engineers"),
+    25672: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_1', itemType.tech, 1, 'Progressive emp_ritual_gunnery_landship', False, False, "Empire Gunnery School: External Spearports"),
+    25673: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_2', itemType.tech, 2, 'Progressive emp_ritual_gunnery_landship', True, False, "Empire Gunnery School: Reinforced Hulls"),
+    25674: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_ritual_emp_don_land_ship_3', itemType.tech, 3, 'Progressive emp_ritual_gunnery_landship', True, False, "Empire Gunnery School: Land Mines"),
 
-"""
-wh3_dlc25_ritual_emp_don_amethyst_ironsides_1	Frontline Training
-wh3_dlc25_ritual_emp_don_amethyst_ironsides_2	Ballistics Plating
-wh3_dlc25_ritual_emp_don_amethyst_ironsides_3	Debilitating Shots
-wh3_dlc25_ritual_emp_don_amethyst_ironsides_4	Iron Resolve
-wh3_dlc25_ritual_emp_don_amethyst_ironsides_cap	Amethyst Ironsides Cap Increase
-wh3_dlc25_ritual_emp_don_bjuna_bombard	Bjuna Bombard
-wh3_dlc25_ritual_emp_don_black_rose_1	Sails of Shyish
-wh3_dlc25_ritual_emp_don_black_rose_2	Catacomb Cannon
-wh3_dlc25_ritual_emp_don_black_rose_3	Amethyst Admiral
-wh3_dlc25_ritual_emp_don_black_rose_4	Cremation Engines
-wh3_dlc25_ritual_emp_don_black_rose_cap	Amethyst Land Ship Cap Increase
-wh3_dlc25_ritual_emp_don_buckshot_reaper_1	Cycle Charge Drills
-wh3_dlc25_ritual_emp_don_buckshot_reaper_2	Guerrilla Warfare
-wh3_dlc25_ritual_emp_don_buckshot_reaper_3	Dreadknight
-wh3_dlc25_ritual_emp_don_buckshot_reaper_4	Flared Muzzles
-wh3_dlc25_ritual_emp_don_buckshot_reaper_cap	Amethyst Outriders Cap Increase
-wh3_dlc25_ritual_emp_don_deathstorm_battery_1	Improved Trajectories 
-wh3_dlc25_ritual_emp_don_deathstorm_battery_2	Extended Training Drills
-wh3_dlc25_ritual_emp_don_deathstorm_battery_3	Greater Infusions
-wh3_dlc25_ritual_emp_don_deathstorm_battery_4	Last Rites
-wh3_dlc25_ritual_emp_don_deathstorm_battery_cap	Amethyst Helstorm Rocket Battery Cap Increase
-wh3_dlc25_ritual_emp_don_purple_eclipse	The Purple Eclipse
-wh3_dlc25_ritual_emp_don_spirit_barrage	Spirit Barrage
-"""
+    25675: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_1", itemType.tech, 1, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Frontline Training"),
+    25676: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_2", itemType.tech, 2, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Ballistics Plating"),
+    25677: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_3", itemType.tech, 3, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Debilitating Shots"),
+    25678: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_4", itemType.tech, 4, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Iron Resolve"),
+
+    25679: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_1", itemType.tech, 1, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Cycle Charge Drills"),
+    25680: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_2", itemType.tech, 2, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Guerrilla Warfare"),
+    25681: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_3", itemType.tech, 3, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Dreadknight"),
+    25682: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_4", itemType.tech, 4, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Flared Muzzles"),
+
+    25683: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_1", itemType.tech, 1, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Improved Trajectories"),
+    25684: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_2", itemType.tech, 2, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Extended Training Drills"),
+    25685: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_3", itemType.tech, 3, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Greater Infusions"),
+    25686: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_4", itemType.tech, 4, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Last Rites"),
+
+    #25687: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_1", itemType.tech, 1, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Sails of Shyish"),
+    #25688: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_2", itemType.tech, 2, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Catacomb Cannon"),
+    #25689: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_3", itemType.tech, 3, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Amethyst Admiral"),
+    #25690: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_4", itemType.tech, 4, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Cremation Engines"),
+
+    25691: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_cap", itemType.tech, 1, "Progressive emp_ritual_gunnery_ironside_cap", True, False, "Empire Gunnery School: Amethyst Ironsides Cap Increase"),
+    25692: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_cap", itemType.tech, 1, "Progressive emp_ritual_gunnery_outrider_cap", True, False, "Empire Gunnery School: Amethyst Outriders Cap Increase"),
+    25693: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_cap", itemType.tech, 1, "Progressive emp_ritual_gunnery_helstorm_cap", True, False, "Empire Gunnery School: Amethyst Helstorm Rocket Battery Cap Increase"),
+    #25694: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_cap", itemType.tech, 1, "Progressive emp_ritual_gunnery_landship_cap", True, False, "Empire Gunnery School: Amethyst Land Ship Cap Increase"),
+
+    25695: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_bjuna_bombard", itemType.tech, 1, "Progressive emp_ritual_gunnery_bjuna", True, False, "Empire Gunnery School: Bjuna Bombard"),
+    25696: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_spirit_barrage", itemType.tech, 1, "Progressive emp_ritual_gunnery_barrage", True, False, "Empire Gunnery School: Spirit Barrage"),
+    #25697: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_purple_eclipse", itemType.tech, 1, "Progressive emp_ritual_gunnery_eclipse", True, False, "Empire Gunnery School: The Purple Eclipse"),
+}

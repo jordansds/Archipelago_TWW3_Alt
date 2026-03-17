@@ -1,4 +1,4 @@
-from rule_builder.rules import Has, HasAll, HasAny, CanReachLocation
+from rule_builder.rules import Has, HasAll, HasAny, HasFromList, CanReachLocation, True_, False_
 
 
 class ruleManager:
@@ -19,10 +19,25 @@ class ruleManager:
             "HighElf Tech: Extravagant Murals": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Cinnabar Mine", "HighElf Building: Dyemaker") | Has("Progressive HighElf Building: Dyes", 3 - world.options.starting_tier)),
             "HighElf Tech: Porcelain Kilns": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Pottery Maker", "HighElf Building: Kilns") | Has("Progressive HighElf Building: Pottery", 3 - world.options.starting_tier)),
         }"""
-        self.rules = {
-            "Gunnery Workshop Tier 1": CanReachLocation("Empire Building: Firearms Academy") & (Has("Empire Unit: Handgunners") | Has("Progressive Empire Unit: Ranged", 2 - world.options.starting_tier)),
+        self.groups = {
+            "Empire Gunnery School Tier1": ["Empire Gunnery School: Artisan Firearm Shot", "Empire Gunnery School: Thoroughbred Steeds",
+                                            "Empire Gunnery School: Extra Gunpowder", "Empire Gunnery School: Weighted Munitions",
+                                            "Empire Gunnery School: Rapid Reposition Drills", "Empire Gunnery School: More Rockets",
+                                            "Empire Gunnery School: Better Engines", "Empire Gunnery School: External Spearports"],
+            "Empire Gunnery School Tier2": ["Empire Gunnery School: Quick-Load Mechanisms", "Empire Gunnery School: Saddle Sack Munitions",
+                                            "Empire Gunnery School: Camouflaged Netting", "Empire Gunnery School: High-Pressure Barrels",
+                                            "Empire Gunnery School: Suppressive Fire", "Empire Gunnery School: More Rockets!!",
+                                            "Empire Gunnery School: Exploding Cannon Balls", "Empire Gunnery School: Reinforced Hulls"],
         }
-        
+
+        self.rules = {
+            "Gunnery Workshop Tier 1": (gunneryT1 := HasFromList(*self.groups["Empire Gunnery School Tier1"], count=3)
+                                        & CanReachLocation("Empire Building: Firearms Academy") & ((Has("Empire Unit: Handgunners") | Has("Progressive Empire Unit: Ranged", 2 - world.options.starting_tier)) | (False_() if (world.options.starting_tier < 2 and world.options.unit_shuffle) else True_()))),
+            "Gunnery Workshop Tier 2": (gunneryT1 & HasFromList(*(self.groups["Empire Gunnery School Tier1"] + self.groups["Empire Gunnery School Tier2"]), count=8)
+                                        & CanReachLocation("Empire Building: Foundry")),
+            "Gunnery Workshop Tier 3": (CanReachLocation("Empire Gunnery School: Bjuna Bombard")
+                                        & CanReachLocation("Empire Gunnery School: Amethyst Ironsides Cap Increase")),# & ((Has("Empire Unit: Amethyst Ironsides") | Has("Progressive Empire Unit: Ranged", 3 - world.options.starting_tier)) | (False_() if (world.options.starting_tier < 3 and world.options.unit_shuffle) else True_())))
+        }
         self.techSanityRules = {
             "HighElf Tech: Appoint Sea Masters": CanReachLocation("HighElf Building: Harbour"),
             "HighElf Tech: Dragon's Bond": CanReachLocation("HighElf Building: Dragon's Lair"),
@@ -50,6 +65,87 @@ class ruleManager:
             "Empire Gunnery School: More Rockets!!": self.rules["Gunnery Workshop Tier 1"],
             "Empire Gunnery School: Exploding Cannon Balls": self.rules["Gunnery Workshop Tier 1"],
             "Empire Gunnery School: Reinforced Hulls": self.rules["Gunnery Workshop Tier 1"],
+
+            "Empire Gunnery School: Amethyst Ironsides Cap Increase": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Amethyst Outriders Cap Increase": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Frontline Training": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Cycle Charge Drills": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Bjuna Bombard": self.rules["Gunnery Workshop Tier 2"],
+
+            "Empire Gunnery School: Exploding Bullets": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Interference Tactics": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Concussive Blasts": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Grapeshot": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Penetrating Shots": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: MORE ROCKETS!!!": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Field Engineers": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Land Mines": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Improved Trajectories": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Amethyst Helstorm Rocket Battery Cap Increase": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Spirit Barrage": self.rules["Gunnery Workshop Tier 3"],
+
+            "TombKing Mortuary Cult: Blade of Antarhak": CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Salt Mine"),
+            "TombKing Mortuary Cult: Blade of Mourning Fire": CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),
+            "TombKing Mortuary Cult: Blade of Setep": CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Crook & Flail of Radiance": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Destroyer of Eternities": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Alchemy Workshop"),
+            "TombKing Mortuary Cult: Double Crescent of Neru": CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Enchanted Lapis Mace": CanReachLocation("TombKing Building: Gemstone Mine"),
+            "TombKing Mortuary Cult: Fang of Qu'aph": CanReachLocation("TombKing Building: Alchemy Workshop"),
+            "TombKing Mortuary Cult: Golden Dagger": CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Inscribed Khopesh": CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Spear of Pakth": CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Salt Mine"),
+
+            "TombKing Mortuary Cult: Armour of Dawn": CanReachLocation("TombKing Building: Cinnabar Mining Pit") & CanReachLocation("TombKing Building: Tannery") & CanReachLocation("TombKing Building: Caravan Master"),
+            "TombKing Mortuary Cult: Armour of Eternity": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Armour of the Ages": CanReachLocation("TombKing Building: Potter's Hut") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Helmet of Khsar": CanReachLocation("TombKing Building: Vineyard") & CanReachLocation("TombKing Building: Salt Mine"),
+            "TombKing Mortuary Cult: Mortuary Robes": CanReachLocation("TombKing Building: Potter's Hut") & CanReachLocation("TombKing Building: Cinnabar Mining Pit"),
+            "TombKing Mortuary Cult: Scorpion Armour": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Taxidermist Tomb") & CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Shield of Ptra": CanReachLocation("TombKing Building: Tannery") & CanReachLocation("TombKing Building: Lumber Camp"),
+            "TombKing Mortuary Cult: Skull Cap of the Moon": CanReachLocation("TombKing Building: Tannery"),
+            
+            "TombKing Mortuary Cult: Brooch of the Great Desert": CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Cinnabar Mining Pit"),
+            "TombKing Mortuary Cult: Death Mask of Kharnut": CanReachLocation("TombKing Building: Cinnabar Mining Pit") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Elixir of Might": CanReachLocation("TombKing Building: Vineyard"),
+            "TombKing Mortuary Cult: Hieratic Jar": CanReachLocation("TombKing Building: Potter's Hut") & CanReachLocation("TombKing Building: Vineyard"),
+            "TombKing Mortuary Cult: Icon of Rulership": CanReachLocation("TombKing Building: Marble Quarry"),
+            "TombKing Mortuary Cult: Ouroboros": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Taxidermist Tomb"),
+            "TombKing Mortuary Cult: Potion of Foolhardiness": CanReachLocation("TombKing Building: Salt Mine"),
+            "TombKing Mortuary Cult: Potion of Speed": CanReachLocation("TombKing Building: Taxidermist Tomb"),
+            "TombKing Mortuary Cult: Potion of Strength": CanReachLocation("TombKing Building: Caravan Master"),
+            "TombKing Mortuary Cult: Potion of Toughness": CanReachLocation("TombKing Building: Alchemy Workshop"),
+            "TombKing Mortuary Cult: Shroud of Sokth": CanReachLocation("TombKing Building: Tannery") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Vambraces of the Sun": CanReachLocation("TombKing Building: Vineyard") & CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Gold Mine"),
+
+            "TombKing Mortuary Cult: Amulet of Pha-Stah": CanReachLocation("TombKing Building: Cinnabar Mining Pit") & CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Collar of Shakkara": CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Vineyard"),
+            "TombKing Mortuary Cult: Sun Scarab": CanReachLocation("TombKing Building: Marble Quarry"),
+            "TombKing Mortuary Cult: Golden Ankhra": CanReachLocation("TombKing Building: Tannery") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Golden Eye of Rah-Nutt": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Lumber Camp"),
+            "TombKing Mortuary Cult: Obsidian Pendant": CanReachLocation("TombKing Building: Salt Mine") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+
+            "TombKing Mortuary Cult: Blue Khepra": CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Gemstone Mine"),
+            "TombKing Mortuary Cult: Enkhil's Kanopi": CanReachLocation("TombKing Building: Lumber Camp") & CanReachLocation("TombKing Building: Alchemy Workshop"),
+            "TombKing Mortuary Cult: Neferra's Scrolls of Mighty Incantations": CanReachLocation("TombKing Building: Lumber Camp") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Scroll of Power": CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Scroll of Leeching": CanReachLocation("TombKing Building: Lumber Camp"),
+            "TombKing Mortuary Cult: Scroll of Shielding": CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Vizier's Kanopi": CanReachLocation("TombKing Building: Salt Mine") & CanReachLocation("TombKing Building: Gold Mine"),
+
+            "TombKing Mortuary Cult: Indefatigable Pennant": CanReachLocation("TombKing Building: Caravan Master"),
+            "TombKing Mortuary Cult: Emblem of Withering": CanReachLocation("TombKing Building: Salt Mine") & CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Standard to Khsar's Fury": CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Icon of the Sacred Eye": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Gemstone Mine"),
+            "TombKing Mortuary Cult: Royal Standard of Settra": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Gemstone Mine") & CanReachLocation("TombKing Building: Obsidian Quarry"),
+            "TombKing Mortuary Cult: Ualatp's Order": CanReachLocation("TombKing Building: Gold Mine"),
+
+            "TombKing Mortuary Cult: Venom Knights of Asaph (Necropolis Knights)": CanReachLocation("TombKing Building: Taxidermist Tomb") & CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: Storm Riders of Khsar (Nehekhara Horsemen)": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Iron Mine"),
+            "TombKing Mortuary Cult: Usirian's Legion of the Netherworld (Nehekhara Warriors)": CanReachLocation("TombKing Building: Gold Mine"),
+            "TombKing Mortuary Cult: A New Servant (Liche Priest)": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),
+            "TombKing Mortuary Cult: A New Servant (Necrotect)": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Marble Quarry"),
+            "TombKing Mortuary Cult: A New Servant (Tomb Prince)": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Iron Mine"),
         }
 
     def getTechRules(self, location):
