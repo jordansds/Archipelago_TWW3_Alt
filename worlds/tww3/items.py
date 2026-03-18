@@ -7,7 +7,7 @@ from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
 import math
 
-from worlds.tww3.item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapStrongDict, trapWeakDict
+from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 #from worlds.tww3.item_tables.ritual_table import ritualDict
 from worlds.tww3.item_tables.progression_table import progressionDict
@@ -23,11 +23,10 @@ itemDict.update(factionItemManager.getAllItems())
 #    if item.tier == None:
 #        print(f"ERROR: {item}")
 
-itemDict.update(fillerWeakDict)
-itemDict.update(fillerStrongDict)
-itemDict.update(trapHarmlessDict)
-itemDict.update(trapWeakDict)
-itemDict.update(trapStrongDict)
+itemDict.update(fillerDict)
+#itemDict.update(fillerStrongDict)
+#itemDict.update(trapHarmlessDict)
+itemDict.update(trapDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
 itemDict.update(ancillariesRegularDict)
 itemDict.update(ancillariesLegendaryDict)
@@ -198,8 +197,10 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
 
-    fillerFunctions = [generateFillerWeak, generateFillerStrong, generateTrapHarmless, generateTrapWeak, generateTrapStrong] #List of functions for generating filler
-    weights = [world.options.filler_weak.value, world.options.filler_strong.value, world.options.trap_harmless.value, world.options.trap_weak.value, world.options.trap_strong.value] #list of weights defined in YAML
+    #fillerFunctions = [generateFillerWeak, generateFillerStrong, generateTrapHarmless, generateTrapWeak, generateTrapStrong] #List of functions for generating filler
+    #weights = [world.options.filler_weak.value, world.options.filler_strong.value, world.options.trap_harmless.value, world.options.trap_weak.value, world.options.trap_strong.value] #list of weights defined in YAML
+    fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
+    weights = [world.options.filler.value, world.options.trap.value] #list of weights defined in YAML
     
     if sum(weights) == 0:
         raise Exception("Invalid YAML: Sum of all filler and trap weighting must not be zero.")
@@ -216,18 +217,12 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
         
     return pool
 
-def generateFillerWeak(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(fillerWeakDict.keys()))
 
-    # apply random effect
-    """
-    if key == 1201:
-        effect_table = globalEffectTable
-        name = world.random.choice(tuple(effect_table.values())).name
-        key = world.item_name_to_id[name]
-    """
-    # get random ancillary
-    if key == 1203 or key == 1201:
+def generateFiller(world: TWW3World) -> TWW3Item:
+    key = world.random.choice(tuple(fillerDict.keys()))
+    if key == 1207 and world.options.game_mode == "conquest":
+        key = 1205
+    if key == 1203:
         ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
         #key = world.item_name_to_id[name]
@@ -241,45 +236,79 @@ def generateFillerWeak(world: TWW3World) -> TWW3Item:
     item = world.create_item(name)
     return item
 
-def generateFillerStrong(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(fillerStrongDict.keys()))
-    #This item is considered a trap in conquest
-    if key == 1301 and world.options.game_mode == "conquest":
-        key = 1205
-    # get legendary ancillary
-    if key == 1205:
-        ancillaries_table = ancillariesLegendaryDict
-        name = world.random.choice(tuple(ancillaries_table.values())).readableName
-        #key = world.item_name_to_id[name]
-    else:
-        name = itemDict[key].readableName
-        
-    item = world.create_item(name)
-    return item
-
-def generateTrapHarmless(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapHarmlessDict.keys()))
-    name = itemDict[key].readableName
-
-    item = world.create_item(name)
-    return item
-
-def generateTrapWeak(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapWeakDict.keys()))
+def generateTrap(world: TWW3World) -> TWW3Item:
+    key = world.random.choice(tuple(trapDict.keys()))
     if key == 1504 and world.options.game_mode == "spheres":
         key = world.random.randint(1500, 1503)
 
     name = itemDict[key].readableName
-
     item = world.create_item(name)
     return item
 
-def generateTrapStrong(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapStrongDict.keys()))
-    name = itemDict[key].readableName
-    
-    item = world.create_item(name)
-    return item
+#def generateFillerWeak(world: TWW3World) -> TWW3Item:
+#    key = world.random.choice(tuple(fillerDict.keys()))
+#
+#    # apply random effect
+#    """
+#    if key == 1201:
+#        effect_table = globalEffectTable
+#        name = world.random.choice(tuple(effect_table.values())).name
+#        key = world.item_name_to_id[name]
+#    """
+#    # get random ancillary
+#    if key == 1203 or key == 1201:
+#        ancillaries_table = ancillariesRegularDict
+#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
+#        #key = world.item_name_to_id[name]
+#    elif key == 1205:
+#        ancillaries_table = ancillariesLegendaryDict
+#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
+#        # key = world.item_name_to_id[name]
+#    else:
+#        name = itemDict[key].readableName
+#
+#    item = world.create_item(name)
+#    return item
+
+#def generateFillerStrong(world: TWW3World) -> TWW3Item:
+#    key = world.random.choice(tuple(fillerStrongDict.keys()))
+#    #This item is considered a trap in conquest
+#    if key == 1301 and world.options.game_mode == "conquest":
+#        key = 1205
+#    # get legendary ancillary
+#    if key == 1205:
+#        ancillaries_table = ancillariesLegendaryDict
+#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
+#        #key = world.item_name_to_id[name]
+#    else:
+#        name = itemDict[key].readableName
+        
+#    item = world.create_item(name)
+#    return item
+
+#def generateTrapHarmless(world: TWW3World) -> TWW3Item:
+#    key = world.random.choice(tuple(trapHarmlessDict.keys()))
+#    name = itemDict[key].readableName
+#
+#    item = world.create_item(name)
+#    return item
+
+#def generateTrapWeak(world: TWW3World) -> TWW3Item:
+#    key = world.random.choice(tuple(trapDict.keys()))
+#    if key == 1504 and world.options.game_mode == "spheres":
+#        key = world.random.randint(1500, 1503)
+
+#    name = itemDict[key].readableName
+
+#    item = world.create_item(name)
+#    return item
+
+#def generateTrapStrong(world: TWW3World) -> TWW3Item:
+#    key = world.random.choice(tuple(trapStrongDict.keys()))
+#    name = itemDict[key].readableName
+#
+#    item = world.create_item(name)
+#    return item
 
 
         

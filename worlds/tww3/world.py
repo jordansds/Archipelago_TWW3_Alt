@@ -1,6 +1,7 @@
 from typing import Any, Mapping, ClassVar
 from worlds.AutoWorld import World
 from BaseClasses import Region
+import math
 import settings
 from worlds.tww3.options import TWW3Options
 from worlds.tww3 import items, locations, rules
@@ -71,12 +72,16 @@ class TWW3World(World):
         #self.options.non_local_items.value.add("Diplomatic Range")
         self.options.non_local_items.value.add("Administrative Capacity")
 
+        if self.options.game_mode == "spheres":
+            self.options.sanity.value = False
+            self.options.ritual_sanity.value = False
         if self.options.ritual_sanity:
-            self.options.sanity.Value = True
-            self.options.ritual_shuffle.Value = True
+            self.options.sanity.value = True
+            self.options.ritual_shuffle.value = True
         if self.options.sanity:
-            self.options.building_shuffle.Value = True
-            self.options.tech_shuffle.Value = True
+            self.options.unit_shuffle.value = True
+            self.options.building_shuffle.value = True
+            self.options.tech_shuffle.value = True
             self.sanityRules = sanityRules.ruleManager(self)
 
     def create_regions(self) -> None:
@@ -139,6 +144,7 @@ class TWW3World(World):
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.options.admin_capacity.value
+            slotData["max_admin_capacity"] = math.floor(self.options.number_of_settlements / self.options.admin_capacity)
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
             settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
@@ -151,6 +157,7 @@ class TWW3World(World):
         #slotData["game_mode"] = self.options.game_mode.value
         #slotData["faction_shuffle"] = self.options.faction_shuffle.value
         slotData["version"] = self.world_version.as_simple_string()
+        slotData["seed"] = self.world.multiworld.seed
 
         return slotData
 

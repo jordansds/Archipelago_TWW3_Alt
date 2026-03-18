@@ -381,46 +381,21 @@ class forceEarlyTechs(Toggle):
     Tech shuffle must be on and balance must be greater than 0."""
     display_name = "Early Tech"
 
-class fillerWeak(Range):
-    """Weight of weak filler items.
-    For example: filler_weak: 15, filler_strong: 10, trap_harmless: 0, trap_weak: 15, trap_strong: 10
-    Would mean: 30% weak filler, 20% strong filler, 0% harmless traps, 30% weak traps, 20% strong traps
-    because the weights add up to 50."""
-    display_name = "Weak Filler Weight"
+class filler(Range):
+    """Weight of filler items.
+    For example: filler: 70, trap: 30
+    Would mean: 70% filler, 30% traps"""
+    display_name = "Filler Weight"
     range_start = 0
     range_end = 100
-    default = 40
+    default = 70
 
-class fillerStrong(Range):
-    """Weight of strong filler items."""
-    display_name = "Strong Filler Weight"
+class trap(Range):
+    """Weight of trap items"""
+    display_name = "Trap Weight"
     range_start = 0
     range_end = 100
-    default = 20
-
-class trapHarmless(Range):
-    """Weight of harmless traps.
-    These won't disrupt your game, but may be annoying."""
-    display_name = "Harmless Trap Weight"
-    range_start = 0
-    range_end = 100
-    default = 10
-
-class trapWeak(Range):
-    """Weight of weak traps.
-    Receiving a lot of them very quickly may require you to reload a previous save."""
-    display_name = "Weak Trap Weight"
-    range_start = 0
-    range_end = 100
-    default = 20
-
-class trapStrong(Range):
-    """Weight of strong traps.
-    A few badly timed strong traps may require you to reload a previous save."""
-    display_name = "Strong Trap Weight"
-    range_start = 0
-    range_end = 100
-    default = 10
+    default = 30
 
 class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities."""
@@ -483,11 +458,13 @@ class TWW3Options(PerGameCommonOptions):
     force_early_units: forceEarlyUnits
     force_early_techs: forceEarlyTechs
 
-    filler_weak: fillerWeak
-    filler_strong: fillerStrong
-    trap_harmless: trapHarmless
-    trap_weak: trapWeak
-    trap_strong: trapStrong
+    #filler_weak: fillerWeak
+    #filler_strong: fillerStrong
+    #trap_harmless: trapHarmless
+    #trap_weak: trapWeak
+    #trap_strong: trapStrong
+    filler: filler
+    trap: trap
 
     death_link: deathLink
     death_link_effects: deathLinkEffect

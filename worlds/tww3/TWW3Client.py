@@ -8,7 +8,7 @@ import random
 
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.itemTypes import itemType
-from worlds.tww3.item_tables.filler_item_table import fillerWeakDict, fillerStrongDict, trapHarmlessDict, trapWeakDict, trapStrongDict
+from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from worlds.tww3.item_tables.ritual_table import ritualDict
 from worlds.tww3.item_tables.progression_table import progressionDict
@@ -84,6 +84,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
+        self.deathLinkFile = open(f"{path[:-3]}_deathlink.in", 'w+')
+        self.firstDeath = True
 
     def run(self, message):
         self.file.write(f"\n{message}")
@@ -93,13 +95,24 @@ class Messenger:
         self.file.write(message)
         self.file.flush()
 
+    def sendDeathlink(self, message):
+        if self.firstDeath:
+            self.deathLinkFile.write(f"{message}")
+        else:
+            self.deathLinkFile.write(f"\n{message}")
+        self.deathLinkFile.flush()
+
     def flush(self):
         self.file.flush()
 
 class Watcher:
     def __init__(self, path, context):
-        self.file = open(path, "w+")
         self.context = context
+        self.file = open(path, "r")
+        line = self.file.readline()
+        if line != self.context.seed:
+            self.file = open(path, "w+")
+            self.file.write(f"{self.context.seed}\n")
 
     async def watch(self, gameMode):
         print('Watching for Waaagh...')
@@ -113,13 +126,8 @@ class Watcher:
                 prefix = line.split(" ")[0]
                 if prefix == "deathlink":
                     await self.context.send_death(line.split(" ")[1])
-                elif prefix == "building":
-                    if self.context.buildingSanity:
-                        if self.context.logChecks:
-                            logger.info(f"Sending {line}")
-                        await self.context.checkSanity(line.split(" ")[1])
-                elif prefix == "tech":
-                    if self.context.techSanity:
+                elif prefix == "building" or prefix == "tech":
+                    if self.context.sanity:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
                         await self.context.checkSanity(line.split(" ")[1])
@@ -167,7 +175,7 @@ class TWW3Context(CommonContext):
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
-        self.initialized = False
+        #self.initialized = False
         self.adminCapacity = 0
         self.expansionItems = 0
         self.numberOfOrbs = 0
@@ -203,7 +211,7 @@ class TWW3Context(CommonContext):
 
         self.path = TWW3World.settings.tww3_path
         self.path.replace("\\", "/")
-
+        self.seed = args['slot_data']['seed']
 
         if not self.path or not os.path.exists(self.path):
             logger.error('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
@@ -273,6 +281,8 @@ class TWW3Context(CommonContext):
         if self.gameMode == "conquest":
             self.numberOfLocations = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
+            self.maxAdminCapacity = args['slot_data']['max_admin_capacity']
+            #self.maxAdminCapacity = 10
 
             self.expansionItems = 1  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
         elif self.gameMode == "spheres":
@@ -289,13 +299,12 @@ class TWW3Context(CommonContext):
         #Pull unit/building/tech Items
         self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.modList))
         #print(self.itemDict)
-        self.itemDict.update(fillerWeakDict)
-        self.itemDict.update(fillerStrongDict)
+        self.itemDict.update(fillerDict)
+       # self.itemDict.update(fillerStrongDict)
         self.itemDict.update(ancillariesRegularDict)
         self.itemDict.update(ancillariesLegendaryDict)
-        self.itemDict.update(trapHarmlessDict)
-        self.itemDict.update(trapWeakDict)
-        self.itemDict.update(trapStrongDict)
+        #self.itemDict.update(trapHarmlessDict)
+        self.itemDict.update(trapDict)
         #self.itemDict.update(ritualDict)
         self.itemDict.update(progressionDict)
 
@@ -304,7 +313,8 @@ class TWW3Context(CommonContext):
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
         self.lineCount = 0
 
-        self.sanity = args['slot_data']['sanity']
+        #self.sanity = args['slot_data']['sanity']
+        self.sanity = True
         self.ritualSanity = args['slot_data']['ritual_sanity']
         if self.sanity:
             for key, item in self.itemDict.items():
@@ -354,10 +364,15 @@ class TWW3Context(CommonContext):
             elif item.type == itemType.progression:
                 if self.gameMode == "conquest":
                     self.expansionItems += 1
+                    if self.expansionItems == self.maxAdminCapacity:
+                        logger.info(f"You now have all of your Administrative Capacity")
+                        logger.info(f"You can now control an unlimited number of settlements without penalties")
+                        self.adminCapacity = 1000
+                    else:
+                        logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
+                        logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                     self.sendMessage(f"set_admin_capacity({self.expansionItems})")
                     self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
-                    logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
-                    logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                 elif self.gameMode == "spheres":
                     self.expansionItems += 1
                     self.triggerSphereExpansion(self.expansionItems)
@@ -475,7 +490,8 @@ class TWW3Context(CommonContext):
         effectKey = random.choice([key for key in self.deathLinkOptions.keys()])
         logger.info(f"Death Link Received, triggering {effectKey}")
         super().on_deathlink(data)
-        self.sendMessage(self.deathLinkOptions[effectKey])
+        #self.sendMessage(self.deathLinkOptions[effectKey])
+        self.messenger.sendDeathlink(self.deathLinkOptions[effectKey])
         asyncio.create_task(self.resetDeathLinkFlag())
 
     async def send_death(self, death_text: str = ""):
@@ -607,15 +623,6 @@ class EngineInitializer:
                 for faction in sphereAllOthers:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
-
-        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_being_rank_1", 0)')
-        sendMessage('cm:remove_event_restricted_building_record_for_faction("wh2_main_hef_resource_pottery_3", "wh2_main_hef_order_of_loremasters")')
-        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_darkness_ritual_2", 0)')
-        sendMessage('cm:remove_event_restricted_building_record_for_faction("wh3_main_hef_allied_outpost_3", "wh2_main_hef_order_of_loremasters")')
-        sendMessage('cm:unlock_ritual(cm:get_faction("wh2_main_hef_order_of_loremasters"), "wh3_dlc27_secrets_of_the_white_tower_being_cata_spell_2", 0)')
-        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh3_dlc27_tech_hef_0_02")')
-        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh2_main_tech_hef_5_06")')
-        sendMessage('cm:unlock_technology("wh2_main_hef_order_of_loremasters", "wh2_main_tech_hef_3_07")')
 
         messenger.flush()
 

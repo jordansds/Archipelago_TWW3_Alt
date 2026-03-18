@@ -7,11 +7,8 @@ class itemType(IntEnum):
     building = 2
     unit = 3
     goal = 4
-    filler_weak = 5
-    filler_strong = 6
-    trap_harmless = 7
-    trap_weak = 8
-    trap_strong = 9
+    filler = 5
+    trap = 6
     progression = 10
     effect_character = 11
     effect_faction = 12
