@@ -67,7 +67,7 @@ def updateItemDict(world: TWW3World) -> None:
             itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
 
 def createAllItems(world: TWW3World) -> None:
-    world.itemKeys = []
+    #world.itemKeys = []
     pool: list[TWW3Item] = []
 
     pool = generateUnitItems(world, pool)

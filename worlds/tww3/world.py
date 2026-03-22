@@ -106,6 +106,7 @@ class TWW3World(World):
         rules.setVictoryEvent(self)
 
     def create_items(self) -> None:
+        self.itemKeys = []
         items.updateItemDict(self)
         items.createAllItems(self)
         if self.options.balance > 0:
