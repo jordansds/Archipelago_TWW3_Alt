@@ -54,9 +54,9 @@ def updateItemDict(world: TWW3World) -> None:
             itemDict[key] = itemData(IC.progression, *item[1:])
 
     if world.options.sanity:
-        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_units):
+        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_units):
+        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
         for key, item in factionItemManager.getSpecial(world, True):
             if item.type == itemType.building or item.type == itemType.tech:

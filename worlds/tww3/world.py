@@ -82,6 +82,7 @@ class TWW3World(World):
             self.options.unit_shuffle.value = True
             self.options.building_shuffle.value = True
             self.options.tech_shuffle.value = True
+            self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
     def create_regions(self) -> None:
@@ -157,7 +158,7 @@ class TWW3World(World):
         #slotData["game_mode"] = self.options.game_mode.value
         #slotData["faction_shuffle"] = self.options.faction_shuffle.value
         slotData["version"] = self.world_version.as_simple_string()
-        slotData["seed"] = self.world.multiworld.seed
+        slotData["seed"] = self.multiworld.seed
 
         return slotData
 

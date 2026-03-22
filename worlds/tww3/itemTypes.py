@@ -3,12 +3,13 @@ from enum import IntEnum
 from BaseClasses import ItemClassification
 
 class itemType(IntEnum):
-    tech = 1
-    building = 2
-    unit = 3
-    goal = 4
-    filler = 5
-    trap = 6
+    goal = 1
+    tech = 2
+    building = 3
+    unit = 4
+    ritual = 5
+    filler = 6
+    trap = 7
     progression = 10
     effect_character = 11
     effect_faction = 12
@@ -17,7 +18,6 @@ class itemType(IntEnum):
     effect_region = 15
     ancillaries_regular = 16
     ancillaries_legendary = 17
-    ritual = 18
 
 class itemData(NamedTuple):
     classification: ItemClassification

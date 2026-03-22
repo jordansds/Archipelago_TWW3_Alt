@@ -10,11 +10,8 @@ from BaseClasses import ItemClassification as IC
 from worlds.tww3.itemTypes import itemType
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-from worlds.tww3.item_tables.ritual_table import ritualDict
 from worlds.tww3.item_tables.progression_table import progressionDict
-from worlds.tww3 import TWW3World, factionItemManager
-from worlds.tww3 import settlementManager as sm
-from worlds.tww3 import deathLink
+from worlds.tww3 import TWW3World, factionItemManager, deathLink, settlementManager as sm
 import os
 from NetUtils import ClientStatus
 
@@ -60,16 +57,20 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             for faction, settlement in self.ctx.capitals.items():
                 if faction == self.ctx.playerFaction:
-                    self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.sendDeathlink(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.sendDeathlink(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
             for faction, settlement in self.ctx.hordes.items():
                 if faction == self.ctx.playerFaction:
-                    self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.sendDeathlink(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.sendDeathlink(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
-            logger.info("DISCONNECT AND RECONNECT ON THE CLIENT THEN SAVE AND RELOAD YOUR GAME")
-            self.ctx.messenger.run("reduce_lines(2)")
+            #logger.info("DISCONNECT AND RECONNECT ON THE CLIENT THEN SAVE AND RELOAD YOUR GAME")
+            #self.ctx.messenger.run("reduce_lines(2)")
 
     #def _cmd_resync(self):
     #    """Resyncs the number of lines read from the engine file"""
@@ -230,7 +231,7 @@ class TWW3Context(CommonContext):
         self.deathLinkEnabled = args['slot_data']["death_link"]
         if self.deathLinkEnabled:
             asyncio.create_task(self.update_death_link(True))
-            logger.info("DeathLink is enabled, good luck...")
+            logger.warning("DeathLink is enabled, good luck...")
 
         self.deathLinkEffects = args['slot_data']["death_link_effects"]
 
@@ -295,7 +296,7 @@ class TWW3Context(CommonContext):
                 for i in range(10):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
-        logger.info(f"The following mods are enabled: {[mod for mod in self.modList]}")
+        logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
         self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.modList))
         #print(self.itemDict)
@@ -381,6 +382,8 @@ class TWW3Context(CommonContext):
                 if self.gameMode == "spheres":
                     self.numberOfOrbs += 1
                     logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
+                    if self.numberOfOrbs == self.orbGoal:
+                        asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
 
             elif item.classification == IC.filler:
                 if item.readableName == "Get-Rich-Quick Scroll":

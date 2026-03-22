@@ -216,6 +216,7 @@ buildings: dict[int, itemData] = {
 }
 
 techs: dict[int, itemData] = {
+    30816: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_00', itemType.tech, 1, 'Progressive tech_hef_hosts', 'HighElf Tech: The Endless Muster'),
     30800: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_01', itemType.tech, 2, 'Progressive tech_hef_hosts', 'HighElf Tech: Spearwall'),
     30801: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_02', itemType.tech, 3, 'Progressive tech_hef_hosts', 'HighElf Tech: Militia Training'),
     30802: itemData(IC.useful, 1, 'wh2_main_tech_hef_1_01', itemType.tech, 4, 'Progressive tech_hef_hosts', 'HighElf Tech: Precise Fletching'),
@@ -232,7 +233,6 @@ techs: dict[int, itemData] = {
     30813: itemData(IC.useful, 1, 'wh2_main_tech_hef_2_04', itemType.tech, 2, 'Progressive tech_hef_hosts', 'HighElf Tech: Chariot Anthems'),
     30814: itemData(IC.useful, 1, 'wh2_main_tech_hef_3_03', itemType.tech, 1, 'Progressive tech_hef_hosts', 'HighElf Tech: Obligations of Nobility'),
     30815: itemData(IC.useful, 1, 'wh2_main_tech_hef_3_04', itemType.tech, 2, 'Progressive tech_hef_hosts', "HighElf Tech: Dragons' Offerings"),
-    30816: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_00', itemType.tech, 1, 'Progressive tech_hef_hosts', 'HighElf Tech: The Endless Muster'),
     30817: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_05', itemType.tech, 2, 'Progressive tech_hef_hosts', 'HighElf Tech: Light Cavalry Barding'),
     30818: itemData(IC.useful, 1, 'wh2_main_tech_hef_0_06', itemType.tech, 3, 'Progressive tech_hef_hosts', 'HighElf Tech: Horsemasters'),
     30819: itemData(IC.useful, 1, 'wh2_main_tech_hef_1_00', itemType.tech, 4, 'Progressive tech_hef_hosts', 'HighElf Tech: Forgemasters of Vaul'),
