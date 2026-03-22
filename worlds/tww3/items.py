@@ -34,7 +34,7 @@ itemDict.update(ancillariesLegendaryDict)
 itemDict.update(progressionDict)
 
 class TWW3Item(Item):  # or from Items import MyGameItem
-    game = "Total War Warhammer 3"  # name of the game/world this item is from
+    game = "Total War Warhammer III"  # name of the game/world this item is from
 
     options_dataclass = TWW3Options  # options the player can set
     options: TWW3Options  # typing hints for option results

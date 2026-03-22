@@ -466,7 +466,8 @@ class TWW3Context(CommonContext):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
-                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+                    await self.check_locations([int(location) * 10 - 9])
+                    #await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)

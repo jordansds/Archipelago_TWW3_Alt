@@ -51,27 +51,9 @@ def createRegularLocations(world: TWW3World) -> None:
             #max(0, math.floor(i / world.options.admin_capacity))
             #set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
             #set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
-            world.set_rule(location, requiredAdminCapacity)
+            world.set_rule(location, Has("Administrative Capacity", requiredAdminCapacity))
 
             worldRegion.locations.append(location)
-
-def createEvents(world: TWW3World) -> None:
-    worldRegion = world.get_region("Settlements")
-    if world.options.game_mode == "conquest":
-        # Add victory event in the last location
-        locName = f"Empire Size {world.options.number_of_settlements}"
-        location = TWW3Location(world.player, locName, None, worldRegion)
-        #count = math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1
-        #set_rule(location, lambda state, count=math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1: state.has("Administrative Capacity", world.player, count))
-        world.set_rule(location, math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1)
-
-    elif world.options.game_mode == "spheres":
-        location = TWW3Location(world.player, "Victory", None, worldRegion)
-
-    worldRegion.locations.append(location)
-    # Create Victory item and place it in the last location
-    victory = items.TWW3Item("Victory", IC.progression, None, world.player)
-    location.place_locked_item(victory)
 
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
@@ -99,9 +81,6 @@ def createDiploRangeLocations(world: TWW3World) -> None:
                 #set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
                 world.set_rule(location, Has("Diplomatic Range", settlementDiploRange[key]))
                 worldRegion.locations.append(location)
-                    #print(location)
-
-    #print(len(worldRegion.locations))
 
 def createBuildingLocations(world: TWW3World) -> None:
     region = world.get_region("Buildings")
@@ -196,3 +175,19 @@ def createRitualLocations(world: TWW3World) -> None:
                     pass
 
         region.locations.append(location)
+
+def createVictoryLocation(world: TWW3World) -> None:
+    worldRegion = world.get_region("Settlements")
+
+    if world.options.game_mode == "conquest":
+        location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
+        world.set_rule(location, Has("Administrative Capacity", math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1))
+
+    if world.options.game_mode == "spheres":
+        location = TWW3Location(world.player, "Victory", None, worldRegion)
+        world.set_rule(location, Has("Orb of Domination", world.options.orb_count.value))
+
+    worldRegion.locations.append(location)
+    victory = items.TWW3Item("Victory", IC.progression, None, world.player)
+    location.place_locked_item(victory)
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)

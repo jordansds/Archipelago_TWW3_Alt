@@ -9,10 +9,7 @@ from worlds.tww3 import settlementManager as sm
 from worlds.tww3 import factionItemManager
 from worlds.tww3.itemTypes import itemType
 from worlds.tww3.item_tables import sanityRules
-#from .item_tables.ancillaries_table import ancillariesRegularDict
-
-#class TWW3Location(Location):  # or from Locations import MyGameLocation
-#    game = "Total War Warhammer 3"  # name of the game/world this location is in
+#from rule_builder.cached_world import CachedRuleBuilderWorld
 
 class TWW3Settings(settings.Group):
     class TWW3Path(settings.FolderPath):
@@ -103,7 +100,7 @@ class TWW3World(World):
             worldRegion.connect(region, "Rituals")
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
-        rules.setVictoryEvent(self)
+        locations.createVictoryLocation(self)
 
     def create_items(self) -> None:
         self.itemKeys = []
