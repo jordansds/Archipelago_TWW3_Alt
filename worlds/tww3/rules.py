@@ -5,6 +5,7 @@ if TYPE_CHECKING:
 from BaseClasses import ItemClassification
 import math
 from worlds.generic.Rules import add_rule, set_rule
+from rule_builder.rules import Has, HasGroup
 from worlds.tww3.item_tables.progression_table import progressionDict
 from collections import Counter
 
@@ -14,8 +15,8 @@ def setVictoryEvent(world: TWW3World) -> None:
     if world.options.game_mode == "spheres":
         worldRegion = world.get_region("Settlements")
         victoryLocation = [location for location in worldRegion.locations if location.name == "Victory"][0]
-
-        set_rule(victoryLocation, lambda state: state.has("Orb of Domination", world.player, world.options.orb_count))
+        #set_rule(victoryLocation, lambda state: state.has("Orb of Domination", world.player, world.options.orb_count))
+        world.set_rule(victoryLocation, Has("Orb of Domination", world.options.orb_count.value))
 
 def setBalance(world: TWW3World) -> None:
     if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
@@ -33,18 +34,18 @@ def setBalance(world: TWW3World) -> None:
 
         if world.options.game_mode == "conquest":
             for index, location in enumerate(worldRegion.locations):
-                #This increments by 1 every 5 empire size in locations. E.g. Empire size 10 = 2, empire size 30 = 6
+                #This increments by 1 every admin_capacity empire size in locations.
                 empireSizeInterval = math.floor(index / (world.options.admin_capacity * world.options.checks_per_settlement))
                 # This sets the weighting for the item balancing.
-                # The -1 ensures space is left for the admin capacity items.
                 weight = world.options.checks_per_settlement * world.options.admin_capacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 #print(f"{location}: {requiredUnlockItems}")
-                add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
+                #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
+                world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems))
 
         elif world.options.game_mode == "spheres":
 
-            settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
+            settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius.value)
 
             #Number of settlements contained within each diplo range
             settlementsPerDiploRange = [value for key, value in sorted(Counter(settlementDiploRange).items())]
@@ -61,4 +62,5 @@ def setBalance(world: TWW3World) -> None:
                         location = world.get_location(f"{locationName} ({i})")
                         requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
 
-                        add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
+                        #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
+                        world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems))

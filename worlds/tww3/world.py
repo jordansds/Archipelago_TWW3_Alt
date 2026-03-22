@@ -32,7 +32,7 @@ class TWW3World(World):
 
     #Holds the keys that will be sent to the client for locking techs/buildings/units
     #Will be populated in items.createAllItems
-    itemKeys = []
+    #itemKeys = []
 
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
     #item_name_to_id = {}
