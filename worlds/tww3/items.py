@@ -9,28 +9,18 @@ import math
 
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
-#from worlds.tww3.item_tables.ritual_table import ritualDict
 from worlds.tww3.item_tables.progression_table import progressionDict
-#from . import settlementManager as sm
 from worlds.tww3 import factionItemManager
-
 from worlds.tww3.itemTypes import itemData, itemType
 from .options import TWW3Options
 
 itemDict: dict[int, itemData] = {}
 itemDict.update(factionItemManager.getAllItems())
-#for item in itemDict.values():
-#    if item.tier == None:
-#        print(f"ERROR: {item}")
-
 itemDict.update(fillerDict)
-#itemDict.update(fillerStrongDict)
-#itemDict.update(trapHarmlessDict)
 itemDict.update(trapDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
 itemDict.update(ancillariesRegularDict)
 itemDict.update(ancillariesLegendaryDict)
-#itemDict.update(ritualDict)
 itemDict.update(progressionDict)
 
 class TWW3Item(Item):  # or from Items import MyGameItem
@@ -39,7 +29,7 @@ class TWW3Item(Item):  # or from Items import MyGameItem
     options_dataclass = TWW3Options  # options the player can set
     options: TWW3Options  # typing hints for option results
 
-def updateItemDict(world: TWW3World) -> None:
+def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need them for logic due to yaml settings
     if world.options.force_early_units:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
@@ -203,7 +193,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     weights = [world.options.filler.value, world.options.trap.value] #list of weights defined in YAML
     
     if sum(weights) == 0:
-        raise Exception("Invalid YAML: Sum of all filler and trap weighting must not be zero.")
+        raise Exception("Invalid YAML: Sum of filler and trap weighting must not be zero.")
 
     fillerCount = - len(pool) - 1
     for region in world.get_regions():
@@ -216,7 +206,6 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
         pool.append(item)
         
     return pool
-
 
 def generateFiller(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerDict.keys()))

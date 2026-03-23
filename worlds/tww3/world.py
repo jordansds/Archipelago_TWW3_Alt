@@ -34,10 +34,15 @@ class TWW3World(World):
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
     #item_name_to_id = {}
 
-    locationNames = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locationNames += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
+    #locationNames = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
+    #locationNames += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
+    #location_name_to_id = {location: index for index, location in enumerate(locationNames, start=1)}
 
-    location_name_to_id = {location: index for index, location in enumerate(locationNames, start=1)}
+    locations = [f"Empire Size {i} ({j})"
+                 for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
+    locations += [f"{settlement.readableName} ({i})"
+                  for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
+    location_name_to_id = {location: index for index, location in enumerate(locations, start=1)}
 
     sanityLocationNames = {}
     for key, item in factionItemManager.getAllItems().items():
@@ -60,8 +65,8 @@ class TWW3World(World):
             self.settlements = self.settlementManager.randomiseSettlements()
         else:
             self.settlements = self.settlementManager.getSettlements()
-        self.playerSettlements = [settlement for settlement in self.settlements.values() if settlement.faction == self.playerFaction.name]
-        #print(self.settlements)
+        self.playerSettlements = [settlement for settlement in self.settlements.values()
+                                  if settlement.faction == self.playerFaction.name]
 
         self.locationToDiploRange = {}
 
@@ -147,8 +152,8 @@ class TWW3World(World):
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
             settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
-                self.options.sphere_count, self.options.sphere_radius)
-            slotData["spheres"] = factionDiploRange #self.settlementManager.factionsToSpheres(self.options.sphere_count, self.options.sphere_radius)
+                self.options.sphere_count, self.options.sphere_radius.value)
+            slotData["spheres"] = factionDiploRange
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementManager.randomiseHordes()
         slotData["faction_capitals"] = self.settlementManager.capitals
