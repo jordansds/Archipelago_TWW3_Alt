@@ -380,12 +380,16 @@ rituals: dict[int, specialItemData] = {
     43687: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_technology', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Steal Skaven Technology"),
     43688: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_take_under_empire', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Overthrow Under-City"),
 
+    43689: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_1', itemType.ritual, 1, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (1)"),
+    #43690: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_2', itemType.ritual, 2, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (2)"),
+    #43691: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_3', itemType.ritual, 3, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (3)"),
+    #43692: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_4', itemType.ritual, 4, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (4)"),
+
+    #43693: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], '', itemType.ritual, 1, 'Progressive skv_ritual_eshin_contract', True, False, "Skaven Contract: "),
 }
 
 """
 cm:lock_ritual(cm:get_faction("wh2_main_skv_clan_eshin"), "wh2_dlc14_eshin_actions_mortal_empires_mission_2")
-
-items:
 
 locations: (?)
 wh2_dlc14_eshin_contracts_mors_moulder_1	Spy on Clan Moulder
@@ -424,12 +428,4 @@ wh2_dlc14_eshin_contracts_skryre_moulder_3	Assassinate Clan Moulder Member
 wh2_dlc14_eshin_contracts_skryre_pestilens_1	Spy on Clan Pestilens
 wh2_dlc14_eshin_contracts_skryre_pestilens_2	Kidnap Clan Pestilens Member
 wh2_dlc14_eshin_contracts_skryre_pestilens_3	Assassinate Clan Pestilens Member
-wh2_dlc14_ritual_eshin_sudden_kill	The Sudden Kill Scheme
-wh2_dlc14_rituals_skv_revitalizing	The Revitalising Scheme
-wh2_main_ritual_skv_thirteen_eshin	The Thirteenth Scheme
-
-wh2_dlc14_eshin_actions_mortal_empires_mission_1	Nightlord's Say-So (1)
-wh2_dlc14_eshin_actions_mortal_empires_mission_2	Nightlord's Say-So (2)
-wh2_dlc14_eshin_actions_mortal_empires_mission_3	Nightlord's Say-So (3)
-wh2_dlc14_eshin_actions_mortal_empires_mission_4	Nightlord's Say-So (4)
 """
