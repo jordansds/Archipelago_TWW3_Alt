@@ -69,6 +69,16 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateExpansionItems(world, pool)
     pool = generateRitualItems(world, pool)
 
+    # Remove traps based on yaml settings
+    if len(world.options.traps) < len(trapDict):
+        for trap in world.options.traps:
+            try:
+                for key, item in trapDict.items():
+                    if item.readableName[6:] == trap:
+                        del trapDict[key]
+            except KeyError:
+                world.logger.warn(f"Invalid YAML: {trap} set in yaml is invalid, check your spelling.")
+
     pool = generateFillerItems(world, pool)
 
     world.multiworld.itempool += pool
@@ -191,9 +201,10 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     #weights = [world.options.filler_weak.value, world.options.filler_strong.value, world.options.trap_harmless.value, world.options.trap_weak.value, world.options.trap_strong.value] #list of weights defined in YAML
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
     weights = [world.options.filler.value, world.options.trap.value] #list of weights defined in YAML
-    
+
     if sum(weights) == 0:
-        raise Exception("Invalid YAML: Sum of filler and trap weighting must not be zero.")
+        world.logger.warn("Invalid YAML: Sum of filler and trap weighting must not be zero, filler set to 1.")
+        weights = [1,0]
 
     fillerCount = - len(pool) - 1
     for region in world.get_regions():

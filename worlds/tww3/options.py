@@ -402,7 +402,7 @@ class deathLink(DefaultOnToggle):
     display_name = "Death Link"
 
 class deathLinkEffect(OptionSet):
-    """Valid options for death link effect. Include as many or as few as you like in the list.
+    """Valid options for death link effect. Include as many or as few as you like in the list. Valid Options:
     "10% Treasury", "25% Treasury", "50% Treasury", "Wound Hero", "Wound Lord", "Rebellion", "Raze Random Settlement", "Disable Replenishment (2 turns)"
     E.g. ["10% Treasury", "Wound Lord"]"""
     display_name = "Death Link Effect"
@@ -410,11 +410,18 @@ class deathLinkEffect(OptionSet):
     default = frozenset({"10% Treasury"})
 
 class modList(OptionSet):
-    """List of mods with built-in support. Please add them to this list if you have them installed and enabled.
+    """List of mods with built-in support. Please add them to this list if you have them installed and enabled. Valid Options:
     "decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"
     E.g. ["decomposed expanded roster", "mixu legendary lords"]"""
     display_name = "Supported Mods"
     valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"]
+
+class traps(OptionSet):
+    """Trap Blacklist (if you blacklist them all, then nothing will happen). Valid Options:
+    "Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"
+    """
+    display_name = "Trap Blacklist"
+    valid_keys = ["Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"]
 
 class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities."""
@@ -428,12 +435,12 @@ class hardLogic(DefaultOnToggle):
 class TWW3Options(PerGameCommonOptions):
     starting_faction: faction
     game_mode: gameMode
+
     faction_shuffle: factionShuffle
+    randomize_personalities: randomizePersonalities
     starting_settlements: startingSettlements
     checks_per_settlement: checksPerSettlement
 
-    #building_sanity: buildingSanity
-    #tech_sanity: techSanity
     sanity: sanity
     ritual_sanity: ritualSanity
 
@@ -446,34 +453,26 @@ class TWW3Options(PerGameCommonOptions):
     orb_count: orbCount
     extra_orb_count: extraOrbCount
 
-    #max_range: maxRange
-
-    ritual_shuffle: ritualShuffle
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
     building_shuffle: buildingShuffle
     progressive_buildings: progressiveBuildings
     unit_shuffle: unitShuffle
     progressive_units: progressiveUnits
+    ritual_shuffle: ritualShuffle
 
-    starting_tier: startingTier
-    balance: balance
-    force_early_buildings: forceEarlyBuildings
-    force_early_units: forceEarlyUnits
-    force_early_techs: forceEarlyTechs
-
-    #filler_weak: fillerWeak
-    #filler_strong: fillerStrong
-    #trap_harmless: trapHarmless
-    #trap_weak: trapWeak
-    #trap_strong: trapStrong
     filler: filler
     trap: trap
 
     death_link: deathLink
     death_link_effects: deathLinkEffect
 
-    randomize_personalities: randomizePersonalities
+    starting_tier: startingTier
+    balance: balance
+    force_early_buildings: forceEarlyBuildings
+    force_early_units: forceEarlyUnits
+    force_early_techs: forceEarlyTechs
     hard_logic: hardLogic
+    traps: traps
 
     mod_list: modList

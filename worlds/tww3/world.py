@@ -9,6 +9,7 @@ from worlds.tww3 import settlementManager as sm
 from worlds.tww3 import factionItemManager
 from worlds.tww3.itemTypes import itemType
 from worlds.tww3.item_tables import sanityRules
+import logging
 #from rule_builder.cached_world import CachedRuleBuilderWorld
 
 class TWW3Settings(settings.Group):
@@ -26,6 +27,7 @@ class TWW3World(World):
     settings: ClassVar[TWW3Settings]  # will be automatically assigned from type hint
     origin_region_name = "Settlements"
     topology_present = True # show path to required location checks in spoiler
+    logger = logging.getLogger("Total War Warhammer III")
 
     #Holds the keys that will be sent to the client for locking techs/buildings/units
     #Will be populated in items.createAllItems
