@@ -379,6 +379,7 @@ rituals: dict[int, specialItemData] = {
     43686: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_money', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Small Heist"),
     43687: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_technology', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Steal Skaven Technology"),
     43688: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_take_under_empire', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Overthrow Under-City"),
+
 }
 
 """
