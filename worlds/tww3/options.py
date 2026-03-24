@@ -397,10 +397,6 @@ class trap(Range):
     range_end = 100
     default = 30
 
-class randomizePersonalities(DefaultOnToggle):
-    """Randomize AI Personalities."""
-    display_name = "Randomize AI Personalities"
-
 class deathLink(DefaultOnToggle):
     """Enable or Disable death linking."""
     display_name = "Death Link"
@@ -419,6 +415,14 @@ class modList(OptionSet):
     E.g. ["decomposed expanded roster", "mixu legendary lords"]"""
     display_name = "Supported Mods"
     valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"]
+
+class randomizePersonalities(DefaultOnToggle):
+    """Randomize AI Personalities."""
+    display_name = "Randomize AI Personalities"
+
+class hardLogic(DefaultOnToggle):
+    """Prevent conquest mode locations from being sent without the required administrative capacity."""
+    display_name = "Hard Logic"
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -470,5 +474,6 @@ class TWW3Options(PerGameCommonOptions):
     death_link_effects: deathLinkEffect
 
     randomize_personalities: randomizePersonalities
+    hard_logic: hardLogic
 
     mod_list: modList

@@ -4,8 +4,7 @@ if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
 from BaseClasses import ItemClassification
 import math
-from worlds.generic.Rules import add_rule, set_rule
-from rule_builder.rules import Has, HasGroup
+from rule_builder.rules import HasGroup
 from worlds.tww3.item_tables.progression_table import progressionDict
 from collections import Counter
 

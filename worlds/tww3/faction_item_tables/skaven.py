@@ -271,9 +271,164 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    43500: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doomwheel_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_veh', False, False, "Skaven Unit: Warpfire's Wheel (Doomwheel)"),
-    43501: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doom_flayer_ror_tech_lab_0', itemType.unit, 1, 'Progressive skv_veh', False, False, 'Skaven Unit: Blackhole Flayers (Doom-Flayers)'),
-    43502: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_art_warplock_jezzails_ror_tech_lab_0', itemType.unit, 3, 'Progressive skv_rng', False, False, 'Skaven Unit: Eye-Takers (Warplock Jezzails)'),
-    43503: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_warpfire_thrower_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_wpn', False, False, 'Skaven Unit: The Doombringers (Warpfire Throwers)'),
-    43504: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_ratling_gun_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_rng', False, False, 'Skaven Unit: Death Dealers (Ratling Guns)')
+    #43500: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doomwheel_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_veh', False, False, "Skaven Unit: Warpfire's Wheel (Doomwheel)"),
+    #43501: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doom_flayer_ror_tech_lab_0', itemType.unit, 1, 'Progressive skv_veh', False, False, 'Skaven Unit: Blackhole Flayers (Doom-Flayers)'),
+    #43502: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_art_warplock_jezzails_ror_tech_lab_0', itemType.unit, 3, 'Progressive skv_rng', False, False, 'Skaven Unit: Eye-Takers (Warplock Jezzails)'),
+    #43503: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_warpfire_thrower_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_wpn', False, False, 'Skaven Unit: The Doombringers (Warpfire Throwers)'),
+    #43504: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_inf_ratling_gun_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_rng', False, False, 'Skaven Unit: Death Dealers (Ratling Guns)')
 }
+
+rituals: dict[int, specialItemData] = {
+    43600: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_main_ritual_skv_thirteen_skryre', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Skryre)"),
+    43601: specialItemData(IC.useful, 1, ["wh2_dlc09_skv_clan_rictus"], 'wh2_dlc09_ritual_skv_thirteen_rictus', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Rictus)"),
+    43602: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_main_ritual_skv_thirteen_eshin', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Eshin)"),
+    43603: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_mors"], 'wh2_main_ritual_skv_thirteen_mors', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Mors)"),
+    43604: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_main_ritual_skv_thirteen_moulder', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Moulder)"),
+    43605: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_main_ritual_skv_thirteen_pestilens', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Thirteenth Scheme (Pestilens)"),
+    43606: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre", "wh2_main_skv_clan_mors", "wh2_main_skv_clan_moulder", "wh2_dlc09_skv_clan_rictus"], 'wh2_main_ritual_skv_pestilence', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Pestilent Scheme"),
+    43607: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_ritual_skv_pestilence_pestilens', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Pestilent Scheme (Pestilens)"),
+    43608: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_rituals_skv_revitalizing', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Revitalising Scheme"),
+    43609: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre", "wh2_main_skv_clan_pestilens", "wh2_main_skv_clan_mors", "wh2_main_skv_clan_moulder", "wh2_dlc09_skv_clan_rictus"], 'wh2_main_ritual_skv_doooom', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Scheme of DOOOOM!"),
+    43610: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_ritual_eshin_sudden_kill', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Sudden Kill Scheme"),
+    43611: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre", "wh2_main_skv_clan_pestilens", "wh2_main_skv_clan_eshin", "wh2_main_skv_clan_mors", "wh2_main_skv_clan_moulder", "wh2_dlc09_skv_clan_rictus"], 'wh2_main_ritual_skv_ascendancy', itemType.ritual, 1, 'Progressive skv_ritual_rite', False, False, "Skaven Rite: The Dominating Scheme"),
+
+    43612: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Micro-Reactors"),
+    43613: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Doom Diagnostics"),
+    43614: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Biointerfaces"),
+    43615: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_3', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Deployable Skewer-Blades"),
+    43616: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_4', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Propeller Knife-Blades"),
+    43617: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_5', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Warp-Flares"),
+    43618: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_6', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Obsidian Alloy"),
+    43619: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_7', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Decomposing Decoys"),
+    43620: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_8', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Spiked Armour Plates"),
+    43621: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomflayer_part_9', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomflayer', False, False, "Skaven Forbidden Workshop: Aero-Die-Namics"),
+
+    43622: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Warpstone Dynamos"),
+    43623: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Warp-Spark Plugs"),
+    43624: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Micro-Warp-Batteries"),
+    43625: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_3', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Splitter Prisms"),
+    43626: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_4', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Superconductors"),
+    43627: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_5', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Warp-Capacitors"),
+    43628: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_6', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Skavenslave Grease"),
+    43629: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_7', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Gyro-Cogs"),
+    43630: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_8', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Warpstone Alloys"),
+    43631: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_doomwheel_part_9', itemType.ritual, 1, 'Progressive skv_ritual_workshop_doomwheel', False, False, "Skaven Forbidden Workshop: Meat Shields"),
+
+    43632: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_gatling_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_gatling', False, False, "Skaven Forbidden Workshop: Claw-Crafted Bullets"),
+    43633: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_gatling_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_gatling', False, False, "Skaven Forbidden Workshop: On-Board Waste Compactor"),
+    43634: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_gatling_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_gatling', False, False, "Skaven Forbidden Workshop: Ratling Coolant"),
+
+    43635: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_jezail_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_jezail', False, False, "Skaven Forbidden Workshop: Rat-Eye Scopes"),
+    43636: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_jezail_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_jezail', False, False, "Skaven Forbidden Workshop: Craven Rounds"),
+    43637: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_jezail_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_jezail', False, False, "Skaven Forbidden Workshop: Ghillie Fur-Suits"),
+
+    43638: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_globaldier_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_globadier', False, False, "Skaven Forbidden Workshop: Warp-Razors"),
+    43639: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_globaldier_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_globadier', False, False, "Skaven Forbidden Workshop: Abomination's Kiss"),
+    43640: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_globaldier_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_globadier', False, False, "Skaven Forbidden Workshop: Mist of Morskrit"),
+
+    43641: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_mortar_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_mortar', False, False, "Skaven Forbidden Workshop: Warpstone Lung"),
+    43642: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_mortar_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_mortar', False, False, "Skaven Forbidden Workshop: Rot-Spice Number 5"),
+    43643: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_poison_wind_mortar_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_mortar', False, False, "Skaven Forbidden Workshop: Iris of the Chaos Moon"),
+
+    43644: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpfire_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpfire', False, False, "Skaven Forbidden Workshop: Motorised Pumps"),
+    43645: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpfire_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpfire', False, False, "Skaven Forbidden Workshop: Hazmat Fur-Suits"),
+    43646: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpfire_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpfire', False, False, "Skaven Forbidden Workshop: Gout Boosters"),
+
+    43647: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpgrinder_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpgrinder', False, False, "Skaven Forbidden Workshop: Star-Metal Talons"),
+    43648: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpgrinder_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpgrinder', False, False, "Skaven Forbidden Workshop: The 13 Visions"),
+    43649: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_warpgrinder_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_warpgrinder', False, False, "Skaven Forbidden Workshop: Warlock's Poultice"),
+
+    43650: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_0', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Warp-Power Plant"),
+    43651: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_1', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Under-Empire Silos"),
+    43652: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_2', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Toxic Waste Salvage"),
+    43653: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_3', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Kill-Experiment Field"),
+    43654: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_4', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Refined Warpstone"),
+    43655: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_workshop_nuke_part_5', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Chemical Warp-Heads"),
+    43656: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_ikit_nuke_rite', itemType.ritual, 1, 'Progressive skv_ritual_workshop_nuke', False, False, "Skaven Forbidden Workshop: Doomrocket"),
+
+    43657: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_replenish', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Harvest Organs"),
+    43658: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_conversion', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Mutagen Buy-Back"),
+    43659: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_thrott', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Unclean Energy Bar"),
+    43660: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_0', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Sample Collectors"),
+    43661: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_1', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Genetic Filtering"),
+    43662: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_2', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Clone Warfare"),
+    43663: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_3', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Bio-Recycle Chamber"),
+    43664: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_4', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Abnormal Growth Cultivation"),
+    43665: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_5', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Deep Freezer"),
+    43666: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_6', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Mutagen Distillation"),
+    43667: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_7', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Steroid Infusions"),
+    43668: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_8', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Enlarged Growth Vat"),
+
+    43669: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_ambush_camp', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Midnight Raid"),
+    43670: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_assassination', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Stealthy Stabbing"),
+    43671: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_big_robbery', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Big Heist"),
+    43672: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_cause_disorder', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Incite Riot"),
+    43673: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_cause_trouble', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Troublemake"),
+    43674: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_coup', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Overthrow Lair"),
+    43675: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_decapitation', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Plunge Into Anarchy"),
+    43676: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_extra_rations', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Stash Rations"),
+    43677: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_fleet_bombing', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Bomb-Scuttle Fleet"),
+    43678: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_great_fire', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Great Fire"),
+    43679: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mutiny', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Incite Skaven Mutiny"),
+    43680: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_plant_agent', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Double Agents"),
+    43681: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_sabotage', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Sabotage"),
+    43682: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_scout_province', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Sneaky-Scouting"),
+    43683: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_sewer_pestilence', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Sewer Pestilence"),
+    43684: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_ancillary', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Burglarise"),
+    43685: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_food', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Food-Raid"),
+    43686: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_money', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Small Heist"),
+    43687: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_steal_technology', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Steal Skaven Technology"),
+    43688: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_take_under_empire', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Overthrow Under-City"),
+}
+
+"""
+cm:lock_ritual(cm:get_faction("wh2_main_skv_clan_eshin"), "wh2_dlc14_eshin_actions_mortal_empires_mission_2")
+
+items:
+
+locations: (?)
+wh2_dlc14_eshin_contracts_mors_moulder_1	Spy on Clan Moulder
+wh2_dlc14_eshin_contracts_mors_moulder_2	Kidnap Clan Moulder Member
+wh2_dlc14_eshin_contracts_mors_moulder_3	Assassinate Clan Moulder Member
+wh2_dlc14_eshin_contracts_mors_pestilens_1	Spy on Clan Pestilens
+wh2_dlc14_eshin_contracts_mors_pestilens_2	Kidnap Clan Pestilens Member
+wh2_dlc14_eshin_contracts_mors_pestilens_3	Assassinate Clan Pestilens Member
+wh2_dlc14_eshin_contracts_mors_skryre_1	Spy on Clan Skryre
+wh2_dlc14_eshin_contracts_mors_skryre_2	Kidnap Clan Skryre Member
+wh2_dlc14_eshin_contracts_mors_skryre_3	Assassinate Clan Skryre Member
+wh2_dlc14_eshin_contracts_moulder_mors_1	Spy on Clan Mors
+wh2_dlc14_eshin_contracts_moulder_mors_2	Kidnap Clan Mors Member
+wh2_dlc14_eshin_contracts_moulder_mors_3	Assassinate Clan Mors Member
+wh2_dlc14_eshin_contracts_moulder_pestilens_1	Spy on Clan Pestilens
+wh2_dlc14_eshin_contracts_moulder_pestilens_2	Kidnap Clan Pestilens Member
+wh2_dlc14_eshin_contracts_moulder_pestilens_3	Assassinate Clan Pestilens Member
+wh2_dlc14_eshin_contracts_moulder_skryre_1	Spy on Clan Skryre
+wh2_dlc14_eshin_contracts_moulder_skryre_2	Kidnap Clan Skryre Member
+wh2_dlc14_eshin_contracts_moulder_skryre_3	Assassinate Clan Skryre Member
+wh2_dlc14_eshin_contracts_pestilens_mors_1	Spy on Clan Mors
+wh2_dlc14_eshin_contracts_pestilens_mors_2	Kidnap Clan Mors Member
+wh2_dlc14_eshin_contracts_pestilens_mors_3	Assassinate Clan Mors Member
+wh2_dlc14_eshin_contracts_pestilens_moulder_1	Spy on Clan Moulder
+wh2_dlc14_eshin_contracts_pestilens_moulder_2	Kidnap Clan Moulder Member
+wh2_dlc14_eshin_contracts_pestilens_moulder_3	Assassinate Clan Moulder Member
+wh2_dlc14_eshin_contracts_pestilens_skryre_1	Spy on Clan Skryre
+wh2_dlc14_eshin_contracts_pestilens_skryre_2	Kidnap Clan Skryre Member
+wh2_dlc14_eshin_contracts_pestilens_skryre_3	Assassinate Clan Skryre Member
+wh2_dlc14_eshin_contracts_skryre_mors_1	Spy on Clan Mors
+wh2_dlc14_eshin_contracts_skryre_mors_2	Kidnap Clan Mors Member
+wh2_dlc14_eshin_contracts_skryre_mors_3	Assassinate Clan Mors Member
+wh2_dlc14_eshin_contracts_skryre_moulder_1	Spy on Clan Moulder
+wh2_dlc14_eshin_contracts_skryre_moulder_2	Kidnap Clan Moulder Member
+wh2_dlc14_eshin_contracts_skryre_moulder_3	Assassinate Clan Moulder Member
+wh2_dlc14_eshin_contracts_skryre_pestilens_1	Spy on Clan Pestilens
+wh2_dlc14_eshin_contracts_skryre_pestilens_2	Kidnap Clan Pestilens Member
+wh2_dlc14_eshin_contracts_skryre_pestilens_3	Assassinate Clan Pestilens Member
+wh2_dlc14_ritual_eshin_sudden_kill	The Sudden Kill Scheme
+wh2_dlc14_rituals_skv_revitalizing	The Revitalising Scheme
+wh2_main_ritual_skv_thirteen_eshin	The Thirteenth Scheme
+
+wh2_dlc14_eshin_actions_mortal_empires_mission_1	Nightlord's Say-So (1)
+wh2_dlc14_eshin_actions_mortal_empires_mission_2	Nightlord's Say-So (2)
+wh2_dlc14_eshin_actions_mortal_empires_mission_3	Nightlord's Say-So (3)
+wh2_dlc14_eshin_actions_mortal_empires_mission_4	Nightlord's Say-So (4)
+"""

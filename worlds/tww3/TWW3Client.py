@@ -36,6 +36,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
+            logger.info(f"You currently control {self.ctx.settlementCount} settlements")
             #self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
             #self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
             #self.ctx.messenger.run("reduce_lines(2)")
@@ -59,18 +60,23 @@ class TWW3CommandProcessor(ClientCommandProcessor):
                 if faction == self.ctx.playerFaction:
                     #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.sendDeathlink(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.sendDeathlink(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.runTemp(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.runTemp(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
             for faction, settlement in self.ctx.hordes.items():
                 if faction == self.ctx.playerFaction:
                     #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.sendDeathlink(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    self.ctx.messenger.sendDeathlink(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.runTemp(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
+                    self.ctx.messenger.runTemp(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
             #logger.info("DISCONNECT AND RECONNECT ON THE CLIENT THEN SAVE AND RELOAD YOUR GAME")
             #self.ctx.messenger.run("reduce_lines(2)")
+
+    def _cmd_deathlink(self):
+        if isinstance(self.ctx, TWW3Context):
+            self.ctx.deathLinkEnabled = not self.ctx.deathLinkEnabled
+            logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
 
     #def _cmd_resync(self):
     #    """Resyncs the number of lines read from the engine file"""
@@ -85,8 +91,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
-        self.deathLinkFile = open(f"{path[:-3]}_deathlink.in", 'w+')
-        self.firstDeath = True
+        self.tempFile = open(f"{path[:-3]}_engine-temp.in", 'w+')
+        self.firstLine = True
 
     def run(self, message):
         self.file.write(f"\n{message}")
@@ -96,12 +102,12 @@ class Messenger:
         self.file.write(message)
         self.file.flush()
 
-    def sendDeathlink(self, message):
-        if self.firstDeath:
-            self.deathLinkFile.write(f"{message}")
+    def runTemp(self, message):
+        if self.firstLine:
+            self.tempFile.write(f"{message}")
         else:
-            self.deathLinkFile.write(f"\n{message}")
-        self.deathLinkFile.flush()
+            self.tempFile.write(f"\n{message}")
+        self.tempFile.flush()
 
     def flush(self):
         self.file.flush()
@@ -109,19 +115,26 @@ class Messenger:
 class Watcher:
     def __init__(self, path, context):
         self.context = context
-        self.file = open(path, "r")
+        self.file = open(os.path.join(path, "engine.out"), "r")
         line = self.file.readline()
         if line != self.context.seed:
             self.file = open(path, "w+")
             self.file.write(f"{self.context.seed}\n")
+        self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+")
 
-    async def watch(self, gameMode):
-        print('Watching for Waaagh...')
-        self.file.seek(0, 2)
-        activeInode = os.fstat(self.file.fileno()).st_ino
-        path = self.file.name
+        self.files = {
+            "engine.out": self.file,
+            "engine-temp.out": self.tempFile
+        }
+
+    async def watch(self, fileName, gameMode):
+        print(f"Watching {fileName}...")
+        file = self.files[fileName]
+        file.seek(0, 2)
+        activeInode = os.fstat(file.fileno()).st_ino
+        path = file.name
         while True:
-            line = self.file.readline()
+            line = file.readline()
             if line:
                 line = line.strip()
                 prefix = line.split(" ")[0]
@@ -156,14 +169,14 @@ class Watcher:
                 continue
             try:
                 rotated = st.st_ino != activeInode
-                truncated = self.file.tell() > st.st_size
+                truncated = file.tell() > st.st_size
 
                 if rotated or truncated:
                     # Reopen the file
-                    self.file.close()
-                    self.file = open(path, "r", encoding="utf-8", errors="replace")
-                    activeInode = os.fstat(self.file.fileno()).st_ino
-                    self.file.seek(0, os.SEEK_END)
+                    file.close()
+                    file = open(path, "r", encoding="utf-8", errors="replace")
+                    activeInode = os.fstat(file.fileno()).st_ino
+                    file.seek(0, os.SEEK_END)
             except Exception as e:
                 print(e)
 
@@ -183,6 +196,7 @@ class TWW3Context(CommonContext):
         self.itemDict = {}
         self.deathLinkPending = False
         self.logChecks = False
+        self.settlementCount = 0
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -224,8 +238,9 @@ class TWW3Context(CommonContext):
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
 
-        self.watcher = Watcher(os.path.join(self.path, "engine.out"), self)
-        watcher_task = asyncio.create_task(self.watcher.watch(self.gameMode), name='watcher')
+        self.watcher = Watcher(self.path, self)
+        watcher_task = asyncio.create_task(self.watcher.watch("engine.out", self.gameMode), name='watcher')
+        watcher_task = asyncio.create_task(self.watcher.watch("engine-temp.out", self.gameMode), name='watcher')
         self.messenger = Messenger(os.path.join(self.path, "engine.in"))
 
         self.deathLinkEnabled = args['slot_data']["death_link"]
@@ -274,6 +289,7 @@ class TWW3Context(CommonContext):
         self.randomizePersonalities = args['slot_data']['randomize_personalities']
         self.factionShuffle = args['slot_data']['faction_shuffle']
         self.checksPerLocation = args['slot_data']['checks_per_settlement']
+        self.hardLogic = args['slot_data']['hard_logic']
 
         self.locationLookup = {}
 
@@ -455,14 +471,16 @@ class TWW3Context(CommonContext):
     async def check(self, location):
         try:
             if self.gameMode == "conquest":
-                if str(location) != str(self.numberOfLocations):
-                    if int(location) <= self.adminCapacity * self.expansionItems:
+                if str(location) < str(self.numberOfLocations):
+                    if int(location) <= self.adminCapacity * self.expansionItems or not self.hardLogic:
                         for i in range(int(location)):
                             for j in range(int(self.checksPerLocation)):
                                 await self.check_locations([int(location)*10-9 + j])
+                        if int(location) > self.settlementCount:
+                            self.settlementCount = int(location)
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
-                else:
+                elif str(location) == str(self.numberOfLocations):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
@@ -488,23 +506,22 @@ class TWW3Context(CommonContext):
 
     #Deathlink handlers
     def on_deathlink(self, data: dict):
-        if self.deathLinkPending:
+        if self.deathLinkPending or not self.deathLinkEnabled:
             return
         self.deathLinkPending = True
         effectKey = random.choice([key for key in self.deathLinkOptions.keys()])
         logger.info(f"Death Link Received, triggering {effectKey}")
         super().on_deathlink(data)
         #self.sendMessage(self.deathLinkOptions[effectKey])
-        self.messenger.sendDeathlink(self.deathLinkOptions[effectKey])
+        self.messenger.runTemp(self.deathLinkOptions[effectKey])
         asyncio.create_task(self.resetDeathLinkFlag())
 
     async def send_death(self, death_text: str = ""):
-        if self.deathLinkPending:
+        if self.deathLinkPending or not self.deathLinkEnabled:
             return
-        if self.deathLinkEnabled:
-            self.deathLinkPending = True
-            asyncio.create_task(super().send_death(death_text))
-            asyncio.create_task(self.resetDeathLinkFlag())
+        self.deathLinkPending = True
+        asyncio.create_task(super().send_death(death_text))
+        asyncio.create_task(self.resetDeathLinkFlag())
 
     async def resetDeathLinkFlag(self):
         await asyncio.sleep(2)
