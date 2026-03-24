@@ -137,7 +137,8 @@ class TWW3World(World):
                                         "faction_shuffle",
                                         "checks_per_settlement",
                                         "sanity",
-                                        "ritual_sanity")
+                                        "ritual_sanity",
+                                        "hard_logic")
                                         #"number_of_settlements",
                                         #"admin_capacity",
                                         #"orbs"
