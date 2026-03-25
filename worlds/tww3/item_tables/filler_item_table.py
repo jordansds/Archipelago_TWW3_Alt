@@ -31,7 +31,7 @@ trapDict: dict[int, itemData] = {
     1505: itemData(IC.trap, 0, "force_random_strong_rebellion_for_player()", itemType.trap, None, "None", "Trap: Torches and Pitchforks"), #Strong rebellion
     1506: itemData(IC.trap, 0, "force_settlement_trade_with_random_enemy()", itemType.trap, None, "None", "Trap: Let's trade"), #Swaps random city with random enemy city
     1507: itemData(IC.trap, 0, "force_war_with_random_ally()", itemType.trap, None, "None", "Trap: You too, Brutus?"), #Ally declares war on player
-    1508: itemData(IC.trap, 0, "teleport_lord_to_random_region()", itemType.trap, None, "None", "Trap: We're Going on a Trip") #Teleports the player's leader to a random city
+    1508: itemData(IC.trap, 0, "teleport_lord_to_random_region()", itemType.trap, None, "None", "Trap: We're Going on a Trip"), #Teleports the player's leader to a random city
     1509: itemData(IC.trap, 0, "force_war_with_random_faction()", itemType.trap, None, "None", "Trap: En Garde!"), #Random faction declares war on player
 }
 
