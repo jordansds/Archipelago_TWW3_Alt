@@ -107,7 +107,6 @@ class TWW3World(World):
             worldRegion.connect(region, "Rituals")
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
-        locations.createVictoryLocation(self)
 
     def create_items(self) -> None:
         self.itemKeys = []

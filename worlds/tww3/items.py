@@ -70,7 +70,7 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateRitualItems(world, pool)
 
     # Remove traps based on yaml settings
-    if len(world.options.traps) < len(trapDict):
+    if len(world.options.traps.value) < len(trapDict):
         for trap in world.options.traps:
             try:
                 for key, item in trapDict.items():
