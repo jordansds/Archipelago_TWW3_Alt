@@ -1,167 +1,149 @@
-# Total War: Warhammer 3 Archipelago Alt.
-This is an alternate implementation of the original TWW3 world which includes all features of the original mod as well
-as an alternate mode that works better for syncs.
+# [Archipelago](https://archipelago.gg) ![Discord Shield](https://discordapp.com/api/guilds/731205301247803413/widget.png?style=shield) | [Install](https://github.com/ArchipelagoMW/Archipelago/releases)
 
-## How does this work?
-Upon starting a new game, all factions have their start positions randomised. Units, buildings, and technologies are
-placed into the item pool meaning that you can't access them until the corresponding items are found in the multiworld.
-The goal of this apworld is to conquer a certain number of settlements simultaneously, configurable in the yaml.
+Archipelago provides a generic framework for developing multiworld capability for game randomizers. In all cases,
+presently, Archipelago is also the randomizer itself.
 
-Additionally, your checks are determined by the selected game mode - in conquest mode if your goal is 50 settlements,
-every settlement after your starting settlements until settlement 49 will grant checks (unless your faction doesn't 
-start with a home region, in which case it's 1-49). The number of checks you send per settlement can be modified in the 
-yaml - this is to account for how slow TWW3 can be to play and allows you to tailor the pacing of checks to match other 
-games in the multiworld.
+Currently, the following games are supported:
 
-In sphere mode every unique settlement in the world can be a check, though only a certain amount will be active based
-on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECOMMENDED MODS TO
-PREVENT POTENTIAL SOFTLOCK.
+* The Legend of Zelda: A Link to the Past
+* Factorio
+* Subnautica
+* Risk of Rain 2
+* The Legend of Zelda: Ocarina of Time
+* Timespinner
+* Super Metroid
+* Secret of Evermore
+* Final Fantasy
+* VVVVVV
+* Raft
+* Super Mario 64
+* Meritous
+* Super Metroid/Link to the Past combo randomizer (SMZ3)
+* ChecksFinder
+* Hollow Knight
+* The Witness
+* Sonic Adventure 2: Battle
+* Starcraft 2
+* Donkey Kong Country 3
+* Dark Souls 3
+* Super Mario World
+* Pokémon Red and Blue
+* Hylics 2
+* Overcooked! 2
+* Zillion
+* Lufia II Ancient Cave
+* Blasphemous
+* Wargroove
+* Stardew Valley
+* The Legend of Zelda
+* The Messenger
+* Kingdom Hearts 2
+* The Legend of Zelda: Link's Awakening DX
+* Adventure
+* DLC Quest
+* Noita
+* Undertale
+* Bumper Stickers
+* Mega Man Battle Network 3: Blue Version
+* Muse Dash
+* DOOM 1993
+* Terraria
+* Lingo
+* Pokémon Emerald
+* DOOM II
+* Shivers
+* Heretic
+* Landstalker: The Treasures of King Nole
+* Final Fantasy Mystic Quest
+* TUNIC
+* Kirby's Dream Land 3
+* Celeste 64
+* Castlevania 64
+* A Short Hike
+* Yoshi's Island
+* Mario & Luigi: Superstar Saga
+* Bomb Rush Cyberfunk
+* Aquaria
+* Yu-Gi-Oh! Ultimate Masters: World Championship Tournament 2006
+* A Hat in Time
+* Old School Runescape
+* Kingdom Hearts 1
+* Mega Man 2
+* Yacht Dice
+* Faxanadu
+* Saving Princess
+* Castlevania: Circle of the Moon
+* Inscryption
+* Civilization VI
+* The Legend of Zelda: The Wind Waker
+* Jak and Daxter: The Precursor Legacy
+* Super Mario Land 2: 6 Golden Coins
+* shapez
+* Paint
+* Celeste (Open World)
+* Choo-Choo Charles
+* APQuest
+* Satisfactory
+* EarthBound
+* Mega Man 3
 
-**Playing beastmen is currently not recommended in Conquest.**
+For setup and instructions check out our [tutorials page](https://archipelago.gg/tutorial/).
+Downloads can be found at [Releases](https://github.com/ArchipelagoMW/Archipelago/releases), including compiled
+windows binaries.
 
-**If your lord does not spawn next to your city, type /teleport into your client**
+## History
 
-## Installation and setup
-If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
-install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
-the APWorld. If you're not hosting the session, the host that is generating the multiworld will also need this file! After
-downloading the APWorld, double click the file to install it. Depending on which game mode you want to play you may only
-need one of the two .pack files found on the GitHub release, but it's recommended to download both for ease of use. Place
-the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
-(`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
+Archipelago is built upon a strong legacy of brilliant hobbyists. We want to honor that legacy by showing it here.
+The repositories which Archipelago is built upon, inspired by, or otherwise owes its gratitude to are:
 
-**.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
-use the mod found on the Steam workshop, as it may not work correctly with this implementation.**
-The .pack mods do not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
-to launch the mod such as [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14).
+* [bonta0's MultiWorld](https://github.com/Bonta0/ALttPEntranceRandomizer/tree/multiworld_31)
+* [AmazingAmpharos' Entrance Randomizer](https://github.com/AmazingAmpharos/ALttPEntranceRandomizer)
+* [VT Web Randomizer](https://github.com/sporchia/alttp_vt_randomizer)
+* [Dessyreqt's alttprandomizer](https://github.com/Dessyreqt/alttprandomizer)
+* [Zarby89's](https://github.com/Ijwu/Enemizer/commits?author=Zarby89)
+  and [sosuke3's](https://github.com/Ijwu/Enemizer/commits?author=sosuke3) contributions to Enemizer, which make up the
+  vast majority of Enemizer contributions.
 
-Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
-with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
-before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
-it works. For more detailed information on what the yaml settings do, check below.
+We recognize that there is a strong community of incredibly smart people that have come before us and helped pave the
+path. Just because one person's name may be in a repository title does not mean that only one person made that project
+happen. We can't hope to perfectly cover every single contribution that lead up to Archipelago, but we hope to honor
+them fairly.
 
-After creating your yaml the multiworld needs to be generated - if you're creating a multiworld yourself, simply move your yaml
-up one folder (from `Archipelago\Players\Templates` to `Archipelago\Players`) and then run "Generate" in the launcher. This will create a .zip
-file in `Archipelago\output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
-game, or host locally with the "Host" option in the launcher. If you're not creating the multiworld then you will need to
-send the yaml to the person in charge (alongside the .apworld if they don't already have it, as mentioned earlier).
+### Path to the Archipelago
 
-Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
-website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
-displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
-mode has been selected. Enable the correct mod for the game mode you will be playing, launch the game, select the correct leader, and
-start playing!
+Archipelago was directly forked from bonta0's `multiworld_31` branch of ALttPEntranceRandomizer (this project has a
+long legacy of its own, please check it out linked above) on January 12, 2020. The repository was then named to
+_MultiWorld-Utilities_ to better encompass its intended function. As Archipelago matured, then known as
+"Berserker's MultiWorld" by some, we found it necessary to transform our repository into a root level repository
+(as opposed to a 'forked repo') and change the name (which came later) to better reflect our project.
 
-## What the yaml do
+## Running Archipelago
 
-**starting_faction**: Select the faction you're going to play as.
+For most people, all you need to do is head over to
+the [releases page](https://github.com/ArchipelagoMW/Archipelago/releases), then download and run the appropriate
+installer, or AppImage for Linux-based systems.
 
-**faction_shuffle**: Randomize starting positions. Recommended to be on.
+If you are a developer or are running on a platform with no compiled releases available, please see our doc on
+[running Archipelago from source](docs/running%20from%20source.md).
 
-*It's recommended that you use the [No Climate Penalties mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460)
-with this setting turned on.*
+## Related Repositories
 
-**game_mode**: `conquest` is the new mode offered by this implementation and consists of owning a certain number of settlements
-to win. The number of settlements needed is determined by `number_of_locations`. Checks are granted as your empire size grows.
-This lends itself to faster paced games and plays better in synchronous multiworlds.
+This project makes use of multiple other projects. We wouldn't be here without these other repositories and the
+contributions of their developers, past and present.
 
-`spheres` is the original game mode developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
-grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
-you win. Every settlement on the map is a unique check. This is a *much* slower paced game that is better suited to asyncs.
-Additionally this mode is prone to causing softlocks if you don't have many extra spheres, as AI factions can claim razed settlements
-causing them to become out of logic and impossible to collect items from. If this happens you will have to either release the location
-manually with `send_location` in the server console, or forceably send a diplomatic radius upgrade instead.
+* [z3randomizer](https://github.com/ArchipelagoMW/z3randomizer)
+* [Enemizer](https://github.com/Ijwu/Enemizer)
+* [Ocarina of Time Randomizer](https://github.com/TestRunnerSRL/OoT-Randomizer)
 
-**checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
-to slow down the pace of your checks.
+## Contributing
 
-### Conquest settings
-**number_of_settlements**: How many settlements you need to own simultaneously to reach your goal and determines the base number
-of checks. Decrease this for a shorter game, increase for a longer one.
+To contribute to Archipelago, including the WebHost, core program, or by adding a new game, see our
+[Contributing guidelines](/docs/contributing.md).
 
-*Note that these two options, number_of_locations and checks_per_location, will need to be set appropriately for your faction -
-some factions have a lot of items that need generating while other factions need less. If world generation fails due to running
-out of locations and you don't want to increase the number of settlements needed to win, try increasing checks_per_location
-instead!*
+## FAQ
 
-**admin_capacity**: To stop you from conquering the whole map immediately there are special items called **Administration Capacity**.
-Each Admin Capacity received will let you conquer more settlements, and going over the limit forces economic penalties. This setting
-controls how many settlements each admin capacity item will let you own.
+For Frequently asked questions, please see the website's [FAQ Page](https://archipelago.gg/faq/en/).
 
-### Spheres settings
+## Code of Conduct
 
-**spheres_count**: How many diplomatic radius upgrades are needed to have access to every location. Doesn't necessarily cover the
-entire map unless you configure `sphere_radius` to do so.
-
-**extra_sphere_count**: How many extra radius upgrades are added to the multiworld. This can reduce the chance of softlocks.
-
-**sphere_radius**: How much extra distance each radius upgrade adds. 1500 is the longest distance between two settlements, so a
-total radius of 750 would cover the whole map assuming you spawn near the middle. With a radius size of 300 this means a single
-radius upgrade would bring you up to 600 (300 starting radius + 300 from upgrade) and you would have access to about half the map.
-For this reason it's highly recommended to keep this setting somewhere around 100, as going too high causes the entire world to
-be in logic and you may have to embark on an epic quest just to find a progression item for someone else.
-
-**orb_count**: How many orbs of domination are generated. Collecting this many causes you to win.
-
-**extra_orb_count**: Additional orbs that count to the victory condition but don't affect the amount needed to win. Gives you
-some leeway so you don't necessarily need to collect *every* single orb.
-
-### Global settings
-
-**max_range**: How far away settlements can be from each other during world generation.
-
-**tech_shuffle**: Locks the tech tree behind multiworld items.
-
-**progressive_technologies**: Requires tech_shuffle to be on. Every step further into your tech tree is a progressive item,
-otherwise every tech is an individual item.
-
-*If you play with progressive tech off you can use the [Remove Tech Requirements submod](https://steamcommunity.com/workshop/filedetails/?id=3541110164)
-to research tech out of order so you don't have to wait for the whole chain to be found.*
-
-**building_shuffle**: Locks buildings behind multiworld items.
-
-**progressive_buildings**: Requires building_shuffle to be on. Instead of finding every single building seperately find
-progressive items unlocking the next building for each specific building chain. Setting this to progressive is recommended.
-
-**unit_shuffle**: Locks units behind multiworld items.
-
-**progressive_units**: Requires unit_shuffle to be on. Instead of unlocking every unit separately tiers 1-5 are
-progressive items for each unit type (progressive infantry, progressive cavalry, progressive monsters etc.).
-
-*Setting both buildings and units as non-progressive is **not** recommended.*
-
-**starting_tier**: Start with buildings and units of this tier already unlocked.
-
-**filler and traps**: Adjust the weights of traps and filler. Traps only trigger once so they don't softlock you if you need
-to start over or load a save. Filler items include all equipment items.
-The [No Item Requirement submod](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601)
-is recommended to make sure you can equip every item you get.
-
-**randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
-
-**ritual_shuffle**: Locks certain faction mechanics behind multiworld items. Possibly doesn't work.
-
-**balance**: Forces unlocks to be near the start of the multiworld so you're guaranteed to get useful items early.
-In a multiworld setting, 20 is probably the highest you'd want this. If you're not sure what to do with this option,
-either set it to 10 or leave it off. For singleplayer games a value of at least 40 should guarantee a smooth early game.
-
-**force_early_buildings/units/techs**: Sets the max tiers that can be forced to generate early.
-5 allows all tiers to generate, 0 disables early generation for the respective setting.
-
-## Recommended mods: 
-
-[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set min and max to 100 turn cooldown and enable for AI (not player). HIGHLY RECOMMENDED.
-
-[Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECOMMENDED.
-
-[Remove Tech Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3541110164): Lets you research all tech in any order. This is specifically intended to be used when
-using shuffled non-progressive tech so you can research them immediately.
-
-[Remove Faction Mechanic Debuffs](https://steamcommunity.com/sharedfiles/filedetails/?id=3540418784): Removes debuffs from Avelorn, Empire factions, Clan Angrund, Skarsnik and
-Oxyotl which are related to specific places on the map you probably can't reach.
-
-[No Item Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601): Lets you equip all items, even if they are restricted to a different Legendary Lord.
-
-[No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460): Removes all climate penalties so your start position is not as bad as it seems.
-
-[Sea Lord Aislinn – Infinite Colonies](https://steamcommunity.com/workshop/filedetails/?id=3626519982): Allows Aislinn to conquer any city as an elven colony.
+Please refer to our [code of conduct](/docs/code_of_conduct.md).
