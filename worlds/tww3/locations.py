@@ -183,7 +183,7 @@ def createVictoryLocation(world: TWW3World) -> None:
         location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
         world.set_rule(location, Has("Administrative Capacity", math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1))
 
-    if world.options.game_mode == "spheres":
+    elif world.options.game_mode == "spheres":
         location = TWW3Location(world.player, "Victory", None, worldRegion)
         world.set_rule(location, Has("Orb of Domination", world.options.orb_count.value))
 
