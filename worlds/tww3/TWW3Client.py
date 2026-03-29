@@ -105,6 +105,7 @@ class Messenger:
     def runTemp(self, message):
         if self.firstLine:
             self.tempFile.write(f"{message}")
+            self.firstLine = False
         else:
             self.tempFile.write(f"\n{message}")
         self.tempFile.flush()
@@ -117,8 +118,9 @@ class Watcher:
         self.context = context
         self.file = open(os.path.join(path, "engine.out"), "r")
         line = self.file.readline()
-        if line != self.context.seed:
-            self.file = open(path, "w+")
+        if line != f"{self.context.seed}\n":
+            print(f"File seed: {line} != Multiworld seed: {self.context.seed}")
+            self.file = open(os.path.join(path, "engine.out"), "w+")
             self.file.write(f"{self.context.seed}\n")
         self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+")
 
@@ -138,7 +140,9 @@ class Watcher:
             if line:
                 line = line.strip()
                 prefix = line.split(" ")[0]
-                if prefix == "deathlink":
+                if line == "":
+                    pass
+                elif prefix == "deathlink":
                     await self.context.send_death(line.split(" ")[1])
                 elif prefix == "building" or prefix == "tech":
                     if self.context.sanity:
@@ -239,8 +243,8 @@ class TWW3Context(CommonContext):
         logger.info(f"The game mode is: {self.gameMode}")
 
         self.watcher = Watcher(self.path, self)
+        temp_watcher_task = asyncio.create_task(self.watcher.watch("engine-temp.out", self.gameMode), name='temp_watcher')
         watcher_task = asyncio.create_task(self.watcher.watch("engine.out", self.gameMode), name='watcher')
-        watcher_task = asyncio.create_task(self.watcher.watch("engine-temp.out", self.gameMode), name='watcher')
         self.messenger = Messenger(os.path.join(self.path, "engine.in"))
 
         self.deathLinkEnabled = args['slot_data']["death_link"]
@@ -314,10 +318,10 @@ class TWW3Context(CommonContext):
 
         logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
-        self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.modList))
+        self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.playerFaction, self.modList))
         #print(self.itemDict)
         self.itemDict.update(fillerDict)
-       # self.itemDict.update(fillerStrongDict)
+        #self.itemDict.update(fillerStrongDict)
         self.itemDict.update(ancillariesRegularDict)
         self.itemDict.update(ancillariesLegendaryDict)
         #self.itemDict.update(trapHarmlessDict)
@@ -411,9 +415,10 @@ class TWW3Context(CommonContext):
 
             elif item.classification == IC.trap:
                 if self.are_traps_enabled:
-                    self.sendMessage(item.name)
+                    #self.sendMessage(item.name)
+                    self.messenger.runTemp(item.name)
                 else:
-                    self.sendMessage('out("Skipped a Trap")')
+                    self.logger.info("Skipped a Trap")
 
             elif item.type == itemType.effect_faction:
                 self.sendMessage(f'give_player_faction_effect({item.name})')
@@ -471,7 +476,7 @@ class TWW3Context(CommonContext):
     async def check(self, location):
         try:
             if self.gameMode == "conquest":
-                if str(location) < str(self.numberOfLocations):
+                if int(location) < int(self.numberOfLocations):
                     if int(location) <= self.adminCapacity * self.expansionItems or not self.hardLogic:
                         for i in range(int(location)):
                             for j in range(int(self.checksPerLocation)):

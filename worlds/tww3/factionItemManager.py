@@ -68,7 +68,7 @@ moddedItemDict: dict[str, ModuleType] = {
     "decomposed expanded roster": expandedRoster, #100000
 }
 
-def getAllItems(playerRace = "", modList = None) -> dict[int, itemData]:
+def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int, itemData]:
     itemDict: dict[int, itemData] = {}
     for race, module in raceModuleDict.items():
         if playerRace == race or playerRace == "":
@@ -78,9 +78,10 @@ def getAllItems(playerRace = "", modList = None) -> dict[int, itemData]:
             itemDict.update(module.progUnits)
             itemDict.update(module.progBuildings)
             itemDict.update(module.progTechs)
-            itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items()}) #Turn special item into regular item
+            itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if playerFaction in item.faction or playerFaction == ""}) #Turn special item into regular item
             try:
-                itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items()})
+                #print(module.rituals.items())
+                itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items() if playerFaction in item.faction or playerFaction == ""})
             except AttributeError:
                 pass
         if playerRace == race:

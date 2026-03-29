@@ -243,9 +243,9 @@ class adminCapacity(Range):
     You start with 1 admin capacity item so make sure that you set it higher than STARTING SETTLEMENTS.
     If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
     display_name = "Settlements Per Admin Capacity (CONQUEST)"
-    range_start = 1
+    range_start = 2
     range_end = len(sm.settlementDict)
-    default = 5
+    default = 10
 
 class sphereCount(Range):
     """SPHERE MODE ONLY
