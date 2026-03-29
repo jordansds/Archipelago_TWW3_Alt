@@ -12,8 +12,8 @@ units: dict[int, itemData] = {
     114006: itemData(IC.useful, 1, "CN_lobster_warriors_2", itemType.unit, 1, "Progressive lob_inf", "Lobster Unit: Lobster Warriors (Shields)"),
     114007: itemData(IC.useful, 1, "CN_crab_rangers", itemType.unit, 2, "Progressive lob_inf", "Lobster Unit: Crab Rangers"),
     114008: itemData(IC.useful, 1, "wh_main_chs_mon_chaos_spawn", itemType.unit, 2, "Progressive lob_inf", "Lobster Unit: Chaos Spawn"),
-    112009: itemData(IC.useful, 1, "CN_monstrous_crabs_0", itemType.unit, 2, "Progressive lob_inf", "Lobster Unit: Hardshell Colossi"),
-    112010: itemData(IC.useful, 1, "CN_monstrous_crabs_1", itemType.unit, 3, "Progressive lob_inf", "Lobster Unit: Hardshell Bruisers"),
+    114009: itemData(IC.useful, 1, "CN_monstrous_crabs_0", itemType.unit, 2, "Progressive lob_inf", "Lobster Unit: Hardshell Colossi"),
+    114010: itemData(IC.useful, 1, "CN_monstrous_crabs_1", itemType.unit, 3, "Progressive lob_inf", "Lobster Unit: Hardshell Bruisers"),
     114011: itemData(IC.useful, 1, "CN_lobster_champions_0", itemType.unit, 3, "Progressive lob_inf", "Lobster Unit: Lobster Champions"),
     114012: itemData(IC.useful, 1, "CN_lobster_champions_1", itemType.unit, 3, "Progressive lob_inf", "Lobster Unit: Lobster Champions (Spears)"),
     114013: itemData(IC.useful, 1, "CN_lobster_juggernauts", itemType.unit, 4, "Progressive lob_inf", "Lobster Unit: Lobster Juggernauts"),
@@ -27,8 +27,8 @@ units: dict[int, itemData] = {
     114020: itemData(IC.useful, 1, "CN_crab_slinger", itemType.unit, 3, "Progressive lob_rng", "Lobster Unit: Lobster Slingers"),
     114021: itemData(IC.useful, 1, "CN_lobster_hellforged_destroyer", itemType.unit, 4, "Progressive lob_rng", "Lobster Unit: Hellforged Destroyers"),
 
-    112022: itemData(IC.useful, 1, "CN_monstrous_crabs_3", itemType.unit, 1, "Progressive lob_art", "Lobster Unit: Hardshell Cannonbacks (Mortars)"),
-    112023: itemData(IC.useful, 1, "CN_monstrous_crabs_2", itemType.unit, 1, "Progressive lob_art", "Lobster Unit: Hardshell Cannonbacks"),
+    114022: itemData(IC.useful, 1, "CN_monstrous_crabs_3", itemType.unit, 1, "Progressive lob_art", "Lobster Unit: Hardshell Cannonbacks (Mortars)"),
+    114023: itemData(IC.useful, 1, "CN_monstrous_crabs_2", itemType.unit, 1, "Progressive lob_art", "Lobster Unit: Hardshell Cannonbacks"),
 
     114024: itemData(IC.useful, 1, 'wh3_main_dae_inf_chaos_furies_0', itemType.unit, 1, 'Progressive lob_bst', 'Lobster Unit: Chaos Furies'),
     114025: itemData(IC.useful, 1, 'wh_main_chs_mon_chaos_warhounds_0', itemType.unit, 1, 'Progressive lob_bst', 'Lobster Unit: Chaos Warhounds'),
@@ -153,8 +153,8 @@ progBuildings: dict[int, itemData] = {
 
 progTechs: dict[int, itemData] = {
     115400: itemData(IC.useful, 5, "Progressive tech_lob_main", itemType.tech, 5, None, "Progressive Lobster Tech: Main"),
-    114401: itemData(IC.useful, 1, "Progressive tech_lob_offerings", itemType.tech, 1, None, "Progressive Lobster Tech: Offerings"),
-    114402: itemData(IC.useful, 4, "Progressive tech_lob_economy", itemType.tech, 4, None, "Progressive Lobster Tech: Economy"),
+    115401: itemData(IC.useful, 1, "Progressive tech_lob_offerings", itemType.tech, 1, None, "Progressive Lobster Tech: Offerings"),
+    115402: itemData(IC.useful, 4, "Progressive tech_lob_economy", itemType.tech, 4, None, "Progressive Lobster Tech: Economy"),
 }
 
 special: dict[int, specialItemData] = {

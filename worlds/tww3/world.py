@@ -162,10 +162,15 @@ class TWW3World(World):
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         #slotData["game_mode"] = self.options.game_mode.value
         #slotData["faction_shuffle"] = self.options.faction_shuffle.value
-        slotData["version"] = self.world_version.as_simple_string()
         slotData["seed"] = self.multiworld.seed
 
+        try:
+            slotData["version"] = self.world_version.as_simple_string()
+        except AttributeError:
+            self.logger.error("Your Archipelago is out of date, update to the latest version")
+        slotData["version"] = self.world_version.as_simple_string()
         return slotData
+
 
     def create_item(self, name: str) -> items.TWW3Item:
         key: int = self.item_name_to_id[name]

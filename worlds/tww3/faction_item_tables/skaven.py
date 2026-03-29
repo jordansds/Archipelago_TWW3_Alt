@@ -388,6 +388,8 @@ rituals: dict[int, specialItemData] = {
     #43693: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], '', itemType.ritual, 1, 'Progressive skv_ritual_eshin_contract', True, False, "Skaven Contract: "),
 }
 
+#"wh2_main_skv_clan_mordkin",
+
 """
 cm:lock_ritual(cm:get_faction("wh2_main_skv_clan_eshin"), "wh2_dlc14_eshin_actions_mortal_empires_mission_2")
 

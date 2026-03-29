@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.itemTypes import itemType, itemData, specialItemData
 
 # @formatter:off
 units: dict[int, itemData] = {
@@ -243,6 +243,13 @@ progTechs: dict[int, itemData] = {
     29401: itemData(IC.useful, 1, "Progressive tech_grn_scrap", itemType.tech, 1, None, "Progressive Greenskin Tech"),
 }
 
-special: dict[int, itemData] = {
+special: dict[int, specialItemData] = {
 
+}
+
+rituals: dict[int, specialItemData] = {
+    29600: specialItemData(IC.useful, 1, ["wh_main_grn_greenskins", "wh_main_grn_crooked_moon", "wh2_dlc15_grn_bonerattlaz", "wh_main_grn_orcs_of_the_bloody_hand", "wh2_dlc15_grn_broken_axe", "wh3_dlc26_grn_gorbad_ironclaw", "wh_main_grn_red_fangs"], "wh2_main_ritual_grn_waaagh", itemType.ritual, 1, "Progressive grn_ritual_waaagh", True, False, "Greenskins Waaagh: Victorious Waaagh!"),
+    #29601: specialItemData(IC.useful, 1, ["wh3_dlc26_grn_gorbad_ironclaw"], "wh3_dlc26_da_plan_yooreeka_1", itemType.ritual, 1, "Progressive grn_ritual_da_plan", True, False, "Greenskins Da Plan: Big Plans"),
+    #29602: specialItemData(IC.useful, 1, ["wh3_dlc26_grn_gorbad_ironclaw"], "wh3_dlc26_da_plan_yooreeka_2", itemType.ritual, 2, "Progressive grn_ritual_da_plan", True, False, "Greenskins Da Plan: Bigga Strategitz"),
+    #29603: specialItemData(IC.useful, 1, ["wh3_dlc26_grn_gorbad_ironclaw"], "wh3_dlc26_da_plan_yooreeka_3", itemType.ritual, 3, "Progressive grn_ritual_da_plan", True, False, "Greenskins Da Plan: Masta Taktics"),
 }

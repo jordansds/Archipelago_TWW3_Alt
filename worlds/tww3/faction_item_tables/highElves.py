@@ -479,3 +479,5 @@ rituals: dict[int, specialItemData] = {
     31700: specialItemData(IC.useful, 1, ["wh2_main_hef_eataine"], "wh3_dlc27_hef_tyrion_imperatives_general_8", itemType.ritual, 1, "Progressive hef_ritual_champion_heir", False, False, "HighElf Chamion of Ulthuan: Champion's Demand"),
     31701: specialItemData(IC.useful, 1, ["wh2_main_hef_eataine"], "wh3_dlc27_hef_tyrion_imperatives_general_9", itemType.ritual, 1, "Progressive hef_ritual_champion_heir", False, False, "HighElf Chamion of Ulthuan: Elven Initiative"),
 }
+
+#"wh2_main_hef_chrace", "wh2_main_hef_saphery", "wh2_main_hef_citadel_of_dusk"
