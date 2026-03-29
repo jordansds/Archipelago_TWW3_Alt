@@ -73,12 +73,10 @@ def createAllItems(world: TWW3World) -> None:
     if len(world.options.traps.value) < len(trapDict):
         for trap in world.options.traps:
             try:
-                delKeys = []
                 for key, item in trapDict.items():
                     if item.readableName[6:] == trap:
-                        delKeys.append(key)
-                for key in delKeys:
-                    del trapDict[key]
+                        del trapDict[key]
+                        break
             except KeyError:
                 world.logger.warn(f"Invalid YAML: {trap} set in yaml is invalid, check your spelling.")
 
