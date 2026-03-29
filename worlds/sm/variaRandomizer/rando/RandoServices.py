@@ -49,7 +49,7 @@ class RandoServices(object):
     # gives all the possible theoretical locations for a given item
     def possibleLocations(self, item, ap, emptyContainer, bossesKilled=True):
         assert len(emptyContainer.currentItems) == 0, "Invalid call to possibleLocations. emptyContainer had collected items"
-        emptyContainer.settlementManager.resetItems()
+        emptyContainer.sm.resetItems()
         self.log.debug('possibleLocations. item='+item.Type)
         if bossesKilled:
             itemLambda = lambda it: it.Type != item.Type
@@ -57,10 +57,10 @@ class RandoServices(object):
             itemLambda = lambda it: it.Type != item.Type and it.Category != 'Boss'
         allBut = emptyContainer.getItems(itemLambda)
         self.log.debug('possibleLocations. allBut='+getItemListStr(allBut))
-        emptyContainer.settlementManager.addItems([it.Type for it in allBut])
+        emptyContainer.sm.addItems([it.Type for it in allBut])
         ret = [loc for loc in self.currentLocations(ap, emptyContainer, post=True) if self.restrictions.canPlaceAtLocation(item, loc, emptyContainer)]
         self.log.debug('possibleLocations='+getLocListStr(ret))
-        emptyContainer.settlementManager.resetItems()
+        emptyContainer.sm.resetItems()
         return ret
 
     # gives current accessible locations within a container from an AP, given an optional item.
@@ -72,7 +72,7 @@ class RandoServices(object):
             ret = self.cache.get(request)
             if ret is not None:
                 return ret
-        sm = container.settlementManager
+        sm = container.sm
         if diff is None:
             diff = self.settings.maxDiff
         itemType = None
@@ -96,7 +96,7 @@ class RandoServices(object):
         return result.bool == True and result.difficulty <= self.settings.maxDiff
 
     def getAvailLocs(self, container, ap, diff):
-        sm = container.settlementManager
+        sm = container.sm
         locs = container.unusedLocations
         return self.areaGraph.getAvailableLocations(locs, sm, diff, ap)
 
@@ -107,7 +107,7 @@ class RandoServices(object):
             ret = self.cache.get(request)
             if ret is not None:
                 return ret
-        sm = container.settlementManager
+        sm = container.sm
         if item is not None:
             itemType = item.Type
             sm.addItem(itemType)
@@ -122,7 +122,7 @@ class RandoServices(object):
         return nodes
 
     def isSoftlockPossible(self, container, ap, item, loc, comebackCheck):
-        sm = container.settlementManager
+        sm = container.sm
         # usually early game
         if comebackCheck == ComebackCheckType.NoCheck:
             return False
@@ -154,7 +154,7 @@ class RandoServices(object):
         return False
 
     def fullComebackCheck(self, container, ap, item, loc, comebackCheck):
-        sm = container.settlementManager
+        sm = container.sm
         tmpItems = []
         # draygon special case: there are two locations, and we can
         # place one item, but we might need both the item and the boss
@@ -169,7 +169,7 @@ class RandoServices(object):
         return ret
 
     def isProgression(self, item, ap, container):
-        sm = container.settlementManager
+        sm = container.sm
         # no need to test nothing items
         if item.Category == 'Nothing':
             return False
@@ -266,7 +266,7 @@ class RandoServices(object):
         self.log.debug('getPossiblePlacements. nCurLocs='+str(len(curLocs)))
         self.log.debug('getPossiblePlacements. curLocs='+getLocListStr(curLocs))
         self.log.debug('getPossiblePlacements. comebackCheck='+str(comebackCheck))
-        sm = container.settlementManager
+        sm = container.sm
         poolDict = container.getPoolDict()
         itemLocDict = {}
         possibleProg = False
@@ -335,7 +335,7 @@ class RandoServices(object):
         if self.settings.maxDiff == infinity:
             return False
         self.log.debug('onlyBossesLeft, diff=' + str(self.settings.maxDiff) + ", ap="+ap)
-        sm = container.settlementManager
+        sm = container.sm
         bossesLeft = container.getAllItemsInPoolFromCategory('Boss')
         if len(bossesLeft) == 0:
             return False

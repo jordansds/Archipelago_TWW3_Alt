@@ -2,6 +2,8 @@
 This is an alternate implementation of the original TWW3 world which includes all features of the original mod as well
 as an alternate mode that works better for syncs.
 
+# DO NOT ENABLE BOTH THE SPHERES AND CONQUEST MODS AT THE SAME TIME. ONLY ENABLE THE GAMEMODE YOU SELECT IN THE YAML.
+
 ## How does this work?
 Upon starting a new game, all factions have their start positions randomised. Units, buildings, and technologies are
 placed into the item pool meaning that you can't access them until the corresponding items are found in the multiworld.
