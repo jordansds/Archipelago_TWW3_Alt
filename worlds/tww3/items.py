@@ -44,6 +44,8 @@ def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need
             itemDict[key] = itemData(IC.progression, *item[1:])
 
     if world.options.sanity:
+        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+            itemDict[key] = itemData(IC.progression, *item[1:])
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             itemDict[key] = itemData(IC.progression, *item[1:])
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
@@ -83,6 +85,10 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateFillerItems(world, pool)
 
     world.multiworld.itempool += pool
+
+    for item in pool:
+        if itemDict[world.item_name_to_id[item.name]].type == itemType.unit:
+            print(item.name)
 
     #print(pool)
 

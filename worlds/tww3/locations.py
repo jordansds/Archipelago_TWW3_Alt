@@ -2,12 +2,13 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.item_tables.sanityRules import ruleManager
 
 if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
 
 from BaseClasses import Location, ItemClassification as IC
-from rule_builder.rules import Has, HasAllCounts
+from rule_builder.rules import Has, HasAllCounts, CanReachLocation, Rule
 from worlds.tww3 import items, factionItemManager, settlementManager as sm
 import math
 
@@ -104,24 +105,36 @@ def createBuildingLocations(world: TWW3World) -> None:
 
             if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
 
+                rule = None
                 if world.options.progressive_buildings:
                     progressiveItemCount = item.tier - (world.options.starting_tier - 1)
                     for progBuilding in progBuildings:
                         if item.progressionGroup == progBuilding.name:
                             progressiveItem = progBuilding.readableName
                             #print(f"{item.readableName} requires {progressiveItemCount} x {progressiveItem}")
-                            world.set_rule(location, Has(progressiveItem, progressiveItemCount))
+                            if rule is None:
+                                rule = Has(progressiveItem, progressiveItemCount)
+                            else:
+                                rule = rule & Has(progressiveItem, progressiveItemCount)
+                            #world.set_rule(location, Has(progressiveItem, progressiveItemCount))
                             #set_rule(location, lambda state, count=progressiveItemCount: state.has(progressiveItem, world.player, count))
                             break
 
                 else:
-                    requiredItems = {}
                     for building in buildings:
-                        if building.progressionGroup == item.progressionGroup and world.options.starting_tier - 1 < building.tier <= item.tier:
-                            #print(f"{item.readableName} requires {building.readableName} to be reachable")
-                            requiredItems.update({building.readableName: 1})
+                        if building.readableName == item.readableName and building.tier > world.options.starting_tier - 1:
+                            rule = Has(building.readableName)
+                            break
+                    #requiredItems = {}
+                    #for building in buildings:
+                        #if building.progressionGroup == item.progressionGroup and world.options.starting_tier - 1 < building.tier <= item.tier:
+                        #    #print(f"{item.readableName} requires {building.readableName} to be reachable")
+                        #    requiredItems.update({building.readableName: 1})
                     #print(f"{location}: {requiredItems}")
-                    world.set_rule(location, HasAllCounts(requiredItems))
+                    #rule = HasAllCounts(requiredItems)
+                    #world.set_rule(location, HasAllCounts(requiredItems))
+
+                world.set_rule(location, rule)
 
             region.locations.append(location)
 
@@ -141,17 +154,25 @@ def createTechLocations(world: TWW3World) -> None:
 
         location = TWW3Location(world.player, locName, locId, region)
 
+        rule = None
         if world.options.progressive_technologies:
             for progTech in progTechs:
                 if item.progressionGroup == progTech.name:
-                    world.set_rule(location, Has(progTech.readableName, item.tier))
+                    if rule is None:
+                        rule = Has(progTech.readableName, item.tier)
+                    else:
+                        rule = rule & Has(progTech.readableName, item.tier)
+                    #world.set_rule(location, Has(progTech.readableName, item.tier))
                     break
         else:
-            world.set_rule(location, Has(locName))
+            rule = Has(locName)
+            #world.set_rule(location, Has(locName))
         try:
-            world.set_rule(location, world.sanityRules.getTechRules(location)) #Get Specific Rules if they exist
+            rule = rule & world.sanityRules.getTechRules(locName)
+            #world.set_rule(location, world.sanityRules.getTechRules(location)) #Get Specific Rules if they exist
         except KeyError:
             pass
+        world.set_rule(location, rule)
 
         region.locations.append(location)
 
@@ -160,28 +181,46 @@ def createRitualLocations(world: TWW3World) -> None:
     rituals = [item for key, item in factionItemManager.getRituals(world)]
 
     for item in rituals:
-        locName = item.readableName
-        locId = world.location_name_to_id[locName]
+        locId = world.location_name_to_id[item.readableName]
 
-        location = TWW3Location(world.player, locName, locId, region)
-
-        for ritual in rituals:
-            if ritual.progressionGroup == item.progressionGroup and ritual.tier == 1 and (ritual.tier <= item.tier or ritual.readableName == item.readableName) and not ritual.spcLogic:
-                #requiredItems.update({ritual.readableName: 1})
-                world.set_rule(location, Has(ritual.readableName))
-                try:
-                    world.set_rule(location, world.sanityRules.getRitualRules(location))
-                except KeyError:
-                    pass
+        location = TWW3Location(world.player, item.readableName, locId, region)
 
         region.locations.append(location)
+
+    for item in rituals:
+        locName = item.readableName
+        location = world.get_location(item.readableName)
+        rule = None
+        for ritual in rituals:
+            if ritual.progressionGroup == item.progressionGroup and ritual.tier == 1 and (ritual.tier < item.tier or ritual.readableName == item.readableName) and not ritual.spcLogic:
+                #requiredItems.update({ritual.readableName: 1})
+                if rule is None:
+                    rule = Has(ritual.readableName)
+                else:
+                    rule = rule & Has(ritual.readableName)
+        try:
+            if rule is None:
+                rule = world.sanityRules.getRitualRules(locName)
+            else:
+                rule = rule & world.sanityRules.getRitualRules(locName)
+        except KeyError:
+            pass
+
+        if rule is not None:
+            #print(f"{locName}: {rule}")
+            world.set_rule(location, rule)
+
+
 
 def createVictoryLocation(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
     if world.options.game_mode == "conquest":
         location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
-        world.set_rule(location, Has("Administrative Capacity", math.floor(world.options.number_of_settlements / world.options.admin_capacity) - 1))
+        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.options.admin_capacity - 1))
+        #for loc in world.multiworld.get_locations(world.player):
+        #    rule = rule & CanReachLocation(loc.name)
+        world.set_rule(location, rule)
 
     elif world.options.game_mode == "spheres":
         location = TWW3Location(world.player, "Victory", None, worldRegion)

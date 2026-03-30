@@ -324,7 +324,7 @@ class progressiveBuildings(Choice):
     display_name = "Progressive Buildings"
     option_true = 1
     option_false = 0
-    default = 0
+    default = 1
 
 class unitShuffle(DefaultOnToggle):
     """Whether units should be included in the item pool."""

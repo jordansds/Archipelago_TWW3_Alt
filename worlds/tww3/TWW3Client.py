@@ -91,7 +91,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
-        self.tempFile = open(f"{path[:-3]}_engine-temp.in", 'w+')
+        self.tempFile = open(f"{path[:-3]}-temp.in", 'w+')
         self.firstLine = True
 
     def run(self, message):
@@ -305,7 +305,7 @@ class TWW3Context(CommonContext):
             self.maxAdminCapacity = args['slot_data']['max_admin_capacity']
             #self.maxAdminCapacity = 10
 
-            self.expansionItems = 1  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.expansionItems = 2  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
         elif self.gameMode == "spheres":
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
@@ -476,21 +476,22 @@ class TWW3Context(CommonContext):
     async def check(self, location):
         try:
             if self.gameMode == "conquest":
-                if int(location) < int(self.numberOfLocations):
-                    if int(location) <= self.adminCapacity * self.expansionItems or not self.hardLogic:
-                        for i in range(int(location)):
+                location = int(location)
+                if location < int(self.numberOfLocations):
+                    if location <= self.adminCapacity * self.expansionItems or not self.hardLogic:
+                        for i in range(location):
                             for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([int(location)*10-9 + j])
-                        if int(location) > self.settlementCount:
-                            self.settlementCount = int(location)
+                                await self.check_locations([location*10-9 + j])
+                        if location > self.settlementCount:
+                            self.settlementCount = location
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
-                elif str(location) == str(self.numberOfLocations):
+                elif location == int(self.numberOfLocations):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
-                    await self.check_locations([int(location) * 10 - 9])
-                    #await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+                    #await self.check_locations([location * 10 - 9])
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)

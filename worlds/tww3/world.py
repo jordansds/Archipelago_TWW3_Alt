@@ -86,6 +86,8 @@ class TWW3World(World):
             self.options.unit_shuffle.value = True
             self.options.building_shuffle.value = True
             self.options.tech_shuffle.value = True
+
+            self.options.progressive_buildings.value = True
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
