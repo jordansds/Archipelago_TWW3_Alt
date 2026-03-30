@@ -85,11 +85,6 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateFillerItems(world, pool)
 
     world.multiworld.itempool += pool
-
-    for item in pool:
-        if itemDict[world.item_name_to_id[item.name]].type == itemType.unit:
-            print(item.name)
-
     #print(pool)
 
 def generateUnitItems(world: TWW3World, pool: list) -> list:

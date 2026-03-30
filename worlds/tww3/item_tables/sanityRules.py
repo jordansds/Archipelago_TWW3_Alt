@@ -76,6 +76,12 @@ class ruleManager:
             "Empire Gunnery School: Frontline Training": self.rules["Gunnery Workshop Tier 2"],
             "Empire Gunnery School: Cycle Charge Drills": self.rules["Gunnery Workshop Tier 2"],
             "Empire Gunnery School: Bjuna Bombard": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Ballistics Plating": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Debilitating Shots": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Iron Resolve": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Guerrilla Warfare": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Dreadknight": self.rules["Gunnery Workshop Tier 2"],
+            "Empire Gunnery School: Flared Muzzles": self.rules["Gunnery Workshop Tier 2"],
 
             "Empire Gunnery School: Exploding Bullets": self.rules["Gunnery Workshop Tier 3"],
             "Empire Gunnery School: Interference Tactics": self.rules["Gunnery Workshop Tier 3"],
@@ -89,28 +95,16 @@ class ruleManager:
             "Empire Gunnery School: Amethyst Helstorm Rocket Battery Cap Increase": self.rules["Gunnery Workshop Tier 3"],
             "Empire Gunnery School: Spirit Barrage": self.rules["Gunnery Workshop Tier 3"],
 
-            """
-            
-    25676: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Ballistics Plating"), 2
-    25677: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Debilitating Shots"), 2
-    25678: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_ironside", True, False, "Empire Gunnery School: Iron Resolve"), 2
+            "Empire Gunnery School: Extended Training Drills": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Greater Infusions": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Last Rites": self.rules["Gunnery Workshop Tier 3"],
 
-    25680: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Guerrilla Warfare"), 2
-    25681: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Dreadknight"), 2
-    25682: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_outrider", True, False, "Empire Gunnery School: Flared Muzzles"), 2
-
-    25684: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Extended Training Drills"), 3
-    25685: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Greater Infusions"), 3
-    25686: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Last Rites"), 3
-    
-    25687: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_1", itemType.ritual, 1, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Sails of Shyish"), 4
-    25688: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Catacomb Cannon"), 4
-    25689: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Amethyst Admiral"), 4
-    25690: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Cremation Engines"), 4
-    25694: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_landship_cap", True, False, "Empire Gunnery School: Amethyst Land Ship Cap Increase"), 4
-    25697: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_purple_eclipse", itemType.ritual, 1, "Progressive emp_ritual_gunnery_eclipse", True, False, "Empire Gunnery School: The Purple Eclipse"), 4
-            """
-            
+            "Empire Gunnery School: Sails of Shyish": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Catacomb Cannon": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Amethyst Admiral": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Cremation Engines": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: Amethyst Land Ship Cap Increase": self.rules["Gunnery Workshop Tier 3"],
+            "Empire Gunnery School: The Purple Eclipse": self.rules["Gunnery Workshop Tier 3"],
 
             "TombKing Mortuary Cult: Blade of Antarhak": CanReachLocation("TombKing Building: Marble Quarry") & CanReachLocation("TombKing Building: Salt Mine"),
             "TombKing Mortuary Cult: Blade of Mourning Fire": CanReachLocation("TombKing Building: Iron Mine") & CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),

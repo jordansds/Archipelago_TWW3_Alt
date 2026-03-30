@@ -1,4 +1,10 @@
-from CommonClient import CommonContext, ClientCommandProcessor, server_loop, get_base_parser, gui_enabled, logger, handle_url_arg
+from CommonClient import ClientCommandProcessor, server_loop, get_base_parser, gui_enabled, logger, handle_url_arg
+tracker_loaded = False
+try:
+    from worlds.tracker.TrackerClient import TrackerGameContext as CommonContext
+    tracker_loaded = True
+except ModuleNotFoundError:
+    from CommonClient import CommonContext
 import Utils
 import asyncio
 import colorama
@@ -53,8 +59,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
 
     def _cmd_teleport(self):
-        """Teleports lords and heroes to starting location (use if your lord did not teleport).
-        DISCONNECT AND RECONNECT AFTER USE THEN SAVE AND RELOAD YOUR GAME"""
+        """Teleports lords and heroes to starting location (use if your lord did not teleport)."""
         if isinstance(self.ctx, TWW3Context):
             for faction, settlement in self.ctx.capitals.items():
                 if faction == self.ctx.playerFaction:
@@ -186,6 +191,7 @@ class Watcher:
 
 
 class TWW3Context(CommonContext):
+    tags = {"AP"}
     game = 'Total War Warhammer III'
     command_processor = TWW3CommandProcessor
     items_handling = 0b111
@@ -217,6 +223,7 @@ class TWW3Context(CommonContext):
             if "tags" in args:
                 if "DeathLink" in args["tags"]:
                     self.on_deathlink(args["data"])
+        super().on_package(cmd, args)
 
     def on_connected(self, args: dict):
         version = TWW3World.world_version.as_simple_string()
@@ -533,17 +540,10 @@ class TWW3Context(CommonContext):
         await asyncio.sleep(2)
         self.deathLinkPending = False
 
-    def run_gui(self):
-        from kvui import GameManager
-
-        class TWW3Manager(GameManager):
-            logging_pairs = [
-                ("Client", "Archipelago")
-            ]
-            base_title = self.game + " Client"
-
-        self.ui = TWW3Manager(self)
-        self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
+    def make_gui(self):
+        ui = super().make_gui()
+        ui.base_title = self.game + " Client"#"Total War Warhammer III Client"
+        return ui
 
 class EngineInitializer:
 
@@ -682,6 +682,8 @@ def launchClient(*args: Sequence[str]):
         ctx = TWW3Context(args.connect, args.password)
         ctx.server_task = asyncio.create_task(server_loop(ctx), name='ServerLoop')
 
+        if tracker_loaded:
+            ctx.run_generator()
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
