@@ -696,8 +696,6 @@ class EngineInitializer:
             if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                    #if "settlement" in item.name and self.sanity:
-                    #    continue
                     sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
