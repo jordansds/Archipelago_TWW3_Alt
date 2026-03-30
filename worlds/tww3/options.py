@@ -348,6 +348,7 @@ class progressiveUnits(Choice):
 
 class startingTier(Range):
     """Start with buildings and units of this tier already unlocked.
+    Warning: Setting this to 0 will result in you having no buildings or units unlocked at the start.
     DO NOT SET THIS TO RANDOM, IT'S PURPOSE IS FOR MAKING THE GAME EASIER BY GIVING YOU ITEMS AT THE START"""
     display_name = "Starting Tier"
     range_start = 0
