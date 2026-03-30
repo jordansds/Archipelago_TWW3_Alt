@@ -52,6 +52,11 @@ class TWW3World(World):
             sanityLocationNames.update({key: item.readableName})
     location_name_to_id.update({item: key + 1000000 for key, item in sanityLocationNames.items()})
 
+    battleSanityLocationNames = {}
+    for i in range(1,21):
+        battleSanityLocationNames.update({i: f"Won {i*5} Battles"})
+    location_name_to_id.update({item: key + 20000 for key, item in battleSanityLocationNames.items()})
+
     #print(location_name_to_id)
 
     settlementManager: sm.SettlementManager = None
@@ -107,6 +112,10 @@ class TWW3World(World):
             region = Region("Rituals", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Rituals")
+        if self.options.battle_sanity:
+            region = Region("Battles", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region, "Battles")
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
 
@@ -141,6 +150,7 @@ class TWW3World(World):
                                         "checks_per_settlement",
                                         "sanity",
                                         "ritual_sanity",
+                                        "battle_sanity",
                                         "hard_logic")
                                         #"number_of_settlements",
                                         #"admin_capacity",

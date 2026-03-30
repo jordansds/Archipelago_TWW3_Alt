@@ -38,7 +38,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
                 logger.info("Faction: " + faction + " Capital: " + capital)
 
     def _cmd_ac(self):
-        """Prints the current number of settlements you can control"""
+        """Prints the current number of settlements you can control."""
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
@@ -48,12 +48,12 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             #self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_orbs(self):
-        """Prints the current number of orbs of dominance that you own"""
+        """Prints the current number of orbs of dominance that you own."""
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You currently hold: {self.ctx.numberOfOrbs} Orbs of dominance")
 
     def _cmd_logging(self):
-        """Toggles location logging"""
+        """Toggles location logging."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.logChecks = not self.ctx.logChecks
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
@@ -79,6 +79,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             #self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_deathlink(self):
+        """Turn Deathlink off and on."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.deathLinkEnabled = not self.ctx.deathLinkEnabled
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
@@ -161,6 +162,11 @@ class Watcher:
                         if line.split("_")[-1] == "upgraded": #Check for Karl Franz upgraded rituals
                             line = line[:-9]
                         await self.context.checkSanity(line.split(" ")[1])
+                elif prefix == "battles":
+                    if self.context.battleSanity:
+                        if self.context.logChecks:
+                            logger.info(f"Sending {line}")
+                        await self.context.checkBattleSanity(line.split(" ")[1])
                 else:
                     if self.context.logChecks:
                         if gameMode == "conquest":
@@ -312,7 +318,7 @@ class TWW3Context(CommonContext):
             self.maxAdminCapacity = args['slot_data']['max_admin_capacity']
             #self.maxAdminCapacity = 10
 
-            self.expansionItems = 2  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.expansionItems = 1  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
         elif self.gameMode == "spheres":
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
@@ -341,9 +347,9 @@ class TWW3Context(CommonContext):
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
         self.lineCount = 0
 
-        #self.sanity = args['slot_data']['sanity']
-        self.sanity = True
+        self.sanity = args['slot_data']['sanity']
         self.ritualSanity = args['slot_data']['ritual_sanity']
+        self.battleSanity = args['slot_data']['battle_sanity']
         if self.sanity:
             for key, item in self.itemDict.items():
                 if (item.type == itemType.building or item.type == itemType.tech)and item.progressionGroup is not None:
@@ -352,6 +358,10 @@ class TWW3Context(CommonContext):
             for key, item in self.itemDict.items():
                 if item.type == itemType.ritual and item.progressionGroup is not None:
                     self.locationLookup[item.readableName] = key + 1000000
+        print(self.locationLookup)
+        if self.battleSanity:
+            for i in range(1,21):
+                self.locationLookup[f"Won {i*5} Battles"] = i + 20000
 
         #print(self.locationLookup)
 
@@ -516,6 +526,13 @@ class TWW3Context(CommonContext):
         except KeyError:
             if not "special" in location:
                 logger.error(f"There is a Sanity Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
+
+    async def checkBattleSanity(self, location):
+        try:
+            await self.check_locations([self.locationLookup[f"Win {location} Battles"]])
+        except KeyError:
+            pass
+
 
     #Deathlink handlers
     def on_deathlink(self, data: dict):

@@ -223,6 +223,11 @@ class ritualSanity(Toggle):
     """If you want every faction mechanic to be a location.
     [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE AND SANITY TO BE ENABLED]"""
     display_name = "RitualSanity"
+
+class battleSanity(Toggle):
+    """If you want every 5 battles won up to be locations up to 100 battles
+        [EXPERIMENTAL]"""
+    display_name = "BattleSanity"
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
@@ -443,6 +448,7 @@ class TWW3Options(PerGameCommonOptions):
 
     sanity: sanity
     ritual_sanity: ritualSanity
+    battle_sanity: battleSanity
 
     number_of_settlements: numberOfSettlements
     admin_capacity: adminCapacity

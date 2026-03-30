@@ -30,8 +30,30 @@ def createAllLocations(world: TWW3World) -> None:
     if world.options.ritual_sanity:
         createRitualLocations(world)
 
+    if world.options.battle_sanity:
+        createBattleLocations(world)
+
     createVictoryLocation(world)
-    
+
+def createVictoryLocation(world: TWW3World) -> None:
+    worldRegion = world.get_region("Settlements")
+
+    if world.options.game_mode == "conquest":
+        location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
+        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.options.admin_capacity - 1))
+        #for loc in world.multiworld.get_locations(world.player):
+        #    rule = rule & CanReachLocation(loc.name)
+        world.set_rule(location, rule)
+
+    elif world.options.game_mode == "spheres":
+        location = TWW3Location(world.player, "Victory", None, worldRegion)
+        world.set_rule(location, Has("Orb of Domination", world.options.orb_count.value))
+
+    worldRegion.locations.append(location)
+    victory = items.TWW3Item("Victory", IC.progression, None, world.player)
+    location.place_locked_item(victory)
+    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
@@ -210,23 +232,19 @@ def createRitualLocations(world: TWW3World) -> None:
             #print(f"{locName}: {rule}")
             world.set_rule(location, rule)
 
+def createBattleLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Battles")
+    for i in range(1, 21):
+        locName = f"Won {i*5} Battles"
+        locId = world.location_name_to_id[locName]
+        location = TWW3Location(world.player, locName, locId, worldRegion)
 
+        if not world.options.hard_logic:
+            # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
+            # This is soft logic
+            if world.options.game_mode == "conquest":
+                world.set_rule(location, Has("Administrative Capcity", min(1, math.floor(i / world.options.admin_capacity))))
+            elif world.options.game_mode == "spheres":
+                world.set_rule(location, Has("Diplomatic Range", 1))
 
-def createVictoryLocation(world: TWW3World) -> None:
-    worldRegion = world.get_region("Settlements")
-
-    if world.options.game_mode == "conquest":
-        location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
-        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.options.admin_capacity - 1))
-        #for loc in world.multiworld.get_locations(world.player):
-        #    rule = rule & CanReachLocation(loc.name)
-        world.set_rule(location, rule)
-
-    elif world.options.game_mode == "spheres":
-        location = TWW3Location(world.player, "Victory", None, worldRegion)
-        world.set_rule(location, Has("Orb of Domination", world.options.orb_count.value))
-
-    worldRegion.locations.append(location)
-    victory = items.TWW3Item("Victory", IC.progression, None, world.player)
-    location.place_locked_item(victory)
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+        worldRegion.locations.append(location)
