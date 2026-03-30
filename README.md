@@ -3,6 +3,7 @@ This is an alternate implementation of the original TWW3 world which includes al
 as an alternate mode that works better for syncs.
 
 # DO NOT ENABLE BOTH THE SPHERES AND CONQUEST MODS AT THE SAME TIME. ONLY ENABLE THE GAMEMODE YOU SELECT IN THE YAML.
+# DO NOT USE THE "ARCHIPELAGO RANDOMIZER (BETA)" MOD FROM THE STEAM WORKSHOP.
 
 ## How does this work?
 Upon starting a new game, all factions have their start positions randomised. Units, buildings, and technologies are
