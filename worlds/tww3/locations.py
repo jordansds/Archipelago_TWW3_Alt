@@ -256,7 +256,7 @@ def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
     for i in range(1, 21):
         for decision in ["Sacked", "Razed"]:
-            locName = f"{decision} {i*2} Settlements"
+            locName = f"{decision} {i} Settlements"
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 

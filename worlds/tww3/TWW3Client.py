@@ -368,6 +368,10 @@ class TWW3Context(CommonContext):
         if self.battleSanity:
             for i in range(1,21):
                 self.locationLookup[f"Won {i*5} Battles"] = i + 20000
+        if self.despoilerSanity:
+            for i in range(1,21):
+                self.locationLookup[f"Sacked {i} Settlements"] = i + 20020
+                self.locationLookup[f"Razed {i} Settlements"] = i + 20040
 
         #print(self.locationLookup)
 
