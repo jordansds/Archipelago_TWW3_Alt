@@ -183,7 +183,7 @@ class factionShuffle(DefaultOnToggle):
 
 class checksPerSettlement(Range):
     """Set how many checks are triggered per settlement captured.
-    Depending on YAML settings and the chosen faction, you will likely have around 150-300 non-filler items.
+    Depending on YAML settings and the chosen faction, you will likely have around 150-250 non-filler items.
     Make sure to change this value based on how many locations you want your game to have.
     If world generation fails, then you will either need to increase this option."""
     display_name = "Checks Per Settlement"
@@ -228,14 +228,18 @@ class battleSanity(Toggle):
     """If you want every 5 battles won up to be locations up to 100 battles
         [EXPERIMENTAL]"""
     display_name = "BattleSanity"
+
+class despoilerSanity(Toggle):
+    """If you want every 2 settlements sacked and razed to be locations up to 20 settlements
+        [EXPERIMENTAL]"""
+    display_name = "DespoilerSanity"
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
     Set how large your empire needs to be for victory. The maximum value is the entire map.
     Make sure to change this based on how fast you want your game to be.
-    If world generation fails, then you will need to increase this option or the next option.
-    Items will start being found after settlement 3 (unless you don't start with a settlement,
-    in which case you will receive them starting from settlement 1)."""
+    If world generation fails, then you will need to increase this option or checks_per_settlement.
+    Items will not be found in any of your starting settlements."""
     display_name = "Number Of Settlements (CONQUEST)"
     range_start = 20
     range_end = len(sm.settlementDict)
@@ -449,6 +453,7 @@ class TWW3Options(PerGameCommonOptions):
     sanity: sanity
     ritual_sanity: ritualSanity
     battle_sanity: battleSanity
+    despoiler_sanity: despoilerSanity
 
     number_of_settlements: numberOfSettlements
     admin_capacity: adminCapacity

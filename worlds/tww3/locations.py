@@ -33,6 +33,9 @@ def createAllLocations(world: TWW3World) -> None:
     if world.options.battle_sanity:
         createBattleLocations(world)
 
+    if world.options.despoiler_sanity:
+        createDespoilerLocations(world)
+
     createVictoryLocation(world)
 
 def createVictoryLocation(world: TWW3World) -> None:
@@ -239,12 +242,30 @@ def createBattleLocations(world: TWW3World) -> None:
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 
-        if not world.options.hard_logic:
-            # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
-            # This is soft logic
-            if world.options.game_mode == "conquest":
-                world.set_rule(location, Has("Administrative Capcity", min(1, math.floor(i / world.options.admin_capacity))))
-            elif world.options.game_mode == "spheres":
-                world.set_rule(location, Has("Diplomatic Range", 1))
+        #if not world.options.hard_logic and i > 1:
+        #    # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
+        #    # This is soft logic
+        #    if world.options.game_mode == "conquest":
+        #        world.set_rule(location, Has("Administrative Capacity", min(1, math.floor(i / world.options.admin_capacity))))
+        #    elif world.options.game_mode == "spheres":
+        #        world.set_rule(location, Has("Diplomatic Range", 1))
 
         worldRegion.locations.append(location)
+
+def createDespoilerLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Despoiler")
+    for i in range(1, 21):
+        for decision in ["Sacked", "Razed"]:
+            locName = f"{decision} {i*2} Settlements"
+            locId = world.location_name_to_id[locName]
+            location = TWW3Location(world.player, locName, locId, worldRegion)
+
+            #if not world.options.hard_logic and i > 1:
+            #    # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
+            #    # This is soft logic
+            #    if world.options.game_mode == "conquest":
+            #        world.set_rule(location, Has("Administrative Capacity", min(1, math.floor(i / world.options.admin_capacity))))
+            #    elif world.options.game_mode == "spheres":
+            #        world.set_rule(location, Has("Diplomatic Range", 1))
+
+            worldRegion.locations.append(location)

@@ -49,13 +49,10 @@ class TWW3World(World):
     sanityLocationNames = {}
     for key, item in factionItemManager.getAllItems().items():
         if (item.type == itemType.building or item.type == itemType.tech or item.type == itemType.ritual) and (item.progressionGroup is not None and item.progressionGroup != ""):
-            sanityLocationNames.update({key: item.readableName})
-    location_name_to_id.update({item: key + 1000000 for key, item in sanityLocationNames.items()})
-
-    battleSanityLocationNames = {}
+            sanityLocationNames.update({key + 1000000: item.readableName})
     for i in range(1,21):
-        battleSanityLocationNames.update({i: f"Won {i*5} Battles"})
-    location_name_to_id.update({item: key + 20000 for key, item in battleSanityLocationNames.items()})
+        sanityLocationNames.update({i+20000: f"Won {i*5} Battles", i+20020: f"Sacked {i*2} Settlements", i+20040: f"Razed {i*2} Settlements"})
+    location_name_to_id.update({item: key for key, item in sanityLocationNames.items()})
 
     #print(location_name_to_id)
 
@@ -116,6 +113,10 @@ class TWW3World(World):
             region = Region("Battles", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Battles")
+        if self.options.despoiler_sanity:
+            region = Region("Despoiler", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region, "Despoiler")
 
         locations.createAllLocations(self)#, self.locationToDiploRange)
 
