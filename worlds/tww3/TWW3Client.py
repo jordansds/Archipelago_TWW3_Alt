@@ -167,6 +167,11 @@ class Watcher:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
                         await self.context.checkBattleSanity(line.split(" ")[1])
+                elif prefix == "sacked" or prefix == "razed":
+                    if self.context.despoilerSanity:
+                        if self.context.logChecks:
+                            logger.info(f"Sending {line}")
+                        await self.context.checkDespoilerSanity(line)
                 else:
                     if self.context.logChecks:
                         if gameMode == "conquest":
@@ -350,6 +355,7 @@ class TWW3Context(CommonContext):
         self.sanity = args['slot_data']['sanity']
         self.ritualSanity = args['slot_data']['ritual_sanity']
         self.battleSanity = args['slot_data']['battle_sanity']
+        self.despoilerSanity = args['slot_data']['despoiler_sanity']
         if self.sanity:
             for key, item in self.itemDict.items():
                 if (item.type == itemType.building or item.type == itemType.tech)and item.progressionGroup is not None:
@@ -529,7 +535,13 @@ class TWW3Context(CommonContext):
 
     async def checkBattleSanity(self, location):
         try:
-            await self.check_locations([self.locationLookup[f"Win {location} Battles"]])
+            await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+        except KeyError:
+            pass
+
+    async def checkDespoilerSanity(self, location):
+        try:
+            await self.check_locations([self.locationLookup[f"{location} Settlements"]])
         except KeyError:
             pass
 

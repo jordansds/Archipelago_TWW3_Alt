@@ -152,6 +152,7 @@ class TWW3World(World):
                                         "sanity",
                                         "ritual_sanity",
                                         "battle_sanity",
+                                        "despoiler_sanity",
                                         "hard_logic")
                                         #"number_of_settlements",
                                         #"admin_capacity",
