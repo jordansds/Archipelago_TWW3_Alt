@@ -93,6 +93,9 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
+        if self.options.balance > 0 or self.options.force_early_units or self.options.force_early_buildings or self.options.force_early_techs:
+            self.logger.warning(f"Total War Warhammer player {self.player} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
+
     def create_regions(self) -> None:
 
         worldRegion = Region("Settlements", self.player, self.multiworld)
@@ -164,12 +167,13 @@ class TWW3World(World):
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.options.admin_capacity.value
-            slotData["max_admin_capacity"] = math.floor(self.options.number_of_settlements / self.options.admin_capacity)
+            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.options.admin_capacity)
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.options.orb_count.value
             settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
                 self.options.sphere_count, self.options.sphere_radius.value)
             slotData["spheres"] = factionDiploRange
+            slotData["max_expansion_items"] = self.options.sphere_count.value
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementManager.randomiseHordes()
         slotData["faction_capitals"] = self.settlementManager.capitals

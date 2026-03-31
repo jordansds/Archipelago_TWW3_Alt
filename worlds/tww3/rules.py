@@ -31,6 +31,7 @@ def setBalance(world: TWW3World) -> None:
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 #print(f"{location}: {requiredUnlockItems}")
                 #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
+                
                 world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems))
 
         elif world.options.game_mode == "spheres":

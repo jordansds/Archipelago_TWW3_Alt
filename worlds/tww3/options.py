@@ -356,9 +356,9 @@ class startingTier(Range):
     default = 1
 
 class balance(Range):
-    """Percentage of your early items that are forced unlocks.
+    """Percentage of your early items that are forced to be useful/progression.
     0 doesn't force unlocks at all. 100 means that all of your early items will be unlocks.
-    High values are not recommended."""
+    High values are not recommended. SOFT LOGIC, Not recommended for large syncs/asyncs."""
     display_name = "Force Early Upgrades"
     range_start = 0
     range_end = 100
@@ -369,7 +369,8 @@ class forceEarlyBuildings(Range):
     Whether buildings should be a forced unlock and determines the tier.
     Building shuffle must be on and balance must be greater than 0.
     The value sets the highest tier of buildings that will be forced.
-    E.g. 2 means that only tier 1 and 2 buildings will be forced."""
+    E.g. 2 means that only tier 1 and 2 buildings will be forced.
+    SOFT LOGIC, Not recommended for large syncs/asyncs."""
     display_name = "Early Building Tiers"
     range_start = 0
     range_end = 5
@@ -380,7 +381,8 @@ class forceEarlyUnits(Range):
     Whether units should be a forced unlock and determines the tier.
     Unit shuffle must be on and balance must be greater than 0.
     The value sets the highest tier of units that will be forced.
-    E.g. 2 means that only tier 1 and 2 units will be forced."""
+    E.g. 2 means that only tier 1 and 2 units will be forced.
+    SOFT LOGIC, Not recommended for large syncs/asyncs."""
     display_name = "Early Unit Tiers"
     range_start = 0
     range_end = 5
@@ -388,7 +390,8 @@ class forceEarlyUnits(Range):
 
 class forceEarlyTechs(Toggle):
     """Whether tech should be a forced unlock.
-    Tech shuffle must be on and balance must be greater than 0."""
+    Tech shuffle must be on and balance must be greater than 0.
+    SOFT LOGIC, Not recommended for large syncs/asyncs."""
     display_name = "Early Tech"
 
 class filler(Range):
@@ -438,7 +441,8 @@ class randomizePersonalities(DefaultOnToggle):
     display_name = "Randomize AI Personalities"
 
 class hardLogic(DefaultOnToggle):
-    """Prevent conquest mode locations from being sent without the required administrative capacity."""
+    """Enforce hard logic so checks cannot be sent without the required logic items even if the player hits the in-game location.
+    Recommended for large syncs/asyncs to prevent soft logic issues."""
     display_name = "Hard Logic"
 
 @dataclass

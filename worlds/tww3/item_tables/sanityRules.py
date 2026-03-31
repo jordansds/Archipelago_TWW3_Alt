@@ -35,7 +35,7 @@ class ruleManager:
                                          (Has("Empire Unit: Handgunners") | Has("Progressive Empire Unit: Ranged", 2 - world.options.starting_tier) | (True_() if world.options.starting_tier >= 2 else False_()))),
             #"Gunnery Workshop Tier 1": HasFromList(*self.groups["Empire Gunnery School Tier1"], count=3)
             #                            & CanReachLocation("Empire Building: Firearms Academy") & (Has("Empire Unit: Handgunners") | Has("Progressive Empire Unit: Ranged", 2 - world.options.starting_tier)),
-            "Gunnery Workshop Tier 2": gunneryT1 & HasFromList(*(self.groups["Empire Gunnery School Tier1"] + self.groups["Empire Gunnery School Tier2"]), count=8)
+            "Gunnery Workshop Tier 2": gunneryT1 & HasFromList(*self.groups["Empire Gunnery School Tier1"], count=5) #HasFromList(*(self.groups["Empire Gunnery School Tier1"] + self.groups["Empire Gunnery School Tier2"]), count=8)
                                         & CanReachLocation("Empire Building: Foundry"),
             #"Gunnery Workshop Tier 2": HasFromList(*(self.groups["Empire Gunnery School Tier1"] + self.groups["Empire Gunnery School Tier2"]), count=8) & HasFromList(*self.groups["Empire Gunnery School Tier1"], count=3)
             #                            & CanReachLocation("Empire Building: Foundry")

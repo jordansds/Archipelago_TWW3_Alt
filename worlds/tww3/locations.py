@@ -242,13 +242,18 @@ def createBattleLocations(world: TWW3World) -> None:
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 
-        #if not world.options.hard_logic and i > 1:
-        #    # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
-        #    # This is soft logic
-        #    if world.options.game_mode == "conquest":
-        #        world.set_rule(location, Has("Administrative Capacity", min(1, math.floor(i / world.options.admin_capacity))))
-        #    elif world.options.game_mode == "spheres":
-        #        world.set_rule(location, Has("Diplomatic Range", 1))
+        rule = None
+        if world.options.game_mode == "conquest":
+            requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+            if requiredAdminCapacity > 0:
+                rule = Has("Administrative Capacity", requiredAdminCapacity)
+                world.set_rule(location, rule)
+
+        elif world.options.game_mode == "spheres":
+            requiredDiploRange = math.floor(i / 20 * world.options.sphere_count)
+            if requiredDiploRange > 0:
+                rule = Has("Diplomatic Range", requiredDiploRange)
+                world.set_rule(location, rule)
 
         worldRegion.locations.append(location)
 
@@ -260,12 +265,19 @@ def createDespoilerLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            #if not world.options.hard_logic and i > 1:
-            #    # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
-            #    # This is soft logic
-            #    if world.options.game_mode == "conquest":
-            #        world.set_rule(location, Has("Administrative Capacity", min(1, math.floor(i / world.options.admin_capacity))))
-            #    elif world.options.game_mode == "spheres":
-            #        world.set_rule(location, Has("Diplomatic Range", 1))
+            #if world.options.hard_logic:
+                # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
+                # This is soft logic
+            if world.options.game_mode == "conquest":
+                requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+                if requiredAdminCapacity > 0:
+                    rule = Has("Administrative Capacity", requiredAdminCapacity)
+                    world.set_rule(location, rule)
+
+            elif world.options.game_mode == "spheres":
+                requiredDiploRange = math.floor(i/20 * world.options.sphere_count)
+                if requiredDiploRange > 0:
+                    rule = Has("Diplomatic Range", requiredDiploRange)
+                    world.set_rule(location, rule)
 
             worldRegion.locations.append(location)

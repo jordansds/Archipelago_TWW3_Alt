@@ -11,6 +11,7 @@ import colorama
 import logging
 from collections.abc import Sequence
 import random
+import math
 
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.itemTypes import itemType
@@ -237,6 +238,8 @@ class TWW3Context(CommonContext):
         super().on_package(cmd, args)
 
     def on_connected(self, args: dict):
+        self.lineCount = 0
+
         version = TWW3World.world_version.as_simple_string()
         try:
             if version != args['slot_data']['version']:
@@ -307,30 +310,30 @@ class TWW3Context(CommonContext):
         self.progressiveBuildings = args['slot_data']['progressive_buildings']
         self.progressiveUnits = args['slot_data']['progressive_units']
         self.startingTier = args['slot_data']['starting_tier']
-        #self.shuffleRituals = args['slot_data']['ritual_shuffle']
         self.randomizePersonalities = args['slot_data']['randomize_personalities']
         self.factionShuffle = args['slot_data']['faction_shuffle']
         self.checksPerLocation = args['slot_data']['checks_per_settlement']
         self.hardLogic = args['slot_data']['hard_logic']
+        self.maxExpansionItems = args['slot_data']['max_expansion_items']
 
         self.locationLookup = {}
-
-
 
         if self.gameMode == "conquest":
             self.numberOfLocations = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
-            self.maxAdminCapacity = args['slot_data']['max_admin_capacity']
-            #self.maxAdminCapacity = 10
+            self.expansionItems += 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
 
-            self.expansionItems = 1  # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.sendMessage(f"set_admin_capacity({self.expansionItems})")
+            self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
+            if self.hardLogic:
+                self.sendMessage("set_hard_logic(true)")
+
         elif self.gameMode == "spheres":
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
 
             offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
             for key, settlement in sm.settlementDict.items():
-                #self.locationLookup[settlement.readableName] = key + offset4
                 for i in range(10):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
@@ -339,18 +342,14 @@ class TWW3Context(CommonContext):
         self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.playerFaction, self.modList))
         #print(self.itemDict)
         self.itemDict.update(fillerDict)
-        #self.itemDict.update(fillerStrongDict)
         self.itemDict.update(ancillariesRegularDict)
         self.itemDict.update(ancillariesLegendaryDict)
-        #self.itemDict.update(trapHarmlessDict)
         self.itemDict.update(trapDict)
-        #self.itemDict.update(ritualDict)
         self.itemDict.update(progressionDict)
 
         self.itemNameToReadableName = {item.name: item.readableName for item in self.itemDict.values()}
 
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
-        self.lineCount = 0
 
         self.sanity = args['slot_data']['sanity']
         self.ritualSanity = args['slot_data']['ritual_sanity']
@@ -412,7 +411,7 @@ class TWW3Context(CommonContext):
             elif item.type == itemType.progression:
                 if self.gameMode == "conquest":
                     self.expansionItems += 1
-                    if self.expansionItems == self.maxAdminCapacity:
+                    if self.expansionItems == self.maxExpansionItems:
                         logger.info(f"You now have all of your Administrative Capacity")
                         logger.info(f"You can now control an unlimited number of settlements without penalties")
                         self.adminCapacity = 1000
@@ -539,13 +538,23 @@ class TWW3Context(CommonContext):
 
     async def checkBattleSanity(self, location):
         try:
-            await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+            if self.hardLogic:
+                #Need to check if player has enough expansion items
+                if math.floor(int(location)/20 * self.maxExpansionItems) <= self.expansionItems:
+                    await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+            else:
+                await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
         except KeyError:
             pass
 
     async def checkDespoilerSanity(self, location):
         try:
-            await self.check_locations([self.locationLookup[f"{location} Settlements"]])
+            if self.hardLogic:
+                #Need to check if player has enough expansion items
+                if math.floor(int(location.split(" ")[1])/20 * self.maxExpansionItems) <= self.expansionItems:
+                    await self.check_locations([self.locationLookup[f"{location} Settlements"]])
+            else:
+                await self.check_locations([self.locationLookup[f"{location} Settlements"]])
         except KeyError:
             pass
 
@@ -632,17 +641,9 @@ class EngineInitializer:
                 sendMessage(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
 
             sendMessage("cm:reset_shroud()")
-                
+
         ###
-        #Locks rituals if randomised
-        ###            
-        #if context.shuffleRituals:
-        #    for key, ritual in ritualDict.items():
-        #        if ritual.faction == self.playerFaction:
-        #            sendMessage("cm:lock_ritual(cm:get_faction(\"%s\"), \"%s\")" % (self.playerFaction, ritual.name))
-                    
-        ###
-        #Disables techs/buildings/units if randomised
+        #Disables techs/buildings/units/rituals if randomised
         ###
         for key in context.itemKeys:
             item = self.itemDict[key]
