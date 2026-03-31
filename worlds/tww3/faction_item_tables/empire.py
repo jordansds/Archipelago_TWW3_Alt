@@ -436,19 +436,19 @@ rituals: dict[int, specialItemData] = {
     25685: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Greater Infusions"),
     25686: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_helstorm", True, False, "Empire Gunnery School: Last Rites"),
 
-    25687: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_1", itemType.ritual, 1, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Sails of Shyish"),
-    25688: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Catacomb Cannon"),
-    25689: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Amethyst Admiral"),
-    25690: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Cremation Engines"),
+    #25687: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_1", itemType.ritual, 1, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Sails of Shyish"),
+    #25688: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_2", itemType.ritual, 2, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Catacomb Cannon"),
+    #25689: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_3", itemType.ritual, 3, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Amethyst Admiral"),
+    #25690: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_4", itemType.ritual, 4, "Progressive emp_ritual_gunnery_amethyst_landship", True, False, "Empire Gunnery School: Cremation Engines"),
 
     25691: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_amethyst_ironsides_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_ironside_cap", True, False, "Empire Gunnery School: Amethyst Ironsides Cap Increase"),
     25692: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_buckshot_reaper_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_outrider_cap", True, False, "Empire Gunnery School: Amethyst Outriders Cap Increase"),
     25693: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_deathstorm_battery_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_helstorm_cap", True, False, "Empire Gunnery School: Amethyst Helstorm Rocket Battery Cap Increase"),
-    25694: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_landship_cap", True, False, "Empire Gunnery School: Amethyst Land Ship Cap Increase"),
+    #25694: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_black_rose_cap", itemType.ritual, 1, "Progressive emp_ritual_gunnery_landship_cap", True, False, "Empire Gunnery School: Amethyst Land Ship Cap Increase"),
 
     25695: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_bjuna_bombard", itemType.ritual, 1, "Progressive emp_ritual_gunnery_bjuna", True, False, "Empire Gunnery School: Bjuna Bombard"),
     25696: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_spirit_barrage", itemType.ritual, 1, "Progressive emp_ritual_gunnery_barrage", True, False, "Empire Gunnery School: Spirit Barrage"),
-    25697: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_purple_eclipse", itemType.ritual, 1, "Progressive emp_ritual_gunnery_eclipse", True, False, "Empire Gunnery School: The Purple Eclipse"),
+    #25697: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_emp_don_purple_eclipse", itemType.ritual, 1, "Progressive emp_ritual_gunnery_eclipse", True, False, "Empire Gunnery School: The Purple Eclipse"),
 
     25698: specialItemData(IC.useful, 1, ["wh_main_emp_wissenland"], "wh3_dlc25_ritual_construct_black_tower", itemType.ritual, 1, "Progressive emp_ritual_garden", True, False, "Empire Gardens of Morr: Construct Garden"),
 
