@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData, specialItemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 # @formatter:off
 units: dict[int, itemData] = {
     12000: itemData(IC.useful, 1, 'wh_dlc07_brt_peasant_mob_0', itemType.unit, 1, 'Progressive brt_inf', 'Bretonnia Unit: Peasant Mob'),

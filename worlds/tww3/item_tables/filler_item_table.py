@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData
 
 fillerDict: dict[int, itemData] = {
     1200: itemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(2000,1))', itemType.filler, None, "None", "Buff: Get-Rich-Slow Scroll"), #Gold

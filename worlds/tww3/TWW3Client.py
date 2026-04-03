@@ -14,7 +14,7 @@ import random
 import math
 
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType
+from worlds.tww3.dataStructs import itemType
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from worlds.tww3.item_tables.progression_table import progressionDict
@@ -314,6 +314,7 @@ class TWW3Context(CommonContext):
         self.factionShuffle = args['slot_data']['faction_shuffle']
         self.checksPerLocation = args['slot_data']['checks_per_settlement']
         self.hardLogic = args['slot_data']['hard_logic']
+        self.locationBalancing = args['slot_data']['location_balancing']
         self.maxExpansionItems = args['slot_data']['max_expansion_items']
 
         self.locationLookup = {}
@@ -321,12 +322,12 @@ class TWW3Context(CommonContext):
         if self.gameMode == "conquest":
             self.numberOfLocations = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
-            self.expansionItems += 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
 
             self.sendMessage(f"set_admin_capacity({self.expansionItems})")
             self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
-            if self.hardLogic:
-                self.sendMessage("set_hard_logic(true)")
+            #if self.hardLogic:
+            #    self.sendMessage("set_hard_logic(true)")
 
         elif self.gameMode == "spheres":
             self.orbGoal = args['slot_data']['orbs']
@@ -552,9 +553,11 @@ class TWW3Context(CommonContext):
             if self.hardLogic:
                 #Need to check if player has enough expansion items
                 if math.floor(int(location.split(" ")[1])/20 * self.maxExpansionItems) <= self.expansionItems:
-                    await self.check_locations([self.locationLookup[f"{location} Settlements"]])
+                    for i in range(1, int(location.split(" ")[1])):
+                        await self.check_locations([self.locationLookup[f"{location.split(" ")[0].title()} {i} Settlements"]])
             else:
-                await self.check_locations([self.locationLookup[f"{location} Settlements"]])
+                for i in range(1, int(location.split(" ")[1])):
+                    await self.check_locations([self.locationLookup[f"{location.split(" ")[0].title()} {i} Settlements"]])
         except KeyError:
             pass
 
@@ -602,7 +605,9 @@ class EngineInitializer:
         sendMessage = context.sendMessage
         messenger = context.messenger
 
-
+        if self.playerFaction == "wh2_main_skv_clan_skryre":
+            #sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_1", "{self.playerFaction}")')
+            sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_2", "{self.playerFaction}")')
 
         ###
         #Randomise AI Personalities
@@ -695,6 +700,8 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
+                if "settlement" in item.name:
+                    continue
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))

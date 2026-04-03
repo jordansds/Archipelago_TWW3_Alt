@@ -168,6 +168,13 @@ class ruleManager:
             "TombKing Mortuary Cult: A New Servant (Liche Priest)": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),
             "TombKing Mortuary Cult: A New Servant (Necrotect)": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Marble Quarry"),
             "TombKing Mortuary Cult: A New Servant (Tomb Prince)": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Iron Mine"),
+
+            "Skaven Tech: Volatile Plans": CanReachLocation("Skaven Building: Arsenal"),
+            "Skaven Tech: Ingenious Plans": CanReachLocation("Skaven Building: Warpstone Reactor"),
+            "Skaven Tech: Plans Within Plans": CanReachLocation("Skaven Building: Plague Abbey"),
+            "Skaven Tech: Oppressive Plans": CanReachLocation("Skaven Building: Den of Secrets"),
+            "Skaven Tech: Monstrous Plans": CanReachLocation("Skaven Building: Pits of the Packmasters"),
+            "Skaven Tech: Virulent Plans": CanReachLocation("Skaven Building: Construction Cavern"),
         }
 
     def getTechRules(self, location):

@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, modItemData
+from worlds.tww3.dataStructs import itemType, modItemData
 # @formatter:off
 
 units: dict[int, modItemData] = {

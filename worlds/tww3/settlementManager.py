@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from worlds.tww3.itemTypes import factionData, settlementData
+from worlds.tww3.dataStructs import factionData, settlementData
 from collections import Counter
 import time
 
@@ -16,7 +16,7 @@ factionDict: dict[int, factionData] = {
     8: factionData('wh3_dlc27_sla_the_tormentors', True, False, 'slaaneshDechala', 'Dechala, the Denied One (Slaanesh)', False),
     9: factionData('wh3_dlc27_sla_masque_of_slaanesh', True, True, 'slaanesh', 'The Masque of Slaanesh (Slaanesh)', False),
     10: factionData('wh3_main_tze_oracles_of_tzeentch', True, True, 'tzeentch', 'Kairos Fateweaver (Tzeentch)', False),
-    11: factionData('wh3_dlc24_tze_the_deceivers', True, False, 'tzeentch', 'The Changeling (Tzeentch)', False),
+    11: factionData('wh3_dlc24_tze_the_deceivers', True, False, 'tzeentchChangeling', 'The Changeling (Tzeentch)', True),
     12: factionData('wh3_main_ksl_the_ice_court', True, True, 'kislev', 'Tzarina Katarin (Kislev)', False),
     13: factionData('wh3_main_ksl_the_great_orthodoxy', True, True, 'kislev', 'Kostaltyn (Kislev)', False),
     14: factionData('wh3_main_ksl_ursun_revivalists', True, False, 'kislev', 'Boris Ursus (Kislev)', False),

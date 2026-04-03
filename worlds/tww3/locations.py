@@ -1,14 +1,13 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
-from worlds.tww3.itemTypes import itemType, itemData
-from worlds.tww3.item_tables.sanityRules import ruleManager
+from worlds.tww3.dataStructs import itemType, itemData
 
 if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
 
 from BaseClasses import Location, ItemClassification as IC
-from rule_builder.rules import Has, HasAllCounts, CanReachLocation, Rule
+from rule_builder.rules import Has
 from worlds.tww3 import items, factionItemManager, settlementManager as sm
 import math
 
@@ -89,7 +88,6 @@ def createDiploRangeLocations(world: TWW3World) -> None:
     key = -1
     for settlement in world.settlements.values():
         key += 1
-        from collections import Counter
         for i in range(world.options.checks_per_settlement):
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
             location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
@@ -159,6 +157,10 @@ def createBuildingLocations(world: TWW3World) -> None:
                     #rule = HasAllCounts(requiredItems)
                     #world.set_rule(location, HasAllCounts(requiredItems))
 
+                if world.options.location_balancing:
+                    if world.options.game_mode == "conquest":
+                        rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
+
                 world.set_rule(location, rule)
 
             region.locations.append(location)
@@ -197,6 +199,11 @@ def createTechLocations(world: TWW3World) -> None:
             #world.set_rule(location, world.sanityRules.getTechRules(location)) #Get Specific Rules if they exist
         except KeyError:
             pass
+
+        if world.options.location_balancing:
+            if world.options.game_mode == "conquest":
+                rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
+
         world.set_rule(location, rule)
 
         region.locations.append(location)
@@ -242,6 +249,7 @@ def createBattleLocations(world: TWW3World) -> None:
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 
+        #if world.options.location_balancing:
         rule = None
         if world.options.game_mode == "conquest":
             requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
@@ -268,6 +276,7 @@ def createDespoilerLocations(world: TWW3World) -> None:
             #if world.options.hard_logic:
                 # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
                 # This is soft logic
+            #if world.options.location_balancing:
             if world.options.game_mode == "conquest":
                 requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
                 if requiredAdminCapacity > 0:

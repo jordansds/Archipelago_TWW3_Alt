@@ -11,7 +11,7 @@ from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
 from worlds.tww3.item_tables.progression_table import progressionDict
 from worlds.tww3 import factionItemManager
-from worlds.tww3.itemTypes import itemData, itemType
+from worlds.tww3.dataStructs import itemData, itemType
 from .options import TWW3Options
 
 itemDict: dict[int, itemData] = {}

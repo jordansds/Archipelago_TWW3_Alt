@@ -410,7 +410,7 @@ class trap(Range):
     range_end = 100
     default = 30
 
-class deathLink(DefaultOnToggle):
+class deathLink(Toggle):
     """Enable or Disable death linking."""
     display_name = "Death Link"
 
@@ -444,6 +444,13 @@ class hardLogic(DefaultOnToggle):
     """Enforce hard logic so checks cannot be sent without the required logic items even if the player hits the in-game location.
     Recommended for large syncs/asyncs to prevent soft logic issues."""
     display_name = "Hard Logic"
+
+class locationBalancing(DefaultOnToggle):
+    """Experimental option that tries to balance building/tech locations based on how much admin capacity the player has received.
+    This should help balance the building/tech locations a bit better.
+    Warning: Soft Logic, may in rare circumstances result in out of logic locations.
+    [EXPERIMENTAL]"""
+    display_name = "Location Balancing"
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -488,7 +495,9 @@ class TWW3Options(PerGameCommonOptions):
     force_early_buildings: forceEarlyBuildings
     force_early_units: forceEarlyUnits
     force_early_techs: forceEarlyTechs
+
+    location_balancing: locationBalancing
     hard_logic: hardLogic
-    traps: traps
 
     mod_list: modList
+    traps: traps

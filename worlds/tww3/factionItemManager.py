@@ -1,15 +1,19 @@
 from __future__ import annotations
-from worlds.tww3.itemTypes import itemData, itemType
+from worlds.tww3.dataStructs import itemData, itemType
 from types import ModuleType
 
 #Base Game
-from worlds.tww3.faction_item_tables import beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs, empire, greenskins, highElves
-from worlds.tww3.faction_item_tables import highElvesAislinn, khorne, kislev, lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven
-from worlds.tww3.faction_item_tables import slaanesh, slaaneshDechala, tombKings, tzeentch, vampireCoast, vampireCounts, warriorsOfChaos
-from worlds.tww3.faction_item_tables import warriorsOfChaosKhorne, warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch, woodElves
+from worlds.tww3.faction_item_tables import (beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs,
+                                             empire, greenskins, highElves, highElvesAislinn, khorne, kislev,
+                                             lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven,
+                                             slaanesh, slaaneshDechala, tombKings, tzeentch, tzeentchChangeling,
+                                             vampireCoast, vampireCounts, warriorsOfChaos, warriorsOfChaosKhorne,
+                                             warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch,
+                                             woodElves)
 
 #Mod Support
-from worlds.tww3.mod_item_tables import expandedRoster, mousillon, empireEdvard, tzeentchEgrimm, norscaSurtha, southernRealms, crustaceans, lobsters
+from worlds.tww3.mod_item_tables import (expandedRoster, mousillon, empireEdvard, tzeentchEgrimm, norscaSurtha,
+                                         southernRealms, crustaceans, lobsters)
 
 raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
@@ -35,6 +39,7 @@ raceModuleDict: dict[str, ModuleType] = {
     "slaaneshDechala": slaaneshDechala, #70000
     "tombKings": tombKings, #46000
     "tzeentch": tzeentch, #48000
+    "tzeentchChangeling": tzeentchChangeling, #72000
     "vampireCoast": vampireCoast, #50000
     "vampireCounts": vampireCounts, #52000
     "woodElves": woodElves, #54000

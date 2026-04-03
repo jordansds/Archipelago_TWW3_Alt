@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
 from typing import Dict
 
-from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData
 
 globalEffectTable: Dict[int, itemData] = {
     400000: itemData(IC.filler, 0, "wh2_dlc09_bundle_anc_magic_standard_banner_of_the_hidden_dead", itemType.effect_faction, None, "None", "None"),

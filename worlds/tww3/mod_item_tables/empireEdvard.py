@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData, specialItemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 from worlds.tww3.faction_item_tables import empire
 """
 land_units_onscreen_name_mixu_emp_inf_celebrants	Celebrants

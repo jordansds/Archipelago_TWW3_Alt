@@ -4,11 +4,10 @@ from BaseClasses import Region
 import math
 import settings
 from worlds.tww3.options import TWW3Options
-from worlds.tww3 import items, locations, rules
+from worlds.tww3 import items, locations, rules, sanityRules
 from worlds.tww3 import settlementManager as sm
 from worlds.tww3 import factionItemManager
-from worlds.tww3.itemTypes import itemType
-from worlds.tww3.item_tables import sanityRules
+from worlds.tww3.dataStructs import itemType
 import logging
 #from rule_builder.cached_world import CachedRuleBuilderWorld
 
@@ -93,7 +92,7 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
-        if self.options.balance > 0 or self.options.force_early_units or self.options.force_early_buildings or self.options.force_early_techs:
+        if self.options.balance > 0 or self.options.force_early_units or self.options.force_early_buildings or self.options.force_early_techs or self.options.location_balancing:
             self.logger.warning(f"Total War Warhammer player {self.player} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
@@ -156,7 +155,8 @@ class TWW3World(World):
                                         "ritual_sanity",
                                         "battle_sanity",
                                         "despoiler_sanity",
-                                        "hard_logic")
+                                        "hard_logic",
+                                        "location_balancing",)
                                         #"number_of_settlements",
                                         #"admin_capacity",
                                         #"orbs"

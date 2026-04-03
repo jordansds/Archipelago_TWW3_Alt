@@ -1,7 +1,7 @@
 from BaseClasses import ItemClassification as IC
 from typing import Dict
 
-from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData
 
 ritualDict: Dict[int, itemData] = {
     500000: itemData(IC.useful, 1, "wh2_dlc16_ritual_rebirth_athel_loren", itemType.ritual, 1, None, "Ritual: placeholder"),

@@ -1,4 +1,4 @@
-from worlds.tww3.itemTypes import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData
 from BaseClasses import ItemClassification as IC
 
 progressionDict: dict[int, itemData] = {

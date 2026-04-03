@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData, specialItemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 # @formatter:off
 units: dict[int, itemData] = {
     54023: itemData(IC.useful, 1, 'wh_dlc05_wef_inf_eternal_guard_0', itemType.unit, 1, 'Progressive wef_inf', 'WoodElf Unit: Eternal Guard'),

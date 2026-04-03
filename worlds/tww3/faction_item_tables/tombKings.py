@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.itemTypes import itemType, itemData, specialItemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 # @formatter:off
 units: dict[int, itemData] = {
     46000: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_warriors_0', itemType.unit, 1, 'Progressive tmb_inf', 'TombKing Unit: Skeleton Warriors'),
