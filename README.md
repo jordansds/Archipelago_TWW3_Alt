@@ -165,6 +165,6 @@ Oxyotl which are related to specific places on the map you probably can't reach.
 
 [No Item Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601): Lets you equip all items, even if they are restricted to a different Legendary Lord.
 
-[No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460): Removes all climate penalties so your start position is not as bad as it seems.
+[No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789915966): Removes all climate penalties so your start position is not as bad as it seems.
 
 [Sea Lord Aislinn – Infinite Colonies](https://steamcommunity.com/workshop/filedetails/?id=3626519982): Allows Aislinn to conquer any city as an elven colony.
