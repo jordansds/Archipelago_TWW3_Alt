@@ -125,11 +125,12 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:
     if world.options.tech_shuffle:
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            for i in range(item.count):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
-                if not world.options.progressive_technologies:
-                    world.itemKeys.append(key)
+            if item.tier > 0:
+                for i in range(item.count):
+                    tww3_item = world.create_item(item.readableName)
+                    pool.append(tww3_item)
+                    if not world.options.progressive_technologies:
+                        world.itemKeys.append(key)
     return pool
 
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
@@ -311,6 +312,3 @@ def generateTrap(world: TWW3World) -> TWW3Item:
 #
 #    item = world.create_item(name)
 #    return item
-
-
-        

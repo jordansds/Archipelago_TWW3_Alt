@@ -192,7 +192,8 @@ def createTechLocations(world: TWW3World) -> None:
                     #world.set_rule(location, Has(progTech.readableName, item.tier))
                     break
         else:
-            rule = Has(locName)
+            if item.tier > 0:
+                rule = Has(locName)
             #world.set_rule(location, Has(locName))
         try:
             rule = rule & world.sanityRules.getTechRules(locName)

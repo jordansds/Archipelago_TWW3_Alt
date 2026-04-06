@@ -58,7 +58,46 @@ class ruleManager:
             "HighElf Tech: Preserved Seafood": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Salt Distillery"),
             "HighElf Tech: Monthly Festivals": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Vintner"),
             "HighElf Tech: Extravagant Murals": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Dyemaker"),
-            "HighElf Tech: Porcelain Kilns": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Kilns")
+            "HighElf Tech: Porcelain Kilns": CanReachLocation("HighElf Tech: Trade Advancements") & CanReachLocation("HighElf Building: Kilns"),
+
+            "Skaven Tech: Volatile Plans": CanReachLocation("Skaven Building: Arsenal"),
+            "Skaven Tech: Ingenious Plans": CanReachLocation("Skaven Building: Warpstone Reactor"),
+            "Skaven Tech: Plans Within Plans": CanReachLocation("Skaven Building: Plague Abbey"),
+            "Skaven Tech: Oppressive Plans": CanReachLocation("Skaven Building: Den of Secrets"),
+            "Skaven Tech: Monstrous Plans": CanReachLocation("Skaven Building: Pits of the Packmasters"),
+            "Skaven Tech: Virulent Plans": CanReachLocation("Skaven Building: Construction Cavern"),
+
+            "Khorne Tech: Bitter Raiding": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Spoils of Battle": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: War Tributes": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Defiant Muster": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Exist Always": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Harvester's Pride": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skull Flensing": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skull Harvesting": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skulls to Bring": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skull of the Enemy": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: War Leaders": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Reaper of Ages": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Return for Honour": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Favoured One": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Denying the Warp": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skulls for the Skull Throne": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Sow Death, Reap Blood": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Staunch Defender": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Abjuration-Reaper": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: The Way of Wrath": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Hounds of War": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Admiring the Corrupt": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Raging Denial": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Renegotiate Bargains": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Gates of Wrath": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Skull-Reaper": CanReachLocation("Won 5 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Pride to Continue": CanReachLocation("Won 10 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: The Living Fire": CanReachLocation("Won 15 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Repel the Honourless": CanReachLocation("Won 20 Battles") if world.options.battle_sanity else True_(),
+            "Khorne Tech: Glorious Deaths": CanReachLocation("Won 25 Battles") if world.options.battle_sanity else True_(),
+
         }
 
         self.ritualSanityRules = {
@@ -168,13 +207,6 @@ class ruleManager:
             "TombKing Mortuary Cult: A New Servant (Liche Priest)": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),
             "TombKing Mortuary Cult: A New Servant (Necrotect)": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Marble Quarry"),
             "TombKing Mortuary Cult: A New Servant (Tomb Prince)": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Iron Mine"),
-
-            "Skaven Tech: Volatile Plans": CanReachLocation("Skaven Building: Arsenal"),
-            "Skaven Tech: Ingenious Plans": CanReachLocation("Skaven Building: Warpstone Reactor"),
-            "Skaven Tech: Plans Within Plans": CanReachLocation("Skaven Building: Plague Abbey"),
-            "Skaven Tech: Oppressive Plans": CanReachLocation("Skaven Building: Den of Secrets"),
-            "Skaven Tech: Monstrous Plans": CanReachLocation("Skaven Building: Pits of the Packmasters"),
-            "Skaven Tech: Virulent Plans": CanReachLocation("Skaven Building: Construction Cavern"),
         }
 
     def getTechRules(self, location):
