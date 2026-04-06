@@ -30,7 +30,7 @@ class faction(Choice):
     option_Drazhoath_the_Ashen = 20
     option_Zhaten_the_Black = 21
     option_Miao_Ying_the_Storm_Dragon = 22
-    option_Zhai_Ming_the_Iron_Dragon = 23
+    option_Zhau_Ming_the_Iron_Dragon = 23
     option_Yuan_Bo_the_Jade_Dragon = 24
     option_Tyrion = 25
     option_Teclis = 26

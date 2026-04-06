@@ -123,7 +123,10 @@ class Messenger:
 class Watcher:
     def __init__(self, path, context):
         self.context = context
-        self.file = open(os.path.join(path, "engine.out"), "r")
+        if os.path.isfile(os.path.join(path, "engine.out")):
+            self.file = open(os.path.join(path, "engine.out"), "r")
+        else:
+            self.file = open(os.path.join(path, "engine.out"), "w+")
         line = self.file.readline()
         if line != f"{self.context.seed}\n":
             print(f"File seed: {line} != Multiworld seed: {self.context.seed}")

@@ -35,7 +35,7 @@ units: dict[int, itemData] = {
     30032: itemData(IC.useful, 1, 'wh2_dlc15_hef_mon_war_lions_of_chrace_0', itemType.unit, 1, 'Progressive hef_bst', 'HighElf Unit: War Lions of Chrace'),
     30033: itemData(IC.useful, 1, 'wh2_dlc15_hef_mon_arcane_phoenix_0', itemType.unit, 4, 'Progressive hef_bst', 'HighElf Unit: Arcane Phoenix'),
     30070: itemData(IC.useful, 1, 'wh3_dlc27_hef_inf_oceanids', itemType.unit, 2, 'Progressive hef_bst', 'HighElf Unit: Oceanids'),
-    30068: itemData(IC.useful, 1, 'wh3_dlc27_hef_mon_sea_elemental', itemType.unit, 2, 'Progressive hef_bst', 'HighElf Unit: Sea Elemental'),
+    30068: itemData(IC.useful, 1, 'wh3_dlc27_hef_mon_sea_elemental', itemType.unit, 3, 'Progressive hef_bst', 'HighElf Unit: Sea Elemental'),
     30069: itemData(IC.useful, 1, 'wh3_dlc27_hef_mon_merwyrm', itemType.unit, 4, 'Progressive hef_bst', 'HighElf Unit: Merwyrm'),
 
     30023: itemData(IC.useful, 1, 'wh2_main_hef_cav_tiranoc_chariot', itemType.unit, 2, 'Progressive hef_veh', 'HighElf Unit: Tiranoc Chariots'),
