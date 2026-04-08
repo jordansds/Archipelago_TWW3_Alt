@@ -201,9 +201,9 @@ def createTechLocations(world: TWW3World) -> None:
         except KeyError:
             pass
 
-        if world.options.location_balancing:
-            if world.options.game_mode == "conquest":
-                rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
+        #if world.options.location_balancing:
+        #    if world.options.game_mode == "conquest":
+        #        rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
 
         world.set_rule(location, rule)
 
