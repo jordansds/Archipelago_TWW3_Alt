@@ -244,24 +244,20 @@ class TWW3Context(CommonContext):
         self.lineCount = 0
 
         version = TWW3World.world_version.as_simple_string()
-        try:
-            if version != args['slot_data']['version']:
-                logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions of the TWW3 APWorld!")
-            else:
-                logger.info(f"The client is running: {version} of the TWW3 APWorld")
-        except:
-            logger.error(f"WARNING: Client ({version}) does not match the server. Server must be using the old TWW3 APWorld!")
+        if version != args['slot_data']['version']:
+            raise Exception(f"ERROR: Host ({args['slot_data']['version']}) and player ({version}) are using different versions of the TWW3 APWorld!")
+            #logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions of the TWW3 APWorld!")
+        else:
+            logger.info(f"You are running: {version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
         self.path.replace("\\", "/")
         self.seed = args['slot_data']['seed']
 
         if not self.path or not os.path.exists(self.path):
-            logger.error('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
-            Utils.async_start(self.disconnect())
+            raise Exception('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
         if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
-            logger.error('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
-            Utils.async_start(self.disconnect())
+            raise Exception('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
 
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
@@ -390,11 +386,8 @@ class TWW3Context(CommonContext):
                 logger.error(f"There is a Key Mismatch. This item has a false key, please report the false Key and the faction you were playing to the discord server (@jordansds). Key is: {entry.item}")
                 continue
             except Exception as e:
-                logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key is: {entry.item}, faction is {self.playerFaction}")
+                logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key: {entry.item}, Faction: {self.playerFaction}\nError: {e}")
                 continue
-
-            #sender = "You" if entry.player == self.slot else f"Player {entry.player}"
-            #logger.info(f"From: {sender} | Item: {item.name}")
 
             if item.type == itemType.building:
                 if self.progressiveBuildings:
