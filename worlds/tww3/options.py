@@ -261,9 +261,9 @@ class sphereCount(Range):
     How many diplomatic radius upgrades are required to access all checks.
     You can only interact with factions that are within this radius of your starting capital."""
     display_name = "Radius Upgrades (SPHERES)"
-    range_start = 1
-    range_end = 65
-    default = 7
+    range_start = 3
+    range_end = 10
+    default = 5
 
 #class extraSphereCount(Range):
 #    """SPHERE MODE ONLY
