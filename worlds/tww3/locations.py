@@ -10,6 +10,7 @@ from BaseClasses import Location, ItemClassification as IC
 from rule_builder.rules import Has
 from worlds.tww3 import items, factionItemManager, settlementManager as sm
 import math
+from worlds.generic.Rules import forbid_item
 
 class TWW3Location(Location):
     game = "Total War Warhammer III"
@@ -42,7 +43,7 @@ def createVictoryLocation(world: TWW3World) -> None:
 
     if world.options.game_mode == "conquest":
         location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
-        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.options.admin_capacity - 1))
+        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.adminCapacity - 1))
         #for loc in world.multiworld.get_locations(world.player):
         #    rule = rule & CanReachLocation(loc.name)
         world.set_rule(location, rule)
@@ -66,14 +67,14 @@ def createRegularLocations(world: TWW3World) -> None:
     # Generate all but last location, which is saved for the victory event
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, world.options.number_of_settlements):
-        requiredAdminCapacity = math.floor(i / world.options.admin_capacity)
+        requiredAdminCapacity = math.floor(i / world.adminCapacity)
         for j in range(world.options.checks_per_settlement):
             locName = f"Empire Size {i} ({j})"
             
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            #max(0, math.floor(i / world.options.admin_capacity))
+            #max(0, math.floor(i / world.adminCapacity))
             #set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
             #set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
             world.set_rule(location, Has("Administrative Capacity", requiredAdminCapacity))
@@ -83,7 +84,7 @@ def createRegularLocations(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
-    settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius)
+    #settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.sphereRadius)
 
     key = -1
     for settlement in world.settlements.values():
@@ -92,19 +93,22 @@ def createDiploRangeLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
             location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
 
-            #print(f"{location} : {settlementDiploRange[key]}")
+            #print(f"{location} : {world.settlementDiploRange[key]}")
 
-            if settlementDiploRange[key] > world.options.sphere_count:
+            if world.settlementDiploRange[key] > world.options.sphere_count:
                 continue
 
-            elif settlementDiploRange[key] == 0:
+            elif world.settlementDiploRange[key] == 0:
                 if settlement.faction != world.playerFaction.name:
                     worldRegion.locations.append(location)
 
-            elif settlementDiploRange[key] > 0:
-                #set_rule(location, lambda state, count=settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
-                world.set_rule(location, Has("Diplomatic Range", settlementDiploRange[key]))
+            elif world.settlementDiploRange[key] > 0:
+                #set_rule(location, lambda state, count=world.settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+                world.set_rule(location, Has("Diplomatic Range", world.settlementDiploRange[key]))
                 worldRegion.locations.append(location)
+
+                if world.settlementDiploRange[key] < world.options.sphere_count - 1:
+                    forbid_item(location, "Orb of Domination", world.player)
 
 def createBuildingLocations(world: TWW3World) -> None:
     region = world.get_region("Buildings")
@@ -253,7 +257,7 @@ def createBattleLocations(world: TWW3World) -> None:
         #if world.options.location_balancing:
         rule = None
         if world.options.game_mode == "conquest":
-            requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+            requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.adminCapacity)
             if requiredAdminCapacity > 0:
                 rule = Has("Administrative Capacity", requiredAdminCapacity)
                 world.set_rule(location, rule)
@@ -279,7 +283,7 @@ def createDespoilerLocations(world: TWW3World) -> None:
                 # This is soft logic
             #if world.options.location_balancing:
             if world.options.game_mode == "conquest":
-                requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+                requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.adminCapacity)
                 if requiredAdminCapacity > 0:
                     rule = Has("Administrative Capacity", requiredAdminCapacity)
                     world.set_rule(location, rule)
