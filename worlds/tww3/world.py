@@ -76,10 +76,18 @@ class TWW3World(World):
         self.options.local_items.value.add("Orb of Domination")
         #self.options.non_local_items.value.add("Diplomatic Range")
         self.options.non_local_items.value.add("Administrative Capacity")
-
-        if self.options.game_mode == "spheres":
-            self.options.sanity.value = False
-            self.options.ritual_sanity.value = False
+        if self.options.game_mode == "conquest":
+            if self.playerFaction.race == "beastmen":
+                self.adminCapacity = 1
+            else:
+                self.adminCapacity = 5
+        elif self.options.game_mode == "spheres":
+            #self.options.sanity.value = False
+            #self.options.ritual_sanity.value = False
+            self.orbCount = 9
+            self.sphereRadius = 150
+            self.settlementDiploRange, self.factionDiploRange = self.settlementManager.getRequiredDiploRange(
+                self.options.sphere_count, self.sphereRadius)
         if self.options.ritual_sanity:
             self.options.sanity.value = True
             self.options.ritual_shuffle.value = True
@@ -92,7 +100,7 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
-        if self.options.balance > 0 or self.options.force_early_units or self.options.force_early_buildings or self.options.force_early_techs or self.options.location_balancing:
+        if self.options.balance > 0 or self.options.location_balancing:
             self.logger.warning(f"Total War Warhammer player {self.player} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
@@ -166,13 +174,13 @@ class TWW3World(World):
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
-            slotData["admin_capacity"] = self.options.admin_capacity.value
-            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.options.admin_capacity)
+            slotData["admin_capacity"] = self.adminCapacity
+            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.world.adminCapacity)
         if self.options.game_mode == "spheres":
-            slotData["orbs"] = self.options.orb_count.value
-            settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
-                self.options.sphere_count, self.options.sphere_radius.value)
-            slotData["spheres"] = factionDiploRange
+            slotData["orbs"] = self.orbCount
+            #settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
+            #    self.options.sphere_count, self.sphereRadius)
+            slotData["spheres"] = self.factionDiploRange
             slotData["max_expansion_items"] = self.options.sphere_count.value
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementManager.randomiseHordes()

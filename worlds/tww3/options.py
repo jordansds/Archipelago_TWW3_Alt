@@ -245,44 +245,44 @@ class numberOfSettlements(Range):
     range_end = len(sm.settlementDict)
     default = 100
 
-class adminCapacity(Range):
-    """CONQUEST MODE ONLY
-    How many settlements each Administration Capacity item allows you to own.
-    Going over the empire size limit will incur heavy penalties.
-    You start with 1 admin capacity item so make sure that you set it higher than STARTING SETTLEMENTS.
-    If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
-    display_name = "Settlements Per Admin Capacity (CONQUEST)"
-    range_start = 2
-    range_end = len(sm.settlementDict)
-    default = 10
+#class adminCapacity(Range):
+#    """CONQUEST MODE ONLY
+#    How many settlements each Administration Capacity item allows you to own.
+#    Going over the empire size limit will incur heavy penalties.
+#    You start with 1 admin capacity item so make sure that you set it higher than STARTING SETTLEMENTS.
+#    If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
+#    display_name = "Settlements Per Admin Capacity (CONQUEST)"
+#    range_start = 2
+#    range_end = len(sm.settlementDict)
+#    default = 10
 
 class sphereCount(Range):
     """SPHERE MODE ONLY
     How many diplomatic radius upgrades are required to access all checks.
-    You can only interact with factions that are in your radius."""
+    You can only interact with factions that are within this radius of your starting capital."""
     display_name = "Radius Upgrades (SPHERES)"
     range_start = 1
     range_end = 65
     default = 7
 
-class extraSphereCount(Range):
-    """SPHERE MODE ONLY
-    How many extra diplomatic radius upgrades are generated"""
-    display_name = "Extra Spheres (SPHERES)"
-    range_start = 0
-    range_end = 50
-    default = 0
+#class extraSphereCount(Range):
+#    """SPHERE MODE ONLY
+#    How many extra diplomatic radius upgrades are generated"""
+#    display_name = "Extra Spheres (SPHERES)"
+#    range_start = 0
+#    range_end = 50
+#    default = 0
 
-class sphereRadius(Range):
-    """SPHERE MODE ONLY
-    Determines your starting radius and radius added with each upgrade.
-    The smallest distance between settlements is 25. The largest is 1400.
-    If you spawn in the middle of the map it only takes a radius of 700
-    for the entire world to be in logic."""
-    display_name = "Diplomatic Radius Size (SPHERES)"
-    range_start = 50
-    range_end = 500
-    default = 150
+#class sphereRadius(Range):
+#    """SPHERE MODE ONLY
+#    Determines your starting radius and radius added with each upgrade.
+#    The smallest distance between settlements is 25. The largest is 1400.
+#    If you spawn in the middle of the map it only takes a radius of 700
+#    for the entire world to be in logic."""
+#    display_name = "Diplomatic Radius Size (SPHERES)"
+#    range_start = 50
+#    range_end = 500
+#    default = 150
 
 class orbCount(Range):
     """SPHERE MODE ONLY
@@ -395,8 +395,8 @@ class forceEarlyTechs(Toggle):
     display_name = "Early Tech"
 
 class filler(Range):
-    """Weight of filler items.
-    For example: filler: 70, trap: 30
+    """Weight of filler items to trap items.
+    For example: filler: 70
     Would mean: 70% filler, 30% traps"""
     display_name = "Filler Weight"
     range_start = 0
@@ -429,7 +429,7 @@ class modList(OptionSet):
     display_name = "Supported Mods"
     valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"]
 
-class traps(OptionSet):
+class trapBlacklist(OptionSet):
     """Trap Blacklist (if you blacklist them all, then nothing will happen). Valid Options:
     "Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"
     """
@@ -468,13 +468,13 @@ class TWW3Options(PerGameCommonOptions):
     despoiler_sanity: despoilerSanity
 
     number_of_settlements: numberOfSettlements
-    admin_capacity: adminCapacity
+    #admin_capacity: adminCapacity
 
     sphere_count: sphereCount
-    extra_sphere_count: extraSphereCount
-    sphere_radius: sphereRadius
-    orb_count: orbCount
-    extra_orb_count: extraOrbCount
+    #extra_sphere_count: extraSphereCount
+    #sphere_radius: sphereRadius
+    #orb_count: orbCount
+    #extra_orb_count: extraOrbCount
 
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
@@ -485,19 +485,19 @@ class TWW3Options(PerGameCommonOptions):
     ritual_shuffle: ritualShuffle
 
     filler: filler
-    trap: trap
+    #trap: trap
 
     death_link: deathLink
     death_link_effects: deathLinkEffect
 
     starting_tier: startingTier
     balance: balance
-    force_early_buildings: forceEarlyBuildings
-    force_early_units: forceEarlyUnits
-    force_early_techs: forceEarlyTechs
+    #force_early_buildings: forceEarlyBuildings
+    #force_early_units: forceEarlyUnits
+    #force_early_techs: forceEarlyTechs
 
     location_balancing: locationBalancing
     hard_logic: hardLogic
 
     mod_list: modList
-    traps: traps
+    trap_blacklist: trapBlacklist

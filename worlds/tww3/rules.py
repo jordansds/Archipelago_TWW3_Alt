@@ -9,7 +9,6 @@ from worlds.tww3.item_tables.progression_table import progressionDict
 from collections import Counter
 
 def setBalance(world: TWW3World) -> None:
-    if world.options.force_early_units or world.options.force_early_buildings or world.options.force_early_techs:
         worldRegion = world.get_region("Settlements")
 
         world.item_name_groups.update({"Unlocks": set()})
@@ -18,16 +17,16 @@ def setBalance(world: TWW3World) -> None:
         for item in world.multiworld.itempool:
             if item.classification == ItemClassification.progression and item.player == world.player:
                 # Check if the item is in progression_table (to prevent strange logic around the progression items)
-                if not item.name in [item[1][2] for item in progressionDict.items()]:
+                if not item.name in [progItem.name for progItem in progressionDict.values()]:
                     world.item_name_groups["Unlocks"].add(item.name)
                     counter += 1
 
         if world.options.game_mode == "conquest":
             for index, location in enumerate(worldRegion.locations):
                 #This increments by 1 every admin_capacity empire size in locations.
-                empireSizeInterval = math.floor(index / (world.options.admin_capacity * world.options.checks_per_settlement))
+                empireSizeInterval = math.floor(index / (world.world.adminCapacity * world.options.checks_per_settlement))
                 # This sets the weighting for the item balancing.
-                weight = world.options.checks_per_settlement * world.options.admin_capacity * world.options.balance / 100
+                weight = world.options.checks_per_settlement * world.world.adminCapacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 #print(f"{location}: {requiredUnlockItems}")
                 #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
@@ -36,16 +35,16 @@ def setBalance(world: TWW3World) -> None:
 
         elif world.options.game_mode == "spheres":
 
-            settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.options.sphere_radius.value)
+            #settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.sphereRadius)
 
             #Number of settlements contained within each diplo range
-            settlementsPerDiploRange = [value for key, value in sorted(Counter(settlementDiploRange).items())]
+            settlementsPerDiploRange = [value for key, value in sorted(Counter(world.settlementDiploRange).items())]
 
             #Number of items to assign to the locations within each diplo range
             itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
 
             settlementToDiploRange = [settlement.readableName for settlement in world.settlementManager.shuffledSettlementDict.values()]
-            settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(settlementDiploRange) if count <= world.options.sphere_count}
+            settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(world.settlementDiploRange) if count <= world.options.sphere_count}
 
             for locationName, requiredDiploRange in settlementToDiploRange.items():
                 if requiredDiploRange > 0:
