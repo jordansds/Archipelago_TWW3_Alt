@@ -30,7 +30,14 @@ class TWW3Item(Item):  # or from Items import MyGameItem
     options: TWW3Options  # typing hints for option results
 
 def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need them for logic due to yaml settings
-    if world.options.force_early_units:
+    if world.options.balance > 0:
+        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+            itemDict[key] = itemData(IC.progression, *item[1:])
+        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+            itemDict[key] = itemData(IC.progression, *item[1:])
+        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+                itemDict[key] = itemData(IC.progression, *item[1:])
+    """if world.options.force_early_units:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
             itemDict[key] = itemData(IC.progression, *item[1:])
 
@@ -41,7 +48,7 @@ def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need
 
     if world.options.force_early_techs:
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            itemDict[key] = itemData(IC.progression, *item[1:])
+            itemDict[key] = itemData(IC.progression, *item[1:])"""
 
     if world.options.sanity:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
@@ -72,8 +79,8 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateRitualItems(world, pool)
 
     # Remove traps based on yaml settings
-    if len(world.options.traps.value) < len(trapDict):
-        for trap in world.options.traps:
+    if len(world.options.trap_blacklist.value) < len(trapDict):
+        for trap in world.options.trap_blacklist:
             try:
                 for key, item in trapDict.items():
                     if item.readableName[6:] == trap:
@@ -183,14 +190,14 @@ def generateRitualItems(world: TWW3World, pool: list) -> list:
 
 def generateExpansionItems(world: TWW3World, pool: list) -> list:
     if world.options.game_mode == "conquest":
-        for i in range(math.floor(world.options.number_of_settlements / world.options.admin_capacity)):
+        for i in range(math.floor(world.options.number_of_settlements / world.adminCapacity)):
             item = world.create_item("Administrative Capacity")
             pool.append(item)
     elif world.options.game_mode == "spheres":
-        for i in range(world.options.sphere_count + world.options.extra_sphere_count):
+        for i in range(world.options.sphere_count):# + world.options.extra_sphere_count):
             item = world.create_item("Diplomatic Range")
             pool.append(item)
-        for i in range(world.options.orb_count + world.options.extra_orb_count):
+        for i in range(world.options.orb_count):# + world.options.extra_orb_count):
             item = world.create_item("Orb of Domination")
             pool.append(item)
         #world.multiworld.local_items[world.player]["Orb of Domination"] = world.options.orb_count + world.options.extra_orb_count
@@ -203,11 +210,11 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     #fillerFunctions = [generateFillerWeak, generateFillerStrong, generateTrapHarmless, generateTrapWeak, generateTrapStrong] #List of functions for generating filler
     #weights = [world.options.filler_weak.value, world.options.filler_strong.value, world.options.trap_harmless.value, world.options.trap_weak.value, world.options.trap_strong.value] #list of weights defined in YAML
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
-    weights = [world.options.filler.value, world.options.trap.value] #list of weights defined in YAML
+    weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
 
-    if sum(weights) == 0:
-        world.logger.warn("Invalid YAML: Sum of filler and trap weighting must not be zero, filler set to 1.")
-        weights = [1,0]
+    #if sum(weights) == 0:
+    #    world.logger.warn("Invalid YAML: Sum of filler and trap weighting must not be zero, filler set to 1.")
+    #    weights = [1,0]
 
     fillerCount = - len(pool) - 1
     for region in world.get_regions():
