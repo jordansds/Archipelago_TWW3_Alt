@@ -100,7 +100,7 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
-        if self.options.balance > 0 or self.options.location_balancing:
+        if self.options.balance > 0 or not self.options.hard_logic:
             self.logger.warning(f"Total War Warhammer player {self.player} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
@@ -152,7 +152,6 @@ class TWW3World(World):
                                         "progressive_units",
                                         "starting_tier",
                                         "randomize_personalities",
-                                        #"ritual_shuffle",
                                         "death_link",
                                         "death_link_effects",
                                         "mod_list",
@@ -165,12 +164,6 @@ class TWW3World(World):
                                         "despoiler_sanity",
                                         "hard_logic",
                                         "location_balancing",)
-                                        #"number_of_settlements",
-                                        #"admin_capacity",
-                                        #"orbs"
-                                        #)
-        #print(self.options.death_link_effects.value)
-        #slotData["checks_per_settlement"] = self.options.checks_per_settlement.value
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
@@ -182,12 +175,11 @@ class TWW3World(World):
             #    self.options.sphere_count, self.sphereRadius)
             slotData["spheres"] = self.factionDiploRange
             slotData["max_expansion_items"] = self.options.sphere_count.value
+
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementManager.randomiseHordes()
         slotData["faction_capitals"] = self.settlementManager.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
-        #slotData["game_mode"] = self.options.game_mode.value
-        #slotData["faction_shuffle"] = self.options.faction_shuffle.value
         slotData["seed"] = self.multiworld.seed
 
         try:

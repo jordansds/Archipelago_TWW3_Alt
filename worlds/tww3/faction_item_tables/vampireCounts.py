@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.dataStructs import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 
 # @formatter:off
 units: dict[int, itemData] = {
@@ -259,6 +259,28 @@ progTechs: dict[int, itemData] = {
     53403: itemData(IC.useful, 7, "Progressive tech_vmp_blood", itemType.tech, 7, None, "Progressive Vampire Tech: Blood"),
 }
 
-special: dict[int, itemData] = {
+special: dict[int, specialItemData] = {
 
+}
+
+rituals: dict[int, specialItemData] = {
+    53600: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_01", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_blood_dragon", True, False, "Vampire Bloodline: Awaken 1st Blood Dragon"),
+    53601: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_02", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_blood_dragon", True, False, "Vampire Bloodline: Awaken 2nd Blood Dragon"),
+    53602: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_03", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_blood_dragon", True, False, "Vampire Bloodline: Awaken 3rd Blood Dragon"),
+
+    53603: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_01", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_lahmian", True, False, "Vampire Bloodline: Awaken 1st Lahmian"),
+    53604: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_02", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_lahmian", True, False, "Vampire Bloodline: Awaken 2nd Lahmian"),
+    53605: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_03", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_lahmian", True, False, "Vampire Bloodline: Awaken 3rd Lahmian"),
+
+    53606: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_01", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_necrarch", True, False, "Vampire Bloodline: Awaken 1st Necrarch"),
+    53607: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_02", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_necrarch", True, False, "Vampire Bloodline: Awaken 2nd Necrarch"),
+    53608: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_03", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_necrarch", True, False, "Vampire Bloodline: Awaken 3rd Necrarch"),
+
+    53609: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_01", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_strigoi", True, False, "Vampire Bloodline: Awaken 1st Strigoi"),
+    53610: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_02", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_strigoi", True, False, "Vampire Bloodline: Awaken 2nd Strigoi"),
+    53611: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_03", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_strigoi", True, False, "Vampire Bloodline: Awaken 3rd Strigoi"),
+
+    53612: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_01", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_von_carstein", True, False, "Vampire Bloodline: Awaken 1st Von Carstein"),
+    53613: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_02", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_von_carstein", True, False, "Vampire Bloodline: Awaken 2nd Von Carstein"),
+    53614: specialItemData(IC.useful, 1, [], "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_03", itemType.ritual, 1, "Progressive vmp_ritual_bloodline_von_carstein", True, False, "Vampire Bloodline: Awaken 3rd Von Carstein"),
 }

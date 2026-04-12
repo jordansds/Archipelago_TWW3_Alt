@@ -161,7 +161,7 @@ def createBuildingLocations(world: TWW3World) -> None:
                     #rule = HasAllCounts(requiredItems)
                     #world.set_rule(location, HasAllCounts(requiredItems))
 
-                if world.options.location_balancing:
+                if not world.options.hard_logic:# if world.options.location_balancing:
                     if world.options.game_mode == "conquest":
                         rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
 
@@ -254,7 +254,7 @@ def createBattleLocations(world: TWW3World) -> None:
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 
-        #if world.options.location_balancing:
+        #if not world.options.hard_logic:
         rule = None
         if world.options.game_mode == "conquest":
             requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.adminCapacity)
@@ -278,12 +278,11 @@ def createDespoilerLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            #if world.options.hard_logic:
-                # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
-                # This is soft logic
-            #if world.options.location_balancing:
+            # Make sure Archipelago tries to give the player at least 1 admin capacity item or 1 diplo range
+            # This is soft logic
+            #if not world.options.hard_logic:
             if world.options.game_mode == "conquest":
-                requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.adminCapacity)
+                requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
                 if requiredAdminCapacity > 0:
                     rule = Has("Administrative Capacity", requiredAdminCapacity)
                     world.set_rule(location, rule)

@@ -496,7 +496,7 @@ class TWW3Options(PerGameCommonOptions):
     #force_early_units: forceEarlyUnits
     #force_early_techs: forceEarlyTechs
 
-    location_balancing: locationBalancing
+    #location_balancing: locationBalancing
     hard_logic: hardLogic
 
     mod_list: modList
