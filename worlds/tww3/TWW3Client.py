@@ -163,7 +163,7 @@ class Watcher:
                     if self.context.ritualSanity:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
-                        if line.split("_")[-1] == "upgraded": #Check for Karl Franz upgraded rituals
+                        if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
                             line = line[:-9]
                         await self.context.checkSanity(line.split(" ")[1])
                 elif prefix == "battles":
