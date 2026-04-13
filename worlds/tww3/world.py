@@ -91,6 +91,8 @@ class TWW3World(World):
         if self.options.ritual_sanity:
             self.options.sanity.value = True
             self.options.ritual_shuffle.value = True
+            if self.options.number_of_settlements < 30:
+                self.options.number_of_settlements.value = 30
         if self.options.sanity:
             self.options.unit_shuffle.value = True
             self.options.building_shuffle.value = True
