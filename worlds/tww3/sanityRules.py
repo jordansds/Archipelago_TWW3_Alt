@@ -1,6 +1,6 @@
 from rule_builder.rules import Has, HasAll, HasAny, HasFromList, CanReachLocation, True_, False_
 
-
+# @formatter:off
 class ruleManager:
     def __init__(self, world):
         """        self.techSanityRules = {
@@ -207,6 +207,33 @@ class ruleManager:
             "TombKing Mortuary Cult: A New Servant (Liche Priest)": CanReachLocation("TombKing Building: Caravan Master") & CanReachLocation("TombKing Building: Salt Mine"),
             "TombKing Mortuary Cult: A New Servant (Necrotect)": CanReachLocation("TombKing Building: Gold Mine") & CanReachLocation("TombKing Building: Marble Quarry"),
             "TombKing Mortuary Cult: A New Servant (Tomb Prince)": CanReachLocation("TombKing Building: Obsidian Quarry") & CanReachLocation("TombKing Building: Iron Mine"),
+
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_01": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_02": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_blood_dragon_03": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_01": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_02": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_lahmian_03": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_01": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_02": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_necrarch_03": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_01": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_02": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_strigoi_03": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_01": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_02": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            "wh2_dlc11_vmp_ritual_bloodline_awaken_von_carstein_03": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+
+            #"Khorne Throne of Skulls: The Endless Fuel": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            #"Khorne Throne of Skulls: The Gift of Glory": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            #"Khorne Throne of Skulls: Bred in Bloodshed": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            #"Khorne Throne of Skulls: Fury's Flight": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            #"Khorne Throne of Skulls: The Wordless Edict": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+            #"Khorne Throne of Skulls: Destruction’s Diktat": (Has("Administrative Capacity", 5) | Has("Diplomatic Range", 5)) if not world.options.hard_logic else True_(),
+
+            "Khorne Unholy Manifestation: Khorne's Glare": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "Khorne Unholy Manifestation: Slaughter Incarnate": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
+            "Khorne Unholy Manifestation: Call of Battle": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
         }
 
     def getTechRules(self, location):

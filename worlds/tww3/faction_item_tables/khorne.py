@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.dataStructs import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 
 # @formatter:off
 units: dict[int, itemData] = {
@@ -305,6 +305,27 @@ progTechs: dict[int, itemData] = {
     33410: itemData(IC.useful, 2, "Progressive tech_kho_vehicles", itemType.tech, 2, None, "Progressive Khorne Tech: Vehicles"),
 }
 
-special: dict[int, itemData] = {
+special: dict[int, specialItemData] = {
 
+}
+
+rituals: dict[int, specialItemData] = {
+    33600: specialItemData(IC.useful, 1, [], "", itemType.ritual, 1, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Blood Ex Nihilo"),
+    33601: specialItemData(IC.useful, 1, [], "", itemType.ritual, 1, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Dissipation's Domain"),
+    33602: specialItemData(IC.useful, 1, [], "", itemType.ritual, 1, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Devotion's Tithe"),
+    33603: specialItemData(IC.useful, 1, [], "", itemType.ritual, 1, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: The Wound in the World"),
+
+    33604: specialItemData(IC.useful, 1, [], "", itemType.ritual, 2, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: The Endless Fuel"),
+    33605: specialItemData(IC.useful, 1, [], "", itemType.ritual, 2, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: The Gift of Glory"),
+    33606: specialItemData(IC.useful, 1, [], "", itemType.ritual, 2, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Bred in Bloodshed"),
+
+    33607: specialItemData(IC.useful, 1, [], "", itemType.ritual, 3, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Fury's Flight"),
+    33608: specialItemData(IC.useful, 1, [], "", itemType.ritual, 3, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: The Wordless Edict"),
+
+    33609: specialItemData(IC.useful, 1, [], "", itemType.ritual, 4, "Progressive kho_ritual_skull_throne", False, False, "Khorne Throne of Skulls: Destruction’s Diktat"),
+
+    33610: specialItemData(IC.useful, 1, [], "", itemType.ritual, 1, "Progressive kho_ritual_unholy_manifestation", True, False, "Khorne Unholy Manifestation: Eternal War"),
+    33611: specialItemData(IC.useful, 1, [], "", itemType.ritual, 2, "Progressive kho_ritual_unholy_manifestation", True, False, "Khorne Unholy Manifestation: Khorne's Glare"),
+    33612: specialItemData(IC.useful, 1, [], "", itemType.ritual, 3, "Progressive kho_ritual_unholy_manifestation", True, False, "Khorne Unholy Manifestation: Slaughter Incarnate"),
+    33613: specialItemData(IC.useful, 1, [], "", itemType.ritual, 4, "Progressive kho_ritual_unholy_manifestation", True, False, "Khorne Unholy Manifestation: Call of Battle"),
 }
