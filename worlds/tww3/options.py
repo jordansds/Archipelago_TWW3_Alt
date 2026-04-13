@@ -221,7 +221,7 @@ class sanity(Toggle):
 
 class ritualSanity(Toggle):
     """If you want every faction mechanic to be a location.
-    [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE AND SANITY TO BE ENABLED]"""
+    [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE AND SANITY TO BE ENABLED, Will force minimum settlements to a minimum of 30]"""
     display_name = "RitualSanity"
 
 class battleSanity(Toggle):
@@ -243,7 +243,7 @@ class numberOfSettlements(Range):
     display_name = "Number Of Settlements (CONQUEST)"
     range_start = 20
     range_end = len(sm.settlementDict)
-    default = 100
+    default = 50
 
 #class adminCapacity(Range):
 #    """CONQUEST MODE ONLY
