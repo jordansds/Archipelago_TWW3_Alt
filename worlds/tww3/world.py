@@ -166,13 +166,13 @@ class TWW3World(World):
                                         "ritual_sanity",
                                         "battle_sanity",
                                         "despoiler_sanity",
-                                        "hard_logic",
-                                        "location_balancing",)
+                                        "hard_logic",)
+                                        #"location_balancing",)
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.adminCapacity
-            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.world.adminCapacity)
+            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.adminCapacity)
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.orbCount
             #settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(

@@ -313,7 +313,7 @@ class TWW3Context(CommonContext):
         self.factionShuffle = args['slot_data']['faction_shuffle']
         self.checksPerLocation = args['slot_data']['checks_per_settlement']
         self.hardLogic = args['slot_data']['hard_logic']
-        self.locationBalancing = args['slot_data']['location_balancing']
+        #self.locationBalancing = args['slot_data']['location_balancing']
         self.maxExpansionItems = args['slot_data']['max_expansion_items']
 
         self.locationLookup = {}
