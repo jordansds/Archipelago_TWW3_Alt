@@ -4,9 +4,24 @@ if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
 from BaseClasses import ItemClassification
 import math
-from rule_builder.rules import HasGroup
+from rule_builder.rules import HasGroup, Has
 from worlds.tww3.item_tables.progression_table import progressionDict
 from collections import Counter
+
+def setGenericLocationRule(world: TWW3World, location, i: int):
+    rule = None
+    if world.options.game_mode == "conquest":
+        requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+        if requiredAdminCapacity > 0:
+            rule = Has("Administrative Capacity", requiredAdminCapacity)
+
+    elif world.options.game_mode == "spheres":
+        requiredDiploRange = math.floor(i / 20 * world.options.sphere_count)
+        if requiredDiploRange > 0:
+            rule = Has("Diplomatic Range", requiredDiploRange)
+
+    if rule is not None:
+        world.set_rule(location, rule)
 
 def setBalance(world: TWW3World) -> None:
         worldRegion = world.get_region("Settlements")
