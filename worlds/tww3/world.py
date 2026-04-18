@@ -74,7 +74,6 @@ class TWW3World(World):
         self.locationToDiploRange = {}
 
         self.options.local_items.value.add("Orb of Domination")
-        #self.options.non_local_items.value.add("Diplomatic Range")
         self.options.non_local_items.value.add("Administrative Capacity")
         if self.options.game_mode == "conquest":
             if self.playerFaction.race == "beastmen":
@@ -82,8 +81,6 @@ class TWW3World(World):
             else:
                 self.adminCapacity = 5
         elif self.options.game_mode == "spheres":
-            #self.options.sanity.value = False
-            #self.options.ritual_sanity.value = False
             self.orbCount = 9
             self.sphereRadius = 150
             self.settlementDiploRange, self.factionDiploRange = self.settlementManager.getRequiredDiploRange(
