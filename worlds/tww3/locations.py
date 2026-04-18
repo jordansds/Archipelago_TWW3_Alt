@@ -41,21 +41,13 @@ def createAllLocations(world: TWW3World) -> None:
 def createVictoryLocation(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
-    if world.options.game_mode == "conquest":
-        location = TWW3Location(world.player, f"Empire Size {world.options.number_of_settlements}", None, worldRegion)
-        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.adminCapacity - 1))
-        #for loc in world.multiworld.get_locations(world.player):
-        #    rule = rule & CanReachLocation(loc.name)
-        world.set_rule(location, rule)
-
-    elif world.options.game_mode == "spheres":
-        location = TWW3Location(world.player, "Victory", None, worldRegion)
-        world.set_rule(location, Has("Orb of Domination", world.options.orb_count.value))
-
+    location = TWW3Location(world.player, "Victory", None, worldRegion)
     worldRegion.locations.append(location)
+
     victory = items.TWW3Item("Victory", IC.progression, None, world.player)
     location.place_locked_item(victory)
-    world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+
+    rules.setVictoryRule(world, location)
 
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
@@ -64,9 +56,8 @@ def createRegularLocations(world: TWW3World) -> None:
         startingCheck = 1
     else:
         startingCheck = world.options.starting_settlements + 1
-    # Generate all but last location, which is saved for the victory event
     # Fill location checks based on number of locations and checks per location
-    for i in range(startingCheck, world.options.number_of_settlements):
+    for i in range(startingCheck, world.options.number_of_settlements + 1):
         requiredAdminCapacity = math.floor(i / world.adminCapacity)
         for j in range(world.options.checks_per_settlement):
             locName = f"Empire Size {i} ({j})"
@@ -74,9 +65,6 @@ def createRegularLocations(world: TWW3World) -> None:
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            #max(0, math.floor(i / world.adminCapacity))
-            #set_rule(location, lambda state: state.has("Administrative Capacity", world.player, requiredAdminCapacity))
-            #set_rule(location, lambda state, count=requiredAdminCapacity: state.has("Administrative Capacity", world.player, count))
             world.set_rule(location, Has("Administrative Capacity", requiredAdminCapacity))
 
             worldRegion.locations.append(location)
@@ -84,28 +72,19 @@ def createRegularLocations(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
-    #settlementDiploRange, factionDiploRange = world.settlementManager.getRequiredDiploRange(world.options.sphere_count, world.sphereRadius)
-
-    key = -1
-    for settlement in world.settlements.values():
-        key += 1
+    #key = -1
+    for key, settlement in enumerate(world.settlements.values()):
+        #key += 1
         for i in range(world.options.checks_per_settlement):
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
             location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
 
-            #print(f"{location} : {world.settlementDiploRange[key]}")
-
-            if world.settlementDiploRange[key] > world.options.sphere_count:
+            if world.settlementDiploRange[key] > world.options.sphere_count or settlement.faction == world.playerFaction.name:
                 continue
 
-            elif world.settlementDiploRange[key] == 0:
-                if settlement.faction != world.playerFaction.name:
-                    worldRegion.locations.append(location)
-
-            elif world.settlementDiploRange[key] > 0:
-                #set_rule(location, lambda state, count=world.settlementDiploRange[key]: state.has("Diplomatic Range", world.player, count))
+            worldRegion.locations.append(location)
+            if world.settlementDiploRange[key] > 0:
                 world.set_rule(location, Has("Diplomatic Range", world.settlementDiploRange[key]))
-                worldRegion.locations.append(location)
 
                 if world.settlementDiploRange[key] < world.options.sphere_count - 1:
                     forbid_item(location, "Orb of Domination", world.player)
@@ -116,68 +95,28 @@ def createBuildingLocations(world: TWW3World) -> None:
     specialBuildings = [item for key, item in factionItemManager.getSpecial(world, True) if
                         item.type == itemType.building]
     buildings = [item for key, item in factionItemManager.getBuildings(world.playerFaction.race, False)]
-    progBuildings = [item for key, item in factionItemManager.getBuildings(world.playerFaction.race, True)]
     buildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is not None]
-    progBuildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is None]
+
+    # Remove t1 settlements and ports as they can only be built in razed settlements
+    buildings = [building for building in buildings if not ("settlement" in building.name or "port" in building.name and building.tier > 0)]
 
     for item in buildings:
-        #Skip t1 settlements and ports as they can only be built in razed settlements
-        if ("settlement" in item.name or "port" in item.name) and item.tier == 0:
-            continue
-        else:
-            locName = item.readableName
-            locId = world.location_name_to_id[locName]
+        locName = item.readableName
+        locId = world.location_name_to_id[locName]
 
-            location = TWW3Location(world.player, locName, locId, region)
+        location = TWW3Location(world.player, locName, locId, region)
 
-            if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
+        region.locations.append(location)
 
-                rule = None
-                if world.options.progressive_buildings:
-                    progressiveItemCount = item.tier - (world.options.starting_tier - 1)
-                    for progBuilding in progBuildings:
-                        if item.progressionGroup == progBuilding.name:
-                            progressiveItem = progBuilding.readableName
-                            #print(f"{item.readableName} requires {progressiveItemCount} x {progressiveItem}")
-                            if rule is None:
-                                rule = Has(progressiveItem, progressiveItemCount)
-                            else:
-                                rule = rule & Has(progressiveItem, progressiveItemCount)
-                            #world.set_rule(location, Has(progressiveItem, progressiveItemCount))
-                            #set_rule(location, lambda state, count=progressiveItemCount: state.has(progressiveItem, world.player, count))
-                            break
+    rules.setBuildingLocationRules(world, buildings)
 
-                else:
-                    for building in buildings:
-                        if building.readableName == item.readableName and building.tier > world.options.starting_tier - 1:
-                            rule = Has(building.readableName)
-                            break
-                    #requiredItems = {}
-                    #for building in buildings:
-                        #if building.progressionGroup == item.progressionGroup and world.options.starting_tier - 1 < building.tier <= item.tier:
-                        #    #print(f"{item.readableName} requires {building.readableName} to be reachable")
-                        #    requiredItems.update({building.readableName: 1})
-                    #print(f"{location}: {requiredItems}")
-                    #rule = HasAllCounts(requiredItems)
-                    #world.set_rule(location, HasAllCounts(requiredItems))
-
-                if not world.options.hard_logic:# if world.options.location_balancing:
-                    if world.options.game_mode == "conquest":
-                        rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
-
-                world.set_rule(location, rule)
-
-            region.locations.append(location)
 
 def createTechLocations(world: TWW3World) -> None:
     region = world.get_region("Techs")
-
     specialTechs = [item for key, item in factionItemManager.getSpecial(world, True) if
-                        item.type == itemType.tech]
+                    item.type == itemType.tech]
     techs = [item for key, item in factionItemManager.getTechs(world.playerFaction.race, False)]
-    progTechs = [item for key, item in factionItemManager.getTechs(world.playerFaction.race, True)]
     techs += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialTechs if item.progressionGroup is not None]
-    progTechs += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialTechs if item.progressionGroup is None]
 
     for item in techs:
         locName = item.readableName
@@ -185,33 +124,9 @@ def createTechLocations(world: TWW3World) -> None:
 
         location = TWW3Location(world.player, locName, locId, region)
 
-        rule = None
-        if world.options.progressive_technologies:
-            for progTech in progTechs:
-                if item.progressionGroup == progTech.name:
-                    if rule is None:
-                        rule = Has(progTech.readableName, item.tier)
-                    else:
-                        rule = rule & Has(progTech.readableName, item.tier)
-                    #world.set_rule(location, Has(progTech.readableName, item.tier))
-                    break
-        else:
-            if item.tier > 0:
-                rule = Has(locName)
-            #world.set_rule(location, Has(locName))
-        try:
-            rule = rule & world.sanityRules.getTechRules(locName)
-            #world.set_rule(location, world.sanityRules.getTechRules(location)) #Get Specific Rules if they exist
-        except KeyError:
-            pass
-
-        #if world.options.location_balancing:
-        #    if world.options.game_mode == "conquest":
-        #        rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
-
-        world.set_rule(location, rule)
-
         region.locations.append(location)
+
+    rules.setTechnologyLocationRules(world, techs)
 
 def createRitualLocations(world: TWW3World) -> None:
     region = world.get_region("Rituals")
@@ -224,28 +139,7 @@ def createRitualLocations(world: TWW3World) -> None:
 
         region.locations.append(location)
 
-    for item in rituals:
-        locName = item.readableName
-        location = world.get_location(item.readableName)
-        rule = None
-        for ritual in rituals:
-            if ritual.progressionGroup == item.progressionGroup and ritual.tier == 1 and (ritual.tier < item.tier or ritual.readableName == item.readableName) and not ritual.spcLogic:
-                #requiredItems.update({ritual.readableName: 1})
-                if rule is None:
-                    rule = Has(ritual.readableName)
-                else:
-                    rule = rule & Has(ritual.readableName)
-        try:
-            if rule is None:
-                rule = world.sanityRules.getRitualRules(locName)
-            else:
-                rule = rule & world.sanityRules.getRitualRules(locName)
-        except KeyError:
-            pass
-
-        if rule is not None:
-            #print(f"{locName}: {rule}")
-            world.set_rule(location, rule)
+    rules.setRitualRules(world, rituals)
 
 def createBattleLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Battles")
