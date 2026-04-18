@@ -26,8 +26,8 @@ itemDict.update(progressionDict)
 class TWW3Item(Item):  # or from Items import MyGameItem
     game = "Total War Warhammer III"  # name of the game/world this item is from
 
-    options_dataclass = TWW3Options  # options the player can set
-    options: TWW3Options  # typing hints for option results
+    #options_dataclass = TWW3Options  # options the player can set
+    #options: TWW3Options  # typing hints for option results
 
 def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need them for logic due to yaml settings
     if world.options.balance > 0:
@@ -37,18 +37,6 @@ def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need
             itemDict[key] = itemData(IC.progression, *item[1:])
         for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
                 itemDict[key] = itemData(IC.progression, *item[1:])
-    """if world.options.force_early_units:
-        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
-            itemDict[key] = itemData(IC.progression, *item[1:])
-
-    if world.options.force_early_buildings:
-        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            if item.classification != IC.progression:
-                itemDict[key] = itemData(IC.progression, *item[1:])
-
-    if world.options.force_early_techs:
-        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            itemDict[key] = itemData(IC.progression, *item[1:])"""
 
     if world.options.sanity:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
@@ -108,13 +96,8 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
     if world.options.building_shuffle:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            if "settlement" in item.name: #and world.options.building_sanity:
+            if "settlement" in item.name:
                 continue
-            #if "settlement_major" in item.name:
-            #    if item.progressionGroup is None:
-            #        world.multiworld.local_early_items[world.player][item.readableName] = max(item.count - world.options.starting_tier - 2, 0)
-            #    elif world.options.starting_tier - 1 < item.tier <= 2:
-            #        world.multiworld.local_early_items[world.player][item.readableName] = 1
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 #Need to change so that if progressive buildings, generate 1 less item
                 reduce = 0
@@ -143,7 +126,7 @@ def generateTechnologyItems(world: TWW3World, pool: list) -> list:
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionItemManager.getSpecial(world):
         if item.spcLogic:
-            world.multiworld.local_early_items[world.player][item.readableName] = item.count
+            world.push_precollected(world.create_item(item.readableName))
         if item.type == itemType.building and item.tier > world.options.starting_tier - 1:
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
@@ -194,32 +177,22 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
             item = world.create_item("Administrative Capacity")
             pool.append(item)
     elif world.options.game_mode == "spheres":
-        for i in range(world.options.sphere_count):# + world.options.extra_sphere_count):
+        for i in range(world.options.sphere_count):
             item = world.create_item("Diplomatic Range")
             pool.append(item)
-        for i in range(world.options.orb_count):# + world.options.extra_orb_count):
+        for i in range(world.orbCount):
             item = world.create_item("Orb of Domination")
             pool.append(item)
-        #world.multiworld.local_items[world.player]["Orb of Domination"] = world.options.orb_count + world.options.extra_orb_count
-        #world.multiworld.local_early_items[world.player][item.readableName] = max(
-        #    item.count - world.options.starting_tier - 2, 0)
     return pool
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
 
-    #fillerFunctions = [generateFillerWeak, generateFillerStrong, generateTrapHarmless, generateTrapWeak, generateTrapStrong] #List of functions for generating filler
-    #weights = [world.options.filler_weak.value, world.options.filler_strong.value, world.options.trap_harmless.value, world.options.trap_weak.value, world.options.trap_strong.value] #list of weights defined in YAML
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
     weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
-
-    #if sum(weights) == 0:
-    #    world.logger.warn("Invalid YAML: Sum of filler and trap weighting must not be zero, filler set to 1.")
-    #    weights = [1,0]
 
     fillerCount = - len(pool) - 1
     for region in world.get_regions():
         fillerCount += len(region.locations)
-    #fillerCount = len(world.get_region("Old World").locations) - len(pool) - 1
     fillerFunctions = world.random.choices(fillerFunctions, weights=weights, k=fillerCount)
     
     for func in fillerFunctions:
@@ -235,11 +208,9 @@ def generateFiller(world: TWW3World) -> TWW3Item:
     if key == 1203:
         ancillaries_table = ancillariesRegularDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
-        #key = world.item_name_to_id[name]
     elif key == 1205:
         ancillaries_table = ancillariesLegendaryDict
         name = world.random.choice(tuple(ancillaries_table.values())).readableName
-        # key = world.item_name_to_id[name]
     else:
         name = itemDict[key].readableName
 
@@ -254,68 +225,3 @@ def generateTrap(world: TWW3World) -> TWW3Item:
     name = itemDict[key].readableName
     item = world.create_item(name)
     return item
-
-#def generateFillerWeak(world: TWW3World) -> TWW3Item:
-#    key = world.random.choice(tuple(fillerDict.keys()))
-#
-#    # apply random effect
-#    """
-#    if key == 1201:
-#        effect_table = globalEffectTable
-#        name = world.random.choice(tuple(effect_table.values())).name
-#        key = world.item_name_to_id[name]
-#    """
-#    # get random ancillary
-#    if key == 1203 or key == 1201:
-#        ancillaries_table = ancillariesRegularDict
-#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
-#        #key = world.item_name_to_id[name]
-#    elif key == 1205:
-#        ancillaries_table = ancillariesLegendaryDict
-#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
-#        # key = world.item_name_to_id[name]
-#    else:
-#        name = itemDict[key].readableName
-#
-#    item = world.create_item(name)
-#    return item
-
-#def generateFillerStrong(world: TWW3World) -> TWW3Item:
-#    key = world.random.choice(tuple(fillerStrongDict.keys()))
-#    #This item is considered a trap in conquest
-#    if key == 1301 and world.options.game_mode == "conquest":
-#        key = 1205
-#    # get legendary ancillary
-#    if key == 1205:
-#        ancillaries_table = ancillariesLegendaryDict
-#        name = world.random.choice(tuple(ancillaries_table.values())).readableName
-#        #key = world.item_name_to_id[name]
-#    else:
-#        name = itemDict[key].readableName
-        
-#    item = world.create_item(name)
-#    return item
-
-#def generateTrapHarmless(world: TWW3World) -> TWW3Item:
-#    key = world.random.choice(tuple(trapHarmlessDict.keys()))
-#    name = itemDict[key].readableName
-#
-#    item = world.create_item(name)
-#    return item
-
-#def generateTrapWeak(world: TWW3World) -> TWW3Item:
-#    key = world.random.choice(tuple(trapDict.keys()))
-#    if key == 1504 and world.options.game_mode == "spheres":
-#        key = world.random.randint(1500, 1503)
-
-#    name = itemDict[key].readableName
-
-#    item = world.create_item(name)
-#    return item
-
-#def generateTrapStrong(world: TWW3World) -> TWW3Item:
-#    key = world.random.choice(tuple(trapStrongDict.keys()))
-#    name = itemDict[key].readableName
-#
-#    item = world.create_item(name)
-#    return item
