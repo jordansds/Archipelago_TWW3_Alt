@@ -185,10 +185,10 @@ class checksPerSettlement(Range):
     """Set how many checks are triggered per settlement captured.
     Depending on YAML settings and the chosen faction, you will likely have around 150-250 non-filler items.
     Make sure to change this value based on how many locations you want your game to have.
-    If world generation fails, then you will either need to increase this option."""
+    If world generation fails, then try increasing this option."""
     display_name = "Checks Per Settlement"
     range_start = 1
-    range_end = 10
+    range_end = 5
     default = 3
 
 class startingSettlements(Range):

@@ -71,12 +71,13 @@ This lends itself to faster paced games and plays better in synchronous multiwor
 `spheres` is the original game mode developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
 grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
 you win. Every settlement on the map is a unique check. This is a *much* slower paced game that is better suited to asyncs.
-Additionally this mode is prone to causing softlocks if you don't have many extra spheres, as AI factions can claim razed settlements
-causing them to become out of logic and impossible to collect items from. If this happens you will have to either release the location
+Additionally this mode is prone to causing softlocks, as AI factions can claim razed settlements causing them to become 
+out of logic and impossible to collect items from. If this happens you will have to either release the location
 manually with `send_location` in the server console, or forceably send a diplomatic radius upgrade instead.
 
 **checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
-to slow down the pace of your checks.
+to slow down the pace of your checks. This is designed to allow smaller values for "number_of_settlements" whilst still generating
+enough locations for all your items. If you set this to an absurd number, you'll end up with far too much filler items and traps.
 
 ### Conquest settings
 **number_of_settlements**: How many settlements you need to own simultaneously to reach your goal and determines the base number
