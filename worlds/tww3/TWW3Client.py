@@ -464,9 +464,9 @@ class TWW3Context(CommonContext):
             self.messenger.run(message)
         self.lineCount += 1
 
-    def sendProgressiveItem(self, progressionGroup):
+    def sendProgressiveItem(self, itemName):
         for key, item in self.itemDict.items():
-            if item.progressionGroup == progressionGroup:
+            if item.progressionGroup == itemName:
                 self.progressiveItemFlags[key] += 1
                 if item.tier == self.progressiveItemFlags[key]:
                     if item.type == itemType.building:
@@ -475,6 +475,25 @@ class TWW3Context(CommonContext):
                         self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
                     else:
                         self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+
+    def sendProgressiveItem(self, itemName):
+        keys = [key for key, item in self.itemDict.items() if item.name == itemName]
+        for key in keys:
+            self.progressiveItemFlags[key] += 1
+
+        unlockedItems = [item for item in self.itemDict.values()
+                         if item.progressionGroup == itemName and item.tier == self.progressiveItemFlags[key]]
+
+        for item in unlockedItems:
+            if item.type == itemType.building:
+                self.sendMessage(
+                    f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+            elif item.type == itemType.unit:
+                self.sendMessage(
+                    f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+            else:
+                self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+
 
     def triggerSphereExpansion(self, numberOfSphereItems):
         oldSphere = []
