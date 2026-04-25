@@ -52,7 +52,9 @@ def createVictoryLocation(world: TWW3World) -> None:
 def createRegularLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
-    if world.playerFaction.name in sm.hordeList:
+    if world.playerFaction.name == "wh3_dlc24_tze_the_deceivers":
+        startingCheck = 3
+    elif world.playerFaction.name in sm.hordeList:
         startingCheck = 1
     else:
         startingCheck = world.options.starting_settlements + 1
@@ -72,9 +74,7 @@ def createRegularLocations(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
-    #key = -1
     for key, settlement in enumerate(world.settlements.values()):
-        #key += 1
         for i in range(world.options.checks_per_settlement):
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
             location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)

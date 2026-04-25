@@ -234,6 +234,18 @@ class ruleManager:
             "Khorne Unholy Manifestation: Khorne's Glare": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
             "Khorne Unholy Manifestation: Slaughter Incarnate": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
             "Khorne Unholy Manifestation: Call of Battle": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+
+            "Tzeentch Unholy Manifestation: ": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "Tzeentch Unholy Manifestation: ": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
+            "Tzeentch Unholy Manifestation: ": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+
+            "Nurgle Unholy Manifestation: ": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "Nurgle Unholy Manifestation: ": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
+            "Nurgle Unholy Manifestation: ": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
+
+            "Slaanesh Unholy Manifestation: ": (Has("Administrative Capacity") | Has("Diplomatic Range")) if not world.options.hard_logic else True_(),
+            "Slaanesh Unholy Manifestation: ": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
+            "Slaanesh Unholy Manifestation: ": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
         }
 
     def getTechRules(self, location):

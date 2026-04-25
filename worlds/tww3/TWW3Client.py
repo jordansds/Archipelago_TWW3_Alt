@@ -59,8 +59,13 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             self.ctx.logChecks = not self.ctx.logChecks
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
 
+    def _cmd_version(self):
+        """Prints the version of the client."""
+        if isinstance(self.ctx, TWW3Context):
+            logger.info(f"You are running version {self.ctx.version}")
+
     def _cmd_teleport(self):
-        """Teleports lords and heroes to starting location (use if your lord did not teleport)."""
+        """Teleports lords and heroes to starti4ng location (use if your lord did not teleport)."""
         if isinstance(self.ctx, TWW3Context):
             for faction, settlement in self.ctx.capitals.items():
                 if faction == self.ctx.playerFaction:
@@ -243,12 +248,12 @@ class TWW3Context(CommonContext):
     def on_connected(self, args: dict):
         self.lineCount = 0
 
-        version = TWW3World.world_version.as_simple_string()
-        if version != args['slot_data']['version']:
-            raise Exception(f"ERROR: Host ({args['slot_data']['version']}) and player ({version}) are using different versions of the TWW3 APWorld!")
+        self.version = TWW3World.world_version.as_simple_string()
+        if self.version != args['slot_data']['version']:
+            raise Exception(f"ERROR: Host ({args['slot_data']['version']}) and player ({self.version}) are using different versions of the TWW3 APWorld!")
             #logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions of the TWW3 APWorld!")
         else:
-            logger.info(f"You are running: {version} of the TWW3 APWorld")
+            logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
         self.path.replace("\\", "/")
@@ -464,17 +469,17 @@ class TWW3Context(CommonContext):
             self.messenger.run(message)
         self.lineCount += 1
 
-    def sendProgressiveItem(self, itemName):
-        for key, item in self.itemDict.items():
-            if item.progressionGroup == itemName:
-                self.progressiveItemFlags[key] += 1
-                if item.tier == self.progressiveItemFlags[key]:
-                    if item.type == itemType.building:
-                        self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
-                    elif item.type == itemType.unit:
-                        self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
-                    else:
-                        self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+    #def sendProgressiveItem(self, itemName):
+    #    for key, item in self.itemDict.items():
+    #        if item.progressionGroup == itemName:
+    #            self.progressiveItemFlags[key] += 1
+    #            if item.tier == self.progressiveItemFlags[key]:
+    #                if item.type == itemType.building:
+    #                    self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+    #                elif item.type == itemType.unit:
+    #                    self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+    #                else:
+    #                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
     def sendProgressiveItem(self, itemName):
         keys = [key for key, item in self.itemDict.items() if item.name == itemName]
