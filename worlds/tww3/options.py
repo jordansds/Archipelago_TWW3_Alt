@@ -214,14 +214,14 @@ class startingSettlements(Range):
 #    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
 #    display_name = "RitualSanity"
 
-class sanity(Toggle):
+class sanity(DefaultOnToggle):
     """If you want every building and tech to be a location.
-    [EXPERIMENTAL, REQUIRES BUILDING AND TECH SHUFFLE TO BE ENABLED]"""
+    [EXPERIMENTAL, WILL ENABLE BUILDING AND TECH SHUFFLE]"""
     display_name = "BuildingTechSanity"
 
 class ritualSanity(Toggle):
     """If you want every faction mechanic to be a location.
-    [EXPERIMENTAL, REQUIRES RITUAL SHUFFLE AND SANITY TO BE ENABLED, Will force minimum settlements to a minimum of 30]"""
+    [EXPERIMENTAL, WILL ENABLE RITUAL SHUFFLE AND SANITY, Will force settlements to a minimum of 30]"""
     display_name = "RitualSanity"
 
 class battleSanity(Toggle):
@@ -241,7 +241,7 @@ class numberOfSettlements(Range):
     If world generation fails, then you will need to increase this option or checks_per_settlement.
     Items will not be found in any of your starting settlements."""
     display_name = "Number Of Settlements (CONQUEST)"
-    range_start = 20
+    range_start = 5
     range_end = len(sm.settlementDict)
     default = 50
 
@@ -317,34 +317,25 @@ class techShuffle(DefaultOnToggle):
     """Whether technologies should be included in the item pool."""
     display_name = "Tech Shuffle"
 
-class progressiveTechnologies(Choice):
+class progressiveTechnologies(Toggle):
     """If technologies should be progressive. Requires Tech Shuffle to be on."""
     display_name = "Progressive Technologies"
-    option_true = 1
-    option_false = 0
-    default = 0
 
 class buildingShuffle(DefaultOnToggle):
     """Whether buildings should be included in the item pool."""
     display_name = "Building Shuffle"
 
-class progressiveBuildings(Choice):
+class progressiveBuildings(DefaultOnToggle):
     """If buildings should be progressive. Requires Building Shuffle to be on."""
     display_name = "Progressive Buildings"
-    option_true = 1
-    option_false = 0
-    default = 1
 
 class unitShuffle(DefaultOnToggle):
     """Whether units should be included in the item pool."""
     display_name = "Unit Shuffle"
 
-class progressiveUnits(Choice):
+class progressiveUnits(Toggle):
     """If units should be progressive. Requires Unit Shuffle to be on."""
     display_name = "Progressive Units"
-    option_true = 1
-    option_false = 0
-    default = 0
 
 class startingTier(Range):
     """Start with buildings and units of this tier already unlocked.
