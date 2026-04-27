@@ -158,12 +158,6 @@ either set it to 10 or leave it off. For singleplayer games a value of at least 
 
 [Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECOMMENDED.
 
-[Remove Tech Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3541110164): Lets you research all tech in any order. This is specifically intended to be used when
-using shuffled non-progressive tech so you can research them immediately.
-
-[Remove Faction Mechanic Debuffs](https://steamcommunity.com/sharedfiles/filedetails/?id=3540418784): Removes debuffs from Avelorn, Empire factions, Clan Angrund, Skarsnik and
-Oxyotl which are related to specific places on the map you probably can't reach.
-
 [No Item Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601): Lets you equip all items, even if they are restricted to a different Legendary Lord.
 
 [No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789915966): Removes all climate penalties so your start position is not as bad as it seems.
