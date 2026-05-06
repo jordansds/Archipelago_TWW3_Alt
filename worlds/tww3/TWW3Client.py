@@ -334,6 +334,7 @@ class TWW3Context(CommonContext):
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
             self.numberOfOrbs = 0
+            self.expansionItems = 0
 
             offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
             for key, settlement in sm.settlementDict.items():
