@@ -3,22 +3,6 @@ from rule_builder.rules import Has, HasAll, HasAny, HasFromList, CanReachLocatio
 # @formatter:off
 class ruleManager:
     def __init__(self, world):
-        """        self.techSanityRules = {
-            "HighElf Tech: Appoint Sea Masters": HasAll() | Has(),
-            "HighElf Tech: Dragon's Bond": Has(),
-            "HighElf Tech: Call the Great Herds": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Livestock Pens", "HighElf Building: Cattle Ranch") | Has("Progressive HighElf Building: Pasture", 3 - world.options.starting_tier)), #has (x | y) & (a | b)
-            "HighElf Tech: Awakening the Ancient Ones": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Exotic Pet Store", "HighElf Building: Exotic Animal Bazaar") | Has("Progressive HighElf Building: Animals", 3 - world.options.starting_tier)),
-            "HighElf Tech: Great Weapons": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Iron Mine", "HighElf Building: Iron Smelter") | Has("Progressive HighElf Building: Iron", 3 - world.options.starting_tier)),
-            "HighElf Tech: Gemsetting": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Gem Mine", "HighElf Building: Gemcutter's Atelier") | Has("Progressive HighElf Building: Gems", 3 - world.options.starting_tier)),
-            "HighElf Tech: Marble Stockpiles": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Marble Quarry", "HighElf Building: Sculptor's Workshop") | Has("Progressive HighElf Building: Marble", 3 - world.options.starting_tier)),
-            "HighElf Tech: Healing Salve": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Exotic Hothouse", "HighElf Building: Alchemy Workshop") | Has("Progressive HighElf Building: Medicine", 3 - world.options.starting_tier)),
-            "HighElf Tech: Hardwood Construction": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Timber Mill", "HighElf Building: Lumberyard") | Has("Progressive HighElf Building: Wood", 3 - world.options.starting_tier)),
-            "HighElf Tech: Eastern Trade Contracts": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Spice Trading Post", "HighElf Building: Eastern Bazaar") | Has("Progressive HighElf Building: Spices", 3 - world.options.starting_tier)),
-            "HighElf Tech: Preserved Seafood": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Salt Pans", "HighElf Building: Salt Distillery") | Has("Progressive HighElf Building: Salt", 3 - world.options.starting_tier)),
-            "HighElf Tech: Monthly Festivals": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Vineyard", "HighElf Building: Vintner") | Has("Progressive HighElf Building: Wine", 3 - world.options.starting_tier)),
-            "HighElf Tech: Extravagant Murals": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Cinnabar Mine", "HighElf Building: Dyemaker") | Has("Progressive HighElf Building: Dyes", 3 - world.options.starting_tier)),
-            "HighElf Tech: Porcelain Kilns": (Has("HighElf Tech: Trade Advancements") | Has("Progressive tech_hef_trade", 2 - world.options.starting_tier)) & (HasAll("HighElf Building: Pottery Maker", "HighElf Building: Kilns") | Has("Progressive HighElf Building: Pottery", 3 - world.options.starting_tier)),
-        }"""
         self.groups = {
             "Empire Gunnery School Tier1": ["Empire Gunnery School: Artisan Firearm Shot", "Empire Gunnery School: Thoroughbred Steeds",
                                             "Empire Gunnery School: Extra Gunpowder", "Empire Gunnery School: Weighted Munitions",

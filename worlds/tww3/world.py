@@ -183,10 +183,10 @@ class TWW3World(World):
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
 
-        try:
-            slotData["version"] = self.world_version.as_simple_string()
-        except AttributeError:
-            self.logger.error("Your Archipelago is out of date, update to the latest version")
+        #try:
+        #    slotData["version"] = self.world_version.as_simple_string()
+        #except AttributeError:
+        #    self.logger.error("Your Archipelago is out of date, update to the latest version")
         slotData["version"] = self.world_version.as_simple_string()
         return slotData
 
