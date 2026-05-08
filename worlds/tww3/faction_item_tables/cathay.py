@@ -1,5 +1,5 @@
 from BaseClasses import ItemClassification as IC
-from worlds.tww3.dataStructs import itemType, itemData
+from worlds.tww3.dataStructs import itemType, itemData, specialItemData
 
 # @formatter:off
 units: dict[int, itemData] = {
@@ -304,7 +304,7 @@ progTechs: dict[int, itemData] = {
     15400: itemData(IC.useful, 16, "Progressive tech_cth", itemType.tech, 16, None, "Progressive Cathay Tech: Technology"),
 }
 
-special: dict[int, itemData] = {
+special: dict[int, specialItemData] = {
 
 }
 
