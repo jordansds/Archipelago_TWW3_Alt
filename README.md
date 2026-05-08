@@ -57,6 +57,8 @@ start playing!
 
 ## What the yaml do
 
+**Many of these settings are outdated at this time, will be updated soonish**
+
 **starting_faction**: Select the faction you're going to play as.
 
 **faction_shuffle**: Randomize starting positions. Recommended to be on.
