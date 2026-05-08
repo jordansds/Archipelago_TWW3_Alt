@@ -81,3 +81,5 @@ progTechs: dict[int, itemData] = {key + 70000: itemData(unit.classification,
                                   for key, unit in norsca.progTechs.items()}
 
 special: dict[int, specialItemData] = {}
+
+rituals: dict[int, specialItemData] = {}

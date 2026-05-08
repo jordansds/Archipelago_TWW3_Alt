@@ -369,3 +369,7 @@ special: dict[int, specialItemData] = {
     35523: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_tech_ksl_ostankya_unique_6', itemType.tech, 3, 'Progressive tech_ksl_woods', False, False, "Kislev Tech: Poacher's Bane"),
     35524: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_tech_ksl_ostankya_witches_hut_unlock_2', itemType.tech, 4, 'Progressive tech_ksl_woods', False, False, 'Kislev Tech: Toil & Trouble'),
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

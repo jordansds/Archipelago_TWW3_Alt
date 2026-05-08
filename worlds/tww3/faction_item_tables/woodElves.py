@@ -248,3 +248,7 @@ special: dict[int, specialItemData] = {
     55524: specialItemData(IC.useful, 1, ['wh2_dlc16_wef_drycha'], 'wh3_main_monster_feral_bears', itemType.unit, 2, 'Progressive wef_bst', False, False, 'WoodElf Unit: Feral Bears'),
     55525: specialItemData(IC.useful, 1, ['wh2_dlc16_wef_drycha'], 'wh2_dlc16_wef_mon_hawks_0', itemType.unit, 1, 'Progressive wef_bst', False, False, 'WoodElf Unit: Great Hawks')
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

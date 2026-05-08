@@ -303,5 +303,6 @@ special: dict[int, specialItemData] = {
     51503: specialItemData(IC.useful, 1, ['wh2_dlc11_cst_pirates_of_sartosa'], 'wh3_main_ogr_inf_maneaters_3', itemType.unit, 3, 'Progressive cst_rng', False, False, 'Pirate Unit: Maneaters (Ogre Pistols)'),
 }
 
-#
-#
+rituals: dict[int, specialItemData] = {
+
+}

@@ -426,3 +426,7 @@ special: dict[int, specialItemData] = {
     23538: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_infantry', itemType.building, 2, None, False, False, 'Progressive Dwarf Airship: Infantry Workshop'),
     23539: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_support', itemType.building, 2, None, False, False, 'Progressive Dwarf Airship: Support Radius'),
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

@@ -454,3 +454,7 @@ rituals: dict[int, specialItemData] = {
 
     #"wh_main_ritual_emp_policy"
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

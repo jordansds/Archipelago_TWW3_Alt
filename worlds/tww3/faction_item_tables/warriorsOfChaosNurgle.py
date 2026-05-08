@@ -72,3 +72,5 @@ progTechs: dict[int, itemData] = {
 special: dict[int, itemData] = {
 
 }
+
+rituals = warriorsOfChaos.rituals

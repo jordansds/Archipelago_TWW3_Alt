@@ -361,3 +361,7 @@ special: dict[int, specialItemData] = {
     57520: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_nurgle', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Rusted Branding Iron'),
     57521: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_nur_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Maddening Gifts'),
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

@@ -83,3 +83,5 @@ progTechs: dict[int, itemData] = {key + 58000: itemData(unit.classification,
                                   for key, unit in tzeentch.progTechs.items()}
 
 special: dict[int, specialItemData] = {}
+
+rituals = tzeentch.rituals

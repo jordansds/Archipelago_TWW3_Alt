@@ -338,3 +338,7 @@ progTechs: dict[int, itemData] = {
 special: dict[int, itemData] = {
 
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

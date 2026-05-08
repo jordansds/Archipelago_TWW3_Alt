@@ -158,3 +158,5 @@ special: dict[int, specialItemData] = {
     #37510: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'Progressive lzd_nakai', ItemType.building, 0, None, False, True, 'Lzd Nakai Building: Temple of Xholankha'),
     #37511: specialItemData(IC.useful, 1, "wh2_dlc13_lzd_spirits_of_the_jungle", 'Progressive lzd_port_nakai', ItemType.building, 0, None, False, True, 'Lzd Nakai Building: Temple of Xholankha'),
 }
+
+rituals = lizardmen.rituals

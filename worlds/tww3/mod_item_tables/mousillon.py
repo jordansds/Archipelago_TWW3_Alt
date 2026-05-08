@@ -303,3 +303,7 @@ special: dict[int, specialItemData] = {
     103503: specialItemData(IC.useful, 1, 'mixer_msl_cult_of_the_bloody_grail', "mixu_msl_ror_ghosts_of_grismerie", itemType.unit, 1, 'Progressive msl_inf', False, False, 'Mousillon Unit: Ghosts of Grismerie (Grey Men)'),
     103504: specialItemData(IC.useful, 1, 'mixer_msl_cult_of_the_bloody_grail', "mixu_msl_ror_barons_men", itemType.unit, 1, 'Progressive msl_inf', False, False, "Mousillon Unit: Baron's Men (Crypt Ghouls)"),
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

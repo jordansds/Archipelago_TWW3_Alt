@@ -48,6 +48,8 @@ progTechs: dict[int, itemData] = {}
 
 special: dict[int, specialItemData]  = {}
 
+rituals: dict[int, specialItemData] = {}
+
 """
 mixu_emp_pirate_flagship_captains_cabin_1
 mixu_emp_pirate_flagship_captains_cabin_2

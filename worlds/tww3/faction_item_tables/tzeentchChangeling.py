@@ -12,6 +12,8 @@ techs: dict[int, itemData] = {
 
 }
 
+techs = tzeentch.techs
+
 progUnits: dict[int, itemData] = tzeentch.progUnits
 
 progBuildings: dict[int, itemData] = {
@@ -21,6 +23,8 @@ progBuildings: dict[int, itemData] = {
 progTechs: dict[int, itemData] = {
 
 }
+
+progTechs = tzeentch.progTechs
 
 special: dict[int, specialItemData] = {
 

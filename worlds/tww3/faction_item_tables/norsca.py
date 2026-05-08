@@ -391,3 +391,7 @@ special: dict[int, specialItemData] = {
     39637: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_betrayal', itemType.unit, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
     39638: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_faithlessness', itemType.unit, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Pacts of Enmity')
 }
+
+rituals: dict[int, specialItemData] = {
+
+}

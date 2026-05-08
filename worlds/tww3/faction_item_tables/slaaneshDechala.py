@@ -137,3 +137,5 @@ progTechs: dict[int, itemData] = slaanesh.progTechs
 special: dict[int, specialItemData] = {
 
 }
+
+rituals = slaanesh.rituals

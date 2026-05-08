@@ -351,3 +351,7 @@ special: dict[int, specialItemData] = {
     113545: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_sanctuary_addon_garrison", itemType.building, 0, "Progressive crb_sanctuary_extra", False, False, "Crustacean Sanctuary: Sanctuary Guard"),
     113546: specialItemData(IC.useful, 1, "mixer_cn_ancient", "Progressive crb_sanctuary_extra", itemType.building, 1, None, False, False, "Progressive Crustacean Building: Sanctuary Addon"),
 }
+
+rituals: dict[int, specialItemData] = {
+
+}
