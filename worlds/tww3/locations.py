@@ -25,14 +25,13 @@ def createAllLocations(world: TWW3World) -> None:
         createDiploRangeLocations(world)
 
     if world.options.sanity:
-        createBuildingLocations(world, False)
+        createBuildingLocations(world, True)
         createTechLocations(world)
+        if world.options.ritual_sanity:
+            createRitualLocations(world)
         #Run a second pass where we grab the locations that we couldn't risk generating the first time and lock them to filler items
         #In case of generation issues E.g. Ports in Spheres mode.
-        createBuildingLocations(world, True)
-
-    if world.options.ritual_sanity:
-        createRitualLocations(world)
+        createBuildingLocations(world, False)
 
     if world.options.battle_sanity:
         createBattleLocations(world)
@@ -115,8 +114,7 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
             location = TWW3Location(world.player, locName, locId, region)
             region.locations.append(location)
         except AssertionError:
-            continue
-
+            pass
 
     if not firstPass:
         rules.setBuildingLocationRules(world, buildings, firstPass)

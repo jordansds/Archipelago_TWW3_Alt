@@ -49,7 +49,7 @@ def setBuildingLocationRules(world: TWW3World, buildings, firstPass: bool):
             #if firstPass:
             #    continue
             #else:
-                world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
+            world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
         if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
 
@@ -117,7 +117,11 @@ def setRitualRules(world: TWW3World, rituals: list):
         except KeyError:
             pass
 
-        world.set_rule(world.get_location(item.readableName), rule)
+        try:
+            world.set_rule(world.get_location(item.readableName), rule)
+        except KeyError:
+            world.set_rule(world.get_location(item.readableName), True_())
+            world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
 def setBalance(world: TWW3World) -> None:
         worldRegion = world.get_region("Settlements")

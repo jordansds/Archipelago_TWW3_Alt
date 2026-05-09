@@ -75,11 +75,10 @@ class TWW3World(World):
 
         self.options.local_items.value.add("Orb of Domination")
         self.options.non_local_items.value.add("Administrative Capacity")
+        self.adminCapacity = 5
         if self.options.game_mode == "conquest":
             if self.playerFaction.race == "beastmen":
                 self.adminCapacity = 1
-            else:
-                self.adminCapacity = 5
         elif self.options.game_mode == "spheres":
             self.orbCount = 9
             self.sphereRadius = 150
