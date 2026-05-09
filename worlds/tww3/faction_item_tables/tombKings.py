@@ -249,7 +249,7 @@ progBuildings: dict[int, itemData] = {
     47329: itemData(IC.useful, 5, 'Progressive tmb_settlement_major', itemType.building, 5, None, 'Progressive TombKing Building: Settlement Major'),
     47330: itemData(IC.useful, 3, 'Progressive tmb_settlement_minor', itemType.building, 3, None, 'Progressive TombKing Building: Settlement Minor'),
     47331: itemData(IC.useful, 2, 'Progressive tmb_ushabti', itemType.building, 2, None, 'Progressive TombKing Building: Ushabti'),
-    47332: itemData(IC.useful, 1, 'Progressive tmb_warsphinx', itemType.building, 2, None, 'Progressive TombKing Building: Warsphinx'),
+    47332: itemData(IC.useful, 2, 'Progressive tmb_warsphinx', itemType.building, 2, None, 'Progressive TombKing Building: Warsphinx'),
     47333: itemData(IC.useful, 3, 'Progressive foreign_slot_discovery_tmb', itemType.building, 3, None, 'Progressive TombKing Building: Foreign Slot Discovery Tmb'),
     47334: itemData(IC.useful, 3, 'Progressive tmb_allied_outpost', itemType.building, 3, None, 'Progressive TombKing Building: Allied Outpost'),
     47335: itemData(IC.useful, 1, 'Progressive tmb_resource_ivory', itemType.building, 1, None, 'Progressive TombKing Building: Ivory')
