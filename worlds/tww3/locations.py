@@ -16,6 +16,7 @@ class TWW3Location(Location):
     game = "Total War Warhammer III"
     
 def createAllLocations(world: TWW3World) -> None:
+    createVictoryLocation(world)
 
     if world.options.game_mode == "conquest":
         createRegularLocations(world)
@@ -24,8 +25,11 @@ def createAllLocations(world: TWW3World) -> None:
         createDiploRangeLocations(world)
 
     if world.options.sanity:
-        createBuildingLocations(world)
+        createBuildingLocations(world, False)
         createTechLocations(world)
+        #Run a second pass where we grab the locations that we couldn't risk generating the first time and lock them to filler items
+        #In case of generation issues E.g. Ports in Spheres mode.
+        createBuildingLocations(world, True)
 
     if world.options.ritual_sanity:
         createRitualLocations(world)
@@ -35,8 +39,6 @@ def createAllLocations(world: TWW3World) -> None:
 
     if world.options.despoiler_sanity:
         createDespoilerLocations(world)
-
-    createVictoryLocation(world)
 
 def createVictoryLocation(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
@@ -89,7 +91,7 @@ def createDiploRangeLocations(world: TWW3World) -> None:
                 if world.settlementDiploRange[key] < world.options.sphere_count - 1:
                     forbid_item(location, "Orb of Domination", world.player)
 
-def createBuildingLocations(world: TWW3World) -> None:
+def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
     region = world.get_region("Buildings")
 
     specialBuildings = [item for key, item in factionItemManager.getSpecial(world, True) if
@@ -97,18 +99,27 @@ def createBuildingLocations(world: TWW3World) -> None:
     buildings = [item for key, item in factionItemManager.getBuildings(world.playerFaction.race, False)]
     buildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is not None]
 
-    # Remove t1 settlements and ports as they can only be built in razed settlements
-    buildings = [building for building in buildings if not ("settlement" in building.name or "port" in building.name and building.tier > 0)]
+
+    if firstPass:
+        # Remove t1 settlements and ports as they can only be built in razed settlements
+        buildings = [building for building in buildings if not ("settlement" in building.name or "port" in building.name and building.tier == 0)]
 
     for item in buildings:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
 
-        location = TWW3Location(world.player, locName, locId, region)
+        if firstPass and world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
+            continue
+        #Check if we already generated this building
+        try:
+            location = TWW3Location(world.player, locName, locId, region)
+            region.locations.append(location)
+        except AssertionError:
+            continue
 
-        region.locations.append(location)
 
-    rules.setBuildingLocationRules(world, buildings)
+    if not firstPass:
+        rules.setBuildingLocationRules(world, buildings, firstPass)
 
 
 def createTechLocations(world: TWW3World) -> None:

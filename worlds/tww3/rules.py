@@ -2,9 +2,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
-from BaseClasses import ItemClassification
+from BaseClasses import ItemClassification, LocationProgressType
 import math
-from rule_builder.rules import HasGroup, Has, True_
+from rule_builder.rules import HasGroup, Has, True_, False_, CanReachLocation
 from worlds.tww3 import factionItemManager
 from worlds.tww3.item_tables.progression_table import progressionDict
 from worlds.tww3.dataStructs import itemType, itemData
@@ -36,7 +36,7 @@ def setGenericLocationRule(world: TWW3World, location, i: int):
     if rule is not None:
         world.set_rule(location, rule)
 
-def setBuildingLocationRules(world: TWW3World, buildings):
+def setBuildingLocationRules(world: TWW3World, buildings, firstPass: bool):
 
     specialBuildings = [item for key, item in factionItemManager.getSpecial(world, True) if
                         item.type == itemType.building]
@@ -44,6 +44,12 @@ def setBuildingLocationRules(world: TWW3World, buildings):
     progBuildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is None]
 
     for item in buildings:
+
+        if world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
+            #if firstPass:
+            #    continue
+            #else:
+                world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
         if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
 
@@ -91,7 +97,11 @@ def setTechnologyLocationRules(world: TWW3World, techs):
         except KeyError:
             pass
 
-        world.set_rule(world.get_location(item.readableName), rule)
+        try:
+            world.set_rule(world.get_location(item.readableName), rule)
+        except KeyError:
+            world.set_rule(world.get_location(item.readableName), True_())
+            world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
 def setRitualRules(world: TWW3World, rituals: list):
     rule = True_()
