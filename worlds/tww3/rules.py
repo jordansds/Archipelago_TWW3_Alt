@@ -24,7 +24,7 @@ def setVictoryRule(world: TWW3World, location):
 def setGenericLocationRule(world: TWW3World, location, i: int):
     rule = None
     if world.options.game_mode == "conquest":
-        requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.options.admin_capacity)
+        requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.admin_capacity)
         if requiredAdminCapacity > 0:
             rule = Has("Administrative Capacity", requiredAdminCapacity)
 
