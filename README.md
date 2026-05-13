@@ -20,8 +20,6 @@ In sphere mode every unique settlement in the world can be a check, though only 
 on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECOMMENDED MODS TO
 PREVENT POTENTIAL SOFTLOCK.
 
-**Playing beastmen is currently not recommended in Conquest.**
-
 **If your lord does not spawn next to your city, type /teleport into your client**
 
 ## Installation and setup
@@ -29,16 +27,16 @@ If you don't already have the [Archipelago launcher](https://github.com/Archipel
 install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
 the APWorld. If you're not hosting the session, the host that is generating the multiworld will also need this file! After
 downloading the APWorld, double click the file to install it. Depending on which game mode you want to play you may only
-need one of the two .pack files found on the GitHub release, but it's recommended to download both for ease of use. Place
+need one of the two .pack files found on the GitHub release along with the QOL.pack, but it's recommended to download all of these for ease of use. Place
 the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
 (`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
 
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the mod found on the Steam workshop, as it may not work correctly with this implementation.**
-The .pack mods do not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
+The .pack mods may not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
 to launch the mod such as [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14).
 
-Open the launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
+Open the Archipelago launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
 with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
 before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
 it works. For more detailed information on what the yaml settings do, check below.
@@ -90,27 +88,10 @@ some factions have a lot of items that need generating while other factions need
 out of locations and you don't want to increase the number of settlements needed to win, try increasing checks_per_location
 instead!*
 
-**admin_capacity**: To stop you from conquering the whole map immediately there are special items called **Administration Capacity**.
-Each Admin Capacity received will let you conquer more settlements, and going over the limit forces economic penalties. This setting
-controls how many settlements each admin capacity item will let you own.
-
 ### Spheres settings
 
 **spheres_count**: How many diplomatic radius upgrades are needed to have access to every location. Doesn't necessarily cover the
 entire map unless you configure `sphere_radius` to do so.
-
-**extra_sphere_count**: How many extra radius upgrades are added to the multiworld. This can reduce the chance of softlocks.
-
-**sphere_radius**: How much extra distance each radius upgrade adds. 1500 is the longest distance between two settlements, so a
-total radius of 750 would cover the whole map assuming you spawn near the middle. With a radius size of 300 this means a single
-radius upgrade would bring you up to 600 (300 starting radius + 300 from upgrade) and you would have access to about half the map.
-For this reason it's highly recommended to keep this setting somewhere around 100, as going too high causes the entire world to
-be in logic and you may have to embark on an epic quest just to find a progression item for someone else.
-
-**orb_count**: How many orbs of domination are generated. Collecting this many causes you to win.
-
-**extra_orb_count**: Additional orbs that count to the victory condition but don't affect the amount needed to win. Gives you
-some leeway so you don't necessarily need to collect *every* single orb.
 
 ### Global settings
 
@@ -145,14 +126,14 @@ is recommended to make sure you can equip every item you get.
 
 **randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
 
-**ritual_shuffle**: Locks certain faction mechanics behind multiworld items. Possibly doesn't work.
+**ritual_shuffle**: Locks certain faction mechanics behind multiworld items.
 
 **balance**: Forces unlocks to be near the start of the multiworld so you're guaranteed to get useful items early.
 In a multiworld setting, 20 is probably the highest you'd want this. If you're not sure what to do with this option,
 either set it to 10 or leave it off. For singleplayer games a value of at least 40 should guarantee a smooth early game.
 
-**force_early_buildings/units/techs**: Sets the max tiers that can be forced to generate early.
-5 allows all tiers to generate, 0 disables early generation for the respective setting.
+**force_early**: Sets the max tiers that can be forced to generate early.
+5 allows all tiers to generate, 0 disables early generation.
 
 ## Recommended mods: 
 
