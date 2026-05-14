@@ -141,7 +141,7 @@ buildings: dict[int, itemData] = {
     38469: itemData(IC.useful, 1, 'wh_main_nor_walls_4', itemType.building, 3, 'Progressive nor_walls', 'Norsca Building: Figurehead Palisade'),
     38470: itemData(IC.useful, 1, 'wh_main_nor_worship_1', itemType.building, 0, 'Progressive nor_worship', 'Norsca Building: Ruinous Altar'),
     38471: itemData(IC.useful, 1, 'wh_main_nor_worship_2', itemType.building, 1, 'Progressive nor_worship', 'Norsca Building: Chaos Shrine'),
-    38472: itemData(IC.useful, 1, 'wh_main_nor_worship_3', itemType.building, 2, 'Progressive nor_worship', 'Norsca Building: Vitki Temple')
+    38472: itemData(IC.useful, 1, 'wh_main_nor_worship_3', itemType.building, 2, 'Progressive nor_worship', 'Norsca Building: Vitki Temple'),
     #38436: ItemData(IC.useful, 1, 'wh_main_nor_outpost_experience_1', ItemType.building, 0, 'Progressive nor_outpost_experience', 'Norsca Building: Tattooist'),
     #38437: ItemData(IC.useful, 1, 'wh_main_nor_outpost_experience_2', ItemType.building, 1, 'Progressive nor_outpost_experience', 'Norsca Building: Flesh Brander'),
     #38438: ItemData(IC.useful, 1, 'wh_main_nor_outpost_experience_3', ItemType.building, 2, 'Progressive nor_outpost_experience', 'Norsca Building: Flesh Carver'),
@@ -163,6 +163,19 @@ buildings: dict[int, itemData] = {
     #38454: ItemData(IC.useful, 1, 'wh_main_nor_outpost_stables_1', ItemType.building, 0, 'Progressive nor_outpost_stables', 'Norsca Building: Shieling'),
     #38455: ItemData(IC.useful, 1, 'wh_main_nor_outpost_stables_2', ItemType.building, 1, 'Progressive nor_outpost_stables', 'Norsca Building: Corral'),
     #38456: ItemData(IC.useful, 1, 'wh_main_nor_outpost_stables_3', ItemType.building, 2, 'Progressive nor_outpost_stables', 'Norsca Building: Ruinous Stables'),
+    38473: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_dyes', itemType.building, 0, 'Progressive nor_resource_dyes', 'Norsca Building: Cultist Camp (Dyes)'),
+    38474: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_exotic_animals', itemType.building, 0, 'Progressive nor_resource_animals', 'Norsca Building: Cultist Camp (Animals)'),
+    38475: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_furs', itemType.building, 0, 'Progressive nor_resource_furs', 'Norsca Building: Cultist Camp (Furs)'),
+    38476: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_gemstones', itemType.building, 0, 'Progressive nor_resource_gems', 'Norsca Building: Cultist Camp (Gems)'),
+    38477: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_gold', itemType.building, 0, 'Progressive nor_resource_gold', 'Norsca Building: Cultist Camp (Gold)'),
+    38478: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_ivory', itemType.building, 0, 'Progressive nor_resource_ivory', 'Norsca Building: Cultist Camp (Tusks)'),
+    38479: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_medicinal_plants', itemType.building, 0, 'Progressive nor_resource_medicine', 'Norsca Building: Cultist Camp (Medicine)'),
+    38480: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_pastures', itemType.building, 0, 'Progressive nor_resource_pastures', 'Norsca Building: Cultist Camp (Pasture)'),
+    38481: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_pottery', itemType.building, 0, 'Progressive nor_resource_pottery', 'Norsca Building: Cultist Camp (Pottery)'),
+    38482: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_salt', itemType.building, 0, 'Progressive nor_resource_salt', 'Norsca Building: Cultist Camp (Salt)'),
+    38483: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_spices', itemType.building, 0, 'Progressive nor_resource_spices', 'Norsca Building: Cultist Camp (Spices)'),
+    38484: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_timber', itemType.building, 0, 'Progressive nor_resource_timber', 'Norsca Building: Cultist Camp (Wood)'),
+    38485: itemData(IC.useful, 1, 'wh3_main_ie_NORSCA_resource_wine', itemType.building, 0, 'Progressive nor_resource_wine', 'Norsca Building: Cultist Camp (Wine)'),
 }
 
 techs: dict[int, itemData] = {
@@ -291,7 +304,20 @@ progBuildings: dict[int, itemData] = {
     39328: itemData(IC.useful, 3, 'Progressive nor_shrine_raiding', itemType.building, 2, None, 'Progressive Norsca Building: Raiding'),
     39329: itemData(IC.useful, 3, 'Progressive nor_shrine_recruitment', itemType.building, 2, None, 'Progressive Norsca Building: Desecrated Site'),
     39330: itemData(IC.useful, 3, 'Progressive nor_shrine_replenishment', itemType.building, 2, None, 'Progressive Norsca Building: Replenishment'),
-    39331: itemData(IC.useful, 3, 'Progressive nor_shrine_garrison', itemType.building, 1, None, 'Progressive Norsca Building: Garrison')
+    39331: itemData(IC.useful, 3, 'Progressive nor_shrine_garrison', itemType.building, 1, None, 'Progressive Norsca Building: Garrison'),
+    39332: itemData(IC.useful, 1, 'Progressive nor_resource_dyes', itemType.building, 1, None, 'Progressive Norsca Building: Dyes'),
+    39333: itemData(IC.useful, 1, 'Progressive nor_resource_animals', itemType.building, 1, None, 'Progressive Norsca Building: Animals'),
+    39334: itemData(IC.useful, 1, 'Progressive nor_resource_furs', itemType.building, 1, None, 'Progressive Norsca Building: Furs'),
+    39335: itemData(IC.useful, 1, 'Progressive nor_resource_gemstones', itemType.building, 1, None, 'Progressive Norsca Building: Gems'),
+    39336: itemData(IC.useful, 1, 'Progressive nor_resource_gold', itemType.building, 1, None, 'Progressive Norsca Building: Gold'),
+    39337: itemData(IC.useful, 1, 'Progressive nor_resource_ivory', itemType.building, 1, None, 'Progressive Norsca Building: Tusks'),
+    39338: itemData(IC.useful, 1, 'Progressive nor_resource_medicinal_plants', itemType.building, 1, None, 'Progressive Norsca Building: Medicine'),
+    39339: itemData(IC.useful, 1, 'Progressive nor_resource_pastures', itemType.building, 1, None, 'Progressive Norsca Building: Pasture'),
+    39340: itemData(IC.useful, 1, 'Progressive nor_resource_pottery', itemType.building, 1, None, 'Progressive Norsca Building: Pottery'),
+    39341: itemData(IC.useful, 1, 'Progressive nor_resource_salt', itemType.building, 1, None, 'Progressive Norsca Building: Salt'),
+    39342: itemData(IC.useful, 1, 'Progressive nor_resource_spices', itemType.building, 1, None, 'Progressive Norsca Building: Spices'),
+    39343: itemData(IC.useful, 1, 'Progressive nor_resource_timber', itemType.building, 1, None, 'Progressive Norsca Building: Wood'),
+    39344: itemData(IC.useful, 1, 'Progressive nor_resource_wine', itemType.building, 1, None, 'Progressive Norsca Building: Wine'),
 }
 
 progTechs: dict[int, itemData] = {
@@ -384,12 +410,12 @@ special: dict[int, specialItemData] = {
     39630: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_1', itemType.building, 0, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Bleeding Grounds'),
     39631: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_2A', itemType.building, 1, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Warhowl Barrow'),
     39632: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_2B', itemType.building, 1, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Creeping Morass'),
-    39633: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_deep_seafang', itemType.unit, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Sail the Impossible Seas'),
-    39634: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_seafang', itemType.unit, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: The Ways of the Monstrous Horde'),
-    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_raiding', itemType.unit, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
-    39636: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_troll_loyalty', itemType.unit, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Loyalty to Royalty'),
-    39637: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_betrayal', itemType.unit, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
-    39638: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_faithlessness', itemType.unit, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Pacts of Enmity')
+    39633: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_deep_seafang', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Sail the Impossible Seas'),
+    39634: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_seafang', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: The Ways of the Monstrous Horde'),
+    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_raiding', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
+    39636: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_troll_loyalty', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Loyalty to Royalty'),
+    39637: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_betrayal', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
+    39638: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_faithlessness', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Pacts of Enmity')
 }
 
 rituals: dict[int, specialItemData] = {
