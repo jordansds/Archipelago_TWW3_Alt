@@ -1,4 +1,6 @@
-from typing import Any, Mapping, ClassVar
+from typing import Any, Mapping, ClassVar, Optional
+
+from Options import Option
 from worlds.AutoWorld import World
 from BaseClasses import Region
 import math
@@ -27,6 +29,8 @@ class TWW3World(World):
     origin_region_name = "Settlements"
     topology_present = True # show path to required location checks in spoiler
     logger = logging.getLogger("Total War Warhammer III")
+    ut_can_gen_without_yaml = True
+    glitches_item_name: str = "Glitch Logic"
 
     #Holds the keys that will be sent to the client for locking techs/buildings/units
     #Will be populated in items.createAllItems
@@ -57,12 +61,24 @@ class TWW3World(World):
 
     settlementManager: sm.SettlementManager = None
 
-    def generate_early(self) -> None:
-        #self.item_name_to_id.update({item.readableName: key for key, item in items.itemDict.items()})
-        sm.addModdedFactions(self.options.mod_list)
 
+
+    def generate_early(self) -> None:
+        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        # YAML-less tracker generation
+        if re_gen_passthrough and self.game in re_gen_passthrough:
+            slotData: dict[str, Any] = re_gen_passthrough[self.game]
+            slotOptions: dict[str, Any] = slotData.get("options", {})
+            for key, value in slotOptions.items():
+                opt: Optional[Option] = getattr(self.options, key, None)
+                if opt is not None:
+                    setattr(self.options, key, opt.from_any(value))
+
+        sm.addModdedFactions(self.options.mod_list)
         self.playerFaction = sm.factionDict[self.options.starting_faction.value]
-        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction, self.options.starting_faction.value, self.options.starting_settlements)
+        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction,
+                                                                            self.options.starting_faction.value,
+                                                                            self.options.starting_settlements)
 
         if self.options.faction_shuffle:
             self.settlements = self.settlementManager.randomiseSettlements()
@@ -146,7 +162,8 @@ class TWW3World(World):
 
         :return: A dictionary to be sent to the client when it connects to the server.
         """
-        slotData = self.options.as_dict("starting_faction",
+        slotData = self.options.as_dict("game_mode",
+                                        "starting_faction",
                                         "progressive_technologies",
                                         "progressive_buildings",
                                         "progressive_units",
@@ -181,11 +198,28 @@ class TWW3World(World):
         slotData["faction_capitals"] = self.settlementManager.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
+        slotData["options"] =  self.options.as_dict("starting_faction",
+                                                                "game_mode",
+                                                                "starting_settlements",
+                                                                "checks_per_settlement",
+                                                                "sanity",
+                                                                "ritual_sanity",
+                                                                "battle_sanity",
+                                                                "despoiler_sanity",
+                                                                "number_of_settlements",
+                                                                "sphere_count",
+                                                                "tech_shuffle",
+                                                                "progressive_technologies",
+                                                                "building_shuffle",
+                                                                "progressive_buildings",
+                                                                "unit_shuffle",
+                                                                "progressive_units",
+                                                                "ritual_shuffle",
+                                                                "starting_tier",
+                                                                "balance",
+                                                                "hard_logic",
+                                                                "mod_list"),
 
-        #try:
-        #    slotData["version"] = self.world_version.as_simple_string()
-        #except AttributeError:
-        #    self.logger.error("Your Archipelago is out of date, update to the latest version")
         slotData["version"] = self.world_version.as_simple_string()
         return slotData
 

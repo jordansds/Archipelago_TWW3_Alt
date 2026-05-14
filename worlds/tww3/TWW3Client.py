@@ -367,7 +367,7 @@ class TWW3Context(CommonContext):
             for key, item in self.itemDict.items():
                 if item.type == itemType.ritual and item.progressionGroup is not None:
                     self.locationLookup[item.readableName] = key + 1000000
-        print(self.locationLookup)
+        #print(self.locationLookup)
         if self.battleSanity:
             for i in range(1,21):
                 self.locationLookup[f"Won {i*5} Battles"] = i + 20000
