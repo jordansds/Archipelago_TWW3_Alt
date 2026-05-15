@@ -144,7 +144,7 @@ def setBalance(world: TWW3World) -> None:
                 weight = world.options.checks_per_settlement * world.world.adminCapacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 
-                world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems))
+                world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
 
         elif world.options.game_mode == "spheres":
 
@@ -164,4 +164,4 @@ def setBalance(world: TWW3World) -> None:
                         requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
 
                         #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
-                        world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems))
+                        world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))

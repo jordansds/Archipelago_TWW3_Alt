@@ -2,7 +2,7 @@ from typing import Any, Mapping, ClassVar, Optional
 
 from Options import Option
 from worlds.AutoWorld import World
-from BaseClasses import Region
+from BaseClasses import Region, ItemClassification as IC
 import math
 import settings
 from worlds.tww3.options import TWW3Options
@@ -68,7 +68,7 @@ class TWW3World(World):
         # YAML-less tracker generation
         if re_gen_passthrough and self.game in re_gen_passthrough:
             slotData: dict[str, Any] = re_gen_passthrough[self.game]
-            slotOptions: dict[str, Any] = slotData.get("options", {})
+            slotOptions: dict[str, Any] = slotData.get("options", {})[0]
             for key, value in slotOptions.items():
                 opt: Optional[Option] = getattr(self.options, key, None)
                 if opt is not None:
@@ -225,6 +225,9 @@ class TWW3World(World):
 
 
     def create_item(self, name: str) -> items.TWW3Item:
+        if name == "Glitch Logic":
+            return items.TWW3Item("Glitch Logic", IC.progression, None, self.player)
+
         key: int = self.item_name_to_id[name]
         return items.TWW3Item(name, items.itemDict[key].classification, key, player=self.player)
 
