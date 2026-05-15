@@ -57,9 +57,6 @@ buildings: dict[int, itemData] = {
     34414: itemData(IC.useful, 1, 'wh3_main_ksl_barracks_1', itemType.building, 0, 'Progressive ksl_barracks', 'Kislev Building: Kossar Hut'),
     34415: itemData(IC.useful, 1, 'wh3_main_ksl_barracks_2', itemType.building, 1, 'Progressive ksl_barracks', 'Kislev Building: Chataz'),
     34416: itemData(IC.useful, 1, 'wh3_main_ksl_barracks_3', itemType.building, 2, 'Progressive ksl_barracks', 'Kislev Building: Casern'),
-    34418: itemData(IC.useful, 1, 'wh3_main_ksl_bears_1', itemType.building, 0, 'Progressive ksl_bears', 'Kislev Building: Cavern of Silk'),
-    34420: itemData(IC.useful, 1, 'wh3_main_ksl_bears_2', itemType.building, 2, 'Progressive ksl_bears', 'Kislev Building: Ur-Szalas'),
-    34422: itemData(IC.useful, 1, 'wh3_main_ksl_bears_3', itemType.building, 3, 'Progressive ksl_bears', 'Kislev Building: Grand Ur-Szalas'),
     34423: itemData(IC.useful, 1, 'wh3_main_ksl_cavalry_1', itemType.building, 0, 'Progressive ksl_cavalry', 'Kislev Building: Oblast Hollow'),
     34424: itemData(IC.useful, 1, 'wh3_main_ksl_cavalry_2', itemType.building, 1, 'Progressive ksl_cavalry', 'Kislev Building: Oblast Moot'),
     34425: itemData(IC.useful, 1, 'wh3_main_ksl_cavalry_3', itemType.building, 2, 'Progressive ksl_cavalry', 'Kislev Building: Oblast Stajin'),
@@ -291,7 +288,6 @@ progBuildings: dict[int, itemData] = {
     35303: itemData(IC.useful, 2, 'Progressive ksl_artillery', itemType.building, 2, None, 'Progressive Kislev Building: Artillery'),
     35304: itemData(IC.useful, 1, 'Progressive ksl_atamans', itemType.building, 1, None, 'Progressive Kislev Building: Atamans'),
     35305: itemData(IC.useful, 3, 'Progressive ksl_barracks', itemType.building, 3, None, 'Progressive Kislev Building: Barracks'),
-    35306: itemData(IC.useful, 4, 'Progressive ksl_bears', itemType.building, 4, None, 'Progressive Kislev Building: Animal Den'),
     35307: itemData(IC.useful, 3, 'Progressive ksl_cavalry', itemType.building, 3, None, 'Progressive Kislev Building: Cavalry'),
     35308: itemData(IC.useful, 5, 'Progressive ksl_city_build_growth', itemType.building, 5, None, 'Progressive Kislev Building: City Build Growth'),
     35309: itemData(IC.useful, 4, 'Progressive ksl_city_court', itemType.building, 4, None, 'Progressive Kislev Building: City Court'),
@@ -351,7 +347,7 @@ special: dict[int, specialItemData] = {
     35507: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_cha_hag_witch_death', itemType.unit, 0, 'Progressive ksl_veh', False, False, 'Kislev Unit: Hag Witch (Death)'),
     35508: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_cha_hag_witch_beast', itemType.unit, 0, 'Progressive ksl_veh', False, False, 'Kislev Unit: Hag Witch (Beasts)'),
 
-    35509: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_1_5', itemType.building, 0, 'Progressive ksl_bears', False, False, 'Kislev Building: Animal Den'),
+    #35509: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_1_5', itemType.building, 0, 'Progressive ksl_bears', False, False, 'Kislev Building: Animal Den'),
 
     35510: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'Progressive tech_ksl_hex', itemType.tech, 1, None, False, True, 'Progressive Kislev Tech: Hex'),
     35511: specialItemData(IC.useful, 4, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'Progressive tech_ksl_woods', itemType.tech, 4, None, False, True, 'Progressive Kislev Tech: Tales from the Woods'),
@@ -368,6 +364,18 @@ special: dict[int, specialItemData] = {
     35522: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_tech_ksl_ostankya_unique_5', itemType.tech, 3, 'Progressive tech_ksl_woods', False, False, 'Kislev Tech: Howling in the Woods'),
     35523: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_tech_ksl_ostankya_unique_6', itemType.tech, 3, 'Progressive tech_ksl_woods', False, False, "Kislev Tech: Poacher's Bane"),
     35524: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_tech_ksl_ostankya_witches_hut_unlock_2', itemType.tech, 4, 'Progressive tech_ksl_woods', False, False, 'Kislev Tech: Toil & Trouble'),
+
+    35525: specialItemData(IC.useful, 1, ["wh3_main_ksl_the_ice_court", "wh3_main_ksl_the_great_orthodoxy", "wh3_main_ksl_ursun_revivalists"], 'wh3_main_ksl_bears_1', itemType.building, 0, 'Progressive ksl_bears', False, False, 'Kislev Building: Cavern of Silk'),
+    35526: specialItemData(IC.useful, 1, ["wh3_main_ksl_the_ice_court", "wh3_main_ksl_the_great_orthodoxy", "wh3_main_ksl_ursun_revivalists"], 'wh3_main_ksl_bears_1', itemType.building, 1, 'Progressive ksl_bears', False, False, 'Kislev Building: Ur-Szalas'),
+    35527: specialItemData(IC.useful, 1, ["wh3_main_ksl_the_ice_court", "wh3_main_ksl_the_great_orthodoxy", "wh3_main_ksl_ursun_revivalists"], 'wh3_main_ksl_bears_1', itemType.building, 2, 'Progressive ksl_bears', False, False, 'Kislev Building: Grand Ur-Szalas'),
+    35528: specialItemData(IC.useful, 3, ["wh3_main_ksl_the_ice_court", "wh3_main_ksl_the_great_orthodoxy", "wh3_main_ksl_ursun_revivalists"], 'Progressive ksl_bears', itemType.building, 3, None, False, True, 'Progressive Kislev Building: Animal Den'),
+
+    35529: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_1', itemType.building, 0, 'Progressive ksl_bears', False, False, 'Kislev Building: Earthen Hollow'),
+    35530: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_2', itemType.building, 1, 'Progressive ksl_bears', False, False, 'Kislev Building: Cavern of Silk'),
+    35531: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_3', itemType.building, 2, 'Progressive ksl_bears', False, False, 'Kislev Building: Animal Den'),
+    35532: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_4', itemType.building, 3, 'Progressive ksl_bears', False, False, 'Kislev Building: Ur-Szalas'),
+    35533: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_5', itemType.building, 4, 'Progressive ksl_bears', False, False, 'Kislev Building: Grand Ur-Szalas'),
+    35534: specialItemData(IC.useful, 5, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'Progressive ksl_bears', itemType.building, 5, None, False, True, 'Progressive Kislev Building: Animal Den'),
 }
 
 rituals: dict[int, specialItemData] = {
