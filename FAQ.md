@@ -2,6 +2,10 @@ Questions are not allowed. How dare you question my authority. Peasant.
 
 I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.
 
+**Does this support Immortal Empires Expanded?**  
+Yes. Turn off faction shuffle and play the conquest gamemode and any map will work.  
+Spheres only supports the vanilla Immortal Empires map.  
+
 
 **Filler Items:**  
  - Get Rich Slow Scroll - Gives random amount of gold.  
