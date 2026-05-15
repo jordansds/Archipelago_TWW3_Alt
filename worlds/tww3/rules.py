@@ -139,9 +139,9 @@ def setBalance(world: TWW3World) -> None:
         if world.options.game_mode == "conquest":
             for index, location in enumerate(worldRegion.locations):
                 #This increments by 1 every admin_capacity empire size in locations.
-                empireSizeInterval = math.floor(index / (world.world.adminCapacity * world.options.checks_per_settlement))
+                empireSizeInterval = math.floor(index / (world.adminCapacity * world.options.checks_per_settlement))
                 # This sets the weighting for the item balancing.
-                weight = world.options.checks_per_settlement * world.world.adminCapacity * world.options.balance / 100
+                weight = world.options.checks_per_settlement * world.adminCapacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
                 
                 world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
