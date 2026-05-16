@@ -554,7 +554,7 @@ class TWW3Context(CommonContext):
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
             if not "special" in location:
-                logger.error(f"There is a Sanity Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
+                logger.error(f"This is a missing building for sanity. Please report the false Key to the discord server (@jordansds). Key is: {location}")
 
     async def checkBattleSanity(self, location):
         try:
