@@ -7,7 +7,7 @@ Yes. Turn off faction shuffle and play the conquest gamemode and any map will wo
 Spheres only supports the vanilla Immortal Empires map.  
   
 **I received X unit from the multiworld but can't recruit it?**  
-You probably don't have the building that you need to train it from unlocked, you need both the unit and the building to be able to train units.  
+You need both the unit and the building that it is trained in unlocked to be able to recruit units.  
 Just like in vanilla, you can't just pull units from nowhere (unless you're a deamon, then fuck me I guess).  
   
   
