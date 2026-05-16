@@ -1,12 +1,16 @@
 Questions are not allowed. How dare you question my authority. Peasant.
-
+  
 I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.
-
+  
 **Does this support Immortal Empires Expanded?**  
 Yes. Turn off faction shuffle and play the conquest gamemode and any map will work.  
 Spheres only supports the vanilla Immortal Empires map.  
-
-
+  
+**I received X unit from the multiworld but can't recruit it?**  
+You probably don't have the building that you need to train it from unlocked, you need both the unit and the building to be able to train units.  
+Just like in vanilla, you can't just pull units from nowhere (unless you're a deamon, then fuck me I guess).  
+  
+  
 **Filler Items:**  
  - Get Rich Slow Scroll - Gives random amount of gold.  
  - Handful of Order - Gives random boost to public order to random owned city.  
