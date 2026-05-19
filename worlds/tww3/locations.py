@@ -111,10 +111,12 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
             continue
         #Check if we already generated this building
         try:
+            location = world.multiworld.get_location(locName, world.player)
+            #location = TWW3Location(world.player, locName, locId, region)
+            #region.locations.append(location)
+        except KeyError:
             location = TWW3Location(world.player, locName, locId, region)
             region.locations.append(location)
-        except AssertionError:
-            pass
 
     if not firstPass:
         rules.setBuildingLocationRules(world, buildings, firstPass)

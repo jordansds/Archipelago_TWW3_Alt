@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+import logging
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from worlds.tww3.world import TWW3World
@@ -22,6 +24,7 @@ itemDict.update(trapDict)
 itemDict.update(ancillariesRegularDict)
 itemDict.update(ancillariesLegendaryDict)
 itemDict.update(progressionDict)
+logger = logging.getLogger("Total War Warhammer III")
 
 class TWW3Item(Item):  # or from Items import MyGameItem
     game = "Total War Warhammer III"  # name of the game/world this item is from
@@ -191,8 +194,13 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
 
     fillerCount = - len(pool) - 1
+    x = 0
     for region in world.get_regions():
         fillerCount += len(region.locations)
+        x += len(region.locations)
+    #logger.info(f"total location count: {x}")
+    #logger.info(f"items generated: {len(pool) - 1}")
+    #logger.info(f"filler required: {fillerCount + 1}")
     fillerFunctions = world.random.choices(fillerFunctions, weights=weights, k=fillerCount)
     
     for func in fillerFunctions:

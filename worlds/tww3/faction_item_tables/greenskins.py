@@ -247,7 +247,7 @@ special: dict[int, specialItemData] = {
     29500: specialItemData(IC.useful, 1, ["wh_main_grn_orcs_of_the_bloody_hand"], "wh_dlc06_special_savage_orc_camp_wurrzag_1", itemType.ritual, 0, "Progressive grn_savages", False, False, "Greenskins Building: Savage Orc Gathering"),
     29501: specialItemData(IC.useful, 1, ["wh_main_grn_orcs_of_the_bloody_hand"], "wh_dlc06_special_savage_orc_camp_wurrzag_2", itemType.ritual, 1, "Progressive grn_savages", False, False, "Greenskins Building: Savage Orc Camp"),
     29502: specialItemData(IC.useful, 1, ["wh_main_grn_orcs_of_the_bloody_hand"], "wh_dlc06_special_savage_orc_camp_wurrzag_3", itemType.ritual, 2, "Progressive grn_savages", False, False, "Greenskins Building: Savage Orc Host"),
-    29503: specialItemData(IC.useful, 1, ["wh_main_grn_orcs_of_the_bloody_hand"], "Progressive grn_savages", itemType.ritual, 2, None, False, True, "Progressive Greenskins Building: Savage Orcs"),
+    29503: specialItemData(IC.useful, 3, ["wh_main_grn_orcs_of_the_bloody_hand"], "Progressive grn_savages", itemType.ritual, 3, None, False, True, "Progressive Greenskins Building: Savage Orcs"),
 }
 
 rituals: dict[int, specialItemData] = {
