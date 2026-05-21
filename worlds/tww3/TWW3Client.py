@@ -163,14 +163,14 @@ class Watcher:
                     if self.context.sanity:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
-                        await self.context.checkSanity(line.split(" ")[1])
+                        await self.context.checkSanity(line.split(" ")[1], "s")
                 elif prefix == "ritual":
                     if self.context.ritualSanity:
                         if self.context.logChecks:
                             logger.info(f"Sending {line}")
                         if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
                             line = line[:-9]
-                        await self.context.checkSanity(line.split(" ")[1])
+                        await self.context.checkSanity(line.split(" ")[1], "r")
                 elif prefix == "battles":
                     if self.context.battleSanity:
                         if self.context.logChecks:
@@ -549,12 +549,17 @@ class TWW3Context(CommonContext):
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
-    async def checkSanity(self, location):
+    async def checkSanity(self, location, sanityType):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
             if not "special" in location:
-                logger.error(f"This is a missing building for sanity. Please report the false Key to the discord server (@jordansds). Key is: {location}")
+                if sanityType == "r" and not self.ritualSanity:
+                    pass
+                if sanityType == "s" and not self.sanity:
+                    pass
+                else:
+                    logger.error(f"This is a missing building for sanity. Please report the false Key to the discord server (@jordansds). Key is: {location}")
 
     async def checkBattleSanity(self, location):
         try:
