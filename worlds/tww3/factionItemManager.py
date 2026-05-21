@@ -3,9 +3,9 @@ from worlds.tww3.dataStructs import itemData, itemType
 from types import ModuleType
 
 #Base Game
-from worlds.tww3.faction_item_tables import (beastmen, bretonnia, cathay, chaosDwarfs, daemons, darkElves, dwarfs,
-                                             empire, greenskins, highElves, highElvesAislinn, khorne, kislev,
-                                             lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven,
+from worlds.tww3.faction_item_tables import (beastmen, bretonnia, cathay, cathayBhashiva, chaosDwarfs, daemons,
+                                             darkElves, dwarfs, empire, greenskins, highElves, highElvesAislinn, khorne,
+                                             kislev, lizardmen, lizardmenNakai, norsca, nurgle, ogreKingdoms, skaven,
                                              slaanesh, slaaneshDechala, tombKings, tzeentch, tzeentchChangeling,
                                              vampireCoast, vampireCounts, warriorsOfChaos, warriorsOfChaosKhorne,
                                              warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch,
@@ -19,6 +19,7 @@ raceModuleDict: dict[str, ModuleType] = {
     "beastmen": beastmen, #10000
     "bretonnia": bretonnia, #12000
     "cathay": cathay, #14000
+    "cathayBhashiva": cathayBhashiva, #74000
     "chaosDwarfs": chaosDwarfs, #16000
     "daemons": daemons, #18000
     "darkElves": darkElves, #20000
