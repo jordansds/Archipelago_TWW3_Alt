@@ -2,11 +2,11 @@ Questions are not allowed. How dare you question my authority. Peasant.
   
 I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.
 
-*Do I need any DLC**
-Do not try playing lords that you do not have DLC for, it won't work.
-If you play a faction and are missing the DLC for certain units/buildings, you will still receive the items from the multiworld but they won't do anything.
-If you enable the "sanity" option in the yaml and are missing dlc buildings, then you will have to release those missing checks manually.
-There's nothing I can do about this, I am not going to add a yaml option where players have to select which of the mountain of DLC they own.
+*Do I need any DLC**  
+Do not try playing lords that you do not have DLC for, it won't work.  
+If you play a faction and are missing the DLC for certain units/buildings, you will still receive the items from the multiworld but they won't do anything.  
+If you enable the "sanity" option in the yaml and are missing dlc buildings, then you will have to release those missing checks manually.  
+There's nothing I can do about this, I am not going to add a yaml option where players have to select which of the mountain of DLC they own.  
   
 **Does this support Immortal Empires Expanded?**  
 Yes. Turn off faction shuffle and play the conquest gamemode and any map will work.  
