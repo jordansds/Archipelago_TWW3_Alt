@@ -14,7 +14,7 @@ units: dict[int, itemData] = {
     74005: itemData(IC.useful, 1, 'wh3_cp1_cth_inf_iron_claw_tiger_warrior', itemType.unit, 4, 'Progressive cth_bhashiva_inf', 'Cathay Bhashiva Unit: Iron Claw Tiger Warriors'),
 
     74006: itemData(IC.useful, 1, 'wh3_main_cth_inf_peasant_archers_0', itemType.unit, 1, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Peasant Archers'),
-    14007: itemData(IC.useful, 1, 'wh3_main_cth_inf_jade_warrior_crossbowmen_0', itemType.unit, 1, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Jade Warrior Crossbows'),
+    74007: itemData(IC.useful, 1, 'wh3_main_cth_inf_jade_warrior_crossbowmen_0', itemType.unit, 1, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Jade Warrior Crossbows'),
     74008: itemData(IC.useful, 1, 'wh3_main_cth_inf_jade_warrior_crossbowmen_1', itemType.unit, 3, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Jade Warrior Crossbows (Shields)'),
     74009: itemData(IC.useful, 1, 'wh3_main_cth_inf_iron_hail_gunners_0', itemType.unit, 2, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Iron Hail Gunners'),
     74034: itemData(IC.useful, 1, 'wh3_main_cth_inf_grenadiers', itemType.unit, 2, 'Progressive cth_bhashiva_rng', 'Cathay Bhashiva Unit: Nan-Gau Grenadiers'),
