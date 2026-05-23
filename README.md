@@ -20,38 +20,30 @@ In sphere mode every unique settlement in the world can be a check, though only 
 on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECOMMENDED MODS TO
 PREVENT POTENTIAL SOFTLOCK.
 
-**If your lord does not spawn next to your city, type /teleport into your client**
+**If your lord does not spawn next to your city, type /teleport into your client**  
 
-## Installation and setup
-If you don't already have the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest),
-install it. Go to the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest) and download
-the APWorld. If you're not hosting the session, the host that is generating the multiworld will also need this file! After
-downloading the APWorld, double click the file to install it. Depending on which game mode you want to play you may only
-need one of the two .pack files found on the GitHub release along with the QOL.pack, but it's recommended to download all of these for ease of use. Place
-the .pack files in the `data` folder inside your Total War Warhammer 3 install directory
-(`...\Steam\steamapps\common\Total War WARHAMMER III\data` for Steam).
+## Installation and setup  
+Install the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest)]  
+Download all .pack files and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
+If you're not hosting the session, the host that is generating the multiworld will only need the .apworld file!  
+Move the .pack files to the Total War Warhammer folder e.g. SteamLibrary/steamapps/common/Total War WARHAMMER III/data/  
+Double click the .apworld and it will be installed to the Archipelago launcher.  
 
-**.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
-use the mod found on the Steam workshop, as it may not work correctly with this implementation.**
-The .pack mods may not load correctly if you use the vanilla mod launcher. You should instead use a third party mod manager
-to launch the mod such as [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14).
-
-Open the Archipelago launcher and run "Generate Template Options" (NOT the regular "Generate"). This will open a folder
-with template yamls - find `Total War Warhammer 3.yaml` and open it to modify your settings. If you've never used a yaml
-before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
-it works. For more detailed information on what the yaml settings do, check below.
-
-After creating your yaml the multiworld needs to be generated - if you're creating a multiworld yourself, simply move your yaml
-up one folder (from `Archipelago\Players\Templates` to `Archipelago\Players`) and then run "Generate" in the launcher. This will create a .zip
-file in `Archipelago\output` that you can upload to the [Archipelago website](https://archipelago.gg/uploads) to host a
-game, or host locally with the "Host" option in the launcher. If you're not creating the multiworld then you will need to
-send the yaml to the person in charge (alongside the .apworld if they don't already have it, as mentioned earlier).
-
-Once the multiworld is up and running, open "TWW3 Client" in the launcher - if the multiworld is hosted on the Archipelago
+In the Archipelago launcher, run "Generate Template Options" and find the Total War Warhammer 3 template. Copy it up one directory to the players folder and edit the file.  
+If you've never used a yaml before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
+it works. For more detailed information on what the yaml settings do, check below.  
+Once you have editted the file, run "Generate" in the Archipelago Launcher to create the .zip, then host the generated multiworld either locally using "Host" or on the [Archipelago website](https://archipelago.gg/uploads).  
+Run the "Total War Warhammer" from the Archipelago Launcher and select the folder where the Warhammer.exe file is saved when prompted.  
+Connect to the multiworld and it will tell you which faction you have selected and which gamemode. If the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
-displayed on the lobby page for the multiworld. After connecting to the session the client will tell you which leader and game
-mode has been selected. Enable the correct mod for the game mode you will be playing, launch the game, select the correct leader, and
-start playing!
+displayed on the lobby page for the multiworld.  
+
+Launch Total War Warhammer 3 and in the mod launcher, enable the QOL.pack along with either the spheres or conquest .pack file you downloaded (depending on which gamemode the Archipelago Launcher says).  
+(If the mods do not show up, try using [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14) instead (it's better).  
+**.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
+use the Archipelago mod found on the Steam workshop, it is for another dev's outdated APWorld.**  
+
+Launch the game, select the correct faction, and start playing!  
 
 ## What the yaml do
 
@@ -68,12 +60,11 @@ with this setting turned on.*
 to win. The number of settlements needed is determined by `number_of_locations`. Checks are granted as your empire size grows.
 This lends itself to faster paced games and plays better in synchronous multiworlds.
 
-`spheres` is the original game mode developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
+`spheres` is the old game mode originally developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
 grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
-you win. Every settlement on the map is a unique check. This is a *much* slower paced game that is better suited to asyncs.
+you win. Every settlement on the map is a unique check. This is a *much* slower paced game than conquest.
 Additionally this mode is prone to causing softlocks, as AI factions can claim razed settlements causing them to become 
-out of logic and impossible to collect items from. If this happens you will have to either release the location
-manually with `send_location` in the server console, or forceably send a diplomatic radius upgrade instead.
+out of logic and impossible to collect items from. If this happens you will have to release the location manually.
 
 **checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
 to slow down the pace of your checks. This is designed to allow smaller values for "number_of_settlements" whilst still generating
