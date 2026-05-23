@@ -23,27 +23,27 @@ PREVENT POTENTIAL SOFTLOCK.
 **If your lord does not spawn next to your city, type /teleport into your client**  
 
 ## Installation and setup  
-Install the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest)]  
-Download all .pack files and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
-If you're not hosting the session, the host that is generating the multiworld will only need the .apworld file!  
-Move the .pack files to the Total War Warhammer folder e.g. SteamLibrary/steamapps/common/Total War WARHAMMER III/data/  
-Double click the .apworld and it will be installed to the Archipelago launcher.  
+ - Install the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest)]  
+ - Download all .pack files and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
+ - If you're not hosting the session, the host that is generating the multiworld will only need the .apworld file!  
+ - Move the .pack files to the Total War Warhammer folder e.g. SteamLibrary/steamapps/common/Total War WARHAMMER III/data/  
+ - Double click the .apworld and it will be installed to the Archipelago launcher.  
 
-In the Archipelago launcher, run "Generate Template Options" and find the Total War Warhammer 3 template. Copy it up one directory to the players folder and edit the file.  
-If you've never used a yaml before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
+ - In the Archipelago launcher, run "Generate Template Options" and find the Total War Warhammer 3 template. Copy it up one directory to the players folder and edit the file.  
+ - If you've never used a yaml before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
 it works. For more detailed information on what the yaml settings do, check below.  
-Once you have editted the file, run "Generate" in the Archipelago Launcher to create the .zip, then host the generated multiworld either locally using "Host" or on the [Archipelago website](https://archipelago.gg/uploads).  
-Run the "Total War Warhammer" from the Archipelago Launcher and select the folder where the Warhammer.exe file is saved when prompted.  
-Connect to the multiworld and it will tell you which faction you have selected and which gamemode. If the multiworld is hosted on the Archipelago
+ - Once you have editted the file, run "Generate" in the Archipelago Launcher to create the .zip, then host the generated multiworld either locally using "Host" or on the [Archipelago website](https://archipelago.gg/uploads).  
+ - Run the "Total War Warhammer" from the Archipelago Launcher and select the folder where the Warhammer.exe file is saved when prompted.  
+ - Connect to the multiworld and it will tell you which faction you have selected and which gamemode. If the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld.  
 
-Launch Total War Warhammer 3 and in the mod launcher, enable the QOL.pack along with either the spheres or conquest .pack file you downloaded (depending on which gamemode the Archipelago Launcher says).  
+ - Launch Total War Warhammer 3 and in the mod launcher, enable the QOL.pack along with either the spheres or conquest .pack file you downloaded (depending on which gamemode the Archipelago Launcher says).  
 (If the mods do not show up, try using [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14) instead (it's better).  
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the Archipelago mod found on the Steam workshop, it is for another dev's outdated APWorld.**  
 
-Launch the game, select the correct faction, and start playing!  
+ - Launch the game, select the correct faction, and start playing!  
 
 ## What the yaml do
 
