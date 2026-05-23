@@ -25,7 +25,7 @@ PREVENT POTENTIAL SOFTLOCK.
 ## Installation and setup  
  - Install the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest)]  
  - Download all .pack files and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
- - If you're not hosting the session, the host that is generating the multiworld will only need the .apworld file!  
+ - If you're not hosting the session, the host that is generating the multiworld will need the .apworld file, but not the .pack files.  
  - Move the .pack files to the Total War Warhammer data directory e.g. `SteamLibrary/steamapps/common/Total War WARHAMMER III/data/`  
  - Double click the .apworld and it will be installed to the Archipelago launcher.  
 
