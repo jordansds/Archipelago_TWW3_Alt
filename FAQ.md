@@ -2,6 +2,9 @@ Questions are not allowed. How dare you question my authority. Peasant.
   
 I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.
 
+**Is this updated for the latest DLC**  
+yes. 
+
 *Do I need any DLC**  
 Do not try playing lords that you do not have DLC for, it won't work.  
 If you play a faction and are missing the DLC for certain units/buildings, you will still receive the items from the multiworld but they won't do anything.  
