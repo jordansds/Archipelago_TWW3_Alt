@@ -407,7 +407,9 @@ class TWW3Context(CommonContext):
                 if self.progressiveTechs:
                     self.sendProgressiveItem(item.name)
                 else:
-                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                    #if self.options.instant_research:
+                    #self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                    self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
 
             elif item.type == itemType.progression:
                 if self.gameMode == "conquest":
@@ -553,13 +555,13 @@ class TWW3Context(CommonContext):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
+            if sanityType == "r":
+                logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
             if not "special" in location:
-                if sanityType == "r" and not self.ritualSanity:
-                    pass
                 if sanityType == "s" and not self.sanity:
-                    pass
-                else:
-                    logger.error(f"This is a missing building for sanity. Please report the false Key to the discord server (@jordansds). Key is: {location}")
+                    logger.error(f"This is a missing building for sanity. Please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
+                #else:
+
 
     async def checkBattleSanity(self, location):
         try:
