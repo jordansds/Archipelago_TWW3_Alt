@@ -316,7 +316,7 @@ class TWW3Context(CommonContext):
         self.hardLogic = args['slot_data']['hard_logic']
         #self.locationBalancing = args['slot_data']['location_balancing']
         self.maxExpansionItems = args['slot_data']['max_expansion_items']
-        self.fastResearch = args['slot_data']['fast_research']
+        self.fastResearch = False#args['slot_data']['fast_research']
 
         self.locationLookup = {}
 
@@ -618,12 +618,12 @@ class TWW3Context(CommonContext):
         ui.base_title = self.game + " Client"#"Total War Warhammer III Client"
         return ui
 
-    def createTechMissions(self, item):
+    def createTechMissions(self):
         #Faction, Tech, DB Key, Title, Description
         techs = factionItemManager.getTechs(self.playerRace, False)
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
-            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item.name}", "{key}", "Research {item.readableName}", "Description")')
+            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {item[1].readableName}", "Description")')
 
 class EngineInitializer:
 
