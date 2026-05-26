@@ -1,3 +1,5 @@
+from pygments.lexer import default
+
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
     OptionSet
 from dataclasses import dataclass
@@ -246,17 +248,6 @@ class numberOfSettlements(Range):
     range_end = len(sm.settlementDict)
     default = 50
 
-#class adminCapacity(Range):
-#    """CONQUEST MODE ONLY
-#    How many settlements each Administration Capacity item allows you to own.
-#    Going over the empire size limit will incur heavy penalties.
-#    You start with 1 admin capacity item so make sure that you set it higher than STARTING SETTLEMENTS.
-#    If you are playing solo, set this to the maximum value as the items won't do anything anyway."""
-#    display_name = "Settlements Per Admin Capacity (CONQUEST)"
-#    range_start = 2
-#    range_end = len(sm.settlementDict)
-#    default = 10
-
 class sphereCount(Range):
     """SPHERE MODE ONLY
     How many diplomatic radius upgrades are required to access all checks.
@@ -266,49 +257,7 @@ class sphereCount(Range):
     range_end = 10
     default = 5
 
-#class extraSphereCount(Range):
-#    """SPHERE MODE ONLY
-#    How many extra diplomatic radius upgrades are generated"""
-#    display_name = "Extra Spheres (SPHERES)"
-#    range_start = 0
-#    range_end = 50
-#    default = 0
 
-#class sphereRadius(Range):
-#    """SPHERE MODE ONLY
-#    Determines your starting radius and radius added with each upgrade.
-#    The smallest distance between settlements is 25. The largest is 1400.
-#    If you spawn in the middle of the map it only takes a radius of 700
-#    for the entire world to be in logic."""
-#    display_name = "Diplomatic Radius Size (SPHERES)"
-#    range_start = 50
-#    range_end = 500
-#    default = 150
-
-class orbCount(Range):
-    """SPHERE MODE ONLY
-    How many orbs of domination are generated.
-    Once you have this many orbs, you win."""
-    display_name = "Max Orbs (SPHERES)"
-    range_start = 1
-    range_end = 100
-    default = 20
-
-class extraOrbCount(Range):
-    """SPHERE MODE ONLY
-    How many extra orbs should be generated."""
-    display_name = "Extra Orbs (SPHERES)"
-    range_start = 0
-    range_end = 50
-    default = 0
-
-#class maxRange(Range):
-#    """The furthest away two settlements can be during world generation.
-#    The smallest distance between settlements is 25. The largest is 1400."""
-#    display_name = "Max Settlement Distance"
-#    range_start = 50
-#    range_end = 1500
-#    default = 200
 class ritualShuffle(DefaultOnToggle):
     """Whether faction mechanics should be included in the item pool.
     Not all mechanics are shuffled as some cannot be locked."""
@@ -355,36 +304,6 @@ class balance(Range):
     range_start = 0
     range_end = 100
     default = 0
-
-class forceEarlyBuildings(Range):
-    """SET TO 0 TO DISABLE
-    Whether buildings should be a forced unlock and determines the tier.
-    Building shuffle must be on and balance must be greater than 0.
-    The value sets the highest tier of buildings that will be forced.
-    E.g. 2 means that only tier 1 and 2 buildings will be forced.
-    SOFT LOGIC, Not recommended for large syncs/asyncs."""
-    display_name = "Early Building Tiers"
-    range_start = 0
-    range_end = 5
-    default = 0
-
-class forceEarlyUnits(Range):
-    """SET TO 0 TO DISABLE
-    Whether units should be a forced unlock and determines the tier.
-    Unit shuffle must be on and balance must be greater than 0.
-    The value sets the highest tier of units that will be forced.
-    E.g. 2 means that only tier 1 and 2 units will be forced.
-    SOFT LOGIC, Not recommended for large syncs/asyncs."""
-    display_name = "Early Unit Tiers"
-    range_start = 0
-    range_end = 5
-    default = 0
-
-class forceEarlyTechs(Toggle):
-    """Whether tech should be a forced unlock.
-    Tech shuffle must be on and balance must be greater than 0.
-    SOFT LOGIC, Not recommended for large syncs/asyncs."""
-    display_name = "Early Tech"
 
 class filler(Range):
     """Weight of filler items to trap items.
@@ -437,12 +356,9 @@ class hardLogic(DefaultOnToggle):
     Recommended for large syncs/asyncs to prevent soft logic issues."""
     display_name = "Hard Logic"
 
-class locationBalancing(DefaultOnToggle):
-    """Experimental option that tries to balance building/tech locations based on how much admin capacity the player has received.
-    This should help balance the building/tech locations a bit better.
-    Warning: Soft Logic, may in rare circumstances result in out of logic locations.
-    [EXPERIMENTAL]"""
-    display_name = "Location Balancing"
+class fastResearch(DefaultOnToggle):
+    """Instantly completes any research that you are sent from the multiworld, but disables techs from being locations if sanity is enabled"""
+    display_name = "Fast Research"
 
 @dataclass
 class TWW3Options(PerGameCommonOptions):
@@ -460,13 +376,7 @@ class TWW3Options(PerGameCommonOptions):
     despoiler_sanity: despoilerSanity
 
     number_of_settlements: numberOfSettlements
-    #admin_capacity: adminCapacity
-
     sphere_count: sphereCount
-    #extra_sphere_count: extraSphereCount
-    #sphere_radius: sphereRadius
-    #orb_count: orbCount
-    #extra_orb_count: extraOrbCount
 
     tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
@@ -484,12 +394,9 @@ class TWW3Options(PerGameCommonOptions):
 
     starting_tier: startingTier
     balance: balance
-    #force_early_buildings: forceEarlyBuildings
-    #force_early_units: forceEarlyUnits
-    #force_early_techs: forceEarlyTechs
 
-    #location_balancing: locationBalancing
     hard_logic: hardLogic
+    fast_research: fastResearch
 
     mod_list: modList
     trap_blacklist: trapBlacklist

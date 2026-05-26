@@ -26,7 +26,8 @@ def createAllLocations(world: TWW3World) -> None:
 
     if world.options.sanity:
         createBuildingLocations(world, True)
-        createTechLocations(world)
+        if not world.options.fast_research:
+            createTechLocations(world)
         if world.options.ritual_sanity:
             createRitualLocations(world)
         #Run a second pass where we grab the locations that we couldn't risk generating the first time and lock them to filler items

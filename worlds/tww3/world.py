@@ -179,7 +179,8 @@ class TWW3World(World):
                                         "ritual_sanity",
                                         "battle_sanity",
                                         "despoiler_sanity",
-                                        "hard_logic",)
+                                        "hard_logic",
+                                        "fast_research",)
                                         #"location_balancing",)
 
         if self.options.game_mode == "conquest":
@@ -199,26 +200,27 @@ class TWW3World(World):
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
         slotData["options"] =  self.options.as_dict("starting_faction",
-                                                                "game_mode",
-                                                                "starting_settlements",
-                                                                "checks_per_settlement",
-                                                                "sanity",
-                                                                "ritual_sanity",
-                                                                "battle_sanity",
-                                                                "despoiler_sanity",
-                                                                "number_of_settlements",
-                                                                "sphere_count",
-                                                                "tech_shuffle",
-                                                                "progressive_technologies",
-                                                                "building_shuffle",
-                                                                "progressive_buildings",
-                                                                "unit_shuffle",
-                                                                "progressive_units",
-                                                                "ritual_shuffle",
-                                                                "starting_tier",
-                                                                "balance",
-                                                                "hard_logic",
-                                                                "mod_list"),
+                                                    "game_mode",
+                                                    "starting_settlements",
+                                                    "checks_per_settlement",
+                                                    "sanity",
+                                                    "ritual_sanity",
+                                                    "battle_sanity",
+                                                    "despoiler_sanity",
+                                                    "number_of_settlements",
+                                                    "sphere_count",
+                                                    "tech_shuffle",
+                                                    "progressive_technologies",
+                                                    "building_shuffle",
+                                                    "progressive_buildings",
+                                                    "unit_shuffle",
+                                                    "progressive_units",
+                                                    "ritual_shuffle",
+                                                    "starting_tier",
+                                                    "balance",
+                                                    "hard_logic",
+                                                    "mod_list",
+                                                    "fast_research"),
 
         slotData["version"] = self.world_version.as_simple_string()
         return slotData

@@ -301,7 +301,6 @@ class TWW3Context(CommonContext):
             logger.info("The player faction is: " + sm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
         self.playerRace = sm.factionDict[args["slot_data"]["starting_faction"]].race
-        #print(self.playerRace)
 
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
@@ -317,6 +316,7 @@ class TWW3Context(CommonContext):
         self.hardLogic = args['slot_data']['hard_logic']
         #self.locationBalancing = args['slot_data']['location_balancing']
         self.maxExpansionItems = args['slot_data']['max_expansion_items']
+        self.fastResearch = args['slot_data']['fast_research']
 
         self.locationLookup = {}
 
@@ -407,9 +407,10 @@ class TWW3Context(CommonContext):
                 if self.progressiveTechs:
                     self.sendProgressiveItem(item.name)
                 else:
-                    #if self.options.instant_research:
-                    #self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
-                    self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                    if self.fastResearch:
+                        self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                    else:
+                        self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
             elif item.type == itemType.progression:
                 if self.gameMode == "conquest":
@@ -498,7 +499,10 @@ class TWW3Context(CommonContext):
                 self.sendMessage(
                     f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
             else:
-                self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                if self.fastResearch:
+                    self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                else:
+                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
 
     def triggerSphereExpansion(self, numberOfSphereItems):
@@ -562,7 +566,6 @@ class TWW3Context(CommonContext):
                     logger.error(f"This is a missing building for sanity. Please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
                 #else:
 
-
     async def checkBattleSanity(self, location):
         try:
             if self.hardLogic:
@@ -586,7 +589,6 @@ class TWW3Context(CommonContext):
                     await self.check_locations([self.locationLookup[f"{location.split(" ")[0].title()} {i} Settlements"]])
         except KeyError:
             pass
-
 
     #Deathlink handlers
     def on_deathlink(self, data: dict):
@@ -616,20 +618,19 @@ class TWW3Context(CommonContext):
         ui.base_title = self.game + " Client"#"Total War Warhammer III Client"
         return ui
 
+    def createTechMissions(self, item):
+        #Faction, Tech, DB Key, Title, Description
+        techs = factionItemManager.getTechs(self.playerRace, False)
+        for i, item in enumerate(techs):
+            key = f"archipelago_research_{i+1}"
+            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item.name}", "{key}", "Research {item.readableName}", "Description")')
+
 class EngineInitializer:
 
     @classmethod
-    def initialize(self, context, itemDictionary, progressiveItemFlags):
-        settlements = context.settlements
-        hordes = context.hordes
+    def initialize(self, context, itemDict, progressiveItemFlags):
         self.playerFaction = context.playerFaction
-        self.playerRace = context.playerRace
-        self.itemDict = itemDictionary
-        #self.sanity = context.sanity
-        capitals = context.capitals
-        startingTier = context.startingTier
         sendMessage = context.sendMessage
-        messenger = context.messenger
 
         if self.playerFaction == "wh2_main_skv_clan_skryre":
             #sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_1", "{self.playerFaction}")')
@@ -646,14 +647,14 @@ class EngineInitializer:
             #Randomise Settlements
             ###
             #Ignore the player on the first sweep to prevent early check triggers
-            for settlement, faction in settlements.items():
+            for settlement, faction in context.settlements.items():
                 if faction == self.playerFaction:
                     continue
                 sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
                 sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
 
             isFirstPlayerSettlement = True
-            for settlement, faction in settlements.items():
+            for settlement, faction in context.settlements.items():
                 if faction == self.playerFaction:
                     sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
                     sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
@@ -664,10 +665,10 @@ class EngineInitializer:
             ###
             #Teleport armies to new settlement
             ###
-            for faction, settlement in capitals.items():
+            for faction, settlement in context.capitals.items():
                 sendMessage(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                 sendMessage(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
-            for faction, settlement in hordes.items():
+            for faction, settlement in context.hordes.items():
                 sendMessage(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                 sendMessage(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
 
@@ -677,7 +678,7 @@ class EngineInitializer:
         #Disables techs/buildings/units/rituals if randomised
         ###
         for key in context.itemKeys:
-            item = self.itemDict[key]
+            item = itemDict[key]
             if (item.type == itemType.tech) and (not context.progressiveTechs) and (item.progressionGroup is not None):
                 sendMessage(f'cm:lock_one_technology_node("{self.playerFaction}", "{item.name}")')
             elif (item.type == itemType.building) and (not context.progressiveBuildings) and (item.progressionGroup is not None):
@@ -689,11 +690,11 @@ class EngineInitializer:
             #messenger.flush()
 
         if context.progressiveTechs:
-            self.lock_progressiveTechs(self, sendMessage, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveTechs(self, sendMessage, itemDict, progressiveItemFlags)
         if context.progressiveBuildings:
-            self.lock_progressiveBuildings(self, startingTier, sendMessage, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveBuildings(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
         if context.progressiveUnits:
-            self.lock_progressiveUnits(self, startingTier, sendMessage, self.itemDict, progressiveItemFlags)
+            self.lock_progressiveUnits(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###
@@ -716,16 +717,19 @@ class EngineInitializer:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
 
-        messenger.flush()
+        if not context.fastResearch:
+            context.createTechMissions()
+
+        context.messenger.flush()
 
     def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == itemType.tech and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.tech and item.progressionGroup is not None:
                 sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
     def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == itemType.building and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.building and item.progressionGroup is not None:
                 if "settlement" in item.name:
                     continue
                 progressive_items_flags[key] = startingTier - 1
@@ -734,7 +738,7 @@ class EngineInitializer:
 
     def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
-            if item.type == itemType.unit and item.progressionGroup is not None:# and item.race == self.playerRace:
+            if item.type == itemType.unit and item.progressionGroup is not None:
                 progressive_items_flags[key] = startingTier
                 if item.tier > startingTier:
                     sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
@@ -766,3 +770,5 @@ def launchClient(*args: Sequence[str]):
 
     asyncio.run(main(launch_args))
     colorama.deinit()
+
+
