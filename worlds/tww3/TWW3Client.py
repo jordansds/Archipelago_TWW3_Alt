@@ -625,6 +625,13 @@ class TWW3Context(CommonContext):
             key = f"archipelago_research_{i+1}"
             self.sendMessage(f'createTechMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {item[1].readableName}", "Description")')
 
+    def createBuildingMissions(self):
+        buildings = factionItemManager.getBuildings(self.playerRace, False)
+        for i, item in enumerate(buildings):
+            key = f"archipelago_construct_{i + 1}"
+            self.sendMessage(
+                f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Construct {item[1].readableName}", "Description")')
+
 class EngineInitializer:
 
     @classmethod
@@ -696,6 +703,12 @@ class EngineInitializer:
         if context.progressiveUnits:
             self.lock_progressiveUnits(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
 
+        if context.sanity:
+            context.createBuildingMissions()
+        if not context.fastResearch and context.sanity:
+            context.createTechMissions()
+
+
         if context.gameMode == "conquest":
             ###
             #Set Administrative Capacity
@@ -716,9 +729,6 @@ class EngineInitializer:
                 for faction in sphereAllOthers:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
-
-        if not context.fastResearch:
-            context.createTechMissions()
 
         context.messenger.flush()
 
