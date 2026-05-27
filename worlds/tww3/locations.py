@@ -99,6 +99,8 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
     buildings = [item for key, item in factionItemManager.getBuildings(world.playerFaction.race, False)]
     buildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is not None]
 
+    #Remove allied outposts
+    buildings = [building for building in buildings if not "allied" in building.name]
 
     if firstPass:
         # Remove t1 settlements and ports as they can only be built in razed settlements
