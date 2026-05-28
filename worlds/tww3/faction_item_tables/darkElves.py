@@ -74,6 +74,9 @@ buildings: dict[int, itemData] = {
     #20411: ItemData(IC.useful, 1, 'wh2_dlc15_special_settlement_tor_yvresse_def_3', ItemType.building, 2, 'Progressive def_settlement_major', 'DarkElf Building: Occupied Tor Yvresse (Dark Tower)'),
     #20412: ItemData(IC.useful, 1, 'wh2_dlc15_special_settlement_tor_yvresse_def_4', ItemType.building, 3, 'Progressive def_settlement_major', 'DarkElf Building: Occupied Tor Yvresse (Dark Citadel)'),
     #20413: ItemData(IC.useful, 1, 'wh2_dlc15_special_settlement_tor_yvresse_def_5', ItemType.building, 4, 'Progressive def_settlement_major', 'DarkElf Building: Occupied Tor Yvresse (Dark City)'),
+    20412: itemData(IC.useful, 1, 'wh2_main_def_riders_1', itemType.building, 0, 'Progressive def_riders', 'DarkElf Building: Plateau of Dark Steeds'),
+    20413: itemData(IC.useful, 1, 'wh2_main_def_riders_2', itemType.building, 1, 'Progressive def_riders', "DarkElf Building: Messengers' Lodgehouse"),
+
     20414: itemData(IC.useful, 1, 'wh2_main_def_barracks_1', itemType.building, 0, 'Progressive def_barracks', 'DarkElf Building: Conscription Halls'),
     20415: itemData(IC.useful, 1, 'wh2_main_def_barracks_2', itemType.building, 1, 'Progressive def_barracks', 'DarkElf Building: Halls of Mustering'),
     20416: itemData(IC.useful, 1, 'wh2_main_def_barracks_3', itemType.building, 2, 'Progressive def_barracks', 'DarkElf Building: Halls of Ravaging'),
@@ -276,6 +279,7 @@ progBuildings: dict[int, itemData] = {
     21301: itemData(IC.useful, 2, 'Progressive horde_def_exiles', itemType.building, 2, None, 'Progressive DarkElf Black Ark: Exiles'),
     21302: itemData(IC.useful, 3, 'Progressive horde_def_residence', itemType.building, 3, None, 'Progressive DarkElf Black Ark: Residence'),
     21303: itemData(IC.useful, 2, 'Progressive horde_def_riders', itemType.building, 2, None, 'Progressive DarkElf Black Ark: Riders'),
+    21347: itemData(IC.useful, 2, 'Progressive def_riders', itemType.building, 2, None, 'Progressive DarkElf Building: Riders'),
     21304: itemData(IC.useful, 3, 'Progressive def_barracks', itemType.building, 3, None, 'Progressive DarkElf Building: Barracks'),
     21305: itemData(IC.useful, 3, 'Progressive def_beasts', itemType.building, 3, None, 'Progressive DarkElf Building: Beasts'),
     21306: itemData(IC.useful, 2, 'Progressive def_coldones', itemType.building, 2, None, 'Progressive DarkElf Building: Coldones'),
