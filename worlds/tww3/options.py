@@ -356,7 +356,7 @@ class hardLogic(DefaultOnToggle):
     Recommended for large syncs/asyncs to prevent soft logic issues."""
     display_name = "Hard Logic"
 
-class fastResearch(DefaultOnToggle):
+class fastResearch(Toggle):
     """Instantly completes any research that you are sent from the multiworld, but disables techs from being locations if sanity is enabled"""
     display_name = "Fast Research"
 
