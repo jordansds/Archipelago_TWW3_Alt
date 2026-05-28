@@ -628,7 +628,7 @@ class TWW3Context(CommonContext):
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
             objective = item[1].readableName[item[1].readableName.find(":")+2:]
-            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {objective}", "{self.descriptions[item[1].readableName]}")')
+            self.sendMessage(f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {objective}", "{self.descriptions[item[1].readableName]}")')
 
     def createBuildingMissions(self):
         buildings = factionItemManager.getBuildings(self.playerRace, False)
