@@ -44,9 +44,6 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
             logger.info(f"You currently control {self.ctx.settlementCount} settlements")
-            #self.ctx.messenger.run(f"set_admin_capacity({self.ctx.expansionItems})")
-            #self.ctx.messenger.run(f"set_settlements_per_admin_capacity({self.ctx.adminCapacity})")
-            #self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_orbs(self):
         """Prints the current number of orbs of dominance that you own."""
@@ -69,36 +66,20 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             for faction, settlement in self.ctx.capitals.items():
                 if faction == self.ctx.playerFaction:
-                    #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.runTemp(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.runTemp(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
             for faction, settlement in self.ctx.hordes.items():
                 if faction == self.ctx.playerFaction:
-                    #self.ctx.messenger.run(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
-                    #self.ctx.messenger.run(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.runTemp(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.runTemp(f'teleport_all_lords_of_faction_to_region("{faction}", "{settlement}")')
                     break
-            #logger.info("DISCONNECT AND RECONNECT ON THE CLIENT THEN SAVE AND RELOAD YOUR GAME")
-            #self.ctx.messenger.run("reduce_lines(2)")
 
     def _cmd_deathlink(self):
         """Turn Deathlink off and on."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.deathLinkEnabled = not self.ctx.deathLinkEnabled
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
-
-    #def _cmd_resync(self):
-    #    """Resyncs the number of lines read from the engine file"""
-    #    if isinstance(self.ctx, TWW3Context):
-    #        logger.info("Resynchronised")
-    #        self.ctx.messenger.run(f"set_line_offset({self.ctx.lineCount + 1})")
-
-    #def _cmd_rewind(self):
-    #    if isinstance(self.ctx, TWW3Context):
-    #        self.ctx.messenger.run("reduce_lines(2)")
 
 class Messenger:
     def __init__(self, path):
@@ -155,53 +136,57 @@ class Watcher:
             if line:
                 line = line.strip()
                 prefix = line.split(" ")[0]
-                if line == "":
-                    pass
-                elif prefix == "deathlink":
-                    await self.context.send_death(line.split(" ")[1])
-                elif prefix == "building" or prefix == "tech":
-                    if self.context.sanity:
+                match line:
+                    case "":
+                        pass
+
+                    case "deathlink":
+                        await self.context.send_death(line.split(" ")[1])
+
+                    case "building" | "tech":
+                        if self.context.sanity:
+                            if self.context.logChecks:
+                                logger.info(f"Sending {line}")
+                            await self.context.checkSanity(line.split(" ")[1], "s")
+
+                    case "ritual":
+                        if self.context.ritualSanity:
+                            if self.context.logChecks:
+                                logger.info(f"Sending {line}")
+                            if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
+                                line = line[:-9]
+                            await self.context.checkSanity(line.split(" ")[1], "r")
+
+                    case "battles":
+                        if self.context.battleSanity:
+                            if self.context.logChecks:
+                                logger.info(f"Sending {line}")
+                            await self.context.checkBattleSanity(line.split(" ")[1])
+
+                    case "sacked" | "razed":
+                        if self.context.despoilerSanity:
+                            if self.context.logChecks:
+                                logger.info(f"Sending {line}")
+                            await self.context.checkDespoilerSanity(line)
+                    case _:
                         if self.context.logChecks:
-                            logger.info(f"Sending {line}")
-                        await self.context.checkSanity(line.split(" ")[1], "s")
-                elif prefix == "ritual":
-                    if self.context.ritualSanity:
-                        if self.context.logChecks:
-                            logger.info(f"Sending {line}")
-                        if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
-                            line = line[:-9]
-                        await self.context.checkSanity(line.split(" ")[1], "r")
-                elif prefix == "battles":
-                    if self.context.battleSanity:
-                        if self.context.logChecks:
-                            logger.info(f"Sending {line}")
-                        await self.context.checkBattleSanity(line.split(" ")[1])
-                elif prefix == "sacked" or prefix == "razed":
-                    if self.context.despoilerSanity:
-                        if self.context.logChecks:
-                            logger.info(f"Sending {line}")
-                        await self.context.checkDespoilerSanity(line)
-                else:
-                    if self.context.logChecks:
-                        if gameMode == "conquest":
-                            logger.info(f"Sending Empire Size {line}")
-                        elif gameMode == "spheres":
-                            logger.info(f"Sending Location {line}")
-                    await self.context.check(line)
-                    continue
+                            if gameMode == "conquest":
+                                logger.info(f"Sending Empire Size {line}")
+                            elif gameMode == "spheres":
+                                logger.info(f"Sending Location {line}")
+                        await self.context.check(line)
+
             await asyncio.sleep(0.1)
 
             try:
                 st = os.stat(path)
             except FileNotFoundError:
-                # File temporarily missing during rotation
                 continue
             try:
                 rotated = st.st_ino != activeInode
                 truncated = file.tell() > st.st_size
 
                 if rotated or truncated:
-                    # Reopen the file
                     file.close()
                     file = open(path, "r", encoding="utf-8", errors="replace")
                     activeInode = os.fstat(file.fileno()).st_ino
@@ -224,6 +209,8 @@ class TWW3Context(CommonContext):
         self.deathLinkPending = False
         self.logChecks = False
         self.settlementCount = 0
+        self.locationMapping = False
+        self.descriptions = {}
 
     async def server_auth(self, password_requested: bool = False):
         if password_requested and not self.password:
@@ -232,14 +219,47 @@ class TWW3Context(CommonContext):
         await self.send_connect()
 
     def on_package(self, cmd: str, args: dict):
-        if cmd == 'Connected':
-            self.on_connected(args)
-        elif cmd == "ReceivedItems":
-            self.on_received_items(args)
-        elif cmd == "Bounced":
-            if "tags" in args:
-                if "DeathLink" in args["tags"]:
-                    self.on_deathlink(args["data"])
+        match cmd:
+            case "Connected":
+                self.on_connected(args)
+
+            case "Bounced":
+                if "tags" in args:
+                    if "DeathLink" in args["tags"]:
+                        self.on_deathlink(args["data"])
+
+            case "ReceivedItems":
+                self.on_received_items(args)
+
+            case "LocationInfo":
+                if self.locationMapping:
+                    self.locationMapping = False
+                    for networkItem in args["locations"]:
+
+                        playerName = self.player_names[networkItem.player]
+                        itemName = self.item_names.lookup_in_slot(networkItem.item, networkItem.player)
+                        itemTypeLookup = {
+                            0: f"How boring... This contains {playerName}'s {itemName}",
+                            1: f"I'm {random.randint(1,100)}% sure that this {itemName} is important to {playerName}",
+                            2: f"This could come come in handy for {playerName}, it contains their {itemName}",
+                            3: f"I have a sneaking suspicious that {playerName} really wants their {itemName}",
+                            4: f"I'm sure {playerName} will thank you for sending them their {itemName} ;-)",
+                            5: f"This contains {playerName}'s {itemName}, but make sure you read the fine print",
+                            6: f"I'm {random.randint(1,100)}% confident that {playerName} needs their {itemName}. They just might not realise it",
+                            7: f"How curious, {playerName}'s {itemName} seems very important, advise them to speak to their doctor about any side-effects, including but not limited to death."
+                        }
+                        location = self.location_names.lookup_in_slot(networkItem.location)
+                        self.descriptions[location] = itemTypeLookup[networkItem.flags]
+
+                        #print(f"{location} contains {playerName}'s {itemName}.\n{itemTypeLookup[networkItem.flags]}")
+                    if self.sanity:
+                        self.createBuildingMissions()
+                    if not self.fastResearch and self.sanity:
+                        self.createTechMissions()
+
+                super().on_package(cmd, args)
+
+
         super().on_package(cmd, args)
 
     def on_connected(self, args: dict):
@@ -248,7 +268,6 @@ class TWW3Context(CommonContext):
         self.version = TWW3World.world_version.as_simple_string()
         if self.version != args['slot_data']['version']:
             raise Exception(f"ERROR: Host ({args['slot_data']['version']}) and player ({self.version}) are using different versions of the TWW3 APWorld!")
-            #logger.error(f"WARNING: Server ({args['slot_data']['version']}) and client ({version}) are using different versions of the TWW3 APWorld!")
         else:
             logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
@@ -316,7 +335,7 @@ class TWW3Context(CommonContext):
         self.hardLogic = args['slot_data']['hard_logic']
         #self.locationBalancing = args['slot_data']['location_balancing']
         self.maxExpansionItems = args['slot_data']['max_expansion_items']
-        self.fastResearch = False#args['slot_data']['fast_research']
+        self.fastResearch = args['slot_data']['fast_research']
 
         self.locationLookup = {}
 
@@ -367,7 +386,6 @@ class TWW3Context(CommonContext):
             for key, item in self.itemDict.items():
                 if item.type == itemType.ritual and item.progressionGroup is not None:
                     self.locationLookup[item.readableName] = key + 1000000
-        #print(self.locationLookup)
         if self.battleSanity:
             for i in range(1,21):
                 self.locationLookup[f"Won {i*5} Battles"] = i + 20000
@@ -376,12 +394,12 @@ class TWW3Context(CommonContext):
                 self.locationLookup[f"Sacked {i} Settlements"] = i + 20020
                 self.locationLookup[f"Razed {i} Settlements"] = i + 20040
 
-        #print(self.locationLookup)
+        self.locationMapping = True
+        Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
 
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
     def on_received_items(self, args: dict):
-        # for entry in self.items_received:
         for entry in args["items"]:
             try:
                 item = self.itemDict[entry.item]
@@ -393,76 +411,74 @@ class TWW3Context(CommonContext):
                 logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key: {entry.item}, Faction: {self.playerFaction}\nError: {e}")
                 continue
 
-            if item.type == itemType.building:
-                if self.progressiveBuildings:
-                    self.sendProgressiveItem(item.name)
-                else:
-                    self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
-            elif item.type == itemType.unit:
-                if self.progressiveUnits:
-                    self.sendProgressiveItem(item.name)
-                else:
-                    self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
-            elif item.type == itemType.tech:
-                if self.progressiveTechs:
-                    self.sendProgressiveItem(item.name)
-                else:
-                    if self.fastResearch:
-                        self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+            match item.type:
+                case itemType.building:
+                    if self.progressiveBuildings:
+                        self.sendProgressiveItem(item.name)
                     else:
-                        self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                        self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
 
-            elif item.type == itemType.progression:
-                if self.gameMode == "conquest":
-                    self.expansionItems += 1
-                    if self.expansionItems == self.maxExpansionItems:
-                        logger.info(f"You now have all of your Administrative Capacity")
-                        logger.info(f"You can now control an unlimited number of settlements without penalties")
-                        self.adminCapacity = 1000
+                case itemType.unit:
+                    if self.progressiveUnits:
+                        self.sendProgressiveItem(item.name)
                     else:
-                        logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
-                        logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
-                    self.sendMessage(f"set_admin_capacity({self.expansionItems})")
-                    self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
-                elif self.gameMode == "spheres":
-                    self.expansionItems += 1
-                    self.triggerSphereExpansion(self.expansionItems)
-                    logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
-            elif item.type == itemType.goal:
-                if self.gameMode == "spheres":
-                    self.numberOfOrbs += 1
-                    logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
-                    if self.numberOfOrbs == self.orbGoal:
-                        asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
+                        self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
 
-            elif item.classification == IC.filler:
-                if item.readableName == "Get-Rich-Quick Scroll":
-                    self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
-                elif item.type == itemType.ancillaries_regular or item.type == itemType.ancillaries_legendary:
-                    self.sendMessage(f'give_player_ancillary("{item.name}")')
-                else:
-                    self.sendMessage(item.name)
+                case itemType.tech:
+                    if self.progressiveTechs:
+                        self.sendProgressiveItem(item.name)
+                    else:
+                        if self.fastResearch:
+                            self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                        else:
+                            self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
-            elif item.classification == IC.trap:
-                if self.are_traps_enabled:
-                    #self.sendMessage(item.name)
-                    self.messenger.runTemp(item.name)
-                else:
-                    self.logger.info("Skipped a Trap")
+                case itemType.progression:
+                    if self.gameMode == "conquest":
+                        self.expansionItems += 1
+                        if self.expansionItems == self.maxExpansionItems:
+                            logger.info(f"You now have all of your Administrative Capacity")
+                            logger.info(f"You can now control an unlimited number of settlements without penalties")
+                            self.adminCapacity = 1000
+                        else:
+                            logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
+                            logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
+                        self.sendMessage(f"set_admin_capacity({self.expansionItems})")
+                        self.sendMessage(f"set_settlements_per_admin_capacity({self.adminCapacity})")
 
-            elif item.type == itemType.effect_faction:
-                self.sendMessage(f'give_player_faction_effect({item.name})')
+                    elif self.gameMode == "spheres":
+                        self.expansionItems += 1
+                        self.triggerSphereExpansion(self.expansionItems)
+                        logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
+                case itemType.goal:
+                    if self.gameMode == "spheres":
+                        self.numberOfOrbs += 1
+                        logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
+                        if self.numberOfOrbs == self.orbGoal:
+                            asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
 
-            elif item.type == itemType.ritual:
-                self.sendMessage(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
+                case itemType.filler:
+                    if item.readableName == "Get-Rich-Quick Scroll":
+                        self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
+                    elif item.type == itemType.ancillaries_regular or item.type == itemType.ancillaries_legendary:
+                        self.sendMessage(f'give_player_ancillary("{item.name}")')
+                    else:
+                        self.sendMessage(item.name)
+
+                case itemType.trap:
+                    if self.are_traps_enabled:
+                        #self.sendMessage(item.name)
+                        self.messenger.runTemp(item.name)
+                    else:
+                        self.logger.info("Skipped a Trap")
+
+                case itemType.effect_faction:
+                    self.sendMessage(f'give_player_faction_effect({item.name})')
+
+                case itemType.ritual:
+                    self.sendMessage(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
 
             self.messenger.flush()
-
-        if self.gameMode == "spheres":
-            if self.numberOfOrbs == self.orbGoal:
-                asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
-
-        self.messenger.flush()
 
     def sendMessage(self, message):
         if self.lineCount == 0:
@@ -470,18 +486,6 @@ class TWW3Context(CommonContext):
         else:
             self.messenger.run(message)
         self.lineCount += 1
-
-    #def sendProgressiveItem(self, itemName):
-    #    for key, item in self.itemDict.items():
-    #        if item.progressionGroup == itemName:
-    #            self.progressiveItemFlags[key] += 1
-    #            if item.tier == self.progressiveItemFlags[key]:
-    #                if item.type == itemType.building:
-    #                    self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
-    #                elif item.type == itemType.unit:
-    #                    self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
-    #                else:
-    #                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
     def sendProgressiveItem(self, itemName):
         keys = [key for key, item in self.itemDict.items() if item.name == itemName]
@@ -623,14 +627,15 @@ class TWW3Context(CommonContext):
         techs = factionItemManager.getTechs(self.playerRace, False)
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
-            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {item[1].readableName}", "Description")')
+            objective = item[1].readableName[item[1].readableName.find(":")+2:]
+            self.sendMessage(f'createTechMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {objective}", "{self.descriptions[item[1].readableName]}")')
 
     def createBuildingMissions(self):
         buildings = factionItemManager.getBuildings(self.playerRace, False)
         for i, item in enumerate(buildings):
             key = f"archipelago_construct_{i + 1}"
-            self.sendMessage(
-                f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Construct {item[1].readableName}", "Description")')
+            objective = item[1].readableName[item[1].readableName.find(":")+2:]
+            self.sendMessage(f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Construct {objective}", "{self.descriptions[item[1].readableName]}")')
 
 class EngineInitializer:
 
@@ -702,12 +707,6 @@ class EngineInitializer:
             self.lock_progressiveBuildings(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
         if context.progressiveUnits:
             self.lock_progressiveUnits(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
-
-        if context.sanity:
-            context.createBuildingMissions()
-        if not context.fastResearch and context.sanity:
-            context.createTechMissions()
-
 
         if context.gameMode == "conquest":
             ###
