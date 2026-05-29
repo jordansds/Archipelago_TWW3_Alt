@@ -570,8 +570,8 @@ class TWW3Context(CommonContext):
             if sanityType == "r":
                 logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
             if not "special" in location:
-                if sanityType == "s" and not self.sanity:
-                    logger.error(f"This is a missing building for sanity. Please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
+                if sanityType == "s":
+                    logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
                 #else:
 
     async def checkBattleSanity(self, location):
