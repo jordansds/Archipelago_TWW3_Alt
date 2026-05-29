@@ -236,17 +236,21 @@ class TWW3Context(CommonContext):
                     self.locationMapping = False
                     for networkItem in args["locations"]:
 
-                        playerName = self.player_names[networkItem.player]
-                        itemName = self.item_names.lookup_in_slot(networkItem.item, networkItem.player)
+                        if self.revealHints:
+                            playerName = self.player_names[networkItem.player]
+                            itemName = self.item_names.lookup_in_slot(networkItem.item, networkItem.player)
+                        else:
+                            playerName = "someone"
+                            itemName = "item"
                         itemTypeLookup = {
                             0: f"How boring... This contains {playerName}'s {itemName}",
-                            1: f"I'm {random.randint(1,100)}% sure that this {itemName} is important to {playerName}",
-                            2: f"This could come come in handy for {playerName}, it contains their {itemName}",
-                            3: f"I have a sneaking suspicious that {playerName} really wants their {itemName}",
-                            4: f"I'm sure {playerName} will thank you for sending them their {itemName} ;-)",
-                            5: f"This contains {playerName}'s {itemName}, but make sure you read the fine print",
-                            6: f"I'm {random.randint(1,100)}% confident that {playerName} needs their {itemName}. They just might not realise it",
-                            7: f"How curious, {playerName}'s {itemName} seems very important, advise them to speak to their doctor about any side-effects, including but not limited to death."
+                            1: f"I'm {random.randint(1,100)}% sure that this {itemName} is important to {playerName}.",
+                            2: f"This could come come in handy for {playerName}, it contains their {itemName}.",
+                            3: f"I have a sneaking suspicious that {playerName} really wants this {itemName}.",
+                            4: f"I'm sure {playerName} will thank you for sending them this {itemName}. ;-)",
+                            5: f"This contains {playerName}'s {itemName}, but make sure they read the fine print.",
+                            6: f"I'm {random.randint(1,100)}% confident that {playerName} needs this {itemName}. They may not realise it yet.",
+                            7: f"How curious, {playerName}'s {itemName} seems very important. Side effects may include death."
                         }
                         location = self.location_names.lookup_in_slot(networkItem.location)
                         self.descriptions[location] = itemTypeLookup[networkItem.flags]
@@ -357,7 +361,7 @@ class TWW3Context(CommonContext):
 
             offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
             for key, settlement in sm.settlementDict.items():
-                for i in range(10):
+                for i in range(self.checksPerLocation):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
         logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
@@ -624,18 +628,43 @@ class TWW3Context(CommonContext):
 
     def createTechMissions(self):
         #Faction, Tech, DB Key, Title, Description
-        techs = factionItemManager.getTechs(self.playerRace, False)
+        techs = [item[1] for item in factionItemManager.getTechs(self.playerRace, False)]
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
-            objective = item[1].readableName[item[1].readableName.find(":")+2:]
-            self.sendMessage(f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Research {objective}", "{self.descriptions[item[1].readableName]}")')
+            objective = item.readableName[item.readableName.find(":")+2:]
+            self.sendMessage(f'createMission("{self.playerFaction}", "{item.name}", "{key}", "Research {objective}", "{self.descriptions[item.readableName]}")')
 
     def createBuildingMissions(self):
-        buildings = factionItemManager.getBuildings(self.playerRace, False)
+        buildings = [item[1] for item in factionItemManager.getBuildings(self.playerRace, False)]
         for i, item in enumerate(buildings):
             key = f"archipelago_construct_{i + 1}"
-            objective = item[1].readableName[item[1].readableName.find(":")+2:]
-            self.sendMessage(f'createMission("{self.playerFaction}", "{item[1].name}", "{key}", "Construct {objective}", "{self.descriptions[item[1].readableName]}")')
+            objective = item.readableName[item.readableName.find(":")+2:]
+            self.sendMessage(f'createMission("{self.playerFaction}", "{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
+
+    def createConquestMissions(self):
+        pass
+
+    def createSphereMissions(self):
+        for i, settlement in sm.settlementDict.items():
+            key = f"archipelago_{settlement.readableName}"
+            items = "Within this settlement:\n"
+            for j in range(self.checksPerLocation):
+                items += f"{self.descriptions[f'{settlement.readableName} ({i})']}\n"
+            self.sendMessage(f'createMission("{self.playerFaction}", {settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
+
+    def createBattleSanity(self):
+        locations = [f"Won {i * 5} Battles" for i in range(1, 21)]
+        for i, location in enumerate(locations):
+            key = f"archipelago_battle_{i + 1}"
+            self.sendMessage(f'createMission("{self.playerFaction}", {i}, "{key}", "Win {i} Battles", "{self.descriptions[location]}")')
+
+    def createDespoilerMissions(self):
+        locations = [f"Sacked {i} Settlements" for i in range(1, 21)] + [f"Razed {i} Settlements" for i in range(1, 21)]
+        for i, location in enumerate(locations):
+            key = f"archipelago_sack_{i + 1}"
+            self.sendMessage(f'createMission("{self.playerFaction}", {i}, "{key}", "Sack {i} Settlements", "{self.descriptions[location]}")')
+            key = f"archipelago_raze_{i + 1}"
+            self.sendMessage(f'createMission("{self.playerFaction}", {i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
 
 class EngineInitializer:
 
