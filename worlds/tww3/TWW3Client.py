@@ -572,7 +572,6 @@ class TWW3Context(CommonContext):
             if not "special" in location:
                 if sanityType == "s":
                     logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
-                #else:
 
     async def checkBattleSanity(self, location):
         try:
@@ -674,7 +673,6 @@ class EngineInitializer:
         sendMessage = context.sendMessage
 
         if self.playerFaction == "wh2_main_skv_clan_skryre":
-            #sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_1", "{self.playerFaction}")')
             sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_2", "{self.playerFaction}")')
 
         ###
