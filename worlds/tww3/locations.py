@@ -19,7 +19,7 @@ def createAllLocations(world: TWW3World) -> None:
     createVictoryLocation(world)
 
     if world.options.game_mode == "conquest":
-        createRegularLocations(world)
+        createConquestLocations(world)
 
     elif world.options.game_mode == "spheres":
         createDiploRangeLocations(world)
@@ -51,7 +51,7 @@ def createVictoryLocation(world: TWW3World) -> None:
 
     rules.setVictoryRule(world, location)
 
-def createRegularLocations(world: TWW3World) -> None:
+def createConquestLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
     if world.playerFaction.name == "wh3_dlc24_tze_the_deceivers":

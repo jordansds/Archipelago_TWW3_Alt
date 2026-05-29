@@ -344,7 +344,7 @@ class TWW3Context(CommonContext):
         self.locationLookup = {}
 
         if self.gameMode == "conquest":
-            self.numberOfLocations = args['slot_data']['number_of_settlements']
+            self.maxEmpireSize = args['slot_data']['number_of_settlements']
             self.adminCapacity = args['slot_data']['admin_capacity']
             self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
 
@@ -537,7 +537,7 @@ class TWW3Context(CommonContext):
         try:
             if self.gameMode == "conquest":
                 location = int(location)
-                if location < int(self.numberOfLocations):
+                if location < int(self.maxEmpireSize):
                     if location <= self.adminCapacity * self.expansionItems or not self.hardLogic:
                         for i in range(location):
                             for j in range(int(self.checksPerLocation)):
@@ -546,7 +546,7 @@ class TWW3Context(CommonContext):
                             self.settlementCount = location
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
-                elif location == int(self.numberOfLocations):
+                elif location == int(self.maxEmpireSize):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"set_settlements_per_admin_capacity({self.expansionItems})")
@@ -556,10 +556,7 @@ class TWW3Context(CommonContext):
             elif self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
                 for i in range(int(self.checksPerLocation)):
-                    #try:
                     await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])
-                    #except Exception as e:
-                    #    print(e)
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
@@ -641,7 +638,13 @@ class TWW3Context(CommonContext):
             self.sendMessage(f'createMission("{self.playerFaction}", "{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
 
     def createConquestMissions(self):
-        pass
+        locations = [f"Empire Size {i} " for i in range(self.maxEmpireSize)]
+        for i, location in enumerate(locations):
+            key = f"archipelago_empiresize_{i}"
+            items = "By expanding to this size:\n"
+            for j in range(self.checksPerLocation):
+                items += f"{self.descriptions[f'{location} ({j})']}\n"
+            self.sendMessage(f'createMission("{self.playerFaction}", {location}, "{key}", "{location}", "{items}")')
 
     def createSphereMissions(self):
         for i, settlement in sm.settlementDict.items():
