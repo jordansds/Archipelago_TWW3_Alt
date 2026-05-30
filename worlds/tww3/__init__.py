@@ -2,7 +2,7 @@ from worlds.LauncherComponents import components, Component, launch, Type, icon_
 from .world import TWW3World as TWW3World
 
 def runClient(*args: str) -> None:
-    from .TWW3Client import launchClient
+    from .client import launchClient
     launch(launchClient, name="Total War Warhammer III Client", args=args)
 
 components.append(Component("Total War Warhammer III Client",

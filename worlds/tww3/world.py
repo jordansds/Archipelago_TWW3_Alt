@@ -180,7 +180,8 @@ class TWW3World(World):
                                         "battle_sanity",
                                         "despoiler_sanity",
                                         "hard_logic",
-                                        "fast_research",)
+                                        "fast_research",
+                                        "reveal_hints",)
                                         #"location_balancing",)
 
         if self.options.game_mode == "conquest":
@@ -220,7 +221,8 @@ class TWW3World(World):
                                                     "balance",
                                                     "hard_logic",
                                                     "mod_list",
-                                                    "fast_research"),
+                                                    "fast_research",
+                                                    "reveal_hints"),
 
         slotData["version"] = self.world_version.as_simple_string()
         return slotData

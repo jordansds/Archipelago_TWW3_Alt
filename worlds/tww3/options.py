@@ -360,6 +360,10 @@ class fastResearch(Toggle):
     """Instantly completes any research that you are sent from the multiworld, but disables techs from being locations if sanity is enabled"""
     display_name = "Fast Research"
 
+class revealHints(Toggle):
+    """Reveals which items you will find from researching and constructing as tooltips and missions in-game"""
+    display_name = "Reveal Hints"
+
 @dataclass
 class TWW3Options(PerGameCommonOptions):
     starting_faction: faction
@@ -397,6 +401,7 @@ class TWW3Options(PerGameCommonOptions):
 
     hard_logic: hardLogic
     fast_research: fastResearch
+    reveal_hints: revealHints
 
     mod_list: modList
     trap_blacklist: trapBlacklist
