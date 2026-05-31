@@ -136,7 +136,7 @@ class Watcher:
             if line:
                 line = line.strip()
                 prefix = line.split(" ")[0]
-                match line:
+                match prefix:
                     case "":
                         pass
 
