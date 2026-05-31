@@ -704,7 +704,7 @@ class EngineInitializer:
                     sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
                     sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
                 if isFirstPlayerSettlement:
-                    sendMessage(f'cm:scroll_camera_to_region("{faction}", "{settlement}"), 1')
+                    sendMessage(f'cm:scroll_camera_to_region("{faction}", "{settlement}", 1)')
                     isFirstPlayerSettlement = False
 
             ###
