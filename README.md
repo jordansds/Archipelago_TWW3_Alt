@@ -2,7 +2,6 @@
 This is an alternate implementation of the original TWW3 world which includes all features of the original mod as well
 as an alternate mode that works better for syncs.
 
-DO NOT ENABLE BOTH THE SPHERES AND CONQUEST MODS AT THE SAME TIME. ONLY ENABLE THE GAMEMODE YOU SELECT IN THE YAML.
 DO NOT USE THE "ARCHIPELAGO RANDOMIZER (BETA)" MOD FROM THE STEAM WORKSHOP.
 
 ## How does this work?
@@ -24,7 +23,7 @@ PREVENT POTENTIAL SOFTLOCK.
 
 ## Installation and setup  
  - Install the [Archipelago launcher](https://github.com/ArchipelagoMW/Archipelago/releases/latest)  
- - Download all .pack files and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
+ - Download the .pack file and the .apworld from the [latest mod release](https://github.com/jordansds/Archipelago_TWW3_Alt/releases/latest)  
  - If you're not hosting the session, the host that is generating the multiworld will need the .apworld file, but not the .pack files.  
  - Move the .pack files to the Total War Warhammer data directory e.g. `SteamLibrary/steamapps/common/Total War WARHAMMER III/data/`  
  - Double click the .apworld and it will be installed to the Archipelago launcher.  
@@ -38,7 +37,7 @@ it works. For more detailed information on what the yaml settings do, check belo
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld.  
 
- - Launch Total War Warhammer 3 and in the mod launcher, enable the QOL.pack along with either the spheres or conquest .pack file you downloaded (depending on which gamemode the Archipelago Launcher says).  
+ - Launch Total War Warhammer 3 and in the mod launcher, enable the .pack file you downloaded.  
 (If the mods do not show up, try using [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14) instead (it's better).  
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the Archipelago mod found on the Steam workshop, it is for another dev's outdated APWorld.**  
