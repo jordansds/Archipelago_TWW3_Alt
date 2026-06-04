@@ -462,10 +462,11 @@ class TWW3Context(CommonContext):
                 case itemType.filler:
                     if item.readableName == "Get-Rich-Quick Scroll":
                         self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
-                    elif item.type == itemType.ancillaries_regular or item.type == itemType.ancillaries_legendary:
-                        self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
                     else:
                         self.sendMessage(item.name)
+                        
+                case itemType.ancillaries_regular | itemType.ancillaries_legendary:
+                        self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
                     if self.are_traps_enabled:
