@@ -534,3 +534,8 @@ ancillariesDict = {
     2526: itemData(IC.filler, 0, 'archipelago_wh_pro01_anc_weapon_the_rune_axe_of_grombrindal', itemType.ancillary, None, 'None', "Weapon: Rune Axe of Grombrindal"),
     2527: itemData(IC.filler, 0, 'archipelago_wh_pro02_anc_enchanted_item_blood_chalice_of_bathori', itemType.ancillary, None, 'None', "Enchanted Item: Blood Chalice of Bathori"),
 }
+
+ancillariesDict.update({
+    3000: itemData(IC.filler, 0, 'archipelago_anc_sword_of_swording', itemType.ancillary, None, 'None', "Weapon: The Sword of Swording"),
+    3001: itemData(IC.filler, 0, 'archipelago_anc_gloves_of_thieving', itemType.ancillary, None, 'None', "Enchanted Item: The Sword of Swording"),
+})
