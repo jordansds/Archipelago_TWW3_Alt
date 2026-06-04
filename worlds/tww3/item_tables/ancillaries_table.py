@@ -537,5 +537,5 @@ ancillariesDict = {
 
 ancillariesDict.update({
     3000: itemData(IC.filler, 0, 'archipelago_anc_sword_of_swording', itemType.ancillary, None, 'None', "Weapon: The Sword of Swording"),
-    3001: itemData(IC.filler, 0, 'archipelago_anc_gloves_of_thieving', itemType.ancillary, None, 'None', "Enchanted Item: The Sword of Swording"),
+    3001: itemData(IC.filler, 0, 'archipelago_anc_gloves_of_thieving', itemType.ancillary, None, 'None', "Enchanted Item: Gloves of Thieving"),
 })
