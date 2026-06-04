@@ -16,8 +16,8 @@ class itemType(IntEnum):
     effect_force = 13
     effect_province = 14
     effect_region = 15
-    ancillaries_regular = 16
-    ancillaries_legendary = 17
+    ancillary = 16
+    #ancillaries_legendary = 17
 
 class itemData(NamedTuple):
     classification: ItemClassification
@@ -71,7 +71,7 @@ class settlementData(NamedTuple):
 
 #Progression items: 1000
 #Goal items: 1100
-#Filler items: 1200, 1300, 1400, 1500, 1600
-#Ancillaries: 2000, 2500
+#Filler items: 1200, 1500
+#Ancillaries: 2000
 
 

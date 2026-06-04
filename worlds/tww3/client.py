@@ -16,7 +16,7 @@ import math
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.dataStructs import itemType
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
-from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
+from worlds.tww3.item_tables.ancillaries_table import ancillariesDict
 from worlds.tww3.item_tables.progression_table import progressionDict
 from worlds.tww3 import TWW3World, factionItemManager, deathLink, settlementManager as sm
 import os
@@ -367,8 +367,7 @@ class TWW3Context(CommonContext):
         self.itemDict.update(factionItemManager.getAllItems(self.playerRace, self.playerFaction, self.modList))
         #print(self.itemDict)
         self.itemDict.update(fillerDict)
-        self.itemDict.update(ancillariesRegularDict)
-        self.itemDict.update(ancillariesLegendaryDict)
+        self.itemDict.update(ancillariesDict)
         self.itemDict.update(trapDict)
         self.itemDict.update(progressionDict)
 
@@ -465,7 +464,7 @@ class TWW3Context(CommonContext):
                     else:
                         self.sendMessage(item.name)
                         
-                case itemType.ancillaries_regular | itemType.ancillaries_legendary:
+                case itemType.ancillary:
                         self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
@@ -534,6 +533,7 @@ class TWW3Context(CommonContext):
 
     async def check(self, location):
         try:
+            int(location)
             if self.gameMode == "conquest":
                 location = int(location)
                 if location < int(self.maxEmpireSize):
@@ -551,8 +551,8 @@ class TWW3Context(CommonContext):
                         self.sendMessage(f"archipelago.set_admin_capacity_mult({self.expansionItems})")
                     #await self.check_locations([location * 10 - 9])
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
-
-            elif self.gameMode == "spheres":
+        except ValueError:
+            if self.gameMode == "spheres":
                 key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
                 for i in range(int(self.checksPerLocation)):
                     await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])

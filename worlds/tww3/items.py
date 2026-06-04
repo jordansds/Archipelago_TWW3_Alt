@@ -10,7 +10,7 @@ from BaseClasses import ItemClassification as IC
 import math
 
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
-from worlds.tww3.item_tables.ancillaries_table import ancillariesRegularDict, ancillariesLegendaryDict
+from worlds.tww3.item_tables.ancillaries_table import ancillariesDict
 from worlds.tww3.item_tables.progression_table import progressionDict
 from worlds.tww3 import factionItemManager
 from worlds.tww3.dataStructs import itemData, itemType
@@ -21,8 +21,7 @@ itemDict.update(factionItemManager.getAllItems())
 itemDict.update(fillerDict)
 itemDict.update(trapDict)
 #itemDict.update(globalEffectTable) #disabled as a large number of these checks don't do anything
-itemDict.update(ancillariesRegularDict)
-itemDict.update(ancillariesLegendaryDict)
+itemDict.update(ancillariesDict)
 itemDict.update(progressionDict)
 logger = logging.getLogger("Total War Warhammer III")
 
@@ -190,6 +189,10 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
 
+    #for item in ancillariesDict.values():
+    #    item = world.create_item(item.readableName)
+    #    pool.append(item)
+    #return pool
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
     weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
 
@@ -213,12 +216,8 @@ def generateFiller(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerDict.keys()))
     if key == 1207 and world.options.game_mode == "conquest":
         key = 1205
-    if key == 1203:
-        ancillaries_table = ancillariesRegularDict
-        name = world.random.choice(tuple(ancillaries_table.values())).readableName
-    elif key == 1205:
-        ancillaries_table = ancillariesLegendaryDict
-        name = world.random.choice(tuple(ancillaries_table.values())).readableName
+    if key == 1205:
+        name = world.random.choice(tuple(ancillariesDict.values())).readableName
     else:
         name = itemDict[key].readableName
 
