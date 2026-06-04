@@ -446,7 +446,7 @@ class TWW3Context(CommonContext):
                             logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
                             logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
                         self.sendMessage(f"archipelago.set_admin_capacity({self.expansionItems})")
-                        self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
+                        #self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
 
                     elif self.gameMode == "spheres":
                         self.expansionItems += 1
@@ -525,11 +525,11 @@ class TWW3Context(CommonContext):
                 allOthers.append(faction)
         for oldFaction in oldSphere:
             for newFaction in newSphere:
-                self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
+                self.sendMessage(f'cm:force_diplomacy("{oldFaction}", "{newFaction}", "all", true, true, true)')
         for newFaction in newSphere:
             for otherFaction in allOthers:
-                self.sendMessage("cm:force_make_peace(\"%s\", \"%s\")" % (newFaction, otherFaction))
-                self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (newFaction, otherFaction))
+                self.sendMessage(f'cm:force_make_peace("{newFaction}", "{otherFaction}")')
+                self.sendMessage(f'cm:force_diplomacy("{newFaction}", "{otherFaction}", "all", false, false, true)')
         return
 
     async def check(self, location):
