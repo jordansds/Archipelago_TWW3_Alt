@@ -131,8 +131,4 @@ either set it to 10 or leave it off. For singleplayer games a value of at least 
 
 [Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECOMMENDED FOR SPHERES.
 
-[No Item Requirements](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601): Lets you equip all items, even if they are restricted to a different Legendary Lord.
-
 [No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789915966): Removes all climate penalties so your start position is not as bad as it seems.
-
-[Sea Lord Aislinn – Infinite Colonies](https://steamcommunity.com/workshop/filedetails/?id=3626519982): Allows Aislinn to conquer any city as an elven colony.
