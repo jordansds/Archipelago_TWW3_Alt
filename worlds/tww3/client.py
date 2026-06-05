@@ -24,6 +24,9 @@ from NetUtils import ClientStatus
 
 path = "."
 
+#NOTE TO SELF. FOR .PACK FILE TEMP READER, IT SHOULD SET THE LINE COUNT TO THE FILE LENGTH EVERY TIME IT READS THE FILE.
+
+
 class TWW3CommandProcessor(ClientCommandProcessor):    
 
     def _cmd_traps(self):
@@ -105,6 +108,7 @@ class Messenger:
 
     def flush(self):
         self.file.flush()
+        self.tempFile.flush()
 
 class Watcher:
     def __init__(self, path, context):
@@ -298,7 +302,6 @@ class TWW3Context(CommonContext):
             logger.warning("DeathLink is enabled, good luck...")
 
         self.deathLinkEffects = args['slot_data']["death_link_effects"]
-
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
 
         self.modList = args['slot_data']['mod_list']
@@ -324,7 +327,6 @@ class TWW3Context(CommonContext):
             logger.info("The player faction is: " + sm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
         self.playerRace = sm.factionDict[args["slot_data"]["starting_faction"]].race
-
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
         self.itemKeys = args['slot_data']['items']
@@ -472,7 +474,7 @@ class TWW3Context(CommonContext):
                         #self.sendMessage(item.name)
                         self.messenger.runTemp(item.name)
                     else:
-                        self.logger.info("Skipped a Trap")
+                        logger.info("Skipped a Trap")
 
                 case itemType.effect_faction:
                     self.sendMessage(f'archipelago.give_player_faction_effect({item.name})')
@@ -531,6 +533,7 @@ class TWW3Context(CommonContext):
                 self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", false, false, true)" % (newFaction, otherFaction))
         return
 
+    #Location Check Handlers
     async def check(self, location):
         try:
             if self.gameMode == "conquest":
@@ -548,7 +551,6 @@ class TWW3Context(CommonContext):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"archipelago.set_admin_capacity_mult({self.expansionItems})")
-                    #await self.check_locations([location * 10 - 9])
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
 
             elif self.gameMode == "spheres":
@@ -592,7 +594,7 @@ class TWW3Context(CommonContext):
         except KeyError:
             pass
 
-    #Deathlink handlers
+    #Deathlink Handlers
     def on_deathlink(self, data: dict):
         if self.deathLinkPending or not self.deathLinkEnabled:
             return
@@ -620,6 +622,7 @@ class TWW3Context(CommonContext):
         ui.base_title = self.game + " Client"#"Total War Warhammer III Client"
         return ui
 
+    #Mission Handlers
     def createTechMissions(self):
         #Faction, Tech, DB Key, Title, Description
         techs = [item[1] for item in factionItemManager.getTechs(self.playerRace, False)]

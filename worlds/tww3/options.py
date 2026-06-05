@@ -361,7 +361,7 @@ class fastResearch(Toggle):
     display_name = "Fast Research"
 
 class revealHints(Toggle):
-    """Reveals which items you will find from researching and constructing as tooltips and missions in-game"""
+    """In-game missions reveal which items can be found in the locations and hint them to the multiworld"""
     display_name = "Reveal Hints"
 
 @dataclass
