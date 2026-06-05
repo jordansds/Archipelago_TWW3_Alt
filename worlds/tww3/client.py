@@ -627,7 +627,7 @@ class TWW3Context(CommonContext):
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
             objective = item.readableName[item.readableName.find(":")+2:]
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Research {objective}", "{self.descriptions[item.readableName]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Research {objective}", "{self.descriptions[item.readableName]}")')
 
     def createBuildingMissions(self):
         buildings = [item[1] for item in factionItemManager.getBuildings(self.playerRace, False)]
@@ -635,7 +635,7 @@ class TWW3Context(CommonContext):
             key = f"archipelago_construct_{i + 1}"
             objective = item.readableName[item.readableName.find(":")+2:]
             try:
-                self.sendMessage(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
+                self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
             except KeyError:
                 pass
 
@@ -646,7 +646,7 @@ class TWW3Context(CommonContext):
             items = "By expanding to this size:\n"
             for j in range(self.checksPerLocation):
                 items += f"{self.descriptions[f'{location} ({j})']}\n"
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", {location}, "{key}", "{location}", "{items}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {location}, "{key}", "{location}", "{items}")')
 
     def createSphereMissions(self):
         for i, settlement in sm.settlementDict.items():
@@ -654,21 +654,21 @@ class TWW3Context(CommonContext):
             items = "Within this settlement:\n"
             for j in range(self.checksPerLocation):
                 items += f"{self.descriptions[f'{settlement.readableName} ({i})']}\n"
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", {settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
 
     def createBattleSanity(self):
         locations = [f"Won {i * 5} Battles" for i in range(1, 21)]
         for i, location in enumerate(locations):
             key = f"archipelago_battle_{i + 1}"
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Win {i} Battles", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Win {i} Battles", "{self.descriptions[location]}")')
 
     def createDespoilerMissions(self):
         locations = [f"Sacked {i} Settlements" for i in range(1, 21)] + [f"Razed {i} Settlements" for i in range(1, 21)]
         for i, location in enumerate(locations):
             key = f"archipelago_sack_{i + 1}"
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Sack {i} Settlements", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Sack {i} Settlements", "{self.descriptions[location]}")')
             key = f"archipelago_raze_{i + 1}"
-            self.sendMessage(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
 
 class EngineInitializer:
 
