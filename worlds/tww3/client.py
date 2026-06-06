@@ -81,6 +81,10 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             self.ctx.deathLinkEnabled = not self.ctx.deathLinkEnabled
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
 
+    def _cmd_debug(self):
+        if isinstance(self.ctx, TWW3Context):
+            self.ctx.adminCapacity = 1000
+
 class Messenger:
     def __init__(self, path):
         self.file = open(path, 'w+')
@@ -207,6 +211,7 @@ class TWW3Context(CommonContext):
         #self.initialized = False
         self.itemDict = {}
         self.deathLinkPending = False
+        self.notificationPending = False
         self.logChecks = False
         #self.settlementCount = 0
         self.locationMapping = False
@@ -261,7 +266,7 @@ class TWW3Context(CommonContext):
                     if not self.fastResearch and self.sanity:
                         self.createTechMissions()
 
-                    self.sendMessage("archipelago.initialized()")
+                    self.sendMessage("archipelago.initialise()")
 
                 super().on_package(cmd, args)
 
@@ -399,12 +404,12 @@ class TWW3Context(CommonContext):
 
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
+        self.receivedItems = []
 
         self.initialized = False
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
     def on_received_items(self, args: dict):
-        receivedItems = []
         for entry in args["items"]:
             try:
                 item = self.itemDict[entry.item]
@@ -488,15 +493,27 @@ class TWW3Context(CommonContext):
 
             self.messenger.flush()
 
-            receivedItems.append(item.readableName)
+            self.receivedItems.append(item.readableName)
 
-        notificationDesc = "\\n-".join(receivedItems)
+        asyncio.create_task(self.sendNotification())
 
+    async def sendNotification(self):
+        if self.notificationPending:
+            return
         if not self.initialized:
-            #self.messenger.runTemp(f'archipelago.createNotification("Received Items", "So far, you have received:\\n{notificationDesc}")')
+            self.receivedItems = []
             self.initialized = True
-            notificationDesc = ""
+            return
+
+        self.notificationPending = True
+
+        await asyncio.sleep(1)
+        notificationDesc = "\\n-".join(self.receivedItems)
+        self.receivedItems = []
+        print(notificationDesc)
         self.messenger.runTemp(f'archipelago.createNotification("Received Item(s)", "You have received:\\n{notificationDesc}")')
+
+        self.notificationPending = False
 
     def sendMessage(self, message):
         if self.lineCount == 0:
@@ -782,7 +799,7 @@ class EngineInitializer:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
 
-        sendMessage("archipelago.initialized()")
+        sendMessage("archipelago.initialise()")
 
         context.messenger.flush()
 
