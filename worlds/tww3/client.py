@@ -208,7 +208,7 @@ class TWW3Context(CommonContext):
         self.itemDict = {}
         self.deathLinkPending = False
         self.logChecks = False
-        self.settlementCount = 0
+        #self.settlementCount = 0
         self.locationMapping = False
         self.descriptions = {}
 
@@ -260,6 +260,8 @@ class TWW3Context(CommonContext):
                         self.createBuildingMissions()
                     if not self.fastResearch and self.sanity:
                         self.createTechMissions()
+
+                    self.sendMessage("archipelago.initialized()")
 
                 super().on_package(cmd, args)
 
@@ -398,9 +400,11 @@ class TWW3Context(CommonContext):
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
 
+        self.initialized = False
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
     def on_received_items(self, args: dict):
+        receivedItems = []
         for entry in args["items"]:
             try:
                 item = self.itemDict[entry.item]
@@ -451,6 +455,7 @@ class TWW3Context(CommonContext):
                         self.expansionItems += 1
                         self.triggerSphereExpansion(self.expansionItems)
                         logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
+
                 case itemType.goal:
                     if self.gameMode == "spheres":
                         self.numberOfOrbs += 1
@@ -468,11 +473,12 @@ class TWW3Context(CommonContext):
                         self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
-                    if self.are_traps_enabled:
-                        #self.sendMessage(item.name)
-                        self.messenger.runTemp(item.name)
-                    else:
-                        self.logger.info("Skipped a Trap")
+                    if self.initialized:
+                        if self.are_traps_enabled:
+                            #self.sendMessage(item.name)
+                            self.messenger.runTemp(item.name)
+                        else:
+                            self.logger.info("Skipped a Trap")
 
                 case itemType.effect_faction:
                     self.sendMessage(f'archipelago.give_player_faction_effect({item.name})')
@@ -481,6 +487,16 @@ class TWW3Context(CommonContext):
                     self.sendMessage(f'cm:unlock_ritual(cm:get_faction("{self.playerFaction}"), "{item.name}", 0)')
 
             self.messenger.flush()
+
+            receivedItems.append(item.readableName)
+
+        notificationDesc = "\\n-".join(receivedItems)
+
+        if not self.initialized:
+            #self.messenger.runTemp(f'archipelago.createNotification("Received Items", "So far, you have received:\\n{notificationDesc}")')
+            self.initialized = True
+            notificationDesc = ""
+        self.messenger.runTemp(f'archipelago.createNotification("Received Item(s)", "You have received:\\n{notificationDesc}")')
 
     def sendMessage(self, message):
         if self.lineCount == 0:
@@ -531,18 +547,18 @@ class TWW3Context(CommonContext):
                 self.sendMessage(f'cm:force_diplomacy("{newFaction}", "{otherFaction}", "all", false, false, true)')
         return
 
+    # Location handlers
     async def check(self, location):
         try:
-            int(location)
+            location = int(location)
             if self.gameMode == "conquest":
-                location = int(location)
                 if location < int(self.maxEmpireSize):
                     if location <= self.adminCapacity * self.expansionItems or not self.hardLogic:
-                        for i in range(location):
+                        for i in range(1, location + 1):
                             for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([location*10-9 + j])
-                        if location > self.settlementCount:
-                            self.settlementCount = location
+                                await self.check_locations([i*10-9 + j])
+                        #if location > self.settlementCount:
+                        #    self.settlementCount = location
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 elif location == int(self.maxEmpireSize):
@@ -593,7 +609,7 @@ class TWW3Context(CommonContext):
         except KeyError:
             pass
 
-    #Deathlink handlers
+    # Deathlink handlers
     def on_deathlink(self, data: dict):
         if self.deathLinkPending or not self.deathLinkEnabled:
             return
@@ -621,13 +637,14 @@ class TWW3Context(CommonContext):
         ui.base_title = self.game + " Client"#"Total War Warhammer III Client"
         return ui
 
+    # Mission creation functions
     def createTechMissions(self):
         #Faction, Tech, DB Key, Title, Description
         techs = [item[1] for item in factionItemManager.getTechs(self.playerRace, False)]
         for i, item in enumerate(techs):
             key = f"archipelago_research_{i+1}"
             objective = item.readableName[item.readableName.find(":")+2:]
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Research {objective}", "{self.descriptions[item.readableName]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{item.name}", "{key}", "Research {objective}", "{self.descriptions[item.readableName]}")')
 
     def createBuildingMissions(self):
         buildings = [item[1] for item in factionItemManager.getBuildings(self.playerRace, False)]
@@ -635,10 +652,11 @@ class TWW3Context(CommonContext):
             key = f"archipelago_construct_{i + 1}"
             objective = item.readableName[item.readableName.find(":")+2:]
             try:
-                self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", "{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
+                self.messenger.runTemp(f'archipelago.createMission("{item.name}", "{key}", "Construct {objective}", "{self.descriptions[item.readableName]}")')
             except KeyError:
                 pass
 
+    # Currently Unused
     def createConquestMissions(self):
         locations = [f"Empire Size {i} " for i in range(self.maxEmpireSize)]
         for i, location in enumerate(locations):
@@ -646,29 +664,32 @@ class TWW3Context(CommonContext):
             items = "By expanding to this size:\n"
             for j in range(self.checksPerLocation):
                 items += f"{self.descriptions[f'{location} ({j})']}\n"
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {location}, "{key}", "{location}", "{items}")')
+            self.messenger.runTemp(f'archipelago.createMission({location}, "{key}", "{location}", "{items}")')
 
+    # Currently Unused
     def createSphereMissions(self):
         for i, settlement in sm.settlementDict.items():
             key = f"archipelago_{settlement.readableName}"
             items = "Within this settlement:\n"
             for j in range(self.checksPerLocation):
                 items += f"{self.descriptions[f'{settlement.readableName} ({i})']}\n"
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
+            self.messenger.runTemp(f'archipelago.createMission({settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
 
+    # Currently Unused
     def createBattleSanity(self):
         locations = [f"Won {i * 5} Battles" for i in range(1, 21)]
         for i, location in enumerate(locations):
             key = f"archipelago_battle_{i + 1}"
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Win {i} Battles", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission({i}, "{key}", "Win {i} Battles", "{self.descriptions[location]}")')
 
+    # Currently Unused
     def createDespoilerMissions(self):
         locations = [f"Sacked {i} Settlements" for i in range(1, 21)] + [f"Razed {i} Settlements" for i in range(1, 21)]
         for i, location in enumerate(locations):
             key = f"archipelago_sack_{i + 1}"
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Sack {i} Settlements", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission("{i}, "{key}", "Sack {i} Settlements", "{self.descriptions[location]}")')
             key = f"archipelago_raze_{i + 1}"
-            self.messenger.runTemp(f'archipelago.createMission("{self.playerFaction}", {i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
+            self.messenger.runTemp(f'archipelago.createMission({i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
 
 class EngineInitializer:
 
@@ -760,6 +781,8 @@ class EngineInitializer:
                 for faction in sphereAllOthers:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
+
+        sendMessage("archipelago.initialized()")
 
         context.messenger.flush()
 
