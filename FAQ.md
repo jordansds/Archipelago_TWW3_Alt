@@ -18,7 +18,9 @@ Spheres only supports the vanilla Immortal Empires map.
 **I received X unit from the multiworld but can't recruit it?**  
 You need both the unit and the building that it is trained in unlocked to be able to recruit units.  
 Just like in vanilla, you can't just pull units from nowhere (unless you're a deamon, then fuck me I guess).  
-  
+
+**What happens if I lose a campaign?**  
+Start a new one, all the items you've received will carry over. Just make sure to return to the main menu and then disconnect and reconnect on the client first.
   
 **Filler Items:**  
  - Get Rich Slow Scroll - Gives random amount of gold.  
