@@ -97,7 +97,7 @@ class TWW3World(World):
                 self.adminCapacity = 1
         elif self.options.game_mode == "spheres":
             self.orbCount = 9
-            self.sphereRadius = 150
+            self.sphereRadius = 100
             self.settlementDiploRange, self.factionDiploRange = self.settlementManager.getRequiredDiploRange(
                 self.options.sphere_count, self.sphereRadius)
         if self.options.ritual_sanity:
