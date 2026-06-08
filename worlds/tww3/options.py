@@ -254,7 +254,7 @@ class sphereCount(Range):
     You can only interact with factions that are within this radius of your starting capital."""
     display_name = "Radius Upgrades (SPHERES)"
     range_start = 3
-    range_end = 10
+    range_end = 15
     default = 3
 
 
