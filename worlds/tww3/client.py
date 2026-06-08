@@ -151,7 +151,7 @@ class Watcher:
                         if self.context.sanity:
                             if self.context.logChecks:
                                 logger.info(f"Sending {line}")
-                            await self.context.checkSanity(line.split(" ")[1], "s")
+                            await self.context.checkSanity(line.split(" ")[1], prefix)
 
                     case "ritual":
                         if self.context.ritualSanity:
@@ -159,7 +159,7 @@ class Watcher:
                                 logger.info(f"Sending {line}")
                             if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
                                 line = line[:-9]
-                            await self.context.checkSanity(line.split(" ")[1], "r")
+                            await self.context.checkSanity(line.split(" ")[1], prefix)
 
                     case "battles":
                         if self.context.battleSanity:
@@ -596,11 +596,11 @@ class TWW3Context(CommonContext):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
-            if sanityType == "r":
-                logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
+            if sanityType == "ritual":
+                logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
             if not "special" in location:
-                if sanityType == "s":
-                    logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}")
+                if sanityType != "ritual":
+                    logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
 
     async def checkBattleSanity(self, location):
         try:
