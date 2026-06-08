@@ -469,8 +469,8 @@ class TWW3Context(CommonContext):
                             asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
 
                 case itemType.filler:
-                    if item.readableName == "Get-Rich-Quick Scroll":
-                        self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", cm:random_number(10000,1))')
+                    if item.progressionGroup == "gold":
+                        self.sendMessage(f'cm:treasury_mod("{self.playerFaction}", {item.name})')
                     else:
                         self.sendMessage(item.name)
                         

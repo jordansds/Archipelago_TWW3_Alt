@@ -2,7 +2,7 @@ from BaseClasses import ItemClassification as IC
 from worlds.tww3.dataStructs import itemType, itemData
 
 fillerDict: dict[int, itemData] = {
-    1200: itemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(2000,1))', itemType.filler, None, "None", "Buff: Get-Rich-Slow Scroll"), #Gold
+    1200: itemData(IC.filler, 0, 'cm:random_number(2000,1)', itemType.filler, None, "gold", "Buff: Get-Rich-Slow Scroll"), #Gold
     #1201: itemData(IC.filler, 0, "", itemType.filler, None, "None", "Something Happened"), #Random event - not currently included as most don't do anything
     1202: itemData(IC.filler, 0, "archipelago.set_random_positive_public_order()", itemType.filler, None, "None", "Buff: Handful of Order"), #Random amount of positive public order to random region
     #1203: itemData(IC.filler, 0, "", itemType.filler, None, "None", "Something Thingy"), #Random item/ancillary
@@ -10,7 +10,7 @@ fillerDict: dict[int, itemData] = {
     1205: itemData(IC.filler, 0, "", itemType.filler, None, "None", "Legendary Artifact"), #Random legendary item/ancillary
     1206: itemData(IC.filler, 0, "archipelago.force_settlement_transfer_from_random_enemy_to_player()", itemType.filler, None, "None", "Buff: Give me that"), #Gives player random enemy city
     1207: itemData(IC.filler, 0, "archipelago.force_alliance_with_random_enemy()", itemType.filler, None, "None", "Buff: Make Love, Not War"), #Makes random enemy an ally
-    1208: itemData(IC.filler, 0, 'cm:treasury_mod("%s", cm:random_number(10000,1000))', itemType.filler, None, "None", "Buff: Get-Rich-Quick Scroll"), #Gold
+    1208: itemData(IC.filler, 0, 'cm:random_number(10000,1000)', itemType.filler, None, "gold", "Buff: Get-Rich-Quick Scroll"), #Gold
 }
 
 trapDict: dict[int, itemData] = {
