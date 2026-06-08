@@ -956,7 +956,7 @@ modDict: dict[str, dict[int, factionData]] = {
     "cataph southern realms": {
         1251: factionData("mixer_teb_border_princes", True, True, "southernRealms", "Valmir Gausser (Southern Realms)", False),
         1252: factionData("mixer_teb_estalia", True, True, "southernRealms", "Lupio Sunscryer (Southern Realms)", False),
-        1253: factionData("cr_teb_miragliano", True, True, "southernRealms", "Borgio the Besieger (Southern Realms)", False),
+        1253: factionData("mixer_teb_tilea", True, True, "southernRealms", "Borgio the Besieger (Southern Realms)", False),
         2019: factionData("mixer_teb_bilbali", True, True, "southernRealms", "Lucrezzia Belladonna (Southern Realms)", False),
         2020: factionData("mixer_teb_catrazza", True, True, "southernRealms", "Leonardo Catrazza (Southern Realms)", False),
         2021: factionData("mixer_teb_colombo", True, True, "southernRealms", "Marco Colombo (Southern Realms)", False),
