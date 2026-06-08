@@ -110,8 +110,6 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
                     pool.append(tww3_item)
                     if not world.options.progressive_buildings:
                         world.itemKeys.append(key)
-
-                    #print(f"{item.readableName} x {i+1}")
     return pool
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:

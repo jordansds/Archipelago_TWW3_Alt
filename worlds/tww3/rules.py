@@ -36,7 +36,7 @@ def setGenericLocationRule(world: TWW3World, location, i: int):
     if rule is not None:
         world.set_rule(location, rule)
 
-def setBuildingLocationRules(world: TWW3World, buildings, firstPass: bool):
+def setBuildingLocationRules(world: TWW3World, buildings):
 
     specialBuildings = [item for key, item in factionItemManager.getSpecial(world, True) if
                         item.type == itemType.building]
@@ -72,6 +72,7 @@ def setBuildingLocationRules(world: TWW3World, buildings, firstPass: bool):
                 if world.options.game_mode == "conquest":
                     rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
 
+            #print(item.readableName, rule)
             world.set_rule(world.get_location(item.readableName), rule)
 
 def setTechnologyLocationRules(world: TWW3World, techs):

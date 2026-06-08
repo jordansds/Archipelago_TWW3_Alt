@@ -122,7 +122,7 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
             region.locations.append(location)
 
     if not firstPass:
-        rules.setBuildingLocationRules(world, buildings, firstPass)
+        rules.setBuildingLocationRules(world, buildings)
 
 
 def createTechLocations(world: TWW3World) -> None:
