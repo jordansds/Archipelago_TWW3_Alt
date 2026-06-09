@@ -259,29 +259,29 @@ techs: dict[int, itemData] = {
     56821: itemData(IC.useful, 1, 'wh3_dlc20_chs_und_warriors_warmachines', itemType.tech, 5, 'Progressive tech_chs_und_undivided', 'Chaos Tech: Warmachines'),
     56822: itemData(IC.useful, 1, 'wh3_dlc20_chs_und_warriors_shaggoths', itemType.tech, 5, 'Progressive tech_chs_und_undivided', 'Chaos Tech: Herald of Doom'),
 
-    56801: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_authority', itemType.tech, 3, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Sacrificial Altar'),
-    56802: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_corruption', itemType.tech, 3, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Bloodied Blade'),
-    56809: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_diplomacy', itemType.tech, 3, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Gorestained Robes'),
-    56810: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_summons', itemType.tech, 3, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Bloody Summons'),
-    56803: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_warriors_gift_slot_2', itemType.tech, 4, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Skulls for the Skull Throne'),
+    56801: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_authority', itemType.tech, 2, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Sacrificial Altar'),
+    56802: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_corruption', itemType.tech, 2, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Bloodied Blade'),
+    56809: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_diplomacy', itemType.tech, 2, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Gorestained Robes'),
+    56810: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_shared_gift_upgrade_summons', itemType.tech, 2, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Bloody Summons'),
+    56803: itemData(IC.useful, 1, 'wh3_dlc20_chs_kho_warriors_gift_slot_2', itemType.tech, 3, 'Progressive tech_chs_und_khorne', 'Chaos Tech: Skulls for the Skull Throne'),
 
-    56805: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_authority', itemType.tech, 3, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Mystical Banner'),
-    56806: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_corruption', itemType.tech, 3, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Enchanted Idols'),
-    56811: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_diplomacy', itemType.tech, 3, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Sacrificial Prophecy'),
-    56812: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_summons', itemType.tech, 3, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Pink Horrors'),
-    56807: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_warriors_gift_slot_2', itemType.tech, 4, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Attuning Ritual'),
+    56805: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_authority', itemType.tech, 2, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Mystical Banner'),
+    56806: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_corruption', itemType.tech, 2, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Enchanted Idols'),
+    56811: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_diplomacy', itemType.tech, 2, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Sacrificial Prophecy'),
+    56812: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_shared_gift_upgrade_summons', itemType.tech, 2, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Pink Horrors'),
+    56807: itemData(IC.useful, 1, 'wh3_dlc20_chs_tze_warriors_gift_slot_2', itemType.tech, 3, 'Progressive tech_chs_und_tzeentch', 'Chaos Tech: Attuning Ritual'),
 
-    56843: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_diplomacy', itemType.tech, 3, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Herald of Sacrifice'),
-    56844: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_summons', itemType.tech, 3, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Summons of Slaanesh'),
-    56833: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_authority', itemType.tech, 3, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Echo Chamber'),
-    56834: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_corruption', itemType.tech, 3, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Corrupted Offerings'),
-    56845: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_warriors_gift_slot_2', itemType.tech, 4, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Sensuous Gifts'),
+    56843: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_diplomacy', itemType.tech, 2, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Herald of Sacrifice'),
+    56844: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_summons', itemType.tech, 2, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Summons of Slaanesh'),
+    56833: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_authority', itemType.tech, 2, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Echo Chamber'),
+    56834: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_shared_gift_upgrade_corruption', itemType.tech, 2, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Corrupted Offerings'),
+    56845: itemData(IC.useful, 1, 'wh3_dlc20_chs_sla_warriors_gift_slot_2', itemType.tech, 3, 'Progressive tech_chs_und_slaanesh', 'Chaos Tech: Sensuous Gifts'),
 
-    56831: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_authority', itemType.tech, 3, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Rotten Altar'),
-    56832: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_corruption', itemType.tech, 3, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Swamp of Souls'),
-    56839: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_diplomacy', itemType.tech, 3, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Messenger of Decay'),
-    56840: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_summons', itemType.tech, 3, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Rampant Plaguebearers'),
-    56841: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_warriors_gift_slot_2', itemType.tech, 4, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Virulent Blessings'),
+    56831: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_authority', itemType.tech, 2, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Rotten Altar'),
+    56832: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_corruption', itemType.tech, 2, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Swamp of Souls'),
+    56839: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_diplomacy', itemType.tech, 2, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Messenger of Decay'),
+    56840: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_shared_gift_upgrade_summons', itemType.tech, 2, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Rampant Plaguebearers'),
+    56841: itemData(IC.useful, 1, 'wh3_dlc20_chs_nur_warriors_gift_slot_2', itemType.tech, 3, 'Progressive tech_chs_und_nurgle', 'Chaos Tech: Virulent Blessings'),
 }
 
 progUnits: dict[int, itemData] = {
@@ -330,10 +330,10 @@ progBuildings: dict[int, itemData] = {
 
 progTechs: dict[int, itemData] = {
     57400: itemData(IC.useful, 9, "Progressive tech_chs_und_undivided", itemType.tech, 5, None, "Progressive Chaos Tech: Undivided"),
-    57401: itemData(IC.useful, 9, "Progressive tech_chs_und_khorne", itemType.tech, 4, None, "Progressive Chaos Tech: Khorne"),
-    57402: itemData(IC.useful, 9, "Progressive tech_chs_und_tzeentch", itemType.tech, 4, None, "Progressive Chaos Tech: Tzeentch"),
-    57403: itemData(IC.useful, 9, "Progressive tech_chs_und_slaanesh", itemType.tech, 4, None, "Progressive Chaos Tech: Slaanesh"),
-    57404: itemData(IC.useful, 9, "Progressive tech_chs_und_nurgle", itemType.tech, 4, None, "Progressive Chaos Tech: Nurgle"),
+    57401: itemData(IC.useful, 9, "Progressive tech_chs_und_khorne", itemType.tech, 3, None, "Progressive Chaos Tech: Khorne"),
+    57402: itemData(IC.useful, 9, "Progressive tech_chs_und_tzeentch", itemType.tech, 3, None, "Progressive Chaos Tech: Tzeentch"),
+    57403: itemData(IC.useful, 9, "Progressive tech_chs_und_slaanesh", itemType.tech, 3, None, "Progressive Chaos Tech: Slaanesh"),
+    57404: itemData(IC.useful, 9, "Progressive tech_chs_und_nurgle", itemType.tech, 3, None, "Progressive Chaos Tech: Nurgle"),
 }
 
 special: dict[int, specialItemData] = {
@@ -353,17 +353,15 @@ special: dict[int, specialItemData] = {
     57513: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_chs_belakor_2', itemType.tech, 2, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Deep Cleansing'),
     
     57514: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_khorne', itemType.tech, 1, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Searing Branding Iron'),
-    57515: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_kho_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Blood for the Blood God'),
+    57515: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_kho_warriors_gift_slot_1', itemType.tech, 1, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Blood for the Blood God'),
     57516: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_tzeentch', itemType.tech, 1, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Arcane Branding Iron'),
-    57517: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_tze_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Dark Meditation'),
+    57517: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_tze_warriors_gift_slot_1', itemType.tech, 1, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Dark Meditation'),
     57518: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek'], 'wh3_dlc20_chs_und_shared_marks_slaanesh', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Sensuous Branding Iron'),
-    57519: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek'], 'wh3_dlc20_chs_sla_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vows of Excess'),
+    57519: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek'], 'wh3_dlc20_chs_sla_warriors_gift_slot_1', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vows of Excess'),
     57520: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_nurgle', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Rusted Branding Iron'),
-    57521: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_nur_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Maddening Gifts'),
+    57521: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_nur_warriors_gift_slot_1', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Maddening Gifts'),
 
     57522: specialItemData(IC.useful, 1, ['wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_sla_azazel_weapons', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vicious Lash'),
-    #Sigvald might be missing a tech, unsure.
-    #If not, then we might have to bump down the tiers of chs_und_slaanesh to prevent one progressive tier giving no items
 }
 
 rituals: dict[int, specialItemData] = {
