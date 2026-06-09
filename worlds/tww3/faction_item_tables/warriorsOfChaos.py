@@ -356,10 +356,14 @@ special: dict[int, specialItemData] = {
     57515: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_kho_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Blood for the Blood God'),
     57516: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_tzeentch', itemType.tech, 1, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Arcane Branding Iron'),
     57517: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_tze_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Dark Meditation'),
-    57518: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_slaanesh', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Sensuous Branding Iron'),
-    57519: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_sla_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vows of Excess'),
+    57518: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek'], 'wh3_dlc20_chs_und_shared_marks_slaanesh', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Sensuous Branding Iron'),
+    57519: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek'], 'wh3_dlc20_chs_sla_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vows of Excess'),
     57520: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_nurgle', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Rusted Branding Iron'),
     57521: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_nur_warriors_gift_slot_1', itemType.tech, 2, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Maddening Gifts'),
+
+    57522: specialItemData(IC.useful, 1, ['wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_sla_azazel_weapons', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Vicious Lash'),
+    #Sigvald might be missing a tech, unsure.
+    #If not, then we might have to bump down the tiers of chs_und_slaanesh to prevent one progressive tier giving no items
 }
 
 rituals: dict[int, specialItemData] = {
