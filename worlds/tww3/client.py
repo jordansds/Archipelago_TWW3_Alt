@@ -603,26 +603,32 @@ class TWW3Context(CommonContext):
                     logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
 
     async def checkBattleSanity(self, location):
+        location = int(location)
         try:
             if self.hardLogic:
                 #Need to check if player has enough expansion items
-                if math.floor(int(location)/20 * self.maxExpansionItems) <= self.expansionItems:
-                    await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                print(math.floor(location/20 * self.maxExpansionItems))
+                if math.floor(location/20 * self.maxExpansionItems) <= self.expansionItems:
+                    for i in range(1, location+1):
+                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
             else:
-                await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                for i in range(1, location + 1):
+                    await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
         except KeyError:
             pass
 
     async def checkDespoilerSanity(self, location):
+        type = location.split(" ")[0].title()
+        location = int(location.split(" ")[1])
         try:
             if self.hardLogic:
                 #Need to check if player has enough expansion items
-                if math.floor(int(location.split(" ")[1])/20 * self.maxExpansionItems) <= self.expansionItems:
-                    for i in range(1, int(location.split(" ")[1])):
-                        await self.check_locations([self.locationLookup[f"{location.split(" ")[0].title()} {i} Settlements"]])
+                if math.floor(location/20 * self.maxExpansionItems) <= self.expansionItems:
+                    for i in range(1, location + 1):
+                        await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
             else:
-                for i in range(1, int(location.split(" ")[1])):
-                    await self.check_locations([self.locationLookup[f"{location.split(" ")[0].title()} {i} Settlements"]])
+                for i in range(1, location + 1):
+                    await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
         except KeyError:
             pass
 
