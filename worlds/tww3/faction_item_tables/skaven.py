@@ -85,7 +85,7 @@ buildings: dict[int, itemData] = {
     42428: itemData(IC.useful, 1, 'wh2_main_skv_order_1', itemType.building, 0, 'Progressive skv_order', "Skaven Building: Taskmaster's Platform"),
     42429: itemData(IC.useful, 1, 'wh2_main_skv_order_2', itemType.building, 1, 'Progressive skv_order', "Skaven Building: Overseer's Lookout"),
     42430: itemData(IC.useful, 1, 'wh2_main_skv_order_3', itemType.building, 2, 'Progressive skv_order', 'Skaven Building: Bell Foundry'),
-    42511: itemData(IC.useful, 1, 'wh2_main_skv_temple_1', itemType.building, 3, 'Progressive skv_order', 'Skaven Building: Temple of the Horned Rat'),
+    42542: itemData(IC.useful, 1, 'wh2_main_skv_temple_1', itemType.building, 3, 'Progressive skv_order', 'Skaven Building: Temple of the Horned Rat'),
     42431: itemData(IC.useful, 1, 'wh2_main_skv_plagues_1', itemType.building, 0, 'Progressive skv_plagues', 'Skaven Building: Pox Cauldron'),
     42432: itemData(IC.useful, 1, 'wh2_main_skv_plagues_2', itemType.building, 1, 'Progressive skv_plagues', 'Skaven Building: Pestilent Nave'),
     42433: itemData(IC.useful, 1, 'wh2_main_skv_plagues_3', itemType.building, 2, 'Progressive skv_plagues', 'Skaven Building: Plague Abbey'),
@@ -140,14 +140,14 @@ buildings: dict[int, itemData] = {
     42482: itemData(IC.useful, 1, 'wh2_main_skv_salvage_1', itemType.building, 0, 'Progressive skv_salvage', 'Skaven Building: Rubbish Pit'),
     42483: itemData(IC.useful, 1, 'wh2_main_skv_salvage_2', itemType.building, 1, 'Progressive skv_salvage', 'Skaven Building: Scavenge Pile'),
     42484: itemData(IC.useful, 1, 'wh2_main_skv_salvage_3', itemType.building, 2, 'Progressive skv_salvage', 'Skaven Building: Scrap Heap'),
-    42485: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_1', itemType.building, 0, 'Progressive skv_settlement_major', 'Skaven Building: Nest (Major)'),
-    42486: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_2', itemType.building, 1, 'Progressive skv_settlement_major', 'Skaven Building: Nest-Lair (Major)'),
-    42487: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_3', itemType.building, 2, 'Progressive skv_settlement_major', 'Skaven Building: Warren (Major)'),
-    42488: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_4', itemType.building, 3, 'Progressive skv_settlement_major', 'Skaven Building: Grand Warren (Major)'),
-    42489: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_5', itemType.building, 4, 'Progressive skv_settlement_major', 'Skaven Building: Skaven Stronghold (Major)'),
-    42490: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_1', itemType.building, 0, 'Progressive skv_settlement_minor', 'Skaven Building: Nest (Minor)'),
-    42491: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_2', itemType.building, 1, 'Progressive skv_settlement_minor', 'Skaven Building: Nest-Lair (Minor)'),
-    42492: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_3', itemType.building, 2, 'Progressive skv_settlement_minor', 'Skaven Building: Warren (Minor)'),
+    #42485: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_1', itemType.building, 0, 'Progressive skv_settlement_major', 'Skaven Building: Nest (Major)'),
+    42486: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_2', itemType.building, 0, 'Progressive skv_settlement_major', 'Skaven Building: Nest-Lair (Major)'),
+    42487: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_3', itemType.building, 1, 'Progressive skv_settlement_major', 'Skaven Building: Warren (Major)'),
+    42488: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_4', itemType.building, 2, 'Progressive skv_settlement_major', 'Skaven Building: Grand Warren (Major)'),
+    42489: itemData(IC.useful, 1, 'wh2_main_skv_settlement_major_5', itemType.building, 3, 'Progressive skv_settlement_major', 'Skaven Building: Skaven Stronghold (Major)'),
+    #42490: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_1', itemType.building, 0, 'Progressive skv_settlement_minor', 'Skaven Building: Nest (Minor)'),
+    42491: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_2', itemType.building, 0, 'Progressive skv_settlement_minor', 'Skaven Building: Nest-Lair (Minor)'),
+    42492: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_3', itemType.building, 1, 'Progressive skv_settlement_minor', 'Skaven Building: Warren (Minor)'),
     42493: itemData(IC.useful, 1, 'wh2_main_skv_weaponteams_1', itemType.building, 1, 'Progressive skv_weaponteams', 'Skaven Building: Weapon Burrow'),
     42494: itemData(IC.useful, 1, 'wh2_main_skv_weaponteams_2', itemType.building, 2, 'Progressive skv_weaponteams', 'Skaven Building: Arsenal'),
     #42495: ItemData(IC.useful, 1, 'wh2_main_special_settlement_eight_peaks_skv_1', ItemType.building, 0, 'Progressive skv_settlement_major', 'Skaven Building: Occupied Karak Eight Peaks (Nest)'),
@@ -165,7 +165,37 @@ buildings: dict[int, itemData] = {
     42507: itemData(IC.useful, 1, 'wh3_main_skv_allied_outpost_3', itemType.building, 2, 'Progressive skv_allied_outpost', 'Skaven Building: Under-Colony'),
     42508: itemData(IC.useful, 1, 'wh3_main_skv_resource_ivory_1', itemType.building, 0, 'Progressive skv_resource_ivory', 'Skaven Building: Animal Store'),
     42509: itemData(IC.useful, 1, 'wh3_main_skv_resource_ivory_2', itemType.building, 1, 'Progressive skv_resource_ivory', 'Skaven Building: Tusk Market'),
-    42510: itemData(IC.useful, 1, 'wh3_main_skv_resource_ivory_3', itemType.building, 2, 'Progressive skv_resource_ivory', 'Skaven Building: Tusk Compound')
+    42510: itemData(IC.useful, 1, 'wh3_main_skv_resource_ivory_3', itemType.building, 2, 'Progressive skv_resource_ivory', 'Skaven Building: Tusk Compound'),
+
+    42511: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_annexation_doomsday_1', itemType.building, 0, 'Progressive skv_under_empire_doomsday', 'Skaven Under Empire: Makeshift Workshop'),
+    42512: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_annexation_doomsday_2', itemType.building, 1, 'Progressive skv_under_empire_doomsday', 'Skaven Under Empire: Doomsphere'),
+    42513: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_annexation_war_camp_1', itemType.building, 0, 'Progressive skv_under_empire_war_camp', 'Skaven Under Empire: Rat King'),
+    42514: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_annexation_war_camp_2', itemType.building, 1, 'Progressive skv_under_empire_war_camp', 'Skaven Under Empire: The Vermintide'),
+    42515: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_discovery_assassins_1', itemType.building, 0, 'Progressive skv_under_empire_assassins', 'Skaven Under Empire: Murder Holes'),
+    42516: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_discovery_assassins_2', itemType.building, 1, 'Progressive skv_under_empire_assassins', 'Skaven Under Empire: Kill-Perches'),
+    42517: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_discovery_deeper_tunnels_1', itemType.building, 0, 'Progressive skv_under_empire_tunnels', 'Skaven Under Empire: Deeper Tunnels'),
+    42518: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_food_kidnappers_1', itemType.building, 0, 'Progressive skv_under_empire_food', 'Skaven Under Empire: Scavenger Raiders'),
+    42519: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_food_kidnappers_2', itemType.building, 1, 'Progressive skv_under_empire_food', 'Skaven Under Empire: Scavenger Horde'),
+    42520: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_food_raiding_camp_1', itemType.building, 0, 'Progressive skv_under_empire_raiding', 'Skaven Under Empire: Raiding Camp'),
+    42521: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_money_crafting_1', itemType.building, 0, 'Progressive skv_under_empire_crafting', 'Skaven Under Empire: Warp-Token Stash'),
+    42522: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_money_crafting_2', itemType.building, 1, 'Progressive skv_under_empire_crafting', 'Skaven Under Empire: Warp-Token Mint'),
+    42523: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_money_thieves_1', itemType.building, 0, 'Progressive skv_under_empire_thieves', "Skaven Under Empire: Thieves' Hidey-Holes"),
+    42524: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_money_thieves_2', itemType.building, 1, 'Progressive skv_under_empire_thieves', 'Skaven Under Empire: Rat-Keteers'),
+    42525: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_money_thieves_3', itemType.building, 2, 'Progressive skv_under_empire_thieves', 'Skaven Under Empire: Ratkin Mafia'),
+    42526: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_stronghold_1', itemType.building, 0, 'Progressive skv_under_empire_stronghold', 'Skaven Under Empire: Underpass'),
+    42527: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_stronghold_2', itemType.building, 1, 'Progressive skv_under_empire_stronghold', 'Skaven Under Empire: Underway Junction'),
+    42528: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_stronghold_3', itemType.building, 2, 'Progressive skv_under_empire_stronghold', 'Skaven Under Empire: Underway Crossroads'),
+    42529: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_stronghold_4', itemType.building, 3, 'Progressive skv_under_empire_stronghold', 'Skaven Under Empire: Underway Hub'),
+    42530: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_stronghold_5', itemType.building, 4, 'Progressive skv_under_empire_stronghold', 'Skaven Under Empire: Underway Nexus'),
+    42531: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_warren_1', itemType.building, 0, 'Progressive skv_under_empire_warren', 'Skaven Under Empire: Burrows'),
+    42532: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_warren_2', itemType.building, 1, 'Progressive skv_under_empire_warren', 'Skaven Under Empire: Dens'),
+    42533: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_warren_3', itemType.building, 2, 'Progressive skv_under_empire_warren', 'Skaven Under Empire: Lairs'),
+    42534: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_warren_4', itemType.building, 3, 'Progressive skv_under_empire_warren', 'Skaven Under Empire: Subterranean Hideout'),
+    42535: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_settlement_warren_5', itemType.building, 4, 'Progressive skv_under_empire_warren', 'Skaven Under Empire: Under-Keep'),
+    42536: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_warpstone_mine_1', itemType.building, 0, 'Progressive skv_under_empire_mine', 'Skaven Under Empire: Subterranean Pit'),
+    42537: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_warpstone_mine_2', itemType.building, 1, 'Progressive skv_under_empire_mine', 'Skaven Under Empire: Mineshafts'),
+    42538: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_warpstone_refinery_1', itemType.building, 0, 'Progressive skv_under_empire_refinery', 'Skaven Under Empire: Warpstone Refinery'),
+    42539: itemData(IC.useful, 1, 'wh2_dlc12_under_empire_warpstone_strip_mine_1', itemType.building, 0, 'Progressive skv_under_empire_strip_mine', 'Skaven Under Empire: Subterranean Strip Mine'),
 }
 techs: dict[int, itemData] = {
     42800: itemData(IC.useful, 1, 'wh2_main_tech_skv_1_5', itemType.tech, 4, 'Progressive tech_skv', 'Skaven Tech: Scavenging Runs'),
@@ -229,6 +259,7 @@ progUnits: dict[int, itemData] = {
     43207: itemData(IC.useful, 5, "Progressive skv_hro", itemType.unit, 5, None, "Progressive Skaven Unit: Hero"),
     43208: itemData(IC.useful, 5, "Progressive skv_wpn", itemType.unit, 5, None, "Progressive Skaven Unit: Weapon Team")
 }
+
 progBuildings: dict[int, itemData] = {
     43300: itemData(IC.useful, 3, 'Progressive foreign_slot_discovery_skv', itemType.building, 3, None, 'Progressive Skaven Building: Foreign Slot Discovery Skv'),
     43301: itemData(IC.useful, 3, 'Progressive skv_assassins', itemType.building, 3, None, 'Progressive Skaven Building: Assassins'),
@@ -258,12 +289,26 @@ progBuildings: dict[int, itemData] = {
     43325: itemData(IC.useful, 3, 'Progressive skv_resource_wine', itemType.building, 3, None, 'Progressive Skaven Building: Wine'),
     43326: itemData(IC.useful, 3, 'Progressive skv_resource_wood', itemType.building, 3, None, 'Progressive Skaven Building: Wood'),
     43327: itemData(IC.useful, 3, 'Progressive skv_salvage', itemType.building, 3, None, 'Progressive Skaven Building: Salvage'),
-    43328: itemData(IC.useful, 5, 'Progressive skv_settlement_major', itemType.building, 5, None, 'Progressive Skaven Building: Settlement Major'),
-    43329: itemData(IC.useful, 3, 'Progressive skv_settlement_minor', itemType.building, 3, None, 'Progressive Skaven Building: Settlement Minor'),
+    43328: itemData(IC.useful, 5, 'Progressive skv_settlement_major', itemType.building, 4, None, 'Progressive Skaven Building: Settlement Major'), #Skaven cannot get tier 1
+    43329: itemData(IC.useful, 3, 'Progressive skv_settlement_minor', itemType.building, 2, None, 'Progressive Skaven Building: Settlement Minor'), #Skaven cannot get tier 1
     43330: itemData(IC.useful, 4, 'Progressive skv_temple', itemType.building, 4, None, 'Progressive Skaven Building: Temple'),
     43331: itemData(IC.useful, 3, 'Progressive skv_weaponteams', itemType.building, 3, None, 'Progressive Skaven Building: Weaponteams'),
     43332: itemData(IC.useful, 3, 'Progressive skv_allied_outpost', itemType.building, 3, None, 'Progressive Skaven Building: Allied Outpost'),
-    43333: itemData(IC.useful, 3, 'Progressive skv_resource_ivory', itemType.building, 3, None, 'Progressive Skaven Building: Ivory')
+    43333: itemData(IC.useful, 3, 'Progressive skv_resource_ivory', itemType.building, 3, None, 'Progressive Skaven Building: Ivory'),
+
+    43334: itemData(IC.useful, 2, 'Progressive skv_under_empire_doomsday', itemType.building, 2, None, 'Progressive Skaven Under Empire: Doomsphere'),
+    43335: itemData(IC.useful, 2, 'Progressive skv_under_empire_war_camp', itemType.building, 2, None, 'Progressive Skaven Under Empire: War Camp'),
+    43336: itemData(IC.useful, 2, 'Progressive skv_under_empire_assassins', itemType.building, 2, None, 'Progressive Skaven Under Empire: Assassins'),
+    43337: itemData(IC.useful, 1, 'Progressive skv_under_empire_tunnels', itemType.building, 1, None, 'Progressive Skaven Under Empire: Tunnels'),
+    43338: itemData(IC.useful, 2, 'Progressive skv_under_empire_food', itemType.building, 2, None, 'Progressive Skaven Under Empire: Food'),
+    43339: itemData(IC.useful, 1, 'Progressive skv_under_empire_raiding', itemType.building, 1, None, 'Progressive Skaven Under Empire: Raiding'),
+    43340: itemData(IC.useful, 2, 'Progressive skv_under_empire_crafting', itemType.building, 2, None, 'Progressive Skaven Under Empire: Crafting'),
+    43341: itemData(IC.useful, 3, 'Progressive skv_under_empire_thieves', itemType.building, 3, None, 'Progressive Skaven Under Empire: Thieves'),
+    43342: itemData(IC.useful, 5, 'Progressive skv_under_empire_stronghold', itemType.building, 5, None, 'Progressive Skaven Under Empire: Stronghold'),
+    43343: itemData(IC.useful, 5, 'Progressive skv_under_empire_warren', itemType.building, 5, None, 'Progressive Skaven Under Empire: Warren'),
+    43344: itemData(IC.useful, 2, 'Progressive skv_under_empire_mine', itemType.building, 2, None, 'Progressive Skaven Under Empire: Mine'),
+    43345: itemData(IC.useful, 1, 'Progressive skv_under_empire_refinery', itemType.building, 1, None, 'Progressive Skaven Under Empire: Refinery'),
+    43346: itemData(IC.useful, 1, 'Progressive skv_under_empire_strip_mine', itemType.building, 1, None, 'Progressive Skaven Under Empire: Strip Mine'),
 }
 
 progTechs: dict[int, itemData] = {
@@ -358,6 +403,7 @@ rituals: dict[int, specialItemData] = {
     43666: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_6', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Mutagen Distillation"),
     43667: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_7', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Steroid Infusions"),
     43668: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_upgrade_8', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Enlarged Growth Vat"),
+    43690: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], 'wh2_dlc16_throt_flesh_lab_monster', itemType.ritual, 1, 'Progressive skv_ritual_laboratory', True, False, "Skaven Flesh Laboratory: Empty Growth Vat"),
 
     43669: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_ambush_camp', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Midnight Raid"),
     43670: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_assassination', itemType.ritual, 1, 'Progressive skv_ritual_eshin_actions', False, False, "Skaven Shadowy Dealings: Stealthy Stabbing"),
@@ -390,6 +436,9 @@ rituals: dict[int, specialItemData] = {
     43694: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], "tech_dlc16_skv_1_0_moulder", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans (Moulder)'),
     43695: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_mors", "wh2_main_skv_clan_skryre", "wh2_main_skv_clan_eshin", "wh2_main_skv_clan_pestilens", "wh2_dlc09_skv_clan_rictus"], "wh2_main_tech_skv_1_0", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans'),
 
+    43696: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_1', itemType.building, 0, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Plague Cauldron Cradle'),
+    43697: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_2', itemType.building, 1, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Grand Plague Cauldron'),
+    43698: specialItemData(IC.useful, 2, ["wh2_main_skv_clan_pestilens"], 'Progressive skv_under_empire_cauldron', itemType.building, 2, None, False, True, 'Progressive Skaven Under Empire: Plague Cauldron'),
 }
 
 #"wh2_main_skv_clan_mordkin",
