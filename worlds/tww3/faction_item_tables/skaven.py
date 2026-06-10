@@ -174,7 +174,6 @@ techs: dict[int, itemData] = {
     42803: itemData(IC.useful, 1, 'wh2_main_tech_skv_4_1', itemType.tech, 7, 'Progressive tech_skv', 'Skaven Tech: Monstrous Abominations'),
     42804: itemData(IC.useful, 1, 'wh2_main_tech_skv_4_2', itemType.tech, 8, 'Progressive tech_skv', 'Skaven Tech: Twisted Beyond Recognition'),
     42805: itemData(IC.useful, 1, 'wh2_main_tech_skv_4_3', itemType.tech, 9, 'Progressive tech_skv', 'Skaven Tech: Unfathomable Horrors'),
-    42806: itemData(IC.useful, 1, 'wh2_main_tech_skv_1_0', itemType.tech, 1, 'Progressive tech_skv', 'Skaven Tech: Ferocious Plans'),
     42807: itemData(IC.useful, 1, 'wh2_main_tech_skv_1_1', itemType.tech, 2, 'Progressive tech_skv', 'Skaven Tech: Driven by Hunger'),
     42808: itemData(IC.useful, 1, 'wh2_main_tech_skv_1_4', itemType.tech, 3, 'Progressive tech_skv', 'Skaven Tech: Strength in Numbers'),
     42809: itemData(IC.useful, 1, 'wh2_main_tech_skv_1_6', itemType.tech, 4, 'Progressive tech_skv', 'Skaven Tech: Take Everything!'),
@@ -387,6 +386,10 @@ rituals: dict[int, specialItemData] = {
     #43692: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_4', itemType.ritual, 4, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (4)"),
 
     #43693: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], '', itemType.ritual, 1, 'Progressive skv_ritual_eshin_contract', True, False, "Skaven Contract: "),
+
+    43694: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], "tech_dlc16_skv_1_0_moulder", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans (Moulder)'),
+    43695: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_mors", "wh2_main_skv_clan_skryre", "wh2_main_skv_clan_eshin", "wh2_main_skv_clan_pestilens", "wh2_dlc09_skv_clan_rictus"], "wh2_main_tech_skv_1_0", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans'),
+
 }
 
 #"wh2_main_skv_clan_mordkin",
