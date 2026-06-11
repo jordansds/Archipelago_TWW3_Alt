@@ -604,11 +604,13 @@ class TWW3Context(CommonContext):
 
     async def checkBattleSanity(self, location):
         location = int(location)
+
+        if location % 5 != 0 or location > 100:
+            return
         try:
             if self.hardLogic:
                 #Need to check if player has enough expansion items
-                print(math.floor(location/20 * self.maxExpansionItems))
-                if math.floor(location/20 * self.maxExpansionItems) <= self.expansionItems:
+                if math.floor(location/100 * self.maxExpansionItems) <= self.expansionItems:
                     for i in range(1, location+1):
                         await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
             else:
@@ -620,14 +622,17 @@ class TWW3Context(CommonContext):
     async def checkDespoilerSanity(self, location):
         type = location.split(" ")[0].title()
         location = int(location.split(" ")[1])
+
+        if location % 2 != 0 or location > 40:
+            return
         try:
             if self.hardLogic:
                 #Need to check if player has enough expansion items
-                if math.floor(location/20 * self.maxExpansionItems) <= self.expansionItems:
-                    for i in range(1, location + 1):
+                if math.floor(location/40 * self.maxExpansionItems) <= self.expansionItems:
+                    for i in range(2, location + 2):
                         await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
             else:
-                for i in range(1, location + 1):
+                for i in range(2, location + 2):
                     await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
         except KeyError:
             pass
