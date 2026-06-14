@@ -283,7 +283,6 @@ class TWW3Context(CommonContext):
             logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
-        self.path.replace("\\", "/")
         self.seed = args['slot_data']['seed']
 
         if not self.path or not os.path.exists(self.path):
