@@ -92,9 +92,6 @@ entire map unless you configure `sphere_radius` to do so.
 **progressive_technologies**: Requires tech_shuffle to be on. Every step further into your tech tree is a progressive item,
 otherwise every tech is an individual item.
 
-*If you play with progressive tech off you can use the [Remove Tech Requirements submod](https://steamcommunity.com/workshop/filedetails/?id=3541110164)
-to research tech out of order so you don't have to wait for the whole chain to be found.*
-
 **building_shuffle**: Locks buildings behind multiworld items.
 
 **progressive_buildings**: Requires building_shuffle to be on. Instead of finding every single building seperately find
@@ -110,9 +107,7 @@ progressive items for each unit type (progressive infantry, progressive cavalry,
 **starting_tier**: Start with buildings and units of this tier already unlocked.
 
 **filler and traps**: Adjust the weights of traps and filler. Traps only trigger once so they don't softlock you if you need
-to start over or load a save. Filler items include all equipment items.
-The [No Item Requirement submod](https://steamcommunity.com/sharedfiles/filedetails/?id=3540371601)
-is recommended to make sure you can equip every item you get.
+to start over or load a save. Filler items include most legendary equipment items.
 
 **randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
 
