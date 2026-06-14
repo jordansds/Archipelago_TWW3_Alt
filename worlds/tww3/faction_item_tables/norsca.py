@@ -243,7 +243,7 @@ techs: dict[int, itemData] = {
     38861: itemData(IC.useful, 1, 'wh_dlc08_tech_nor_marauders_01', itemType.tech, 5, 'Progressive tech_nor_tribal_1', 'Norsca Tech: War Tools'),
     38862: itemData(IC.useful, 1, 'wh_dlc08_tech_nor_other_02', itemType.tech, 6, 'Progressive tech_nor_tribal_1', 'Norsca Tech: Longer Hulls'),
     38863: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_scavenge', itemType.tech, 6, 'Progressive tech_nor_tribal_1', 'Norsca Tech: Under Their Gaze'),
-    38864: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_watchtower', itemType.tech, 6, 'Progressive wh3_dlc27_tech_nor_cam_quartermasters', 'Norsca Tech: Tools of War'),
+    38864: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_quartermasters', itemType.tech, 6, 'Progressive tech_nor_tribal_1', 'Norsca Tech: Tools of War'),
     38865: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_leaders', itemType.tech, 7, 'Progressive tech_nor_tribal_1', 'Norsca Tech: Those Who Are Seen'),
     38866: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_other_22', itemType.tech, 1, 'Progressive tech_nor_tribal_2', 'Norsca Tech: Sagas of the Stars'),
     38867: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_pillagers', itemType.tech, 2, 'Progressive tech_nor_tribal_2', 'Norsca Tech: Scourges of the World'),
@@ -258,7 +258,7 @@ techs: dict[int, itemData] = {
     38876: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_wind', itemType.tech, 5, 'Progressive tech_nor_tribal_2', 'Norsca Tech: Winds of the North'),
     38877: itemData(IC.useful, 1, 'wh_dlc08_tech_nor_other_03', itemType.tech, 6, 'Progressive tech_nor_tribal_2', 'Norsca Tech: Corpulent Sails'),
     38878: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_waters', itemType.tech, 6, 'Progressive tech_nor_tribal_2', 'Norsca Tech: Sail With the Waters'),
-    38879: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_familiar', itemType.tech, 6, 'Progressive wh3_dlc27_tech_nor_cam_quartermasters', 'Norsca Tech: The Fourfold Voice'),
+    38879: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_familiar', itemType.tech, 6, 'Progressive tech_nor_tribal_2', 'Norsca Tech: The Fourfold Voice'),
     38880: itemData(IC.useful, 1, 'wh3_dlc27_tech_nor_cam_persistence', itemType.tech, 7, 'Progressive tech_nor_tribal_2', 'Norsca Tech: The Hound Watches')
 }
 
