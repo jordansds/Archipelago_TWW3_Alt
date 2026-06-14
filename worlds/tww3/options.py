@@ -251,10 +251,12 @@ class numberOfSettlements(Range):
 class sphereCount(Range):
     """SPHERE MODE ONLY
     How many diplomatic radius upgrades are required to access all checks.
-    You can only interact with factions that are within this radius of your starting capital."""
+    You can only interact with factions that are within this radius of your starting capital.
+    Depending on starting location, 15-25 will likely include the entire world.
+    This value will automatically be reduced by the apworld to ensure there are no empty spheres."""
     display_name = "Radius Upgrades (SPHERES)"
     range_start = 3
-    range_end = 15
+    range_end = 25
     default = 3
 
 
