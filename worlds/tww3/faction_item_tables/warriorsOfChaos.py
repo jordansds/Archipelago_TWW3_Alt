@@ -235,7 +235,8 @@ buildings: dict[int, itemData] = {
     56461: itemData(IC.useful, 1, 'wh3_dlc20_woc_resource_salt_1', itemType.building, 0, 'Progressive woc_resource_salt', 'Chaos Building: Cultist Camp (Salt)'),
     56462: itemData(IC.useful, 1, 'wh3_dlc20_woc_resource_spices_1', itemType.building, 0, 'Progressive woc_resource_spices', 'Chaos Building: Cultist Camp (Spices)'),
     56463: itemData(IC.useful, 1, 'wh3_dlc20_woc_resource_wine_1', itemType.building, 0, 'Progressive woc_resource_wine', 'Chaos Building: Cultist Camp (Wine)'),
-    56464: itemData(IC.useful, 1, 'wh3_dlc20_woc_resource_wood_1', itemType.building, 0, 'Progressive woc_resource_wood', 'Chaos Building: Cultist Camp (Wood)')
+    56464: itemData(IC.useful, 1, 'wh3_dlc20_woc_resource_wood_1', itemType.building, 0, 'Progressive woc_resource_wood', 'Chaos Building: Cultist Camp (Wood)'),
+    56465: itemData(IC.useful, 1, 'wh3_dlc20_woc_chaos_altar_major_human_1', itemType.building, 0, 'Progressive settlement_woc_dark_fortress', 'Chaos Building: Chaos Altar')
 }
 
 techs: dict[int, itemData] = {
