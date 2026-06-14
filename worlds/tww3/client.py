@@ -701,7 +701,7 @@ class TWW3Context(CommonContext):
             items = "Within this settlement:\n"
             for j in range(self.checksPerLocation):
                 items += f"{self.descriptions[f'{settlement.readableName} ({i})']}\n"
-            self.messenger.runTemp(f'archipelago.createMission({settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
+            self.messenger.runTemp(f'archipelago.createSpheresMission({settlement.name}, "{key}", "{settlement.readableName}", "{items}")')
 
     # Currently Unused
     def createBattleSanity(self):
