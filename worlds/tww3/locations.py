@@ -76,6 +76,9 @@ def createConquestLocations(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
+    # Reduce sphere items down so that we don't have spares
+    world.options.sphere_count.value = min(world.options.sphere_count.value, max(world.settlementDiploRange))
+
     for key, settlement in enumerate(world.settlements.values()):
         for i in range(world.options.checks_per_settlement):
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
@@ -90,9 +93,6 @@ def createDiploRangeLocations(world: TWW3World) -> None:
 
                 if world.settlementDiploRange[key] < world.options.sphere_count - 1:
                     forbid_item(location, "Orb of Domination", world.player)
-
-    #Reduce sphere items down so that we don't have spares
-    world.options.sphere_count.value = min(world.options.sphere_count.value, max(world.settlementDiploRange))
 
 def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
     region = world.get_region("Buildings")
