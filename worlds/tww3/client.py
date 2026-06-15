@@ -86,8 +86,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             self.ctx.adminCapacity = 1000
 
-    def _cmd_resync(self):
-        """Resend all units, techs, buildings and progression items"""
+    #def _cmd_resync(self):
+    #    """Resend all units, techs, buildings and progression items"""
         #Need to rewrite on_received_items to allow for writing to temp file when this function is ran.
         #Or just make this a copy of on_received_items with only the relevant details
         #if isinstance(self.ctx, TWW3Context):
