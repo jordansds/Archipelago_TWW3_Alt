@@ -82,8 +82,23 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
 
     def _cmd_debug(self):
+        """Set Admin Capacity to Maximum"""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.adminCapacity = 1000
+
+    def _cmd_resync(self):
+        """Resend all units, techs, buildings and progression items"""
+        #Need to rewrite on_received_items to allow for writing to temp file when this function is ran.
+        #Or just make this a copy of on_received_items with only the relevant details
+        #if isinstance(self.ctx, TWW3Context):
+        #    if self.ctx.gameMode == "conquest":
+        #        self.ctx.expansionItems = 1
+        #    else:
+        #        self.ctx.expansionItems = 0
+        #
+        #    itemArchiveDict = {"items": self.ctx.itemArchive.copy()}
+        #    self.ctx.itemArchive = []
+        #    self.ctx.on_received_items(itemArchiveDict)
 
 class Messenger:
     def __init__(self, path):
@@ -275,6 +290,7 @@ class TWW3Context(CommonContext):
 
     def on_connected(self, args: dict):
         self.lineCount = 0
+        self.itemArchive = []
 
         self.version = TWW3World.world_version.as_simple_string()
         if self.version != args['slot_data']['version']:
@@ -422,18 +438,21 @@ class TWW3Context(CommonContext):
 
             match item.type:
                 case itemType.building:
+                    self.itemArchive.append(item)
                     if self.progressiveBuildings:
                         self.sendProgressiveItem(item.name)
                     else:
                         self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.unit:
+                    self.itemArchive.append(item)
                     if self.progressiveUnits:
                         self.sendProgressiveItem(item.name)
                     else:
                         self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.tech:
+                    self.itemArchive.append(item)
                     if self.progressiveTechs:
                         self.sendProgressiveItem(item.name)
                     else:
@@ -443,6 +462,7 @@ class TWW3Context(CommonContext):
                             self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
                 case itemType.progression:
+                    self.itemArchive.append(item)
                     if self.gameMode == "conquest":
                         self.expansionItems += 1
                         if self.expansionItems == self.maxExpansionItems:
