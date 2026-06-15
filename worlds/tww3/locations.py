@@ -118,10 +118,11 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
         #Check if we already generated this building
         try:
             location = world.multiworld.get_location(locName, world.player)
-            #location = TWW3Location(world.player, locName, locId, region)
-            #region.locations.append(location)
         except KeyError:
             location = TWW3Location(world.player, locName, locId, region)
+            # Prevent early spawning of orbs
+            if item.tier <= 3:
+                forbid_item(location, "Orb of Domination", world.player)
             region.locations.append(location)
 
     if not firstPass:
@@ -135,12 +136,15 @@ def createTechLocations(world: TWW3World) -> None:
     techs = [item for key, item in factionItemManager.getTechs(world.playerFaction.race, False)]
     techs += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialTechs if item.progressionGroup is not None]
 
+    maxTier = max([item.tier for item in techs])
     for item in techs:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
 
         location = TWW3Location(world.player, locName, locId, region)
-
+        # Prevent early spawning of orbs
+        if item.tier <= maxTier - 2:
+            forbid_item(location, "Orb of Domination", world.player)
         region.locations.append(location)
 
     rules.setTechnologyLocationRules(world, techs)
@@ -167,6 +171,10 @@ def createBattleLocations(world: TWW3World) -> None:
 
         rules.setGenericLocationRule(world, location, i) #Hard logic handled on client
 
+        # Prevent early spawning of orbs
+        if i < 15:
+            forbid_item(location, "Orb of Domination", world.player)
+
         worldRegion.locations.append(location)
 
 def createDespoilerLocations(world: TWW3World) -> None:
@@ -178,5 +186,9 @@ def createDespoilerLocations(world: TWW3World) -> None:
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
             rules.setGenericLocationRule(world, location, i) #Hard logic handled on client
+
+            #Prevent early spawning of orbs
+            if i < 15:
+                forbid_item(location, "Orb of Domination", world.player)
 
             worldRegion.locations.append(location)
