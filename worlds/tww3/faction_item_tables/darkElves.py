@@ -51,12 +51,12 @@ units: dict[int, itemData] = {
 
     20035: itemData(IC.useful, 1, 'wh2_dlc14_def_cha_master_0', itemType.unit, 1, 'Progressive def_hro', 'DarkElf Unit: Master'),
     20016: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_dark_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Dark)'),
-    20060: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_death_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Death)'),
-    20061: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_shadows_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Shadows)'),
+    20060: itemData(IC.useful, 1, 'wh2_dlc10_def_cha_sorceress_death_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Death)'),
+    20061: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_shadow_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Shadows)'),
     20062: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_fire_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Fire)'),
-    20063: itemData(IC.useful, 1, 'wh2_main_def_cha_sorceress_beasts_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Beasts)'),
+    20063: itemData(IC.useful, 1, 'wh2_dlc10_def_cha_sorceress_beasts_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Sorceress (Beasts)'),
     20018: itemData(IC.useful, 1, 'wh2_main_def_cha_khainite_assassin_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Khainite Assassin'),
-    20021: itemData(IC.useful, 1, 'wh2_main_def_cha_death_hag_0', itemType.unit, 2, 'Progressive def_inf', 'DarkElf Unit: Death Hag'),
+    20021: itemData(IC.useful, 1, 'wh2_main_def_cha_death_hag_0', itemType.unit, 2, 'Progressive def_hro', 'DarkElf Unit: Death Hag'),
 }
 
 buildings: dict[int, itemData] = {

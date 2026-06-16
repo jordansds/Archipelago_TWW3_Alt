@@ -347,7 +347,7 @@ special: dict[int, specialItemData] = {
     39520: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_bile_trolls', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Bile Trolls'),
     39521: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors'),
     39522: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_1', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Halberds)'),
-    39523: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_2', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Great Weapons)'),
+    39523: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_dlc01_chs_inf_chaos_warriors_2', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Great Weapons)'),
     39524: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_mon_chaos_spawn', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Spawn'),
     39525: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_offerings_2b', itemType.building, 1, 'Progressive nor_offerings', False, False, 'Norsca Building: Colossal Offerings'),
     39526: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_offerings_3', itemType.building, 2, 'Progressive nor_offerings', False, False, "Norsca Building: Curs'd Cavern"),

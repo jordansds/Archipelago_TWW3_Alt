@@ -64,9 +64,9 @@ units: dict[int, itemData] = {
     30060: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_fire_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Fire)'),
     30061: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_metal_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Metal)'),
     30062: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_beasts_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Beasts)'),
-    30063: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_shadows_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Shadows)'),
-    30064: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_light_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Light)'),
-    30065: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_life_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Life)'),
+    30063: itemData(IC.useful, 1, 'wh2_dlc10_hef_cha_mage_shadows_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Shadows)'),
+    30064: itemData(IC.useful, 1, 'wh2_main_hef_cha_mage_light_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Light)'),
+    30065: itemData(IC.useful, 1, 'wh2_main_hef_cha_mage_life_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Life)'),
     30066: itemData(IC.useful, 1, 'wh2_dlc15_hef_cha_mage_death_0', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mage (Death)'),
     30067: itemData(IC.useful, 1, 'wh3_dlc27_hef_cha_mist_mage', itemType.unit, 2, 'Progressive hef_hro', 'HighElf Unit: Mist Mage'),
 }
