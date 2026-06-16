@@ -64,10 +64,14 @@ moddedItemDict: dict[str, ModuleType] = {
     "decomposed expanded roster": expandedRoster, #100000
 }
 
-"""for race, module in raceModuleDict.items():
+for race, module in raceModuleDict.items():
     fo = open(f"C:/Users/jorda/Documents/output_{race}.csv", "w+")
     lines = []
-    for ukey, unit in module.units.items():
+
+    items = module.units.items()
+    items.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if item.type == itemType.unit})
+
+    for ukey, unit in items:
         for bkey, building in enumerate(module.buildings.values()):
             if "settlement" in building.name and "hro" not in unit.progressionGroup: # and not "_ror" in unit.name
                 if race == "daemons":
@@ -88,7 +92,7 @@ moddedItemDict: dict[str, ModuleType] = {
                 lines.append(line)
                 #print(f"{ukey}{bkey},{building.name},{unit.name}")
     fo.close()
-"""
+
 
 raceModuleDict.update({
     "mousillon": mousillon,  #102000

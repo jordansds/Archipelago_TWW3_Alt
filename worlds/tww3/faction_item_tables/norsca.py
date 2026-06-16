@@ -340,11 +340,11 @@ special: dict[int, specialItemData] = {
     39505: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_main_sla_mon_spawn_of_slaanesh_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Spawn of Slaanesh'),
     39506: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc20_chs_inf_chaos_warriors_mtze_halberds', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors of Tzeentch (Halberds)'),
     39507: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_main_tze_mon_spawn_of_tzeentch_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Spawn of Tzeentch'),
-    39516: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_main_chs_inf_chaos_warriors_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Trolls'),
-    39517: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_main_chs_inf_chaos_warriors_1', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Trolls (Armoured)'),
-    39518: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_main_chs_inf_chaos_warriors_2', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Stone Trolls'),
-    39519: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_main_chs_inf_chaos_warriors_2', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: River Trolls'),
-    39520: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_main_chs_inf_chaos_warriors_2', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Bile Trolls'),
+    39516: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_chs_trolls_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Trolls'),
+    39517: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_chs_trolls_1', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Trolls (Armoured)'),
+    39518: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_stone_trolls_0', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Stone Trolls'),
+    39519: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_river_trolls_0', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: River Trolls'),
+    39520: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_throgg_mon_bile_trolls', itemType.unit, 3, 'Progressive nor_inf', False, False, 'Norsca Unit: Bile Trolls'),
     39521: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_0', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors'),
     39522: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_1', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Halberds)'),
     39523: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_inf_chaos_warriors_2', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Great Weapons)'),
@@ -412,9 +412,9 @@ special: dict[int, specialItemData] = {
     39632: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_2B', itemType.building, 1, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Creeping Morass'),
     39633: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_deep_seafang', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Sail the Impossible Seas'),
     39634: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca'], 'wh3_dlc27_tech_nor_ship_faction_wulfrik_seafang', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: The Ways of the Monstrous Horde'),
-    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_raiding', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
+    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_raiding', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft (Throgg)'),
     39636: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh3_dlc27_tech_nor_ship_faction_throgg_troll_loyalty', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Loyalty to Royalty'),
-    39637: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_betrayal', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft'),
+    39637: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_betrayal', itemType.tech, 5, 'Progressive tech_nor_tribal_1', False, False, 'Norsca Tech: Prophetic Seer-Craft (Sayl)'),
     39638: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_tech_nor_ship_faction_sayl_faithlessness', itemType.tech, 5, 'Progressive tech_nor_tribal_2', False, False, 'Norsca Tech: Pacts of Enmity')
 }
 
