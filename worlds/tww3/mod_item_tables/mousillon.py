@@ -42,7 +42,7 @@ units: dict[int, itemData] = {
     102030: itemData(IC.useful, 1, 'wh_main_vmp_mon_dire_wolves', itemType.unit, 1, 'Progressive msl_bst', 'Mousillon Unit: Dire Wolves'),
     102031: itemData(IC.useful, 1, 'wh_main_vmp_mon_crypt_horrors', itemType.unit, 2, 'Progressive msl_bst', 'Mousillon Unit: Crypt Horrors'),
     102032: itemData(IC.useful, 1, 'wh_main_vmp_mon_varghulf', itemType.unit, 2, 'Progressive msl_bst', 'Mousillon Unit: Varghulf'),
-    102033: itemData(IC.useful, 1, 'wh2_dlc11_vmp_mon_mournguls_0', itemType.unit, 3, 'Progressive msl_bst', 'Mousillon Unit: Mournguls'),
+    102033: itemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_0', itemType.unit, 3, 'Progressive msl_bst', 'Mousillon Unit: Mournguls'),
     102034: itemData(IC.useful, 1, 'mixu_msl_mon_giant_snail', itemType.unit, 2, 'Progressive msl_bst', 'Mousillon Unit: Giant Snail'),
     102035: itemData(IC.useful, 1, 'mixu_msl_mon_dracoleech', itemType.unit, 2, 'Progressive msl_bst', 'Mousillon Unit: Rotting Dracoleech'),
 

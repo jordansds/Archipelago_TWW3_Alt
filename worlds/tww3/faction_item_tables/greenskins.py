@@ -51,7 +51,7 @@ units: dict[int, itemData] = {
     28045: itemData(IC.useful, 1, 'wh3_dlc26_grn_mon_colossal_squig', itemType.unit, 4, 'Progressive grn_bst', 'Greenskin Unit: Colossal Squig'),
     28046: itemData(IC.useful, 1, 'wh2_dlc15_grn_mon_feral_hydra_waaagh_0', itemType.unit, 4, 'Progressive grn_bst', 'Greenskin Unit: Feral Hydra'),
     28047: itemData(IC.useful, 1, 'wh_main_grn_mon_arachnarok_spider_0', itemType.unit, 4, 'Progressive grn_bst', 'Greenskin Unit: Arachnarok Spider'),
-    28048: itemData(IC.useful, 1, 'wh2_dlc15_grn_mon_arachnarok_spider_waaagh_0', itemType.unit, 4, 'Progressive grn_bst', 'Greenskin Unit: Lava Arachnarok Spider'),
+    28048: itemData(IC.useful, 1, 'wh_dlc15_grn_mon_arachnarok_spider_waaagh_0', itemType.unit, 4, 'Progressive grn_bst', 'Greenskin Unit: Lava Arachnarok Spider'),
     28049: itemData(IC.useful, 1, 'wh2_dlc15_grn_mon_rogue_idol_0', itemType.unit, 5, 'Progressive grn_bst', 'Greenskin Unit: Rogue Idol'),
     28050: itemData(IC.useful, 1, 'wh2_pro09_grn_cha_black_orc_big_boss_0', itemType.unit, 1, 'Progressive grn_hro', 'Greenskin Unit: Black Orc Big Boss'),
     28051: itemData(IC.useful, 1, 'wh3_dlc26_grn_cha_night_goblin_big_boss', itemType.unit, 1, 'Progressive grn_hro', 'Greenskin Unit: Night Goblin Big Boss'),

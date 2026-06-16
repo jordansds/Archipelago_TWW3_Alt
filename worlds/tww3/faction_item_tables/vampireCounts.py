@@ -30,7 +30,7 @@ units: dict[int, itemData] = {
     52008: itemData(IC.useful, 1, 'wh_main_vmp_mon_fell_bats', itemType.unit, 1, 'Progressive vmp_bst', 'Vampire Unit: Fell Bats'),
     52009: itemData(IC.useful, 1, 'wh_main_vmp_mon_dire_wolves', itemType.unit, 1, 'Progressive vmp_bst', 'Vampire Unit: Dire Wolves'),
     52010: itemData(IC.useful, 1, 'wh_main_vmp_mon_crypt_horrors', itemType.unit, 2, 'Progressive vmp_bst', 'Vampire Unit: Crypt Horrors'),
-    52003: itemData(IC.useful, 1, 'wh2_dlc11_vmp_mon_mournguls_0', itemType.unit, 3, 'Progressive vmp_bst', 'Vampire Unit: Mournguls'),
+    52003: itemData(IC.useful, 1, 'wh2_dlc11_cst_mon_mournguls_0', itemType.unit, 3, 'Progressive vmp_bst', 'Vampire Unit: Mournguls'),
     52006: itemData(IC.useful, 1, 'wh_main_vmp_mon_vargheists', itemType.unit, 3, 'Progressive vmp_bst', 'Vampire Unit: Vargheists'),
     52005: itemData(IC.useful, 1, 'wh_main_vmp_mon_varghulf', itemType.unit, 4, 'Progressive vmp_bst', 'Vampire Unit: Varghulf'),
     52007: itemData(IC.useful, 1, 'wh_main_vmp_mon_terrorgheist', itemType.unit, 5, 'Progressive vmp_bst', 'Vampire Unit: Terrorgheist'),

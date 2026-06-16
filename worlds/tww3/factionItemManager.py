@@ -51,16 +51,6 @@ raceModuleDict: dict[str, ModuleType] = {
     "chaosTzeentch": warriorsOfChaosTzeentch, #64000
 }
 
-raceModuleDict.update({
-    "mousillon": mousillon,  #102000
-    "empireEdvard": empireEdvard, #104000
-    "tzeentchEgrimm": tzeentchEgrimm, #106000
-    "norscaSurtha": norscaSurtha, #108000
-    "southernRealms": southernRealms, #110000
-    "crustaceans": crustaceans, #112000
-    "lobsters": lobsters, #114000
-})
-
 raceToMainRaceDict: dict[str, str] = {
     "highElvesAislinn": "highElves",
     "lizardmenNakai": "lizardmen",
@@ -73,6 +63,48 @@ raceToMainRaceDict: dict[str, str] = {
 moddedItemDict: dict[str, ModuleType] = {
     "decomposed expanded roster": expandedRoster, #100000
 }
+
+raceModuleDict = {
+    "mousillon": mousillon,  #102000
+    "southernRealms": southernRealms, #110000
+    "crustaceans": crustaceans, #112000
+    "lobsters": lobsters, #114000
+}
+
+for race, module in raceModuleDict.items():
+    fo = open(f"C:/Users/jorda/Documents/output_{race}.csv", "w+")
+    lines = []
+    for ukey, unit in module.units.items():
+        for bkey, building in enumerate(module.buildings.values()):
+            if "settlement" in building.name and "hro" not in unit.progressionGroup: # and not "_ror" in unit.name
+                if race == "daemons":
+                    if "sla" in unit.name and not "sla" in building.name:
+                        continue
+                    elif "tze" in unit.name and not "tze" in building.name:
+                        continue
+                    elif "kho" in unit.name and not "kho" in building.name:
+                        continue
+                    elif "nur" in unit.name and not "nur" in building.name:
+                        continue
+
+                line = f"{ukey}{bkey},{building.name},{unit.name}\n"
+
+                if line in lines:
+                    continue
+                fo.write(line)
+                lines.append(line)
+                #print(f"{ukey}{bkey},{building.name},{unit.name}")
+    fo.close()
+
+raceModuleDict.update({
+    "mousillon": mousillon,  #102000
+    "empireEdvard": empireEdvard, #104000
+    "tzeentchEgrimm": tzeentchEgrimm, #106000
+    "norscaSurtha": norscaSurtha, #108000
+    "southernRealms": southernRealms, #110000
+    "crustaceans": crustaceans, #112000
+    "lobsters": lobsters, #114000
+})
 
 def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int, itemData]:
     itemDict: dict[int, itemData] = {}

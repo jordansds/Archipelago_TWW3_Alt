@@ -14,7 +14,7 @@ units: dict[int, itemData] = {
     34008: itemData(IC.useful, 1, 'wh3_main_ksl_inf_streltsi_0', itemType.unit, 3, 'Progressive ksl_rng', 'Kislev Unit: Streltsi'),
     34009: itemData(IC.useful, 1, 'wh3_main_ksl_inf_ice_guard_1', itemType.unit, 4, 'Progressive ksl_rng', 'Kislev Unit: Ice Guard (Swords)'),
     34010: itemData(IC.useful, 1, 'wh3_main_ksl_inf_ice_guard_0', itemType.unit, 4, 'Progressive ksl_rng', 'Kislev Unit: Ice Guard (Glaives)'),
-    34011: itemData(IC.useful, 1, 'wh3_main_ksl_cav_kossovite_dervishes_0', itemType.unit, 1, 'Progressive ksl_cav', 'Kislev Unit: Kossovite Dervishes'),
+    34011: itemData(IC.useful, 1, 'wh3_main_ksl_cav_horse_raiders_0', itemType.unit, 1, 'Progressive ksl_cav', 'Kislev Unit: Kossovite Dervishes'), # wh3_main_ksl_cav_kossovite_dervishes_0
     34012: itemData(IC.useful, 1, 'wh3_main_ksl_cav_horse_archers_0', itemType.unit, 2, 'Progressive ksl_cav', 'Kislev Unit: Horse Archers'),
     34013: itemData(IC.useful, 1, 'wh3_main_ksl_cav_winged_lancers_0', itemType.unit, 3, 'Progressive ksl_cav', 'Kislev Unit: Winged Lancers'),
     34014: itemData(IC.useful, 1, 'wh3_main_ksl_cav_gryphon_legion_0', itemType.unit, 4, 'Progressive ksl_cav', 'Kislev Unit: Gryphon Legion'),

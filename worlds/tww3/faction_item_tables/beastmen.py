@@ -8,10 +8,10 @@ units: dict[int, itemData] = {
     10002: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_ungor_spearmen_1', itemType.unit, 1, 'Progressive bst_inf', 'Beastmen Unit: Ungor Spearmen Herd (Shields)'),
     10003: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_gor_herd_0', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Gor Herd'),
     10004: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_gor_herd_1', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Gor Herd (Shields)'),
-    10005: itemData(IC.useful, 1, 'wh3_dlc26_kho_inf_khorngors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Khorngors'),
-    10006: itemData(IC.useful, 1, 'wh3_dlc25_nur_inf_pestigors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Pestigors'),
-    10007: itemData(IC.useful, 1, 'wh3_dlc27_tze_inf_slaangors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Slaangors'),
-    10008: itemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Tzaangors'),
+    10005: itemData(IC.useful, 1, 'wh3_dlc26_bst_inf_khorngors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Khorngors'),
+    10006: itemData(IC.useful, 1, 'wh3_dlc25_bst_inf_pestigors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Pestigors'),
+    10007: itemData(IC.useful, 1, 'wh3_dlc27_bst_inf_slaangors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Slaangors'),
+    10008: itemData(IC.useful, 1, 'wh3_dlc24_bst_inf_tzaangors', itemType.unit, 2, 'Progressive bst_inf', 'Beastmen Unit: Tzaangors'),
     10009: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_bestigor_herd_0', itemType.unit, 3, 'Progressive bst_inf', 'Beastmen Unit: Bestigor Herd'),
     10010: itemData(IC.useful, 1, 'wh_dlc03_bst_mon_chaos_spawn_0', itemType.unit, 3, 'Progressive bst_inf', 'Beastmen Unit: Chaos Spawn'),
     10011: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_minotaurs_0', itemType.unit, 3, 'Progressive bst_inf', 'Beastmen Unit: Minotaurs'),
@@ -28,12 +28,12 @@ units: dict[int, itemData] = {
     10022: itemData(IC.useful, 1, 'wh_dlc03_bst_inf_razorgor_herd_0', itemType.unit, 2, 'Progressive bst_bst', 'Beastmen Unit: Razorgor Herd'),
     10023: itemData(IC.useful, 1, 'wh_dlc03_bst_feral_manticore', itemType.unit, 3, 'Progressive bst_bst', 'Beastmen Unit: Feral Manticore'),
     10024: itemData(IC.useful, 1, 'wh_dlc03_bst_mon_giant_0', itemType.unit, 3, 'Progressive bst_bst', 'Beastmen Unit: Giant'),
-    10025: itemData(IC.useful, 1, 'wh3_dlc24_tze_mon_cockatrice', itemType.unit, 3, 'Progressive bst_bst', 'Beastmen Unit: Cockatrice'),
+    10025: itemData(IC.useful, 1, 'wh3_dlc24_bst_mon_cockatrice', itemType.unit, 3, 'Progressive bst_bst', 'Beastmen Unit: Cockatrice'),
     10026: itemData(IC.useful, 1, 'wh2_dlc17_bst_mon_jabberslythe_0', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Jabberslythe'),
     10027: itemData(IC.useful, 1, 'wh2_dlc17_bst_mon_ghorgon_0', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Ghorgon'),
-    10028: itemData(IC.useful, 1, 'wh3_dlc27_sla_mon_preyton', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Preyton'),
-    10029: itemData(IC.useful, 1, 'wh3_dlc27_nor_mon_chimera', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Chimera'),
-    10030: itemData(IC.useful, 1, 'wh3_dlc24_ksl_mon_incarnate_elemental_of_beasts', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Incarnate Elemental of Beasts'),
+    10028: itemData(IC.useful, 1, 'wh3_dlc27_bst_mon_preyton', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Preyton'),
+    10029: itemData(IC.useful, 1, 'wh3_dlc27_bst_mon_chimera', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Chimera'),
+    10030: itemData(IC.useful, 1, 'wh3_dlc24_bst_mon_incarnate_elemental_of_beasts', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Incarnate Elemental of Beasts'),
     10031: itemData(IC.useful, 1, 'wh2_dlc17_bst_cav_tuskgor_chariot_0', itemType.unit, 2, 'Progressive bst_veh', 'Beastmen Unit: Tuskgor Chariots'),
     10032: itemData(IC.useful, 1, 'wh_dlc03_bst_cav_razorgor_chariot_0', itemType.unit, 3, 'Progressive bst_veh', 'Beastmen Unit: Razorgor Chariots'),
     10033: itemData(IC.useful, 1, 'wh_dlc03_bst_cha_bray_shaman_wild_0', itemType.unit, 1, 'Progressive bst_hro', 'Beastmen Unit: Bray-Shaman (Wild)'),
@@ -51,8 +51,8 @@ units: dict[int, itemData] = {
     10045: itemData(IC.useful, 1, 'wh_pro04_bst_inf_cygor_ror_0', itemType.unit, 1, 'Progressive bst_art', 'Beastmen Unit: The Eye of Morrslieb (Cygor)'),
     10046: itemData(IC.useful, 1, 'wh_pro04_bst_inf_centigors_ror_0', itemType.unit, 1, 'Progressive bst_cav', 'Beastmen Unit: Sons of Ghorros (Centigors - Great Weapons)'),
     10047: itemData(IC.useful, 1, 'wh_pro04_bst_inf_bestigor_herd_ror_0', itemType.unit, 3, 'Progressive bst_inf', "Beastmen Unit: Khorrok's Manrippers (Bestigor Herd)"),
-    10048: itemData(IC.useful, 1, 'wh3_dlc27_nor_mon_chimera_ror', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Bloodshriek Chimera (Chimera)'),
-    10049: itemData(IC.useful, 1, 'wh3_dlc27_sla_mon_preyton_ror', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Scourge of Arden (Preyton)')
+    10048: itemData(IC.useful, 1, 'wh3_dlc27_bst_mon_chimera_ror', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Bloodshriek Chimera (Chimera)'),
+    10049: itemData(IC.useful, 1, 'wh3_dlc27_bst_mon_preyton_ror', itemType.unit, 4, 'Progressive bst_bst', 'Beastmen Unit: Scourge of Arden (Preyton)')
 }
 
 buildings: dict[int, itemData] = {

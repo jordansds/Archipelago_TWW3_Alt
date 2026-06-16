@@ -6,7 +6,7 @@ units: dict[int, itemData] = {
     44000: itemData(IC.useful, 1, 'wh3_main_sla_inf_marauders_0', itemType.unit, 1, 'Progressive sla_inf', 'Slaanesh Unit: Devoted Marauders of Slaanesh'),
     44001: itemData(IC.useful, 1, 'wh3_main_sla_inf_marauders_1', itemType.unit, 1, 'Progressive sla_inf', 'Slaanesh Unit: Devoted Marauders of Slaanesh (Spears)'),
     44002: itemData(IC.useful, 1, 'wh3_main_sla_inf_marauders_2', itemType.unit, 2, 'Progressive sla_inf', 'Slaanesh Unit: Devoted Marauders of Slaanesh (Hellscourges)'),
-    44003: itemData(IC.useful, 1, 'wh3_dlc27_tze_inf_slaangors', itemType.unit, 2, 'Progressive sla_inf', 'Slaanesh Unit: Slaangors'),
+    44003: itemData(IC.useful, 1, 'wh3_dlc27_sla_inf_slaangors', itemType.unit, 2, 'Progressive sla_inf', 'Slaanesh Unit: Slaangors'),
     44004: itemData(IC.useful, 1, 'wh3_dlc20_chs_inf_forsaken_msla', itemType.unit, 2, 'Progressive sla_inf', 'Slaanesh Unit: Forsaken of Slaanesh'),
     44005: itemData(IC.useful, 1, 'wh3_dlc27_sla_inf_devotees_of_slaanesh', itemType.unit, 3, 'Progressive sla_inf', 'Slaanesh Unit: Devotees of Slaanesh'),
     44006: itemData(IC.useful, 1, 'wh3_dlc20_chs_inf_chaos_warriors_msla', itemType.unit, 2, 'Progressive sla_inf', 'Slaanesh Unit: Chaos Warriors of Slaanesh'),

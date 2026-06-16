@@ -28,7 +28,7 @@ units: dict[int, itemData] = {
     48022: itemData(IC.useful, 1, 'wh3_main_tze_inf_chaos_furies_0', itemType.unit, 1, 'Progressive tze_bst', 'Tzeentch Unit: Chaos Furies (Tzeentch)'),
     48023: itemData(IC.useful, 1, 'wh3_main_tze_mon_screamers_0', itemType.unit, 2, 'Progressive tze_bst', 'Tzeentch Unit: Screamers of Tzeentch'),
     48024: itemData(IC.useful, 1, 'wh3_dlc24_tze_mon_cockatrice', itemType.unit, 3, 'Progressive tze_bst', 'Tzeentch Unit: Cockatrice'),
-    48025: itemData(IC.useful, 1, 'wh3_main_tze_mon_exalted_flamer_0', itemType.unit, 4, 'Progressive tze_bst', 'Tzeentch Unit: Exalted Flamer of Tzeentch'),
+    48025: itemData(IC.useful, 1, 'wh3_main_tze_mon_exalted_flamers_0', itemType.unit, 4, 'Progressive tze_bst', 'Tzeentch Unit: Exalted Flamer of Tzeentch'),
     48026: itemData(IC.useful, 1, 'wh3_main_tze_mon_soul_grinder_0', itemType.unit, 5, 'Progressive tze_bst', 'Tzeentch Unit: Soul Grinder of Tzeentch'),
     48027: itemData(IC.useful, 1, 'wh3_main_tze_mon_lord_of_change_0', itemType.unit, 5, 'Progressive tze_bst', 'Tzeentch Unit: Lord of Change'),
     48028: itemData(IC.useful, 1, 'wh3_dlc24_tze_mon_mutalith_vortex_beast', itemType.unit, 5, 'Progressive tze_bst', 'Tzeentch Unit: Mutalith Vortex Beast'),

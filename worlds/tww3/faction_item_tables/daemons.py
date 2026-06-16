@@ -21,7 +21,7 @@ units: dict[int, itemData] = {
     18015: itemData(IC.useful, 1, 'wh3_main_tze_inf_forsaken_0', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Forsaken of Tzeentch'),
     18016: itemData(IC.useful, 1, 'wh3_dlc26_kho_inf_khorngors', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Khorngors'),
     18017: itemData(IC.useful, 1, 'wh3_dlc25_nur_inf_pestigors', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Pestigors'),
-    18018: itemData(IC.useful, 1, 'wh3_dlc27_tze_inf_slaangors', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Slaangors'),
+    18018: itemData(IC.useful, 1, 'wh3_dlc27_sla_inf_slaangors', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Slaangors'),
     18019: itemData(IC.useful, 1, 'wh3_dlc24_tze_inf_tzaangors', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Tzaangors'),
     18020: itemData(IC.useful, 1, 'wh3_main_kho_inf_bloodletters_0', itemType.unit, 2, 'Progressive dae_inf', 'Daemons Unit: Bloodletters of Khorne'),
     18021: itemData(IC.useful, 1, 'wh3_main_kho_inf_bloodletters_1', itemType.unit, 3, 'Progressive dae_inf', 'Daemons Unit: Exalted Bloodletters of Khorne'),

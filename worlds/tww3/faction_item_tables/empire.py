@@ -32,7 +32,7 @@ units: dict[int, itemData] = {
     24026: itemData(IC.useful, 1, 'wh2_dlc13_emp_veh_war_wagon_0', itemType.unit, 1, 'Progressive emp_veh', 'Empire Unit: War Wagons'),
     24027: itemData(IC.useful, 1, 'wh2_dlc13_emp_veh_war_wagon_1', itemType.unit, 2, 'Progressive emp_veh', 'Empire Unit: War Wagons (Mortars)'),
     24028: itemData(IC.useful, 1, 'wh3_dlc25_emp_veh_marienburg_land_ship', itemType.unit, 3, 'Progressive emp_veh', 'Empire Unit: Land Ship'),
-    24029: itemData(IC.useful, 1, 'wh_main_emp_veh_steam_tank_driver', itemType.unit, 4, 'Progressive emp_veh', 'Empire Unit: Steam Tank'),
+    24029: itemData(IC.useful, 1, 'wh_main_emp_veh_steam_tank', itemType.unit, 4, 'Progressive emp_veh', 'Empire Unit: Steam Tank'),
     24030: itemData(IC.useful, 1, 'wh3_dlc25_emp_veh_steam_tank_volley_gun', itemType.unit, 4, 'Progressive emp_veh', 'Empire Unit: Steam Tank (Volley Gun)'),
     24031: itemData(IC.useful, 1, 'wh_main_emp_veh_luminark_of_hysh_0', itemType.unit, 4, 'Progressive emp_veh', 'Empire Unit: Luminark of Hysh'),
     24032: itemData(IC.useful, 1, 'wh3_dlc25_emp_cha_wizard_metal', itemType.unit, 2, 'Progressive emp_hro', 'Empire Unit: Gold Wizard'),

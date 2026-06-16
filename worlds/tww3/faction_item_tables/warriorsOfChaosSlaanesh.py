@@ -6,7 +6,7 @@ from . import warriorsOfChaos
 units: dict[int, itemData] = warriorsOfChaos.baseUnits
 units.update(warriorsOfChaos.slaaneshUnits)
 units.update({
-    62000: itemData(IC.useful, 1, 'wh3_dlc27_tze_inf_slaangors', itemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Slaangors'),
+    62000: itemData(IC.useful, 1, 'wh3_dlc27_sla_inf_slaangors', itemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Slaangors'),
     62001: itemData(IC.useful, 1, 'wh3_main_sla_inf_daemonette_1', itemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Exalted Daemonettes of Slaanesh'),
     62002: itemData(IC.useful, 1, 'wh3_main_sla_cav_heartseekers_of_slaanesh_0', itemType.unit, 3, 'Progressive chs_cav', 'Chaos Unit: Heartseekers of Slaanesh'),
 
