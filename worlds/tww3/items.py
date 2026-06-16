@@ -209,6 +209,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     for region in world.get_regions():
         fillerCount += len(region.locations)
         x += len(region.locations)
+    logger.info(f"Items: {len(pool)}, Filler Items: {fillerCount}")
     #logger.info(f"total location count: {x}")
     #logger.info(f"items generated: {len(pool) - 1}")
     #logger.info(f"filler required: {fillerCount + 1}")
