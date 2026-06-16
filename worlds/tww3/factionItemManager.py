@@ -64,16 +64,25 @@ moddedItemDict: dict[str, ModuleType] = {
     "decomposed expanded roster": expandedRoster, #100000
 }
 
+"""raceModuleDict = {
+    "mousillon": mousillon,  #102000
+    "southernRealms": southernRealms, #110000
+    "crustaceans": crustaceans, #112000
+    "lobsters": lobsters, #114000
+}
+
+#fo = open(f"C:/Users/jorda/Documents/output.csv", "w+")
+#lines = []
 for race, module in raceModuleDict.items():
     fo = open(f"C:/Users/jorda/Documents/output_{race}.csv", "w+")
     lines = []
 
-    items = module.units.items()
-    items.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if item.type == itemType.unit})
+    units = module.units
+    units.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if item.type == itemType.unit})
 
-    for ukey, unit in items:
+    for ukey, unit in units.items():
         for bkey, building in enumerate(module.buildings.values()):
-            if "settlement" in building.name and "hro" not in unit.progressionGroup: # and not "_ror" in unit.name
+            if "settlement" in building.name:# and "hro" not in unit.progressionGroup: # and not "_ror" in unit.name
                 if race == "daemons":
                     if "sla" in unit.name and not "sla" in building.name:
                         continue
@@ -91,7 +100,7 @@ for race, module in raceModuleDict.items():
                 fo.write(line)
                 lines.append(line)
                 #print(f"{ukey}{bkey},{building.name},{unit.name}")
-    fo.close()
+    fo.close()"""
 
 
 raceModuleDict.update({
