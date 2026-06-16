@@ -216,7 +216,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
 
 def generateFiller(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerDict.keys()))
-    #Make Items twice as likely to get :) They're fun
+    #Make Items almost twice as likely to get :) They're fun
     if key != 1205:
         key = world.random.choice(tuple(fillerDict.keys()))
 
