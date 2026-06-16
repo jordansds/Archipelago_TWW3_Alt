@@ -197,10 +197,6 @@ def generateExpansionItems(world: TWW3World, pool: list) -> list:
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
 
-    #for item in ancillariesDict.values():
-    #    item = world.create_item(item.readableName)
-    #    pool.append(item)
-    #return pool
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
     weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
 
@@ -210,9 +206,6 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
         fillerCount += len(region.locations)
         x += len(region.locations)
     logger.info(f"Items: {len(pool)}, Filler Items: {fillerCount}")
-    #logger.info(f"total location count: {x}")
-    #logger.info(f"items generated: {len(pool) - 1}")
-    #logger.info(f"filler required: {fillerCount + 1}")
     fillerFunctions = world.random.choices(fillerFunctions, weights=weights, k=fillerCount)
     
     for func in fillerFunctions:
