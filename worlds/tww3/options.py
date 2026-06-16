@@ -342,6 +342,12 @@ class modList(OptionSet):
     display_name = "Supported Mods"
     valid_keys = ["decomposed expanded roster", "mixu mousillon", "mixu legendary lords", "ovn citadel of dusk", "medusa0 surtha ek", "cataph southern realms", "pegaz the crustacean nation"]
 
+class fillerBlacklist(OptionSet):
+    """Filler Blacklist (if you blacklist them all, then nothing will happen). Valid Options:
+        "Get-Rich-Slow Scroll", "Get-Rich-Quick Scroll", "Handful of Order", "The GroBro 3000", "Give me that", "Make Love, Not War"
+        """
+    display_name = "Filler Blacklist"
+    valid_keys = ["Get-Rich-Slow Scroll", "Get-Rich-Quick Scroll", "Handful of Order", "The GroBro 3000", "Give me that", "Make Love, Not War"]
 class trapBlacklist(OptionSet):
     """Trap Blacklist (if you blacklist them all, then nothing will happen). Valid Options:
     "Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"
@@ -406,4 +412,5 @@ class TWW3Options(PerGameCommonOptions):
     reveal_hints: revealHints
 
     mod_list: modList
+    filler_blacklist: fillerBlacklist
     trap_blacklist: trapBlacklist

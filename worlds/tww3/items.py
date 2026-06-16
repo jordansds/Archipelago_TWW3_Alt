@@ -68,7 +68,17 @@ def createAllItems(world: TWW3World) -> None:
     pool = generateExpansionItems(world, pool)
     pool = generateRitualItems(world, pool)
 
-    # Remove traps based on yaml settings
+    # Remove traps/filler based on yaml settings
+    if len(world.options.filler_blacklist.value) < len(fillerDict):
+        for filler in world.options.filler_blacklist:
+            try:
+                for key, item in fillerDict.items():
+                    if item.readableName[6:] == filler:
+                        del fillerDict[key]
+                        break
+            except KeyError:
+                world.logger.warn(f"Invalid YAML: {filler} set in yaml is invalid, check your spelling.")
+
     if len(world.options.trap_blacklist.value) < len(trapDict):
         for trap in world.options.trap_blacklist:
             try:
