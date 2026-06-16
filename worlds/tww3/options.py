@@ -350,7 +350,7 @@ class trapBlacklist(OptionSet):
     valid_keys = ["Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"]
 
 class randomizePersonalities(DefaultOnToggle):
-    """Randomize AI Personalities."""
+    """Randomize AI Personalities [Does this work? It's hard to tell, the AI go crazy when shuffled anyway]."""
     display_name = "Randomize AI Personalities"
 
 class hardLogic(DefaultOnToggle):
