@@ -136,7 +136,11 @@ def createTechLocations(world: TWW3World) -> None:
     techs = [item for key, item in factionItemManager.getTechs(world.playerFaction.race, False)]
     techs += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialTechs if item.progressionGroup is not None]
 
-    maxTier = max([item.tier for item in techs])
+    try:
+        maxTier = max([item.tier for item in techs])
+    except ValueError:
+        return
+
     for item in techs:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
