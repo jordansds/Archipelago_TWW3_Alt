@@ -105,8 +105,8 @@ def setTechnologyLocationRules(world: TWW3World, techs):
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
 def setRitualRules(world: TWW3World, rituals: list):
-    rule = True_()
     for item in rituals:
+        rule = True_()
         locName = item.readableName
 
         for ritual in rituals:
@@ -117,6 +117,8 @@ def setRitualRules(world: TWW3World, rituals: list):
             rule = rule & world.sanityRules.getRitualRules(locName)
         except KeyError:
             pass
+
+        print(f"{item.readableName}: {rule}")
 
         try:
             world.set_rule(world.get_location(item.readableName), rule)
