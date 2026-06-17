@@ -118,8 +118,6 @@ def setRitualRules(world: TWW3World, rituals: list):
         except KeyError:
             pass
 
-        print(f"{item.readableName}: {rule}")
-
         try:
             world.set_rule(world.get_location(item.readableName), rule)
         except KeyError:
