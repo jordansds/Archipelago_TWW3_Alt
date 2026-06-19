@@ -51,7 +51,7 @@ def setBuildingLocationRules(world: TWW3World, buildings):
             #else:
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
-        if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name):
+        if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name or "settlement" in item.progressionGroup):
 
             rule = True_()
             if world.options.progressive_buildings:

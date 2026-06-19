@@ -615,10 +615,9 @@ class TWW3Context(CommonContext):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
-            landmarks = ["wh3_dlc27_nor_throgg_trolls_woods_2","wh3_dlc27_nor_throgg_trolls_woods_3a"]
             if sanityType == "ritual":
                 logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
-            if not "special" in location and location not in landmarks:
+            if not "special" in location:
                 if sanityType != "ritual":
                     logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
 

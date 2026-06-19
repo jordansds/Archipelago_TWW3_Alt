@@ -110,6 +110,9 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
         for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
             if "settlement" in item.name:
                 continue
+            if item.progressionGroup is not None:
+                if "settlement" in item.progressionGroup:
+                    continue
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 #Need to change so that if progressive buildings, generate 1 less item
                 reduce = 0
