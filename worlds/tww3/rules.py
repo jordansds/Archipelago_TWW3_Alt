@@ -45,7 +45,8 @@ def setBuildingLocationRules(world: TWW3World, buildings):
 
     for item in buildings:
 
-        if world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
+        #if world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
+        if "resource" in item.name or "port" in item.name:
             #if firstPass:
             #    continue
             #else:
@@ -69,8 +70,12 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                         break
 
             if not world.options.hard_logic:
+                itemCount = item.tier if item.tier <= 3 else item.tier + 2
                 if world.options.game_mode == "conquest":
-                    rule = rule & Has("Administrative Capacity", max(0, item.tier - 2))
+                    rule = rule & Has("Administrative Capacity", min(itemCount, world.adminItems))
+                elif world.options.game_mode == "spheres":
+                    rule = rule & Has("Diplomatic Range", min(itemCount, world.options.sphere_count.value))
+
 
             #print(item.readableName, rule)
             world.set_rule(world.get_location(item.readableName), rule)

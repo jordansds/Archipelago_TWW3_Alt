@@ -125,6 +125,7 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
             # Prevent early spawning of orbs
             if item.tier <= 3:
                 forbid_item(location, "Orb of Domination", world.player)
+
             region.locations.append(location)
 
     if not firstPass:
@@ -187,7 +188,7 @@ def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
     for i in range(1, 21):
         for decision in ["Sacked", "Razed"]:
-            locName = f"{decision} {i} Settlements"
+            locName = f"{decision} {i*2} Settlements"
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 

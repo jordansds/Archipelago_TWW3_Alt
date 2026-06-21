@@ -228,7 +228,7 @@ class TWW3Context(CommonContext):
         self.deathLinkPending = False
         self.notificationPending = False
         self.logChecks = False
-        #self.settlementCount = 0
+        self.settlementCount = 0
         self.locationMapping = False
         self.descriptions = {}
 
@@ -281,7 +281,7 @@ class TWW3Context(CommonContext):
                     if not self.fastResearch and self.sanity:
                         self.createTechMissions()
 
-                    self.sendMessage("archipelago.initialise()")
+                    self.messenger.runTemp("archipelago.initialise()")
 
                 super().on_package(cmd, args)
 
@@ -593,8 +593,8 @@ class TWW3Context(CommonContext):
                         for i in range(1, location + 1):
                             for j in range(int(self.checksPerLocation)):
                                 await self.check_locations([i*10-9 + j])
-                        #if location > self.settlementCount:
-                        #    self.settlementCount = location
+                        if location > self.settlementCount:
+                            self.settlementCount = location
                     else:
                         logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
                 elif location == int(self.maxEmpireSize):

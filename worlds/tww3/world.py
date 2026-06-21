@@ -116,6 +116,8 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
+        self.adminItems = math.floor(self.options.number_of_settlements / self.adminCapacity)
+
         if self.options.balance > 0 or not self.options.hard_logic:
             self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
@@ -187,7 +189,7 @@ class TWW3World(World):
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
             slotData["admin_capacity"] = self.adminCapacity
-            slotData["max_expansion_items"] = math.floor(self.options.number_of_settlements / self.adminCapacity)
+            slotData["max_expansion_items"] = self.adminItems
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.orbCount
             #settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
