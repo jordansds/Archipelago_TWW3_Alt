@@ -208,7 +208,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     for region in world.get_regions():
         fillerCount += len(region.locations)
         x += len(region.locations)
-    logger.info(f"Items: {len(pool)}, Filler Items: {fillerCount}")
+    logger.info(f"{world.player_name} Items: {len(pool)}, Filler Items: {fillerCount}")
     fillerFunctions = world.random.choices(fillerFunctions, weights=weights, k=fillerCount)
     
     for func in fillerFunctions:

@@ -117,7 +117,7 @@ class TWW3World(World):
             self.sanityRules = sanityRules.ruleManager(self)
 
         if self.options.balance > 0 or not self.options.hard_logic:
-            self.logger.warning(f"Total War Warhammer player {self.player} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
+            self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
 
