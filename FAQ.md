@@ -8,7 +8,7 @@ Your Archipelago launcher is out of date. Update it.
 **Is this updated for the latest DLC**  
 yes. 
 
-*Do I need any DLC**  
+**Do I need any DLC**  
 Do not try playing lords that you do not have DLC for, it won't work.  
 If you play a faction and are missing the DLC for certain units/buildings, you will still receive the items from the multiworld but they won't do anything.  
 If you enable the "sanity" option in the yaml and are missing dlc buildings, then you will have to release those missing checks manually.  
