@@ -38,7 +38,7 @@ website then in the connection field you will need to enter `archipelago.gg/` fo
 displayed on the lobby page for the multiworld.  
 
  - Launch Total War Warhammer 3 and in the mod launcher, enable the .pack file you downloaded.  
-(If the mods do not show up, try using [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14) instead (it's better).  
+If the mods do not show up, try using [this mod manager](https://github.com/Shazbot/WH3-Mod-Manager/releases/tag/v2.16.14) instead (it's better).  
 **.pack is the file format used by TWW3 mods and contains the code needed for the game modes to function. Make sure you *don't*
 use the Archipelago mod found on the Steam workshop, it is for another dev's outdated APWorld.**  
 
