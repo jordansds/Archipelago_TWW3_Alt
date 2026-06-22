@@ -8,7 +8,7 @@ Your Archipelago launcher is out of date. Update it.
 **Is this updated for the latest DLC?**  
 Yes. 
 
-**There's an Archipelago mod on the steam workshop, should I use it**  
+**There's an Archipelago mod on the steam workshop, should I use it?**  
 No.  
   
 **Do I need any DLC?**  
