@@ -1,6 +1,9 @@
 Questions are not allowed. How dare you question my authority. Peasant.
   
-I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.
+I'll write this up at some point, for now, come ask questions in the Total War Warhammer thread in the Archipelago Discord.  
+  
+**Nothing shows up in my launcher?**  
+Your Archipelago launcher is out of date. Update it.
 
 **Is this updated for the latest DLC**  
 yes. 
