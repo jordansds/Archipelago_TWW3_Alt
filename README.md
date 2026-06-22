@@ -32,7 +32,7 @@ PREVENT POTENTIAL SOFTLOCK.
  - If you've never used a yaml before, refer to [this page](https://archipelago.gg/tutorial/Archipelago/advanced_settings_en) for an explanation of how
 it works. For more detailed information on what the yaml settings do, check below.  
  - Once you have editted the file, run "Generate" in the Archipelago Launcher to create the .zip, then host the generated multiworld either locally using "Host" or on the [Archipelago website](https://archipelago.gg/uploads).  
- - Run the "Total War Warhammer" from the Archipelago Launcher and select the folder where the Warhammer.exe file is saved when prompted.  
+ - Run the "Total War Warhammer" client from the Archipelago Launcher and select the folder where the Warhammer.exe file is saved when prompted.  
  - Connect to the multiworld and it will tell you which faction you have selected and which gamemode. If the multiworld is hosted on the Archipelago
 website then in the connection field you will need to enter `archipelago.gg/` followed by the port number. The port will be
 displayed on the lobby page for the multiworld.  
