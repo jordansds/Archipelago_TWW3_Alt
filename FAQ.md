@@ -6,8 +6,11 @@ I'll write this up at some point, for now, come ask questions in the Total War W
 Your Archipelago launcher is out of date. Update it.
 
 **Is this updated for the latest DLC?**  
-yes. 
+Yes. 
 
+**There's an Archipelago mod on the steam workshop, should I use it**  
+No.  
+  
 **Do I need any DLC?**  
 Do not try playing lords that you do not have DLC for, it won't work.  
 If you play a faction and are missing the DLC for certain units/buildings, you will still receive the items from the multiworld but they won't do anything.  
