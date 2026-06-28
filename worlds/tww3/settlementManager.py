@@ -1040,7 +1040,7 @@ class SettlementManager:
                 playerSettlement: settlementData = settlementDict[sKey]
                 self.assignSettlement(sKey, settlementDict[sKey], playerFaction)
             self.removeKeys()
-            self.capitals.update({playerFaction.readableName: playerSettlement.readableName})
+            self.capitals.update({playerFaction.name: playerSettlement.name})
 
 
             # Assign the player 2 more settlements
@@ -1069,7 +1069,7 @@ class SettlementManager:
                     if faction.race == "woodElves" and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
-                        self.capitals.update({faction.readableName: settlement.readableName})
+                        self.capitals.update({faction.name: settlement.name})
                         break
         self.removeKeys() # Remove the magical forests that have been assigned.
 
@@ -1083,7 +1083,7 @@ class SettlementManager:
                     if (faction.race[:5] == "chaos" or faction.race == "lobsters") and faction.name not in self.shuffledFactionList:
                         self.assignSettlement(sKey, settlement, faction)
                         self.factionKeys.pop(i)
-                        self.capitals.update({faction.readableName: settlement.readableName})
+                        self.capitals.update({faction.name: settlement.name})
                         break
         self.removeKeys() # Remove the magical forests that have been assigned.
 
@@ -1098,7 +1098,7 @@ class SettlementManager:
                 if faction.name not in hordeList and faction.name not in self.shuffledFactionList:
                     self.assignSettlement(sKey, settlement, faction)
                     self.factionKeys.pop(i)
-                    self.capitals.update({faction.readableName: settlement.readableName})
+                    self.capitals.update({faction.name: settlement.name})
                     break
         self.removeKeys() #Remove the settlements that have been assigned
 
