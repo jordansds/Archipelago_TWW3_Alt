@@ -3,7 +3,7 @@ from pygments.lexer import default
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
     OptionSet
 from dataclasses import dataclass
-from worlds.tww3 import settlementManager as sm
+from worlds.tww3 import settlementRandomiser as sm
 
 class faction(Choice):
     """Choose your faction. If you pick multiple the client will tell you which one you need to play.

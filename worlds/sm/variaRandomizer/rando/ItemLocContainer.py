@@ -43,8 +43,8 @@ class ContainerSoftBackup(object):
         container.unusedLocations = self.unusedLocations[:]
         container.currentItems = self.currentItems[:]
         if resetSM:
-            container.sm.resetItems()
-            container.sm.addItems([it.Type for it in container.currentItems])
+            container.sr.resetItems()
+            container.sr.addItems([it.Type for it in container.currentItems])
 
 # Holds items yet to place (itemPool), locations yet to fill (unusedLocations),
 # placed items/locations (itemLocations).
@@ -104,8 +104,8 @@ class ItemLocContainer(object):
     # transfer collected items/locations to another container
     def transferCollected(self, dest):
         dest.currentItems = self.currentItems[:]
-        dest.sm = SMBoolManager(self.sm.player, self.sm.maxDiff, self.sm.onlyBossLeft)
-        dest.sm.addItems([item.Type for item in dest.currentItems])
+        dest.sr = SMBoolManager(self.sm.player, self.sm.maxDiff, self.sm.onlyBossLeft)
+        dest.sr.addItems([item.Type for item in dest.currentItems])
         dest.itemLocations = copy.copy(self.itemLocations)
         dest.unrestrictedItems = copy.copy(self.unrestrictedItems)
 

@@ -15,10 +15,11 @@ import math
 
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.dataStructs import itemType
+from worlds.tww3.item_tables import factions as fm, settlements as sm
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesDict
 from worlds.tww3.item_tables.progression_table import progressionDict
-from worlds.tww3 import TWW3World, factionItemManager, deathLink, settlementManager as sm
+from worlds.tww3 import TWW3World, factionItemManager, deathLink
 import os
 from NetUtils import ClientStatus
 
@@ -324,8 +325,8 @@ class TWW3Context(CommonContext):
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
 
         self.modList = args['slot_data']['mod_list']
-        sm.addModdedFactions(self.modList)
-        self.playerFaction = sm.factionDict[args["slot_data"]["starting_faction"]].name
+        fm.addModdedFactions(self.modList)
+        self.playerFaction = fm.factionDict[args["slot_data"]["starting_faction"]].name
 
         #The Settra handler
         if self.playerFaction == "wh2_dlc09_tmb_khemri":
@@ -343,9 +344,9 @@ class TWW3Context(CommonContext):
                           Araby, Purger of the Greenskin Breathers, Killer of the False God's Champions, Tyrant of the Gold Dunes, Golden Bone Lord, Avenger of the Dead, Carrion Master, Eternal Warden of Nehek's 
                           Lands, Breaker of Djaf's Bonds... and many, many more... (Tomb Kings)""")
         else:
-            logger.info("The player faction is: " + sm.factionDict[args["slot_data"]["starting_faction"]].readableName)
+            logger.info("The player faction is: " + fm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
-        self.playerRace = sm.factionDict[args["slot_data"]["starting_faction"]].race
+        self.playerRace = fm.factionDict[args["slot_data"]["starting_faction"]].race
 
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
@@ -378,9 +379,11 @@ class TWW3Context(CommonContext):
             self.spheres = args['slot_data']['spheres']
             self.numberOfOrbs = 0
             self.expansionItems = 0
+            self.map = "immortal empires"
+            self.settlements = sm.mapDict[self.map]
 
-            offset = sum([1 for i in range(1, len(sm.settlementDict) + 1) for j in range(10)]) + 1
-            for key, settlement in sm.settlementDict.items():
+            offset = sum([1 for i in range(1, len(self.settlements) + 1) for j in range(10)]) + 1
+            for key, settlement in self.settlements.items():
                 for i in range(self.checksPerLocation):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
@@ -605,9 +608,9 @@ class TWW3Context(CommonContext):
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
         except ValueError:
             if self.gameMode == "spheres":
-                key = next((key for key, value in sm.settlementDict.items() if value.name == location), None)
+                key = next((key for key, value in self.settlements.items() if value.name == location), None)
                 for i in range(int(self.checksPerLocation)):
-                    await self.check_locations([self.locationLookup[f"{sm.settlementDict[key].readableName} ({i})"]])
+                    await self.check_locations([self.locationLookup[f"{self.settlements[key].readableName} ({i})"]])
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
 
@@ -715,7 +718,7 @@ class TWW3Context(CommonContext):
 
     # Currently Unused
     def createSphereMissions(self):
-        for i, settlement in sm.settlementDict.items():
+        for i, settlement in self.settlements.items():
             key = f"archipelago_{settlement.readableName}"
             items = "Within this settlement:\n"
             for j in range(self.checksPerLocation):

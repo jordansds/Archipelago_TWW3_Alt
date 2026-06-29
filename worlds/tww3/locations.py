@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 from BaseClasses import Location, ItemClassification as IC
 from rule_builder.rules import Has
-from worlds.tww3 import items, rules, factionItemManager, settlementManager as sm
+from worlds.tww3 import items, rules, factionItemManager, settlementRandomiser as sm
 import math
 from worlds.generic.Rules import forbid_item
 

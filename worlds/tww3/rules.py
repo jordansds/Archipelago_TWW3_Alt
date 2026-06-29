@@ -160,7 +160,7 @@ def setBalance(world: TWW3World) -> None:
             #Number of items to assign to the locations within each diplo range
             itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
 
-            settlementToDiploRange = [settlement.readableName for settlement in world.settlementManager.shuffledSettlementDict.values()]
+            settlementToDiploRange = [settlement.readableName for settlement in world.settlementRandomiser.shuffledSettlementDict.values()]
             settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(world.settlementDiploRange) if count <= world.options.sphere_count}
 
             for locationName, requiredDiploRange in settlementToDiploRange.items():

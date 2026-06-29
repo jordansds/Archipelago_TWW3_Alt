@@ -7,7 +7,8 @@ import math
 import settings
 from worlds.tww3.options import TWW3Options
 from worlds.tww3 import items, locations, rules, sanityRules
-from worlds.tww3 import settlementManager as sm
+from worlds.tww3.item_tables import factions as fm, settlements as sm
+from worlds.tww3 import settlementRandomiser as sr
 from worlds.tww3 import factionItemManager
 from worlds.tww3.dataStructs import itemType
 import logging
@@ -32,22 +33,21 @@ class TWW3World(World):
     ut_can_gen_without_yaml = True
     glitches_item_name: str = "Glitch Logic"
 
-    #Holds the keys that will be sent to the client for locking techs/buildings/units
-    #Will be populated in items.createAllItems
-    #itemKeys = []
-
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
-    #item_name_to_id = {}
 
-    #locationNames = [f"Empire Size {i} ({j})" for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    #locationNames += [f"{settlement.readableName} ({i})" for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
-    #location_name_to_id = {location: index for index, location in enumerate(locationNames, start=1)}
+    # conquest gamemode locations
+    conquestLocations = [f"Empire Size {i} ({j})"
+                 for i in range(1, len(sm.getMaximumSettlementCount()) + 1) for j in range(10)]
+    location_name_to_id = {location: index for index, location in enumerate(conquestLocations, start=1)}
 
-    locations = [f"Empire Size {i} ({j})"
-                 for i in range(1,len(sm.settlementDict) + 1) for j in range(10)] #conquest gamemode locations
-    locations += [f"{settlement.readableName} ({i})"
-                  for settlement in sm.settlementDict.values() for i in range(10)]  # spheres gamemode locations
-    location_name_to_id = {location: index for index, location in enumerate(locations, start=1)}
+    #locations += [f"{settlement.readableName} ({i})"
+    #              for settlement in sm.getAllSettlements().values() for i in range(10)]
+
+    # spheres gamemode locations
+    location_name_to_id.update({
+        f"{settlement.readableName} ({i})": index + len(conquestLocations) #offset conquest locations
+        for index, settlement in sm.getAllSettlements().items() for i in range(10)
+    })
 
     sanityLocationNames = {}
     for key, item in factionItemManager.getAllItems().items():
@@ -57,11 +57,7 @@ class TWW3World(World):
         sanityLocationNames.update({i+20000: f"Won {i*5} Battles", i+20020: f"Sacked {i} Settlements", i+20040: f"Razed {i} Settlements"})
     location_name_to_id.update({item: key for key, item in sanityLocationNames.items()})
 
-    #print(location_name_to_id)
-
-    settlementManager: sm.SettlementManager = None
-
-
+    settlementRandomiser: sr.settlementRandomiser = None
 
     def generate_early(self) -> None:
         re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
@@ -74,16 +70,17 @@ class TWW3World(World):
                 if opt is not None:
                     setattr(self.options, key, opt.from_any(value))
 
-        sm.addModdedFactions(self.options.mod_list)
-        self.playerFaction = sm.factionDict[self.options.starting_faction.value]
-        self.settlementManager: sm.SettlementManager = sm.SettlementManager(self.random, self.playerFaction,
-                                                                            self.options.starting_faction.value,
-                                                                            self.options.starting_settlements)
+        fm.addModdedFactions(self.options.mod_list)
+        self.playerFaction = fm.factionDict[self.options.starting_faction.value]
+        self.map = "immortal empires" #Potential for additional map support in future?
+        self.settlementRandomiser: sr.settlementRandomiser = sr.settlementRandomiser(self.random, self.playerFaction,
+                                                                                     self.options.starting_faction.value,
+                                                                                     self.options.starting_settlements, self.map)
 
         if self.options.faction_shuffle:
-            self.settlements = self.settlementManager.randomiseSettlements()
+            self.settlements = self.settlementRandomiser.randomiseSettlements()
         else:
-            self.settlements = self.settlementManager.getSettlements()
+            self.settlements = self.settlementRandomiser.getSettlements()
         self.playerSettlements = [settlement for settlement in self.settlements.values()
                                   if settlement.faction == self.playerFaction.name]
 
@@ -98,7 +95,7 @@ class TWW3World(World):
         elif self.options.game_mode == "spheres":
             self.orbCount = 9
             self.sphereRadius = 50
-            self.settlementDiploRange, self.factionDiploRange = self.settlementManager.getRequiredDiploRange(
+            self.settlementDiploRange, self.factionDiploRange = self.settlementRandomiser.getRequiredDiploRange(
                 self.options.sphere_count, self.sphereRadius)
         if self.options.ritual_sanity:
             self.options.sanity.value = True
@@ -198,8 +195,8 @@ class TWW3World(World):
             slotData["max_expansion_items"] = self.options.sphere_count.value
 
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
-        slotData["hordes"] = self.settlementManager.randomiseHordes()
-        slotData["faction_capitals"] = self.settlementManager.capitals
+        slotData["hordes"] = self.settlementRandomiser.randomiseHordes()
+        slotData["faction_capitals"] = self.settlementRandomiser.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
         slotData["options"] =  self.options.as_dict("starting_faction",
