@@ -71,6 +71,12 @@ class TWW3World(World):
                     setattr(self.options, key, opt.from_any(value))
 
         fm.addModdedFactions(self.options.mod_list)
+
+        #Handle random faction from race selection.
+        if self.options.starting_faction.value % 10 == 0:
+            randomRace = fm.factionDict[self.options.starting_faction.value]
+            self.options.starting_faction = self.random.choice(randomRace.readableName) #Yes, I reused readableName for a list of ints. Fight me.
+
         self.playerFaction = fm.factionDict[self.options.starting_faction.value]
         self.map = "immortal empires" #Potential for additional map support in future?
         self.settlementRandomiser: sr.settlementRandomiser = sr.settlementRandomiser(self.random, self.playerFaction,
@@ -161,8 +167,8 @@ class TWW3World(World):
 
         :return: A dictionary to be sent to the client when it connects to the server.
         """
-        slotData = self.options.as_dict("game_mode",
-                                        "starting_faction",
+        slotData = self.options.as_dict("starting_faction",
+                                        "game_mode",
                                         "progressive_technologies",
                                         "progressive_buildings",
                                         "progressive_units",
@@ -181,7 +187,6 @@ class TWW3World(World):
                                         "hard_logic",
                                         "fast_research",
                                         "reveal_hints",)
-                                        #"location_balancing",)
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value

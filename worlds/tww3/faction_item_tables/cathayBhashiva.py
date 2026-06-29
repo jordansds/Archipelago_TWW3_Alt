@@ -28,13 +28,13 @@ units: dict[int, itemData] = {
     74014: itemData(IC.useful, 1, 'wh3_main_cth_art_grand_cannon_0', itemType.unit, 1, 'Progressive cth_bhashiva_art', 'Cathay Bhashiva Unit: Grand Cannons'),
     74036: itemData(IC.useful, 1, 'wh3_main_cth_art_fire_rain_rocket_battery_0', itemType.unit, 2, 'Progressive cth_art', 'Cathay Bhashiva Unit: Fire Rain Rocket Battery'),
 
-    74037: itemData(IC.useful, 1, 'wh3_dlc24_cth_veh_zhangu_war_drum', itemType.unit, 1, 'Progressive cth_veh', 'Cathay Unit: Zhangu War Drum'),
-    74038: itemData(IC.useful, 1, 'wh3_main_cth_veh_war_compass_0', itemType.unit, 2, 'Progressive cth_veh', 'Cathay Unit: Wu Xing War Compass'),
+    74037: itemData(IC.useful, 1, 'wh3_dlc24_cth_veh_zhangu_war_drum', itemType.unit, 1, 'Progressive cth_veh', 'Cathay Bhashiva Unit: Zhangu War Drum'),
+    74038: itemData(IC.useful, 1, 'wh3_main_cth_veh_war_compass_0', itemType.unit, 2, 'Progressive cth_veh', 'Cathay Bhashiva Unit: Wu Xing War Compass'),
     74015: itemData(IC.useful, 1, 'wh3_main_cth_veh_sky_lantern_0', itemType.unit, 1, 'Progressive cth_bhashiva_veh', 'Cathay Bhashiva Unit: Sky Lantern'),
     74016: itemData(IC.useful, 1, 'wh3_main_cth_veh_sky_junk_0', itemType.unit, 2, 'Progressive cth_bhashiva_veh', 'Cathay Bhashiva Unit: Sky-junk'),
 
-    74039: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_jet_lion', itemType.unit, 1, 'Progressive cth_bhashiva_bst', 'Cathay Unit: Jet Lion'),
-    74040: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_jade_lion', itemType.unit, 1, 'Progressive cth_bhashiva_bst', 'Cathay Unit: Jade Lion'),
+    74039: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_jet_lion', itemType.unit, 1, 'Progressive cth_bhashiva_bst', 'Cathay Bhashiva Unit: Jet Lion'),
+    74040: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_jade_lion', itemType.unit, 1, 'Progressive cth_bhashiva_bst', 'Cathay Bhashiva Unit: Jade Lion'),
     74017: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_celestial_lion', itemType.unit, 1, 'Progressive cth_bhashiva_bst', 'Cathay Bhashiva Unit: Celestial Lion'),
     74018: itemData(IC.useful, 1, 'wh3_dlc24_cth_mon_great_moon_bird', itemType.unit, 2, 'Progressive cth_bhashiva_bst', 'Cathay Bhashiva Unit: Great Moon Bird'),
     74019: itemData(IC.useful, 1, 'wh3_main_cth_mon_terracotta_sentinel_0', itemType.unit, 3, 'Progressive cth_bhashiva_bst', 'Cathay Bhashiva Unit: Terracotta Sentinel'),
