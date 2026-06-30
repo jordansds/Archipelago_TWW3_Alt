@@ -620,7 +620,7 @@ class TWW3Context(CommonContext):
         except KeyError:
             if sanityType == "ritual":
                 logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
-            if not "special" in location:
+            if not "special" in location and not "bastion_primary" in location:
                 if sanityType != "ritual":
                     logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
 
