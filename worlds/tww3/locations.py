@@ -8,7 +8,8 @@ if TYPE_CHECKING:
 
 from BaseClasses import Location, ItemClassification as IC
 from rule_builder.rules import Has
-from worlds.tww3 import items, rules, factionItemManager, settlementRandomiser as sm
+from worlds.tww3 import items, rules, factionItemManager
+from worlds.tww3.item_tables import factions as fm
 import math
 from worlds.generic.Rules import forbid_item
 
@@ -56,7 +57,7 @@ def createConquestLocations(world: TWW3World) -> None:
     # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
     if world.playerFaction.name == "wh3_dlc24_tze_the_deceivers":
         startingCheck = 2
-    elif world.playerFaction.name in sm.hordeList:
+    elif world.playerFaction.name in fm.hordeList:
         startingCheck = 1
     else:
         startingCheck = world.options.starting_settlements + 1

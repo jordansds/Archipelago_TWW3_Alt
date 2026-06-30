@@ -37,7 +37,7 @@ class TWW3World(World):
 
     # conquest gamemode locations
     conquestLocations = [f"Empire Size {i} ({j})"
-                 for i in range(1, len(sm.getMaximumSettlementCount()) + 1) for j in range(10)]
+                 for i in range(1, sm.getMaximumSettlementCount() + 1) for j in range(10)]
     location_name_to_id = {location: index for index, location in enumerate(conquestLocations, start=1)}
 
     #locations += [f"{settlement.readableName} ({i})"
@@ -45,7 +45,7 @@ class TWW3World(World):
 
     # spheres gamemode locations
     location_name_to_id.update({
-        f"{settlement.readableName} ({i})": index + len(conquestLocations) #offset conquest locations
+        f"{settlement.readableName} ({i})": index + sm.getMaximumSettlementCount() * 10 #offset conquest locations
         for index, settlement in sm.getAllSettlements().items() for i in range(10)
     })
 
@@ -75,7 +75,7 @@ class TWW3World(World):
         #Handle random faction from race selection.
         if self.options.starting_faction.value % 10 == 0:
             randomRace = fm.factionDict[self.options.starting_faction.value]
-            self.options.starting_faction = self.random.choice(randomRace.readableName) #Yes, I reused readableName for a list of ints. Fight me.
+            self.options.starting_faction.value = self.random.choice(randomRace.readableName) #Yes, I reused readableName for a list of ints. Fight me.
 
         self.playerFaction = fm.factionDict[self.options.starting_faction.value]
         self.map = "immortal empires" #Potential for additional map support in future?

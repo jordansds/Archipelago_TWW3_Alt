@@ -33,8 +33,6 @@ factionDict: dict[int, factionData] = {
     54: factionData('wh2_dlc11_def_the_blessed_dread', True, True, 'darkElves', 'Lokhir Fellheart (Dark Elves)', False),
     55: factionData('wh2_main_def_hag_graef', True, False, 'darkElves', 'Malus Darkblade (Dark Elves)', False),
     56: factionData('wh2_twa03_def_rakarth', True, True, 'darkElves', 'Rakarth the Beastmaster (Dark Elves)', False),
-    #Daniel
-    61: factionData('wh3_main_dae_daemon_prince', True, False, 'daemons', 'The Daemon Prince (Daemons of Chaos)', False),
     #Dwarfs
     70: factionData("random_dwarfs", True, True, "dwarfs", [70, 71, 72, 73, 74, 75, 76], False),
     71: factionData('wh_main_dwf_dwarfs', True, True, 'dwarfs', 'Thorgrim Grudgebearer (Dwarfs)', False),
@@ -138,7 +136,7 @@ factionDict: dict[int, factionData] = {
     223: factionData('wh3_main_vmp_caravan_of_blue_roses', True, True, 'vampireCounts', 'Helman Ghorst (Vampire Counts)', False),
     224: factionData('wh_main_vmp_schwartzhafen', True, True, 'vampireCounts', 'Vlad von Carstein (Vampire Counts)', False),
     #Warriors of Chaos
-    230: factionData("random_chaos", True, True, "chaos", [231, 232, 233, 234, 235, 236, 237, 238], False),
+    230: factionData("random_chaos", True, True, "chaos", [231, 232, 233, 234, 235, 236, 237, 238, 239], False),
     231: factionData('wh_main_chs_chaos', True, False, 'chaos', 'Archaon the Everchosen (Warriors of Chaos)', False),
     232: factionData('wh3_dlc20_chs_kholek', True, False, 'chaos', 'Kholek Suneater (Warriors of Chaos)', False),
     233: factionData('wh3_dlc20_chs_sigvald', True, False, 'chaos', 'Prince Sigvald the Magnificent (Warriors of Chaos)', False),
@@ -147,6 +145,7 @@ factionDict: dict[int, factionData] = {
     236: factionData('wh3_dlc20_chs_valkia', True, False, 'chaosKhorne', 'Valkia the Bloody (Warriors of Chaos)', False),
     237: factionData('wh3_dlc20_chs_vilitch', True, False, 'chaosTzeentch', 'Vilitch the Cursling (Warriors of Chaos)', False),
     238: factionData('wh3_main_chs_shadow_legion', True, False, 'chaos', "Be'lakor (Warriors of Chaos)", False),
+    239: factionData('wh3_main_dae_daemon_prince', True, False, 'daemons', 'The Daemon Prince (Daemons of Chaos)', False),
     #Wood Elves
     240: factionData("random_wood_elves", True, True, "woodElves", [241, 242, 243, 244], False),
     241: factionData('wh_dlc05_wef_wood_elves', True, True, 'woodElves', 'Orion (Wood Elves)', False),

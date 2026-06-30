@@ -3,11 +3,12 @@ from pygments.lexer import default
 from Options import Choice, DeathLink, DefaultOnToggle, Range, StartInventoryPool, PerGameCommonOptions, Toggle, \
     OptionSet
 from dataclasses import dataclass
-from worlds.tww3 import settlementRandomiser as sm
+from worlds.tww3.item_tables import settlements as sm
 
 class faction(Choice):
     """Choose your faction. If you pick multiple the client will tell you which one you need to play.
-    All options after "Throgg" require you to have the enabled mod installed and enabled at the bottom of this yaml"""
+    All options after Drycha require you to have the enabled mod installed and enabled at the bottom of this yaml.
+    The default option is The Daemon Prince. Make sure to disable it."""
     display_name = "Player Faction"
     option_Random_Beastmen = 10
     option_Khazrak_the_One_Eye = 11
@@ -39,8 +40,6 @@ class faction(Choice):
     option_Lokhir_Fellheart = 54
     option_Malus_Darkblade = 55
     option_Rakarth_the_Beastmaster = 56
-
-    option_The_Daemon_Prince = 61
 
     option_Random_Dwarfs = 70
     option_Thorgrim_Grudgebearer = 71
@@ -153,6 +152,7 @@ class faction(Choice):
     option_Valkia_the_Bloody = 236
     option_Vilitch_the_Cursling = 237
     option_Belakor = 238
+    option_The_Daemon_Prince = 239
 
     option_Random_Wood_Elves = 240
     option_Orion = 241
@@ -293,13 +293,13 @@ class despoilerSanity(Toggle):
     
 class numberOfSettlements(Range):
     """CONQUEST MODE ONLY
-    Set how large your empire needs to be for victory. The maximum value is the entire map.
+    Set how large your empire needs to be for victory. The maximum value is the entire immortal empires map.
     Make sure to change this based on how fast you want your game to be.
     If world generation fails, then you will need to increase this option or checks_per_settlement.
     Items will not be found in any of your starting settlements."""
     display_name = "Number Of Settlements (CONQUEST)"
     range_start = 5
-    range_end = len(sm.settlementDict)
+    range_end = sm.getMaximumSettlementCount()
     default = 50
 
 class sphereCount(Range):
