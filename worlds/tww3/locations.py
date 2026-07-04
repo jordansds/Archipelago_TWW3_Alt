@@ -112,6 +112,8 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
                      not ("settlement" in building.name or "port" in building.name or "settlement" in building.progressionGroup
                     and building.tier == 0 or "allied" in building.name)]
 
+    buildings = [building for building in buildings if not "allied" in building.name]
+
     for item in buildings:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
