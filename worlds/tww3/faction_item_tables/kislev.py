@@ -371,11 +371,11 @@ special: dict[int, specialItemData] = {
     35528: specialItemData(IC.useful, 3, ["wh3_main_ksl_the_ice_court", "wh3_main_ksl_the_great_orthodoxy", "wh3_main_ksl_ursun_revivalists"], 'Progressive ksl_bears', itemType.building, 3, None, False, True, 'Progressive Kislev Building: Animal Den'),
 
     35529: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_1', itemType.building, 0, 'Progressive ksl_bears', False, False, 'Kislev Building: Earthen Hollow'),
-    35530: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_2', itemType.building, 1, 'Progressive ksl_bears', False, False, 'Kislev Building: Cavern of Silk'),
+    35530: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_2', itemType.building, 1, 'Progressive ksl_bears', False, False, 'Kislev Building: Cavern of Silk (Ostankya)'),
     35531: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_3', itemType.building, 2, 'Progressive ksl_bears', False, False, 'Kislev Building: Animal Den'),
-    35532: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_4', itemType.building, 3, 'Progressive ksl_bears', False, False, 'Kislev Building: Ur-Szalas'),
-    35533: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_5', itemType.building, 4, 'Progressive ksl_bears', False, False, 'Kislev Building: Grand Ur-Szalas'),
-    35534: specialItemData(IC.useful, 5, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'Progressive ksl_bears', itemType.building, 5, None, False, True, 'Progressive Kislev Building: Animal Den'),
+    35532: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_4', itemType.building, 3, 'Progressive ksl_bears', False, False, 'Kislev Building: Ur-Szalas (Ostankya)'),
+    35533: specialItemData(IC.useful, 1, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'wh3_dlc24_ksl_bears_mother_ostankya_5', itemType.building, 4, 'Progressive ksl_bears', False, False, 'Kislev Building: Grand Ur-Szalas (Ostankya)'),
+    35534: specialItemData(IC.useful, 5, ["wh3_dlc24_ksl_daughters_of_the_forest"], 'Progressive ksl_bears', itemType.building, 5, None, False, True, 'Progressive Kislev Building: Animal Den (Ostankya)'),
 }
 
 rituals: dict[int, specialItemData] = {
