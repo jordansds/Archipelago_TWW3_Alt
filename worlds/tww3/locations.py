@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
+from worlds.oot import location_name_to_id
 from worlds.tww3.dataStructs import itemType, itemData
 
 if TYPE_CHECKING:
@@ -77,22 +78,24 @@ def createConquestLocations(world: TWW3World) -> None:
 def createDiploRangeLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Settlements")
 
+    from worlds.tww3.world import TWW3World
     # Reduce sphere items down so that we don't have spares
-    world.options.sphere_count.value = min(world.options.sphere_count.value, max(world.settlementDiploRange))
+    world.options.sphere_count.value = min(world.options.sphere_count.value, max(world.factionDiploRange.values()))
 
     for key, settlement in enumerate(world.settlements.values()):
         for i in range(world.options.checks_per_settlement):
             locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
             location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
 
-            if world.settlementDiploRange[key] > world.options.sphere_count or settlement.faction == world.playerFaction.name:
+
+            if world.factionDiploRange[settlement.faction] > world.options.sphere_count or settlement.faction == world.playerFaction.name:
                 continue
 
             worldRegion.locations.append(location)
-            if world.settlementDiploRange[key] > 0:
-                world.set_rule(location, Has("Diplomatic Range", world.settlementDiploRange[key]))
+            if world.factionDiploRange[settlement.faction] > 0:
+                world.set_rule(location, Has("Diplomatic Range", world.factionDiploRange[settlement.faction]))
 
-                if world.settlementDiploRange[key] < world.options.sphere_count - 1:
+                if world.factionDiploRange[settlement.faction] < world.options.sphere_count - 1:
                     forbid_item(location, "Orb of Domination", world.player)
 
 def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:

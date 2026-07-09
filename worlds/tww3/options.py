@@ -311,7 +311,7 @@ class sphereCount(Range):
     display_name = "Radius Upgrades (SPHERES)"
     range_start = 3
     range_end = 25
-    default = 3
+    default = 5
 
 
 class ritualShuffle(DefaultOnToggle):

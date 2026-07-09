@@ -166,7 +166,10 @@ def setBalance(world: TWW3World) -> None:
             for locationName, requiredDiploRange in settlementToDiploRange.items():
                 if requiredDiploRange > 0:
                     for i in range(world.options.checks_per_settlement):
-                        location = world.get_location(f"{locationName} ({i})")
+                        try:
+                            location = world.get_location(f"{locationName} ({i})")
+                        except KeyError:
+                            continue
                         requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
 
                         #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
