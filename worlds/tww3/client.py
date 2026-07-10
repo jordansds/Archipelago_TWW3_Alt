@@ -380,10 +380,10 @@ class TWW3Context(CommonContext):
             self.numberOfOrbs = 0
             self.expansionItems = 0
             self.map = "immortal empires"
-            self.settlements = sm.mapDict[self.map]
+            self.settlementDict = sm.mapDict[self.map]
 
-            offset = sum([1 for i in range(1, len(self.settlements) + 1) for j in range(10)]) + 1
-            for key, settlement in self.settlements.items():
+            offset = sum([1 for i in range(1, len(self.settlementDict) + 1) for j in range(10)]) + 1
+            for key, settlement in self.settlementDict.items():
                 for i in range(self.checksPerLocation):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
 
@@ -566,24 +566,25 @@ class TWW3Context(CommonContext):
                     self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
 
-    def triggerSphereExpansion(self, numberOfSphereItems):
-        oldSphere = []
+    def triggerSphereExpansion(self, sphereCount):
+        oldSphere = [self.playerFaction]
         newSphere = []
-        allOthers = []
+        #allOthers = []
         for faction, sphere in self.spheres.items():
-            if sphere < numberOfSphereItems:
+            if sphere < sphereCount:
                 oldSphere.append(faction)
-            elif sphere == numberOfSphereItems:
+            elif sphere == sphereCount:
                 newSphere.append(faction)
-            else:
-                allOthers.append(faction)
+            #else:
+                #allOthers.append(faction)
         for oldFaction in oldSphere:
             for newFaction in newSphere:
-                self.sendMessage(f'cm:force_diplomacy("{oldFaction}", "{newFaction}", "all", true, true, true)')
-        for newFaction in newSphere:
-            for otherFaction in allOthers:
-                self.sendMessage(f'cm:force_make_peace("{newFaction}", "{otherFaction}")')
-                self.sendMessage(f'cm:force_diplomacy("{newFaction}", "{otherFaction}", "all", false, false, true)')
+                self.sendMessage(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
+                print(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
+        #for newFaction in newSphere:
+        #    for otherFaction in allOthers:
+        #        self.sendMessage(f'cm:force_make_peace("{newFaction}", "{otherFaction}")')
+        #        self.sendMessage(f'cm:force_diplomacy("{newFaction}", "{otherFaction}", "all", false, false, true)')
         return
 
     # Location handlers
