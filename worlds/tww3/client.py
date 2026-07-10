@@ -580,7 +580,6 @@ class TWW3Context(CommonContext):
         for oldFaction in oldSphere:
             for newFaction in newSphere:
                 self.sendMessage(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
-                print(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
         #for newFaction in newSphere:
         #    for otherFaction in allOthers:
         #        self.sendMessage(f'cm:force_make_peace("{newFaction}", "{otherFaction}")')

@@ -71,6 +71,8 @@ class TWW3World(World):
                 if opt is not None:
                     setattr(self.options, key, opt.from_any(value))
 
+            #Need to add support for spheres settlements here. Pass the settlements through from the client, then bypass the generation on lines 90, 107
+
         fm.addModdedFactions(self.options.mod_list)
 
         #Handle random faction from race selection.
