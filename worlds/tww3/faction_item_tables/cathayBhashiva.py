@@ -177,6 +177,8 @@ techs: dict[int, itemData] = cathay.techs
 techs.update({
     74800: itemData(IC.useful, 1, 'wh3_cp1_tech_cth_59_bhashiva', itemType.tech, 5, 'Progressive tech_cth_provinces', "Cathay Tech: Clawspeaker's Meditation"),
     74801: itemData(IC.useful, 1, 'wh3_cp1_tech_cth_19_bhashiva', itemType.tech, 4, 'Progressive tech_cth_provinces', 'Cathay Tech: Harmonic Discipline (Bhashiva)'),
+    74802: itemData(IC.useful, 1, 'wh3_main_tech_cth_71', itemType.tech, 6, 'Progressive tech_cth_provinces', "Cathay Tech: Honed Senses"),
+    74803: itemData(IC.useful, 1, 'wh3_main_tech_cth_72', itemType.tech, 6, 'Progressive tech_cth_provinces', "Cathay Tech: Tiger's Call")
 })
 
 progUnits: dict[int, itemData] = {
