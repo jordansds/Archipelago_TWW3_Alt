@@ -37,7 +37,13 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         """Prints a list of starting Capitals."""
         if isinstance(self.ctx, TWW3Context):
             for faction, capital in self.ctx.capitals.items():
-                logger.info("Faction: " + faction + " Capital: " + capital)
+                logger.info(f"Faction: {fm.factionDict[faction]} Capital: {sm.mapDict[self.ctx.map][capital]}")
+
+    def _cmd_inrange(self):
+        """Prints a list of all factions that are within diplomatic range"""
+        if isinstance(self.ctx, TWW3Context):
+            for faction in self.ctx.inRangeFactions:
+                logger.info(f"Faction: {fm.factionDict[faction].readableName}")
 
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
@@ -85,6 +91,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_debug(self):
         """Set Admin Capacity to Maximum"""
         if isinstance(self.ctx, TWW3Context):
+            #if "jordan" in self.ctx.player_names:
             self.ctx.adminCapacity = 1000
 
     #def _cmd_resync(self):
@@ -292,6 +299,7 @@ class TWW3Context(CommonContext):
     def on_connected(self, args: dict):
         self.lineCount = 0
         self.itemArchive = []
+        self.inRangeFactions = []
 
         self.version = TWW3World.world_version.as_simple_string()
         if self.version != args['slot_data']['version']:
@@ -575,6 +583,7 @@ class TWW3Context(CommonContext):
                 oldSphere.append(faction)
             elif sphere == sphereCount:
                 newSphere.append(faction)
+                self.inRangeFactions.append(faction)
             #else:
                 #allOthers.append(faction)
         for oldFaction in oldSphere:
