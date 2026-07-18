@@ -546,7 +546,7 @@ class TWW3Context(CommonContext):
         await asyncio.sleep(1)
         notificationDesc = "\\n-".join(self.receivedItems)
         self.receivedItems = []
-        print(notificationDesc)
+        #print(notificationDesc)
         self.messenger.runTemp(f'archipelago.createNotification("Received Item(s)", "You have received:\\n{notificationDesc}")')
 
         self.notificationPending = False
@@ -581,7 +581,7 @@ class TWW3Context(CommonContext):
 
 
     def triggerSphereExpansion(self, sphereCount):
-        oldSphere = [self.playerFaction]
+        oldSphere = []
         newSphere = []
         #allOthers = []
         for faction, sphere in self.spheres.items():
@@ -595,6 +595,7 @@ class TWW3Context(CommonContext):
         for oldFaction in oldSphere:
             for newFaction in newSphere:
                 self.sendMessage(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
+                #self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
         #for newFaction in newSphere:
         #    for otherFaction in allOthers:
         #        self.sendMessage(f'cm:force_make_peace("{newFaction}", "{otherFaction}")')
@@ -649,10 +650,11 @@ class TWW3Context(CommonContext):
                 #Need to check if player has enough expansion items
                 if math.floor(location/100 * self.maxExpansionItems) <= self.expansionItems:
                     for i in range(1, location+1):
-                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                        print(location)
+                        await self.check_locations([self.locationLookup[f"Won {i} Battles"]])
             else:
                 for i in range(1, location + 1):
-                    await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                    await self.check_locations([self.locationLookup[f"Won {i} Battles"]])
         except KeyError:
             pass
 

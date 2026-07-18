@@ -76,7 +76,7 @@ buildings: dict[int, itemData] = {
     102416: itemData(IC.useful, 1, 'mixu_msl_walls_1', itemType.building, 0, 'Progressive msl_walls', 'Mousillon Building: Basic Walls'),
     102417: itemData(IC.useful, 1, 'mixu_msl_walls_2', itemType.building, 1, 'Progressive msl_walls', 'Mousillon Building: Tall Walls'),
     102418: itemData(IC.useful, 1, 'mixu_msl_walls_3', itemType.building, 2, 'Progressive msl_walls', 'Mousillon Building: Reinforced Walls'),
-    102419: itemData(IC.useful, 1, 'mixu_msl_awakened_battlefield', itemType.building, 0, 'Progressive msl_battlefield', 'Mousillon Building: Awakened Battlefield'),
+    102419: itemData(IC.useful, 1, 'wh2_main_vmp_raisedead', itemType.building, 0, 'Progressive msl_battlefield', 'Mousillon Building: Awakened Battlefield'),
     102420: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_vmp_1', itemType.building, 0, 'Progressive msl_foreign_slot_discovery', 'Mousillon Building: Crypt Keepers'),
     102421: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_vmp_2', itemType.building, 1, 'Progressive msl_foreign_slot_discovery', 'Mousillon Building: Undercroft Sentries'),
     102422: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_vmp_3', itemType.building, 2, 'Progressive msl_foreign_slot_discovery', 'Mousillon Building: Grave Guardians'),
