@@ -305,5 +305,7 @@ special: dict[int, specialItemData] = {
 }
 
 rituals: dict[int, specialItemData] = {
-
+    103700: specialItemData(IC.useful, 1, "mixer_msl_cult_of_the_bloody_grail", "mixu_msl_black_grail_ritual_vassalise", itemType.ritual, 1, "progressive msl_ritual", True, False, "Mousillon Ritual: Black Grail Vassalise"),
+    103701: specialItemData(IC.useful, 1, "mixer_msl_cult_of_the_bloody_grail", "mixu_msl_black_grail_ritual_apply_corruption", itemType.ritual, 1, "progressive msl_ritual", True, False, "Mousillon Ritual: Black Grail Apply Corruption"),
+    103702: specialItemData(IC.useful, 1, "mixer_msl_cult_of_the_bloody_grail", "mixu_msl_black_grail_ritual_reveal_shroud", itemType.ritual, 1, "progressive msl_ritual", True, False, "Mousillon Ritual: Black Grail Reveal Shroud"),
 }
