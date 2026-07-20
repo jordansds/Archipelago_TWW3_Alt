@@ -385,11 +385,11 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    23500: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_1', itemType.building, 0, 'Progressive dwf_airship_hull', False, False, 'Dwarf Airship: Basic Airship Frame'),
-    23501: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_2', itemType.building, 1, 'Progressive dwf_airship_hull', False, False, 'Dwarf Airship: Hardened Hull'),
-    23502: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_3', itemType.building, 2, 'Progressive dwf_airship_hull', False, False, 'Dwarf Airship: Rune Inscribed Frame'),
-    23503: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_4', itemType.building, 3, 'Progressive dwf_airship_hull', False, False, 'Dwarf Airship: Reinforced Airship Frame'),
-    23504: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_5', itemType.building, 4, 'Progressive dwf_airship_hull', False, False, 'Dwarf Airship: Rune-Etched Hull'),
+    23500: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_1', itemType.building, 0, 'Progressive dwf_airship_horde_main', False, False, 'Dwarf Airship: Basic Airship Frame'),
+    23501: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_2', itemType.building, 1, 'Progressive dwf_airship_horde_main', False, False, 'Dwarf Airship: Hardened Hull'),
+    23502: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_3', itemType.building, 2, 'Progressive dwf_airship_horde_main', False, False, 'Dwarf Airship: Rune Inscribed Frame'),
+    23503: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_4', itemType.building, 3, 'Progressive dwf_airship_horde_main', False, False, 'Dwarf Airship: Reinforced Airship Frame'),
+    23504: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_airship_hull_5', itemType.building, 4, 'Progressive dwf_airship_horde_main', False, False, 'Dwarf Airship: Rune-Etched Hull'),
     23505: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_artillery_workshop_1', itemType.building, 0, 'Progressive dwf_airship_workshop', False, False, 'Dwarf Airship: Compact Forge'),
     23506: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_artillery_workshop_2', itemType.building, 1, 'Progressive dwf_airship_workshop', False, False, 'Dwarf Airship: Streamlined Smelters'),
     23507: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_artillery_workshop_3', itemType.building, 2, 'Progressive dwf_airship_workshop', False, False, 'Dwarf Airship: Automated Foundry'),
@@ -415,7 +415,7 @@ special: dict[int, specialItemData] = {
     23527: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_infantry_workshop_2', itemType.building, 1, 'Progressive dwf_airship_infantry', False, False, 'Dwarf Airship: Arms Locker'),
     23528: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_support_radius_1', itemType.building, 0, 'Progressive dwf_airship_support', False, False, 'Dwarf Airship: Signals System'),
     23529: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'wh3_dlc25_dwarf_spirit_of_grungni_support_radius_2', itemType.building, 1, 'Progressive dwf_airship_support', False, False, 'Dwarf Airship: Signals Network'),
-    23530: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_hull', itemType.building, 5, None, False, False, 'Progressive Dwarf Airship: Hull'),
+    23530: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_horde_main', itemType.building, 5, None, False, False, 'Progressive Dwarf Airship: Hull'),
     23531: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_workshop', itemType.building, 3, None, False, False, 'Progressive Dwarf Airship: Artillery Workshop'),
     23532: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_barracks', itemType.building, 3, None, False, False, 'Progressive Dwarf Airship: Barracks'),
     23533: specialItemData(IC.useful, 1, ['wh3_dlc25_dwf_malakai'], 'Progressive dwf_airship_beer', itemType.building, 3, None, False, False, 'Progressive Dwarf Airship: Beer Taps'),
