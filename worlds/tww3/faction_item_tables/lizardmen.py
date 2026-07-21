@@ -325,7 +325,6 @@ progBuildings: dict[int, itemData] = {
     37330: itemData(IC.useful, 3, 'Progressive lzd_skinks', itemType.building, 3, None, 'Progressive Lizardmen Building: Lizardmen Skinks'),
     37331: itemData(IC.useful, 1, 'Progressive lzd_slann', itemType.building, 1, None, 'Progressive Lizardmen Building: Lizardmen Slann'),
     37332: itemData(IC.useful, 1, 'Progressive lzd_smith', itemType.building, 1, None, 'Progressive Lizardmen Building: Lizardmen Smith'),
-    37333: itemData(IC.useful, 1, 'Progressive lzd_terradons', itemType.building, 1, None, 'Progressive Lizardmen Building: Lizardmen Terradons'),
     37334: itemData(IC.useful, 3, 'Progressive lzd_worship_oldones', itemType.building, 3, None, 'Progressive Lizardmen Building: Lizardmen Worship Oldones'),
     37335: itemData(IC.useful, 4, 'Progressive lzd_worship_sotek', itemType.building, 4, None, 'Progressive Lizardmen Building: Lizardmen Worship Sotek'),
     37336: itemData(IC.useful, 3, 'Progressive lzd_allied_outpost', itemType.building, 3, None, 'Progressive Lizardmen Building: Lizardmen Allied Outpost'),
