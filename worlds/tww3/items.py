@@ -111,7 +111,7 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
             if "settlement" in item.name:
                 continue
             if item.progressionGroup is not None:
-                if "settlement" in item.progressionGroup:
+                if "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup:
                     continue
             if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                 #Need to change so that if progressive buildings, generate 1 less item

@@ -861,7 +861,7 @@ class EngineInitializer:
     def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
         for key, item in item_table.items():
             if item.type == itemType.building and item.progressionGroup is not None:
-                if "settlement" in item.name:
+                if "settlement" in item.name or "horde_main" in item.progressionGroup:
                     continue
                 progressive_items_flags[key] = startingTier - 1
                 if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
