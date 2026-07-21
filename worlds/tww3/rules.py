@@ -46,7 +46,8 @@ def setBuildingLocationRules(world: TWW3World, buildings):
     for item in buildings:
 
         #if world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
-        if "resource" in item.name or "port" in item.name or "allied" in item.name or "settlement" in item.progressionGroup:
+        if ("resource" in item.name or "port" in item.name or "allied" in item.name
+                or "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup):
             #if firstPass:
             #    continue
             #else:
