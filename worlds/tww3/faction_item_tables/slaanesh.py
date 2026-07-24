@@ -176,12 +176,6 @@ buildings: dict[int, itemData] = {
 }
 
 techs: dict[int, itemData] = {
-    44800: itemData(IC.useful, 1, 'wh3_main_tech_sla_2_6', itemType.tech, 1, 'Progressive tech_sla_perfume', 'Slaanesh Tech: The Promise'),
-    44801: itemData(IC.useful, 1, 'wh3_main_tech_sla_2_1', itemType.tech, 2, 'Progressive tech_sla_perfume', 'Slaanesh Tech: Captivating Musk'),
-    44802: itemData(IC.useful, 1, 'wh3_main_tech_sla_1_2', itemType.tech, 2, 'Progressive tech_sla_perfume', 'Slaanesh Tech: Blissful Coquetry'),
-    44803: itemData(IC.useful, 1, 'wh3_main_tech_sla_4_1', itemType.tech, 2, 'Progressive tech_sla_perfume', 'Slaanesh Tech: Everlasting Gift'),
-    44804: itemData(IC.useful, 1, 'wh3_main_tech_sla_5_6', itemType.tech, 2, 'Progressive tech_sla_perfume', 'Slaanesh Tech: Darkling Disciples'),
-    44805: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_delicious_agony', itemType.tech, 3, 'Progressive tech_sla_perfume', 'Slaanesh Tech: Delicious Agony '),
     44806: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_feats_of_cruelty', itemType.tech, 1, 'Progressive tech_sla_odour', 'Slaanesh Tech: Triumph and Torture'),
     44807: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_scent_of_agony', itemType.tech, 2, 'Progressive tech_sla_odour', 'Slaanesh Tech: Scent of Agony'),
     44808: itemData(IC.useful, 1, 'wh3_main_tech_sla_2_5', itemType.tech, 2, 'Progressive tech_sla_odour', 'Slaanesh Tech: Seeking Affluence'),
@@ -296,7 +290,6 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = {
-    45400: itemData(IC.useful, 3, "Progressive tech_sla_perfume", itemType.tech, 3, None, "Progressive Slaanesh Tech: Perfume of the Perverse"),
     45401: itemData(IC.useful, 3, "Progressive tech_sla_odour", itemType.tech, 3, None, "Progressive Slaanesh Tech: Odour of Lustful Agony"),
     45402: itemData(IC.useful, 3, "Progressive tech_sla_fragrance", itemType.tech, 3, None, "Progressive Slaanesh Tech: Fragrance of the Divine"),
     45403: itemData(IC.useful, 3, "Progressive tech_sla_aroma", itemType.tech, 3, None, "Progressive Slaanesh Tech: Aroma of Intoxicating Heroism"),
@@ -306,7 +299,13 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-
+    45500: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_2_6', itemType.tech, 1, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: The Promise'),
+    45501: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_2_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Captivating Musk'),
+    45502: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_1_2', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Blissful Coquetry'),
+    45503: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_4_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Everlasting Gift'),
+    45504: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_5_6', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Darkling Disciples'),
+    45505: specialItemData(IC.useful, 1, [], 'wh3_dlc27_tech_sla_delicious_agony', itemType.tech, 3, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Delicious Agony '),
+    45506: specialItemData(IC.useful, 3, [],"Progressive tech_sla_perfume", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of the Perverse"),
 }
 
 rituals: dict[int, specialItemData] = {

@@ -160,6 +160,7 @@ techs: dict[int, itemData] = {
     28806: itemData(IC.useful, 1, 'tech_grn_extra_1_2', itemType.tech, 4, 'Progressive tech_grn', 'Greenskin Tech: Creature Comforts'),
     28807: itemData(IC.useful, 1, 'tech_grn_extra_2_2', itemType.tech, 3, 'Progressive tech_grn', "Greenskin Tech: Wolf Paddin'"),
     28808: itemData(IC.useful, 1, 'tech_grn_extra_1_4', itemType.tech, 5, 'Progressive tech_grn', "Greenskin Tech: Betta Arrer 'Eads"),
+    28849: itemData(IC.useful, 1, 'tech_grn_extra_1', itemType.tech, 6, 'Progressive tech_grn', "Greenskin Tech: Quicka Loadin'"),
     28809: itemData(IC.useful, 1, 'tech_grn_mid_1_1', itemType.tech, 6, 'Progressive tech_grn', 'Greenskin Tech: Raknik Spiderclaw'),
     28810: itemData(IC.useful, 1, 'tech_grn_start_3_1', itemType.tech, 3, 'Progressive tech_grn', 'Greenskin Tech: Go Bigga!'),
     28811: itemData(IC.useful, 1, 'tech_grn_extra_2_3', itemType.tech, 5, 'Progressive tech_grn', "Greenskin Tech: No Complainin'"),
@@ -186,6 +187,7 @@ techs: dict[int, itemData] = {
     28832: itemData(IC.useful, 1, 'tech_grn_extra_2_1', itemType.tech, 3, 'Progressive tech_grn', 'Greenskin Tech: Bigga Wagonz'),
     28833: itemData(IC.useful, 1, 'tech_grn_extra_3_2', itemType.tech, 4, 'Progressive tech_grn', 'Greenskin Tech: Pointy Tusks'),
     28834: itemData(IC.useful, 1, 'tech_grn_end_2_2', itemType.tech, 5, 'Progressive tech_grn', "Greenskin Tech: Trollin'"),
+    28850: itemData(IC.useful, 1, 'tech_grn_extra_2', itemType.tech, 6, 'Progressive tech_grn', "Greenskin Tech: Clubbin'"),
     28835: itemData(IC.useful, 1, 'tech_grn_mid_2_1', itemType.tech, 6, 'Progressive tech_grn', "Greenskin Tech: Oglok the 'Orrible"),
     28836: itemData(IC.useful, 1, 'tech_grn_end_3_3', itemType.tech, 9, 'Progressive tech_grn', "Greenskin Tech: Sunderin' Blades"),
     28837: itemData(IC.useful, 1, 'tech_grn_extra_3_1', itemType.tech, 3, 'Progressive tech_grn', 'Greenskin Tech: Eavy Metal'),
@@ -201,6 +203,7 @@ techs: dict[int, itemData] = {
     28846: itemData(IC.useful, 1, 'tech_grn_scrap_6', itemType.tech, 1, 'Progressive tech_grn_scrap', "Greenskin Tech: Killa Wagonz"),
     28847: itemData(IC.useful, 1, 'tech_grn_scrap_7', itemType.tech, 1, 'Progressive tech_grn_scrap', "Greenskin Tech: Da Best Lootz"),
     28848: itemData(IC.useful, 1, 'tech_grn_scrap_8', itemType.tech, 1, 'Progressive tech_grn_scrap', "Greenskin Tech: Eavy Monstas"),
+
 }
 
 progUnits: dict[int, itemData] = {

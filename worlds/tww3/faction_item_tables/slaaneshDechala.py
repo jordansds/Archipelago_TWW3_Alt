@@ -97,42 +97,54 @@ buildings: dict[int, itemData] = {
 }
 
 techs: dict[int, itemData] = slaanesh.techs
+techs.update({
+    70800: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_grasp_of_servitude', itemType.tech, 1, 'Progressive tech_sla_perfume_dechala', "Slaanesh Tech: Servitude's Grasp"),
+    70801: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_caress_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Boons of Slaanesh'),
+    70802: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_dark_domination', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Dark Domination'),
+    70803: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_dominate_units', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Arrogant Dismissal'),
+    70804: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_in_praise_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: In Praise of Slaanesh'),
+    70805: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_daemonic_attraction', itemType.tech, 3, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Daemonic Attraction'),
+
+})
 
 progUnits: dict[int, itemData] = slaanesh.progUnits
 
 progBuildings: dict[int, itemData] = {
-    71300: itemData(IC.useful, 1, 'Progressive sla_palace_agents', itemType.building, 3, None, 'Progressive Sla DechalaPalace: Lords & Agents'),
-    71301: itemData(IC.useful, 1, 'Progressive sla_palace_daemons', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Daemon Portal'),
-    71302: itemData(IC.useful, 1, 'Progressive sla_palace_chariots', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Daemonic Mounts'),
-    71303: itemData(IC.useful, 1, 'Progressive sla_palace_egotism', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Egotism'),
-    71304: itemData(IC.useful, 1, 'Progressive sla_palace_seekers', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Exemplars of Excess'),
-    71305: itemData(IC.useful, 1, 'Progressive sla_palace_servants', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Greater Servants'),
-    71306: itemData(IC.useful, 1, 'Progressive sla_palace_riders', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Mortal Riders'),
-    71307: itemData(IC.useful, 1, 'Progressive sla_palace_research', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Innovative Pleasures'),
-    71308: itemData(IC.useful, 1, 'Progressive sla_palace_rituals', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Pain & Power'),
-    71309: itemData(IC.useful, 1, 'Progressive sla_sla_settlement_major', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Settlement Major'),
-    71310: itemData(IC.useful, 1, 'Progressive sla_palace_tribute', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Lavish Gifts'),
-    71311: itemData(IC.useful, 1, 'Progressive sla_palace_walls', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Palace Walls'),
-    71312: itemData(IC.useful, 1, 'Progressive sla_palace_warriors', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Warrior Halls'),
+    71300: itemData(IC.useful, 3, 'Progressive sla_palace_agents', itemType.building, 3, None, 'Progressive Sla DechalaPalace: Lords & Agents'),
+    71301: itemData(IC.useful, 2, 'Progressive sla_palace_daemons', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Daemon Portal'),
+    71302: itemData(IC.useful, 2, 'Progressive sla_palace_chariots', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Daemonic Mounts'),
+    71303: itemData(IC.useful, 2, 'Progressive sla_palace_egotism', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Egotism'),
+    71304: itemData(IC.useful, 2, 'Progressive sla_palace_seekers', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Exemplars of Excess'),
+    71305: itemData(IC.useful, 2, 'Progressive sla_palace_servants', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Greater Servants'),
+    71306: itemData(IC.useful, 2, 'Progressive sla_palace_riders', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Mortal Riders'),
+    71307: itemData(IC.useful, 2, 'Progressive sla_palace_research', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Innovative Pleasures'),
+    71308: itemData(IC.useful, 2, 'Progressive sla_palace_rituals', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Pain & Power'),
+    71309: itemData(IC.useful, 2, 'Progressive sla_sla_settlement_major', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Settlement Major'),
+    71310: itemData(IC.useful, 2, 'Progressive sla_palace_tribute', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Lavish Gifts'),
+    71311: itemData(IC.useful, 2, 'Progressive sla_palace_walls', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Palace Walls'),
+    71312: itemData(IC.useful, 2, 'Progressive sla_palace_warriors', itemType.building, 2, None, 'Progressive Sla DechalaPalace: Warrior Halls'),
 
-    71313: itemData(IC.useful, 1, 'Progressive sla_thrall_camp_garrison', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Garrison'),
-    71314: itemData(IC.useful, 1, 'Progressive sla_thrall_camp_income', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Toil'),
-    71315: itemData(IC.useful, 1, 'Progressive sla_thrall_camp_support', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Service'),
-    71316: itemData(IC.useful, 1, 'Progressive sla_settlement_minor', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Settlement Minor'),
-    71317: itemData(IC.useful, 1, 'Progressive sla_thrall_camp_export', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Toll'),
+    71313: itemData(IC.useful, 2, 'Progressive sla_thrall_camp_garrison', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Garrison'),
+    71314: itemData(IC.useful, 2, 'Progressive sla_thrall_camp_income', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Toil'),
+    71315: itemData(IC.useful, 2, 'Progressive sla_thrall_camp_support', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Service'),
+    71316: itemData(IC.useful, 2, 'Progressive sla_settlement_minor', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Settlement Minor'),
+    71317: itemData(IC.useful, 2, 'Progressive sla_thrall_camp_export', itemType.building, 2, None, 'Progressive Sla DechalaThrall Camp: Toll'),
 
-    71318: itemData(IC.useful, 1, 'Progressive sla_war_pit_corruption', itemType.building, 2, None, "Progressive Sla DechalaTormentor's Hold: Ritual Combat"),
-    71319: itemData(IC.useful, 1, 'Progressive sla_war_pit_army', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Warhosts"),
-    71320: itemData(IC.useful, 1, 'Progressive sla_war_pit_mortal_barracks', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Mortal Servants"),
-    71321: itemData(IC.useful, 1, 'Progressive sla_war_pit_stables', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Mounted Servants"),
-    71322: itemData(IC.useful, 1, 'Progressive sla_war_pit_barracks', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Twisted Servants"),
-    71323: itemData(IC.useful, 1, 'Progressive sla_war_pit_walls', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Walls"),
+    71318: itemData(IC.useful, 2, 'Progressive sla_war_pit_corruption', itemType.building, 2, None, "Progressive Sla DechalaTormentor's Hold: Ritual Combat"),
+    71319: itemData(IC.useful, 3, 'Progressive sla_war_pit_army', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Warhosts"),
+    71320: itemData(IC.useful, 3, 'Progressive sla_war_pit_mortal_barracks', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Mortal Servants"),
+    71321: itemData(IC.useful, 3, 'Progressive sla_war_pit_stables', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Mounted Servants"),
+    71322: itemData(IC.useful, 3, 'Progressive sla_war_pit_barracks', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Twisted Servants"),
+    71323: itemData(IC.useful, 3, 'Progressive sla_war_pit_walls', itemType.building, 3, None, "Progressive Sla DechalaTormentor's Hold: Walls"),
 
-    71324: itemData(IC.useful, 1, 'Progressive sla_port', itemType.building, 3, None, "Progressive Sla DechalaBuilding: Ports"),
-    71325: itemData(IC.useful, 1, 'Progressive sla_foreign_slot_discovery', itemType.building, 3, None, "Progressive Sla DechalaBuilding: Foreign Slot Discovery"),
+    71324: itemData(IC.useful, 3, 'Progressive sla_port', itemType.building, 3, None, "Progressive Sla DechalaBuilding: Ports"),
+    71325: itemData(IC.useful, 3, 'Progressive sla_foreign_slot_discovery', itemType.building, 3, None, "Progressive Sla DechalaBuilding: Foreign Slot Discovery"),
 }
 
 progTechs: dict[int, itemData] = slaanesh.progTechs
+progTechs.update({
+    71500: itemData(IC.useful, 3,"Progressive tech_sla_perfume_dechala", itemType.tech, 3, None, "Progressive Slaanesh Tech: Perfume of Domination"),
+})
 
 special: dict[int, specialItemData] = {
 
