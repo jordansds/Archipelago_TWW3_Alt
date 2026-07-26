@@ -167,8 +167,6 @@ techs: dict[int, itemData] = {
     12809: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_bastonne', itemType.tech, 3, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: Heraldry of Bastonne'),
     12810: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_parravon', itemType.tech, 3, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: Heraldry of Parravon'),
     12811: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_artois', itemType.tech, 4, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: Heraldry of Artois'),
-    12812: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_carcassonne', itemType.tech, 4, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: Heraldry of Carcassonne'),
-    12813: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_bordeleaux', itemType.tech, 4, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: Heraldry of Bordeleaux'),
     12814: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_heraldry_unification', itemType.tech, 6, 'Progressive tech_brt_heraldry', 'Bretonnia Tech: The Unification of Bretonnia'),
     12815: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_economy_start', itemType.tech, 1, 'Progressive tech_brt_economy', 'Bretonnia Tech: Economic Investment'),
     12816: itemData(IC.useful, 1, 'wh_dlc07_tech_brt_economy_other_1', itemType.tech, 2, 'Progressive tech_brt_economy', 'Bretonnia Tech: Almshouses'),
@@ -271,7 +269,9 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-
+    13500: specialItemData(IC.useful, 1, ["wh_main_brt_bretonnia", "wh_main_brt_carcassonne", "wh2_dlc14_brt_chevaliers_de_lyonesse"], 'wh_dlc07_tech_brt_heraldry_bordeleaux', itemType.tech, 4, 'Progressive tech_brt_heraldry', False, False, 'Bretonnia Tech: Heraldry of Bordeleaux'),
+    13501: specialItemData(IC.useful, 1, ["wh_main_brt_bordeleaux", "wh_main_brt_carcassonne", "wh2_dlc14_brt_chevaliers_de_lyonesse"], 'wh_dlc07_tech_brt_heraldry_bretonnia', itemType.tech, 4, 'Progressive tech_brt_heraldry', False, False, 'Bretonnia Tech: Heraldry of Bretonnia'),
+    13502: specialItemData(IC.useful, 1, ["wh_main_brt_bretonnia", "wh_main_brt_bordeleaux", "wh2_dlc14_brt_chevaliers_de_lyonesse"], 'wh_dlc07_tech_brt_heraldry_carcassonne', itemType.tech, 4, 'Progressive tech_brt_heraldry', False, False, 'Bretonnia Tech: Heraldry of Carcassonne'),
 }
 
 rituals: dict[int, specialItemData] = {
