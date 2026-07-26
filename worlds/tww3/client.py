@@ -311,12 +311,13 @@ class TWW3Context(CommonContext):
             logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
+        self.path = "/home/jordan/Documents/"
         self.seed = args['slot_data']['seed']
 
-        if not self.path or not os.path.exists(self.path):
-            raise Exception('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
-        if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
-            raise Exception('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
+        #if not self.path or not os.path.exists(self.path):
+        #    raise Exception('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
+        #if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
+        #    raise Exception('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
 
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
@@ -397,6 +398,7 @@ class TWW3Context(CommonContext):
             for key, settlement in self.settlementDict.items():
                 for i in range(self.checksPerLocation):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
+                print(settlement.readableName, key*10)
 
         logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
@@ -624,11 +626,16 @@ class TWW3Context(CommonContext):
                     await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
         except ValueError:
             if self.gameMode == "spheres":
-                key = next((key for key, value in self.settlements.items() if value.name == location), None)
+                location = next((value for value in sm.mapDict[self.map].values() if value.name == location), None).readableName
                 for i in range(int(self.checksPerLocation)):
-                    await self.check_locations([self.locationLookup[f"{self.settlements[key].readableName} ({i})"]])
+                    await self.check_locations([self.locationLookup[f"{location} ({i})"]])
+                    #print(f"{location} ({i})")
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
+        except AttributeError as e:
+            logger.error(e)
+
+
 
     async def checkSanity(self, location, sanityType):
         try:

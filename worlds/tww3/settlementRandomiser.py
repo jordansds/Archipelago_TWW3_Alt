@@ -23,7 +23,6 @@ class settlementRandomiser:
         self.hordeList = factions.hordeList
 
         self.factionKeys: list[int] = [key for key in self.factionDict.keys() if key % 10 != 0]
-        print(self.factionKeys)
         random.shuffle(self.factionKeys)
         self.settlementKeys: list[int] = list(self.settlementDict.keys())
         random.shuffle(self.settlementKeys)

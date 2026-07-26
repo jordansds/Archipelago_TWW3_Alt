@@ -305,7 +305,7 @@ special: dict[int, specialItemData] = {
     45503: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_4_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Everlasting Gift'),
     45504: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_5_6', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Darkling Disciples'),
     45505: specialItemData(IC.useful, 1, [], 'wh3_dlc27_tech_sla_delicious_agony', itemType.tech, 3, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Delicious Agony '),
-    45506: specialItemData(IC.useful, 3, [],"Progressive tech_sla_perfume", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of the Perverse"),
+    45506: specialItemData(IC.useful, 3, [], "Progressive tech_sla_perfume", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of the Perverse"),
 }
 
 rituals: dict[int, specialItemData] = {

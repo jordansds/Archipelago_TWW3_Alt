@@ -40,12 +40,9 @@ class TWW3World(World):
                  for i in range(1, sm.getMaximumSettlementCount() + 1) for j in range(10)]
     location_name_to_id = {location: index for index, location in enumerate(conquestLocations, start=1)}
 
-    #locations += [f"{settlement.readableName} ({i})"
-    #              for settlement in sm.getAllSettlements().values() for i in range(10)]
-
     # spheres gamemode locations
     location_name_to_id.update({
-        f"{settlement.readableName} ({i})": i + index * 10 + sm.getMaximumSettlementCount() #offset conquest locations
+        f"{settlement.readableName} ({i})": (i+1) + (index + sm.getMaximumSettlementCount()) * 10 #offset conquest locations
         for index, settlement in sm.getAllSettlements().items() for i in range(10)
     })
 
