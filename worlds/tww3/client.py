@@ -37,13 +37,17 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         """Prints a list of starting Capitals."""
         if isinstance(self.ctx, TWW3Context):
             for faction, capital in self.ctx.capitals.items():
-                logger.info(f"Faction: {fm.factionDict[faction]} Capital: {sm.mapDict[self.ctx.map][capital]}")
+                factionName = [f.readableName for f in fm.factionDict.values() if f.name == faction][0]
+                logger.info(f"Faction: {factionName} Capital: {sm.mapDict[self.ctx.map][capital]}")
+                #Need to fix this. Faction needs to be an index, not the faction key
 
     def _cmd_inrange(self):
         """Prints a list of all factions that are within diplomatic range"""
         if isinstance(self.ctx, TWW3Context):
             for faction in self.ctx.inRangeFactions:
-                logger.info(f"Faction: {fm.factionDict[faction].readableName}")
+                factionName = [f.readableName for f in fm.factionDict.values() if f.name == faction][0]
+                logger.info(f"Faction: {factionName}")
+                #fm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
