@@ -453,6 +453,10 @@ class TWW3Context(CommonContext):
         self.engine = EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
     def on_received_items(self, args: dict, resync=False):
+        if resync:
+            send = self.messenger.runTemp
+        else:
+            send = self.sendMessage
 
         for entry in args["items"]:
             try:
@@ -470,28 +474,28 @@ class TWW3Context(CommonContext):
                     if not resync:
                         self.itemArchive["items"].append(entry)
                     if self.progressiveBuildings:
-                        self.sendProgressiveItem(item.name)
+                        self.sendProgressiveItem(item.name, send)
                     else:
-                        self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
+                        send(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.unit:
                     if not resync:
                         self.itemArchive["items"].append(entry)
                     if self.progressiveUnits:
-                        self.sendProgressiveItem(item.name)
+                        self.sendProgressiveItem(item.name, send)
                     else:
-                        self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
+                        send(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.tech:
                     if not resync:
                         self.itemArchive["items"].append(entry)
                     if self.progressiveTechs:
-                        self.sendProgressiveItem(item.name)
+                        self.sendProgressiveItem(item.name, send)
                     else:
                         if self.fastResearch:
-                            self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                            send(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
                         else:
-                            self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                            send(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
                 case itemType.progression:
                     if not resync:
@@ -505,15 +509,17 @@ class TWW3Context(CommonContext):
                         else:
                             logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
                             logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
-                        self.sendMessage(f"archipelago.set_admin_capacity({self.expansionItems})")
+                        send(f"archipelago.set_admin_capacity({self.expansionItems})")
                         #self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
 
                     elif self.gameMode == "spheres":
                         self.expansionItems += 1
-                        self.triggerSphereExpansion(self.expansionItems)
+                        self.triggerSphereExpansion(self.expansionItems, send)
                         logger.info("You now have: " + str(self.expansionItems) + " Spheres of Influence")
 
                 case itemType.goal:
+                    if not resync:
+                        self.itemArchive["items"].append(entry)
                     if self.gameMode == "spheres":
                         self.numberOfOrbs += 1
                         logger.info("You now have: " + str(self.numberOfOrbs) + "/" + str(self.orbGoal) + " Orbs of Domination")
@@ -545,20 +551,27 @@ class TWW3Context(CommonContext):
 
             self.messenger.flush()
 
-            if not resync:
+            if resync:
+                self.receivedItems.append("Resync Complete")
+            else:
                 self.receivedItems.append(item.readableName)
 
-        if not resync:
-            asyncio.create_task(self.sendNotification())
+        asyncio.create_task(self.sendNotification())
 
     def resync(self):
+        if self.gameMode == "conquest":
+            self.expansionItems = 1
+        elif self.gameMode == "spheres":
+            self.expansionItems = 0
+            self.numberOfOrbs = 1
+
         self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
         if self.progressiveTechs:
-            EngineInitializer.lock_progressiveTechs(self.engine, self.sendMessage, self.itemDict, self.progressiveItemFlags)
+            self.lock_progressiveTechs(self.messenger.runTemp, self.itemDict, self.progressiveItemFlags)
         if self.progressiveBuildings:
-            EngineInitializer.lock_progressiveBuildings(self.engine, self.startingTier, self.sendMessage, self.itemDict, self.progressiveItemFlags)
+            self.lock_progressiveBuildings(self.startingTier, self.messenger.runTemp, self.itemDict, self.progressiveItemFlags)
         if self.progressiveUnits:
-            EngineInitializer.lock_progressiveUnits(self.engine, self.startingTier, self.sendMessage, self.itemDict, self.progressiveItemFlags)
+            self.lock_progressiveUnits(self.startingTier, self.messenger.runTemp, self.itemDict, self.progressiveItemFlags)
         self.on_received_items(self.itemArchive, True)
         #self.itemArchive.clear()
 
@@ -587,7 +600,7 @@ class TWW3Context(CommonContext):
             self.messenger.run(message)
         self.lineCount += 1
 
-    def sendProgressiveItem(self, itemName):
+    def sendProgressiveItem(self, itemName, send):
         keys = [key for key, item in self.itemDict.items() if item.name == itemName]
         for key in keys:
             self.progressiveItemFlags[key] += 1
@@ -597,19 +610,19 @@ class TWW3Context(CommonContext):
 
         for item in unlockedItems:
             if item.type == itemType.building:
-                self.sendMessage(
+                send(
                     f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
             elif item.type == itemType.unit:
-                self.sendMessage(
+                send(
                     f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
             else:
                 if self.fastResearch:
-                    self.sendMessage(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
+                    send(f'cm:instantly_research_technology("{self.playerFaction}", "{item.name}", true)')
                 else:
-                    self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
+                    send(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
 
-    def triggerSphereExpansion(self, sphereCount):
+    def triggerSphereExpansion(self, sphereCount, send):
         oldSphere = []
         newSphere = []
         #allOthers = []
@@ -623,7 +636,7 @@ class TWW3Context(CommonContext):
                 #allOthers.append(faction)
         for oldFaction in oldSphere:
             for newFaction in newSphere:
-                self.sendMessage(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
+                send(f'cm:force_diplomacy("faction:{oldFaction}", "faction:{newFaction}", "all", true, true, true)')
                 #self.sendMessage("cm:force_diplomacy(\"faction:%s\", \"faction:%s\", \"all\", true, true, true)" % (oldFaction, newFaction))
         #for newFaction in newSphere:
         #    for otherFaction in allOthers:
@@ -792,6 +805,27 @@ class TWW3Context(CommonContext):
             key = f"archipelago_raze_{i + 1}"
             self.messenger.runTemp(f'archipelago.createMission({i}, "{key}", "Raze {i} Settlements", "{self.descriptions[location]}")')
 
+    def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if item.type == itemType.tech and item.progressionGroup is not None:
+                sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
+
+    def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if item.type == itemType.building and item.progressionGroup is not None:
+                if "settlement" in item.name or "horde_main" in item.progressionGroup:
+                    continue
+                progressive_items_flags[key] = startingTier - 1
+                if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                    sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+
+    def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
+        for key, item in item_table.items():
+            if item.type == itemType.unit and item.progressionGroup is not None:
+                progressive_items_flags[key] = startingTier
+                if item.tier > startingTier:
+                    sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
+
 class EngineInitializer:
 
     @classmethod
@@ -856,11 +890,11 @@ class EngineInitializer:
             #messenger.flush()
 
         if context.progressiveTechs:
-            self.lock_progressiveTechs(self, sendMessage, itemDict, progressiveItemFlags)
+            TWW3Context.lock_progressiveTechs(context, sendMessage, itemDict, progressiveItemFlags)
         if context.progressiveBuildings:
-            self.lock_progressiveBuildings(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
+            TWW3Context.lock_progressiveBuildings(context, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
         if context.progressiveUnits:
-            self.lock_progressiveUnits(self, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
+            TWW3Context.lock_progressiveUnits(context, context.startingTier, sendMessage, itemDict, progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###
@@ -886,27 +920,6 @@ class EngineInitializer:
         sendMessage("archipelago.initialise()")
 
         context.messenger.flush()
-
-    def lock_progressiveTechs(self, sendMessage, item_table, progressive_items_flags):
-        for key, item in item_table.items():
-            if item.type == itemType.tech and item.progressionGroup is not None:
-                sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
-
-    def lock_progressiveBuildings(self, startingTier, sendMessage, item_table, progressive_items_flags):
-        for key, item in item_table.items():
-            if item.type == itemType.building and item.progressionGroup is not None:
-                if "settlement" in item.name or "horde_main" in item.progressionGroup:
-                    continue
-                progressive_items_flags[key] = startingTier - 1
-                if item.tier > startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                    sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
-
-    def lock_progressiveUnits(self, startingTier, sendMessage, item_table, progressive_items_flags):
-        for key, item in item_table.items():
-            if item.type == itemType.unit and item.progressionGroup is not None:
-                progressive_items_flags[key] = startingTier
-                if item.tier > startingTier:
-                    sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
 def launchClient(*args: Sequence[str]):
     Utils.init_logging('TWW3Client')
