@@ -450,9 +450,10 @@ class TWW3Context(CommonContext):
         self.receivedItems = []
 
         self.initialized = False
-        EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
+        self.engine = EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
     def on_received_items(self, args: dict, resync=False):
+
         for entry in args["items"]:
             try:
                 item = self.itemDict[entry.item]
@@ -551,8 +552,15 @@ class TWW3Context(CommonContext):
             asyncio.create_task(self.sendNotification())
 
     def resync(self):
+        self.progressiveItemFlags = {key: 0 for key in self.itemDict.keys()}
+        if self.progressiveTechs:
+            EngineInitializer.lock_progressiveTechs(self.engine, self.sendMessage, self.itemDict, self.progressiveItemFlags)
+        if self.progressiveBuildings:
+            EngineInitializer.lock_progressiveBuildings(self.engine, self.startingTier, self.sendMessage, self.itemDict, self.progressiveItemFlags)
+        if self.progressiveUnits:
+            EngineInitializer.lock_progressiveUnits(self.engine, self.startingTier, self.sendMessage, self.itemDict, self.progressiveItemFlags)
         self.on_received_items(self.itemArchive, True)
-        self.itemArchive.clear()
+        #self.itemArchive.clear()
 
     async def sendNotification(self):
         if self.notificationPending:
