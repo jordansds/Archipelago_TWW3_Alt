@@ -32,6 +32,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, TWW3Context):
             self.ctx.are_traps_enabled = not self.ctx.are_traps_enabled
             logger.info(f"Traps are now turned {'on' if self.ctx.are_traps_enabled else 'off'}.")
+            return
 
     def _cmd_capitals(self):
         """Prints a list of starting Capitals."""
@@ -39,7 +40,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             for faction, capital in self.ctx.capitals.items():
                 factionName = [f.readableName for f in fm.factionDict.values() if f.name == faction][0]
                 logger.info(f"Faction: {factionName} Capital: {sm.mapDict[self.ctx.map][capital]}")
-                #Need to fix this. Faction needs to be an index, not the faction key
+            return
 
     def _cmd_inrange(self):
         """Prints a list of all factions that are within diplomatic range"""
@@ -47,7 +48,7 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             for faction in self.ctx.inRangeFactions:
                 factionName = [f.readableName for f in fm.factionDict.values() if f.name == faction][0]
                 logger.info(f"Faction: {factionName}")
-                #fm.factionDict[args["slot_data"]["starting_faction"]].readableName)
+            return
 
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
@@ -55,22 +56,26 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
             logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
             logger.info(f"You currently control {self.ctx.settlementCount} settlements")
+            return
 
     def _cmd_orbs(self):
         """Prints the current number of orbs of dominance that you own."""
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You currently hold: {self.ctx.numberOfOrbs} Orbs of dominance")
+            return
 
     def _cmd_logging(self):
         """Toggles location logging."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.logChecks = not self.ctx.logChecks
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
+            return
 
     def _cmd_version(self):
         """Prints the version of the client."""
         if isinstance(self.ctx, TWW3Context):
             logger.info(f"You are running version {self.ctx.version}")
+            return
 
     def _cmd_teleport(self):
         """Teleports lords and heroes to starting location (use if your lord did not teleport)."""
@@ -85,23 +90,27 @@ class TWW3CommandProcessor(ClientCommandProcessor):
                     #self.ctx.messenger.runTemp(f'teleport_all_heroes_of_faction_to_region("{faction}", "{settlement}")')
                     self.ctx.messenger.runTemp(f'archipelago.teleport_all_units_of_faction_to_region("{faction}", "{settlement}")')
                     break
+            return
 
     def _cmd_deathlink(self):
         """Turn Deathlink off and on."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.deathLinkEnabled = not self.ctx.deathLinkEnabled
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
+            return
 
     def _cmd_debug(self):
         """Set Admin Capacity to Maximum"""
         if isinstance(self.ctx, TWW3Context):
             #if "jordan" in self.ctx.player_names:
             self.ctx.adminCapacity = 1000
+            return
 
     def _cmd_resync(self):
         """Resend all units, techs, buildings and progression items"""
         if isinstance(self.ctx, TWW3Context):
             TWW3Context.resync(self.ctx)
+            return
 
         #Need to rewrite on_received_items to allow for writing to temp file when this function is ran.
         #Or just make this a copy of on_received_items with only the relevant details
@@ -315,7 +324,7 @@ class TWW3Context(CommonContext):
             logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
-        #self.path = "/home/jordan/Documents/"
+        self.path = "/home/jordan/Documents/"
         self.seed = args['slot_data']['seed']
 
         #if not self.path or not os.path.exists(self.path):
@@ -402,7 +411,6 @@ class TWW3Context(CommonContext):
             for key, settlement in self.settlementDict.items():
                 for i in range(self.checksPerLocation):
                     self.locationLookup[f"{settlement.readableName} ({i})"] = offset + (key)*10 + i
-                print(settlement.readableName, key*10)
 
         logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
@@ -444,7 +452,7 @@ class TWW3Context(CommonContext):
         self.initialized = False
         EngineInitializer.initialize(self, self.itemDict, self.progressiveItemFlags)
 
-    def on_received_items(self, args: dict):
+    def on_received_items(self, args: dict, resync=False):
         for entry in args["items"]:
             try:
                 item = self.itemDict[entry.item]
@@ -458,21 +466,24 @@ class TWW3Context(CommonContext):
 
             match item.type:
                 case itemType.building:
-                    self.itemArchive["items"].append(item)
+                    if not resync:
+                        self.itemArchive["items"].append(entry)
                     if self.progressiveBuildings:
                         self.sendProgressiveItem(item.name)
                     else:
                         self.sendMessage(f'cm:remove_event_restricted_building_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.unit:
-                    self.itemArchive["items"].append(item)
+                    if not resync:
+                        self.itemArchive["items"].append(entry)
                     if self.progressiveUnits:
                         self.sendProgressiveItem(item.name)
                     else:
                         self.sendMessage(f'cm:remove_event_restricted_unit_record_for_faction("{item.name}", "{self.playerFaction}")')
 
                 case itemType.tech:
-                    self.itemArchive["items"].append(item)
+                    if not resync:
+                        self.itemArchive["items"].append(entry)
                     if self.progressiveTechs:
                         self.sendProgressiveItem(item.name)
                     else:
@@ -482,7 +493,8 @@ class TWW3Context(CommonContext):
                             self.sendMessage(f'cm:unlock_technology("{self.playerFaction}", "{item.name}")')
 
                 case itemType.progression:
-                    self.itemArchive["items"].append(item)
+                    if not resync:
+                        self.itemArchive["items"].append(entry)
                     if self.gameMode == "conquest":
                         self.expansionItems += 1
                         if self.expansionItems == self.maxExpansionItems:
@@ -522,7 +534,7 @@ class TWW3Context(CommonContext):
                             #self.sendMessage(item.name)
                             self.messenger.runTemp(item.name)
                         else:
-                            self.logger.info("Skipped a Trap")
+                            logger.info("Skipped a Trap")
 
                 case itemType.effect_faction:
                     self.sendMessage(f'archipelago.give_player_faction_effect({item.name})')
@@ -532,12 +544,15 @@ class TWW3Context(CommonContext):
 
             self.messenger.flush()
 
-            self.receivedItems.append(item.readableName)
+            if not resync:
+                self.receivedItems.append(item.readableName)
 
-        asyncio.create_task(self.sendNotification())
+        if not resync:
+            asyncio.create_task(self.sendNotification())
 
     def resync(self):
-        self.on_received_items(self.itemArchive)
+        self.on_received_items(self.itemArchive, True)
+        self.itemArchive.clear()
 
     async def sendNotification(self):
         if self.notificationPending:

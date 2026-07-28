@@ -261,7 +261,7 @@ progBuildings: dict[int, itemData] = {
     39300: itemData(IC.useful, 3, 'Progressive foreign_slot_discovery_nor', itemType.building, 3, None, 'Progressive Norsca Building: Foreign Slot Discovery Nor'),
     39301: itemData(IC.useful, 3, 'Progressive nor_allied_outpost', itemType.building, 3, None, 'Progressive Norsca Building: Allied Outpost'),
     39302: itemData(IC.useful, 5, 'Progressive nor_settlement_major', itemType.building, 5, None, 'Progressive Norsca Building: Settlement Major'),
-    39303: itemData(IC.useful, 3, 'Progressive nor_settlement_minor', itemType.building, 3, None, 'Progressive Norsca Building: Settlement Minor'),
+    39337: itemData(IC.useful, 3, 'Progressive nor_settlement_minor', itemType.building, 3, None, 'Progressive Norsca Building: Settlement Minor'),
 
     39303: itemData(IC.useful, 4, 'Progressive nor_barracks', itemType.building, 4, None, "Progressive Norsca Building: Barracks"),
     39304: itemData(IC.useful, 3, 'Progressive nor_stables', itemType.building, 3, None, "Progressive Norsca Building: Stables"),
@@ -331,10 +331,11 @@ special: dict[int, specialItemData] = {
     39523: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_dlc01_chs_inf_chaos_warriors_2', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Warriors (Great Weapons)'),
     39524: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh_main_chs_mon_chaos_spawn', itemType.unit, 2, 'Progressive nor_inf', False, False, 'Norsca Unit: Chaos Spawn'),
 
-    39525: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_offerings_2b', itemType.building, 0, 'Progressive nor_offerings', False, False, 'Norsca Building: Colossal Offerings'),
-    39526: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_offerings_3', itemType.building, 1, 'Progressive nor_offerings', False, False, "Norsca Building: Curs'd Cavern"),
-    39527: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_2b', itemType.building, 0, 'Progressive nor_offerings', False, False, 'Norsca Building: Colossal Offerings (Sayl)'),
-    39528: specialItemData(IC.useful, 1,  ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_3', itemType.building, 1, 'Progressive nor_offerings', False, False, "Norsca Building: Curs'd Cavern (Sayl)"),
+    39633: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh_main_nor_offerings_1', itemType.building, 0, 'Progressive nor_monsters', False, False, 'Norsca Building: Ice Troll Lair'),
+    39634: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh_main_nor_offerings_2', itemType.building, 1, 'Progressive nor_monsters', False, False, 'Norsca Building: Frozen Cairn Field'),
+    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_2b', itemType.building, 1, 'Progressive nor_monsters', False, False, 'Norsca Building: Colossal Offerings'),
+    39636: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_3', itemType.building, 2, 'Progressive nor_monsters', False, False, "Norsca Building: Curs'd Cavern"),
+    39637: specialItemData(IC.useful, 3, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'Progressive nor_monsters', itemType.building, 3, None, False, True, "Progressive Norsca Building: Monsters"),
 
     39531: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_chaos_altar_garrison_1', itemType.building, 0, 'Progressive nor_shrine_garrison', False, False, 'Norsca Building: Marauding Militia'),
     #39532: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh_dlc08_nor_wintertooth'], 'wh3_dlc27_nor_chaos_altar_kho_major_human_1', itemType.building, 0, 'Progressive nor_settlement_shrine', False, False, 'Norsca Building: Fanged Monolith (Khorne)'),
@@ -393,12 +394,6 @@ special: dict[int, specialItemData] = {
     39630: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_1', itemType.building, 0, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Bleeding Grounds'),
     39631: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_2A', itemType.building, 1, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Warhowl Barrow'),
     39632: specialItemData(IC.useful, 1, ['wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_chaos_altar_und_replenishment_2B', itemType.building, 1, 'Progressive nor_shrine_replenishment', False, False, 'Norsca Building: Creeping Morass'),
-
-    39633: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh_main_nor_offerings_1', itemType.building, 0, 'Progressive nor_monsters', False, False, 'Norsca Building: Ice Troll Lair'),
-    39634: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh_main_nor_offerings_2', itemType.building, 1, 'Progressive nor_monsters', False, False, 'Norsca Building: Frozen Cairn Field'),
-    39635: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_2b', itemType.building, 1, 'Progressive nor_monsters', False, False, 'Norsca Building: Colossal Offerings'),
-    39636: specialItemData(IC.useful, 1, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'wh3_dlc27_nor_offerings_3', itemType.building, 2, 'Progressive nor_monsters', False, False, "Norsca Building: Curs'd Cavern"),
-    39637: specialItemData(IC.useful, 3, ['wh_dlc08_nor_norsca', 'wh3_dlc27_nor_sayl'], 'Progressive nor_monsters', itemType.building, 3, None, False, True, "Progressive Norsca Building: Monsters"),
 
     39638: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_dlc27_nor_offerings_0_throgg', itemType.building, 0, 'Progressive nor_monsters_throgg', False, False, 'Norsca Building: Troll Lair (Throgg)'),
     39639: specialItemData(IC.useful, 1, ['wh_dlc08_nor_wintertooth'], 'wh_dlc27_nor_offerings_1_throgg', itemType.building, 1, 'Progressive nor_monsters_throgg', False, False, 'Norsca Building: Ice Troll Lair (Throgg)'),
