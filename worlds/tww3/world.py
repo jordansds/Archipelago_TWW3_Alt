@@ -15,7 +15,7 @@ import logging
 #from rule_builder.cached_world import CachedRuleBuilderWorld
 
 class TWW3Settings(settings.Group):
-    class TWW3Path(settings.FolderPath):
+    class TWW3Path(settings.UserFolderPath):
         """Installation Path to the TWW3 folder, so that input and output files can be written."""
         description = "Total War Warhammer 3 Installation Folder. Where the .exe is."
 
