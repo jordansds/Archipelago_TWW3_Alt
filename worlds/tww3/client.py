@@ -442,8 +442,8 @@ class TWW3Context(CommonContext):
                 self.locationLookup[f"Won {i*5} Battles"] = i + 20000
         if self.despoilerSanity:
             for i in range(1,21):
-                self.locationLookup[f"Sacked {i} Settlements"] = i + 20020
-                self.locationLookup[f"Razed {i} Settlements"] = i + 20040
+                self.locationLookup[f"Sacked {i*2} Settlements"] = i + 20020
+                self.locationLookup[f"Razed {i*2} Settlements"] = i + 20040
 
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
@@ -689,37 +689,38 @@ class TWW3Context(CommonContext):
 
     async def checkBattleSanity(self, location):
         location = int(location)
-
         if location % 5 != 0 or location > 100:
             return
+        locations = [i * 5 for i in range(1, int(location / 5 + 1))]
         try:
-            if self.hardLogic:
-                #Need to check if player has enough expansion items
-                if math.floor(location/100 * self.maxExpansionItems) <= self.expansionItems:
-                    for i in range(1, location+1):
-                        print(location)
-                        await self.check_locations([self.locationLookup[f"Won {i} Battles"]])
-            else:
-                for i in range(1, location + 1):
-                    await self.check_locations([self.locationLookup[f"Won {i} Battles"]])
+            for location in locations:
+                if self.hardLogic:
+                    #Need to check if player has enough expansion items
+                    if math.floor(location/100 * self.maxExpansionItems) <= self.expansionItems:
+                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                else:
+                    for i in range(1, location + 1):
+                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
         except KeyError:
             pass
 
     async def checkDespoilerSanity(self, location):
         type = location.split(" ")[0].title()
         location = int(location.split(" ")[1])
+        print(location)
 
         if location % 2 != 0 or location > 40:
             return
+        locations = [i * 2 for i in range(1, int(location / 2 + 1))]
         try:
-            if self.hardLogic:
-                #Need to check if player has enough expansion items
-                if math.floor(location/40 * self.maxExpansionItems) <= self.expansionItems:
+            for location in locations:
+                if self.hardLogic:
+                    #Need to check if player has enough expansion items
+                    if math.floor(location/40 * self.maxExpansionItems) <= self.expansionItems:
+                        await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
+                else:
                     for i in range(2, location + 2):
                         await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
-            else:
-                for i in range(2, location + 2):
-                    await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
         except KeyError:
             pass
 
