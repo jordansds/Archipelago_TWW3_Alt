@@ -325,6 +325,7 @@ class TWW3Context(CommonContext):
 
         self.path = TWW3World.settings.tww3_path
         self.path = "/home/jordan/Documents/"
+        self.path = "C:/Users/jordan.whiteley/Desktop/"
         self.seed = args['slot_data']['seed']
 
         #if not self.path or not os.path.exists(self.path):
@@ -605,8 +606,16 @@ class TWW3Context(CommonContext):
         for key in keys:
             self.progressiveItemFlags[key] += 1
 
-        unlockedItems = [item for item in self.itemDict.values()
-                         if item.progressionGroup == itemName and item.tier == self.progressiveItemFlags[key]]
+        #unlockedItems = [item for item in self.itemDict.values()
+        #                 if item.progressionGroup == itemName and item.tier == self.progressiveItemFlags[key]]
+
+        unlockedItems = []
+        for item in self.itemDict.values():
+            try:
+                if item.progressionGroup.lower() == itemName.lower() and item.tier == self.progressiveItemFlags[key]:
+                    unlockedItems.append(item)
+            except:
+                pass
 
         for item in unlockedItems:
             if item.type == itemType.building:

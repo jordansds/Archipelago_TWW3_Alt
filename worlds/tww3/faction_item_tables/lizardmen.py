@@ -82,7 +82,7 @@ units: dict[int, itemData] = {
 
 buildings: dict[int, itemData] = {
     36400: itemData(IC.useful, 1, 'wh2_dlc12_lzd_terradons_2', itemType.building, 1, 'Progressive lzd_terradons', 'Lizardmen Building: Ripperdactyl Hatchery'),
-    36408: itemData(IC.useful, 1, 'wh2_dlc14_special_lzd_konquata', itemType.building, 0, 'Progressive special_lzd', 'Lizardmen Building: Jungles of the Old Ones'),
+    #36408: itemData(IC.useful, 1, 'wh2_dlc14_special_lzd_konquata', itemType.building, 0, 'Progressive special_lzd', 'Lizardmen Building: Jungles of the Old Ones'),
     36409: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_lzd_1', itemType.building, 0, 'Progressive foreign_slot_discovery_lzd', 'Lizardmen Building: Reclaimed Tunnels'),
     36410: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_lzd_2', itemType.building, 1, 'Progressive foreign_slot_discovery_lzd', 'Lizardmen Building: Mapped Passageways'),
     36411: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_lzd_3', itemType.building, 2, 'Progressive foreign_slot_discovery_lzd', 'Lizardmen Building: Rebuilt Labyrinth'),
