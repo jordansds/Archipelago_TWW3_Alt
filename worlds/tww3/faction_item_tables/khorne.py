@@ -222,7 +222,7 @@ techs: dict[int, itemData] = {
     32843: itemData(IC.useful, 1, 'wh3_dlc26_tech_kho_battle_3_2', itemType.tech, 2, 'Progressive tech_kho_infantry', 'Khorne Tech: Giant Slayer'),
     32844: itemData(IC.useful, 1, 'wh3_main_tech_kho_8_1', itemType.tech, 2, 'Progressive tech_kho_infantry', 'Khorne Tech: Honour in Blood'),
     32845: itemData(IC.useful, 1, 'wh3_dlc26_tech_kho_battle_3_3', itemType.tech, 2, 'Progressive tech_kho_infantry', 'Khorne Tech: Blood Whirlwind'),
-    32846: itemData(IC.useful, 1, 'wh3_main_tech_kho_1_7', itemType.tech, 2, 'Progressive tech_kho', 'tech_kho_infantry Tech: Rage Within'),
+    32846: itemData(IC.useful, 1, 'wh3_main_tech_kho_1_7', itemType.tech, 2, 'Progressive tech_kho_infantry', 'Khorne Tech: Rage Within'),
     32847: itemData(IC.useful, 1, 'wh3_dlc26_tech_kho_battle_4_1', itemType.tech, 1, 'Progressive tech_kho_beasts', 'Khorne Tech: Lord of Monstrosities'),
     32848: itemData(IC.useful, 1, 'wh3_main_tech_kho_2_7', itemType.tech, 2, 'Progressive tech_kho_beasts', 'Khorne Tech: Hungrier Spawn'),
     32849: itemData(IC.useful, 1, 'wh3_main_tech_kho_4_1', itemType.tech, 2, 'Progressive tech_kho_beasts', 'Khorne Tech: Beast Fighting'),

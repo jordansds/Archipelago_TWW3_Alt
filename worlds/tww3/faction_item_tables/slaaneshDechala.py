@@ -104,7 +104,6 @@ techs.update({
     70803: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_dominate_units', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Arrogant Dismissal'),
     70804: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_in_praise_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: In Praise of Slaanesh'),
     70805: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_daemonic_attraction', itemType.tech, 3, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Daemonic Attraction'),
-
 })
 
 progUnits: dict[int, itemData] = slaanesh.progUnits

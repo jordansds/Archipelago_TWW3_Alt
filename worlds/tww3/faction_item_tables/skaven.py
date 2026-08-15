@@ -54,7 +54,6 @@ units: dict[int, itemData] = {
     42049: itemData(IC.useful, 1, 'wh2_dlc12_skv_veh_doomwheel_ror_0', itemType.unit, 2, 'Progressive skv_wpn', 'Skaven Unit: Wheelz of Dooom (Doomwheel)'),
 }
 buildings: dict[int, itemData] = {
-    42400: itemData(IC.useful, 1, 'wh2_dlc14_skv_weaponteams_1', itemType.building, 0, 'Progressive skv_weaponteams', 'Skaven Building: Weapons Dump'),
     42401: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_skv_1', itemType.building, 0, 'Progressive foreign_slot_discovery_skv', 'Skaven Building: Spelunking Holes'),
     42402: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_skv_2', itemType.building, 1, 'Progressive foreign_slot_discovery_skv', 'Skaven Building: Deep Burrows'),
     42403: itemData(IC.useful, 1, 'wh2_main_foreign_slot_discovery_skv_3', itemType.building, 2, 'Progressive foreign_slot_discovery_skv', 'Skaven Building: Spy Nests'),
@@ -148,6 +147,7 @@ buildings: dict[int, itemData] = {
     42490: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_1', itemType.building, 0, 'Progressive skv_settlement_minor', 'Skaven Building: Nest (Minor)'),
     42491: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_2', itemType.building, 0, 'Progressive skv_settlement_minor', 'Skaven Building: Nest-Lair (Minor)'),
     42492: itemData(IC.useful, 1, 'wh2_main_skv_settlement_minor_3', itemType.building, 1, 'Progressive skv_settlement_minor', 'Skaven Building: Warren (Minor)'),
+    42400: itemData(IC.useful, 1, 'wh2_dlc14_skv_weaponteams_1', itemType.building, 0, 'Progressive skv_weaponteams', 'Skaven Building: Weapons Dump'),
     42493: itemData(IC.useful, 1, 'wh2_main_skv_weaponteams_1', itemType.building, 1, 'Progressive skv_weaponteams', 'Skaven Building: Weapon Burrow'),
     42494: itemData(IC.useful, 1, 'wh2_main_skv_weaponteams_2', itemType.building, 2, 'Progressive skv_weaponteams', 'Skaven Building: Arsenal'),
     #42495: ItemData(IC.useful, 1, 'wh2_main_special_settlement_eight_peaks_skv_1', ItemType.building, 0, 'Progressive skv_settlement_major', 'Skaven Building: Occupied Karak Eight Peaks (Nest)'),

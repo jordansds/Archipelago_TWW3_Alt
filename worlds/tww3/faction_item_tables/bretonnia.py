@@ -28,7 +28,7 @@ units: dict[int, itemData] = {
     12023: itemData(IC.useful, 1, 'wh_pro04_brt_cav_knights_errant_ror_0', itemType.unit, 2, 'progressive brt_art', 'Bretonnia Unit: Blessed Field Trebuchet'),
     12024: itemData(IC.useful, 1, 'wh_pro04_brt_cav_knights_of_the_realm_ror_0', itemType.unit, 2, 'progressive brt_cav', 'Bretonnia Unit: Defenders of the Fleur-de-lis (Knights Errant)'),
     12025: itemData(IC.useful, 1, 'wh_pro04_brt_cav_mounted_yeomen_ror_0', itemType.unit, 3, 'progressive brt_cav', 'Bretonnia Unit: Knights of the Lionhearted (Knights of the Realm)'),
-    12026: itemData(IC.useful, 1, 'wh_pro04_brt_cav_questing_knights_ror_0', itemType.unit, 2, 'progressive brt_cav', 'Bretonnia Unit: Wardens of Montfort (Mounted Yeomen Archers)'),
+    12026: itemData(IC.useful, 1, 'wh_pro04_brt_cav_questing_knights_ror_0', itemType.unit, 1, 'progressive brt_cav', 'Bretonnia Unit: Wardens of Montfort (Mounted Yeomen Archers)'),
     12027: itemData(IC.useful, 1, 'wh_pro04_brt_inf_battle_pilgrims_ror_0', itemType.unit, 3, 'progressive brt_cav', 'Bretonnia Unit: The Companions of Quenelles (Questing Knights)'),
     12028: itemData(IC.useful, 1, 'wh_pro04_brt_inf_foot_squires_ror_0', itemType.unit, 3, 'progressive brt_inf', 'Bretonnia Unit: The Holy Wardens of La Maisontaal (Battle Pilgrims)'),
     12029: itemData(IC.useful, 1, 'wh_pro04_bst_inf_bestigor_herd_ror_0', itemType.unit, 4, 'progressive brt_inf', 'Bretonnia Unit: Beastslayers of Bastonne (Foot Squires)'),
@@ -263,9 +263,9 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = {
-    13400: itemData(IC.useful, 5, "progressive tech_brt_heraldry", itemType.tech, 5, None, "Progressive Bretonnia Tech: Heraldry"),
-    13401: itemData(IC.useful, 5, "progressive tech_brt_chivalry", itemType.tech, 5, None, "Progressive Bretonnia Tech: Chivalry"),
-    13402: itemData(IC.useful, 5, "progressive tech_brt_economy", itemType.tech, 5, None, "Progressive Bretonnia Tech: Economy"),
+    13400: itemData(IC.useful, 6, "progressive tech_brt_heraldry", itemType.tech, 6, None, "Progressive Bretonnia Tech: Heraldry"),
+    13401: itemData(IC.useful, 6, "progressive tech_brt_chivalry", itemType.tech, 6, None, "Progressive Bretonnia Tech: Chivalry"),
+    13402: itemData(IC.useful, 6, "progressive tech_brt_economy", itemType.tech, 6, None, "Progressive Bretonnia Tech: Economy"),
 }
 
 special: dict[int, specialItemData] = {

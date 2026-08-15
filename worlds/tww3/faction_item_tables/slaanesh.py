@@ -59,13 +59,15 @@ units: dict[int, itemData] = {
 }
 
 buildings: dict[int, itemData] = {
-    44402: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', itemType.building, 0, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Warpstone Locus'),
-    44403: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', itemType.building, 1, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Warpstone Traps'),
-    44404: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', itemType.building, 2, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Guarded Warpstone'),
-    44405: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_1', itemType.building, 0, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi Outpost'),
-    44406: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_2', itemType.building, 1, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi District'),
-    44407: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_3', itemType.building, 2, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi Colony'),
-    44408: itemData(IC.useful, 1, 'wh3_main_sla_barracks_1', itemType.building, 0, 'Progressive sla_barracks', 'Slaanesh Building: Temple of Decadence'),
+    44400: itemData(IC.useful, 1, 'wh3_main_sla_barracks_0', itemType.building, 0, 'Progressive sla_barracks', 'Slaanesh Building: Shrine of Decadence'),
+    44401: itemData(IC.useful, 1, 'wh3_main_sla_barracks_1', itemType.building, 1, 'Progressive sla_barracks', 'Slaanesh Building: Temple of Decadence'),
+
+    44403: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', itemType.building, 0, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Warpstone Locus'),
+    44404: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', itemType.building, 1, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Warpstone Traps'),
+    44405: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', itemType.building, 2, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Guarded Warpstone'),
+    44406: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_1', itemType.building, 0, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi Outpost'),
+    44407: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_2', itemType.building, 1, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi District'),
+    44408: itemData(IC.useful, 1, 'wh3_main_sla_allied_outpost_3', itemType.building, 2, 'Progressive sla_allied_outpost', 'Slaanesh Building: Slaaneshi Colony'),
     44409: itemData(IC.useful, 1, 'wh3_main_sla_cav_1', itemType.building, 0, 'Progressive sla_cav', 'Slaanesh Building: Addiction Pens'),
     44410: itemData(IC.useful, 1, 'wh3_main_sla_cav_2', itemType.building, 1, 'Progressive sla_cav', 'Slaanesh Building: The Yearning Cages'),
     44411: itemData(IC.useful, 1, 'wh3_main_sla_cav_4', itemType.building, 4, 'Progressive sla_cav', 'Slaanesh Building: Darkling Grove'),
@@ -97,13 +99,11 @@ buildings: dict[int, itemData] = {
     44437: itemData(IC.useful, 1, 'wh3_main_sla_infra_order_2', itemType.building, 1, 'Progressive sla_infra_order', 'Slaanesh Building: The Pageant of Pain '),
     44438: itemData(IC.useful, 1, 'wh3_main_sla_infra_order_3', itemType.building, 2, 'Progressive sla_infra_order', 'Slaanesh Building: Opera of Dawn & Dusk'),
     44439: itemData(IC.useful, 1, 'wh3_main_sla_infra_order_4', itemType.building, 3, 'Progressive sla_infra_order', "Slaanesh Building: Rhan'k'adanra, the Final Dance"),
-    44440: itemData(IC.useful, 1, 'wh3_main_sla_keeper_1', itemType.building, 0, 'Progressive sla_keeper', 'Slaanesh Building: Sensuous Caress'),
-    44441: itemData(IC.useful, 1, 'wh3_main_sla_keeper_2', itemType.building, 1, 'Progressive sla_keeper', 'Slaanesh Building: Tormented Whisper'),
-    44442: itemData(IC.useful, 1, 'wh3_main_sla_marauders_1', itemType.building, 0, 'Progressive sla_marauders', 'Slaanesh Building: Scented Pavilion'),
-    44443: itemData(IC.useful, 1, 'wh3_main_sla_marauders_2', itemType.building, 1, 'Progressive sla_marauders', 'Slaanesh Building: Fragrant Pavilion'),
+
     44444: itemData(IC.useful, 1, 'wh3_main_sla_port_1', itemType.building, 0, 'Progressive sla_port', 'Slaanesh Building: Infernal Harbour'),
     44445: itemData(IC.useful, 1, 'wh3_main_sla_port_2', itemType.building, 1, 'Progressive sla_port', 'Slaanesh Building: Hell Port'),
     44446: itemData(IC.useful, 1, 'wh3_main_sla_port_3', itemType.building, 2, 'Progressive sla_port', 'Slaanesh Building: Eye of Terror'),
+
     44447: itemData(IC.useful, 1, 'wh3_main_sla_resource_animals_1', itemType.building, 0, 'Progressive sla_resource_animals', 'Slaanesh Building: Cultist Camp (Animals)'),
     44448: itemData(IC.useful, 1, 'wh3_main_sla_resource_animals_2', itemType.building, 1, 'Progressive sla_resource_animals', 'Slaanesh Building: Cultist Outpost (Animals)'),
     44449: itemData(IC.useful, 1, 'wh3_main_sla_resource_animals_3', itemType.building, 2, 'Progressive sla_resource_animals', 'Slaanesh Building: Cultist Enclave (Animals)'),
@@ -152,6 +152,7 @@ buildings: dict[int, itemData] = {
     44492: itemData(IC.useful, 1, 'wh3_main_sla_resource_wood_1', itemType.building, 0, 'Progressive sla_resource_wood', 'Slaanesh Building: Cultist Camp (Wood)'),
     44493: itemData(IC.useful, 1, 'wh3_main_sla_resource_wood_2', itemType.building, 1, 'Progressive sla_resource_wood', 'Slaanesh Building: Cultist Outpost (Wood)'),
     44494: itemData(IC.useful, 1, 'wh3_main_sla_resource_wood_3', itemType.building, 2, 'Progressive sla_resource_wood', 'Slaanesh Building: Cultist Enclave (Wood)'),
+
     44495: itemData(IC.useful, 1, 'wh3_main_sla_seekers_1', itemType.building, 0, 'Progressive sla_seekers', 'Slaanesh Building: Drifting Tower'),
     44496: itemData(IC.useful, 1, 'wh3_main_sla_seekers_2', itemType.building, 1, 'Progressive sla_seekers', 'Slaanesh Building: Drifting Forge'),
     44497: itemData(IC.useful, 1, 'wh3_main_sla_seekers_3', itemType.building, 2, 'Progressive sla_seekers', 'Slaanesh Building: Drifting Bastion'),
@@ -172,7 +173,25 @@ buildings: dict[int, itemData] = {
     44512: itemData(IC.useful, 1, 'wh3_main_sla_walls_major_2', itemType.building, 1, 'Progressive sla_walls_major', 'Slaanesh Building: Daemonic Gathering'),
     44513: itemData(IC.useful, 1, 'wh3_main_sla_walls_major_3', itemType.building, 2, 'Progressive sla_walls_major', 'Slaanesh Building: Daemonic Locus'),
     44514: itemData(IC.useful, 1, 'wh3_main_sla_walls_minor_1', itemType.building, 0, 'Progressive sla_walls_minor', 'Slaanesh Building: Fog of Revelation'),
-    44515: itemData(IC.useful, 1, 'wh3_main_sla_walls_minor_2', itemType.building, 1, 'Progressive sla_walls_minor', 'Slaanesh Building: Soporific Mist')
+    44515: itemData(IC.useful, 1, 'wh3_main_sla_walls_minor_2', itemType.building, 1, 'Progressive sla_walls_minor', 'Slaanesh Building: Soporific Mist'),
+
+    44516: itemData(IC.useful, 1, 'wh3_dlc27_sla_riders_1', itemType.building, 0, 'Progressive sla_riders', 'Slaanesh Building: Challenge Stone'),
+    44517: itemData(IC.useful, 1, 'wh3_dlc27_sla_riders_2', itemType.building, 1, 'Progressive sla_riders', 'Slaanesh Building: Arena of Excess'),
+
+    44518: itemData(IC.useful, 1, 'wh3_dlc27_sla_followers_1', itemType.building, 0, 'Progressive sla_followers', "Slaanesh Building: Dark Prince's Icon"),
+    44519: itemData(IC.useful, 1, 'wh3_dlc27_sla_followers_2', itemType.building, 1, 'Progressive sla_followers', "Slaanesh Building: Dark Prince's Banner"),
+    44520: itemData(IC.useful, 1, 'wh3_dlc27_sla_followers_3', itemType.building, 2, 'Progressive sla_followers', "Slaanesh Building: Dark Prince's Rally"),
+
+    44521: itemData(IC.useful, 1, 'wh3_main_sla_keeper_1', itemType.building, 0, 'Progressive sla_keeper', 'Slaanesh Building: Sensuous Caress'),
+    44522: itemData(IC.useful, 1, 'wh3_main_sla_keeper_2', itemType.building, 1, 'Progressive sla_keeper', 'Slaanesh Building: Tormented Whisper'),
+    44523: itemData(IC.useful, 1, 'wh3_dlc27_sla_keeper_3', itemType.building, 2, 'Progressive sla_keeper', 'Slaanesh Building: Daemonic Lure'),
+
+    44524: itemData(IC.useful, 1, 'wh3_main_sla_marauders_1', itemType.building, 0, 'Progressive sla_marauders', 'Slaanesh Building: Scented Pavilion'),
+    44525: itemData(IC.useful, 1, 'wh3_main_sla_marauders_2', itemType.building, 1, 'Progressive sla_marauders', 'Slaanesh Building: Fragrant Pavilion'),
+    44526: itemData(IC.useful, 1, 'wh3_dlc27_sla_marauders_3', itemType.building, 2, 'Progressive sla_marauders', 'Slaanesh Building: Pavilion of Excess'),
+
+    44527: itemData(IC.useful, 1, 'wh3_dlc27_sla_cult_garrison_1', itemType.building, 0, 'Progressive sla_cult_garrison', 'Slaanesh Building: Alluring Suggestions'),
+    44528: itemData(IC.useful, 1, 'wh3_dlc27_sla_cult_garrison_2', itemType.building, 1, 'Progressive sla_cult_garrison', 'Slaanesh Building: Irresistible Temptation'),
 }
 
 techs: dict[int, itemData] = {
@@ -249,7 +268,7 @@ progUnits: dict[int, itemData] = {
 progBuildings: dict[int, itemData] = {
     45300: itemData(IC.useful, 3, 'Progressive sla_foreign_slot_discovery', itemType.building, 3, None, 'Progressive Slaanesh Building: Foreign Slot Discovery'),
     45301: itemData(IC.useful, 3, 'Progressive sla_allied_outpost', itemType.building, 3, None, 'Progressive Slaanesh Building: Allied Outpost'),
-    45302: itemData(IC.useful, 1, 'Progressive sla_barracks', itemType.building, 1, None, 'Progressive Slaanesh Building: Barracks'),
+    45302: itemData(IC.useful, 2, 'Progressive sla_barracks', itemType.building, 2, None, 'Progressive Slaanesh Building: Barracks'),
     45303: itemData(IC.useful, 1, 'Progressive sla_cav', itemType.building, 1, None, 'Progressive Slaanesh Building: Cav'),
     45304: itemData(IC.useful, 2, 'Progressive sla_cav', itemType.building, 2, None, 'Progressive Slaanesh Building: Cav'),
     45305: itemData(IC.useful, 4, 'Progressive sla_cav', itemType.building, 4, None, 'Progressive Slaanesh Building: Cav'),
@@ -263,8 +282,8 @@ progBuildings: dict[int, itemData] = {
     45313: itemData(IC.useful, 3, 'Progressive sla_infra_growth_income', itemType.building, 3, None, 'Progressive Slaanesh Building: Infra Growth Income'),
     45314: itemData(IC.useful, 3, 'Progressive sla_infra_growth_xp', itemType.building, 3, None, 'Progressive Slaanesh Building: Infra Growth Xp'),
     45315: itemData(IC.useful, 4, 'Progressive sla_infra_order', itemType.building, 4, None, 'Progressive Slaanesh Building: Infra Order'),
-    45316: itemData(IC.useful, 2, 'Progressive sla_keeper', itemType.building, 2, None, 'Progressive Slaanesh Building: Keeper'),
-    45317: itemData(IC.useful, 2, 'Progressive sla_marauders', itemType.building, 2, None, 'Progressive Slaanesh Building: Marauders'),
+    45316: itemData(IC.useful, 3, 'Progressive sla_keeper', itemType.building, 3, None, 'Progressive Slaanesh Building: Keeper'),
+    45317: itemData(IC.useful, 3, 'Progressive sla_marauders', itemType.building, 3, None, 'Progressive Slaanesh Building: Marauders'),
     45318: itemData(IC.useful, 3, 'Progressive sla_port', itemType.building, 3, None, 'Progressive Slaanesh Building: Port'),
     45319: itemData(IC.useful, 3, 'Progressive sla_resource_animals', itemType.building, 3, None, 'Progressive Slaanesh Building: Animals'),
     45320: itemData(IC.useful, 3, 'Progressive sla_resource_dyes', itemType.building, 3, None, 'Progressive Slaanesh Building: Dyes'),
@@ -286,7 +305,11 @@ progBuildings: dict[int, itemData] = {
     45336: itemData(IC.useful, 5, 'Progressive sla_settlement_major', itemType.building, 5, None, 'Progressive Slaanesh Building: Settlement Major'),
     45337: itemData(IC.useful, 3, 'Progressive sla_settlement_minor', itemType.building, 3, None, 'Progressive Slaanesh Building: Settlement Minor'),
     45338: itemData(IC.useful, 3, 'Progressive sla_walls_major', itemType.building, 3, None, 'Progressive Slaanesh Building: Walls Major'),
-    45339: itemData(IC.useful, 2, 'Progressive sla_walls_minor', itemType.building, 2, None, 'Progressive Slaanesh Building: Walls Minor')
+    45339: itemData(IC.useful, 2, 'Progressive sla_walls_minor', itemType.building, 2, None, 'Progressive Slaanesh Building: Walls Minor'),
+
+    45340: itemData(IC.useful, 2, 'Progressive sla_riders', itemType.building, 2, None, 'Progressive Slaanesh Building: Mortal Riders'),
+    45341: itemData(IC.useful, 3, 'Progressive sla_followers', itemType.building, 3, None, 'Progressive Slaanesh Building: Followers'),
+    45342: itemData(IC.useful, 2, 'Progressive sla_cult_garrison', itemType.building, 2, None, 'Progressive Slaanesh Building: Cult Garrison'),
 }
 
 progTechs: dict[int, itemData] = {
@@ -299,13 +322,21 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
-    45500: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_2_6', itemType.tech, 1, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: The Promise'),
-    45501: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_2_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Captivating Musk'),
-    45502: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_1_2', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Blissful Coquetry'),
-    45503: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_4_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Everlasting Gift'),
-    45504: specialItemData(IC.useful, 1, [], 'wh3_main_tech_sla_5_6', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Darkling Disciples'),
-    45505: specialItemData(IC.useful, 1, [], 'wh3_dlc27_tech_sla_delicious_agony', itemType.tech, 3, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Delicious Agony '),
-    45506: specialItemData(IC.useful, 3, [], "Progressive tech_sla_perfume", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of the Perverse"),
+    45500: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_main_tech_sla_2_6', itemType.tech, 1, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: The Promise'),
+    45501: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_main_tech_sla_2_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Captivating Musk'),
+    45502: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_main_tech_sla_1_2', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Blissful Coquetry'),
+    45503: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_main_tech_sla_4_1', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Everlasting Gift'),
+    45504: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_main_tech_sla_5_6', itemType.tech, 2, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Darkling Disciples'),
+    45505: specialItemData(IC.useful, 1, ["wh3_main_sla_seducers_of_slaanesh"], 'wh3_dlc27_tech_sla_delicious_agony', itemType.tech, 3, 'Progressive tech_sla_perfume', False, False, 'Slaanesh Tech: Delicious Agony'),
+    45506: specialItemData(IC.useful, 3, ["wh3_main_sla_seducers_of_slaanesh"], "Progressive tech_sla_perfume", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of the Perverse"),
+
+    45507: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_grasp_of_servitude', itemType.tech, 1, 'Progressive tech_sla_perfume_masque', False, False, "Slaanesh Tech: Servitude's Grasp"),
+    45508: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_enticing_visage', itemType.tech, 2, 'Progressive tech_sla_perfume_masque', False, False, 'Slaanesh Tech: Dance of the Mind'),
+    45509: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_changing_the_feet', itemType.tech, 2, 'Progressive tech_sla_perfume_masque', False, False, 'Slaanesh Tech: Lithe Improvisation'),
+    45510: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_eternal_commitement', itemType.tech, 2, 'Progressive tech_sla_perfume_masque', False, False, 'Slaanesh Tech: Eternal Commitment'),
+    45511: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_incessant_dance', itemType.tech, 2, 'Progressive tech_sla_perfume_masque', False, False, 'Slaanesh Tech: Incessant Dance'),
+    45512: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_masque_of_slaanesh"], 'wh3_dlc27_tech_sla_enthusiastic_devotees', itemType.tech, 3, 'Progressive tech_sla_perfume_masque', False, False, 'Slaanesh Tech: Maddening Devotion'),
+    45513: specialItemData(IC.useful, 3, ["wh3_dlc27_sla_masque_of_slaanesh"], "Progressive tech_sla_perfume_masque", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of Sensations")
 }
 
 rituals: dict[int, specialItemData] = {
