@@ -711,9 +711,9 @@ class TWW3Context(CommonContext):
         try:
             await self.check_locations([self.locationLookup[self.itemNameToReadableName[location]]])
         except KeyError:
-            if sanityType == "ritual":
-                logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
-            if not "special" in location and not "bastion_primary" in location:
+            #if sanityType == "ritual":
+            #    logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
+            if not "special" in location and not "bastion_primary" in location and not "legendary" in location:
                 if sanityType != "ritual":
                     logger.error(f"To help in development, please send this key to the warhammer thread in the archipelago discord server (@jordansds). Key is: {location}, type: {sanityType}")
 
@@ -926,6 +926,11 @@ class EngineInitializer:
                 for faction in sphereAllOthers:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
+
+        for keyA, factionA in fm.factionDict.items():
+            for keyB, factionB in fm.factionDict.items():
+                if keyA != keyB and keyA % 10 != 0 and keyB % 10 != 0:
+                    sendMessage(f'cm:force_make_peace("{factionA.name}", "{factionB.name}")')
 
         sendMessage("archipelago.initialise()")
 
