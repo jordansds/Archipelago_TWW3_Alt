@@ -324,14 +324,15 @@ class TWW3Context(CommonContext):
             logger.info(f"You are running: {self.version} of the TWW3 APWorld")
 
         self.path = TWW3World.settings.tww3_path
-        #self.path = "/home/jordan/Documents/"
+        self.path = "/home/jordan/Documents/"
         #self.path = "C:/Users/jordan.whiteley/Desktop/"
         self.seed = args['slot_data']['seed']
 
-        if not self.path or not os.path.exists(self.path):
-            raise Exception('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
-        if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
-            raise Exception('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
+        if self.path != "/home/jordan/Documents/":
+            if not self.path or not os.path.exists(self.path):
+                raise Exception('ERROR: Could not find Warhammer folder. Please correct the path in your host.yaml.')
+            if not os.path.isfile(os.path.join(self.path, "Warhammer3.exe")) and not os.path.isfile(os.path.join(self.path, "TotalWarhammer3.sh")):
+                raise Exception('ERROR: Could not find Warhammer3.exe/Warhammer3.sh Please correct the path in your host.yaml.')
 
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
@@ -927,10 +928,10 @@ class EngineInitializer:
                     sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
                     sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
 
-        for keyA, factionA in fm.factionDict.items():
-            for keyB, factionB in fm.factionDict.items():
-                if keyA != keyB and keyA % 10 != 0 and keyB % 10 != 0:
-                    sendMessage(f'cm:force_make_peace("{factionA.name}", "{factionB.name}")')
+        #for keyA, factionA in fm.factionDict.items():
+        #    for keyB, factionB in fm.factionDict.items():
+        #        if keyA != keyB and keyA % 10 != 0 and keyB % 10 != 0 and keyB > keyA:
+        #            context.messenger.runTemp(f'cm:force_make_peace("{factionA.name}", "{factionB.name}")')
 
         sendMessage("archipelago.initialise()")
 
