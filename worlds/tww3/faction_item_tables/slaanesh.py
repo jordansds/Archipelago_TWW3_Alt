@@ -59,7 +59,7 @@ units: dict[int, itemData] = {
 }
 
 buildings: dict[int, itemData] = {
-    44400: itemData(IC.useful, 1, 'wh3_main_sla_barracks_0', itemType.building, 0, 'Progressive sla_barracks', 'Slaanesh Building: Shrine of Decadence'),
+    44400: itemData(IC.useful, 1, 'wh3_dlc27_sla_barracks_0', itemType.building, 0, 'Progressive sla_barracks', 'Slaanesh Building: Shrine of Decadence'),
     44401: itemData(IC.useful, 1, 'wh3_main_sla_barracks_1', itemType.building, 1, 'Progressive sla_barracks', 'Slaanesh Building: Temple of Decadence'),
 
     44403: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', itemType.building, 0, 'Progressive sla_foreign_slot_discovery', 'Slaanesh Building: Warpstone Locus'),
