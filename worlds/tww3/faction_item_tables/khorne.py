@@ -173,6 +173,9 @@ buildings: dict[int, itemData] = {
     32519: itemData(IC.useful, 1, 'wh3_main_kho_warriors_1', itemType.building, 0, 'Progressive kho_warriors', 'Khorne Building: The Forge'),
     32520: itemData(IC.useful, 1, 'wh3_main_kho_warriors_2', itemType.building, 1, 'Progressive kho_warriors', 'Khorne Building: The Armoury'),
     32521: itemData(IC.useful, 1, 'wh3_main_kho_warriors_3', itemType.building, 2, 'Progressive kho_warriors', 'Khorne Building: The Arsenal'),
+
+    32522: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_3', itemType.building, 0, 'Progressive kho_cult_magus', 'Khorne Building: Acolyte Trials'),
+    32523: itemData(IC.useful, 1, 'wh3_main_cult_magus_trial_2', itemType.building, 1, 'Progressive kho_cult_magus', "Khorne Building: The Dark God's Choice"),
 }
 
 techs: dict[int, itemData] = {
@@ -288,7 +291,8 @@ progBuildings: dict[int, itemData] = {
     33335: itemData(IC.useful, 3, 'Progressive kho_vehicle', itemType.building, 3, None, 'Progressive Khorne Building: Vehicle'),
     33336: itemData(IC.useful, 3, 'Progressive kho_walls_major', itemType.building, 3, None, 'Progressive Khorne Building: Walls Major'),
     33337: itemData(IC.useful, 2, 'Progressive kho_walls_minor', itemType.building, 2, None, 'Progressive Khorne Building: Walls Minor'),
-    33338: itemData(IC.useful, 3, 'Progressive kho_warriors', itemType.building, 3, None, 'Progressive Khorne Building: Warriors')
+    33338: itemData(IC.useful, 3, 'Progressive kho_warriors', itemType.building, 3, None, 'Progressive Khorne Building: Warriors'),
+    33339: itemData(IC.useful, 2, 'Progressive kho_cult_magus', itemType.building, 2, None, 'Progressive Khorne Building: Cult Magus'),
 }
 
 progTechs: dict[int, itemData] = {

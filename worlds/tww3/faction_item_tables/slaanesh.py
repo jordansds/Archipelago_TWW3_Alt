@@ -195,6 +195,9 @@ buildings: dict[int, itemData] = {
 
     44530: itemData(IC.useful, 1, 'wh3_dlc27_sla_cult_garrison_1', itemType.building, 0, 'Progressive sla_cult_garrison', 'Slaanesh Building: Alluring Suggestions'),
     44531: itemData(IC.useful, 1, 'wh3_dlc27_sla_cult_garrison_2', itemType.building, 1, 'Progressive sla_cult_garrison', 'Slaanesh Building: Irresistible Temptation'),
+
+    44532: itemData(IC.useful, 1, 'wh3_main_cult_magus_trial_1', itemType.building, 0, 'Progressive sla_cult_magus', "Slaanesh Building: Acolyte Trials"),
+    44533: itemData(IC.useful, 1, 'wh3_main_cult_magus_trial_2', itemType.building, 1, 'Progressive sla_cult_magus', "Slaanesh Building: The Dark God's Choice"),
 }
 
 techs: dict[int, itemData] = {
@@ -313,6 +316,7 @@ progBuildings: dict[int, itemData] = {
     45340: itemData(IC.useful, 2, 'Progressive sla_riders', itemType.building, 2, None, 'Progressive Slaanesh Building: Mortal Riders'),
     45341: itemData(IC.useful, 3, 'Progressive sla_followers', itemType.building, 3, None, 'Progressive Slaanesh Building: Followers'),
     45342: itemData(IC.useful, 2, 'Progressive sla_cult_garrison', itemType.building, 2, None, 'Progressive Slaanesh Building: Cult Garrison'),
+    45343: itemData(IC.useful, 2, 'Progressive sla_cult_magus', itemType.building, 2, None, 'Progressive Slaanesh Building: Cult Magus'),
 }
 
 progTechs: dict[int, itemData] = {

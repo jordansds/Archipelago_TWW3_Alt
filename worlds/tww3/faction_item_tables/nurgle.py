@@ -181,7 +181,10 @@ buildings: dict[int, itemData] = {
     40526: itemData(IC.useful, 1, 'wh3_main_nur_settlement_major_5', itemType.building, 4, 'Progressive nur_settlement_major', 'Nurgle Building: Great Blight Oak'),
     40527: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_1', itemType.building, 0, 'Progressive nur_settlement_minor', 'Nurgle Building: Nurgle Nest'),
     40528: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_2', itemType.building, 1, 'Progressive nur_settlement_minor', 'Nurgle Building: Nurgle Hollow'),
-    40529: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_3', itemType.building, 2, 'Progressive nur_settlement_minor', 'Nurgle Building: Nurgle Thicket')
+    40529: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_3', itemType.building, 2, 'Progressive nur_settlement_minor', 'Nurgle Building: Nurgle Thicket'),
+
+    40530: itemData(IC.useful, 1, 'wh3_main_nur_settlement_minor_3', itemType.building, 0, 'Progressive nur_cult_magus', 'Nurgle Building: Acolyte Trials'),
+    40531: itemData(IC.useful, 1, 'wh3_main_cult_magus_trial_2', itemType.building, 1, 'Progressive nur_cult_magus', "Nurgle Building: The Dark God's Choice"),
 }
 
 techs: dict[int, itemData] = {
@@ -288,7 +291,8 @@ progBuildings: dict[int, itemData] = {
     41336: itemData(IC.useful, 3, 'Progressive nur_resource_wine', itemType.building, 3, None, 'Progressive Nurgle Building: Wine'),
     41337: itemData(IC.useful, 3, 'Progressive nur_resource_wood', itemType.building, 3, None, 'Progressive Nurgle Building: Wood'),
     41338: itemData(IC.useful, 5, 'Progressive nur_settlement_major', itemType.building, 5, None, 'Progressive Nurgle Building: Settlement Major'),
-    41339: itemData(IC.useful, 3, 'Progressive nur_settlement_minor', itemType.building, 3, None, 'Progressive Nurgle Building: Settlement Minor')
+    41339: itemData(IC.useful, 3, 'Progressive nur_settlement_minor', itemType.building, 3, None, 'Progressive Nurgle Building: Settlement Minor'),
+    41340: itemData(IC.useful, 2, 'Progressive nur_cult_magus', itemType.building, 2, None, 'Progressive Nurgle Building: Cult Magus'),
 }
 
 progTechs: dict[int, itemData] = {
