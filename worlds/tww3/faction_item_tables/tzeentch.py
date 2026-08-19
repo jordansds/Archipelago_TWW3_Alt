@@ -218,12 +218,12 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    49200: itemData(IC.useful, 4, "Progressive tze_inf", itemType.unit, 4, "", "Progressive Tzeentch Unit: Infantry"),
-    49201: itemData(IC.useful, 4, "Progressive tze_rng", itemType.unit, 4, "", "Progressive Tzeentch Unit: Ranged"),
-    49202: itemData(IC.useful, 4, "Progressive tze_cav", itemType.unit, 4, "", "Progressive Tzeentch Unit: Cavalry"),
-    49204: itemData(IC.useful, 3, "Progressive tze_veh", itemType.unit, 3, "", "Progressive Tzeentch Unit: Chariot"),
-    49205: itemData(IC.useful, 5, "Progressive tze_bst", itemType.unit, 5, "", "Progressive Tzeentch Unit: Beast"),
-    49206: itemData(IC.useful, 2, "Progressive tze_hro", itemType.unit, 2, "", "Progressive Tzeentch Unit: Hero")
+    49200: itemData(IC.useful, 4, "Progressive tze_inf", itemType.unit, 4, None, "Progressive Tzeentch Unit: Infantry"),
+    49201: itemData(IC.useful, 4, "Progressive tze_rng", itemType.unit, 4, None, "Progressive Tzeentch Unit: Ranged"),
+    49202: itemData(IC.useful, 4, "Progressive tze_cav", itemType.unit, 4, None, "Progressive Tzeentch Unit: Cavalry"),
+    49204: itemData(IC.useful, 3, "Progressive tze_veh", itemType.unit, 3, None, "Progressive Tzeentch Unit: Chariot"),
+    49205: itemData(IC.useful, 5, "Progressive tze_bst", itemType.unit, 5, None, "Progressive Tzeentch Unit: Beast"),
+    49206: itemData(IC.useful, 2, "Progressive tze_hro", itemType.unit, 2, None, "Progressive Tzeentch Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

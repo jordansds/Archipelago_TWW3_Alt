@@ -219,7 +219,7 @@ progUnits: dict[int, itemData] = {
     13201: itemData(IC.useful, 4, "progressive brt_rng", itemType.unit, 2, None, "Progressive Bretonnia Unit: Ranged"),
     13202: itemData(IC.useful, 5, "progressive brt_cav", itemType.unit, 5, None, "Progressive Bretonnia Unit: Cavalry"),
     13203: itemData(IC.useful, 2, "progressive brt_art", itemType.unit, 2, None, "Progressive Bretonnia Unit: Artillery"),
-    31206: itemData(IC.useful, 1, "progressive brt_hro", itemType.unit, 1, "", "Progressive Bretonnia Unit: Hero")
+    13204: itemData(IC.useful, 1, "progressive brt_hro", itemType.unit, 1, None, "Progressive Bretonnia Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

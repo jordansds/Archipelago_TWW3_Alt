@@ -172,11 +172,11 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    55200: itemData(IC.useful, 3, "Progressive wef_inf", itemType.unit, 3, "", "Progressive WoodElf Unit: Infantry"),
-    55201: itemData(IC.useful, 3, "Progressive wef_rng", itemType.unit, 3, "", "Progressive WoodElf Unit: Ranged"),
-    55202: itemData(IC.useful, 4, "Progressive wef_cav", itemType.unit, 4, "", "Progressive WoodElf Unit: Cavalry"),
-    55205: itemData(IC.useful, 4, "Progressive wef_bst", itemType.unit, 4, "", "Progressive WoodElf Unit: Beast"),
-    55206: itemData(IC.useful, 2, "Progressive wef_hro", itemType.unit, 2, "", "Progressive WoodElf Unit: Hero")
+    55200: itemData(IC.useful, 3, "Progressive wef_inf", itemType.unit, 3, None, "Progressive WoodElf Unit: Infantry"),
+    55201: itemData(IC.useful, 3, "Progressive wef_rng", itemType.unit, 3, None, "Progressive WoodElf Unit: Ranged"),
+    55202: itemData(IC.useful, 4, "Progressive wef_cav", itemType.unit, 4, None, "Progressive WoodElf Unit: Cavalry"),
+    55205: itemData(IC.useful, 4, "Progressive wef_bst", itemType.unit, 4, None, "Progressive WoodElf Unit: Beast"),
+    55206: itemData(IC.useful, 2, "Progressive wef_hro", itemType.unit, 2, None, "Progressive WoodElf Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

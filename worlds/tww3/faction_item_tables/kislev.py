@@ -272,13 +272,13 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    35200: itemData(IC.useful, 2, "Progressive ksl_inf", itemType.unit, 2, "", "Progressive Kislev Unit: Infantry"),
-    35201: itemData(IC.useful, 4, "Progressive ksl_rng", itemType.unit, 4, "", "Progressive Kislev Unit: Ranged"),
-    35202: itemData(IC.useful, 4, "Progressive ksl_cav", itemType.unit, 4, "", "Progressive Kislev Unit: Cavalry"),
-    35203: itemData(IC.useful, 1, "Progressive ksl_art", itemType.unit, 1, "", "Progressive Kislev Unit: Artillery"),
-    35204: itemData(IC.useful, 2, "Progressive ksl_veh", itemType.unit, 2, "", "Progressive Kislev Unit: Chariot"),
-    35205: itemData(IC.useful, 3, "Progressive ksl_bst", itemType.unit, 3, "", "Progressive Kislev Unit: Beast"),
-    35206: itemData(IC.useful, 2, "Progressive ksl_hro", itemType.unit, 2, "", "Progressive Kislev Unit: Hero")
+    35200: itemData(IC.useful, 2, "Progressive ksl_inf", itemType.unit, 2, None, "Progressive Kislev Unit: Infantry"),
+    35201: itemData(IC.useful, 4, "Progressive ksl_rng", itemType.unit, 4, None, "Progressive Kislev Unit: Ranged"),
+    35202: itemData(IC.useful, 4, "Progressive ksl_cav", itemType.unit, 4, None, "Progressive Kislev Unit: Cavalry"),
+    35203: itemData(IC.useful, 1, "Progressive ksl_art", itemType.unit, 1, None, "Progressive Kislev Unit: Artillery"),
+    35204: itemData(IC.useful, 2, "Progressive ksl_veh", itemType.unit, 2, None, "Progressive Kislev Unit: Chariot"),
+    35205: itemData(IC.useful, 3, "Progressive ksl_bst", itemType.unit, 3, None, "Progressive Kislev Unit: Beast"),
+    35206: itemData(IC.useful, 2, "Progressive ksl_hro", itemType.unit, 2, None, "Progressive Kislev Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

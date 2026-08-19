@@ -260,13 +260,13 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    15200: itemData(IC.useful, 4, "progressive cth_inf", itemType.unit, 4, "", "Progressive Cathay Unit: Infantry"),
-    15201: itemData(IC.useful, 4, "progressive cth_rng", itemType.unit, 4, "", "Progressive Cathay Unit: Ranged"),
-    15202: itemData(IC.useful, 3, "progressive cth_cav", itemType.unit, 3, "", "Progressive Cathay Unit: Cavalry"),
-    15203: itemData(IC.useful, 2, "progressive cth_art", itemType.unit, 2, "", "Progressive Cathay Unit: Artillery"),
-    15204: itemData(IC.useful, 4, "progressive cth_veh", itemType.unit, 4, "", "Progressive Cathay Unit: War Machine"),
-    15205: itemData(IC.useful, 3, "progressive cth_bst", itemType.unit, 3, "", "Progressive Cathay Unit: Beast"),
-    15206: itemData(IC.useful, 1, "progressive cth_hro", itemType.unit, 1, "", "Progressive Cathay Unit: Hero")
+    15200: itemData(IC.useful, 4, "progressive cth_inf", itemType.unit, 4, None, "Progressive Cathay Unit: Infantry"),
+    15201: itemData(IC.useful, 4, "progressive cth_rng", itemType.unit, 4, None, "Progressive Cathay Unit: Ranged"),
+    15202: itemData(IC.useful, 3, "progressive cth_cav", itemType.unit, 3, None, "Progressive Cathay Unit: Cavalry"),
+    15203: itemData(IC.useful, 2, "progressive cth_art", itemType.unit, 2, None, "Progressive Cathay Unit: Artillery"),
+    15204: itemData(IC.useful, 4, "progressive cth_veh", itemType.unit, 4, None, "Progressive Cathay Unit: War Machine"),
+    15205: itemData(IC.useful, 3, "progressive cth_bst", itemType.unit, 3, None, "Progressive Cathay Unit: Beast"),
+    15206: itemData(IC.useful, 1, "progressive cth_hro", itemType.unit, 1, None, "Progressive Cathay Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

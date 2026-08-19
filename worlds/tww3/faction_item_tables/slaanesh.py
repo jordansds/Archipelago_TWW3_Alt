@@ -263,12 +263,12 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    45200: itemData(IC.useful, 3, "Progressive sla_inf", itemType.unit, 3, "", "Progressive Slaanesh Unit: Infantry"),
-    45201: itemData(IC.useful, 1, "Progressive sla_rng", itemType.unit, 1, "", "Progressive Slaanesh Unit: Ranged"),
-    45202: itemData(IC.useful, 5, "Progressive sla_cav", itemType.unit, 5, "", "Progressive Slaanesh Unit: Cavalry"),
-    45204: itemData(IC.useful, 2, "Progressive sla_veh", itemType.unit, 2, "", "Progressive Slaanesh Unit: Chariot"),
-    45205: itemData(IC.useful, 4, "Progressive sla_bst", itemType.unit, 4, "", "Progressive Slaanesh Unit: Beast"),
-    45206: itemData(IC.useful, 1, "Progressive sla_hro", itemType.unit, 1, "", "Progressive Slaanesh Unit: Hero")
+    45200: itemData(IC.useful, 3, "Progressive sla_inf", itemType.unit, 3, None, "Progressive Slaanesh Unit: Infantry"),
+    45201: itemData(IC.useful, 1, "Progressive sla_rng", itemType.unit, 1, None, "Progressive Slaanesh Unit: Ranged"),
+    45202: itemData(IC.useful, 5, "Progressive sla_cav", itemType.unit, 5, None, "Progressive Slaanesh Unit: Cavalry"),
+    45204: itemData(IC.useful, 2, "Progressive sla_veh", itemType.unit, 2, None, "Progressive Slaanesh Unit: Chariot"),
+    45205: itemData(IC.useful, 4, "Progressive sla_bst", itemType.unit, 4, None, "Progressive Slaanesh Unit: Beast"),
+    45206: itemData(IC.useful, 1, "Progressive sla_hro", itemType.unit, 1, None, "Progressive Slaanesh Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

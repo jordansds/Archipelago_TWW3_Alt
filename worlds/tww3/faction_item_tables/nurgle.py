@@ -244,11 +244,11 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    41200: itemData(IC.useful, 4, "Progressive nur_inf", itemType.unit, 4, "", "Progressive Nurgle Unit: Infantry"),
-    41202: itemData(IC.useful, 4, "Progressive nur_cav", itemType.unit, 4, "", "Progressive Nurgle Unit: Cavalry"),
-    41204: itemData(IC.useful, 1, "Progressive nur_veh", itemType.unit, 1, "", "Progressive Nurgle Unit: Chariot"),
-    41205: itemData(IC.useful, 6, "Progressive nur_bst", itemType.unit, 6, "", "Progressive Nurgle Unit: Beast"),
-    41206: itemData(IC.useful, 1, "Progressive nur_hro", itemType.unit, 1, "", "Progressive Nurgle Unit: Hero")
+    41200: itemData(IC.useful, 4, "Progressive nur_inf", itemType.unit, 4, None, "Progressive Nurgle Unit: Infantry"),
+    41202: itemData(IC.useful, 4, "Progressive nur_cav", itemType.unit, 4, None, "Progressive Nurgle Unit: Cavalry"),
+    41204: itemData(IC.useful, 1, "Progressive nur_veh", itemType.unit, 1, None, "Progressive Nurgle Unit: Chariot"),
+    41205: itemData(IC.useful, 6, "Progressive nur_bst", itemType.unit, 6, None, "Progressive Nurgle Unit: Beast"),
+    41206: itemData(IC.useful, 1, "Progressive nur_hro", itemType.unit, 1, None, "Progressive Nurgle Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

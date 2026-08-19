@@ -906,6 +906,7 @@ class EngineInitializer:
             context.lockProgressiveBuildings()
         if context.progressiveUnits:
             context.lockProgressiveUnits()
+        print(context.progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###

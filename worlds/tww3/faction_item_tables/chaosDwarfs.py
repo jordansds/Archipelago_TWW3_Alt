@@ -272,12 +272,12 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    17200: itemData(IC.useful, 4, "progressive chd_inf", itemType.unit, 4, "", "Progressive ChaosDwarf Unit: Infantry"),
-    17201: itemData(IC.useful, 3, "progressive chd_rng", itemType.unit, 3, "", "Progressive ChaosDwarf Unit: Ranged"),
-    17202: itemData(IC.useful, 2, "progressive chd_cav", itemType.unit, 2, "", "Progressive ChaosDwarf Unit: Cavalry"),
-    17203: itemData(IC.useful, 3, "progressive chd_art", itemType.unit, 3, "", "Progressive ChaosDwarf Unit: Artillery"),
-    17205: itemData(IC.useful, 4, "progressive chd_bst", itemType.unit, 4, "", "Progressive ChaosDwarf Unit: Beast"),
-    17206: itemData(IC.useful, 1, "progressive chd_hro", itemType.unit, 1, "", "Progressive ChaosDwarf Unit: Hero")
+    17200: itemData(IC.useful, 4, "progressive chd_inf", itemType.unit, 4, None, "Progressive ChaosDwarf Unit: Infantry"),
+    17201: itemData(IC.useful, 3, "progressive chd_rng", itemType.unit, 3, None, "Progressive ChaosDwarf Unit: Ranged"),
+    17202: itemData(IC.useful, 2, "progressive chd_cav", itemType.unit, 2, None, "Progressive ChaosDwarf Unit: Cavalry"),
+    17203: itemData(IC.useful, 3, "progressive chd_art", itemType.unit, 3, None, "Progressive ChaosDwarf Unit: Artillery"),
+    17205: itemData(IC.useful, 4, "progressive chd_bst", itemType.unit, 4, None, "Progressive ChaosDwarf Unit: Beast"),
+    17206: itemData(IC.useful, 1, "progressive chd_hro", itemType.unit, 1, None, "Progressive ChaosDwarf Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {
