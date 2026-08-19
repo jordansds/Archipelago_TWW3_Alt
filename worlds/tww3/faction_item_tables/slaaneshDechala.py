@@ -81,9 +81,9 @@ buildings: dict[int, itemData] = {
     70469: itemData(IC.useful, 1, 'wh3_dlc27_sla_tormentors_port_1', itemType.building, 0, 'Progressive sla_port', "Dechala Building: Enclave Port"),
     70470: itemData(IC.useful, 1, 'wh3_dlc27_sla_tormentors_port_2', itemType.building, 1, 'Progressive sla_port', "Dechala Building: Thrallport"),
     70471: itemData(IC.useful, 1, 'wh3_dlc27_sla_tormentors_port_3', itemType.building, 2, 'Progressive sla_port', "Dechala Building: Grand Thrallport"),
-    70472: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_1', itemType.building, 0, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Warpstone Locus"),
-    70473: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_2', itemType.building, 1, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Warpstone Traps"),
-    70474: itemData(IC.useful, 1, 'wh3_main_foreign_slot_discovery_sla_3', itemType.building, 2, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Guarded Warpstone"),
+    70472: itemData(IC.useful, 1, 'wh3_dlc27_sla_dec_all_patrols_1', itemType.building, 0, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Warpstone Locus"),
+    70473: itemData(IC.useful, 1, 'wh3_dlc27_sla_dec_all_patrols_2', itemType.building, 1, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Warpstone Traps"),
+    70474: itemData(IC.useful, 1, 'wh3_dlc27_sla_dec_all_patrols_3', itemType.building, 2, 'Progressive sla_foreign_slot_discovery', "Dechala Building: Guarded Warpstone"),
 
     70475: itemData(IC.useful, 1, 'wh3_main_sla_cult_1', itemType.building, 0, 'Progressive sla_cult', 'Dechala Building: Devotee Enticement'),
     70476: itemData(IC.useful, 1, 'wh3_main_sla_cult_2', itemType.building, 0, 'Progressive sla_cult', 'Dechala Building: Charm Offensive'),
