@@ -253,12 +253,12 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    27200: itemData(IC.useful, 4, "Progressive ogr_inf", itemType.unit, 4, "", "Progressive Ogre Unit: Infantry"),
-    27201: itemData(IC.useful, 4, "Progressive ogr_rng", itemType.unit, 4, "", "Progressive Ogre Unit: Ranged"),
-    27202: itemData(IC.useful, 3, "Progressive ogr_cav", itemType.unit, 3, "", "Progressive Ogre Unit: Cavalry"),
-    27203: itemData(IC.useful, 2, "Progressive ogr_art", itemType.unit, 2, "", "Progressive Ogre Unit: Artillery"),
-    27205: itemData(IC.useful, 4, "Progressive ogr_bst", itemType.unit, 4, "", "Progressive Ogre Unit: Beast"),
-    27206: itemData(IC.useful, 1, "Progressive ogr_hro", itemType.unit, 1, "", "Progressive Ogre Unit: Hero")
+    27200: itemData(IC.useful, 4, "Progressive ogr_inf", itemType.unit, 4, None, "Progressive Ogre Unit: Infantry"),
+    27201: itemData(IC.useful, 4, "Progressive ogr_rng", itemType.unit, 4, None, "Progressive Ogre Unit: Ranged"),
+    27202: itemData(IC.useful, 3, "Progressive ogr_cav", itemType.unit, 3, None, "Progressive Ogre Unit: Cavalry"),
+    27203: itemData(IC.useful, 2, "Progressive ogr_art", itemType.unit, 2, None, "Progressive Ogre Unit: Artillery"),
+    27205: itemData(IC.useful, 4, "Progressive ogr_bst", itemType.unit, 4, None, "Progressive Ogre Unit: Beast"),
+    27206: itemData(IC.useful, 1, "Progressive ogr_hro", itemType.unit, 1, None, "Progressive Ogre Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

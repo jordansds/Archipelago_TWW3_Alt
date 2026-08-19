@@ -362,13 +362,13 @@ buildings: dict[int, itemData] = {
 techs: dict[int, itemData] = {}
 
 progUnits: dict[int, itemData] = {
-    19200: itemData(IC.useful, 5, "progressive dae_inf", itemType.unit, 5, "", "Progressive Daemons Unit: Infantry"),
-    19201: itemData(IC.useful, 4, "progressive dae_rng", itemType.unit, 4, "", "Progressive Daemons Unit: Ranged"),
-    19202: itemData(IC.useful, 5, "progressive dae_cav", itemType.unit, 5, "", "Progressive Daemons Unit: Cavalry"),
-    19203: itemData(IC.useful, 1, "progressive dae_art", itemType.unit, 1, "", "Progressive Daemons Unit: Artillery"),
-    19204: itemData(IC.useful, 5, "progressive dae_veh", itemType.unit, 5, "", "Progressive Daemons Unit: Chariot"),
-    19205: itemData(IC.useful, 4, "progressive dae_bst", itemType.unit, 4, "", "Progressive Daemons Unit: Beast"),
-    19206: itemData(IC.useful, 1, "progressive dae_hro", itemType.unit, 1, "", "Progressive Daemons Unit: Hero")
+    19200: itemData(IC.useful, 5, "progressive dae_inf", itemType.unit, 5, None, "Progressive Daemons Unit: Infantry"),
+    19201: itemData(IC.useful, 4, "progressive dae_rng", itemType.unit, 4, None, "Progressive Daemons Unit: Ranged"),
+    19202: itemData(IC.useful, 5, "progressive dae_cav", itemType.unit, 5, None, "Progressive Daemons Unit: Cavalry"),
+    19203: itemData(IC.useful, 1, "progressive dae_art", itemType.unit, 1, None, "Progressive Daemons Unit: Artillery"),
+    19204: itemData(IC.useful, 5, "progressive dae_veh", itemType.unit, 5, None, "Progressive Daemons Unit: Chariot"),
+    19205: itemData(IC.useful, 4, "progressive dae_bst", itemType.unit, 4, None, "Progressive Daemons Unit: Beast"),
+    19206: itemData(IC.useful, 1, "progressive dae_hro", itemType.unit, 1, None, "Progressive Daemons Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

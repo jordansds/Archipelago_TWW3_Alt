@@ -182,13 +182,13 @@ techs.update({
 })
 
 progUnits: dict[int, itemData] = {
-    75200: itemData(IC.useful, 4, "progressive cth_bhashiva_inf", itemType.unit, 4, "", "Progressive Cathay Bhashiva Unit: Infantry"),
-    75201: itemData(IC.useful, 4, "progressive cth_bhashiva_rng", itemType.unit, 4, "", "Progressive Cathay Bhashiva Unit: Ranged"),
-    75202: itemData(IC.useful, 3, "progressive cth_bhashiva_cav", itemType.unit, 3, "", "Progressive Cathay Bhashiva Unit: Cavalry"),
-    75203: itemData(IC.useful, 1, "progressive cth_bhashiva_art", itemType.unit, 1, "", "Progressive Cathay Bhashiva Unit: Artillery"),
-    75204: itemData(IC.useful, 2, "progressive cth_bhashiva_veh", itemType.unit, 2, "", "Progressive Cathay Bhashiva Unit: War Machine"),
-    75205: itemData(IC.useful, 3, "progressive cth_bhashiva_bst", itemType.unit, 3, "", "Progressive Cathay Bhashiva Unit: Beast"),
-    75206: itemData(IC.useful, 1, "progressive cth_bhashiva_hro", itemType.unit, 1, "", "Progressive Cathay Bhashiva Unit: Hero")
+    75200: itemData(IC.useful, 4, "progressive cth_bhashiva_inf", itemType.unit, 4, None, "Progressive Cathay Bhashiva Unit: Infantry"),
+    75201: itemData(IC.useful, 4, "progressive cth_bhashiva_rng", itemType.unit, 4, None, "Progressive Cathay Bhashiva Unit: Ranged"),
+    75202: itemData(IC.useful, 3, "progressive cth_bhashiva_cav", itemType.unit, 3, None, "Progressive Cathay Bhashiva Unit: Cavalry"),
+    75203: itemData(IC.useful, 1, "progressive cth_bhashiva_art", itemType.unit, 1, None, "Progressive Cathay Bhashiva Unit: Artillery"),
+    75204: itemData(IC.useful, 2, "progressive cth_bhashiva_veh", itemType.unit, 2, None, "Progressive Cathay Bhashiva Unit: War Machine"),
+    75205: itemData(IC.useful, 3, "progressive cth_bhashiva_bst", itemType.unit, 3, None, "Progressive Cathay Bhashiva Unit: Beast"),
+    75206: itemData(IC.useful, 1, "progressive cth_bhashiva_hro", itemType.unit, 1, None, "Progressive Cathay Bhashiva Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

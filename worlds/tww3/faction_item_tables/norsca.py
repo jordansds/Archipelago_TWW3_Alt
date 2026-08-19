@@ -248,13 +248,13 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    39200: itemData(IC.useful, 5, "Progressive nor_inf", itemType.unit, 5, "", "Progressive Norsca Unit: Infantry"),
-    39201: itemData(IC.useful, 1, "Progressive nor_rng", itemType.unit, 1, "", "Progressive Norsca Unit: Ranged"),
-    39202: itemData(IC.useful, 3, "Progressive nor_cav", itemType.unit, 3, "", "Progressive Norsca Unit: Cavalry"),
-    39203: itemData(IC.useful, 1, "Progressive nor_art", itemType.unit, 1, "", "Progressive Norsca Unit: Artillery"),
-    39204: itemData(IC.useful, 2, "Progressive nor_veh", itemType.unit, 2, "", "Progressive Norsca Unit: Chariot"),
-    39205: itemData(IC.useful, 5, "Progressive nor_bst", itemType.unit, 5, "", "Progressive Norsca Unit: Beast"),
-    39206: itemData(IC.useful, 3, "Progressive nor_hro", itemType.unit, 3, "", "Progressive Norsca Unit: Hero")
+    39200: itemData(IC.useful, 5, "Progressive nor_inf", itemType.unit, 5, None, "Progressive Norsca Unit: Infantry"),
+    39201: itemData(IC.useful, 1, "Progressive nor_rng", itemType.unit, 1, None, "Progressive Norsca Unit: Ranged"),
+    39202: itemData(IC.useful, 3, "Progressive nor_cav", itemType.unit, 3, None, "Progressive Norsca Unit: Cavalry"),
+    39203: itemData(IC.useful, 1, "Progressive nor_art", itemType.unit, 1, None, "Progressive Norsca Unit: Artillery"),
+    39204: itemData(IC.useful, 2, "Progressive nor_veh", itemType.unit, 2, None, "Progressive Norsca Unit: Chariot"),
+    39205: itemData(IC.useful, 5, "Progressive nor_bst", itemType.unit, 5, None, "Progressive Norsca Unit: Beast"),
+    39206: itemData(IC.useful, 3, "Progressive nor_hro", itemType.unit, 3, None, "Progressive Norsca Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

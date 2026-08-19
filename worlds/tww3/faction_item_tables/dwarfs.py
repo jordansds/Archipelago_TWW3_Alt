@@ -312,11 +312,11 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    23200: itemData(IC.useful, 3, "progressive dwf_inf", itemType.unit, 3, "", "Progressive Dwarf Unit: Infantry"),
-    23201: itemData(IC.useful, 2, "progressive dwf_rng", itemType.unit, 2, "", "Progressive Dwarf Unit: Ranged"),
-    23203: itemData(IC.useful, 3, "progressive dwf_art", itemType.unit, 3, "", "Progressive Dwarf Unit: Artillery"),
-    23204: itemData(IC.useful, 4, "progressive dwf_veh", itemType.unit, 4, "", "Progressive Dwarf Unit: War Machine"),
-    23206: itemData(IC.useful, 2, "progressive dwf_hro", itemType.unit, 2, "", "Progressive Dwarf Unit: Hero")
+    23200: itemData(IC.useful, 3, "progressive dwf_inf", itemType.unit, 3, None, "Progressive Dwarf Unit: Infantry"),
+    23201: itemData(IC.useful, 2, "progressive dwf_rng", itemType.unit, 2, None, "Progressive Dwarf Unit: Ranged"),
+    23203: itemData(IC.useful, 3, "progressive dwf_art", itemType.unit, 3, None, "Progressive Dwarf Unit: Artillery"),
+    23204: itemData(IC.useful, 4, "progressive dwf_veh", itemType.unit, 4, None, "Progressive Dwarf Unit: War Machine"),
+    23206: itemData(IC.useful, 2, "progressive dwf_hro", itemType.unit, 2, None, "Progressive Dwarf Unit: Hero")
 }
 
 progBuildings: dict[int, itemData] = {

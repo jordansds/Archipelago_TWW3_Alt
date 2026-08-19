@@ -57,9 +57,9 @@ progUnits: dict[int, itemData] = {key + 70000: itemData(unit.classification,
                                                         unit.readableName.replace("Norsca ", "Norsca Surtha "))
                                   for key, unit in norsca.progUnits.items()}
 progUnits.update({
-    109201: itemData(IC.useful, 2, "Progressive nor_rng", itemType.unit, 2, "", "Progressive Norsca Surtha Unit: Ranged"),
-    109202: itemData(IC.useful, 2, "Progressive nor_cav", itemType.unit, 2, "", "Progressive Norsca Surtha Unit: Cavalry"),
-    109204: itemData(IC.useful, 4, "Progressive nor_veh", itemType.unit, 4, "", "Progressive Norsca Surtha Unit: Chariot"),
+    109201: itemData(IC.useful, 2, "Progressive nor_rng", itemType.unit, 2, None, "Progressive Norsca Surtha Unit: Ranged"),
+    109202: itemData(IC.useful, 2, "Progressive nor_cav", itemType.unit, 2, None, "Progressive Norsca Surtha Unit: Cavalry"),
+    109204: itemData(IC.useful, 4, "Progressive nor_veh", itemType.unit, 4, None, "Progressive Norsca Surtha Unit: Chariot"),
 })
 
 progBuildings: dict[int, itemData] = {key + 70000: itemData(unit.classification,

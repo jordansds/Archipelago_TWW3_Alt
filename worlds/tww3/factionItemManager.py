@@ -115,6 +115,7 @@ raceModuleDict.update({
 
 def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int, itemData]:
     itemDict: dict[int, itemData] = {}
+    oldItemDict: dict[int, itemData] = {}
     for race, module in raceModuleDict.items():
         if playerRace == race or playerRace == "":
             itemDict.update(module.units)
@@ -124,11 +125,30 @@ def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int
             itemDict.update(module.progBuildings)
             itemDict.update(module.progTechs)
             itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if playerFaction in item.faction or playerFaction == "" or item.faction == []}) #Turn special item into regular item
+
             try:
                 #print(module.rituals.items())
                 itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items() if playerFaction in item.faction or playerFaction == "" or item.faction == []})
             except AttributeError:
                 pass
+
+            # Do some checking to see if any keys are overwritten
+            # The problem with this code is it will always think there are overwrites because the old/new dicts contain all the previous data from other modules.
+            """print(itemDict.keys())
+            print(oldItemDict.keys())
+
+            overwrittenKeys = set(oldItemDict.keys()) & set(itemDict.keys())
+            print(overwrittenKeys)
+            print(bool(overwrittenKeys))
+
+
+            if bool(overwrittenKeys):
+                exit()
+                print(race)
+                print(overwrittenKeys)
+            oldItemDict.update(itemDict)"""
+
+
         if playerRace == race:
             try:
                 for key in module.removeKeys:
