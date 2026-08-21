@@ -1,6 +1,7 @@
 from __future__ import annotations
 from worlds.tww3.dataStructs import itemData, itemType
 from types import ModuleType
+from worlds.tww3.debug import debug
 
 #Base Game
 from worlds.tww3.faction_item_tables import (beastmen, bretonnia, cathay, cathayBhashiva, chaosDwarfs, daemons,
@@ -115,10 +116,37 @@ raceModuleDict.update({
 
 def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int, itemData]:
     itemDict: dict[int, itemData] = {}
-    oldItemDict: dict[int, itemData] = {}
     for race, module in raceModuleDict.items():
+        newItemDict: dict[int, itemData] = {}
         if playerRace == race or playerRace == "":
-            itemDict.update(module.units)
+            newItemDict.update(module.units)
+            newItemDict.update(module.buildings)
+            newItemDict.update(module.techs)
+            newItemDict.update(module.progUnits)
+            newItemDict.update(module.progBuildings)
+            newItemDict.update(module.progTechs)
+            newItemDict.update(
+                {key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.special.items() if
+                 playerFaction in item.faction or playerFaction == "" or item.faction == []})  # Turn special item into regular item
+
+            try:
+                # print(module.rituals.items())
+                newItemDict.update(
+                    {key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items() if
+                     playerFaction in item.faction or playerFaction == "" or item.faction == []})
+            except AttributeError:
+                pass
+
+            # Do some checking to see if any keys are overwritten
+            overwrittenKeys = set(newItemDict.keys()) & set(itemDict.keys())
+
+            if bool(overwrittenKeys) and debug:
+                print(f"{race} overwrites keys:")
+                print(overwrittenKeys)
+
+            itemDict.update(newItemDict)
+
+            """itemDict.update(module.units)
             itemDict.update(module.buildings)
             itemDict.update(module.techs)
             itemDict.update(module.progUnits)
@@ -130,24 +158,7 @@ def getAllItems(playerRace = "", playerFaction = "", modList = None) -> dict[int
                 #print(module.rituals.items())
                 itemDict.update({key: itemData(*item[:2], *item[3:6], item[6], item[9]) for key, item in module.rituals.items() if playerFaction in item.faction or playerFaction == "" or item.faction == []})
             except AttributeError:
-                pass
-
-            # Do some checking to see if any keys are overwritten
-            # The problem with this code is it will always think there are overwrites because the old/new dicts contain all the previous data from other modules.
-            """print(itemDict.keys())
-            print(oldItemDict.keys())
-
-            overwrittenKeys = set(oldItemDict.keys()) & set(itemDict.keys())
-            print(overwrittenKeys)
-            print(bool(overwrittenKeys))
-
-
-            if bool(overwrittenKeys):
-                exit()
-                print(race)
-                print(overwrittenKeys)
-            oldItemDict.update(itemDict)"""
-
+                pass"""
 
         if playerRace == race:
             try:

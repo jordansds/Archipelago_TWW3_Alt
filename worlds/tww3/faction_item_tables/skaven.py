@@ -438,7 +438,7 @@ rituals: dict[int, specialItemData] = {
 
     43696: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_1', itemType.building, 0, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Plague Cauldron Cradle'),
     43697: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_2', itemType.building, 1, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Grand Plague Cauldron'),
-    43698: specialItemData(IC.useful, 2, ["wh2_main_skv_clan_pestilens"], 'Progressive skv_under_empire_cauldron', itemType.building, 2, None, False, True, 'Progressive Skaven Under Empire: Plague Cauldron'),
+    #43698: specialItemData(IC.useful, 2, ["wh2_main_skv_clan_pestilens"], 'Progressive skv_under_empire_cauldron', itemType.building, 2, None, False, True, 'Progressive Skaven Under Empire: Plague Cauldron'),
 }
 
 #"wh2_main_skv_clan_mordkin",
