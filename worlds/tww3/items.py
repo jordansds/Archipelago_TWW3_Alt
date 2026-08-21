@@ -7,7 +7,6 @@ if TYPE_CHECKING:
 
 from BaseClasses import Item
 from BaseClasses import ItemClassification as IC
-import math
 
 from worlds.tww3.item_tables.filler_item_table import fillerDict, trapDict
 from worlds.tww3.item_tables.ancillaries_table import ancillariesDict
@@ -140,13 +139,21 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
     for key, item in factionItemManager.getSpecial(world):
         if item.spcLogic:
             world.push_precollected(world.create_item(item.readableName))
-        if item.type == itemType.building and item.tier > world.options.starting_tier - 1:
+        if (
+            world.options.building_shuffle
+            and item.type == itemType.building
+            and item.tier > world.options.starting_tier - 1
+        ):
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
                 if not item.isProgressiveItem:
                     world.itemKeys.append(key)
-        elif (item.type == itemType.unit and item.tier > world.options.starting_tier) or item.type == itemType.tech:
+        elif (
+            world.options.unit_shuffle
+            and item.type == itemType.unit
+            and item.tier > world.options.starting_tier
+        ) or (world.options.tech_shuffle and item.type == itemType.tech):
             for i in range(item.count):
                 tww3_item = world.create_item(item.readableName)
                 pool.append(tww3_item)
@@ -186,7 +193,7 @@ def generateRitualItems(world: TWW3World, pool: list) -> list:
 
 def generateExpansionItems(world: TWW3World, pool: list) -> list:
     if world.options.game_mode == "conquest":
-        for i in range(math.floor(world.options.number_of_settlements / world.adminCapacity)):
+        for _ in range(world.adminItems):
             item = world.create_item("Administrative Capacity")
             pool.append(item)
     elif world.options.game_mode == "spheres":

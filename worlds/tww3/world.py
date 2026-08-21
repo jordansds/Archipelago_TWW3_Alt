@@ -3,10 +3,10 @@ from typing import Any, Mapping, ClassVar, Optional
 from Options import Option
 from worlds.AutoWorld import World
 from BaseClasses import Region, ItemClassification as IC
-import math
 import settings
 from worlds.tww3.options import TWW3Options
 from worlds.tww3 import items, locations, rules, sanityRules
+from worlds.tww3.conquest import required_capacity_items
 from worlds.tww3.item_tables import factions as fm, settlements as sm
 from worlds.tww3 import settlementRandomiser as sr
 from worlds.tww3 import factionItemManager
@@ -119,7 +119,7 @@ class TWW3World(World):
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
-        self.adminItems = math.floor(self.options.number_of_settlements / self.adminCapacity)
+        self.adminItems = required_capacity_items(self.options.number_of_settlements.value, self.adminCapacity)
 
         if self.options.balance > 0 or not self.options.hard_logic:
             self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")

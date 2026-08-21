@@ -12,7 +12,7 @@ from collections import Counter
 
 def setVictoryRule(world: TWW3World, location):
     if world.options.game_mode == "conquest":
-        rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.adminCapacity - 1))
+        rule = Has("Administrative Capacity", world.adminItems)
 
     elif world.options.game_mode == "spheres":
         rule = Has("Orb of Domination", world.orbCount)
@@ -24,7 +24,7 @@ def setVictoryRule(world: TWW3World, location):
 def setGenericLocationRule(world: TWW3World, location, i: int):
     rule = None
     if world.options.game_mode == "conquest":
-        requiredAdminCapacity = math.floor(i / 20 * world.options.number_of_settlements / world.adminCapacity)
+        requiredAdminCapacity = i * world.adminItems // 20
         if requiredAdminCapacity > 0:
             rule = Has("Administrative Capacity", requiredAdminCapacity)
 
