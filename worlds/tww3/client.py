@@ -126,8 +126,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 
 class Messenger:
     def __init__(self, path):
-        self.file = open(path, 'w+')
-        self.tempFile = open(f"{path[:-3]}-temp.in", 'w+')
+        self.file = open(path, 'w+', encoding="utf-8")
+        self.tempFile = open(f"{path[:-3]}-temp.in", 'w+', encoding="utf-8")
         self.firstLine = True
 
     def run(self, message):
@@ -153,15 +153,15 @@ class Watcher:
     def __init__(self, path, context):
         self.context = context
         if os.path.isfile(os.path.join(path, "engine.out")):
-            self.file = open(os.path.join(path, "engine.out"), "r")
+            self.file = open(os.path.join(path, "engine.out"), "r", encoding="utf-8", errors="replace")
         else:
-            self.file = open(os.path.join(path, "engine.out"), "w+")
+            self.file = open(os.path.join(path, "engine.out"), "w+", encoding="utf-8")
         line = self.file.readline()
         if line != f"{self.context.seed}\n":
             print(f"File seed: {line} != Multiworld seed: {self.context.seed}")
-            self.file = open(os.path.join(path, "engine.out"), "w+")
+            self.file = open(os.path.join(path, "engine.out"), "w+", encoding="utf-8")
             self.file.write(f"{self.context.seed}\n")
-        self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+")
+        self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+", encoding="utf-8")
 
         self.files = {
             "engine.out": self.file,
@@ -965,5 +965,4 @@ def launchClient(*args: Sequence[str]):
 
     asyncio.run(main(launch_args))
     colorama.deinit()
-
 
