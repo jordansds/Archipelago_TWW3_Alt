@@ -153,7 +153,7 @@ class Watcher:
     def __init__(self, path, context):
         self.context = context
         if os.path.isfile(os.path.join(path, "engine.out")):
-            self.file = open(os.path.join(path, "engine.out"), "r", encoding="utf-8")
+            self.file = open(os.path.join(path, "engine.out"), "r", encoding="utf-8", errors="replace")
         else:
             self.file = open(os.path.join(path, "engine.out"), "w+", encoding="utf-8")
         line = self.file.readline()
@@ -434,8 +434,6 @@ class TWW3Context(CommonContext):
                 logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key: {entry.item}, Faction: {self.playerFaction}\nError: {e}")
                 continue
 
-            print(item)
-
             match item.type:
                 case itemType.building:
                     if not resync:
@@ -503,7 +501,6 @@ class TWW3Context(CommonContext):
                         self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
-                    print(self.initialized)
                     if self.initialized:
                         if self.are_traps_enabled:
                             #self.sendMessage(item.name)
@@ -617,7 +614,7 @@ class TWW3Context(CommonContext):
                     elif self.gameMode == "spheres":
                         logger.info(f"Sending Location {locName}")
                 await self.check(locName)
-            
+
         if not resync:
             self.locationArchive.append([locType, locName])
 
