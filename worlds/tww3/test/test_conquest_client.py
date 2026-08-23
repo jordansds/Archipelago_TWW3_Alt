@@ -5,27 +5,43 @@ from unittest.mock import AsyncMock, Mock, call, patch
 
 from NetUtils import ClientStatus
 from worlds.tww3 import TWW3World
-from worlds.tww3.client import TWW3CommandProcessor, TWW3Context
+from worlds.tww3.client import _get_conquest_admin_capacity, TWW3CommandProcessor, TWW3Context
 from worlds.tww3.item_tables.progression_table import progressionDict
 
 
 class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
     @staticmethod
-    def make_context(*, received_items: int = 1) -> TWW3Context:
+    def make_context(
+        *,
+        received_items: int = 1,
+        admin_capacity: int = 5,
+        max_empire_size: int = 6,
+        settlement_count: int = 4,
+    ) -> TWW3Context:
         context = object.__new__(TWW3Context)
         context.gameMode = "conquest"
-        context.maxEmpireSize = 6
-        context.adminCapacity = 5
+        context.maxEmpireSize = max_empire_size
+        context.adminCapacity = admin_capacity
         context.expansionItems = received_items
         context.maxExpansionItems = 1
         context.checksPerLocation = 5
         context.hardLogic = True
-        context.settlementCount = 4
+        context.settlementCount = settlement_count
+        context.debugCapacityOverride = False
         context.postVictoryCapacityOverride = False
         context.missing_locations = set()
         context.send_msgs = AsyncMock()
         context.sendMessage = Mock()
         return context
+
+    def test_admin_capacity_prefers_slot_data_and_falls_back_by_faction(self) -> None:
+        with patch("worlds.tww3.client.logger.warning") as log_warning:
+            self.assertEqual(1, _get_conquest_admin_capacity({"admin_capacity": 1}, "empire"))
+            log_warning.assert_not_called()
+
+            self.assertEqual(1, _get_conquest_admin_capacity({}, "beastmen"))
+            self.assertEqual(5, _get_conquest_admin_capacity({}, "empire"))
+            self.assertEqual(2, log_warning.call_count)
 
     async def test_goal_observation_backfills_checks_before_victory(self) -> None:
         context = self.make_context()
@@ -63,17 +79,26 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
 
     async def test_hard_logic_blocks_goal_and_final_checks_without_capacity(self) -> None:
         context = self.make_context(received_items=0)
-        context.missing_locations = {
+        accessible_location_ids = {
+            TWW3World.location_name_to_id[f"Empire Size 5 ({check})"]
+            for check in range(5)
+        }
+        final_location_ids = {
             TWW3World.location_name_to_id[f"Empire Size 6 ({check})"]
             for check in range(5)
         }
+        context.missing_locations = accessible_location_ids | final_location_ids
 
         await context.check("6")
 
-        self.assertEqual(4, context.settlementCount)
+        self.assertEqual(5, context.settlementCount)
         self.assertFalse(context.postVictoryCapacityOverride)
-        context.send_msgs.assert_not_awaited()
         context.sendMessage.assert_not_called()
+        context.send_msgs.assert_awaited_once()
+        location_message = context.send_msgs.await_args.args[0][0]
+        self.assertEqual("LocationChecks", location_message["cmd"])
+        self.assertSetEqual(accessible_location_ids, set(location_message["locations"]))
+        self.assertTrue(final_location_ids.isdisjoint(location_message["locations"]))
 
     async def test_free_tier_allows_the_size_five_batch(self) -> None:
         context = self.make_context(received_items=0)
@@ -90,7 +115,7 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
         self.assertSetEqual(expected_location_ids, set(location_message["locations"]))
         context.sendMessage.assert_not_called()
 
-    async def test_received_item_count_and_game_tier_stay_distinct(self) -> None:
+    async def test_received_item_count_is_sent_while_logic_uses_the_free_tier(self) -> None:
         context = self.make_context(received_items=0)
         context.itemDict = {1000: progressionDict[1000]}
         context.itemArchive = {"items": []}
@@ -103,10 +128,10 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
         await asyncio.sleep(0)
 
         self.assertEqual(1, context.expansionItems)
-        context.sendMessage.assert_called_once_with("archipelago.set_admin_capacity(2)")
+        context.sendMessage.assert_called_once_with("archipelago.set_admin_capacity(1)")
         self.assertEqual(5, context.adminCapacity)
 
-    def test_resync_replays_free_tier_and_post_victory_override(self) -> None:
+    async def test_resync_replays_raw_capacity_count_and_post_victory_override(self) -> None:
         context = self.make_context(received_items=3)
         context.postVictoryCapacityOverride = True
         context.messenger = Mock()
@@ -116,13 +141,14 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
         context.progressiveUnits = False
         context.itemArchive = {"items": []}
         context.on_received_items = Mock()
+        context.locationArchive = []
 
-        context.resync()
+        await context.resync()
 
         self.assertEqual(0, context.expansionItems)
         self.assertEqual(
             [
-                call("archipelago.set_admin_capacity(1)"),
+                call("archipelago.set_admin_capacity(0)"),
                 call("archipelago.set_admin_capacity_mult(1000)"),
             ],
             context.messenger.runTemp.call_args_list,
