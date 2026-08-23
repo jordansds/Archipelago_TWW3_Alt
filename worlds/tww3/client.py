@@ -11,7 +11,6 @@ import colorama
 import logging
 from collections.abc import Sequence
 import random
-import math
 
 from BaseClasses import ItemClassification as IC
 from worlds.tww3.dataStructs import itemType
@@ -53,8 +52,9 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
         if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You now have: {self.ctx.expansionItems} Administrative Capacity")
-            logger.info(f"You can now control {self.ctx.expansionItems * self.ctx.adminCapacity} settlements without penalties")
+            logger.info(f"You have: {self.ctx.expansionItems}/{self.ctx.maxExpansionItems}"
+                        f" Administrative Capacity Items")
+            logger.info(f"You can now control {(self.ctx.expansionItems + 1) * self.ctx.adminCapacity} settlements without penalties")
             logger.info(f"You currently control {self.ctx.settlementCount} settlements")
             return
 
@@ -468,12 +468,14 @@ class TWW3Context(CommonContext):
                     if self.gameMode == "conquest":
                         self.expansionItems += 1
                         if self.expansionItems == self.maxExpansionItems:
-                            logger.info(f"You now have all of your Administrative Capacity")
-                            logger.info(f"You can now control an unlimited number of settlements without penalties")
+                            logger.info(f"You now have all of your Administrative Capacity items")
+                            #logger.info(f"You can now control an unlimited number of settlements without penalties")
                             self.adminCapacity = 1000
                         else:
-                            logger.info(f"You now have: {self.expansionItems} Administrative Capacity")
-                            logger.info(f"You can now control {self.expansionItems*self.adminCapacity} settlements without penalties")
+                            logger.info(f"You now have: {self.expansionItems}/{self.maxExpansionItems}"
+                                        f" Administrative Capacity Items")
+                            logger.info(f"You can now control {(self.expansionItems + 1) * self.adminCapacity} "
+                                        f"settlements without penalties")
                         send(f"archipelago.set_admin_capacity({self.expansionItems})")
                         #self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
 
@@ -525,10 +527,8 @@ class TWW3Context(CommonContext):
 
     async def resync(self):
         logger.info("Resynchronizing")
-        if self.gameMode == "conquest":
-            self.expansionItems = 1
-        elif self.gameMode == "spheres":
-            self.expansionItems = 0
+        self.expansionItems = 0
+        if self.gameMode == "spheres":
             self.numberOfOrbs = 1
 
         self.progressiveItemFlags = {key: 0 for key, item in self.itemDict.items() if item.progressionGroup is None and key >= 10000}
@@ -704,23 +704,33 @@ class TWW3Context(CommonContext):
             location = int(location)
             if self.gameMode == "conquest":
                 if location <= int(self.maxEmpireSize):
+                    capacity = (self.expansionItems + 1) * self.adminCapacity
                     #If location is less than the current cap, send the checks
-                    if location <= self.adminCapacity * (self.expansionItems + 1) or not self.hardLogic:
-                        for i in range(1, location + 1):
-                            for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([i*10-9 + j])
+                    if location <= capacity or not self.hardLogic:
+                        locationIds = [
+                            empireSize * 10 - 9 + check
+                            for empireSize in range(1, location + 1)
+                            for check in range(int(self.checksPerLocation))
+                        ]
+                        await self.check_locations(locationIds)
                         if location > self.settlementCount:
                             self.settlementCount = location
                     #If location is above the cap, but the last sent location is below the cap, send checks up to the cap
                     # In case the player lost connection
-                    elif self.settlementCount < self.adminCapacity * self.expansionItems:
-                        for i in range(1, self.adminCapacity * self.expansionItems + 1):
-                            for j in range(int(self.checksPerLocation)):
-                                await self.check_locations([i*10-9 + j])
+                    elif self.settlementCount < capacity and self.settlementCount < location:
+                        #for i in range(1, capacity):
+                        #    for j in range(int(self.checksPerLocation)):
+                        #        await self.check_locations([i*10-9 + j])
+                        locationIds = [
+                            empireSize * 10 - 9 + check
+                            for empireSize in range(1, capacity)
+                            for check in range(int(self.checksPerLocation))
+                        ]
+                        await self.check_locations(locationIds)
                         self.settlementCount = self.adminCapacity * self.expansionItems
                     #If last sent location is equal to the cap, then log exceeding capacity
                     else:
-                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * (self.expansionItems + 1)} Capacity")
+                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity")
                 if location == int(self.maxEmpireSize):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
@@ -759,7 +769,7 @@ class TWW3Context(CommonContext):
             for location in locations:
                 if self.hardLogic:
                     #Need to check if player has enough expansion items
-                    if math.floor(location/100 * self.maxExpansionItems) <= self.expansionItems:
+                    if location * self.maxExpansionItems // 100 <= self.expansionItems:
                         await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
                 else:
                     for i in range(1, location + 1):
@@ -778,7 +788,7 @@ class TWW3Context(CommonContext):
             for location in locations:
                 if self.hardLogic:
                     #Need to check if player has enough expansion items
-                    if math.floor(location/40 * self.maxExpansionItems) <= self.expansionItems:
+                    if location * self.maxExpansionItems // 40 <= self.expansionItems:
                         await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
                 else:
                     for i in range(2, location + 2):
@@ -995,5 +1005,4 @@ def launchClient(*args: Sequence[str]):
 
     asyncio.run(main(launch_args))
     colorama.deinit()
-
 
