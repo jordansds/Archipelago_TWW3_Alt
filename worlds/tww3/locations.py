@@ -11,7 +11,6 @@ from BaseClasses import Location, ItemClassification as IC
 from rule_builder.rules import Has
 from worlds.tww3 import items, rules, factionItemManager
 from worlds.tww3.item_tables import factions as fm
-import math
 from worlds.generic.Rules import forbid_item
 
 class TWW3Location(Location):
@@ -62,9 +61,10 @@ def createConquestLocations(world: TWW3World) -> None:
         startingCheck = 1
     else:
         startingCheck = world.options.starting_settlements + 1
+    startingCheck = min(startingCheck, world.options.number_of_settlements)
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, world.options.number_of_settlements + 1):
-        requiredAdminCapacity = math.floor(i / world.adminCapacity)
+        requiredAdminCapacity = max(0, (i - 1) // world.adminCapacity)
         for j in range(world.options.checks_per_settlement):
             locName = f"Empire Size {i} ({j})"
             
