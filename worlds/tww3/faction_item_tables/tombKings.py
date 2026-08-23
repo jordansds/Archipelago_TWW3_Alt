@@ -10,12 +10,12 @@ units: dict[int, itemData] = {
     46005: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_ushabti_0', itemType.unit, 2, 'Progressive tmb_inf', 'TombKing Unit: Ushabti'),
     46006: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_archers_0', itemType.unit, 1, 'Progressive tmb_rng', 'TombKing Unit: Skeleton Archers'),
     46007: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_ushabti_1', itemType.unit, 2, 'Progressive tmb_rng', 'TombKing Unit: Ushabti (Great Bows)'),
-    46008: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_skeleton_horsemen_0', itemType.unit, 1, 'cavalry', 'TombKing Unit: Skeleton Horsemen'),
-    46009: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_skeleton_horsemen_archers_0', itemType.unit, 1, 'cavalry', 'TombKing Unit: Skeleton Horse Archers'),
-    46010: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_nehekhara_horsemen_0', itemType.unit, 2, 'cavalry', 'TombKing Unit: Nehekharan Horsemen'),
+    46008: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_skeleton_horsemen_0', itemType.unit, 1, 'Progressive tmb_cav', 'TombKing Unit: Skeleton Horsemen'),
+    46009: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_skeleton_horsemen_archers_0', itemType.unit, 1, 'Progressive tmb_cav', 'TombKing Unit: Skeleton Horse Archers'),
+    46010: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_nehekhara_horsemen_0', itemType.unit, 2, 'Progressive tmb_cav', 'TombKing Unit: Nehekharan Horsemen'),
     46011: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_sepulchral_stalkers_0', itemType.unit, 3, 'Progressive tmb_cav', 'TombKing Unit: Sepulchral Stalkers'),
-    46012: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_0', itemType.unit, 3, 'cavalry', 'TombKing Unit: Necropolis Knights'),
-    46013: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_1', itemType.unit, 4, 'cavalry', 'TombKing Unit: Necropolis Knights (Halberds)'),
+    46012: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_0', itemType.unit, 3, 'Progressive tmb_cav', 'TombKing Unit: Necropolis Knights'),
+    46013: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_1', itemType.unit, 4, 'Progressive tmb_cav', 'TombKing Unit: Necropolis Knights (Halberds)'),
     46014: itemData(IC.useful, 1, 'wh2_dlc09_tmb_art_screaming_skull_catapult_0', itemType.unit, 1, 'Progressive tmb_art', 'TombKing Unit: Screaming Skull Catapults'),
     #46015: itemData(IC.useful, 1, 'wh2_dlc09_tmb_art_casket_of_souls_0', itemType.unit, 1, 'Progressive tmb_veh', 'TombKing Unit: Casket of Souls'),
     46016: itemData(IC.useful, 1, 'wh2_pro06_tmb_mon_bone_giant_0', itemType.unit, 2, 'Progressive tmb_art', 'TombKing Unit: Bone Giant'),
@@ -39,8 +39,8 @@ units: dict[int, itemData] = {
     46034: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_spearmen_ror', itemType.unit, 1, 'Progressive tmb_inf', "TombKing Unit: King Nekhesh's Scorpion Legion (Skeleton Spearmen)"),
     46035: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_archers_ror', itemType.unit, 1, 'Progressive tmb_rng', 'TombKing Unit: Blessed Legion of Phakth (Skeleton Archers)'),
     #46036: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_nehekhara_warriors_ror', itemType.unit, 1, 'Progressive tmb_inf', "TombKing Unit: Usirian's Legion of the Netherworld (Nehekharan Warriors)"),
-    #46037: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_nehekhara_horsemen_ror', itemType.unit, 2, 'cavalry', 'TombKing Unit: Storm Riders of Khsar (Nehekharan Horsemen)'),
-    #46038: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_ror', itemType.unit, 3, 'cavalry', 'TombKing Unit: Venom Knights of Asaph (Necropolis Knights)')
+    #46037: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_nehekhara_horsemen_ror', itemType.unit, 2, 'Progressive tmb_cav', 'TombKing Unit: Storm Riders of Khsar (Nehekharan Horsemen)'),
+    #46038: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_ror', itemType.unit, 3, 'Progressive tmb_cav', 'TombKing Unit: Venom Knights of Asaph (Necropolis Knights)')
 }
 
 buildings: dict[int, itemData] = {

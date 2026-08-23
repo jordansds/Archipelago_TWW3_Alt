@@ -13,6 +13,7 @@ from collections import Counter
 def setVictoryRule(world: TWW3World, location):
     if world.options.game_mode == "conquest":
         rule = Has("Administrative Capacity", math.ceil(world.options.number_of_settlements / world.adminCapacity - 1))
+        print(rule)
 
     elif world.options.game_mode == "spheres":
         rule = Has("Orb of Domination", world.orbCount)
@@ -143,6 +144,7 @@ def setBalance(world: TWW3World) -> None:
                     world.item_name_groups["Unlocks"].add(item.name)
                     counter += 1
 
+        victoryItems = 0
         if world.options.game_mode == "conquest":
             for index, location in enumerate(worldRegion.locations):
                 #This increments by 1 every admin_capacity empire size in locations.
@@ -150,6 +152,7 @@ def setBalance(world: TWW3World) -> None:
                 # This sets the weighting for the item balancing.
                 weight = world.options.checks_per_settlement * world.adminCapacity * world.options.balance / 100
                 requiredUnlockItems = min(empireSizeInterval * weight, counter)
+                victoryItems = max(requiredUnlockItems, victoryItems)
                 
                 world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
 
@@ -172,6 +175,10 @@ def setBalance(world: TWW3World) -> None:
                         except KeyError:
                             continue
                         requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
+                        victoryItems = max(requiredUnlockItems, victoryItems)
 
                         #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
                         world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
+
+        location = world.get_location("Victory")
+        world.set_rule(location, HasGroup("Unlocks", victoryItems) | Has("Glitch Logic"))

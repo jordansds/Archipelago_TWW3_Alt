@@ -64,7 +64,7 @@ def createConquestLocations(world: TWW3World) -> None:
         startingCheck = world.options.starting_settlements + 1
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, world.options.number_of_settlements + 1):
-        requiredAdminCapacity = math.floor(i / world.adminCapacity)
+        requiredAdminCapacity = math.floor((i - 1) / world.adminCapacity)
         for j in range(world.options.checks_per_settlement):
             locName = f"Empire Size {i} ({j})"
             

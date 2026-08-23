@@ -362,6 +362,8 @@ special: dict[int, specialItemData] = {
     31510: specialItemData(IC.useful, 1, ["wh2_main_hef_yvresse"], "wh2_dlc15_hef_field_hq_2", itemType.building, 1, 'progressive hef_mistwalker', False, False, "HighElf Building: Mistwalkers' Keep"),
     31511: specialItemData(IC.useful, 1, ["wh2_main_hef_yvresse"], "wh2_dlc15_hef_field_hq_3", itemType.building, 2, 'progressive hef_mistwalker', False, False, "HighElf Building: Mistwalkers' Citadel"),
     31512: specialItemData(IC.useful, 3, ["wh2_main_hef_yvresse"], "progressive hef_mistwalker", itemType.building, 3, None, False, True, "Progressive HighElf Building: Mistwalkers"),
+    31513: specialItemData(IC.useful, 1, ["wh2_main_hef_nagarythe"], "wh2_dlc10_hef_aesanar_camp", itemType.building, 1, "progressive aesanar_camp", False, False, "HighElf Building: Aesanar Camp"),
+    31514: specialItemData(IC.useful, 1, ["wh2_main_hef_nagarythe"], "progressive aesanar_camp", itemType.building, 1, None, False, True, "Progressive HighElf Building: Aesanar Camp"),
 }
 
 rituals: dict[int, specialItemData] = {

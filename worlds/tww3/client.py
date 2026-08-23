@@ -106,10 +106,10 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             self.ctx.adminCapacity = 1000
             return
 
-    def _cmd_resync(self):
+    async def _cmd_resync(self):
         """Resend all units, techs, buildings and progression items"""
         if isinstance(self.ctx, TWW3Context):
-            TWW3Context.resync(self.ctx)
+            await TWW3Context.resync(self.ctx)
             return
 
         #Need to rewrite on_received_items to allow for writing to temp file when this function is ran.
@@ -126,8 +126,8 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 
 class Messenger:
     def __init__(self, path):
-        self.file = open(path, 'w+')
-        self.tempFile = open(f"{path[:-3]}-temp.in", 'w+')
+        self.file = open(path, 'w+', encoding="utf-8")
+        self.tempFile = open(f"{path[:-3]}-temp.in", 'w+', encoding="utf-8")
         self.firstLine = True
 
     def run(self, message):
@@ -153,15 +153,15 @@ class Watcher:
     def __init__(self, path, context):
         self.context = context
         if os.path.isfile(os.path.join(path, "engine.out")):
-            self.file = open(os.path.join(path, "engine.out"), "r")
+            self.file = open(os.path.join(path, "engine.out"), "r", encoding="utf-8")
         else:
-            self.file = open(os.path.join(path, "engine.out"), "w+")
+            self.file = open(os.path.join(path, "engine.out"), "w+", encoding="utf-8")
         line = self.file.readline()
         if line != f"{self.context.seed}\n":
             print(f"File seed: {line} != Multiworld seed: {self.context.seed}")
-            self.file = open(os.path.join(path, "engine.out"), "w+")
+            self.file = open(os.path.join(path, "engine.out"), "w+", encoding="utf-8")
             self.file.write(f"{self.context.seed}\n")
-        self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+")
+        self.tempFile = file = open(os.path.join(path, "engine-temp.out"), "w+", encoding="utf-8")
 
         self.files = {
             "engine.out": self.file,
@@ -171,7 +171,7 @@ class Watcher:
     async def watch(self, fileName, gameMode):
         print(f"Watching {fileName}...")
         file = self.files[fileName]
-        file.seek(0, 2)
+        file.seek(1, 0)
         activeInode = os.fstat(file.fileno()).st_ino
         path = file.name
         while True:
@@ -179,45 +179,8 @@ class Watcher:
             if line:
                 line = line.strip()
                 prefix = line.split(" ")[0]
-                match prefix:
-                    case "":
-                        pass
 
-                    case "deathlink":
-                        await self.context.send_death(line.split(" ")[1])
-
-                    case "building" | "tech":
-                        if self.context.sanity:
-                            if self.context.logChecks:
-                                logger.info(f"Sending {line}")
-                            await self.context.checkSanity(line.split(" ")[1], prefix)
-
-                    case "ritual":
-                        if self.context.ritualSanity:
-                            if self.context.logChecks:
-                                logger.info(f"Sending {line}")
-                            if line.split("_")[-1] == "upgraded": #Check for upgraded rituals
-                                line = line[:-9]
-                            await self.context.checkSanity(line.split(" ")[1], prefix)
-
-                    case "battles":
-                        if self.context.battleSanity:
-                            if self.context.logChecks:
-                                logger.info(f"Sending {line}")
-                            await self.context.checkBattleSanity(line.split(" ")[1])
-
-                    case "sacked" | "razed":
-                        if self.context.despoilerSanity:
-                            if self.context.logChecks:
-                                logger.info(f"Sending {line}")
-                            await self.context.checkDespoilerSanity(line)
-                    case _:
-                        if self.context.logChecks:
-                            if gameMode == "conquest":
-                                logger.info(f"Sending Empire Size {line}")
-                            elif gameMode == "spheres":
-                                logger.info(f"Sending Location {line}")
-                        await self.context.check(line)
+                await self.context.onReceivedLocation(prefix, line)
 
             await asyncio.sleep(0.1)
 
@@ -337,18 +300,12 @@ class TWW3Context(CommonContext):
         self.gameMode = args['slot_data']['game_mode']
         logger.info(f"The game mode is: {self.gameMode}")
 
-        self.watcher = Watcher(self.path, self)
-        temp_watcher_task = asyncio.create_task(self.watcher.watch("engine-temp.out", self.gameMode), name='temp_watcher')
-        watcher_task = asyncio.create_task(self.watcher.watch("engine.out", self.gameMode), name='watcher')
-        self.messenger = Messenger(os.path.join(self.path, "engine.in"))
-
         self.deathLinkEnabled = args['slot_data']["death_link"]
         if self.deathLinkEnabled:
             asyncio.create_task(self.update_death_link(True))
             logger.warning("DeathLink is enabled, good luck...")
 
         self.deathLinkEffects = args['slot_data']["death_link_effects"]
-
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
 
         self.modList = args['slot_data']['mod_list']
@@ -374,7 +331,6 @@ class TWW3Context(CommonContext):
             logger.info("The player faction is: " + fm.factionDict[args["slot_data"]["starting_faction"]].readableName)
 
         self.playerRace = fm.factionDict[args["slot_data"]["starting_faction"]].race
-
         self.settlements = args['slot_data']['settlements']
         self.hordes = args['slot_data']['hordes']
         self.itemKeys = args['slot_data']['items']
@@ -392,11 +348,18 @@ class TWW3Context(CommonContext):
         self.revealHints = args['slot_data']['reveal_hints']
 
         self.locationLookup = {}
+        self.expansionItems = 0
+
+        self.watcher = Watcher(self.path, self)
+        temp_watcher_task = asyncio.create_task(self.watcher.watch("engine-temp.out", self.gameMode),
+                                                name='temp_watcher')
+        watcher_task = asyncio.create_task(self.watcher.watch("engine.out", self.gameMode), name='watcher')
+        self.messenger = Messenger(os.path.join(self.path, "engine.in"))
 
         if self.gameMode == "conquest":
             self.maxEmpireSize = args['slot_data']['number_of_settlements']
-            self.adminCapacity = args['slot_data']['admin_capacity']
-            self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.adminCapacity = 5 #args['slot_data']['admin_capacity']
+            #self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
 
             self.sendMessage(f"archipelago.set_admin_capacity({self.expansionItems})")
             self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
@@ -405,7 +368,6 @@ class TWW3Context(CommonContext):
             self.orbGoal = args['slot_data']['orbs']
             self.spheres = args['slot_data']['spheres']
             self.numberOfOrbs = 0
-            self.expansionItems = 0
             self.map = "immortal empires"
             self.settlementDict = sm.mapDict[self.map]
 
@@ -450,6 +412,7 @@ class TWW3Context(CommonContext):
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
         self.receivedItems = []
+        self.locationArchive = []
 
         self.initialized = False
         self.engine = EngineInitializer.initialize(self, self.itemDict)
@@ -470,6 +433,8 @@ class TWW3Context(CommonContext):
             except Exception as e:
                 logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key: {entry.item}, Faction: {self.playerFaction}\nError: {e}")
                 continue
+
+            print(item)
 
             match item.type:
                 case itemType.building:
@@ -538,6 +503,7 @@ class TWW3Context(CommonContext):
                         self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
+                    print(self.initialized)
                     if self.initialized:
                         if self.are_traps_enabled:
                             #self.sendMessage(item.name)
@@ -560,7 +526,8 @@ class TWW3Context(CommonContext):
 
         asyncio.create_task(self.sendNotification())
 
-    def resync(self):
+    async def resync(self):
+        logger.info("Resynchronizing")
         if self.gameMode == "conquest":
             self.expansionItems = 1
         elif self.gameMode == "spheres":
@@ -574,8 +541,23 @@ class TWW3Context(CommonContext):
             self.lockProgressiveBuildings()
         if self.progressiveUnits:
             self.lockProgressiveUnits()
-        self.on_received_items(self.itemArchive, True)
+
+        if self.itemArchive != {}:
+            self.on_received_items(self.itemArchive, True)
         #self.itemArchive.clear()
+
+        flag = False
+        for i in range(1, len(self.locationArchive)): #We don't want to check the first line, that's the seed.
+            try:
+                # Make sure we only send the last empire size location
+                if flag:
+                    continue
+                locName = int(self.locationArchive[-i][1])
+                await self.onReceivedLocation(None, locName, True)
+                flag = True
+            except ValueError:
+                # Resend all other locations
+                await self.onReceivedLocation(*self.locationArchive[-i], True)
 
     async def sendNotification(self):
         if self.notificationPending:
@@ -594,6 +576,50 @@ class TWW3Context(CommonContext):
         self.messenger.runTemp(f'archipelago.createNotification("Received Item(s)", "You have received:\\n{notificationDesc}")')
 
         self.notificationPending = False
+
+    async def onReceivedLocation(self, locType, locName, resync = False):
+        match locType:
+            case "":
+                pass
+
+            case "deathlink":
+                await self.send_death(locName.split(" ")[1])
+
+            case "building" | "tech":
+                if self.sanity:
+                    if self.logChecks:
+                        logger.info(f"Sending {locName}")
+                    await self.checkSanity(locName.split(" ")[1], locType)
+
+            case "ritual":
+                if self.ritualSanity:
+                    if self.logChecks:
+                        logger.info(f"Sending {locName}")
+                    if locName.split("_")[-1] == "upgraded":  # Check for upgraded rituals
+                        line = locName[:-9]
+                    await self.checkSanity(locName.split(" ")[1], locType)
+
+            case "battles":
+                if self.battleSanity:
+                    if self.logChecks:
+                        logger.info(f"Sending Battles {locName}")
+                    await self.checkBattleSanity(locName.split(" ")[1])
+
+            case "sacked" | "razed":
+                if self.despoilerSanity:
+                    if self.logChecks:
+                        logger.info(f"Sending Despoiler {locName}")
+                    await self.checkDespoilerSanity(locName)
+            case _:
+                if self.logChecks:
+                    if self.gameMode == "conquest":
+                        logger.info(f"Sending Empire Size {locName}")
+                    elif self.gameMode == "spheres":
+                        logger.info(f"Sending Location {locName}")
+                await self.check(locName)
+            
+        if not resync:
+            self.locationArchive.append([locType, locName])
 
     def sendMessage(self, message):
         if self.lineCount == 0:
@@ -634,12 +660,12 @@ class TWW3Context(CommonContext):
 
     def lockProgressiveTechs(self):
         for key, item in self.itemDict.items():
-            if item.type == itemType.tech and item.progressionGroup is None:
+            if item.type == itemType.tech and item.progressionGroup is not None:
                 self.sendMessage("cm:lock_one_technology_node(\"%s\", \"%s\")" % (self.playerFaction, item.name))
 
     def lockProgressiveBuildings(self):
         for key, item in self.itemDict.items():
-            if item.type == itemType.building and item.progressionGroup is None:
+            if item.type == itemType.building and item.progressionGroup is not None:
                 if "settlement" in item.name or "horde_main" in item.name:
                     continue
                 self.progressiveItemFlags[key] = self.startingTier - 1
@@ -648,7 +674,7 @@ class TWW3Context(CommonContext):
 
     def lockProgressiveUnits(self):
         for key, item in self.itemDict.items():
-            if item.type == itemType.unit and item.progressionGroup is None:
+            if item.type == itemType.unit and item.progressionGroup is not None:
                 self.progressiveItemFlags[key] = self.startingTier
                 if item.tier > self.startingTier:
                     self.sendMessage("cm:add_event_restricted_unit_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
@@ -680,16 +706,25 @@ class TWW3Context(CommonContext):
         try:
             location = int(location)
             if self.gameMode == "conquest":
-                if location < int(self.maxEmpireSize):
-                    if location <= self.adminCapacity * self.expansionItems or not self.hardLogic:
+                if location <= int(self.maxEmpireSize):
+                    #If location is less than the current cap, send the checks
+                    if location <= self.adminCapacity * (self.expansionItems + 1) or not self.hardLogic:
                         for i in range(1, location + 1):
                             for j in range(int(self.checksPerLocation)):
                                 await self.check_locations([i*10-9 + j])
                         if location > self.settlementCount:
                             self.settlementCount = location
+                    #If location is above the cap, but the last sent location is below the cap, send checks up to the cap
+                    # In case the player lost connection
+                    elif self.settlementCount < self.adminCapacity * self.expansionItems:
+                        for i in range(1, self.adminCapacity * self.expansionItems + 1):
+                            for j in range(int(self.checksPerLocation)):
+                                await self.check_locations([i*10-9 + j])
+                        self.settlementCount = self.adminCapacity * self.expansionItems
+                    #If last sent location is equal to the cap, then log exceeding capacity
                     else:
-                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * self.expansionItems} Capacity")
-                elif location == int(self.maxEmpireSize):
+                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {self.adminCapacity * (self.expansionItems + 1)} Capacity")
+                if location == int(self.maxEmpireSize):
                     if self.expansionItems < 1000:
                         self.expansionItems = 1000
                         self.sendMessage(f"archipelago.set_admin_capacity_mult({self.expansionItems})")
@@ -738,7 +773,6 @@ class TWW3Context(CommonContext):
     async def checkDespoilerSanity(self, location):
         type = location.split(" ")[0].title()
         location = int(location.split(" ")[1])
-        print(location)
 
         if location % 2 != 0 or location > 40:
             return
@@ -906,7 +940,6 @@ class EngineInitializer:
             context.lockProgressiveBuildings()
         if context.progressiveUnits:
             context.lockProgressiveUnits()
-        print(context.progressiveItemFlags)
 
         if context.gameMode == "conquest":
             ###
