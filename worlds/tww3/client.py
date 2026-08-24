@@ -24,6 +24,17 @@ from NetUtils import ClientStatus
 
 path = "."
 
+
+def _get_conquest_admin_capacity(slot_data: dict, player_race: str) -> int:
+    if "admin_capacity" in slot_data:
+        return slot_data["admin_capacity"]
+
+    logger.warning(
+        "The connected room does not include Administrative Capacity slot data; using the faction default"
+    )
+    return 1 if player_race == "beastmen" else 5
+
+
 class TWW3CommandProcessor(ClientCommandProcessor):    
 
     def _cmd_traps(self):
@@ -52,9 +63,16 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
         if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You have: {self.ctx.expansionItems}/{self.ctx.maxExpansionItems}"
-                        f" Administrative Capacity Items")
-            logger.info(f"You can now control {(self.ctx.expansionItems + 1) * self.ctx.adminCapacity} settlements without penalties")
+            active_capacity_tiers = self.ctx.expansionItems + 1
+            current_capacity = active_capacity_tiers * self.ctx.adminCapacity
+            logger.info(
+                f"You have received {self.ctx.expansionItems}/{self.ctx.maxExpansionItems} "
+                "Administrative Capacity upgrades"
+            )
+            logger.info(f"You have {active_capacity_tiers} active Administrative Capacity tiers")
+            logger.info(f"Your Administrative Capacity upgrades provide capacity for {current_capacity} settlements")
+            if self.ctx.postVictoryCapacityOverride:
+                logger.info("Post-victory settlement penalties are disabled")
             logger.info(f"You currently control {self.ctx.settlementCount} settlements")
             return
 
@@ -100,10 +118,12 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             return
 
     def _cmd_debug(self):
-        """Set Admin Capacity to Maximum"""
-        if isinstance(self.ctx, TWW3Context):
+        """Enable unlimited Administrative Capacity for debugging."""
+        if isinstance(self.ctx, TWW3Context) and self.ctx.gameMode == "conquest":
             #if "jordan" in self.ctx.player_names:
-            self.ctx.adminCapacity = 1000
+            if not self.ctx.debugCapacityOverride:
+                self.ctx.debugCapacityOverride = True
+                self.ctx.sendMessage("archipelago.set_admin_capacity_mult(1000)")
             return
 
     async def _cmd_resync(self):
@@ -358,8 +378,10 @@ class TWW3Context(CommonContext):
 
         if self.gameMode == "conquest":
             self.maxEmpireSize = args['slot_data']['number_of_settlements']
-            self.adminCapacity = 5 #args['slot_data']['admin_capacity']
-            #self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
+            self.adminCapacity = _get_conquest_admin_capacity(args["slot_data"], self.playerRace)
+            self.expansionItems = 0
+            self.debugCapacityOverride = False
+            self.postVictoryCapacityOverride = False
 
             self.sendMessage(f"archipelago.set_admin_capacity({self.expansionItems})")
             self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
@@ -467,15 +489,14 @@ class TWW3Context(CommonContext):
                         self.itemArchive["items"].append(entry)
                     if self.gameMode == "conquest":
                         self.expansionItems += 1
+                        current_capacity = (self.expansionItems + 1) * self.adminCapacity
                         if self.expansionItems == self.maxExpansionItems:
-                            logger.info(f"You now have all of your Administrative Capacity items")
-                            #logger.info(f"You can now control an unlimited number of settlements without penalties")
-                            self.adminCapacity = 1000
-                        else:
-                            logger.info(f"You now have: {self.expansionItems}/{self.maxExpansionItems}"
-                                        f" Administrative Capacity Items")
-                            logger.info(f"You can now control {(self.expansionItems + 1) * self.adminCapacity} "
-                                        f"settlements without penalties")
+                            logger.info("You now have all of your Administrative Capacity upgrades")
+                        logger.info(
+                            f"You now have: {self.expansionItems}/{self.maxExpansionItems} "
+                            "Administrative Capacity upgrades"
+                        )
+                        logger.info(f"You can now control {current_capacity} settlements without penalties")
                         send(f"archipelago.set_admin_capacity({self.expansionItems})")
                         #self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
 
@@ -528,7 +549,11 @@ class TWW3Context(CommonContext):
     async def resync(self):
         logger.info("Resynchronizing")
         self.expansionItems = 0
-        if self.gameMode == "spheres":
+        if self.gameMode == "conquest":
+            self.messenger.runTemp(f"archipelago.set_admin_capacity({self.expansionItems})")
+            if self.debugCapacityOverride or self.postVictoryCapacityOverride:
+                self.messenger.runTemp("archipelago.set_admin_capacity_mult(1000)")
+        elif self.gameMode == "spheres":
             self.numberOfOrbs = 1
 
         self.progressiveItemFlags = {key: 0 for key, item in self.itemDict.items() if item.progressionGroup is None and key >= 10000}
@@ -704,39 +729,28 @@ class TWW3Context(CommonContext):
             location = int(location)
             if self.gameMode == "conquest":
                 if location <= int(self.maxEmpireSize):
-                    capacity = (self.expansionItems + 1) * self.adminCapacity
-                    #If location is less than the current cap, send the checks
-                    if location <= capacity or not self.hardLogic:
-                        locationIds = [
-                            empireSize * 10 - 9 + check
-                            for empireSize in range(1, location + 1)
-                            for check in range(int(self.checksPerLocation))
-                        ]
-                        await self.check_locations(locationIds)
-                        if location > self.settlementCount:
-                            self.settlementCount = location
-                    #If location is above the cap, but the last sent location is below the cap, send checks up to the cap
-                    # In case the player lost connection
-                    elif self.settlementCount < capacity and self.settlementCount < location:
-                        #for i in range(1, capacity):
-                        #    for j in range(int(self.checksPerLocation)):
-                        #        await self.check_locations([i*10-9 + j])
-                        locationIds = [
-                            empireSize * 10 - 9 + check
-                            for empireSize in range(1, capacity)
-                            for check in range(int(self.checksPerLocation))
-                        ]
-                        await self.check_locations(locationIds)
-                        self.settlementCount = self.adminCapacity * self.expansionItems
-                    #If last sent location is equal to the cap, then log exceeding capacity
-                    else:
-                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity")
-                if location == int(self.maxEmpireSize):
-                    if self.expansionItems < 1000:
-                        self.expansionItems = 1000
-                        self.sendMessage(f"archipelago.set_admin_capacity_mult({self.expansionItems})")
-                    #await self.check_locations([location * 10 - 9])
-                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+                    capacity_multiplier = 1000 if self.debugCapacityOverride else self.adminCapacity
+                    current_capacity = (self.expansionItems + 1) * capacity_multiplier
+                    accepted_location = min(location, current_capacity) if self.hardLogic else location
+                    location_ids = [
+                        empire_size * 10 - 9 + check
+                        for empire_size in range(1, accepted_location + 1)
+                        for check in range(int(self.checksPerLocation))
+                    ]
+                    await self.check_locations(location_ids)
+                    if accepted_location > self.settlementCount:
+                        self.settlementCount = accepted_location
+
+                    if accepted_location < location:
+                        logger.info(
+                            f"Administrative Capacity Exceeded, {location} Settlements > {current_capacity} Capacity"
+                        )
+                    elif location == int(self.maxEmpireSize):
+                        if not self.postVictoryCapacityOverride:
+                            self.postVictoryCapacityOverride = True
+                            if not self.debugCapacityOverride:
+                                self.sendMessage("archipelago.set_admin_capacity_mult(1000)")
+                        await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
         except ValueError:
             if self.gameMode == "spheres":
                 location = next((value for value in sm.mapDict[self.map].values() if value.name == location), None).readableName

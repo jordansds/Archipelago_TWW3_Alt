@@ -67,7 +67,9 @@ class TestConquestCapacityRules(_FixedSeedTWW3TestBase):
 
         self.assertEqual(2, self.world.adminItems)
         self.assertEqual(2, len(capacity_items))
-        self.assertEqual(2, self.world.fill_slot_data()["max_expansion_items"])
+        slot_data = self.world.fill_slot_data()
+        self.assertEqual(5, slot_data["admin_capacity"])
+        self.assertEqual(2, slot_data["max_expansion_items"])
 
         no_capacity_items = self.state_with_capacity_items(0)
         one_capacity_item = self.state_with_capacity_items(1)
@@ -105,6 +107,9 @@ class TestBeastmenCapacityRules(_FixedSeedTWW3TestBase):
     def test_step_one_free_tier_boundaries(self) -> None:
         self.assertEqual(1, self.world.adminCapacity)
         self.assertEqual(5, self.world.adminItems)
+        slot_data = self.world.fill_slot_data()
+        self.assertEqual(1, slot_data["admin_capacity"])
+        self.assertEqual(5, slot_data["max_expansion_items"])
 
         zero_items = self.state_with_capacity_items(0)
         one_item = self.state_with_capacity_items(1)
@@ -174,7 +179,9 @@ class TestMinimalKarlFranzCapacityFill(_FixedSeedTWW3TestBase):
         self.assertSetEqual(size_five_locations | size_six_locations, location_names)
         self.assertEqual(1, self.world.adminItems)
         self.assertEqual(1, len(capacity_items))
-        self.assertEqual(1, self.world.fill_slot_data()["max_expansion_items"])
+        slot_data = self.world.fill_slot_data()
+        self.assertEqual(5, slot_data["admin_capacity"])
+        self.assertEqual(1, slot_data["max_expansion_items"])
         self.assertEqual(9, len(filler_items))
         self.assertEqual(10, len(self.multiworld.itempool))
 
