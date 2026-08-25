@@ -52,10 +52,13 @@ class TWW3CommandProcessor(ClientCommandProcessor):
     def _cmd_ac(self):
         """Prints the current number of settlements you can control."""
         if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You have: {self.ctx.expansionItems}/{self.ctx.maxExpansionItems}"
-                        f" Administrative Capacity Items")
-            logger.info(f"You can now control {(self.ctx.expansionItems + 1) * self.ctx.adminCapacity} settlements without penalties")
-            logger.info(f"You currently control {self.ctx.settlementCount} settlements")
+            if self.ctx.adminCapacity == 1000 and self.ctx.gameMode == "conquest":
+                logger.info("You can control an unlimited number of settlements")
+            else:
+                logger.info(f"You have: {self.ctx.expansionItems}/{self.ctx.maxExpansionItems}"
+                            f" Administrative Capacity Items")
+                logger.info(f"You can now control {(self.ctx.expansionItems + 1) * self.ctx.adminCapacity} settlements")
+                logger.info(f"You currently control {self.ctx.settlementCount} settlements")
             return
 
     def _cmd_orbs(self):
@@ -101,9 +104,10 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 
     def _cmd_debug(self):
         """Set Admin Capacity to Maximum"""
-        if isinstance(self.ctx, TWW3Context):
+        if isinstance(self.ctx, TWW3Context) and self.ctx.gameMode == "conquest":
             #if "jordan" in self.ctx.player_names:
             self.ctx.adminCapacity = 1000
+            self.ctx.sendMessage(f"archipelago.set_admin_capacity_mult({self.ctx.adminCapacity})")
             return
 
     async def _cmd_resync(self):
@@ -358,7 +362,7 @@ class TWW3Context(CommonContext):
 
         if self.gameMode == "conquest":
             self.maxEmpireSize = args['slot_data']['number_of_settlements']
-            self.adminCapacity = 5 #args['slot_data']['admin_capacity']
+            self.adminCapacity = args['slot_data']['admin_capacity']
             #self.expansionItems = 1 # Begins with 1 fake item so that the player can own settlements at the start and prevent early bk
 
             self.sendMessage(f"archipelago.set_admin_capacity({self.expansionItems})")
@@ -471,11 +475,12 @@ class TWW3Context(CommonContext):
                             logger.info(f"You now have all of your Administrative Capacity items")
                             #logger.info(f"You can now control an unlimited number of settlements without penalties")
                             self.adminCapacity = 1000
+                            self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
                         else:
                             logger.info(f"You now have: {self.expansionItems}/{self.maxExpansionItems}"
                                         f" Administrative Capacity Items")
                             logger.info(f"You can now control {(self.expansionItems + 1) * self.adminCapacity} "
-                                        f"settlements without penalties")
+                                        f"settlements")
                         send(f"archipelago.set_admin_capacity({self.expansionItems})")
                         #self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
 
@@ -666,7 +671,7 @@ class TWW3Context(CommonContext):
                 if "settlement" in item.name or "horde_main" in item.name:
                     continue
                 self.progressiveItemFlags[key] = self.startingTier - 1
-                if item.tier > self.startingTier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                if item.tier > self.startingTier - 1:  #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
                     self.sendMessage("cm:add_event_restricted_building_record_for_faction(\"%s\", \"%s\")" % (item.name, self.playerFaction))
 
     def lockProgressiveUnits(self):
@@ -679,14 +684,14 @@ class TWW3Context(CommonContext):
     def triggerSphereExpansion(self, sphereCount, send):
         oldSphere = []
         newSphere = []
-        #allOthers = []
+        # allOthers = []
         for faction, sphere in self.spheres.items():
             if sphere < sphereCount:
                 oldSphere.append(faction)
             elif sphere == sphereCount:
                 newSphere.append(faction)
                 self.inRangeFactions.append(faction)
-            #else:
+            # else:
                 #allOthers.append(faction)
         for oldFaction in oldSphere:
             for newFaction in newSphere:
@@ -705,38 +710,25 @@ class TWW3Context(CommonContext):
             if self.gameMode == "conquest":
                 if location <= int(self.maxEmpireSize):
                     capacity = (self.expansionItems + 1) * self.adminCapacity
-                    #If location is less than the current cap, send the checks
-                    if location <= capacity or not self.hardLogic:
-                        locationIds = [
-                            empireSize * 10 - 9 + check
-                            for empireSize in range(1, location + 1)
-                            for check in range(int(self.checksPerLocation))
-                        ]
-                        await self.check_locations(locationIds)
-                        if location > self.settlementCount:
-                            self.settlementCount = location
-                    #If location is above the cap, but the last sent location is below the cap, send checks up to the cap
-                    # In case the player lost connection
-                    elif self.settlementCount < capacity and self.settlementCount < location:
-                        #for i in range(1, capacity):
-                        #    for j in range(int(self.checksPerLocation)):
-                        #        await self.check_locations([i*10-9 + j])
-                        locationIds = [
-                            empireSize * 10 - 9 + check
-                            for empireSize in range(1, capacity)
-                            for check in range(int(self.checksPerLocation))
-                        ]
-                        await self.check_locations(locationIds)
-                        self.settlementCount = self.adminCapacity * self.expansionItems
-                    #If last sent location is equal to the cap, then log exceeding capacity
-                    else:
-                        logger.info(f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity")
-                if location == int(self.maxEmpireSize):
-                    if self.expansionItems < 1000:
-                        self.expansionItems = 1000
-                        self.sendMessage(f"archipelago.set_admin_capacity_mult({self.expansionItems})")
-                    #await self.check_locations([location * 10 - 9])
-                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+                    acceptedLocation = min(location, capacity) if self.hardLogic else location
+                    locationIds = [
+                        empireSize * 10 - 9 + check
+                        for empireSize in range(1, acceptedLocation + 1)
+                        for check in range(int(self.checksPerLocation))
+                    ]
+                    await self.check_locations(locationIds)
+
+                    if acceptedLocation > self.settlementCount:
+                        self.settlementCount = acceptedLocation
+
+                    if acceptedLocation < location:
+                        logger.info(
+                            f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity"
+                        )
+                    elif location == int(self.maxEmpireSize):
+                        self.adminCapacity = 1000
+                        self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
+                        await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
         except ValueError:
             if self.gameMode == "spheres":
                 location = next((value for value in sm.mapDict[self.map].values() if value.name == location), None).readableName
