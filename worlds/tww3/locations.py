@@ -112,7 +112,10 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
     if firstPass:
         # Remove t1 settlements and ports as they can only be built in razed settlements
         buildings = [building for building in buildings if
-                     not ("settlement" in building.name or "port" in building.name or "settlement" in building.progressionGroup)]
+                     not ("settlement" in building.name
+                          or "port" in building.name
+                          or "settlement" in building.progressionGroup
+                          or "horde_main" in building.progressionGroup)]
 
     buildings = [building for building in buildings if not "allied" in building.name] #remove allied outposts for now
 
