@@ -190,7 +190,7 @@ class TWW3World(World):
 
         if self.options.game_mode == "conquest":
             slotData["number_of_settlements"] = self.options.number_of_settlements.value
-            #slotData["admin_capacity"] = self.adminCapacity
+            slotData["admin_capacity"] = self.adminCapacity
             slotData["max_expansion_items"] = self.adminItems
         if self.options.game_mode == "spheres":
             slotData["orbs"] = self.orbCount
