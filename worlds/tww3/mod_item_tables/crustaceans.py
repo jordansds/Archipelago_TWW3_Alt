@@ -309,10 +309,10 @@ special: dict[int, specialItemData] = {
     113508: specialItemData(IC.useful, 1, "mixer_cn_hunter", "cn_hunter_tech_2", itemType.tech, 2, "Progressive tech_crb_hunter", False, False, "Crustacean Tech: Full Mobilisation"),
     113509: specialItemData(IC.useful, 1, "mixer_cn_hunter", "cn_hunter_tech_3", itemType.tech, 2, "Progressive tech_crb_hunter", False, False, "Crustacean Tech: Loot Wagons"),
     113510: specialItemData(IC.useful, 1, "mixer_cn_hunter", "cn_hunter_tech_4", itemType.tech, 2, "Progressive tech_crb_hunter", False, False, "Crustacean Tech: One with the Land"),
-    113511: specialItemData(IC.useful, 2, "mixer_cn_hunter", "Progressive tech_crb_hunter", itemType.tech, 2, None, False, False, "Progressive Crustacean Tech: Assembly"),
+    113511: specialItemData(IC.useful, 2, "mixer_cn_hunter", "Progressive tech_crb_hunter", itemType.tech, 2, None, False, True, "Progressive Crustacean Tech: Assembly"),
 
     113512: specialItemData(IC.useful, 1, "mixer_cn_hunter", "cn_hunter_ranger_outpost", itemType.building, 0, "Progressive crb_outpost", False, False, "Crustacean Building: Ranger Outpost"),
-    113513: specialItemData(IC.useful, 1, "mixer_cn_hunter", "Progressive crb_outpost", itemType.building, 1, None, False, False, "Progressive Crustacean Building: Outpost"),
+    113513: specialItemData(IC.useful, 1, "mixer_cn_hunter", "Progressive crb_outpost", itemType.building, 1, None, False, True, "Progressive Crustacean Building: Outpost"),
 
     113514: specialItemData(IC.useful, 1, "mixer_cn_nuja", "cn_knights_pearl_1", itemType.building, 0, "Progressive crb_knights", False, False, "Crustacean Building: Argent Pearl Chapterhouse"),
     113515: specialItemData(IC.useful, 1, "mixer_cn_nuja", "cn_knights_pearl_2", itemType.building, 1, "Progressive crb_knights", False, False, "Crustacean Building: Argent Pearl Keep"),
@@ -322,11 +322,11 @@ special: dict[int, specialItemData] = {
     113519: specialItemData(IC.useful, 1, "mixer_cn_nuja", "cn_knights_gw_2", itemType.building, 1, "Progressive crb_knights", False, False, "Crustacean Building: Raging Claw Keep"),
     113520: specialItemData(IC.useful, 1, "mixer_cn_nuja", "cn_knights_jav_1", itemType.building, 0, "Progressive crb_knights", False, False, "Crustacean Building: Weeping Shell Chapterhouse"),
     113521: specialItemData(IC.useful, 1, "mixer_cn_nuja", "cn_knights_jav_2", itemType.building, 1, "Progressive crb_knights", False, False, "Crustacean Building: Weeping Shell Keep"),
-    113522: specialItemData(IC.useful, 2, "mixer_cn_nuja", "Progressive crb_knights", itemType.building, 2, None, False, False, "Progressive Crustacean Building: Knights"),
+    113522: specialItemData(IC.useful, 2, "mixer_cn_nuja", "Progressive crb_knights", itemType.building, 2, None, False, True, "Progressive Crustacean Building: Knights"),
 
     113523: specialItemData(IC.useful, 1, "mixer_cn_reefspeaker", "cn_reefspeaker_chain_1", itemType.building, 0, "Progressive crb_reef", False, False, "Crustacean Building: Great Reef Sanctuary"),
     113524: specialItemData(IC.useful, 1, "mixer_cn_reefspeaker", "cn_reefspeaker_chain_2", itemType.building, 1, "Progressive crb_reef", False, False, "Crustacean Building: Thriving Great Reef Sanctuary"),
-    113525: specialItemData(IC.useful, 2, "mixer_cn_reefspeaker", "Progressive crb_reef", itemType.building, 2, None, False, False, "Progressive Crustacean Building: Reef"),
+    113525: specialItemData(IC.useful, 2, "mixer_cn_reefspeaker", "Progressive crb_reef", itemType.building, 2, None, False, True, "Progressive Crustacean Building: Reef"),
 
     113526: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_ancient_sanctuary_base", itemType.building, 0, "Progressive crb_sanctuary", False, False, "Crustacean Sanctuary: Ancient Sanctuary"),
     113527: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_ancient_sanctuary_attack_1", itemType.building, 1, "Progressive crb_sanctuary", False, False, "Crustacean Sanctuary: Attack"),
@@ -344,12 +344,12 @@ special: dict[int, specialItemData] = {
     113539: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_ancient_sanctuary_ranged_1", itemType.building, 1, "Progressive crb_sanctuary", False, False, "Crustacean Sanctuary: Ranged"),
     113540: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_ancient_sanctuary_ranged_2", itemType.building, 2, "Progressive crb_sanctuary", False, False, "Crustacean Sanctuary: Greater Ranged"),
     113541: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_ancient_sanctuary_ranged_3", itemType.building, 3, "Progressive crb_sanctuary", False, False, "Crustacean Sanctuary: Grand Ranged"),
-    113542: specialItemData(IC.useful, 4, "mixer_cn_ancient", "Progressive crb_sanctuary", itemType.building, 4, None, False, False, "Progressive Crustacean Sanctuary: Sanctuary"),
+    113542: specialItemData(IC.useful, 4, "mixer_cn_ancient", "Progressive crb_sanctuary", itemType.building, 4, None, False, True, "Progressive Crustacean Sanctuary: Sanctuary"),
 
     113543: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_sanctuary_addon_research", itemType.building, 0, "Progressive crb_sanctuary_extra", False, False, "Crustacean Sanctuary: Sanctuary Road"),
     113544: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_sanctuary_addon_shells", itemType.building, 0, "Progressive crb_sanctuary_extra", False, False, "Crustacean Sanctuary: Sanctuary Vault"),
     113545: specialItemData(IC.useful, 1, "mixer_cn_ancient", "cn_sanctuary_addon_garrison", itemType.building, 0, "Progressive crb_sanctuary_extra", False, False, "Crustacean Sanctuary: Sanctuary Guard"),
-    113546: specialItemData(IC.useful, 1, "mixer_cn_ancient", "Progressive crb_sanctuary_extra", itemType.building, 1, None, False, False, "Progressive Crustacean Building: Sanctuary Addon"),
+    113546: specialItemData(IC.useful, 1, "mixer_cn_ancient", "Progressive crb_sanctuary_extra", itemType.building, 1, None, False, True, "Progressive Crustacean Building: Sanctuary Addon"),
 }
 
 rituals: dict[int, specialItemData] = {
