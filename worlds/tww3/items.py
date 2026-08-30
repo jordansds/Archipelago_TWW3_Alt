@@ -194,7 +194,7 @@ def generateRitualItems(world: TWW3World, pool: list) -> list:
 
 def generateExpansionItems(world: TWW3World, pool: list) -> list:
     if world.options.game_mode == "conquest":
-        for i in range(math.floor(world.options.number_of_settlements / world.adminCapacity)):
+        for i in range(world.adminItems):
             item = world.create_item("Administrative Capacity")
             pool.append(item)
     elif world.options.game_mode == "spheres":
