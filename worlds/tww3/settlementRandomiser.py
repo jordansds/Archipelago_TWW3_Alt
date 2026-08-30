@@ -79,7 +79,7 @@ class settlementRandomiser:
             self.capitals.update({playerFaction.name: playerSettlement.name})
 
 
-            # Assign the player 2 more settlements
+            # Assign the player extra settlements
             for i in range(self.startingSettlementCount - 1):
                 distance: int = 10000
                 for j, sKey in enumerate(self.settlementKeys):
