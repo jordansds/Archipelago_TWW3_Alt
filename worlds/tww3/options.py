@@ -10,30 +10,30 @@ class faction(Choice):
     All options after Drycha require you to have the enabled mod installed and enabled at the bottom of this yaml.
     The default option is The Daemon Prince. Make sure to disable it."""
     display_name = "Player Faction"
-    option_Random_Beastmen = 10
+    option_Random_Beastmen = 99010
     option_Khazrak_the_One_Eye = 11
     option_Malagor_the_Dark_Omen = 12
     option_Morghur_the_Shadowgave = 13
     option_Taurox_the_Brass_Bull = 14
 
-    option_Random_Bretonnia = 20
+    option_Random_Bretonnia = 99020
     option_King_Louen_Leoncoeur = 21
     option_Fay_Enchantress = 22
     option_Alberic_de_Bordeleaux = 23
     option_Repanse_de_Lyonesse = 24
 
-    option_Random_Cathay = 30
+    option_Random_Cathay = 99030
     option_Miao_Ying_the_Storm_Dragon = 31
     option_Zhau_Ming_the_Iron_Dragon = 32
     option_Yuan_Bo_the_Jade_Dragon = 33
     option_Bhashiva = 34
 
-    option_Random_Chaos_Dwarfs = 40
+    option_Random_Chaos_Dwarfs = 99040
     option_Astragoth_Ironhand = 41
     option_Drazhoath_the_Ashen = 42
     option_Zhaten_the_Black = 43
 
-    option_Random_Dark_Elves = 50
+    option_Random_Dark_Elves = 99050
     option_Malekith = 51
     option_Morathi = 52
     option_Crone_Helebron = 53
@@ -41,7 +41,7 @@ class faction(Choice):
     option_Malus_Darkblade = 55
     option_Rakarth_the_Beastmaster = 56
 
-    option_Random_Dwarfs = 70
+    option_Random_Dwarfs = 99070
     option_Thorgrim_Grudgebearer = 71
     option_Ungrim_Ironfist = 72
     option_Belegar_Ironhammer = 73
@@ -49,14 +49,14 @@ class faction(Choice):
     option_Thorek_Ironbrow = 75
     option_Malakai_Makaisson = 76
 
-    option_Random_Empire = 80
+    option_Random_Empire = 99080
     option_Karl_Franz = 81
     option_Balthasar_Gelt = 82
     option_Volkmar_the_Grim = 83
     option_Markus_Wulfhart = 84
     option_Elspeth_Von_Draken = 85
 
-    option_Random_Greenskins = 90
+    option_Random_Greenskins = 99090
     option_Grimgor_Ironhide = 91
     option_Skarsnik = 92
     option_Azhag_the_Slaughterer = 93
@@ -64,7 +64,7 @@ class faction(Choice):
     option_Grom_the_Paunch = 95
     option_Gorbad_Ironclaw = 96
 
-    option_Random_High_Elves = 100
+    option_Random_High_Elves = 99100
     option_Tyrion = 101
     option_Teclis = 102
     option_Alarielle_the_Radiant = 103
@@ -73,18 +73,18 @@ class faction(Choice):
     option_Imrik = 106
     option_Sea_Lord_Aislinn = 107
 
-    option_Random_Khorne = 110
+    option_Random_Khorne = 99110
     option_Skarbrand = 111
     option_Skulltaker = 112
     option_Arbaal_the_Undefeated = 113
 
-    option_Random_Kislev = 120
+    option_Random_Kislev = 99120
     option_Tzarina_Katarin = 121
     option_Kostaltyn = 122
     option_Boris_Ursus = 123
     option_Mother_Ostankya = 124
 
-    option_Random_Lizardmen = 130
+    option_Random_Lizardmen = 99130
     option_Oxyotl = 131
     option_Lord_Mazdamundi = 132
     option_Kroq_Gar = 133
@@ -93,22 +93,22 @@ class faction(Choice):
     option_Nakai_the_Wanderer = 136
     option_Gor_Rok = 137
 
-    option_Random_Norsca = 140
+    option_Random_Norsca = 99140
     option_Wulfrik_the_Wanderer = 141
     option_Sayl_the_Faithless = 142
     option_Throgg = 143
 
-    option_Random_Nurgle = 150
+    option_Random_Nurgle = 99150
     option_Kugath_Plaguefather = 151
     option_Tamurkhan_the_Maggot_Lord = 152
     option_Epidemius = 153
 
-    option_Random_Ogre_Kingdoms = 160
+    option_Random_Ogre_Kingdoms = 99160
     option_Greasus_Goldtooth = 161
     option_Skrag_the_Slaughterer = 162
     option_Golgfag_Maneater = 163
 
-    option_Random_Skaven = 170
+    option_Random_Skaven = 99170
     option_Queek_Headtaker = 171
     option_Lord_Skrolk = 172
     option_Tretch_Craventail = 173
@@ -116,34 +116,34 @@ class faction(Choice):
     option_Throt_the_Unclean = 175
     option_Deathmaster_Snikch = 176
 
-    option_Random_Slaanesh = 180
+    option_Random_Slaanesh = 99180
     option_NKari = 181
     option_Dechala_the_Denied_One = 182
     option_The_Masque_of_Slaanesh = 183
 
-    option_Random_Tomb_Kings = 190
+    option_Random_Tomb_Kings = 99190
     option_Settra_the_Imperishable = 191
     option_High_Queen_Khalida = 192
     option_Grand_Hierophant_Khatep = 193
     option_Arkhan_the_Black = 194
 
-    option_Random_Tzeentch = 200
+    option_Random_Tzeentch = 99200
     option_Kairos_Fateweaver = 201
     option_The_Changeling = 202
 
-    option_Random_Vampire_Coast = 210
+    option_Random_Vampire_Coast = 99210
     option_Luthor_Harkon = 211
     option_Count_Noctilus = 212
     option_Cylostra_Direfin = 213
     option_Aranessa_Saltspite = 214
 
-    option_Random_Vampire_Counts = 220
+    option_Random_Vampire_Counts = 99220
     option_Mannfred_von_Carstein = 221
     option_Heinrich_Kemmler = 222
     option_Helman_Ghorst = 223
     option_Vlad_von_Carstein = 224
 
-    option_Random_Chaos = 230
+    option_Random_Chaos = 99230
     option_Archaon_the_Everchosen = 231
     option_Kholek_Suneater = 232
     option_Prince_Sigvald_the_Magnificent = 233
@@ -154,13 +154,13 @@ class faction(Choice):
     option_Belakor = 238
     option_The_Daemon_Prince = 239
 
-    option_Random_Wood_Elves = 240
+    option_Random_Wood_Elves = 99240
     option_Orion = 241
     option_Durthu = 242
     option_Sisters_of_Twilight = 243
     option_Drycha = 244
 
-    option_Random_mousillon = 2000
+    option_Random_mousillon = 92000
     option_Mixu_Mousillon_Mallobaude = 2001
     option_Mixu_Mousillon_Lady_of_the_Black_Grail = 2002
     
@@ -200,7 +200,7 @@ class faction(Choice):
     option_Ovn_Althran_Stormrider = 1148
     option_Medusa0_Surtha_Ek = 1287
     
-    option_Random_southern_realms = 12500
+    option_Random_southern_realms = 91250
     option_Cataph_Southern_Realms_Valmir_Gausser = 1251
     option_Cataph_Southern_Realms_Lupio_Sunscryer = 1252
     option_Cataph_Southern_Realms_Borgio_the_Besieger = 1253
@@ -210,7 +210,7 @@ class faction(Choice):
     option_Cataph_Southern_Realms_Gnashag_the_Black_Prince = 2022
     option_Cataph_Southern_Realms_El_Cadavo = 2023
     
-    option_Random_crabs = 12000
+    option_Random_crabs = 92010
     option_Pegaz_Crustacean_Nation_King_Crab = 2008
     option_Pegaz_Crustacean_Nation_Reefspeaker = 2009
     option_Pegaz_Crustacean_Nation_Old_Kelpbeard = 2010
