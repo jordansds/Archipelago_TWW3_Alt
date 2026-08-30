@@ -162,7 +162,10 @@ buildings: dict[int, itemData] = {
     50530: itemData(IC.useful, 1, 'wh2_dlc11_vampirecoast_support_monsters_1', itemType.building, 0, 'Progressive cst_support_monsters', 'Pirate Building: Desolate Shoal'),
     50531: itemData(IC.useful, 1, 'wh2_dlc11_vampirecoast_support_monsters_2', itemType.building, 1, 'Progressive cst_support_monsters', 'Pirate Building: Mangrove of Monsters'),
     50532: itemData(IC.useful, 1, 'wh2_dlc11_vampirecoast_support_monsters_3', itemType.building, 2, 'Progressive cst_support_monsters', 'Pirate Building: Cape of Conjuring'),
-    50533: itemData(IC.useful, 1, 'wh2_dlc11_vampirecoast_support_necrofex_1', itemType.building, 0, 'Progressive cst_support_necrofex', 'Pirate Building: Great Altar of the Necrarchs')
+    50533: itemData(IC.useful, 1, 'wh2_dlc11_vampirecoast_support_necrofex_1', itemType.building, 0, 'Progressive cst_support_necrofex', 'Pirate Building: Great Altar of the Necrarchs'),
+    50534: itemData(IC.useful, 1, "wh2_main_foreign_slot_discovery_cst_1", itemType.building, 0, "Progressive cst_foreign_slot_discovery", "Pirate Building: Low Lighthouses"),
+    50535: itemData(IC.useful, 1, "wh2_main_foreign_slot_discovery_cst_2", itemType.building, 1, "Progressive cst_foreign_slot_discovery", "Pirate Building: Crows' Nests"),
+    50536: itemData(IC.useful, 1, "wh2_main_foreign_slot_discovery_cst_3", itemType.building, 2, "Progressive cst_foreign_slot_discovery", "Pirate Building: Lighthouse Keeper")
 }
 
 techs: dict[int, itemData] = {
@@ -272,7 +275,8 @@ progBuildings: dict[int, itemData] = {
     51347: itemData(IC.useful, 3, 'Progressive cst_ship_sail', itemType.building, 3, None, 'Progressive Pirate Shipbuilding: Ship Sail'),
     51348: itemData(IC.useful, 3, 'Progressive cst_support_artillery', itemType.building, 3, None, 'Progressive Pirate Building: Support Artillery'),
     51349: itemData(IC.useful, 3, 'Progressive cst_support_monsters', itemType.building, 3, None, 'Progressive Pirate Building: Support Monsters'),
-    51350: itemData(IC.useful, 1, 'Progressive cst_support_necrofex', itemType.building, 1, None, 'Progressive Pirate Building: Support Necrofex')
+    51350: itemData(IC.useful, 1, 'Progressive cst_support_necrofex', itemType.building, 1, None, 'Progressive Pirate Building: Support Necrofex'),
+    51351: itemData(IC.useful, 3, "Progressive cst_foreign_slot_discovery", itemType.building, 3, None, 'Progressive Pirate Building: Protection'),
 }
 
 progTechs: dict[int, itemData] = {
