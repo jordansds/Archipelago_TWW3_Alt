@@ -73,7 +73,7 @@ class TWW3World(World):
         fm.addModdedFactions(self.options.mod_list)
 
         #Handle random faction from race selection.
-        if self.options.starting_faction.value % 10 == 0:
+        if self.options.starting_faction.value % 10 == 0 and self.options.starting_faction.value > 90000:
             randomRace = fm.factionDict[self.options.starting_faction.value]
             self.options.starting_faction.value = self.random.choice(randomRace.readableName) #Yes, I reused readableName for a list of ints. Fight me.
 
@@ -96,13 +96,16 @@ class TWW3World(World):
         self.options.non_local_items.value.add("Administrative Capacity")
         self.adminCapacity = 5
         if self.options.game_mode == "conquest":
+            self.adminItems = math.floor(self.options.number_of_settlements / self.adminCapacity) - 1
             if self.playerFaction.race == "beastmen":
                 self.adminCapacity = 1
+
         elif self.options.game_mode == "spheres":
             self.orbCount = 9
             self.sphereRadius = 50
             self.settlementDiploRange, self.factionDiploRange = self.settlementRandomiser.getRequiredDiploRange(
                 self.options.sphere_count, self.sphereRadius)
+
         if self.options.ritual_sanity:
             self.options.sanity.value = True
             self.options.ritual_shuffle.value = True
@@ -118,8 +121,6 @@ class TWW3World(World):
             self.options.progressive_buildings.value = True
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
-
-        self.adminItems = math.floor(self.options.number_of_settlements / self.adminCapacity)
 
         if self.options.balance > 0 or not self.options.hard_logic:
             self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
