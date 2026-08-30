@@ -107,10 +107,10 @@ techs: dict[int, itemData] = {
 
     68836: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_units_3', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of the Beasts'),
     68837: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_units_8', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of the Mounts'),
-    68838: itemData(IC.useful, 1, 'wh2_main_tech_lzd_8_2', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of Exotic Weapons'),
-    68839: itemData(IC.useful, 1, 'wh2_main_tech_lzd_8_4', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of the Hunt'),
+    68838: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_23', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of Exotic Weapons'),
+    68839: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_cavalry_4', itemType.tech, 1, 'Progressive tech_lzd_nakai_cavalry', 'Lzd Nakai Tech: Sequence of the Hunt'),
 
-    68840: itemData(IC.useful, 1, 'wh2_main_tech_lzd_8_7', itemType.tech, 1, 'Progressive tech_lzd_nakai_beasts', 'Lzd Nakai Tech: Sequence of the Beastkeepers'),
+    68840: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_beasts_3', itemType.tech, 1, 'Progressive tech_lzd_nakai_beasts', 'Lzd Nakai Tech: Sequence of the Beastkeepers'),
     68841: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_beasts_4', itemType.tech, 1, 'Progressive tech_lzd_nakai_beasts', 'Lzd Nakai Tech: Sequence of Prowling'),
     68842: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_units_4', itemType.tech, 1, 'Progressive tech_lzd_nakai_beasts', 'Lzd Nakai Tech: Sequence of Savagery'),
     68843: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_units_9', itemType.tech, 1, 'Progressive tech_lzd_nakai_beasts', 'Lzd Nakai Tech: Sequence of the Greater Beasts'),
