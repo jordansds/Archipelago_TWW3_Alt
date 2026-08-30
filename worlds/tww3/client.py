@@ -706,29 +706,30 @@ class TWW3Context(CommonContext):
     # Location handlers
     async def check(self, location):
         try:
-            location = int(location)
+            location = 0 if int(location) > 1000 else int(location)   #In case the file reads the seed?
             if self.gameMode == "conquest":
-                if location <= int(self.maxEmpireSize):
-                    capacity = (self.expansionItems + 1) * self.adminCapacity
-                    acceptedLocation = min(location, capacity) if self.hardLogic else location
-                    locationIds = [
-                        empireSize * 10 - 9 + check
-                        for empireSize in range(1, acceptedLocation + 1)
-                        for check in range(int(self.checksPerLocation))
-                    ]
-                    await self.check_locations(locationIds)
+                location = min(location, self.maxEmpireSize)
+                #if location <= int(self.maxEmpireSize):
+                capacity = (self.expansionItems + 1) * self.adminCapacity
+                acceptedLocation = min(location, capacity) if self.hardLogic else location
+                locationIds = [
+                    empireSize * 10 - 9 + check
+                    for empireSize in range(1, acceptedLocation + 1)
+                    for check in range(int(self.checksPerLocation))
+                ]
+                await self.check_locations(locationIds)
 
-                    if acceptedLocation > self.settlementCount:
-                        self.settlementCount = acceptedLocation
+                if acceptedLocation > self.settlementCount:
+                    self.settlementCount = acceptedLocation
 
-                    if acceptedLocation < location:
-                        logger.info(
-                            f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity"
-                        )
-                    elif location == int(self.maxEmpireSize):
-                        self.adminCapacity = 1000
-                        self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
-                        await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+                if acceptedLocation < location:
+                    logger.info(
+                        f"Administrative Capacity Exceeded, {location} Settlements > {capacity} Capacity"
+                    )
+                elif location == int(self.maxEmpireSize):
+                    self.adminCapacity = 1000
+                    self.sendMessage(f"archipelago.set_admin_capacity_mult({self.adminCapacity})")
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
         except ValueError:
             if self.gameMode == "spheres":
                 location = next((value for value in sm.mapDict[self.map].values() if value.name == location), None).readableName
@@ -894,13 +895,19 @@ class EngineInitializer:
             ###
             #Ignore the player on the first sweep to prevent early check triggers
             for settlement, faction in context.settlements.items():
-                if faction == self.playerFaction:
-                    continue
+
+                if faction == "wh2_dlc13_lzd_spirits_of_the_jungle":
+                    faction = "wh2_dlc13_lzd_defenders_of_the_great_plan"
+
                 sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
                 sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
 
             isFirstPlayerSettlement = True
             for settlement, faction in context.settlements.items():
+
+                if faction == "wh2_dlc13_lzd_spirits_of_the_jungle":
+                    faction = "wh2_dlc13_lzd_defenders_of_the_great_plan"
+
                 if faction == self.playerFaction:
                     sendMessage(f'cm:transfer_region_to_faction("{settlement}", "{faction}")')
                     sendMessage(f'cm:heal_garrison(cm:get_region("{settlement}"):cqi())')
