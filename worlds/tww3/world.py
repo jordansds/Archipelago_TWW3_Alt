@@ -241,11 +241,9 @@ class TWW3World(World):
         return items.TWW3Item(name, items.itemDict[key].classification, key, player=self.player)
 
     def get_filler_item_name(self) -> str:
-        fillerFunctions = [items.generateFillerWeak, items.generateFillerStrong, items.generateTrapHarmless,
-                           items.generateTrapWeak, items.generateTrapStrong]  # List of functions for generating filler
-        weights = [self.options.filler_weak.value, self.options.filler_strong.value, self.options.trap_harmless.value,
-                   self.options.trap_weak.value, self.options.trap_strong.value]  # list of weights defined in YAML
+        fillerFunctions = [items.generateFiller, items.generateTrap]  # List of functions for generating filler
+        weights = [self.options.filler.value, 100 - self.options.filler.value]  # list of weights defined in YAML
+
         fillerFunction = self.random.choices(fillerFunctions, weights=weights, k=1)[0]
         item = fillerFunction(self)
         return item.name
-        #item = items.generateFillerWeak(self)
