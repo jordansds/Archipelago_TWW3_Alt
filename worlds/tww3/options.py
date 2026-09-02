@@ -221,32 +221,9 @@ class faction(Choice):
 
     default = option_The_Daemon_Prince
 
-class gameMode(Choice):
-    """Select which game mode you want to use.
-    Conquest: No restrictions, checks are based on total settlements conquered.
-    Spheres:  You can only interact with factions near your start position,
-             all unique settlements are checks.
-             [MAKE SURE YOU HAVE READ THE README TO PREVENT SOFTLOCKING]"""
-    display_name = "Game Mode"
-
-    option_conquest = "conquest"
-    option_spheres = "spheres"
-
-    default = option_conquest
-
 class factionShuffle(DefaultOnToggle):
     """If you want to shuffle the settlements for each faction"""
     display_name = "Faction Shuffle"
-
-class checksPerSettlement(Range):
-    """Set how many checks are triggered per settlement captured.
-    Depending on YAML settings and the chosen faction, you will likely have around 150-250 non-filler items.
-    Make sure to change this value based on how many locations you want your game to have.
-    If world generation fails, then try increasing this option."""
-    display_name = "Checks Per Settlement"
-    range_start = 1
-    range_end = 5
-    default = 3
 
 class startingSettlements(Range):
     """REQUIRES FACTION SHUFFLE TO BE ENABLED
@@ -276,6 +253,10 @@ class sanity(DefaultOnToggle):
     [EXPERIMENTAL, WILL ENABLE BUILDING AND TECH SHUFFLE]"""
     display_name = "BuildingTechSanity"
 
+class conquererSanity(Toggle):
+    """ConquerLocations"""
+    display_name = "ConquererSanity"
+
 class ritualSanity(Toggle):
     """If you want every faction mechanic to be a location.
     [EXPERIMENTAL, WILL ENABLE RITUAL SHUFFLE AND SANITY, Will force settlements to a minimum of 30]"""
@@ -290,28 +271,6 @@ class despoilerSanity(Toggle):
     """If you want every 2 settlements sacked and razed to be locations up to 20 settlements
         [EXPERIMENTAL]"""
     display_name = "DespoilerSanity"
-    
-class numberOfSettlements(Range):
-    """CONQUEST MODE ONLY
-    Set how large your empire needs to be for victory. The maximum value is the entire immortal empires map.
-    Make sure to change this based on how fast you want your game to be.
-    If world generation fails, then you will need to increase this option or checks_per_settlement.
-    Items will not be found in any of your starting settlements."""
-    display_name = "Number Of Settlements (CONQUEST)"
-    range_start = 5
-    range_end = sm.getMaximumSettlementCount()
-    default = 50
-
-class sphereCount(Range):
-    """SPHERE MODE ONLY
-    How many diplomatic radius upgrades are required to access all checks.
-    You can only interact with factions that are within this radius of your starting capital.
-    Depending on starting location, 15-25 will likely include the entire world.
-    This value will automatically be reduced by the apworld to ensure there are no empty spheres."""
-    display_name = "Radius Upgrades (SPHERES)"
-    range_start = 3
-    range_end = 25
-    default = 5
 
 
 class ritualShuffle(DefaultOnToggle):
@@ -351,15 +310,6 @@ class startingTier(Range):
     range_start = 0
     range_end = 4
     default = 1
-
-class balance(Range):
-    """Percentage of your early items that are forced to be useful/progression.
-    0 doesn't force unlocks at all. 100 means that all of your early items will be unlocks.
-    High values are not recommended. SOFT LOGIC, Not recommended for large syncs/asyncs."""
-    display_name = "Force Early Upgrades"
-    range_start = 0
-    range_end = 100
-    default = 0
 
 class filler(Range):
     """Weight of filler items to trap items.
@@ -418,7 +368,7 @@ class hardLogic(DefaultOnToggle):
     Recommended for large syncs/asyncs to prevent soft logic issues."""
     display_name = "Hard Logic"
 
-class fastResearch(Toggle):
+class fastResearch(DefaultOnToggle):
     """Instantly completes any research that you are sent from the multiworld, but disables techs from being locations if sanity is enabled"""
     display_name = "Fast Research"
 
@@ -429,37 +379,31 @@ class revealHints(Toggle):
 @dataclass
 class TWW3Options(PerGameCommonOptions):
     starting_faction: faction
-    game_mode: gameMode
 
     faction_shuffle: factionShuffle
     randomize_personalities: randomizePersonalities
     starting_settlements: startingSettlements
-    checks_per_settlement: checksPerSettlement
 
     sanity: sanity
-    ritual_sanity: ritualSanity
+    conquerer_sanity: conquererSanity
+    #ritual_sanity: ritualSanity
     battle_sanity: battleSanity
     despoiler_sanity: despoilerSanity
 
-    number_of_settlements: numberOfSettlements
-    sphere_count: sphereCount
-
-    tech_shuffle: techShuffle
+    #tech_shuffle: techShuffle
     progressive_technologies: progressiveTechnologies
-    building_shuffle: buildingShuffle
+    #building_shuffle: buildingShuffle
     progressive_buildings: progressiveBuildings
-    unit_shuffle: unitShuffle
+    #unit_shuffle: unitShuffle
     progressive_units: progressiveUnits
-    ritual_shuffle: ritualShuffle
+    #ritual_shuffle: ritualShuffle
 
     filler: filler
-    #trap: trap
 
     death_link: deathLink
     death_link_effects: deathLinkEffect
 
     starting_tier: startingTier
-    balance: balance
 
     hard_logic: hardLogic
     fast_research: fastResearch

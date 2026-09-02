@@ -11,30 +11,17 @@ from worlds.tww3.dataStructs import itemType, itemData
 from collections import Counter
 
 def setVictoryRule(world: TWW3World, location):
-    if world.options.game_mode == "conquest":
-        rule = Has("Administrative Capacity", world.adminItems)
-
-    elif world.options.game_mode == "spheres":
-        rule = Has("Orb of Domination", world.orbCount)
-
-    world.set_rule(location, rule)
+    world.set_rule(location, Has("Key", 9))
 
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
 
-def setGenericLocationRule(world: TWW3World, location, i: int):
-    rule = None
-    if world.options.game_mode == "conquest":
-        requiredAdminCapacity = math.floor(i / 20 * world.adminItems)
-        if requiredAdminCapacity > 0:
-            rule = Has("Administrative Capacity", requiredAdminCapacity)
+def setKeyRule(world: TWW3World, locations, i):
+    for location in locations:
+        world.set_rule(location, Has("Key", i-1))
 
-    elif world.options.game_mode == "spheres":
-        requiredDiploRange = math.floor(i / 20 * world.options.sphere_count)
-        if requiredDiploRange > 0:
-            rule = Has("Diplomatic Range", requiredDiploRange)
 
-    if rule is not None:
-        world.set_rule(location, rule)
+def setGenericLocationRule(world: TWW3World, location, i: int, maxCheck: int):
+    world.set_rule(location, Has("Key", (i+1) * 8 // maxCheck))
 
 def setBuildingLocationRules(world: TWW3World, buildings):
 
@@ -44,13 +31,8 @@ def setBuildingLocationRules(world: TWW3World, buildings):
     progBuildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is None]
 
     for item in buildings:
-
-        #if world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
         if ("resource" in item.name or "port" in item.name or "allied" in item.name
                 or "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup):
-            #if firstPass:
-            #    continue
-            #else:
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
         if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name or "settlement" in item.progressionGroup):
@@ -72,13 +54,7 @@ def setBuildingLocationRules(world: TWW3World, buildings):
 
             if not world.options.hard_logic:
                 itemCount = item.tier if item.tier <= 3 else item.tier + 2
-                if world.options.game_mode == "conquest":
-                    rule = rule & Has("Administrative Capacity", min(itemCount, world.adminItems))
-                elif world.options.game_mode == "spheres":
-                    rule = rule & Has("Diplomatic Range", min(itemCount, world.options.sphere_count.value))
 
-
-            #print(item.readableName, rule)
             world.set_rule(world.get_location(item.readableName), rule)
 
 def setTechnologyLocationRules(world: TWW3World, techs):
@@ -131,7 +107,6 @@ def setRitualRules(world: TWW3World, rituals: list):
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
 def setBalance(world: TWW3World) -> None:
-        worldRegion = world.get_region("Settlements")
 
         world.item_name_groups.update({"Unlocks": set()})
         #The counter that will determine the maximum number of items that can be prioritised
@@ -139,45 +114,16 @@ def setBalance(world: TWW3World) -> None:
         for item in world.multiworld.itempool:
             if item.classification == ItemClassification.progression and item.player == world.player:
                 # Check if the item is in progression_table (to prevent strange logic around the progression items)
-                if not item.name in [progItem.name for progItem in progressionDict.values()]:
+                if not item.name in [progItem.readableName for progItem in progressionDict.values()]:
                     world.item_name_groups["Unlocks"].add(item.name)
                     counter += 1
 
-        victoryItems = 0
-        if world.options.game_mode == "conquest":
-            for index, location in enumerate(worldRegion.locations):
-                #This increments by 1 every admin_capacity empire size in locations.
-                empireSizeInterval = math.floor(index / (world.adminCapacity * world.options.checks_per_settlement))
-                # This sets the weighting for the item balancing.
-                weight = world.options.checks_per_settlement * world.adminCapacity * world.options.balance / 100
-                requiredUnlockItems = min(empireSizeInterval * weight, counter)
-                victoryItems = max(requiredUnlockItems, victoryItems)
-                
-                world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
+        for index, location in enumerate(world.get_region("Keys").locations):
+            # Should have access to all items by the 9th key
+            requiredItems = len(world.item_name_groups["Unlocks"]) * min(1, (index // 6) / 8)
+            if requiredItems > 0:
+                world.set_rule(location, HasGroup("Unlocks", requiredItems) | Has("Glitch Logic"))
 
-        elif world.options.game_mode == "spheres":
-
-            #Number of settlements contained within each diplo range
-            settlementsPerDiploRange = [value for key, value in sorted(Counter(world.settlementDiploRange).items())]
-
-            #Number of items to assign to the locations within each diplo range
-            itemsPerDiploRange = [int(settlement * world.options.balance / 100) for settlement in settlementsPerDiploRange]
-
-            settlementToDiploRange = [settlement.readableName for settlement in world.settlementRandomiser.shuffledSettlementDict.values()]
-            settlementToDiploRange = {settlementToDiploRange[i]: count for i, count in enumerate(world.settlementDiploRange) if count <= world.options.sphere_count}
-
-            for locationName, requiredDiploRange in settlementToDiploRange.items():
-                if requiredDiploRange > 0:
-                    for i in range(world.options.checks_per_settlement):
-                        try:
-                            location = world.get_location(f"{locationName} ({i})")
-                        except KeyError:
-                            continue
-                        requiredUnlockItems = min(sum(itemsPerDiploRange[:requiredDiploRange]), counter)
-                        victoryItems = max(requiredUnlockItems, victoryItems)
-
-                        #add_rule(location, lambda state, count=requiredUnlockItems: state.has_group("Unlocks", world.player, count))
-                        world.set_rule(location, HasGroup("Unlocks", requiredUnlockItems) | Has("Glitch Logic"))
-
-        location = world.get_location("Victory")
-        world.set_rule(location, HasGroup("Unlocks", victoryItems) | Has("Glitch Logic"))
+        if requiredItems > 0:
+            location = world.get_location("Victory")
+            world.set_rule(location, HasGroup("Unlocks", requiredItems) | Has("Glitch Logic"))

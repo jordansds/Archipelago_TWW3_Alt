@@ -17,13 +17,8 @@ class TWW3Location(Location):
     game = "Total War Warhammer III"
     
 def createAllLocations(world: TWW3World) -> None:
+    createKeyLocations(world)
     createVictoryLocation(world)
-
-    if world.options.game_mode == "conquest":
-        createConquestLocations(world)
-
-    elif world.options.game_mode == "spheres":
-        createDiploRangeLocations(world)
 
     if world.options.sanity:
         createBuildingLocations(world, True)
@@ -35,6 +30,9 @@ def createAllLocations(world: TWW3World) -> None:
         #In case of generation issues E.g. Ports in Spheres mode.
         createBuildingLocations(world, False)
 
+    if world.options.conquerer_sanity:
+        createConquererLocations(world)
+
     if world.options.battle_sanity:
         createBattleLocations(world)
 
@@ -42,7 +40,7 @@ def createAllLocations(world: TWW3World) -> None:
         createDespoilerLocations(world)
 
 def createVictoryLocation(world: TWW3World) -> None:
-    worldRegion = world.get_region("Settlements")
+    worldRegion = world.get_region("Keys")
 
     location = TWW3Location(world.player, "Victory", None, worldRegion)
     worldRegion.locations.append(location)
@@ -52,51 +50,27 @@ def createVictoryLocation(world: TWW3World) -> None:
 
     rules.setVictoryRule(world, location)
 
-def createConquestLocations(world: TWW3World) -> None:
-    worldRegion = world.get_region("Settlements")
-    # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
-    if world.playerFaction.name == "wh3_dlc24_tze_the_deceivers":
-        startingCheck = 2
-    elif world.playerFaction.name in fm.hordeList:
-        startingCheck = 1
-    else:
-        startingCheck = world.options.starting_settlements + 1
-    startingCheck = min(startingCheck, world.options.number_of_settlements)
-    # Fill location checks based on number of locations and checks per location
-    for i in range(startingCheck, world.options.number_of_settlements + 1):
-        requiredAdminCapacity = max(0, (i - 1) // world.adminCapacity)
-        for j in range(world.options.checks_per_settlement):
-            locName = f"Empire Size {i} ({j})"
-            
+def createKeyLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Keys")
+
+    keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
+    for index, key in enumerate(keys):
+        #locName = world.settlementRandomiser.getSettlementWithinRange(i)
+        locName = f"The {key} Key"
+        locId = world.location_name_to_id[locName]
+        location = TWW3Location(world.player, locName, locId, worldRegion)
+        worldRegion.locations.append(location)
+        locations = [location]
+
+        #Add 5 items that spawn in each key location as a reward
+        for j in range(5):
+            locName = f"The {key} Key: Item {j+1}"
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
-
-            world.set_rule(location, Has("Administrative Capacity", requiredAdminCapacity))
-
             worldRegion.locations.append(location)
+            locations.append(location)
 
-def createDiploRangeLocations(world: TWW3World) -> None:
-    worldRegion = world.get_region("Settlements")
-
-    from worlds.tww3.world import TWW3World
-    # Reduce sphere items down so that we don't have spares
-    world.options.sphere_count.value = min(world.options.sphere_count.value, max(world.factionDiploRange.values()))
-
-    for key, settlement in enumerate(world.settlements.values()):
-        for i in range(world.options.checks_per_settlement):
-            locId = world.location_name_to_id[f"{settlement.readableName} ({i})"]
-            location = TWW3Location(world.player, f"{settlement.readableName} ({i})", locId, worldRegion)
-
-
-            if world.factionDiploRange[settlement.faction] > world.options.sphere_count or settlement.faction == world.playerFaction.name:
-                continue
-
-            worldRegion.locations.append(location)
-            if world.factionDiploRange[settlement.faction] > 0:
-                world.set_rule(location, Has("Diplomatic Range", world.factionDiploRange[settlement.faction]))
-
-                if world.factionDiploRange[settlement.faction] < world.options.sphere_count - 1:
-                    forbid_item(location, "Orb of Domination", world.player)
+        rules.setKeyRule(world, locations, index)
 
 def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
     region = world.get_region("Buildings")
@@ -123,22 +97,16 @@ def createBuildingLocations(world: TWW3World, firstPass: bool) -> None:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
 
-        if firstPass and world.options.game_mode == "spheres" and ("resource" in item.name or "port" in item.name):
-            continue
         #Check if we already generated this building
         try:
             location = world.multiworld.get_location(locName, world.player)
         except KeyError:
             location = TWW3Location(world.player, locName, locId, region)
-            # Prevent early spawning of orbs
-            if item.tier <= 3:
-                forbid_item(location, "Orb of Domination", world.player)
 
             region.locations.append(location)
 
     if not firstPass:
         rules.setBuildingLocationRules(world, buildings)
-
 
 def createTechLocations(world: TWW3World) -> None:
     region = world.get_region("Techs")
@@ -147,19 +115,11 @@ def createTechLocations(world: TWW3World) -> None:
     techs = [item for key, item in factionItemManager.getTechs(world.playerFaction.race, False)]
     techs += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialTechs if item.progressionGroup is not None]
 
-    try:
-        maxTier = max([item.tier for item in techs])
-    except ValueError:
-        return
-
     for item in techs:
         locName = item.readableName
         locId = world.location_name_to_id[locName]
 
         location = TWW3Location(world.player, locName, locId, region)
-        # Prevent early spawning of orbs
-        if item.tier <= maxTier - 2:
-            forbid_item(location, "Orb of Domination", world.player)
         region.locations.append(location)
 
     rules.setTechnologyLocationRules(world, techs)
@@ -177,33 +137,50 @@ def createRitualLocations(world: TWW3World) -> None:
 
     rules.setRitualRules(world, rituals)
 
+minCheck, maxCheck = 1, 21
+
 def createBattleLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Battles")
-    for i in range(1, 21):
+
+    for i in range(minCheck, maxCheck):
         locName = f"Won {i*5} Battles"
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 
-        rules.setGenericLocationRule(world, location, i) #Hard logic handled on client
-
-        # Prevent early spawning of orbs
-        if i < 15:
-            forbid_item(location, "Orb of Domination", world.player)
+        rules.setGenericLocationRule(world, location, i, maxCheck) #Hard logic handled on client
 
         worldRegion.locations.append(location)
 
 def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
-    for i in range(1, 21):
+
+    for i in range(minCheck, maxCheck):
         for decision in ["Sacked", "Razed"]:
             locName = f"{decision} {i*2} Settlements"
             locId = world.location_name_to_id[locName]
             location = TWW3Location(world.player, locName, locId, worldRegion)
 
-            rules.setGenericLocationRule(world, location, i) #Hard logic handled on client
-
-            #Prevent early spawning of orbs
-            if i < 15:
-                forbid_item(location, "Orb of Domination", world.player)
+            rules.setGenericLocationRule(world, location, i, maxCheck) #Hard logic handled on client
 
             worldRegion.locations.append(location)
+
+def createConquererLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Empire")
+
+    # Check if player has starting regions. If they do, then skip the player's starting settlements to prevent the game from fulfilling checks before game start.
+    if world.playerFaction.name == "wh3_dlc24_tze_the_deceivers":
+        startingCheck = 2
+    elif world.playerFaction.name in fm.hordeList:
+        startingCheck = 1
+    else:
+        startingCheck = world.options.starting_settlements + 1
+
+    # Fill location checks based on number of locations and checks per location
+    for i in range(startingCheck, maxCheck):
+        locName = f"Empire Size {i})"
+        locId = world.location_name_to_id[locName]
+        location = TWW3Location(world.player, locName, locId, worldRegion)
+
+        rules.setGenericLocationRule(world, location, i, maxCheck)  # Hard logic handled on client
+
+        worldRegion.locations.append(location)

@@ -27,31 +27,40 @@ class TWW3World(World):
     options_dataclass = TWW3Options  # options the player can set
     options: TWW3Options  # typing hints for option results
     settings: ClassVar[TWW3Settings]  # will be automatically assigned from type hint
-    origin_region_name = "Settlements"
+    origin_region_name = "Keys"
     topology_present = True # show path to required location checks in spoiler
     logger = logging.getLogger("Total War Warhammer III")
     ut_can_gen_without_yaml = True
     glitches_item_name: str = "Glitch Logic"
 
     item_name_to_id = {item.readableName: key for key, item in items.itemDict.items()}
+    location_name_to_id = {}
 
-    # conquest gamemode locations
-    conquestLocations = [f"Empire Size {i} ({j})"
-                 for i in range(1, sm.getMaximumSettlementCount() + 1) for j in range(10)]
-    location_name_to_id = {location: index for index, location in enumerate(conquestLocations, start=1)}
-
-    # spheres gamemode locations
+    # Need to create the 9 key locations
+    keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
     location_name_to_id.update({
-        f"{settlement.readableName} ({i})": (i+1) + (index + sm.getMaximumSettlementCount()) * 10 #offset conquest locations
-        for index, settlement in sm.getAllSettlements().items() for i in range(10)
+        f"The {key} Key": index + 1 for index, key in enumerate(keys)
+    })
+    location_name_to_id.update({
+        f"The {key} Key: Item {j+1}": (index + 1) * 10 + j for index, key in enumerate(keys) for j in range(5)
+    })
+    # Conquerer Locations starting at index 1001
+    location_name_to_id.update({
+        f"Empire Size {index+1}": index + 1001 for index in range(sm.getMaximumSettlementCount())
+    })
+    # SettlementLocations starting at index 2001
+    location_name_to_id.update({
+        f"{settlement.readableName}":(index + 2001)
+        # offset conquest locations
+        for index, settlement in sm.getAllSettlements().items()
     })
 
     sanityLocationNames = {}
     for key, item in factionItemManager.getAllItems().items():
         if (item.type == itemType.building or item.type == itemType.tech or item.type == itemType.ritual) and (item.progressionGroup is not None and item.progressionGroup != ""):
             sanityLocationNames.update({key + 1000000: item.readableName})
-    for i in range(1,21):
-        sanityLocationNames.update({i+20000: f"Won {i*5} Battles", i+20020: f"Sacked {i*2} Settlements", i+20040: f"Razed {i*2} Settlements"})
+    for i in range(1,100):
+        sanityLocationNames.update({i+3000: f"Won {i*5} Battles", i+3100: f"Sacked {i*2} Settlements", i+3200: f"Razed {i*2} Settlements"})
     location_name_to_id.update({item: key for key, item in sanityLocationNames.items()})
 
     settlementRandomiser: sr.settlementRandomiser = None
@@ -68,7 +77,6 @@ class TWW3World(World):
                 if opt is not None:
                     setattr(self.options, key, opt.from_any(value))
 
-            #Need to add support for spheres settlements here. Pass the settlements through from the client, then bypass the generation on lines 90, 107
 
         fm.addModdedFactions(self.options.mod_list)
 
@@ -89,45 +97,27 @@ class TWW3World(World):
             self.settlements = self.settlementRandomiser.getSettlements()
         self.playerSettlements = [settlement for settlement in self.settlements.values()
                                   if settlement.faction == self.playerFaction.name]
+        self.keyLocations = []
 
-        self.locationToDiploRange = {}
-
-        self.options.local_items.value.add("Orb of Domination")
-        self.options.non_local_items.value.add("Administrative Capacity")
-        self.adminCapacity = 5
-        if self.options.game_mode == "conquest":
-            self.adminItems = math.floor(self.options.number_of_settlements / self.adminCapacity) - 1
-            if self.playerFaction.race == "beastmen":
-                self.adminCapacity = 1
-
-        elif self.options.game_mode == "spheres":
-            self.orbCount = 9
-            self.sphereRadius = 50
-            self.settlementDiploRange, self.factionDiploRange = self.settlementRandomiser.getRequiredDiploRange(
-                self.options.sphere_count, self.sphereRadius)
-
-        if self.options.ritual_sanity:
-            self.options.sanity.value = True
-            self.options.ritual_shuffle.value = True
-            if self.options.number_of_settlements < 3 * self.adminCapacity:
-                self.options.number_of_settlements.value = 3 * self.adminCapacity
-            if self.options.sphere_count < 3:
-                self.options.sphere_count.value = 3
+        #if self.options.ritual_sanity:
+        #    self.options.sanity.value = True
+        #    self.options.ritual_shuffle.value = True
+        self.options.ritual_shuffle = False #Disabled for now
+        self.options.ritual_sanity = False #Disabled for now
         if self.options.sanity:
-            self.options.unit_shuffle.value = True
-            self.options.building_shuffle.value = True
-            self.options.tech_shuffle.value = True
+            #self.options.unit_shuffle.value = True
+            #self.options.building_shuffle.value = True
+            #self.options.tech_shuffle.value = True
 
             self.options.progressive_buildings.value = True
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
 
-        if self.options.balance > 0 or not self.options.hard_logic:
-            self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
+        #if not self.options.hard_logic:
+        #    self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
-
-        worldRegion = Region("Settlements", self.player, self.multiworld)
+        worldRegion = Region("Keys", self.player, self.multiworld)
         self.multiworld.regions.append(worldRegion)
 
         if self.options.sanity:
@@ -137,99 +127,63 @@ class TWW3World(World):
             region = Region("Techs", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Techs")
-        if self.options.ritual_sanity:
-            region = Region("Rituals", self.player, self.multiworld)
+
+        if self.options.conquerer_sanity:
+            region = Region("Empire", self.player, self.multiworld)
             self.multiworld.regions.append(region)
-            worldRegion.connect(region, "Rituals")
+            worldRegion.connect(region, "Empire")
+
+        #if self.options.ritual_sanity:
+        #    region = Region("Rituals", self.player, self.multiworld)
+        #    self.multiworld.regions.append(region)
+        #    worldRegion.connect(region, "Rituals")
+
         if self.options.battle_sanity:
             region = Region("Battles", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Battles")
+
         if self.options.despoiler_sanity:
             region = Region("Despoiler", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Despoiler")
 
-        locations.createAllLocations(self)#, self.locationToDiploRange)
+        locations.createAllLocations(self)
 
     def create_items(self) -> None:
         self.itemKeys = []
         items.updateItemDict(self)
         items.createAllItems(self)
-        if self.options.balance > 0:
-            rules.setBalance(self)
+        #if self.options.balance > 0:
+        rules.setBalance(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        """
-        Return the `slot_data` field that will be in the `Connected` network package.
-
-        This is a way the generator can give custom data to the client.
-        The client will receive this as JSON in the `Connected` response.
-
-        :return: A dictionary to be sent to the client when it connects to the server.
-        """
         slotData = self.options.as_dict("starting_faction",
-                                        "game_mode",
-                                        "progressive_technologies",
-                                        "progressive_buildings",
-                                        "progressive_units",
-                                        "starting_tier",
-                                        "randomize_personalities",
-                                        "death_link",
-                                        "death_link_effects",
-                                        "mod_list",
-                                        "game_mode",
-                                        "faction_shuffle",
-                                        "checks_per_settlement",
-                                        "sanity",
-                                        "ritual_sanity",
-                                        "battle_sanity",
-                                        "despoiler_sanity",
-                                        "hard_logic",
-                                        "fast_research",
-                                        "reveal_hints",)
-
-        if self.options.game_mode == "conquest":
-            slotData["number_of_settlements"] = self.options.number_of_settlements.value
-            slotData["admin_capacity"] = self.adminCapacity
-            slotData["max_expansion_items"] = self.adminItems
-        if self.options.game_mode == "spheres":
-            slotData["orbs"] = self.orbCount
-            #settlementDiploRange, factionDiploRange = self.settlementManager.getRequiredDiploRange(
-            #    self.options.sphere_count, self.sphereRadius)
-            slotData["spheres"] = self.factionDiploRange
-            slotData["max_expansion_items"] = self.options.sphere_count.value
+                                                    "starting_settlements",
+                                                    "sanity",
+                                                    "conquerer_sanity",
+                                                    "battle_sanity",
+                                                    "despoiler_sanity",
+                                                    #"tech_shuffle",
+                                                    "progressive_technologies",
+                                                    #"building_shuffle",
+                                                    "progressive_buildings",
+                                                    #"unit_shuffle",
+                                                    "progressive_units",
+                                                    "starting_tier",
+                                                    "hard_logic",
+                                                    "mod_list",
+                                                    "fast_research",
+                                                    "reveal_hints",)
 
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.settlementRandomiser.randomiseHordes()
         slotData["faction_capitals"] = self.settlementRandomiser.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
-        slotData["options"] =  self.options.as_dict("starting_faction",
-                                                    "game_mode",
-                                                    "starting_settlements",
-                                                    "checks_per_settlement",
-                                                    "sanity",
-                                                    "ritual_sanity",
-                                                    "battle_sanity",
-                                                    "despoiler_sanity",
-                                                    "number_of_settlements",
-                                                    "sphere_count",
-                                                    "tech_shuffle",
-                                                    "progressive_technologies",
-                                                    "building_shuffle",
-                                                    "progressive_buildings",
-                                                    "unit_shuffle",
-                                                    "progressive_units",
-                                                    "ritual_shuffle",
-                                                    "starting_tier",
-                                                    "balance",
-                                                    "hard_logic",
-                                                    "mod_list",
-                                                    "fast_research",
-                                                    "reveal_hints"),
 
         slotData["version"] = self.world_version.as_simple_string()
+
         return slotData
 
 

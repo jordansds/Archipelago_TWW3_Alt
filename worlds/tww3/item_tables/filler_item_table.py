@@ -9,7 +9,7 @@ fillerDict: dict[int, itemData] = {
     1204: itemData(IC.filler, 0, "archipelago.add_random_growth_to_player()", itemType.filler, None, "None", "Buff: The GroBro 3000"), #Growth boost to random region
     1205: itemData(IC.filler, 0, "", itemType.filler, None, "None", "Legendary Artifact"), #Random legendary item/ancillary
     1206: itemData(IC.filler, 0, "archipelago.force_settlement_transfer_from_random_enemy_to_player()", itemType.filler, None, "None", "Buff: Give me that"), #Gives player random enemy city
-    1207: itemData(IC.filler, 0, "archipelago.force_alliance_with_random_enemy()", itemType.filler, None, "None", "Buff: Make Love, Not War"), #Makes random enemy an ally
+    #1207: itemData(IC.filler, 0, "archipelago.force_alliance_with_random_enemy()", itemType.filler, None, "None", "Buff: Make Love, Not War"), #Makes random enemy an ally
     1208: itemData(IC.filler, 0, 'cm:random_number(10000,1000)', itemType.filler, None, "gold", "Buff: Get-Rich-Quick Scroll"), #Gold
 }
 

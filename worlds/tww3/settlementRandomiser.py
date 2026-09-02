@@ -19,13 +19,20 @@ class settlementRandomiser:
         self.playerKey = playerKey
         self.startingSettlementCount = startingSettlementCount
         self.settlementDict = settlements.mapDict[map]
+
         self.factionDict = factions.factionDict
         self.hordeList = factions.hordeList
 
+        if not self.playerFaction in self.hordeList:
+            self.playerCapital = [settlement for settlement in self.settlementDict.values() if
+                                  settlement.faction == self.playerFaction]
+        else:
+            self.playerCapital = None
+
         self.factionKeys: list[int] = [key for key in self.factionDict.keys() if key % 10 != 0]
-        random.shuffle(self.factionKeys)
+        self.random.shuffle(self.factionKeys)
         self.settlementKeys: list[int] = list(self.settlementDict.keys())
-        random.shuffle(self.settlementKeys)
+        self.random.shuffle(self.settlementKeys)
 
         self.shuffledFactionList: list[str] = []
         self.shuffledSettlementDict: dict[int, settlementData] = {}
@@ -77,6 +84,7 @@ class settlementRandomiser:
                 self.assignSettlement(sKey, self.settlementDict[sKey], playerFaction)
             self.removeKeys()
             self.capitals.update({playerFaction.name: playerSettlement.name})
+            self.playerCapital = playerSettlement
 
 
             # Assign the player extra settlements
@@ -199,24 +207,23 @@ class settlementRandomiser:
 
         return self.shuffledSettlementDict
 
-    def getRequiredDiploRange(self, sphereCount, sphereRadius: int) -> tuple[list[int], dict[str, int]]:
-        #factionSpheres: list[list[str]] = []
-        factionSpheres: dict[str, int] = {}
-        settlementSpheres: list[int] = []
-        #playerCapital = next(iter(self.shuffledSettlementDict.values()))
-        playerCapital = [settlement for settlement in self.shuffledSettlementDict.values() if settlement.faction == self.playerFaction.name][0]
-        for settlement in self.shuffledSettlementDict.values():
-            distance = getDistance(playerCapital, settlement)
-            sphere = int(distance / sphereRadius)
-            if sphere <= sphereCount:
-                factionSpheres.update({settlement.faction: sphere})
-                settlementSpheres.append(sphere)
-            else:
-                factionSpheres.update({settlement.faction: sphere})
-                #factionSpheres.append([settlement.faction, str(sphereCount)])
-                settlementSpheres.append(sphereCount.value + 1)
+    def getSettlementWithinRange(self, multiplier, gameSpeed = 0):
+        self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
+                          self.shuffledSettlementDict.values()}
 
-        return settlementSpheres, factionSpheres
+        lowBound = max(0, multiplier-gameSpeed) * 100
+        upBound = max(1, multiplier-gameSpeed+1) * 100
+
+        #Loop to account for weird spawns that might have no valid settlements within a bound
+        inRange = {}
+        while len(inRange) == 0:
+            inRange = [settlement.readableName for settlement, distance in self.distances.items() if
+                       lowBound <= distance <= upBound]
+            lowBound -= 50
+            upBound += 50
+
+        settlement = self.random.choice(inRange)
+        return settlement
 
     def debug(self):
         x = []

@@ -32,13 +32,14 @@ class TWW3Item(Item):  # or from Items import MyGameItem
     #options: TWW3Options  # typing hints for option results
 
 def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need them for logic due to yaml settings
-    if world.options.balance > 0:
-        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+    # This is a holdover from a previous version. But now I want all items to be progression to use for logic so
+    # instead of rewriting every dict, I'm doing it here
+    for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+        itemDict[key] = itemData(IC.progression, *item[1:])
+    for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+        itemDict[key] = itemData(IC.progression, *item[1:])
+    for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-                itemDict[key] = itemData(IC.progression, *item[1:])
 
     if world.options.sanity:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
@@ -59,13 +60,13 @@ def createAllItems(world: TWW3World) -> None:
     #world.itemKeys = []
     pool: list[TWW3Item] = []
 
+    pool = generateKeyitems(world, pool)
+
     pool = generateUnitItems(world, pool)
     pool = generateBuildingItems(world, pool)
     pool = generateTechnologyItems(world, pool)
     pool = generateSpecialItems(world, pool)
     pool = generateModdedItems(world, pool)
-
-    pool = generateExpansionItems(world, pool)
     pool = generateRitualItems(world, pool)
 
     # Remove traps/filler based on yaml settings
@@ -94,46 +95,68 @@ def createAllItems(world: TWW3World) -> None:
     world.multiworld.itempool += pool
     #print(pool)
 
+def generateKeyitems(world: TWW3World, pool: list) -> list:
+    #Generate a number of keys that spawn in specific locations.
+    #They can only be found after someone else discovers the hint for the location.
+    #Item can then be discovered and if you already own the settlement, then the check will trigger.
+    #Once 9 items are found, spawn the end game crisis and upon it's defeat, you win.
+
+    mapItems = [world.create_item("Map") for _ in range(9)]
+    pool.extend(mapItems)
+    world.options.non_local_items.value.add("Map")
+
+    keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
+    for index, key in enumerate(keys):
+        world.keyLocations.append(world.settlementRandomiser.getSettlementWithinRange(index))
+
+        location = world.get_location(f"The {key} Key")
+        location.place_locked_item(world.create_item("Key"))
+
+    return pool
+
 def generateUnitItems(world: TWW3World, pool: list) -> list:
-    if world.options.unit_shuffle:
-        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
-            if item.tier > world.options.starting_tier:
-                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
-                    tww3_item = world.create_item(item.readableName)
-                    pool.append(tww3_item)
-                    if not world.options.progressive_units:
-                        world.itemKeys.append(key)
+    #if world.options.unit_shuffle:
+    for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+        #Hero's can't be locked apparently, so I'll just stop them here rather than deleting what could be useful data from my databases.
+        if "_hro" in item.name or (item.progressionGroup is not None and "_hro" in item.progressionGroup):
+            continue
+        if item.tier > world.options.starting_tier:
+            for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
+                if not world.options.progressive_units:
+                    world.itemKeys.append(key)
     return pool
 
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
-    if world.options.building_shuffle:
-        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            if "settlement" in item.name:
+    #if world.options.building_shuffle:
+    for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+        if "settlement" in item.name:
+            continue
+        if item.progressionGroup is not None:
+            if "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup:
                 continue
-            if item.progressionGroup is not None:
-                if "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup:
-                    continue
-            if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                #Need to change so that if progressive buildings, generate 1 less item
-                reduce = 0
-                if world.options.progressive_buildings: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
-                    reduce = 1
-                for i in range(item.count - world.options.starting_tier if item.count > 1 else 1 - reduce):
-                    tww3_item = world.create_item(item.readableName)
-                    pool.append(tww3_item)
-                    if not world.options.progressive_buildings:
-                        world.itemKeys.append(key)
+        if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+            #Need to change so that if progressive buildings, generate 1 less item
+            reduce = 0
+            if world.options.progressive_buildings: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+                reduce = 1
+            for i in range(item.count - world.options.starting_tier if item.count > 1 else 1 - reduce):
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
+                if not world.options.progressive_buildings:
+                    world.itemKeys.append(key)
     return pool
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:
-    if world.options.tech_shuffle:
-        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            if item.tier > 0:
-                for i in range(item.count):
-                    tww3_item = world.create_item(item.readableName)
-                    pool.append(tww3_item)
-                    if not world.options.progressive_technologies:
-                        world.itemKeys.append(key)
+    #if world.options.tech_shuffle:
+    for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+        if item.tier > 0:
+            for i in range(item.count):
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
+                if not world.options.progressive_technologies:
+                    world.itemKeys.append(key)
     return pool
 
 def generateSpecialItems(world: TWW3World, pool: list) -> list:
@@ -141,23 +164,24 @@ def generateSpecialItems(world: TWW3World, pool: list) -> list:
         if item.spcLogic:
             world.push_precollected(world.create_item(item.readableName))
         if (
-            world.options.building_shuffle
-            and item.type == itemType.building
+            #world.options.building_shuffle
+            item.type == itemType.building
             and item.tier > world.options.starting_tier - 1
         ):
             for i in range(item.count):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
                 if not item.isProgressiveItem:
                     world.itemKeys.append(key)
         elif (
-            world.options.unit_shuffle
-            and item.type == itemType.unit
+            #world.options.unit_shuffle
+            item.type == itemType.unit
             and item.tier > world.options.starting_tier
-        ) or (world.options.tech_shuffle and item.type == itemType.tech):
+        ) or (#world.options.tech_shuffle
+              item.type == itemType.tech):
             for i in range(item.count):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
                 if not item.isProgressiveItem:
                     world.itemKeys.append(key)
     return pool
@@ -173,8 +197,8 @@ def generateModdedItems(world: TWW3World, pool: list) -> list:
                 (item.type == itemType.tech and item.progressionGroup is None and not world.options.progressive_technologies)):
                 continue
             for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
-                tww3_item = world.create_item(item.readableName)
-                pool.append(tww3_item)
+                tww3Item = world.create_item(item.readableName)
+                pool.append(tww3Item)
                 if not world.options.progressive_units:
                     world.itemKeys.append(key)
     return pool
@@ -185,25 +209,11 @@ def generateRitualItems(world: TWW3World, pool: list) -> list:
             for key, item in factionItemManager.getRituals(world):
                 if not item.spcLogic:
                     for i in range(item.count):
-                        tww3_item = world.create_item(item.readableName)
-                        pool.append(tww3_item)
+                        tww3Item = world.create_item(item.readableName)
+                        pool.append(tww3Item)
                         world.itemKeys.append(key)
     except AttributeError:
         print(f"{world.playerFaction.race} Do not have a ritual table yet")
-    return pool
-
-def generateExpansionItems(world: TWW3World, pool: list) -> list:
-    if world.options.game_mode == "conquest":
-        for i in range(world.adminItems):
-            item = world.create_item("Administrative Capacity")
-            pool.append(item)
-    elif world.options.game_mode == "spheres":
-        for i in range(world.options.sphere_count):
-            item = world.create_item("Diplomatic Range")
-            pool.append(item)
-        for i in range(world.orbCount):
-            item = world.create_item("Orb of Domination")
-            pool.append(item)
     return pool
 
 def generateFillerItems(world: TWW3World, pool: list) -> list:
@@ -211,7 +221,7 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     fillerFunctions = [generateFiller, generateTrap] #List of functions for generating filler
     weights = [world.options.filler.value, 100 - world.options.filler.value] #list of weights defined in YAML
 
-    fillerCount = - len(pool) - 1
+    fillerCount = - len(pool) - 10
     x = 0
     for region in world.get_regions():
         fillerCount += len(region.locations)
@@ -227,15 +237,10 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
 
 def generateFiller(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(fillerDict.keys()))
-    #Make Items almost twice as likely to get :) They're fun
-    if key != 1205:
-        key = world.random.choice(tuple(fillerDict.keys()))
-
-    if key == 1207 and world.options.game_mode == "conquest":
-        key = 1205
     if key == 1205:
         name = world.random.choice(tuple(ancillariesDict.values())).readableName
     else:
+        key = world.random.choice(tuple(fillerDict.keys()))
         name = itemDict[key].readableName
 
     item = world.create_item(name)
@@ -243,8 +248,6 @@ def generateFiller(world: TWW3World) -> TWW3Item:
 
 def generateTrap(world: TWW3World) -> TWW3Item:
     key = world.random.choice(tuple(trapDict.keys()))
-    if key == 1504 and world.options.game_mode == "spheres":
-        key = world.random.randint(1500, 1503)
 
     name = itemDict[key].readableName
     item = world.create_item(name)
