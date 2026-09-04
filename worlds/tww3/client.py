@@ -159,7 +159,8 @@ class EngineWatcher:
     async def watch(self, fileName):
         print(f"Watching {fileName}...")
         file = self.files[fileName]
-        file.seek(1, 0)
+        file.seek(0, 0)
+        next(file, None)
         activeInode = os.fstat(file.fileno()).st_ino
         path = file.name
         while True:
@@ -289,6 +290,7 @@ class TWW3Context(CommonContext):
         self.deathLinkOptions = deathLink.createDeathLinkFunctions(self.deathLinkEffects)
 
         self.settlements = args['slot_data']['settlements']
+        self.capitals = args['slot_data']['faction_capitals']
         self.hordes = args['slot_data']['hordes']
         self.itemKeys = args['slot_data']['items']
         self.progressiveTechs = args['slot_data']['progressive_technologies']
@@ -357,7 +359,8 @@ class TWW3Context(CommonContext):
         self.progressiveItemFlags = {key: 0 for key, item in self.itemDict.items() if item.progressionGroup is None and key >= 10000}
 
         self.sanity = args['slot_data']['sanity']
-        self.ritualSanity = args['slot_data']['ritual_sanity']
+        #self.ritualSanity = args['slot_data']['ritual_sanity']
+        self.ritualSanity = False #disabled for now
         self.conquererSanity = args['slot_data']['conquerer_sanity']
         self.explorerSanity = args['slot_data']['explorer_sanity']
         self.battleSanity = args['slot_data']['battle_sanity']
@@ -443,9 +446,10 @@ class TWW3Context(CommonContext):
                     self.mapCount += 1
                     # In case the player already owns the settlement
                     for index, settlement in enumerate(self.keyLocations):
+                        print(settlement)
                         if index > self.mapCount:
                             break
-                        self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement.name})")
+                        self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
 
                 case itemType.goal:
                     if not resync:
@@ -653,6 +657,9 @@ class TWW3Context(CommonContext):
                 await self.check_locations(locationIds)
 
         except ValueError:
+            if location == "VICTORY":
+                return asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
+
             self.map = "immortal empires"
 
             location = next((value for value in sm.mapDict[self.map].values() if value.name == location),
@@ -810,8 +817,6 @@ class EngineInitializer:
         self.playerFaction = context.playerFaction
         sendMessage = context.sendMessage
 
-        sendMessage(f'archipelago.set_game_mode("{context.gameMode}")')
-
         #if self.playerFaction == "wh2_main_skv_clan_skryre":
         #    sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_2", "{self.playerFaction}")')
 
@@ -878,27 +883,6 @@ class EngineInitializer:
             context.lockProgressiveBuildings()
         if context.progressiveUnits:
             context.lockProgressiveUnits()
-
-        if context.gameMode == "conquest":
-            ###
-            #Set Administrative Capacity
-            ###
-            sendMessage(f"archipelago.set_admin_capacity_mult({context.adminCapacity})")
-            sendMessage(f"archipelago.set_admin_capacity({context.expansionItems})")
-
-        elif context.gameMode == "spheres":
-            sphereZeroFactions = []
-            sphereAllOthers = []
-            for faction, sphere in context.spheres.items():
-                if sphere == 0:
-                    sphereZeroFactions.append(faction)
-                else:
-                    sphereAllOthers.append(faction)
-                continue
-            for factionZero in sphereZeroFactions:
-                for faction in sphereAllOthers:
-                    sendMessage(f'cm:force_make_peace("{factionZero}", "{faction}")')
-                    sendMessage(f'cm:force_diplomacy("faction:{factionZero}", "faction:{faction}", "all", false, false, true)')
 
         #for keyA, factionA in fm.factionDict.items():
         #    for keyB, factionB in fm.factionDict.items():
