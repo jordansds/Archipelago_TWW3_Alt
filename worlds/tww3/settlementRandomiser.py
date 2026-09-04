@@ -217,7 +217,7 @@ class settlementRandomiser:
         #Loop to account for weird spawns that might have no valid settlements within a bound
         inRange = {}
         while len(inRange) == 0:
-            inRange = [settlement.readableName for settlement, distance in self.distances.items() if
+            inRange = [settlement for settlement, distance in self.distances.items() if
                        lowBound <= distance <= upBound]
             lowBound -= 50
             upBound += 50

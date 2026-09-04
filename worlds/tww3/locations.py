@@ -62,6 +62,8 @@ def createKeyLocations(world: TWW3World) -> None:
         worldRegion.locations.append(location)
         locations = [location]
 
+        world.keyLocations.append(world.settlementRandomiser.getSettlementWithinRange(index))
+
         #Add 5 items that spawn in each key location as a reward
         for j in range(5):
             locName = f"The {key} Key: Item {j+1}"

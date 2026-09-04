@@ -257,6 +257,10 @@ class conquererSanity(Toggle):
     """ConquerLocations"""
     display_name = "ConquererSanity"
 
+class explorerSanity(Toggle):
+    """ExplorerLocations"""
+    display_name = "ExplorerSanity"
+
 class ritualSanity(Toggle):
     """If you want every faction mechanic to be a location.
     [EXPERIMENTAL, WILL ENABLE RITUAL SHUFFLE AND SANITY, Will force settlements to a minimum of 30]"""
@@ -386,6 +390,7 @@ class TWW3Options(PerGameCommonOptions):
 
     sanity: sanity
     conquerer_sanity: conquererSanity
+    explorer_sanity: explorerSanity
     #ritual_sanity: ritualSanity
     battle_sanity: battleSanity
     despoiler_sanity: despoilerSanity

@@ -162,6 +162,7 @@ class TWW3World(World):
                                                     "starting_settlements",
                                                     "sanity",
                                                     "conquerer_sanity",
+                                                    "explorer_sanity",
                                                     "battle_sanity",
                                                     "despoiler_sanity",
                                                     #"tech_shuffle",
@@ -181,6 +182,7 @@ class TWW3World(World):
         slotData["faction_capitals"] = self.settlementRandomiser.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed
+        slotData["key_locations"] = self.keyLocations
 
         slotData["version"] = self.world_version.as_simple_string()
 

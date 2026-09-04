@@ -94,7 +94,7 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
         context = self.make_context(received_items=0)
         context.itemDict = {1000: progressionDict[1000]}
         context.itemArchive = {"items": []}
-        context.messenger = Mock()
+        context.writer = Mock()
         context.receivedItems = []
         context.notificationPending = False
         context.initialized = False
@@ -109,7 +109,7 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
     def test_resync_replays_free_tier_and_post_victory_override(self) -> None:
         context = self.make_context(received_items=3)
         context.postVictoryCapacityOverride = True
-        context.messenger = Mock()
+        context.writer = Mock()
         context.itemDict = {}
         context.progressiveTechs = False
         context.progressiveBuildings = False
@@ -125,7 +125,7 @@ class TestConquestClientProgression(unittest.IsolatedAsyncioTestCase):
                 call("archipelago.set_admin_capacity(1)"),
                 call("archipelago.set_admin_capacity_mult(1000)"),
             ],
-            context.messenger.runTemp.call_args_list,
+            context.writer.runTemp.call_args_list,
         )
         context.on_received_items.assert_called_once_with(context.itemArchive, True)
 

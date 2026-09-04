@@ -107,8 +107,6 @@ def generateKeyitems(world: TWW3World, pool: list) -> list:
 
     keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
     for index, key in enumerate(keys):
-        world.keyLocations.append(world.settlementRandomiser.getSettlementWithinRange(index))
-
         location = world.get_location(f"The {key} Key")
         location.place_locked_item(world.create_item("Key"))
 
