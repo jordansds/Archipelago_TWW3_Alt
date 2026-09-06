@@ -668,7 +668,7 @@ class TWW3Context(CommonContext):
     def lockProgressiveBuildings(self):
         for key, item in self.itemDict.items():
             if item.type == itemType.building and item.progressionGroup is not None:
-                if "settlement" in item.name or "horde_main" in item.name:
+                if "settlement" in item.name or "horde_main" in item.name or "horde_main" in item.progressionGroup:
                     continue
                 self.progressiveItemFlags[key] = self.startingTier - 1
                 if item.tier > self.startingTier - 1:  #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!

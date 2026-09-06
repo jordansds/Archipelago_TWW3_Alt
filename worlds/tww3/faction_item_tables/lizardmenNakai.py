@@ -49,9 +49,9 @@ buildings: dict[int, itemData] = {
     68438: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_ziggurat_minor_2', itemType.building, 1, 'Progressive lzd_horde_main', 'Lzd Nakai Horde Building: Operational Ziggurat'),
     68439: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_ziggurat_minor_3', itemType.building, 2, 'Progressive lzd_horde_main', 'Lzd Nakai Horde Building: Holy Ziggurat'),
 
-    68440: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_saurus_veteran_1', itemType.building, 1, 'Progressive lzd_horde_saurus', 'Lzd Nakai Horde Building: Sentinel Hall'),
-    68441: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_skink_chief_1', itemType.building, 1, 'Progressive lzd_horde_skinks', 'Lzd Nakai Horde Building: Meditation Chamber'),
-    68442: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_skink_priest_1', itemType.building, 1, 'Progressive lzd_horde_slann', 'Lzd Nakai Horde Building: Altar of Enlightenment'),
+    68440: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_saurus_veteran_1', itemType.building, 0, 'Progressive lzd_horde_sentinel', 'Lzd Nakai Horde Building: Sentinel Hall'),
+    68441: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_skink_chief_1', itemType.building, 0, 'Progressive lzd_horde_meditation', 'Lzd Nakai Horde Building: Meditation Chamber'),
+    68442: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_skink_priest_1', itemType.building, 0, 'Progressive lzd_horde_altar', 'Lzd Nakai Horde Building: Altar of Enlightenment'),
 
     68443: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_portal_itzl_1', itemType.building, 0, 'Progressive lzd_horde_itzl', 'Lzd Nakai Horde Building: Lower Portal of Itzl'),
     68444: itemData(IC.useful, 1, 'wh2_dlc13_horde_lizardmen_portal_itzl_2', itemType.building, 1, 'Progressive lzd_horde_itzl', 'Lzd Nakai Horde Building: Portal of Itzl'),
@@ -135,6 +135,11 @@ progBuildings: dict[int, itemData] = {
     69313: itemData(IC.useful, 5, 'Progressive lzd_horde_itzl', itemType.building, 5, None, 'Progressive Lzd Nakai Horde Building: Itzl Portal'),
     69314: itemData(IC.useful, 5, 'Progressive lzd_horde_quetzl', itemType.building, 5, None, 'Progressive Lzd Nakai Horde Building: Quetzl Portal'),
     69315: itemData(IC.useful, 5, 'Progressive lzd_horde_tlanxa', itemType.building, 5, None, 'Progressive Lzd Nakai Horde Building: Tlanxa Portal'),
+
+    69316: itemData(IC.useful, 1, 'Progressive lzd_horde_sentinel', itemType.building, 1, None, 'Progressive Lzd Nakai Horde Building: Sentinel'),
+    69317: itemData(IC.useful, 1, 'Progressive lzd_horde_meditation', itemType.building, 1, None, 'Progressive Lzd Nakai Horde Building: Meditation'),
+    69318: itemData(IC.useful, 1, 'Progressive lzd_horde_altar', itemType.building, 1, None, 'Progressive Lzd Nakai Horde Building: Altar'),
+    #lzd_horde_meditation
 }
 
 progTechs: dict[int, itemData] = {
