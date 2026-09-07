@@ -190,11 +190,15 @@ class settlementRandomiser:
 
     def randomiseHordes(self) -> dict[str, str]:
         hordes: dict[str, str] = {}
+
         for fKey in self.factionKeys:
             faction = self.factionDict[fKey]
             if faction.name in self.hordeList:
                 settlement = self.random.choice(self.settlementDict)
                 hordes.update({faction.name: settlement.name})
+
+                if faction == self.playerFaction:
+                    self.playerCapital = settlement
         return hordes
 
     def randomiseSettlements(self):

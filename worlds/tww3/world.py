@@ -95,6 +95,10 @@ class TWW3World(World):
             self.settlements = self.settlementRandomiser.randomiseSettlements()
         else:
             self.settlements = self.settlementRandomiser.getSettlements()
+
+        # Hordes are always randomised for now because of how the key locations are being generated.
+        self.hordes = self.settlementRandomiser.randomiseHordes()
+
         self.playerSettlements = [settlement for settlement in self.settlements.values()
                                   if settlement.faction == self.playerFaction.name]
         self.keyLocations = []
@@ -179,7 +183,7 @@ class TWW3World(World):
                                                     "reveal_hints",)
 
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
-        slotData["hordes"] = self.settlementRandomiser.randomiseHordes()
+        slotData["hordes"] = self.hordes
         slotData["faction_capitals"] = self.settlementRandomiser.capitals
         slotData["items"] = self.itemKeys #Filled in items.py createAllItems
         slotData["seed"] = self.multiworld.seed

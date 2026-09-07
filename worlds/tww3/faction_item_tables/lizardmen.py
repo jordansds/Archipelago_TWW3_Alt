@@ -20,6 +20,7 @@ units: dict[int, itemData] = {
     36014: itemData(IC.useful, 1, 'wh2_main_lzd_cav_terradon_riders_1', itemType.unit, 1, 'Progressive lzd_cav', 'Lizardmen Unit: Terradon Riders (Fireleech Bolas)'),
     36015: itemData(IC.useful, 1, 'wh2_main_lzd_cav_cold_ones_feral_0', itemType.unit, 1, 'Progressive lzd_cav', 'Lizardmen Unit: Feral Cold Ones'),
     36016: itemData(IC.useful, 1, 'wh2_main_lzd_cav_cold_ones_1', itemType.unit, 2, 'Progressive lzd_cav', 'Lizardmen Unit: Cold One Riders'),
+    36075: itemData(IC.useful, 1, 'wh2_main_lzd_cav_cold_one_spearriders_1', itemType.unit, 2, 'Progressive lzd_cav', 'Lizardmen Unit: Cold One Spear Riders'),
     36017: itemData(IC.useful, 1, 'wh2_main_lzd_cav_horned_ones_0', itemType.unit, 2, 'Progressive lzd_cav', 'Lizardmen Unit: Horned Ones'),
     36018: itemData(IC.useful, 1, 'wh2_dlc12_lzd_cav_ripperdactyl_riders_0', itemType.unit, 3, 'Progressive lzd_cav', 'Lizardmen Unit: Ripperdactyl Riders'),
     36019: itemData(IC.useful, 1, 'wh2_dlc12_lzd_mon_salamander_pack_0', itemType.unit, 1, 'Progressive lzd_bst', 'Lizardmen Unit: Salamander Hunting Pack'),
