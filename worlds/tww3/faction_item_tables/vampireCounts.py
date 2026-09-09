@@ -248,7 +248,7 @@ progBuildings: dict[int, itemData] = {
     53330: itemData(IC.useful, 3, 'Progressive vmp_resource_wine', itemType.building, 3, None, 'Progressive Vampire Building: Wine'),
     53331: itemData(IC.useful, 5, 'Progressive vmp_settlement_major', itemType.building, 5, None, 'Progressive Vampire Building: Settlement Major'),
     53332: itemData(IC.useful, 3, 'Progressive vmp_settlement_minor', itemType.building, 3, None, 'Progressive Vampire Building: Settlement Minor'),
-    53333: itemData(IC.useful, 2, 'Progressive vmp_vampires', itemType.building, 2, None, 'Progressive Vampire Building: Vampires'),
+    53333: itemData(IC.useful, 2, 'Progressive vmp_vampires', itemType.building, 2, None, 'Progressive Vampire Building: Vampire Keep'),
     53334: itemData(IC.useful, 3, 'Progressive vmp_walls', itemType.building, 3, None, 'Progressive Vampire Building: Walls')
 }
 

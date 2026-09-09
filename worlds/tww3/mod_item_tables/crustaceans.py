@@ -80,6 +80,7 @@ buildings: dict[int, itemData] = {
     112416: itemData(IC.useful, 1, "cn_money_1", itemType.building, 0, "Progressive crb_industry", "Crustacean Building: Crabtissans Hut"),
     112417: itemData(IC.useful, 1, "cn_money_2", itemType.building, 1, "Progressive crb_industry", "Crustacean Building: Crabtissans Workshop"),
     112418: itemData(IC.useful, 1, "cn_money_3", itemType.building, 2, "Progressive crb_industry", "Crustacean Building: Crabtissans Guild"),
+    112500: itemData(IC.useful, 1, "cn_money_4", itemType.building, 3, "Progressive crb_industry", "Crustacean Building: Shellcrafters' Guild"),
 
     112419: itemData(IC.useful, 1, "cn_order_1", itemType.building, 0, "Progressive crb_order", "Crustacean Building: Coral Bed"),
     112420: itemData(IC.useful, 1, "cn_order_2", itemType.building, 1, "Progressive crb_order", "Crustacean Building: Coral Reef"),
@@ -256,7 +257,7 @@ progBuildings: dict[int, itemData] = {
     113302: itemData(IC.useful, 3, "Progressive crb_garrison_major", itemType.building, 3, None, "Crustacean Building: Garrison Major"),
     113303: itemData(IC.useful, 2, "Progressive crb_garrison_minor", itemType.building, 2, None, "Crustacean Building: Garrison Minor"),
     113304: itemData(IC.useful, 3, "Progressive crb_farms", itemType.building, 3, None, "Crustacean Building: Farms"),
-    113305: itemData(IC.useful, 3, "Progressive crb_industry", itemType.building, 3, None, "Crustacean Building: Industry"),
+    113305: itemData(IC.useful, 4, "Progressive crb_industry", itemType.building, 4, None, "Crustacean Building: Industry"),
     113306: itemData(IC.useful, 3, "Progressive crb_order", itemType.building, 3, None, "Crustacean Building: Infrastructure"),
     113307: itemData(IC.useful, 3, "Progressive crb_port", itemType.building, 3, None, "Crustacean Building: Port"),
     113308: itemData(IC.useful, 2, "Progressive crb_beast_barracks", itemType.building, 2, None, "Crustacean Building: Beast Pens"),
