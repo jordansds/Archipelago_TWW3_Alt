@@ -5,8 +5,8 @@ I'll write this up at some point, for now, come ask questions in the Total War W
 **Nothing shows up in my launcher?**  
 Your Archipelago launcher is out of date. Update it.
 
-**Is this updated for the latest DLC?**  
-Yes. 
+**Is this updated for the the End Times?**  
+No. 
 
 **There's an Archipelago mod on the steam workshop, should I use it?**  
 No.  
