@@ -97,6 +97,9 @@ def createAllItems(world: TWW3World) -> None:
 def generateUnitItems(world: TWW3World, pool: list) -> list:
     if world.options.unit_shuffle:
         for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+            #Received reports that heros don't get locked so we'll discard them
+            if "hro" in item.progressionGroup or ("_hro" in item.name and item.progressionGroup is None):
+                continue
             if item.tier > world.options.starting_tier:
                 for i in range(item.count - world.options.starting_tier if item.count > 1 else 1):
                     tww3_item = world.create_item(item.readableName)
