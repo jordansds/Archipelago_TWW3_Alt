@@ -10,7 +10,7 @@ from worlds.tww3.faction_item_tables import (beastmen, bretonnia, cathay, cathay
                                              slaanesh, slaaneshDechala, tombKings, tzeentch, tzeentchChangeling,
                                              vampireCoast, vampireCounts, warriorsOfChaos, warriorsOfChaosKhorne,
                                              warriorsOfChaosNurgle, warriorsOfChaosSlaanesh, warriorsOfChaosTzeentch,
-                                             woodElves)
+                                             woodElves, undeadLegions)
 
 #Mod Support
 from worlds.tww3.mod_item_tables import (expandedRoster, mousillon, empireEdvard, tzeentchEgrimm, norscaSurtha,
@@ -33,6 +33,7 @@ raceModuleDict: dict[str, ModuleType] = {
     "kislev": kislev, #34000
     "lizardmen": lizardmen, #36000
     "lizardmenNakai": lizardmenNakai, #68000
+    "undeadLegions": undeadLegions, #74000
     "norsca": norsca, #38000
     "nurgle": nurgle, #40000
     "ogreKingdoms": ogreKingdoms, #26000

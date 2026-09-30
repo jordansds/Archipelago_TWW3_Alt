@@ -160,6 +160,8 @@ class faction(Choice):
     option_Sisters_of_Twilight = 243
     option_Drycha = 244
 
+    option_Nagash = 251
+
     option_Random_mousillon = 92000
     option_Mixu_Mousillon_Mallobaude = 2001
     option_Mixu_Mousillon_Lady_of_the_Black_Grail = 2002
