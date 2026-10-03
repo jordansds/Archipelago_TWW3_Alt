@@ -12,13 +12,11 @@ from collections import Counter
 
 def setVictoryRule(world: TWW3World, location):
     world.set_rule(location, Has("Key", 9))
-
     world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
 
 def setKeyRule(world: TWW3World, locations, i):
     for location in locations:
-        world.set_rule(location, Has("Key", i-1))
-
+        world.set_rule(location, Has("Key", i) & Has("Map", i + 1))
 
 def setGenericLocationRule(world: TWW3World, location, i: int, maxCheck: int):
     world.set_rule(location, Has("Key", (i+1) * 8 // maxCheck))
@@ -35,7 +33,10 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                 or "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup):
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
-        if item.tier > world.options.starting_tier - 1 and not("settlement" in item.name or "settlement" in item.progressionGroup):
+        if "settlement" in item.name or "settlement" in item.progressionGroup:
+            continue
+
+        if item.tier > world.options.starting_tier - 1: #and not("settlement" in item.name or "settlement" in item.progressionGroup):
 
             rule = True_()
             if world.options.progressive_buildings:
@@ -56,6 +57,11 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                 itemCount = item.tier if item.tier <= 3 else item.tier + 2
 
             world.set_rule(world.get_location(item.readableName), rule)
+            print(item.readableName, rule)
+
+        #if item.tier <= world.options.starting_tier - 1:
+        #    print(item.readableName)
+        #    world.set_rule(world.get_location(item.readableName), True_())
 
 def setTechnologyLocationRules(world: TWW3World, techs):
 
@@ -118,12 +124,15 @@ def setBalance(world: TWW3World) -> None:
                     world.item_name_groups["Unlocks"].add(item.name)
                     counter += 1
 
+        count = 0
         for index, location in enumerate(world.get_region("Keys").locations):
             # Should have access to all items by the 9th key
             requiredItems = len(world.item_name_groups["Unlocks"]) * min(1, (index // 6) / 8)
             if requiredItems > 0:
-                world.set_rule(location, HasGroup("Unlocks", requiredItems) | Has("Glitch Logic"))
+                world.set_rule(location, Has("Key", count) & Has("Map", min(9, count + 1)) & (HasGroup("Unlocks", requiredItems) | Has("Glitch Logic")))
+            if not "Item" in str(location):
+                count += 1
 
-        if requiredItems > 0:
-            location = world.get_location("Victory")
-            world.set_rule(location, HasGroup("Unlocks", requiredItems) | Has("Glitch Logic"))
+        #if requiredItems > 0:
+        #    location = world.get_location("Victory")
+        #    world.set_rule(location, Has("Key", count-1) & ( HasGroup("Unlocks", requiredItems) | Has("Glitch Logic")))
