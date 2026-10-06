@@ -212,12 +212,12 @@ buildings: dict[int, itemData] = {
 techs: dict[int, itemData] = {}
 
 progUnits: dict[int, itemData] = {
-    75200: itemData(IC.useful, 5, "Progressive tmb_inf", itemType.unit, 5, None, "Progressive Nagash Unit: Infantry"),
-    75201: itemData(IC.useful, 4, "Progressive tmb_rng", itemType.unit, 4, None, "Progressive Nagash Unit: Ranged"),
-    75202: itemData(IC.useful, 5, "Progressive tmb_cav", itemType.unit, 5, None, "Progressive Nagash Unit: Cavalry"),
-    75203: itemData(IC.useful, 3, "Progressive tmb_art", itemType.unit, 3, None, "Progressive Nagash Unit: Artillery"),
-    75204: itemData(IC.useful, 4, "Progressive tmb_veh", itemType.unit, 4, None, "Progressive Nagash Unit: Chariot"),
-    75205: itemData(IC.useful, 5, "Progressive tmb_bst", itemType.unit, 5, None, "Progressive Nagash Unit: Beast"),
+    75200: itemData(IC.useful, 5, "Progressive nag_inf", itemType.unit, 5, None, "Progressive Nagash Unit: Infantry"),
+    75201: itemData(IC.useful, 4, "Progressive nag_rng", itemType.unit, 4, None, "Progressive Nagash Unit: Ranged"),
+    75202: itemData(IC.useful, 5, "Progressive nag_cav", itemType.unit, 5, None, "Progressive Nagash Unit: Cavalry"),
+    75203: itemData(IC.useful, 3, "Progressive nag_art", itemType.unit, 3, None, "Progressive Nagash Unit: Artillery"),
+    75204: itemData(IC.useful, 4, "Progressive nag_veh", itemType.unit, 4, None, "Progressive Nagash Unit: Chariot"),
+    75205: itemData(IC.useful, 5, "Progressive nag_bst", itemType.unit, 5, None, "Progressive Nagash Unit: Beast"),
 }
 
 progBuildings: dict[int, itemData] = {
