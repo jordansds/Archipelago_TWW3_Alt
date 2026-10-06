@@ -48,6 +48,7 @@ factionDict: dict[int, factionData] = {
     83: factionData('wh3_main_emp_cult_of_sigmar', True, True, 'empire', 'Volkmar the Grim (Empire)', False),
     84: factionData('wh2_dlc13_emp_the_huntmarshals_expedition', True, True, 'empire', 'Markus Wulfhart (Empire)', False),
     85: factionData('wh_main_emp_wissenland', True, True, 'empire', 'Elspeth Von Draken (Empire)', False),
+    86: factionData('wh_main_emp_middenland', True, True, 'empire', 'Boris Todbringer (Empire)', False),
     #Greenskins
     99090: factionData("random_greenskins", True, True, "greenskins", [91, 92, 93, 94, 95, 96], False),
     91: factionData('wh_main_grn_greenskins', True, True, 'greenskins', 'Grimgor Ironhide (Greenskins)', False),
@@ -249,7 +250,7 @@ factionDict: dict[int, factionData] = {
     1194: factionData('wh_main_emp_empire_separatists', False, True, 'ai', None, False),
     1195: factionData('wh_main_emp_hochland', False, True, 'ai', None, False),
     1196: factionData('wh_main_emp_marienburg', False, True, 'ai', None, False),
-    1197: factionData('wh_main_emp_middenland', False, True, 'ai', None, False),
+    #1197: factionData('wh_main_emp_middenland', False, True, 'ai', None, False),
     1198: factionData('wh2_main_emp_new_world_colonies', False, True, 'ai', None, False),
     1199: factionData('wh_main_emp_nordland', False, True, 'ai', None, False),
     1200: factionData('wh_main_emp_ostermark', False, True, 'ai', None, False),
