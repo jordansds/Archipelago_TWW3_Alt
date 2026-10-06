@@ -55,6 +55,7 @@ class faction(Choice):
     option_Volkmar_the_Grim = 83
     option_Markus_Wulfhart = 84
     option_Elspeth_Von_Draken = 85
+    option_Boris_Todbringer = 86
 
     option_Random_Greenskins = 99090
     option_Grimgor_Ironhide = 91
