@@ -233,6 +233,9 @@ class startingSettlements(Range):
     range_end = 5
     default = 2
 
+class endTimes(DefaultOnToggle):
+    """Set to true if you want the victory to trigger after you beat the endtimes or false for after you collect all the keys"""
+
 #class buildingSanity(Toggle):
 #    """If you want every building to be a location. [EXPERIMENTAL, REQUIRES BUILDING SHUFFLE TO BE ENABLED]
 #    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
@@ -387,6 +390,7 @@ class TWW3Options(PerGameCommonOptions):
     faction_shuffle: factionShuffle
     randomize_personalities: randomizePersonalities
     starting_settlements: startingSettlements
+    endtimes: endTimes
 
     sanity: sanity
     conquerer_sanity: conquererSanity

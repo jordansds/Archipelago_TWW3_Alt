@@ -302,6 +302,7 @@ class TWW3Context(CommonContext):
         self.hardLogic = args['slot_data']['hard_logic']
         self.fastResearch = args['slot_data']['fast_research']
         self.revealHints = args['slot_data']['reveal_hints']
+        self.endtimes = args['slot_data']['endtimes']
 
         self.modList = args['slot_data']['mod_list']
         fm.addModdedFactions(self.modList)
@@ -458,7 +459,10 @@ class TWW3Context(CommonContext):
                     self.keyCount += 1
 
                     if self.keyCount == 9:
-                        self.sendMessage("archipelago.trigger_crisis()")
+                        if self.endtimes:
+                            self.sendMessage("archipelago.trigger_crisis()")
+                        else:
+                            return asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
 
                 case itemType.filler:
                     if item.progressionGroup == "gold":

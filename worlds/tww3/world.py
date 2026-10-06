@@ -180,7 +180,8 @@ class TWW3World(World):
                                                     "randomize_personalities",
                                                     "faction_shuffle",
                                                     "fast_research",
-                                                    "reveal_hints",)
+                                                    "reveal_hints",
+                                                    "endtimes")
 
         slotData["settlements"] = {settlement.name: settlement.faction for settlement in self.settlements.values()}
         slotData["hordes"] = self.hordes
