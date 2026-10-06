@@ -116,6 +116,7 @@ class faction(Choice):
     option_Ikit_Claw = 174
     option_Throt_the_Unclean = 175
     option_Deathmaster_Snikch = 176
+    option_Thanquol = 177
 
     option_Random_Slaanesh = 99180
     option_NKari = 181

@@ -109,6 +109,7 @@ factionDict: dict[int, factionData] = {
     174: factionData('wh2_main_skv_clan_skryre', True, True, 'skaven', 'Ikit Claw (Skaven)', False),
     175: factionData('wh2_main_skv_clan_moulder', True, True, 'skaven', 'Throt the Unclean (Skaven)', False),
     176: factionData('wh2_main_skv_clan_eshin', True, True, 'skaven', 'Deathmaster Snikch (Skaven)', False),
+    177: factionData('wh3_dlc29_skv_clan_scruten', True, True, 'skaven', 'Thanquol (Skaven)', False),
     #Slaanesh
     99180: factionData("random_slaanesh", True, True, "slaanesh", [181, 182, 183], False),
     181: factionData('wh3_main_sla_seducers_of_slaanesh', True, True, 'slaanesh', "N'Kari (Slaanesh)", False),
