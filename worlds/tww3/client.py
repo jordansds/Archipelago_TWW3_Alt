@@ -33,30 +33,23 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"Traps are now turned {'on' if self.ctx.trapsEnabled else 'off'}.")
             return
 
-    def _cmd_ac(self):
-        """Prints the current number of settlements you can control."""
-        if isinstance(self.ctx, TWW3Context):
-            if self.ctx.adminCapacity == 1000 and self.ctx.gameMode == "conquest":
-                logger.info("You can control an unlimited number of settlements")
-            else:
-                logger.info(f"You have: {self.ctx.expansionItems}/{self.ctx.maxExpansionItems}"
-                            f" Administrative Capacity Items")
-                logger.info(f"You can now control {(self.ctx.expansionItems + 1) * self.ctx.adminCapacity} settlements")
-                logger.info(f"You currently control {self.ctx.settlementCount} settlements")
-            return
-
-    def _cmd_orbs(self):
-        """Prints the current number of orbs of dominance that you own."""
-        if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You currently hold: {self.ctx.numberOfOrbs} Orbs of dominance")
-            return
-
     def _cmd_logging(self):
         """Toggles location logging."""
         if isinstance(self.ctx, TWW3Context):
             self.ctx.logChecks = not self.ctx.logChecks
             logger.info(f"Location logging is now set to {self.ctx.logChecks}")
             return
+
+    def _cmd_keys(self):
+        if isinstance(self.ctx, TWW3Context):
+            logger.info(f"You have found {self.ctx.keyCount}/9 keys")
+
+    def _cmd_maps(self):
+        if isinstance(self.ctx, TWW3Context):
+            logger.info(f"You have recevied the map to the key number {self.ctx.mapCount}/9")
+
+            settlement = self.ctx.keyLocations[self.ctx.mapCount - 1]
+            logger.info(f"The next key can be found at {self.ctx.settlementToReadableName[settlement]}")
 
     def _cmd_version(self):
         """Prints the version of the client."""
@@ -86,31 +79,11 @@ class TWW3CommandProcessor(ClientCommandProcessor):
             logger.info(f"Deathlink is now set to {self.ctx.deathLinkEnabled}")
             return
 
-    def _cmd_debug(self):
-        """Set Admin Capacity to Maximum"""
-        if isinstance(self.ctx, TWW3Context) and self.ctx.gameMode == "conquest":
-            #if "jordan" in self.ctx.player_names:
-            self.ctx.adminCapacity = 1000
-            self.ctx.sendMessage(f"archipelago.set_admin_capacity_mult({self.ctx.adminCapacity})")
-            return
-
     async def _cmd_resync(self):
         """Resend all units, techs, buildings and progression items"""
         if isinstance(self.ctx, TWW3Context):
             await TWW3Context.resync(self.ctx)
             return
-
-        #Need to rewrite on_received_items to allow for writing to temp file when this function is ran.
-        #Or just make this a copy of on_received_items with only the relevant details
-        #if isinstance(self.ctx, TWW3Context):
-        #    if self.ctx.gameMode == "conquest":
-        #        self.ctx.expansionItems = 1
-        #    else:
-        #        self.ctx.expansionItems = 0
-        #
-        #    itemArchiveDict = {"items": self.ctx.itemArchive.copy()}
-        #    self.ctx.itemArchive = []
-        #    self.ctx.on_received_items(itemArchiveDict)
 
 class EngineWriter:
     def __init__(self, path):
@@ -179,9 +152,9 @@ class EngineWatcher:
                 continue
             try:
                 rotated = st.st_ino != activeInode
-                truncated = file.tell() > st.st_size
+                #truncated = file.tell() > st.st_size
 
-                if rotated or truncated:
+                if rotated:# or truncated:
                     file.close()
                     file = open(path, "r", encoding="utf-8", errors="replace")
                     activeInode = os.fstat(file.fileno()).st_ino
@@ -346,6 +319,7 @@ class TWW3Context(CommonContext):
         self.locationLookup.update(
             {f"{settlement.readableName}": key + 2001 for key, settlement in sm.getAllSettlements().items()}
         )
+        self.settlementToReadableName = {f"{settlement.name}": f"{settlement.readableName}" for settlement in sm.getAllSettlements().values()}
 
         logger.warning(f"The following mods are enabled: {[mod for mod in self.modList]}")
         #Pull unit/building/tech Items
@@ -445,12 +419,16 @@ class TWW3Context(CommonContext):
                         self.itemArchive["items"].append(entry)
 
                     self.mapCount += 1
+                    settlement = self.keyLocations[self.mapCount - 1]
+
                     # In case the player already owns the settlement
-                    for index, settlement in enumerate(self.keyLocations):
-                        print(settlement)
-                        if index > self.mapCount:
-                            break
-                        self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
+                    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
+                    #for index, settlement in enumerate(self.keyLocations):
+                    #    if index != self.mapCount - 1:
+                    #        continue
+                    #    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
+
+                    logger.info(f"The next key can be found at {self.settlementToReadableName[settlement]}")
 
                 case itemType.goal:
                     if not resync:
@@ -511,8 +489,10 @@ class TWW3Context(CommonContext):
             self.on_received_items(self.itemArchive, True)
         #self.itemArchive.clear()
 
-        """flag = False
+        flag = False
         for i in range(1, len(self.locationArchive)): #We don't want to check the first line, that's the seed.
+            await self.onReceivedLocation(*self.locationArchive[-i], True)
+        """
             try:
                 # Make sure we only send the last empire size location
                 if flag:
@@ -575,6 +555,8 @@ class TWW3Context(CommonContext):
                     if self.logChecks:
                         logger.info(f"Sending Despoiler {locName}")
                     await self.checkDespoilerSanity(locName)
+            case "victory":
+                asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
             case _:
                 try:
                     int(locName)
@@ -661,9 +643,6 @@ class TWW3Context(CommonContext):
                 await self.check_locations(locationIds)
 
         except ValueError:
-            if location == "VICTORY":
-                return asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
-
             self.map = "immortal empires"
 
             location = next((value for value in sm.mapDict[self.map].values() if value.name == location),

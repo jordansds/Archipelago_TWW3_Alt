@@ -23,6 +23,8 @@ units: dict[int, itemData] = {
     46018: itemData(IC.useful, 1, 'wh2_dlc09_tmb_veh_skeleton_archer_chariot_0', itemType.unit, 2, 'Progressive tmb_veh', 'TombKing Unit: Skeleton Archer Chariots'),
     46019: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_carrion_0', itemType.unit, 1, 'Progressive tmb_bst', 'TombKing Unit: Carrion'),
     46020: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_tomb_scorpion_0', itemType.unit, 2, 'Progressive tmb_bst', 'TombKing Unit: Tomb Scorpion'),
+    46029: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_khemrian_warsphinx_0', itemType.unit, 2, 'Progressive tmb_bst', 'TombKing Unit: Warsphinx'),
+    46036: itemData(IC.useful, 1, 'wh3_dlc29_tmb_mon_khemric_titan', itemType.unit, 3, 'Progressive tmb_bst', 'TombKing Unit: Khemric Titan'),
     46021: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_necrosphinx_0', itemType.unit, 3, 'Progressive tmb_bst', 'TombKing Unit: Necrosphinx'),
     46022: itemData(IC.useful, 1, 'wh2_dlc09_tmb_mon_heirotitan_0', itemType.unit, 3, 'Progressive tmb_bst', 'TombKing Unit: Hierotitan'),
     46023: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cha_tomb_prince_0', itemType.unit, 1, 'Progressive tmb_hro', 'TombKing Unit: Tomb Prince'),
@@ -38,9 +40,11 @@ units: dict[int, itemData] = {
     46033: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_tomb_guard_ror', itemType.unit, 2, 'Progressive tmb_inf', 'TombKing Unit: The Khepra Guard (Tomb Guard)'),
     46034: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_spearmen_ror', itemType.unit, 1, 'Progressive tmb_inf', "TombKing Unit: King Nekhesh's Scorpion Legion (Skeleton Spearmen)"),
     46035: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_skeleton_archers_ror', itemType.unit, 1, 'Progressive tmb_rng', 'TombKing Unit: Blessed Legion of Phakth (Skeleton Archers)'),
+    46037: itemData(IC.useful, 1, 'wh3_dlc29_tmb_mon_khemric_titan_ror', itemType.unit, 3, 'Progressive tmb_bst', 'TombKing Unit: Icon of Usirian (Khemric Titan)'),
     #46036: itemData(IC.useful, 1, 'wh2_dlc09_tmb_inf_nehekhara_warriors_ror', itemType.unit, 1, 'Progressive tmb_inf', "TombKing Unit: Usirian's Legion of the Netherworld (Nehekharan Warriors)"),
     #46037: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_nehekhara_horsemen_ror', itemType.unit, 2, 'Progressive tmb_cav', 'TombKing Unit: Storm Riders of Khsar (Nehekharan Horsemen)'),
     #46038: itemData(IC.useful, 1, 'wh2_dlc09_tmb_cav_necropolis_knights_ror', itemType.unit, 3, 'Progressive tmb_cav', 'TombKing Unit: Venom Knights of Asaph (Necropolis Knights)')
+
 }
 
 buildings: dict[int, itemData] = {

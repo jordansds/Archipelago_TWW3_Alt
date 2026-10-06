@@ -67,7 +67,7 @@ class TWW3World(World):
 
     def generate_early(self) -> None:
 
-        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        """re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         # YAML-less tracker generation
         if re_gen_passthrough and self.game in re_gen_passthrough:
             slotData: dict[str, Any] = re_gen_passthrough[self.game]
@@ -75,7 +75,9 @@ class TWW3World(World):
             for key, value in slotOptions.items():
                 opt: Optional[Option] = getattr(self.options, key, None)
                 if opt is not None:
-                    setattr(self.options, key, opt.from_any(value))
+                    setattr(self.options, key, opt.from_any(value))"""
+
+
 
 
         fm.addModdedFactions(self.options.mod_list)
@@ -191,6 +193,8 @@ class TWW3World(World):
         slotData["key_locations"] = self.keyLocations
 
         slotData["version"] = self.world_version.as_simple_string()
+
+        #slotData["options"] =
 
         return slotData
 

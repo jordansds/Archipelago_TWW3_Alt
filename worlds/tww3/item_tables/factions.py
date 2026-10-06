@@ -152,6 +152,8 @@ factionDict: dict[int, factionData] = {
     242: factionData('wh_dlc05_wef_argwylon', True, True, 'woodElves', 'Durthu (Wood Elves)', False),
     243: factionData('wh2_dlc16_wef_sisters_of_twilight', True, True, 'woodElves', 'Sisters of Twilight (Wood Elves)', False),
     244: factionData('wh2_dlc16_wef_drycha', True, True, 'woodElves', 'Drycha (Wood Elves)', False),
+    #Nagash
+    251: factionData("wh3_dlc29_nag_host_of_nagash", True, True, "undeadLegions", "Nagash", False),
 
     1103: factionData('wh3_main_kho_bloody_sword', False, True, 'ai', None, False),
     1104: factionData('wh3_main_kho_brazen_throne', False, True, 'ai', None, False),
