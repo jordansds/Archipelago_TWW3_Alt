@@ -8,7 +8,11 @@ units: dict[int, itemData] = {
     24002: itemData(IC.useful, 1, 'wh_main_emp_inf_spearmen_1', itemType.unit, 1, 'progressive emp_inf', 'Empire Unit: Spearmen (Shields)'),
     24003: itemData(IC.useful, 1, 'wh_main_emp_inf_halberdiers', itemType.unit, 2, 'progressive emp_inf', 'Empire Unit: Halberdiers'),
     24004: itemData(IC.useful, 1, 'wh_dlc04_emp_inf_flagellants_0', itemType.unit, 2, 'progressive emp_inf', 'Empire Unit: Flagellants'),
+    24059: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_warriors_of_ulric', itemType.unit, 2, 'progressive emp_inf', 'Empire Unit: Warriors of Ulric'),
     24005: itemData(IC.useful, 1, 'wh_main_emp_inf_greatswords', itemType.unit, 3, 'progressive emp_inf', 'Empire Unit: Greatswords'),
+    24060: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_wolf_kin', itemType.unit, 3, 'progressive emp_inf', 'Empire Unit: Wolf-Kin'),
+    24061: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_teutogen_guard', itemType.unit, 4, 'progressive emp_inf', 'Empire Unit: Teutogen Guard'),
+
     24006: itemData(IC.useful, 1, 'wh2_dlc13_emp_inf_archers_0', itemType.unit, 1, 'progressive emp_rng', 'Empire Unit: Archers'),
     24007: itemData(IC.useful, 1, 'wh_dlc04_emp_inf_free_company_militia_0', itemType.unit, 1, 'progressive emp_rng', 'Empire Unit: Free Company Militia'),
     24008: itemData(IC.useful, 1, 'wh_main_emp_inf_crossbowmen', itemType.unit, 2, 'progressive emp_rng', 'Empire Unit: Crossbowmen'),
@@ -16,6 +20,7 @@ units: dict[int, itemData] = {
     24010: itemData(IC.useful, 1, 'wh2_dlc13_emp_inf_huntsmen_0', itemType.unit, 3, 'progressive emp_rng', 'Empire Unit: Huntsmen'),
     24011: itemData(IC.useful, 1, 'wh3_dlc25_emp_inf_nuln_ironsides', itemType.unit, 3, 'progressive emp_rng', 'Empire Unit: Nuln Ironsides'),
     24012: itemData(IC.useful, 1, 'wh3_dlc25_emp_inf_hochland_long_rifles', itemType.unit, 3, 'progressive emp_rng', 'Empire Unit: Hochland Long Rifles'),
+
     24013: itemData(IC.useful, 1, 'wh_main_emp_cav_pistoliers_1', itemType.unit, 1, 'progressive emp_cav', 'Empire Unit: Pistoliers'),
     24014: itemData(IC.useful, 1, 'wh_main_emp_cav_outriders_0', itemType.unit, 2, 'progressive emp_cav', 'Empire Unit: Outriders'),
     24015: itemData(IC.useful, 1, 'wh_main_emp_cav_empire_knights', itemType.unit, 2, 'progressive emp_cav', 'Empire Unit: Empire Knights'),
@@ -23,18 +28,26 @@ units: dict[int, itemData] = {
     24017: itemData(IC.useful, 1, 'wh_dlc04_emp_cav_knights_blazing_sun_0', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Knights of the Blazing Sun'),
     24018: itemData(IC.useful, 1, 'wh_main_emp_cav_reiksguard', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Reiksguard'),
     24019: itemData(IC.useful, 1, 'wh3_dlc25_emp_cav_knights_of_the_black_rose', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Knights of the Black Rose'),
+    24062: itemData(IC.useful, 1, 'wh3_dlc29_emp_cav_knights_of_the_white_wolf', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Knights of the White Wolf'),
+    24063: itemData(IC.useful, 1, 'wh3_dlc29_emp_cav_knights_panther', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Knights Panther'),
     24020: itemData(IC.useful, 1, 'wh_main_emp_cav_demigryph_knights_0', itemType.unit, 4, 'progressive emp_cav', 'Empire Unit: Demigryph Knights'),
     24021: itemData(IC.useful, 1, 'wh_main_emp_cav_demigryph_knights_1', itemType.unit, 4, 'progressive emp_cav', 'Empire Unit: Demigryph Knights (Halberds)'),
+
     24022: itemData(IC.useful, 1, 'wh_main_emp_art_mortar', itemType.unit, 1, 'progressive emp_art', 'Empire Unit: Mortars'),
     24023: itemData(IC.useful, 1, 'wh_main_emp_art_great_cannon', itemType.unit, 2, 'progressive emp_art', 'Empire Unit: Great Cannons'),
     24024: itemData(IC.useful, 1, 'wh_main_emp_art_helstorm_rocket_battery', itemType.unit, 3, 'progressive emp_art', 'Empire Unit: Helstorm Rocket Battery'),
     24025: itemData(IC.useful, 1, 'wh_main_emp_art_helblaster_volley_gun', itemType.unit, 3, 'progressive emp_art', 'Empire Unit: Helblaster Volley Guns'),
+
     24026: itemData(IC.useful, 1, 'wh2_dlc13_emp_veh_war_wagon_0', itemType.unit, 1, 'progressive emp_veh', 'Empire Unit: War Wagons'),
     24027: itemData(IC.useful, 1, 'wh2_dlc13_emp_veh_war_wagon_1', itemType.unit, 2, 'progressive emp_veh', 'Empire Unit: War Wagons (Mortars)'),
     24028: itemData(IC.useful, 1, 'wh3_dlc25_emp_veh_marienburg_land_ship', itemType.unit, 3, 'progressive emp_veh', 'Empire Unit: Land Ship'),
     24029: itemData(IC.useful, 1, 'wh_main_emp_veh_steam_tank', itemType.unit, 4, 'progressive emp_veh', 'Empire Unit: Steam Tank'),
     24030: itemData(IC.useful, 1, 'wh3_dlc25_emp_veh_steam_tank_volley_gun', itemType.unit, 4, 'progressive emp_veh', 'Empire Unit: Steam Tank (Volley Gun)'),
     24031: itemData(IC.useful, 1, 'wh_main_emp_veh_luminark_of_hysh_0', itemType.unit, 4, 'progressive emp_veh', 'Empire Unit: Luminark of Hysh'),
+    24064: itemData(IC.useful, 1, 'wh3_dlc29_emp_veh_celestial_hurricanum_0', itemType.unit, 4, 'progressive emp_veh', 'Empire Unit: Celestial Hurricanum'),
+
+    24065: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_hunting_hounds', itemType.unit, 1, 'progressive emp_bst', 'Empire Unit: Hunting Hounds'),
+
     24032: itemData(IC.useful, 1, 'wh3_dlc25_emp_cha_wizard_metal', itemType.unit, 2, 'progressive emp_hro', 'Empire Unit: Gold Wizard'),
     24033: itemData(IC.useful, 1, 'wh_main_emp_cha_wizard_light_0', itemType.unit, 2, 'progressive emp_hro', 'Empire Unit: Light Wizard'),
     24034: itemData(IC.useful, 1, 'wh_dlc05_emp_cha_wizard_shadows_0', itemType.unit, 2, 'progressive emp_hro', 'Empire Unit: Grey Wizard'),
@@ -47,6 +60,7 @@ units: dict[int, itemData] = {
     24041: itemData(IC.useful, 1, 'wh_main_emp_cha_witch_hunter', itemType.unit, 1, 'progressive emp_hro', 'Empire Unit: Witch Hunter'),
     24042: itemData(IC.useful, 1, 'wh_main_emp_cha_warrior_priest_0', itemType.unit, 1, 'progressive emp_hro', 'Empire Unit: Warrior Priest'),
     24043: itemData(IC.useful, 1, 'wh_main_emp_cha_captain_0', itemType.unit, 1, 'progressive emp_hro', 'Empire Unit: Empire Captain'),
+
     24044: itemData(IC.useful, 1, 'wh_dlc04_emp_inf_sigmars_sons_0', itemType.unit, 2, 'progressive emp_inf', "Empire Unit: Sigmar's Sons (Swordsmen)"),
     24045: itemData(IC.useful, 1, 'wh2_dlc13_emp_inf_archers_ror_0', itemType.unit, 1, 'progressive emp_rng', 'Empire Unit: Deathjacks (Archers)'),
     24046: itemData(IC.useful, 1, 'wh_dlc04_emp_inf_stirlands_revenge_0', itemType.unit, 1, 'progressive emp_rng', "Empire Unit: Stirland's Revenge (Free Company Militia)"),
@@ -62,6 +76,10 @@ units: dict[int, itemData] = {
     24056: itemData(IC.useful, 1, 'wh3_dlc25_emp_veh_marienburg_land_ship_ror', itemType.unit, 4, 'progressive emp_veh', 'Empire Unit: The Wonder of the Age (Land Ship)'),
     24057: itemData(IC.useful, 1, 'wh_dlc04_emp_cav_royal_altdorf_gryphites_0', itemType.unit, 3, 'progressive emp_art', 'Empire Unit: The Sunmaker (Helstorm Rocket Battery)'),
     24058: itemData(IC.useful, 1, 'wh_dlc04_emp_veh_templehof_luminark_0', itemType.unit, 4, 'progressive emp_cav', 'Empire Unit: The Royal Altdorf Gryphites (Demigryph Knights)'),
+
+    24066: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_teutogen_guard_ror', itemType.unit, 4, 'progressive emp_inf', 'Empire Unit: Order of the Axe (Teutogen Guard)'),
+    24067: itemData(IC.useful, 1, 'wh3_dlc29_emp_cav_knights_of_the_white_wolf_ror', itemType.unit, 3, 'progressive emp_cav', 'Empire Unit: Fellwolf Brotherhood (Knights of the White Wolf)'),
+    24068: itemData(IC.useful, 1, 'wh3_dlc29_emp_inf_hunting_hounds_ror', itemType.unit, 1, 'progressive emp_bst', 'Empire Unit: Hounds of Ulricsberg (Hunting Hounds)'),
 }
 
 buildings: dict[int, itemData] = {
@@ -173,8 +191,12 @@ buildings: dict[int, itemData] = {
     24508: itemData(IC.useful, 1, 'wh_main_emp_walls_3', itemType.building, 2, 'progressive emp_walls', 'Empire Building: Reinforced Walls'),
     24509: itemData(IC.useful, 1, 'wh_main_emp_wizards_1', itemType.building, 0, 'progressive emp_wizards', "Empire Building: Wizard's Conclave"),
     24510: itemData(IC.useful, 1, 'wh_main_emp_wizards_2', itemType.building, 1, 'progressive emp_wizards', "Empire Building: Wizard's Campus"),
-    24511: itemData(IC.useful, 1, 'wh_main_emp_worship_1', itemType.building, 0, 'progressive emp_worship', 'Empire Building: Shrine of Sigmar'),
-    24514: itemData(IC.useful, 1, 'wh_main_emp_worship_2', itemType.building, 1, 'progressive emp_worship', 'Empire Building: Temple of Sigmar'),
+    24511: itemData(IC.useful, 1, 'wh_main_emp_worship_1', itemType.building, 0, 'progressive emp_sigmar', 'Empire Building: Shrine of Sigmar'),
+    24514: itemData(IC.useful, 1, 'wh_main_emp_worship_2', itemType.building, 1, 'progressive emp_sigmar', 'Empire Building: Temple of Sigmar'),
+
+    24515: itemData(IC.useful, 1, 'wh3_dlc29_emp_worship_ulric_1', itemType.building, 0, 'progressive emp_ulric', 'Empire Building: Shrine of Ulric'),
+    24516: itemData(IC.useful, 1, 'wh3_dlc29_emp_worship_ulric_2', itemType.building, 1, 'progressive emp_ulric', 'Empire Building: Chapel of Ulric'),
+    24517: itemData(IC.useful, 1, 'wh3_dlc29_emp_worship_ulric_3', itemType.building, 2, 'progressive emp_ulric', 'Empire Building: Grand Altar of Ulric')
 }
 
 techs: dict[int, itemData] = {
@@ -233,11 +255,12 @@ techs: dict[int, itemData] = {
 }
 
 progUnits: dict[int, itemData] = {
-    25200: itemData(IC.useful, 3, "progressive emp_inf", itemType.unit, 3, None, "Progressive Empire Unit: Infantry"),
+    25200: itemData(IC.useful, 4, "progressive emp_inf", itemType.unit, 4, None, "Progressive Empire Unit: Infantry"),
     25201: itemData(IC.useful, 3, "progressive emp_rng", itemType.unit, 3, None, "Progressive Empire Unit: Ranged"),
     25202: itemData(IC.useful, 4, "progressive emp_cav", itemType.unit, 4, None, "Progressive Empire Unit: Cavalry"),
     25203: itemData(IC.useful, 3, "progressive emp_art", itemType.unit, 3, None, "Progressive Empire Unit: Artillery"),
     25204: itemData(IC.useful, 4, "progressive emp_veh", itemType.unit, 4, None, "Progressive Empire Unit: War Machine"),
+    25205: itemData(IC.useful, 1, "progressive emp_bst", itemType.unit, 1, None, "Progressive Empire Unit: Beasts"),
     25206: itemData(IC.useful, 2, "progressive emp_hro", itemType.unit, 2, None, "Progressive Empire Unit: Hero")
 }
 
@@ -275,7 +298,8 @@ progBuildings: dict[int, itemData] = {
     25330: itemData(IC.useful, 3, 'progressive emp_tavern', itemType.building, 3, None, 'Progressive Empire Building: Tavern'),
     25331: itemData(IC.useful, 3, 'progressive emp_walls', itemType.building, 3, None, 'Progressive Empire Building: Walls'),
     25332: itemData(IC.useful, 2, 'progressive emp_wizards', itemType.building, 2, None, 'Progressive Empire Building: Wizards'),
-    25333: itemData(IC.useful, 2, 'progressive emp_worship', itemType.building, 2, None, 'Progressive Empire Building: Worship')
+    25333: itemData(IC.useful, 2, 'progressive emp_sigmar', itemType.building, 2, None, 'Progressive Empire Building: Sigmar Worship'),
+    25334: itemData(IC.useful, 3, 'progressive emp_ulric', itemType.building, 3, None, 'Progressive Empire Building: Cult of Ulric')
 }
 
 progTechs: dict[int, itemData] = {
@@ -313,25 +337,34 @@ special: dict[int, specialItemData] = {
     25517: specialItemData(IC.useful, 1, ['wh_main_emp_empire', 'wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh2_dlc13_emp_art_mortar_ror_0', itemType.unit, 1, 'progressive emp_art', False, False, "Empire Unit: Sootson's Guns (Mortars)"),
     25557: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh2_dlc13_tech_emp_elector_counts_2', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: The Conclave of Light'),
     25558: specialItemData(IC.useful, 1, ['wh_main_emp_empire'], 'wh2_dlc13_tech_emp_elector_counts_1', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Emperor of the Empire'),
+
     25559: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_tech_emp_elspeth_1', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Advisor to Nuln'),
     25560: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_tech_emp_elspeth_2', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: The Amethyst Armourer'),
     25561: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_tech_emp_elspeth_3', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Seeker of Knowledge'),
     25562: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland'], 'wh3_dlc25_tech_emp_elspeth_4', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Scion of the Empire'),
+
     25563: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_tech_emp_gelt_1', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: College Archives'),
     25564: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_golden_order'], 'wh3_dlc25_tech_emp_gelt_2', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Cataclysmic Power'),
     25565: specialItemData(IC.useful, 1, ['wh3_main_emp_cult_of_sigmar'], 'wh3_main_tech_emp_fanatics_decree_volkmar', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, "Empire Tech: Fanatic's Decree"),
     25566: specialItemData(IC.useful, 1, ['wh3_main_emp_cult_of_sigmar'], 'wh3_main_tech_emp_divine_mandate_volkmar', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Divine Mandate'),
+
     25567: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_the_huntmarshals_expedition'], 'wh2_dlc13_tech_emp_wulfhart_1', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, "Empire Tech: Hunters' Guild"),
     25568: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_the_huntmarshals_expedition'], 'wh2_dlc13_tech_emp_wulfhart_2', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Colonial Fort'),
     25569: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_the_huntmarshals_expedition'], 'wh2_dlc13_tech_emp_wulfhart_3', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Seaborne Logistics'),
     25570: specialItemData(IC.useful, 1, ['wh2_dlc13_emp_the_huntmarshals_expedition'], 'wh2_dlc13_tech_emp_wulfhart_4', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Imperial Reinforcements'),
-    25571: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_1', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Swords of the Empire'),
-    25572: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_2', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Spears of the Empire'),
-    25573: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_3', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Marksman of the Empire'),
-    25574: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_4', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Machines of the Empire'),
-    25575: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_5', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Riders of the Empire'),
-    25576: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'wh3_dlc25_tech_emp_state_troops_6', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Knights of the Empire'),
-    25577: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar'], 'Progressive tech_emp_troops', itemType.tech, 1, None, False, True, 'Progressive Empire Tech: State Troops'),
+
+    25578: specialItemData(IC.useful, 1, ['wh_main_emp_middenland'], 'wh3_dlc29_emp_boris_count_01', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, "Empire Tech: On the Prowl"),
+    25579: specialItemData(IC.useful, 1, ['wh_main_emp_middenland'], 'wh3_dlc29_emp_boris_count_03  ', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Born to Battle'),
+    25580: specialItemData(IC.useful, 1, ['wh_main_emp_middenland'], 'wh3_dlc29_emp_boris_count_02', itemType.tech, 1, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Defender of Middenland'),
+    25581: specialItemData(IC.useful, 1, ['wh_main_emp_middenland'], 'wh3_dlc29_emp_boris_count_04', itemType.tech, 2, 'Progressive tech_emp_faction', False, False, 'Empire Tech: Honor, Bravery, Prowess'),
+
+    25571: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_1', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Swords of the Empire'),
+    25572: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_2', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Spears of the Empire'),
+    25573: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_3', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Marksman of the Empire'),
+    25574: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_4', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Machines of the Empire'),
+    25575: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_5', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Riders of the Empire'),
+    25576: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'wh3_dlc25_tech_emp_state_troops_6', itemType.tech, 1, 'Progressive tech_emp_troops', False, False, 'Empire Tech: Knights of the Empire'),
+    25577: specialItemData(IC.useful, 1, ['wh_main_emp_wissenland', 'wh2_dlc13_emp_golden_order', 'wh3_main_emp_cult_of_sigmar', 'wh_main_emp_middenland'], 'Progressive tech_emp_troops', itemType.tech, 1, None, False, True, 'Progressive Empire Tech: State Troops'),
 }
 
 rituals: dict[int, specialItemData] = {
