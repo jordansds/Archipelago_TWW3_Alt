@@ -492,17 +492,6 @@ class TWW3Context(CommonContext):
         flag = False
         for i in range(1, len(self.locationArchive)): #We don't want to check the first line, that's the seed.
             await self.onReceivedLocation(*self.locationArchive[-i], True)
-        """
-            try:
-                # Make sure we only send the last empire size location
-                if flag:
-                    continue
-                locName = int(self.locationArchive[-i][1])
-                await self.onReceivedLocation(None, locName, True)
-                flag = True
-            except ValueError:
-                # Resend all other locations
-                await self.onReceivedLocation(*self.locationArchive[-i], True)"""
 
     async def sendNotification(self):
         if self.notificationPending:
