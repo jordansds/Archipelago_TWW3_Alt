@@ -146,14 +146,6 @@ buildings: dict[int, itemData] = {
 }
 
 techs: dict[int, itemData] = slaanesh.techs
-techs.update({
-    70800: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_grasp_of_servitude', itemType.tech, 1, 'Progressive tech_sla_perfume_dechala', "Slaanesh Tech: Servitude's Grasp"),
-    70801: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_caress_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Boons of Slaanesh'),
-    70802: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_dark_domination', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Dark Domination'),
-    70803: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_dominate_units', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Arrogant Dismissal'),
-    70804: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_in_praise_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: In Praise of Slaanesh'),
-    70805: itemData(IC.useful, 1, 'wh3_dlc27_tech_sla_daemonic_attraction', itemType.tech, 3, 'Progressive tech_sla_perfume_dechala', 'Slaanesh Tech: Daemonic Attraction'),
-})
 
 progUnits: dict[int, itemData] = slaanesh.progUnits
 
@@ -207,12 +199,15 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = slaanesh.progTechs
-progTechs.update({
-    71500: itemData(IC.useful, 3,"Progressive tech_sla_perfume_dechala", itemType.tech, 3, None, "Progressive Slaanesh Tech: Perfume of Domination"),
-})
 
 special: dict[int, specialItemData] = {
-
+    71500: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_grasp_of_servitude', itemType.tech, 1, 'Progressive tech_sla_perfume_dechala', False, False, "Slaanesh Tech: Servitude's Grasp (Dechala)"),
+    71501: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_caress_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', False, False, 'Slaanesh Tech: Boons of Slaanesh'),
+    71502: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_dark_domination', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', False, False, 'Slaanesh Tech: Dark Domination'),
+    71503: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_dominate_units', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', False, False, 'Slaanesh Tech: Arrogant Dismissal'),
+    71504: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_in_praise_of_slaanesh', itemType.tech, 2, 'Progressive tech_sla_perfume_dechala', False, False, 'Slaanesh Tech: In Praise of Slaanesh'),
+    71505: specialItemData(IC.useful, 1, ["wh3_dlc27_sla_the_tormentors"], 'wh3_dlc27_tech_sla_daemonic_attraction', itemType.tech, 3, 'Progressive tech_sla_perfume_dechala', False, False, 'Slaanesh Tech: Daemonic Attraction'),
+    71506: specialItemData(IC.useful, 3, ["wh3_dlc27_sla_the_tormentors"], "Progressive tech_sla_perfume_dechala", itemType.tech, 3, None, False, True, "Progressive Slaanesh Tech: Perfume of Domination"),
 }
 
 rituals = slaanesh.rituals

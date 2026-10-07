@@ -69,6 +69,8 @@ class TWW3World(World):
 
     def generate_early(self) -> None:
 
+        self.keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
+
         """re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
         # YAML-less tracker generation
         if re_gen_passthrough and self.game in re_gen_passthrough:
@@ -104,36 +106,40 @@ class TWW3World(World):
                                   if settlement.faction == self.playerFaction.name]
         self.keyLocations = []
 
-        self.options.conquerer_sanity.value = True
+        self.options.conquerer_sanity.value = False
         self.options.explorer_sanity.value = True
-        self.options.battle_sanity.value = True
-        self.options.despoiler_sanity.value = True
-        self.options.sanity.value = True
+        self.options.battle_sanity.value = False
+        self.options.despoiler_sanity.value = False
+        #self.options.sanity.value = True
 
         self.options.ritual_shuffle = False #Disabled for now
         self.options.ritual_sanity = False #Disabled for now
 
-        if self.options.sanity:
-            self.options.progressive_buildings.value = True
-            self.options.starting_tier.value = 1
-            self.sanityRules = sanityRules.ruleManager(self)
+        #if self.options.sanity:
+        self.options.progressive_buildings.value = True
+        self.options.starting_tier.value = 1
+        self.sanityRules = sanityRules.ruleManager(self)
 
     def create_regions(self) -> None:
         worldRegion = Region("Keys", self.player, self.multiworld)
         self.multiworld.regions.append(worldRegion)
 
-        if self.options.sanity:
-            region = Region("Buildings", self.player, self.multiworld)
-            self.multiworld.regions.append(region)
-            worldRegion.connect(region, "Buildings")
-            region = Region("Techs", self.player, self.multiworld)
-            self.multiworld.regions.append(region)
-            worldRegion.connect(region, "Techs")
+        #if self.options.sanity:
+        region = Region("Buildings", self.player, self.multiworld)
+        self.multiworld.regions.append(region)
+        worldRegion.connect(region, "Buildings")
+        region = Region("Techs", self.player, self.multiworld)
+        self.multiworld.regions.append(region)
+        worldRegion.connect(region, "Techs")
 
         if self.options.conquerer_sanity:
             region = Region("Empire", self.player, self.multiworld)
             self.multiworld.regions.append(region)
             worldRegion.connect(region, "Empire")
+        if self.options.explorer_sanity:
+            region = Region("Exploration", self.player, self.multiworld)
+            self.multiworld.regions.append(region)
+            worldRegion.connect(region, "Exploration")
 
         #if self.options.ritual_sanity:
         #    region = Region("Rituals", self.player, self.multiworld)
@@ -162,7 +168,6 @@ class TWW3World(World):
     def fill_slot_data(self) -> Mapping[str, Any]:
         slotData = self.options.as_dict("starting_faction",
                                                     "starting_settlements",
-                                                    "sanity",
                                                     "conquerer_sanity",
                                                     "explorer_sanity",
                                                     "battle_sanity",

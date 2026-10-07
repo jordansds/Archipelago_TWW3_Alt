@@ -214,7 +214,7 @@ class settlementRandomiser:
 
         return self.shuffledSettlementDict
 
-    def getSettlementWithinRange(self, multiplier, gameSpeed = 0):
+    def getSettlementWithinRange(self, multiplier, gameSpeed = 0, returnAll = False):
 
         self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
                           self.shuffledSettlementDict.values()}
@@ -230,8 +230,11 @@ class settlementRandomiser:
             lowBound -= 50
             upBound += 50
 
-        settlement = self.random.choice(inRange)
-        return settlement
+        if returnAll:
+            return inRange
+        else:
+            settlement = self.random.choice(inRange)
+            return settlement
 
     def debug(self):
         x = []

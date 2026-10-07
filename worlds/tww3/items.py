@@ -41,16 +41,16 @@ def updateItemDict(world: TWW3World) -> None: #Make items progressive if we need
     for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
             itemDict[key] = itemData(IC.progression, *item[1:])
 
-    if world.options.sanity:
-        for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
-            itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-            itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
-            itemDict[key] = itemData(IC.progression, *item[1:])
-        for key, item in factionItemManager.getSpecial(world, True):
-            if item.type == itemType.building or item.type == itemType.tech:
-                itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
+    #if world.options.sanity:
+    for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
+        itemDict[key] = itemData(IC.progression, *item[1:])
+    for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
+        itemDict[key] = itemData(IC.progression, *item[1:])
+    for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
+        itemDict[key] = itemData(IC.progression, *item[1:])
+    for key, item in factionItemManager.getSpecial(world, True):
+        if item.type == itemType.building or item.type == itemType.tech:
+            itemDict[key] = itemData(IC.progression, *item[1:2], *item[3:6], item[6], item[9])
 
     if world.options.ritual_sanity:
         for key, item in factionItemManager.getRituals(world):
@@ -113,7 +113,6 @@ def generateKeyitems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateUnitItems(world: TWW3World, pool: list) -> list:
-    #if world.options.unit_shuffle:
     for key, item in factionItemManager.getUnits(world.playerFaction.race, world.options.progressive_units):
         #Hero's can't be locked apparently, so I'll just stop them here rather than deleting what could be useful data from my databases.
         if "_hro" in item.name or (item.progressionGroup is not None and "_hro" in item.progressionGroup):
@@ -127,17 +126,16 @@ def generateUnitItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateBuildingItems(world: TWW3World, pool: list) -> list:
-    #if world.options.building_shuffle:
     for key, item in factionItemManager.getBuildings(world.playerFaction.race, world.options.progressive_buildings):
-        if "settlement" in item.name:
+        if "settlement" in item.name or "allied_outpost" in item.name:
             continue
         if item.progressionGroup is not None:
-            if "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup:
+            if "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup or "allied_outpost" in item.progressionGroup:
                 continue
-        if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+        if item.tier > world.options.starting_tier - 1: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE.
             #Need to change so that if progressive buildings, generate 1 less item
             reduce = 0
-            if world.options.progressive_buildings: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE. WHY!!!!!!!!
+            if world.options.progressive_buildings: #ALL BUILDINGS ARE OFFSET BY 1 IN THE DATABASE.
                 reduce = 1
             for i in range(item.count - world.options.starting_tier if item.count > 1 else 1 - reduce):
                 tww3Item = world.create_item(item.readableName)
@@ -147,7 +145,6 @@ def generateBuildingItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateTechnologyItems(world: TWW3World, pool: list) -> list:
-    #if world.options.tech_shuffle:
     for key, item in factionItemManager.getTechs(world.playerFaction.race, world.options.progressive_technologies):
         if item.tier > 0:
             for i in range(item.count):

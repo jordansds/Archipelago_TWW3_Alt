@@ -29,8 +29,8 @@ def setBuildingLocationRules(world: TWW3World, buildings):
     progBuildings += [itemData(*item[:2], *item[3:6], item[6], item[9]) for item in specialBuildings if item.progressionGroup is None]
 
     for item in buildings:
-        if ("resource" in item.name or "port" in item.name or "allied" in item.name
-                or "settlement" in item.progressionGroup or "horde_main" in item.progressionGroup):
+        if ("allied" in item.name #"resource" in item.name or "port" in item.name or
+                or ("settlement" in item.progressionGroup or "horde_main" in item.progressionGroup) and item.tier > 2):
             world.get_location(item.readableName).progress_type = LocationProgressType.EXCLUDED
 
         if "settlement" in item.name or "settlement" in item.progressionGroup:
@@ -53,8 +53,8 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                         rule = Has(building.readableName)
                         break
 
-            if not world.options.hard_logic:
-                itemCount = item.tier if item.tier <= 3 else item.tier + 2
+            #if not world.options.hard_logic:
+            #    itemCount = item.tier if item.tier <= 3 else item.tier + 2
 
             world.set_rule(world.get_location(item.readableName), rule)
             #print(item.readableName, rule)

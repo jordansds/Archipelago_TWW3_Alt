@@ -396,7 +396,7 @@ class TWW3Options(PerGameCommonOptions):
     starting_settlements: startingSettlements
     endtimes: endTimes
 
-    sanity: sanity
+    #sanity: sanity
     conquerer_sanity: conquererSanity
     explorer_sanity: explorerSanity
     #ritual_sanity: ritualSanity

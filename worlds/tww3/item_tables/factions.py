@@ -34,7 +34,7 @@ factionDict: dict[int, factionData] = {
     55: factionData('wh2_main_def_hag_graef', True, False, 'darkElves', 'Malus Darkblade (Dark Elves)', False),
     56: factionData('wh2_twa03_def_rakarth', True, True, 'darkElves', 'Rakarth the Beastmaster (Dark Elves)', False),
     #Dwarfs
-    99070: factionData("random_dwarfs", True, True, "dwarfs", [70, 71, 72, 73, 74, 75, 76], False),
+    99070: factionData("random_dwarfs", True, True, "dwarfs", [71, 72, 73, 74, 75, 76], False),
     71: factionData('wh_main_dwf_dwarfs', True, True, 'dwarfs', 'Thorgrim Grudgebearer (Dwarfs)', False),
     72: factionData('wh_main_dwf_karak_kadrin', True, True, 'dwarfs', 'Ungrim Ironfist (Dwarfs)', False),
     73: factionData('wh_main_dwf_karak_izor', True, True, 'dwarfs', 'Belegar Ironhammer (Dwarfs)', False),

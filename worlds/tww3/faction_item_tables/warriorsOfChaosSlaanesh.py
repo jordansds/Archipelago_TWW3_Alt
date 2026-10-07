@@ -3,7 +3,7 @@ from worlds.tww3.dataStructs import itemType, itemData
 from . import warriorsOfChaos
 
 # @formatter:off
-units: dict[int, itemData] = warriorsOfChaos.baseUnits
+units: dict[int, itemData] = warriorsOfChaos.baseUnits.copy()
 units.update(warriorsOfChaos.slaaneshUnits)
 units.update({
     62000: itemData(IC.useful, 1, 'wh3_dlc27_sla_inf_slaangors', itemType.unit, 3, 'Progressive chs_inf', 'Chaos Unit: Slaangors'),

@@ -168,14 +168,11 @@ tzeentchUnits: dict[int, itemData] = {
     56376: itemData(IC.useful, 1, 'wh3_twa07_tze_cav_doom_knights_ror_0', itemType.unit, 4, 'Progressive chs_inf', 'Chaos Unit: Knights of Immolation (Doom Knights of Tzeentch)'),
     56377: itemData(IC.useful, 1, 'wh3_twa08_tze_mon_lord_of_change_0_ror', itemType.unit, 5, 'Progressive chs_inf', 'Chaos Unit: The Golden Griffin of Theurgy (Lord of Change)')
 }
-chaosUnits: dict[int, itemData] = {
-}
 units: dict[int, itemData] = {}
 units.update(khorneUnits)
 units.update(nurgleUnits)
 units.update(slaaneshUnits)
 units.update(tzeentchUnits)
-units.update(chaosUnits)
 
 buildings: dict[int, itemData] = {
     56400: itemData(IC.useful, 1, 'wh3_dlc20_foreign_slot_discovery_woc_1', itemType.building, 0, 'Progressive foreign_slot_discovery_woc', 'Chaos Building: Rat Catcher Outpost'),

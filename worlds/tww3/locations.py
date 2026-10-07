@@ -20,18 +20,20 @@ def createAllLocations(world: TWW3World) -> None:
     createKeyLocations(world)
     createVictoryLocation(world)
 
-    if world.options.sanity:
-        createBuildingLocations(world, True)
-        if not world.options.fast_research:
-            createTechLocations(world)
-        if world.options.ritual_sanity:
-            createRitualLocations(world)
-        #Run a second pass where we grab the locations that we couldn't risk generating the first time and lock them to filler items
-        #In case of generation issues E.g. Ports in Spheres mode.
-        createBuildingLocations(world, False)
+    #if world.options.sanity:
+    createBuildingLocations(world, True)
+    if not world.options.fast_research:
+        createTechLocations(world)
+    #if world.options.ritual_sanity:
+    #    createRitualLocations(world)
+    #Run a second pass where we grab the locations that we couldn't risk generating the first time and lock them to filler items
+    createBuildingLocations(world, False)
 
     if world.options.conquerer_sanity:
         createConquererLocations(world)
+
+    if world.options.explorer_sanity:
+        createExplorerLocations(world)
 
     if world.options.battle_sanity:
         createBattleLocations(world)
@@ -53,8 +55,7 @@ def createVictoryLocation(world: TWW3World) -> None:
 def createKeyLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Keys")
 
-    keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
-    for index, key in enumerate(keys):
+    for index, key in enumerate(world.keys):
         #locName = world.settlementRandomiser.getSettlementWithinRange(i)
         locName = f"The {key} Key"
         locId = world.location_name_to_id[locName]
@@ -188,3 +189,48 @@ def createConquererLocations(world: TWW3World) -> None:
         rules.setGenericLocationRule(world, location, i, maxCheck)  # Hard logic handled on client
 
         worldRegion.locations.append(location)
+
+def createExplorerLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Exploration")
+
+    for index in range(len(world.keys)):
+        settlements = world.settlementRandomiser.getSettlementWithinRange(index, returnAll=True)
+        locations = []
+        for settlement in settlements:
+            locName = settlement.readableName
+            locId = world.location_name_to_id[locName]
+            location = TWW3Location(world.player, locName, locId, worldRegion)
+            try:
+                worldRegion.locations.append(location)
+                locations.append(location)
+                rules.setGenericLocationRule(world, location, index, 8)
+
+            except AssertionError:
+                print(location)
+
+
+
+"""def createKeyLocations(world: TWW3World) -> None:
+    worldRegion = world.get_region("Keys")
+    
+    for index, key in enumerate(world.keys):
+        #locName = world.settlementRandomiser.getSettlementWithinRange(i)
+        locName = f"The {key} Key"
+        locId = world.location_name_to_id[locName]
+        location = TWW3Location(world.player, locName, locId, worldRegion)
+        worldRegion.locations.append(location)
+        locations = [location]
+
+        settlement = world.settlementRandomiser.getSettlementWithinRange(index)
+        print(settlement)
+        world.keyLocations.append(settlement.name)
+
+        #Add 5 items that spawn in each key location as a reward
+        for j in range(5):
+            locName = f"The {key} Key: Item {j+1}"
+            locId = world.location_name_to_id[locName]
+            location = TWW3Location(world.player, locName, locId, worldRegion)
+            worldRegion.locations.append(location)
+            locations.append(location)
+
+        rules.setKeyRule(world, locations, index)"""
