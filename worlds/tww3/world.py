@@ -1,5 +1,7 @@
 from typing import Any, Mapping, ClassVar, Optional
 
+from winerror import TRUST_E_SYSTEM_ERROR
+
 from Options import Option
 from worlds.AutoWorld import World
 from BaseClasses import Region, ItemClassification as IC
@@ -77,9 +79,6 @@ class TWW3World(World):
                 if opt is not None:
                     setattr(self.options, key, opt.from_any(value))"""
 
-
-
-
         fm.addModdedFactions(self.options.mod_list)
 
         #Handle random faction from race selection.
@@ -105,22 +104,19 @@ class TWW3World(World):
                                   if settlement.faction == self.playerFaction.name]
         self.keyLocations = []
 
-        #if self.options.ritual_sanity:
-        #    self.options.sanity.value = True
-        #    self.options.ritual_shuffle.value = True
+        self.options.conquerer_sanity.value = True
+        self.options.explorer_sanity.value = True
+        self.options.battle_sanity.value = True
+        self.options.despoiler_sanity.value = True
+        self.options.sanity.value = True
+
         self.options.ritual_shuffle = False #Disabled for now
         self.options.ritual_sanity = False #Disabled for now
-        if self.options.sanity:
-            #self.options.unit_shuffle.value = True
-            #self.options.building_shuffle.value = True
-            #self.options.tech_shuffle.value = True
 
+        if self.options.sanity:
             self.options.progressive_buildings.value = True
             self.options.starting_tier.value = 1
             self.sanityRules = sanityRules.ruleManager(self)
-
-        #if not self.options.hard_logic:
-        #    self.logger.warning(f"Total War Warhammer player {self.player_name} has soft logic enabled, if this is a large sync or async, then this may cause issues.")
 
     def create_regions(self) -> None:
         worldRegion = Region("Keys", self.player, self.multiworld)

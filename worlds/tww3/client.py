@@ -789,9 +789,6 @@ class EngineInitializer:
         self.playerFaction = context.playerFaction
         sendMessage = context.sendMessage
 
-        #if self.playerFaction == "wh2_main_skv_clan_skryre":
-        #    sendMessage(f'cm:add_event_restricted_building_record_for_faction("wh2_dlc12_special_warpstone_tractor_beam_2", "{self.playerFaction}")')
-
         ###
         #Randomise AI Personalities
         ###

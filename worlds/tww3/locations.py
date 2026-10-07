@@ -181,7 +181,7 @@ def createConquererLocations(world: TWW3World) -> None:
 
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, maxCheck):
-        locName = f"Empire Size {i})"
+        locName = f"Empire Size {i}"
         locId = world.location_name_to_id[locName]
         location = TWW3Location(world.player, locName, locId, worldRegion)
 

@@ -23,11 +23,14 @@ class settlementRandomiser:
         self.factionDict = factions.factionDict
         self.hordeList = factions.hordeList
 
-        if not self.playerFaction in self.hordeList:
+        #if not self.playerFaction in self.hordeList:
+        try:
             self.playerCapital = [settlement for settlement in self.settlementDict.values() if
-                                  settlement.faction == self.playerFaction]
-        else:
+                                      settlement.faction == self.playerFaction][0]
+        except IndexError:
             self.playerCapital = None
+            #Need to have a way to handle this for the key locations. Probably best if I have a list of starting coordinates or just the settlement they start next to.
+            self.playerCapital = list(self.settlementDict.values())[0]
 
         self.factionKeys: list[int] = [key for key in self.factionDict.keys() if key % 10 != 0]
         self.random.shuffle(self.factionKeys)
@@ -212,6 +215,7 @@ class settlementRandomiser:
         return self.shuffledSettlementDict
 
     def getSettlementWithinRange(self, multiplier, gameSpeed = 0):
+
         self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
                           self.shuffledSettlementDict.values()}
 

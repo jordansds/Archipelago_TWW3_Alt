@@ -57,7 +57,7 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                 itemCount = item.tier if item.tier <= 3 else item.tier + 2
 
             world.set_rule(world.get_location(item.readableName), rule)
-            print(item.readableName, rule)
+            #print(item.readableName, rule)
 
         #if item.tier <= world.options.starting_tier - 1:
         #    print(item.readableName)
