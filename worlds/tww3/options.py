@@ -219,7 +219,7 @@ class faction(Choice):
     option_Pegaz_Crustacean_Nation_Reefspeaker = 2009
     option_Pegaz_Crustacean_Nation_Old_Kelpbeard = 2010
     option_Pegaz_Crustacean_Nation_Tidelord_Anthron = 2011
-    option_Pegaz_Crustacean_Nation_Clawdius_Beastslayer = 1012
+    option_Pegaz_Crustacean_Nation_Clawdius_Beastslayer = 2012
     option_Pegaz_Crustacean_Nation_Lobstrogh_the_Betrayer = 2013
     option_Pegaz_Crustacean_Nation_Grand_Master_Corallion = 2014
 

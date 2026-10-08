@@ -106,10 +106,10 @@ class TWW3World(World):
                                   if settlement.faction == self.playerFaction.name]
         self.keyLocations = []
 
-        self.options.conquerer_sanity.value = False
+        #self.options.conquerer_sanity.value = False
         self.options.explorer_sanity.value = True
-        self.options.battle_sanity.value = False
-        self.options.despoiler_sanity.value = False
+        #self.options.battle_sanity.value = False
+        #self.options.despoiler_sanity.value = False
         #self.options.sanity.value = True
 
         self.options.ritual_shuffle = False #Disabled for now

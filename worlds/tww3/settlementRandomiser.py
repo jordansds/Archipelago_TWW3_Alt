@@ -214,13 +214,13 @@ class settlementRandomiser:
 
         return self.shuffledSettlementDict
 
-    def getSettlementWithinRange(self, multiplier, gameSpeed = 0, returnAll = False):
+    def getSettlementWithinRange(self, multiplier, gameSpeed = 1, returnAll = False):
 
         self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
                           self.shuffledSettlementDict.values()}
 
-        lowBound = max(0, multiplier-gameSpeed) * 100
-        upBound = max(1, multiplier-gameSpeed+1) * 100
+        lowBound = max(0, multiplier) * 100 * gameSpeed
+        upBound = max(1, multiplier+1) * 100 * gameSpeed
 
         #Loop to account for weird spawns that might have no valid settlements within a bound
         inRange = {}

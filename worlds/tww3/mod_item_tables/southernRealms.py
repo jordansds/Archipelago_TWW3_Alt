@@ -348,7 +348,7 @@ special: dict[int, specialItemData] = {
 
     111527: specialItemData(IC.useful, 1, ["mixer_teb_border_princes", "mixer_teb_gashnag"], "teb_mil_rangers_1", itemType.building, 0, "Progressive teb_rangers", False, False, "SouthernRealms Building: Enforcers Camp"),
     111528: specialItemData(IC.useful, 1, ["mixer_teb_border_princes", "mixer_teb_gashnag"], "teb_mil_rangers_2", itemType.building, 1, "Progressive teb_rangers", False, False, "SouthernRealms Building: Rangers Camp"),
-    111529: specialItemData(IC.useful, 1, ["mixer_teb_border_princes", "mixer_teb_gashnag"], "Progressive teb_rangers", itemType.building, 2, None, False, False, "Progressive SouthernRealms Building: Rangers"),
+    111529: specialItemData(IC.useful, 1, ["mixer_teb_border_princes", "mixer_teb_gashnag"], "Progressive teb_rangers", itemType.building, 2, None, False, True, "Progressive SouthernRealms Building: Rangers"),
 
     111530: specialItemData(IC.useful, 1, ["mixer_teb_border_princes"], "teb_tech_borderlands", itemType.tech, 2, "Progressive tech_teb_upper", False, False, "SouthernRealms Tech: Defiant Borderlands"),
     111531: specialItemData(IC.useful, 1, ["mixer_teb_border_princes"], "teb_tech_unsung", itemType.tech, 2, "Progressive tech_teb_middle", False, False, "SouthernRealms Tech: Unsung Heroes"),
@@ -373,7 +373,7 @@ special: dict[int, specialItemData] = {
     111547: specialItemData(IC.useful, 1, ["mixer_teb_colombo", "mixer_teb_new_world_colonies"], "teb_tech_ROR_outland", itemType.tech, 1, "Progressive tech_teb_renown", False, False, "SouthernRealms Tech: Renown: The Outlanders"),
     111548: specialItemData(IC.useful, 1, ["mixer_teb_colombo", "mixer_teb_new_world_colonies"], "teb_tech_ROR_pro", itemType.tech, 1, "Progressive tech_teb_renown", False, False, "SouthernRealms Tech: Renown: The Professionals"),
     111549: specialItemData(IC.useful, 1, ["mixer_teb_colombo", "mixer_teb_new_world_colonies"], "teb_tech_ROR_brass", itemType.tech, 1, "Progressive tech_teb_renown", False, False, "SouthernRealms Tech: Renown: The Brass of Tilea"),
-    111550: specialItemData(IC.useful, 1, ["mixer_teb_colombo", "mixer_teb_new_world_colonies"], "Progressive tech_teb_renown", itemType.tech, 1, None, False, False, "Progressive SouthernRealms Tech: Renown: Renown"),
+    111550: specialItemData(IC.useful, 1, ["mixer_teb_colombo", "mixer_teb_new_world_colonies"], "Progressive tech_teb_renown", itemType.tech, 1, None, False, True, "Progressive SouthernRealms Tech: Renown: Renown"),
 }
 
 rituals: dict[int, specialItemData] = {
