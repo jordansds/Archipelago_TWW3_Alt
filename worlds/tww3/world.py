@@ -107,7 +107,7 @@ class TWW3World(World):
         self.keyLocations = []
 
         #self.options.conquerer_sanity.value = False
-        self.options.explorer_sanity.value = True
+        #self.options.explorer_sanity.value = True
         #self.options.battle_sanity.value = False
         #self.options.despoiler_sanity.value = False
         #self.options.sanity.value = True
