@@ -181,7 +181,9 @@ buildings: dict[int, itemData] = {
     16520: itemData(IC.useful, 1, 'wh3_dlc23_chd_tower_tribute_halls_2', itemType.building, 1, 'progressive chd_tower_tribute_halls', 'ChaosDwarf Building: Tribute Collectors'),
     16521: itemData(IC.useful, 1, 'wh3_dlc23_chd_tower_tribute_halls_3', itemType.building, 2, 'progressive chd_tower_tribute_halls', 'ChaosDwarf Building: Tribute Shrine'),
     16522: itemData(IC.useful, 1, 'wh3_dlc23_chd_tower_tribute_halls_4', itemType.building, 3, 'progressive chd_tower_tribute_halls', 'ChaosDwarf Building: Tithe Chamber'),
-    16523: itemData(IC.useful, 1, 'wh3_dlc23_chd_tower_tribute_halls_5', itemType.building, 4, 'progressive chd_tower_tribute_halls', 'ChaosDwarf Building: Treasure Hall')
+    16523: itemData(IC.useful, 1, 'wh3_dlc23_chd_tower_tribute_halls_5', itemType.building, 4, 'progressive chd_tower_tribute_halls', 'ChaosDwarf Building: Treasure Hall'),
+
+    16524: itemData(IC.useful, 1, 'wh3_dlc23_foreign_slot_discovery_chd_1', itemType.building, 0, 'progressive chd_foreign_slot_discovery', 'ChaosDwarf Building: Signal Fires')
 }
 
 techs: dict[int, itemData] = {
@@ -323,7 +325,8 @@ progBuildings: dict[int, itemData] = {
     17340: itemData(IC.useful, 3, 'progressive chd_tower_port', itemType.building, 3, None, 'Progressive ChaosDwarf Building: Tower Port'),
     17341: itemData(IC.useful, 5, 'progressive chd_tower_temple_guardhouse', itemType.building, 5, None, 'Progressive ChaosDwarf Building: Tower Temple Guardhouse'),
     17342: itemData(IC.useful, 1, 'progressive chd_tower_temple_of_hashut', itemType.building, 1, None, 'Progressive ChaosDwarf Building: Tower Temple Of Hashut'),
-    17343: itemData(IC.useful, 5, 'progressive chd_tower_tribute_halls', itemType.building, 5, None, 'Progressive ChaosDwarf Building: Tower Tribute Halls')
+    17343: itemData(IC.useful, 5, 'progressive chd_tower_tribute_halls', itemType.building, 5, None, 'Progressive ChaosDwarf Building: Tower Tribute Halls'),
+    17344: itemData(IC.useful, 1, 'progressive chd_foreign_slot_discovery', itemType.building, 1, None, 'Progressive ChaosDwarf Building: Foreign Slot Discovery'),
 }
 
 progTechs: dict[int, itemData] = {

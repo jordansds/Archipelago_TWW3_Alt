@@ -333,7 +333,7 @@ class TWW3Context(CommonContext):
         self.itemNameToReadableName = {item.name: item.readableName for item in self.itemDict.values()}
         self.progressiveItemFlags = {key: 0 for key, item in self.itemDict.items() if item.progressionGroup is None and key >= 10000}
 
-        self.sanity = args['slot_data']['sanity']
+        #self.sanity = args['slot_data']['sanity']
         #self.ritualSanity = args['slot_data']['ritual_sanity']
         self.ritualSanity = False #disabled for now
         self.conquererSanity = args['slot_data']['conquerer_sanity']
@@ -341,10 +341,10 @@ class TWW3Context(CommonContext):
         self.battleSanity = args['slot_data']['battle_sanity']
         self.despoilerSanity = args['slot_data']['despoiler_sanity']
 
-        if self.sanity:
-            for key, item in self.itemDict.items():
-                if (item.type == itemType.building or item.type == itemType.tech)and item.progressionGroup is not None:
-                    self.locationLookup[item.readableName] = key + 1000000
+        #if self.sanity:
+        for key, item in self.itemDict.items():
+            if (item.type == itemType.building or item.type == itemType.tech)and item.progressionGroup is not None:
+                self.locationLookup[item.readableName] = key + 1000000
         if self.ritualSanity:
             for key, item in self.itemDict.items():
                 if item.type == itemType.ritual and item.progressionGroup is not None:
@@ -520,10 +520,10 @@ class TWW3Context(CommonContext):
                 await self.send_death(locName.split(" ")[1])
 
             case "building" | "tech":
-                if self.sanity:
-                    if self.logChecks:
-                        logger.info(f"Sending {locName}")
-                    await self.checkSanity(locName.split(" ")[1], locType)
+                #if self.sanity:
+                if self.logChecks:
+                    logger.info(f"Sending {locName}")
+                await self.checkSanity(locName.split(" ")[1], locType)
 
             case "ritual":
                 if self.ritualSanity:
