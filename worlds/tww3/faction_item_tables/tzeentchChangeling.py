@@ -156,11 +156,11 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = {
-    73400: itemData(IC.useful, 3, 'Progressive tech_tze_changeling_boons', itemType.tech, 5, None, "Progressive Changeling Tech: Boons"),
+    73400: itemData(IC.useful, 5, 'Progressive tech_tze_changeling_boons', itemType.tech, 5, None, "Progressive Changeling Tech: Boons"),
     73401: itemData(IC.useful, 3, 'Progressive tech_tze_changeling_ways', itemType.tech, 3, None, "Progressive Changeling Tech: Changing of the Ways"),
     73402: itemData(IC.useful, 3, 'Progressive tech_tze_changeling_winds', itemType.tech, 3, None, "Progressive Changeling Tech: Winds of Magic"),
-    73403: itemData(IC.useful, 3, 'Progressive tech_tze_changeling_rifts', itemType.tech, 1, None, "Progressive Changeling Tech: Trickster Rifts"),
-    73404: itemData(IC.useful, 3, 'Progressive tech_tze_changeling_cultists', itemType.tech, 1, None, "Progressive Changeling Tech: Trickster Cultists"),
+    73403: itemData(IC.useful, 1, 'Progressive tech_tze_changeling_rifts', itemType.tech, 1, None, "Progressive Changeling Tech: Trickster Rifts"),
+    73404: itemData(IC.useful, 1, 'Progressive tech_tze_changeling_cultists', itemType.tech, 1, None, "Progressive Changeling Tech: Trickster Cultists"),
 }
 
 special: dict[int, specialItemData] = {

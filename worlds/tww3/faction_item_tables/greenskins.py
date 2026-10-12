@@ -208,7 +208,7 @@ progUnits: dict[int, itemData] = {
 
 progBuildings: dict[int, itemData] = {
     29308: itemData(IC.useful, 3, 'Progressive foreign_slot_discovery_grn', itemType.building, 3, None, 'Progressive Greenskin Building: Foreign Slot Discovery Grn'),
-    29310: itemData(IC.useful, 1, 'progressive grn_raiders', itemType.building, 2, None, 'Progressive Greenskin Building: Raiders'),
+    29310: itemData(IC.useful, 2, 'progressive grn_raiders', itemType.building, 2, None, 'Progressive Greenskin Building: Raiders'),
     29318: itemData(IC.useful, 3, 'progressive grn_goblins', itemType.building, 3, None, 'Progressive Greenskin Building: Goblins'),
     29321: itemData(IC.useful, 2, 'progressive grn_squigs', itemType.building, 2, None, 'Progressive Greenskin Building: Squigs'),
     29324: itemData(IC.useful, 3, 'progressive grn_allied_outpost', itemType.building, 3, None, 'Progressive Greenskin Building: Allied Outpost'),

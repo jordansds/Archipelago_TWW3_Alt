@@ -19,7 +19,7 @@ def setKeyRule(world: TWW3World, locations, i):
         world.set_rule(location, Has("Key", i) & Has("Map", i + 1))
 
 def setGenericLocationRule(world: TWW3World, location, i: int, maxCheck: int):
-    world.set_rule(location, Has("Key", (i+1) * 8 // maxCheck))
+    world.set_rule(location, Has("Key", (i+1) * 8 // maxCheck - 1))
 
 def setBuildingLocationRules(world: TWW3World, buildings):
 
@@ -126,7 +126,7 @@ def setBalance(world: TWW3World) -> None:
 
         count = 0
         for index, location in enumerate(world.get_region("Keys").locations):
-            # Should have access to all items by the 9th key
+            # Should have access to at all items by the 9th key
             requiredItems = len(world.item_name_groups["Unlocks"]) * min(1, (index // 6) / 8)
             if requiredItems > 0:
                 world.set_rule(location, Has("Key", count) & Has("Map", min(9, count + 1)) & (HasGroup("Unlocks", requiredItems) | Has("Glitch Logic")))

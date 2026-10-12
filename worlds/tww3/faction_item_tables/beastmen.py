@@ -230,10 +230,10 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = {
-    11400: itemData(IC.useful, 1, "progressive tech_bst_wrath", itemType.tech, 1, None, "Progressive Beastmen Tech: Tech Tree 4"),
-    11401: itemData(IC.useful, 1, "progressive tech_bst_beasts", itemType.tech, 1, None, "Progressive Beastmen Tech: Tech Tree 3"),
-    11402: itemData(IC.useful, 1, "progressive tech_bst_order", itemType.tech, 1, None, "Progressive Beastmen Tech: Tech Tree 2"),
-    11403: itemData(IC.useful, 1, "progressive bst_horns", itemType.tech, 1, None, "Progressive Beastmen Tech: Tech Tree 1"),
+    11400: itemData(IC.useful, 2, "progressive tech_bst_wrath", itemType.tech, 2, None, "Progressive Beastmen Tech: Tech Tree 4"),
+    11401: itemData(IC.useful, 2, "progressive tech_bst_beasts", itemType.tech, 2, None, "Progressive Beastmen Tech: Tech Tree 3"),
+    11402: itemData(IC.useful, 2, "progressive tech_bst_order", itemType.tech, 2, None, "Progressive Beastmen Tech: Tech Tree 2"),
+    11403: itemData(IC.useful, 2, "progressive bst_horns", itemType.tech, 2, None, "Progressive Beastmen Tech: Tech Tree 1"),
     11404: itemData(IC.useful, 1, "progressive bst_tech_challenges", itemType.tech, 1, None, "Progressive Beastmen Tech: Challenges"),
 }
 

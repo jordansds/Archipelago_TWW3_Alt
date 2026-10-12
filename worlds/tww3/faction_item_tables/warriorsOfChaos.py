@@ -327,11 +327,11 @@ progBuildings: dict[int, itemData] = {
 }
 
 progTechs: dict[int, itemData] = {
-    57400: itemData(IC.useful, 9, "Progressive tech_chs_und_undivided", itemType.tech, 5, None, "Progressive Chaos Tech: Undivided"),
-    57401: itemData(IC.useful, 9, "Progressive tech_chs_und_khorne", itemType.tech, 3, None, "Progressive Chaos Tech: Khorne"),
-    57402: itemData(IC.useful, 9, "Progressive tech_chs_und_tzeentch", itemType.tech, 3, None, "Progressive Chaos Tech: Tzeentch"),
-    57403: itemData(IC.useful, 9, "Progressive tech_chs_und_slaanesh", itemType.tech, 3, None, "Progressive Chaos Tech: Slaanesh"),
-    57404: itemData(IC.useful, 9, "Progressive tech_chs_und_nurgle", itemType.tech, 3, None, "Progressive Chaos Tech: Nurgle"),
+    57400: itemData(IC.useful, 5, "Progressive tech_chs_und_undivided", itemType.tech, 5, None, "Progressive Chaos Tech: Undivided"),
+    57401: itemData(IC.useful, 3, "Progressive tech_chs_und_khorne", itemType.tech, 3, None, "Progressive Chaos Tech: Khorne"),
+    57402: itemData(IC.useful, 3, "Progressive tech_chs_und_tzeentch", itemType.tech, 3, None, "Progressive Chaos Tech: Tzeentch"),
+    57403: itemData(IC.useful, 3, "Progressive tech_chs_und_slaanesh", itemType.tech, 3, None, "Progressive Chaos Tech: Slaanesh"),
+    57404: itemData(IC.useful, 3, "Progressive tech_chs_und_nurgle", itemType.tech, 3, None, "Progressive Chaos Tech: Nurgle"),
 }
 
 special: dict[int, specialItemData] = {
@@ -341,13 +341,13 @@ special: dict[int, specialItemData] = {
     57503: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_tze_inf_pink_horrors_1', itemType.unit, 3, 'Progressive chs_inf', False, False, 'Chaos Unit: Exalted Pink Horrors of Tzeentch'),
     57504: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_nur_mon_plague_toads_0', itemType.unit, 3, 'Progressive chs_bst', False, False, 'Chaos Unit: Plague Toads of Nurgle'),
     57505: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_nur_mon_rot_flies_0', itemType.unit, 3, 'Progressive chs_bst', False, False, 'Chaos Unit: Rot Flies'),
-    57506: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_khorne_belakor', itemType.tech, 1, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Searing Branding Iron'),
+    57506: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_khorne_belakor', itemType.tech, 1, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Searing Branding Iron (Belakor)'),
     57507: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_chs_belakor_1', itemType.tech, 2, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Blood Pact'),
-    57508: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_tzeentch_belakor', itemType.tech, 1, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Arcane Branding Iron'),
+    57508: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_tzeentch_belakor', itemType.tech, 1, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Arcane Branding Iron (Belakor)'),
     57509: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_chs_belakor_3', itemType.tech, 2, 'Progressive chs_und_tzeentch', False, False, 'Chaos Tech: Boon-Maker'),
-    57510: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_slaanesh_belakor', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Sensuous Branding Iron'),
+    57510: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_slaanesh_belakor', itemType.tech, 1, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: Sensuous Branding Iron (Belakor)'),
     57511: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_chs_belakor_4', itemType.tech, 2, 'Progressive chs_und_slaanesh', False, False, 'Chaos Tech: The Last Secret'),
-    57512: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_nurgle_belakor', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Rusted Branding Iron'),
+    57512: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_dlc20_chs_und_shared_marks_nurgle_belakor', itemType.tech, 1, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Rusted Branding Iron (Belakor)'),
     57513: specialItemData(IC.useful, 1, ['wh3_main_chs_shadow_legion'], 'wh3_main_chs_belakor_2', itemType.tech, 2, 'Progressive chs_und_nurgle', False, False, 'Chaos Tech: Deep Cleansing'),
     
     57514: specialItemData(IC.useful, 1, ['wh_main_chs_chaos', 'wh3_dlc20_chs_kholek', 'wh3_dlc20_chs_sigvald'], 'wh3_dlc20_chs_und_shared_marks_khorne', itemType.tech, 1, 'Progressive chs_und_khorne', False, False, 'Chaos Tech: Searing Branding Iron'),

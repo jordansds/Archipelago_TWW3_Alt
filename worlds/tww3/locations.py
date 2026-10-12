@@ -194,7 +194,7 @@ def createExplorerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Exploration")
 
     for index in range(len(world.keys)):
-        settlements = world.settlementRandomiser.getSettlementWithinRange(index, returnAll=True)
+        settlements = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed = 0.5, returnAll=True)
         locations = []
         for settlement in settlements:
             locName = settlement.readableName
