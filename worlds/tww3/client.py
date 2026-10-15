@@ -620,14 +620,14 @@ class TWW3Context(CommonContext):
         try:
             location = 0 if int(location) > 1000 else int(location)   #In case the file reads the seed?
             if self.conquererSanity:
-                location = min(location, self.maxEmpireSize)
-                #if location <= int(self.maxEmpireSize):
-                capacity = (self.expansionItems + 1) * self.adminCapacity
-                acceptedLocation = min(location, capacity) if self.hardLogic else location
+                capacity = self.ctx.keyCount
+                #world.set_rule(location, Has("Key", (i + 1) * 8 // maxCheck - 1))
+                #acceptedLocation = min(location, capacity) if self.hardLogic else location
+
                 locationIds = [
-                    empireSize * 10 - 9 + check
-                    for empireSize in range(1, acceptedLocation + 1)
-                    for check in range(int(self.checksPerLocation))
+                    empireSize * 10 - 9# + check
+                    for empireSize in range(1, location + 1)
+                    #for check in range(int(self.checksPerLocation))
                 ]
                 await self.check_locations(locationIds)
 
@@ -671,7 +671,7 @@ class TWW3Context(CommonContext):
         locations = [i * 5 for i in range(1, int(location / 5 + 1))]
         try:
             for location in locations:
-                if self.hardLogic:
+                if False: #self.hardLogic: #Temporarily disabled
                     #Need to check if player has enough expansion items
                     if location * self.maxExpansionItems // 100 <= self.expansionItems:
                         await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
@@ -690,7 +690,7 @@ class TWW3Context(CommonContext):
         locations = [i * 2 for i in range(1, int(location / 2 + 1))]
         try:
             for location in locations:
-                if self.hardLogic:
+                if False: #self.hardLogic: #Temporarily disabled
                     #Need to check if player has enough expansion items
                     if location * self.maxExpansionItems // 40 <= self.expansionItems:
                         await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
