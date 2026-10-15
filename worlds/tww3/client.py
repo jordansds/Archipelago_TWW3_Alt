@@ -316,6 +316,10 @@ class TWW3Context(CommonContext):
             f"The {key} Key: Item {j + 1}": (index + 1) * 10 + j for index, key in enumerate(self.keys) for j in range(5)
         })
 
+        self.locationLookup.update({
+            f"Empire Size {index + 1}": index + 1001 for index in range(sm.getMaximumSettlementCount())
+        })
+
         self.locationLookup.update(
             {f"{settlement.readableName}": key + 2001 for key, settlement in sm.getAllSettlements().items()}
         )
@@ -625,7 +629,7 @@ class TWW3Context(CommonContext):
                 #acceptedLocation = min(location, capacity) if self.hardLogic else location
 
                 locationIds = [
-                    empireSize * 10 - 9# + check
+                    empireSize + 1001# + check
                     for empireSize in range(1, location + 1)
                     #for check in range(int(self.checksPerLocation))
                 ]
