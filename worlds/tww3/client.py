@@ -620,7 +620,7 @@ class TWW3Context(CommonContext):
         try:
             location = 0 if int(location) > 1000 else int(location)   #In case the file reads the seed?
             if self.conquererSanity:
-                capacity = self.ctx.keyCount
+                capacity = self.keyCount
                 #world.set_rule(location, Has("Key", (i + 1) * 8 // maxCheck - 1))
                 #acceptedLocation = min(location, capacity) if self.hardLogic else location
 
