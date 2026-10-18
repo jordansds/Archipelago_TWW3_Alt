@@ -246,6 +246,7 @@ progBuildings: dict[int, itemData] = {
     13318: itemData(IC.useful, 3, "progressive brt_farm", itemType.building, 3, None, "Progressive Bretonnia Building: Farm"),
     13319: itemData(IC.useful, 2, "progressive brt_farm_extra", itemType.building, 3, None, "Progressive Bretonnia Building: Milling"),
     13320: itemData(IC.useful, 3, "progressive brt_industry", itemType.building, 3, None, "Progressive Bretonnia Building: Industry"),
+    13333: itemData(IC.useful, 3, "progressive brt_hospital", itemType.building, 3, None, "Progressive Bretonnia Building: Healing"),
     13321: itemData(IC.useful, 2, "progressive brt_industry_extra", itemType.building, 3, None, "Progressive Bretonnia Building: Storage"),
     13322: itemData(IC.useful, 4, "progressive brt_tavern", itemType.building, 3, None, "Progressive Bretonnia Building: Hostelry"),
     13323: itemData(IC.useful, 3, "progressive brt_port", itemType.building, 3, None, "Progressive Bretonnia Building: Port"),
@@ -257,9 +258,10 @@ progBuildings: dict[int, itemData] = {
     13328: itemData(IC.useful, 2, "progressive brt_smiths", itemType.building, 3, None, "Progressive Bretonnia Building: Smiths"),
     13329: itemData(IC.useful, 3, "progressive brt_worship", itemType.building, 3, None, "Progressive Bretonnia Building: Worship"),
 
-    13330: itemData(IC.useful, 3, "progressive brt_resource_protection", itemType.building, 3, None, "Progressive Bretonnia Building: Protection"),
-    13331: itemData(IC.useful, 2, "progressive brt_garrison", itemType.building, 3, None, "Progressive Bretonnia Building: Protection"),
-    13332: itemData(IC.useful, 3, "progressive brt_walls", itemType.building, 3, None, "Progressive Bretonnia Building: Protection")
+    13330: itemData(IC.useful, 3, "progressive brt_protection", itemType.building, 3, None, "Progressive Bretonnia Building: Protection"),
+    13331: itemData(IC.useful, 2, "progressive brt_garrison", itemType.building, 3, None, "Progressive Bretonnia Building: Garrison"),
+    13332: itemData(IC.useful, 3, "progressive brt_walls", itemType.building, 3, None, "Progressive Bretonnia Building: Walls")
+
 }
 
 progTechs: dict[int, itemData] = {
