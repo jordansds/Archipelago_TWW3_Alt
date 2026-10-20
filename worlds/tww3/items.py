@@ -235,8 +235,10 @@ def generateFiller(world: TWW3World) -> TWW3Item:
     if key == 1205:
         name = world.random.choice(tuple(ancillariesDict.values())).readableName
     else:
-        key = world.random.choice(tuple(fillerDict.keys()))
+        #key = world.random.choice(tuple(fillerDict.keys()))
         name = itemDict[key].readableName
+
+    print(key, name)
 
     item = world.create_item(name)
     return item

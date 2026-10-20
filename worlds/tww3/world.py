@@ -1,7 +1,5 @@
 from typing import Any, Mapping, ClassVar, Optional
 
-from winerror import TRUST_E_SYSTEM_ERROR
-
 from Options import Option
 from worlds.AutoWorld import World
 from BaseClasses import Region, ItemClassification as IC

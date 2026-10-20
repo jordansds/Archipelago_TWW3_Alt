@@ -390,6 +390,10 @@ class TWW3Context(CommonContext):
                 logger.error(f"Something went horribly wrong. Please report this error the discord server (@jordansds). Key: {entry.item}, Faction: {self.playerFaction}\nError: {e}")
                 continue
 
+            #print(item.name)
+            if item.name == "":
+                print(item)
+
             match item.type:
                 case itemType.building:
                     if not resync:
@@ -422,29 +426,31 @@ class TWW3Context(CommonContext):
                     if not resync:
                         self.itemArchive["items"].append(entry)
 
-                    self.mapCount += 1
-                    settlement = self.keyLocations[self.mapCount - 1]
+                    if item.name == "Map":
+                        settlement = self.keyLocations[self.mapCount]
+                        self.mapCount += 1
+                        # In case the player already owns the settlement
+                        self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
+                        #for index, settlement in enumerate(self.keyLocations):
+                        #    if index != self.mapCount - 1:
+                        #        continue
+                        #    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
 
-                    # In case the player already owns the settlement
-                    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
-                    #for index, settlement in enumerate(self.keyLocations):
-                    #    if index != self.mapCount - 1:
-                    #        continue
-                    #    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
+                        logger.info(f"The next key can be found at {self.settlementToReadableName[settlement]}")
 
-                    logger.info(f"The next key can be found at {self.settlementToReadableName[settlement]}")
+                    elif item.name == "Key":
+                        self.keyCount += 1
 
-                case itemType.goal:
-                    if not resync:
-                        self.itemArchive["items"].append(entry)
+                        if self.keyCount == 9:
+                            if self.endtimes:
+                                self.sendMessage("archipelago.trigger_crisis()")
+                            else:
+                                return asyncio.create_task(
+                                    self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
 
-                    self.keyCount += 1
-
-                    if self.keyCount == 9:
-                        if self.endtimes:
-                            self.sendMessage("archipelago.trigger_crisis()")
-                        else:
-                            return asyncio.create_task(self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}]))
+                #case itemType.goal:
+                #    if not resync:
+                #        self.itemArchive["items"].append(entry)
 
                 case itemType.filler:
                     if item.progressionGroup == "gold":
@@ -453,7 +459,7 @@ class TWW3Context(CommonContext):
                         self.sendMessage(item.name)
                         
                 case itemType.ancillary:
-                        self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
+                    self.sendMessage(f'archipelago.give_player_ancillary("{item.name}")')
 
                 case itemType.trap:
                     if self.initialized and self.trapsEnabled:
