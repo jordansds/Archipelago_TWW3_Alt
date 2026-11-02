@@ -255,6 +255,16 @@ class endTimes(DefaultOnToggle):
 #    RECCOMENDED TO USE BUILDING/TECH/RITUALSANITY TOGETHER, GENERATION LOGIC MAY BE FLAWED IF USED ALONE"""
 #    display_name = "RitualSanity"
 
+class gameLength(Choice):
+    """Determines how many checks will exist in the game and how long it will take"""
+    display_name = "Game Length"
+    option_short = 50
+    option_default = 100
+    option_long = 200
+    option_marathon = 400
+    option_world_conquest = 500
+    default = option_world_conquest
+
 class sanity(DefaultOnToggle):
     """If you want every building and tech to be a location.
     [EXPERIMENTAL, WILL ENABLE BUILDING AND TECH SHUFFLE]"""
@@ -395,6 +405,7 @@ class TWW3Options(PerGameCommonOptions):
     randomize_personalities: randomizePersonalities
     starting_settlements: startingSettlements
     endtimes: endTimes
+    game_length: gameLength
 
     #sanity: sanity
     conquerer_sanity: conquererSanity

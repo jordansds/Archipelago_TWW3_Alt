@@ -59,8 +59,8 @@ class TWW3World(World):
     for key, item in factionItemManager.getAllItems().items():
         if (item.type == itemType.building or item.type == itemType.tech or item.type == itemType.ritual) and (item.progressionGroup is not None and item.progressionGroup != ""):
             sanityLocationNames.update({key + 1000000: item.readableName})
-    for i in range(1,100):
-        sanityLocationNames.update({i+3000: f"Won {i*5} Battles", i+3100: f"Sacked {i*2} Settlements", i+3200: f"Razed {i*2} Settlements"})
+    for i in range(1,201):
+        sanityLocationNames.update({i+3000: f"Won {i*5} Battles", i+3500: f"Sacked {i*2} Settlements", i+4000: f"Razed {i*2} Settlements"})
     location_name_to_id.update({item: key for key, item in sanityLocationNames.items()})
 
     settlementRandomiser: sr.settlementRandomiser = None

@@ -357,12 +357,12 @@ class TWW3Context(CommonContext):
                 if item.type == itemType.ritual and item.progressionGroup is not None:
                     self.locationLookup[item.readableName] = key + 1000000
         if self.battleSanity:
-            for i in range(1,21):
+            for i in range(1,201):
                 self.locationLookup[f"Won {i*5} Battles"] = i + 3000
         if self.despoilerSanity:
-            for i in range(1,21):
-                self.locationLookup[f"Sacked {i*2} Settlements"] = i + 3200
-                self.locationLookup[f"Razed {i*2} Settlements"] = i + 3300
+            for i in range(1,201):
+                self.locationLookup[f"Sacked {i*2} Settlements"] = i + 3500
+                self.locationLookup[f"Razed {i*2} Settlements"] = i + 4000
 
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
@@ -685,13 +685,13 @@ class TWW3Context(CommonContext):
         locations = [i * 5 for i in range(1, int(location / 5 + 1))]
         try:
             for location in locations:
-                if False: #self.hardLogic: #Temporarily disabled
+                #if False: #self.hardLogic: #Temporarily disabled
                     #Need to check if player has enough expansion items
-                    if location * self.maxExpansionItems // 100 <= self.expansionItems:
-                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
-                else:
-                    for i in range(1, location + 1):
-                        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                #    if location * self.maxExpansionItems // 100 <= self.expansionItems:
+                #        await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
+                #else:
+                #    for i in range(1, location + 1):
+                await self.check_locations([self.locationLookup[f"Won {location} Battles"]])
         except KeyError:
             pass
 
@@ -699,16 +699,16 @@ class TWW3Context(CommonContext):
         type = location.split(" ")[0].title()
         location = int(location.split(" ")[1])
 
-        print(type, location)
+        #print(type, location)
 
-        if location % 2 != 0 or location > 40:
+        if location % 2 != 0:# or location > 40:
             return
         locations = [i * 2 for i in range(1, int(location / 2 + 1))]
 
         try:
             for location in locations:
-                print([f"{type} {location} Settlements"])
-                print([self.locationLookup[f"{type} {location} Settlements"]])
+                #print([f"{type} {location} Settlements"])
+                #print([self.locationLookup[f"{type} {location} Settlements"]])
                 await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
         except KeyError:
             pass

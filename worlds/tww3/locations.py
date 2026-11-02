@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 from BaseClasses import Location, ItemClassification as IC
 from rule_builder.rules import Has
 from worlds.tww3 import items, rules, factionItemManager
+from worlds.tww3.item_tables import settlements as sm
 from worlds.tww3.item_tables import factions as fm
 from worlds.generic.Rules import forbid_item
 
@@ -63,7 +64,7 @@ def createKeyLocations(world: TWW3World) -> None:
         worldRegion.locations.append(location)
         locations = [location]
 
-        settlement = world.settlementRandomiser.getSettlementWithinRange(index)
+        settlement = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed=world.options.game_length/100*2.5)
         print(settlement)
         world.keyLocations.append(settlement.name)
 
@@ -142,10 +143,12 @@ def createRitualLocations(world: TWW3World) -> None:
 
     rules.setRitualRules(world, rituals)
 
-minCheck, maxCheck = 1, 21
-
 def createBattleLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Battles")
+    minCheck, maxCheck = 1, int(20 * world.options.game_length/100 + 1)
+
+    if world.options.game_length == 500:
+        maxCheck = 201
 
     for i in range(minCheck, maxCheck):
         locName = f"Won {i*5} Battles"
@@ -158,6 +161,7 @@ def createBattleLocations(world: TWW3World) -> None:
 
 def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
+    minCheck, maxCheck = 1, int(10 * world.options.game_length/100 + 1)
 
     for i in range(minCheck, maxCheck):
         for decision in ["Sacked", "Razed"]:
@@ -180,6 +184,10 @@ def createConquererLocations(world: TWW3World) -> None:
     else:
         startingCheck = world.options.starting_settlements + 1
 
+    minCheck, maxCheck = 1, int(20 * world.options.game_length/100 + 1)
+    print(maxCheck)
+    if world.options.game_length == 500:
+        maxCheck = sm.getMaximumSettlementCount()
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, maxCheck):
         locName = f"Empire Size {i}"
@@ -194,7 +202,7 @@ def createExplorerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Exploration")
 
     for index in range(len(world.keys)):
-        settlements = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed = 0.5, returnAll=True)
+        settlements = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed = world.options.game_length/100, returnAll=True)
         locations = []
         for settlement in settlements:
             locName = settlement.readableName
