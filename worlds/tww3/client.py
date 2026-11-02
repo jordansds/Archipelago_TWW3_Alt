@@ -46,10 +46,13 @@ class TWW3CommandProcessor(ClientCommandProcessor):
 
     def _cmd_maps(self):
         if isinstance(self.ctx, TWW3Context):
-            logger.info(f"You have recevied the map to the key number {self.ctx.mapCount}/9")
+            if self.ctx.mapCount != 0:
+                logger.info(f"You have recevied {self.ctx.mapCount}/9 maps")
 
-            settlement = self.ctx.keyLocations[self.ctx.mapCount - 1]
-            logger.info(f"The next key can be found at {self.ctx.settlementToReadableName[settlement]}")
+                settlements = self.ctx.keyLocations[:self.ctx.mapCount]
+                for index, settlement in enumerate(settlements):
+                    key = self.ctx.keys[index]
+                    logger.info(f"The {key} key can be found at: {self.ctx.settlementToReadableName[settlement]}")
 
     def _cmd_version(self):
         """Prints the version of the client."""
@@ -355,11 +358,11 @@ class TWW3Context(CommonContext):
                     self.locationLookup[item.readableName] = key + 1000000
         if self.battleSanity:
             for i in range(1,21):
-                self.locationLookup[f"Won {i*5} Battles"] = i + 20000
+                self.locationLookup[f"Won {i*5} Battles"] = i + 3000
         if self.despoilerSanity:
             for i in range(1,21):
-                self.locationLookup[f"Sacked {i*2} Settlements"] = i + 20020
-                self.locationLookup[f"Razed {i*2} Settlements"] = i + 20040
+                self.locationLookup[f"Sacked {i*2} Settlements"] = i + 3200
+                self.locationLookup[f"Razed {i*2} Settlements"] = i + 3300
 
         self.locationMapping = True
         Utils.async_start(self.send_msgs([{"cmd": "LocationScouts", "locations": self.server_locations, "create_as_hint": 0}]))
@@ -499,9 +502,9 @@ class TWW3Context(CommonContext):
             self.on_received_items(self.itemArchive, True)
         #self.itemArchive.clear()
 
-        flag = False
-        for i in range(1, len(self.locationArchive)): #We don't want to check the first line, that's the seed.
-            await self.onReceivedLocation(*self.locationArchive[-i], True)
+        #flag = False
+        for i in range(0, len(self.locationArchive)):
+            await self.onReceivedLocation(*self.locationArchive[i], True)
 
     async def sendNotification(self):
         if self.notificationPending:
@@ -644,20 +647,21 @@ class TWW3Context(CommonContext):
         except ValueError:
             self.map = "immortal empires"
 
-            location = next((value for value in sm.mapDict[self.map].values() if value.name == location),
-                            None).readableName
+            #location = next((value for value in sm.mapDict[self.map].values() if value.name == location),
+            #                None).readableName
 
             if self.explorerSanity:
-                await self.check_locations([self.locationLookup[f"{location}"]])
+
+                await self.check_locations([self.locationLookup[f"{self.settlementToReadableName[location]}"]])
 
             for index, settlement in enumerate(self.keyLocations):
                 if self.mapCount <= index: #Check if player has enough maps to discover location
                     break
                 elif settlement == location:
-                    key = self.keys[index + 1]
-                    await self.check_locations(f"The {key} Key")
+                    key = self.keys[index]
+                    await self.check_locations([self.locationLookup[f"The {key} Key"]])
                     for i in range(5):
-                        await self.check_locations(f"The {key} Key: Item {i + 1}")
+                        await self.check_locations([self.locationLookup[f"The {key} Key: Item {i + 1}"]])
 
         except KeyError:
             logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")
@@ -695,18 +699,17 @@ class TWW3Context(CommonContext):
         type = location.split(" ")[0].title()
         location = int(location.split(" ")[1])
 
+        print(type, location)
+
         if location % 2 != 0 or location > 40:
             return
         locations = [i * 2 for i in range(1, int(location / 2 + 1))]
+
         try:
             for location in locations:
-                if False: #self.hardLogic: #Temporarily disabled
-                    #Need to check if player has enough expansion items
-                    if location * self.maxExpansionItems // 40 <= self.expansionItems:
-                        await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
-                else:
-                    for i in range(2, location + 2):
-                        await self.check_locations([self.locationLookup[f"{type} {i} Settlements"]])
+                print([f"{type} {location} Settlements"])
+                print([self.locationLookup[f"{type} {location} Settlements"]])
+                await self.check_locations([self.locationLookup[f"{type} {location} Settlements"]])
         except KeyError:
             pass
 

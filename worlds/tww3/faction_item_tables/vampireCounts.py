@@ -154,56 +154,67 @@ buildings: dict[int, itemData] = {
 }
 
 techs: dict[int, itemData] = {
-    52803: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_01', itemType.tech, 1, 'Progressive tech_vmp_beasts', "Vampire Tech: De Noirot's Blasphemous Bestiary"),
-    52804: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_02', itemType.tech, 2, 'Progressive tech_vmp_beasts', 'Vampire Tech: Corruptor of the Forests'),
-    52805: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_04', itemType.tech, 3, 'Progressive tech_vmp_beasts', 'Vampire Tech: Leader of the Pack'),
-    52806: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_06', itemType.tech, 4, 'Progressive tech_vmp_beasts', 'Vampire Tech: Beastmaster'),
-    52800: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_05', itemType.tech, 4, 'Progressive tech_vmp_beasts', 'Vampire Tech: Invoke Animalistic Hunger'),
-    52807: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_08', itemType.tech, 5, 'Progressive tech_vmp_beasts', 'Vampire Tech: Fresh Prey Supply'),
-    52808: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_09', itemType.tech, 6, 'Progressive tech_vmp_beasts', 'Vampire Tech: Fuelled by Fear'),
-    52813: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_03', itemType.tech, 3, 'Progressive tech_vmp_beasts', 'Vampire Tech: Master of the Swarm'),
-    52814: itemData(IC.useful, 1, 'wh_main_tech_vmp_beasts_07', itemType.tech, 5, 'Progressive tech_vmp_beasts', 'Vampire Tech: Blood Hunts'),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_2_a', itemType.tech, 1, 'Progressive tech_vmp_main', "Vampire Tech: Ancient Wealth"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_lair_1', itemType.tech, 2, 'Progressive tech_vmp_main', "Vampire Tech: Lairs of the Forgotten"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_lair_2', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Crypt Excavation"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_lair_4', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Well Kept Graves"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_lair_3', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: Legacies of Darkness"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_lair_5', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: Loyal Beyond Death"),
 
-    52809: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_01', itemType.tech, 1, 'Progressive tech_vmp_bones', 'Vampire Tech: The Book of Arkhan'),
-    52810: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_02', itemType.tech, 2, 'Progressive tech_vmp_bones', 'Vampire Tech: Raise Newly Dead'),
-    52811: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_05', itemType.tech, 3, 'Progressive tech_vmp_bones', 'Vampire Tech: Bond of Bones'),
-    52812: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_08', itemType.tech, 4, 'Progressive tech_vmp_bones', 'Vampire Tech: Risen Champions'),
-    52815: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_03', itemType.tech, 3, 'Progressive tech_vmp_bones', 'Vampire Tech: Bonds of Flesh'),
-    52816: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_06', itemType.tech, 4, 'Progressive tech_vmp_bones', 'Vampire Tech: Distribute Grave Gift'),
-    52817: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_09', itemType.tech, 5, 'Progressive tech_vmp_bones', 'Vampire Tech: Unearth Cursed Wightblades'),
-    52818: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_04', itemType.tech, 4, 'Progressive tech_vmp_bones', 'Vampire Tech: Rotten Gift'),
-    52819: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_07', itemType.tech, 5, 'Progressive tech_vmp_bones', 'Vampire Tech: Defiler of the Ancient Barrows'),
-    52820: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_10', itemType.tech, 6, 'Progressive tech_vmp_bones', 'Vampire Tech: Dread Animator'),
-    52821: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_04a', itemType.tech, 5, 'Progressive tech_vmp_bones', 'Vampire Tech: Master of the Putrid Horde'),
-    52801: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_02a', itemType.tech, 3, 'Progressive tech_vmp_bones', 'Vampire Tech: Risen Standard Bearers'),
-    52802: itemData(IC.useful, 1, 'wh_main_tech_vmp_bones_05a', itemType.tech, 4, 'Progressive tech_vmp_bones', 'Vampire Tech: Unnatural Strength'),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_2_b', itemType.tech, 1, 'Progressive tech_vmp_main', "Vampire Tech: Preternatural Senses"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_magic_1', itemType.tech, 2, 'Progressive tech_vmp_main', "Vampire Tech: Return to Glory"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_magic_2', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Veteran Vampires"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_magic_4', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Deathly Winds"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_magic_3', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: Master of Vampires"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_magic_5', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: Horror of the Shadows"),
 
-    52829: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_01', itemType.tech, 1, 'Progressive tech_vmp_binding', 'Vampire Tech: Liber Necronomica'),
-    52830: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_02', itemType.tech, 2, 'Progressive tech_vmp_binding', 'Vampire Tech: Incantations of Ushoran'),
-    52831: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_05', itemType.tech, 3, 'Progressive tech_vmp_binding', 'Vampire Tech: Infuse the Tireless Hordes'),
-    52832: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_08', itemType.tech, 4, 'Progressive tech_vmp_binding', 'Vampire Tech: Unliving Siege Engines'),
-    52839: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_04', itemType.tech, 3, 'Progressive tech_vmp_binding', 'Vampire Tech: Soulbinder'),
-    52840: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_07', itemType.tech, 4, 'Progressive tech_vmp_binding', 'Vampire Tech: Nightmarish Reaping'),
-    52841: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_10', itemType.tech, 5, 'Progressive tech_vmp_binding', 'Vampire Tech: Spirit Shackles'),
-    52822: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_06', itemType.tech, 3, 'Progressive tech_vmp_binding', 'Vampire Tech: Strigoi Legacy'),
-    52823: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_03', itemType.tech, 4, 'Progressive tech_vmp_binding', 'Vampire Tech: Cannibalistic Rituals'),
-    52824: itemData(IC.useful, 1, 'wh_main_tech_vmp_binding_09', itemType.tech, 5, 'Progressive tech_vmp_binding', 'Vampire Tech: Enshrine Ancient Lords'),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_3', itemType.tech, 1, 'Progressive tech_vmp_main', "Vampire Tech: Bastions of Darkness"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_4', itemType.tech, 2, 'Progressive tech_vmp_main', "Vampire Tech: The Cycle of Death"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_4_a', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Frenzied by Bloodshed"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_4_b', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: Resilience of the Grave"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_5', itemType.tech, 3, 'Progressive tech_vmp_main', "Vampire Tech: All Shall Join"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_5_a', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: Unholy Vigour"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_main_5_b', itemType.tech, 4, 'Progressive tech_vmp_main', "Vampire Tech: What Once Was"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_red_duke_1', itemType.tech, 5, 'Progressive tech_vmp_main', "Vampire Tech: The Scourge of Aquitaine"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_vampires_walach_harkon_1', itemType.tech, 5, 'Progressive tech_vmp_main', "Vampire Tech: Order of the Blood Dragon"),
 
-    52833: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_01', itemType.tech, 1, 'Progressive tech_vmp_blood', 'Vampire Tech: The Lahmian Book of Blood'),
-    52834: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_02', itemType.tech, 2, 'Progressive tech_vmp_blood', 'Vampire Tech: Serve in Life or in Death'),
-    52835: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_03', itemType.tech, 3, 'Progressive tech_vmp_blood', 'Vampire Tech: Baleful Rituals'),
-    52836: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_06', itemType.tech, 4, 'Progressive tech_vmp_blood', 'Vampire Tech: Spread Vampire Covens'),
-    52837: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_08', itemType.tech, 5, 'Progressive tech_vmp_blood', 'Vampire Tech: Blasphemous Disciples'),
-    52838: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_11', itemType.tech, 6, 'Progressive tech_vmp_blood', 'Vampire Tech: Puppet Master'),
-    52842: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_05', itemType.tech, 4, 'Progressive tech_vmp_blood', 'Vampire Tech: Hexensnacht Sacrifices'),
-    52843: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_07', itemType.tech, 5, 'Progressive tech_vmp_blood', 'Vampire Tech: Infiltrate Noble Houses'),
-    52844: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_10', itemType.tech, 6, 'Progressive tech_vmp_blood', 'Vampire Tech: Decipher Nehekhara Manuscripts'),
-    52845: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_12', itemType.tech, 7, 'Progressive tech_vmp_blood', 'Vampire Tech: Incantations of Nagash'),
-    52825: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_04', itemType.tech, 3, 'Progressive tech_vmp_blood', 'Vampire Tech: Blood is Power'),
-    52826: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_06A', itemType.tech, 4, 'Progressive tech_vmp_blood', 'Vampire Tech: Turning Knightly Orders'),
-    52827: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_09', itemType.tech, 6, 'Progressive tech_vmp_blood', 'Vampire Tech: Vampiric Revivification'),
-    52828: itemData(IC.useful, 1, 'wh_main_tech_vmp_blood_09A', itemType.tech, 7, 'Progressive tech_vmp_blood', 'Vampire Tech: Delusions of Grandeur'),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_1', itemType.tech, 1, 'Progressive tech_vmp_necromancy', "Vampire Tech: Proficiency in the Dark Arts"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_2', itemType.tech, 2, 'Progressive tech_vmp_necromancy', "Vampire Tech: Advancements of the Dark Arts"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_3', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Mastery of the Dark Arts"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_4', itemType.tech, 4, 'Progressive tech_vmp_necromancy', "Vampire Tech: Legendary Necromancy"),
+
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_1a', itemType.tech, 2, 'Progressive tech_vmp_necromancy', "Vampire Tech: Replaceable Ranks"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_2a', itemType.tech, 2, 'Progressive tech_vmp_necromancy', "Vampire Tech: Restorative Rituals"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_3a', itemType.tech, 2, 'Progressive tech_vmp_necromancy', "Vampire Tech: Life Strengthens Death"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_1b', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Bodies for the Pile"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_2b', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Restorative Blood Rites"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_deadrise_3b', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Sustenance In Blood"),
+
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_2', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Corpse Collecting"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_1', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Grave Robbing"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_3', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Not an End, a Beginning"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_4', itemType.tech, 4, 'Progressive tech_vmp_necromancy', "Vampire Tech: The Moonlit Capital"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_5', itemType.tech, 4, 'Progressive tech_vmp_necromancy', "Vampire Tech: Lands of Death"),
+
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_6', itemType.tech, 3, 'Progressive tech_vmp_necromancy', "Vampire Tech: Lords of Long-Dead Dynasties"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_7', itemType.tech, 4, 'Progressive tech_vmp_necromancy', "Vampire Tech: Dark Laboratoriums"),
+
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_8', itemType.tech, 4, 'Progressive tech_vmp_necromancy', "Vampire Tech: Puppet Master"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_9', itemType.tech, 5, 'Progressive tech_vmp_necromancy', "Vampire Tech: Endless Legions"),
+    52800: itemData(IC.useful, 1, 'wh3_main_tech_vmp_necromancers_misc_10', itemType.tech, 5, 'Progressive tech_vmp_necromancy', "Vampire Tech: Countless Souls"),
+    
+
+
+
 }
+
+"""
+wh3_main_tech_vmp_vampires_final_1			Blood Decrees
+wh3_main_tech_vmp_vampires_final_2			Omens of Undeath
+wh3_main_tech_vmp_vampires_final_3			Master of Shyish
+wh3_main_tech_vmp_vampires_final_4			Oaths of Sylvania
+wh3_main_tech_vmp_vampires_final_5			Necrotic Construction
+"""
 
 progUnits: dict[int, itemData] = {
     53200: itemData(IC.useful, 2, 'Progressive vmp_inf', itemType.unit, 2, None, 'Progressive Vampire Unit: Infantry'),
