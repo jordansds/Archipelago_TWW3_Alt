@@ -440,6 +440,9 @@ class TWW3Context(CommonContext):
                         #    self.writer.runTemp(f"archipelago.check_settlement_ownership({settlement})")
 
                         logger.info(f"The next key can be found at {self.settlementToReadableName[settlement]}")
+                        for location in self.locationArchive:
+                            if location[1] == settlement:
+                                self.check(location[1])
 
                     elif item.name == "Key":
                         self.keyCount += 1
@@ -651,7 +654,6 @@ class TWW3Context(CommonContext):
             #                None).readableName
 
             if self.explorerSanity:
-
                 await self.check_locations([self.locationLookup[f"{self.settlementToReadableName[location]}"]])
 
             for index, settlement in enumerate(self.keyLocations):
@@ -659,6 +661,10 @@ class TWW3Context(CommonContext):
                     break
                 elif settlement == location:
                     key = self.keys[index]
+
+                    if self.logChecks:
+                        logger.info(f"Sending The {key} Key")
+
                     await self.check_locations([self.locationLookup[f"The {key} Key"]])
                     for i in range(5):
                         await self.check_locations([self.locationLookup[f"The {key} Key: Item {i + 1}"]])

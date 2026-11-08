@@ -217,7 +217,7 @@ class settlementRandomiser:
     def getSettlementWithinRange(self, multiplier, gameSpeed = 1, returnAll = False):
 
         self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
-                          self.shuffledSettlementDict.values()}
+                          self.shuffledSettlementDict.values() if settlement.faction != self.playerFaction}
 
         lowBound = max(0, multiplier) * 100 * gameSpeed / 4
         upBound = max(1, multiplier+1) * 100 * gameSpeed / 4

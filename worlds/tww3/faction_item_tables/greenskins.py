@@ -137,7 +137,11 @@ buildings: dict[int, itemData] = {
     28594: itemData(IC.useful, 1, 'wh_main_grn_walls_3', itemType.building, 2, 'progressive grn_walls', 'Greenskin Building: Big Walls'),
     28597: itemData(IC.useful, 1, 'wh_main_grn_workshop_1', itemType.building, 0, 'progressive grn_workshop', 'Greenskin Building: Goblin Toolbox'),
     28598: itemData(IC.useful, 1, 'wh_main_grn_workshop_2', itemType.building, 1, 'progressive grn_workshop', 'Greenskin Building: Goblin Tinkerer Bench'),
-    28599: itemData(IC.useful, 1, 'wh_main_grn_workshop_3', itemType.building, 2, 'progressive grn_workshop', 'Greenskin Building: Goblin Workshop')
+    28599: itemData(IC.useful, 1, 'wh_main_grn_workshop_3', itemType.building, 2, 'progressive grn_workshop', 'Greenskin Building: Goblin Workshop'),
+
+    28600: itemData(IC.useful, 1, 'wh_main_grn_resource_timber_military', itemType.building, 0, 'progressive grn_resource_timber', 'Greenskin Building: Goblin Sawmillz'),
+    28601: itemData(IC.useful, 1, 'wh_main_grn_resource_iron_military', itemType.building, 0, 'progressive grn_resource_iron', 'Greenskin Building: Black Orc Forge'),
+    28602: itemData(IC.useful, 1, 'wh_main_grn_resource_pasture_furs_military', itemType.building, 0, 'progressive grn_resource_furs', 'Greenskin Building: Beast Lairz'),
 }
 
 techs: dict[int, itemData] = {
@@ -228,7 +232,10 @@ progBuildings: dict[int, itemData] = {
     29371: itemData(IC.useful, 3, 'progressive grn_settlement_minor', itemType.building, 3, None, 'Progressive Greenskin Building: Settlement Minor'),
     29374: itemData(IC.useful, 3, 'progressive grn_shaman', itemType.building, 3, None, 'Progressive Greenskin Building: Shaman'),
     29377: itemData(IC.useful, 3, 'progressive grn_walls', itemType.building, 3, None, 'Progressive Greenskin Building: Walls'),
-    29380: itemData(IC.useful, 3, 'progressive grn_workshop', itemType.building, 3, None, 'Progressive Greenskin Building: Workshop')
+    29380: itemData(IC.useful, 3, 'progressive grn_workshop', itemType.building, 3, None, 'Progressive Greenskin Building: Workshop'),
+    29381: itemData(IC.useful, 1, 'progressive grn_resource_timber', itemType.building, 1, None, 'Progressive Greenskin Building: Timber'),
+    29382: itemData(IC.useful, 1, 'progressive grn_resource_iron', itemType.building, 1, None, 'Progressive Greenskin Building: Iron'),
+    29383: itemData(IC.useful, 1, 'progressive grn_resource_furs', itemType.building, 1, None, 'Progressive Greenskin Building: Furs'),
 }
 
 progTechs: dict[int, itemData] = {
