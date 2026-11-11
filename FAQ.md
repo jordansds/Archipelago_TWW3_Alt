@@ -18,8 +18,7 @@ If you enable the "sanity" option in the yaml and are missing dlc buildings, the
 There's nothing I can do about this, I am not going to add a yaml option where players have to select which of the mountain of DLC they own.  
   
 **Does this support Immortal Empires Expanded?**  
-Yes. Turn off faction shuffle and play the conquest gamemode and any map will work.  
-Spheres only supports the vanilla Immortal Empires map.  
+Turn off faction shuffle and explorer sanity and it might work.
   
 **I received X unit from the multiworld but can't recruit it?**  
 You need both the unit and the building that it is trained in unlocked to be able to recruit units.  
