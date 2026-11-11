@@ -8,17 +8,8 @@ DO NOT USE THE "ARCHIPELAGO RANDOMIZER (BETA)" MOD FROM THE STEAM WORKSHOP.
 ## How does this work?
 Upon starting a new game, all factions have their start positions randomised. Units, buildings, and technologies are
 placed into the item pool meaning that you can't access them until the corresponding items are found in the multiworld.
-The goal of this apworld is to conquer a certain number of settlements simultaneously, configurable in the yaml.
-
-Additionally, your checks are determined by the selected game mode - in conquest mode if your goal is 50 settlements,
-every settlement after your starting settlements until settlement 49 will grant checks (unless your faction doesn't 
-start with a home region, in which case it's 1-49). The number of checks you send per settlement can be modified in the 
-yaml - this is to account for how slow TWW3 can be to play and allows you to tailor the pacing of checks to match other 
-games in the multiworld.
-
-In sphere mode every unique settlement in the world can be a check, though only a certain amount will be active based
-on your current diplomatic radius. IF YOU PLAN TO PLAY SPHERES MODE, SCROLL DOWN AND DOWNLOAD THE RECOMMENDED MODS TO
-PREVENT POTENTIAL SOFTLOCK.
+The goal of this apworld is to find 9 keys that will unlock the end-times crisis (crisis can be disabled in the yaml if you're a coward).
+To find keys, you must receive "map" items from other players in your multiworld which will tell you where the keys are and let you find them.
 
 **If your lord does not spawn next to your city, type /teleport into your client**  
 
@@ -55,34 +46,6 @@ use the Archipelago mod found on the Steam workshop, it is for another dev's out
 
 *It's recommended that you use the [No Climate Penalties mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460)
 with this setting turned on.*
-
-**game_mode**: `conquest` is the new mode offered by this implementation and consists of owning a certain number of settlements
-to win. The number of settlements needed is determined by `number_of_locations`. Checks are granted as your empire size grows.
-This lends itself to faster paced games and plays better in synchronous multiworlds.
-
-`spheres` is the old game mode originally developed by SinthorasRage. This mode starts with a limited radius in which you can interact with other factions, which
-grows as you collect **Diplomatic Radius** upgrades. Along the way **Orbs of Domination** are also collected - upon collecting enough,
-you win. Every settlement on the map is a unique check. This is a *much* slower paced game than conquest.
-Additionally this mode is prone to causing softlocks, as AI factions can claim razed settlements causing them to become 
-out of logic and impossible to collect items from. If this happens you will have to release the location manually.
-
-**checks_per_settlement**: How many checks there are per settlement. Increase this to release more items per settlement, decrease this
-to slow down the pace of your checks. This is designed to allow smaller values for "number_of_settlements" whilst still generating
-enough locations for all your items. If you set this to an absurd number, you'll end up with far too much filler items and traps.
-
-### Conquest settings
-**number_of_settlements**: How many settlements you need to own simultaneously to reach your goal and determines the base number
-of checks. Decrease this for a shorter game, increase for a longer one.
-
-*Note that these two options, number_of_locations and checks_per_location, will need to be set appropriately for your faction -
-some factions have a lot of items that need generating while other factions need less. If world generation fails due to running
-out of locations and you don't want to increase the number of settlements needed to win, try increasing checks_per_location
-instead!*
-
-### Spheres settings
-
-**spheres_count**: How many diplomatic radius upgrades are needed to have access to every location. Doesn't necessarily cover the
-entire map unless you configure `sphere_radius` to do so.
 
 ### Global settings
 
@@ -122,9 +85,5 @@ either set it to 10 or leave it off. For singleplayer games a value of at least 
 5 allows all tiers to generate, 0 disables early generation.
 
 ## Recommended mods: 
-
-[Ruins Settling Cooldown](https://steamcommunity.com/workshop/filedetails/?id=2937367689): PREVENTS SOFTLOCKING in spheres gamemeode if you set min and max to 100 turn cooldown and enable for AI (not player). HIGHLY RECOMMENDED FOR SPHERES.
-
-[Mod Configuration Tool](https://steamcommunity.com/workshop/filedetails/?id=2927955021): Allows configuration of the above mod. HIGHLY RECOMMENDED FOR SPHERES.
 
 [No Climate Penalties](https://steamcommunity.com/sharedfiles/filedetails/?id=2789915966): Removes all climate penalties so your start position is not as bad as it seems.
