@@ -22,6 +22,7 @@ class settlementRandomiser:
 
         self.factionDict = factions.factionDict
         self.hordeList = factions.hordeList
+        self.assignedSettlements = []
 
         #if not self.playerFaction in self.hordeList:
         try:
@@ -217,7 +218,8 @@ class settlementRandomiser:
     def getSettlementWithinRange(self, multiplier, gameSpeed = 1, returnAll = False):
 
         self.distances = {settlement: getDistance(self.playerCapital, settlement) for settlement in
-                          self.shuffledSettlementDict.values() if settlement.faction != self.playerFaction}
+                          self.shuffledSettlementDict.values() if settlement.faction != self.playerFaction
+                          and settlement not in self.assignedSettlements}
 
         lowBound = max(0, multiplier) * 100 * gameSpeed / 4
         upBound = max(1, multiplier+1) * 100 * gameSpeed / 4
@@ -234,6 +236,7 @@ class settlementRandomiser:
             return inRange
         else:
             settlement = self.random.choice(inRange)
+            self.assignedSettlements.append(settlement)
             return settlement
 
     def debug(self):
