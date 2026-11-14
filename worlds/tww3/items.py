@@ -238,8 +238,6 @@ def generateFiller(world: TWW3World) -> TWW3Item:
         #key = world.random.choice(tuple(fillerDict.keys()))
         name = itemDict[key].readableName
 
-    print(key, name)
-
     item = world.create_item(name)
     return item
 

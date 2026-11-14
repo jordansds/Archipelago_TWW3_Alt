@@ -642,7 +642,7 @@ class TWW3Context(CommonContext):
 
                 locationIds = [
                     empireSize + 1001# + check
-                    for empireSize in range(1, location + 1)
+                    for empireSize in range(location)
                     #for check in range(int(self.checksPerLocation))
                 ]
                 await self.check_locations(locationIds)

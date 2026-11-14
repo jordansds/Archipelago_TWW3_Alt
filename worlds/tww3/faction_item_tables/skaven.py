@@ -344,6 +344,11 @@ progTechs: dict[int, itemData] = {
 }
 
 special: dict[int, specialItemData] = {
+    43500: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], "tech_dlc16_skv_1_0_moulder", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans (Moulder)'),
+    43501: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_mors", "wh2_main_skv_clan_skryre", "wh2_main_skv_clan_eshin", "wh2_main_skv_clan_pestilens", "wh2_dlc09_skv_clan_rictus"], "wh2_main_tech_skv_1_0", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans'),
+
+    43502: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_1', itemType.building, 0, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Plague Cauldron Cradle'),
+    43503: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_2', itemType.building, 1, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Grand Plague Cauldron'),
     #43500: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doomwheel_ror_tech_lab_0', itemType.unit, 2, 'Progressive skv_veh', False, False, "Skaven Unit: Warpfire's Wheel (Doomwheel)"),
     #43501: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_veh_doom_flayer_ror_tech_lab_0', itemType.unit, 1, 'Progressive skv_veh', False, False, 'Skaven Unit: Blackhole Flayers (Doom-Flayers)'),
     #43502: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_skryre"], 'wh2_dlc12_skv_art_warplock_jezzails_ror_tech_lab_0', itemType.unit, 3, 'Progressive skv_rng', False, False, 'Skaven Unit: Eye-Takers (Warplock Jezzails)'),
@@ -460,12 +465,6 @@ rituals: dict[int, specialItemData] = {
     #43692: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], 'wh2_dlc14_eshin_actions_mortal_empires_mission_4', itemType.ritual, 4, 'Progressive skv_ritual_eshin_mission', True, False, "Skaven Shadowy Dealings: Nightlord's Say-So (4)"),
 
     #43693: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_eshin"], '', itemType.ritual, 1, 'Progressive skv_ritual_eshin_contract', True, False, "Skaven Contract: "),
-
-    43694: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_moulder"], "tech_dlc16_skv_1_0_moulder", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans (Moulder)'),
-    43695: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_mors", "wh2_main_skv_clan_skryre", "wh2_main_skv_clan_eshin", "wh2_main_skv_clan_pestilens", "wh2_dlc09_skv_clan_rictus"], "wh2_main_tech_skv_1_0", itemType.tech, 1, 'Progressive tech_skv', False, False, 'Skaven Tech: Ferocious Plans'),
-
-    43696: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_1', itemType.building, 0, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Plague Cauldron Cradle'),
-    43697: specialItemData(IC.useful, 1, ["wh2_main_skv_clan_pestilens"], 'wh2_dlc14_under_empire_annexation_plague_cauldron_2', itemType.building, 1, 'Progressive skv_under_empire_cauldron', False, False, 'Skaven Under Empire: Grand Plague Cauldron'),
     #43698: specialItemData(IC.useful, 2, ["wh2_main_skv_clan_pestilens"], 'Progressive skv_under_empire_cauldron', itemType.building, 2, None, False, True, 'Progressive Skaven Under Empire: Plague Cauldron'),
 }
 

@@ -375,10 +375,10 @@ class fillerBlacklist(OptionSet):
     valid_keys = ["Get-Rich-Slow Scroll", "Get-Rich-Quick Scroll", "Handful of Order", "The GroBro 3000", "Give me that", "Make Love, Not War"]
 class trapBlacklist(OptionSet):
     """Trap Blacklist (if you blacklist them all, then nothing will happen). Valid Options:
-    "Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"
+    "Handful of Unrest", "Unionize This", "Where is our Map?", "Personality Shuffle", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"
     """
     display_name = "Trap Blacklist"
-    valid_keys = ["Handful of Unrest", "Unionize This", "Where is our Map?", "Schizophrenia", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"]
+    valid_keys = ["Handful of Unrest", "Unionize This", "Where is our Map?", "Personality Shuffle", "Make Love, Not War", "Torches and Pitchforks", "Let's trade", "You too, Brutus?", "We're Going on a Trip", "En Garde!"]
 
 class randomizePersonalities(DefaultOnToggle):
     """Randomize AI Personalities [Does this work? It's hard to tell, the AI go crazy when shuffled anyway]."""
