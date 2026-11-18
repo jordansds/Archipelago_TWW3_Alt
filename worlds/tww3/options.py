@@ -263,7 +263,7 @@ class gameLength(Choice):
     option_long = 200
     option_marathon = 400
     option_world_conquest = 500
-    default = option_world_conquest
+    default = option_default
 
 class sanity(DefaultOnToggle):
     """If you want every building and tech to be a location.
