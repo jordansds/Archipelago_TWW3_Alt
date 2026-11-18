@@ -10,7 +10,7 @@ immortalEmpires: dict[int, settlementData] = {
      6: settlementData('wh3_main_combi_region_hanyu_port', 'regular', 1127, 494, 'wh3_main_cth_dissenter_lords_of_jinshen', 'temperate', 'Hanyu Port'),
      7: settlementData('wh3_main_combi_region_tor_yvresse', 'regular', 316, 574, 'wh2_main_hef_yvresse', 'temperate island', 'Tor Yvresse'),
      8: settlementData('wh3_main_combi_region_aquitaine', 'regular', 421, 569, 'wh3_main_brt_aquitaine', 'temperate', 'Aquitaine'),
-     9: settlementData('wh3_main_combi_region_the_monolith_of_katam', 'dark fortress', 451, 864, 'wh_main_nor_varg', 'frozen', 'The Monolith of Katam'),
+     9: settlementData('wh3_main_combi_region_the_monolith_of_katam', 'dark fortress', 451, 864, 'wh_dlc08_nor_helspire_tribe', 'frozen', 'The Monolith of Katam'),
      10: settlementData('wh3_main_combi_region_helmgart', 'regular', 487, 603, 'wh_main_emp_empire', 'temperate', 'Helmgart'),
      11: settlementData('wh3_main_combi_region_beichai', 'regular', 1356, 554, 'wh3_dlc21_cst_dead_flag_fleet', 'temperate', 'Beichai'),
      12: settlementData('wh3_main_combi_region_lashiek', 'regular', 448, 315, 'wh2_main_brt_knights_of_the_flame', 'desert', 'Lashiek'),
@@ -569,7 +569,10 @@ immortalEmpires: dict[int, settlementData] = {
      565: settlementData('wh3_main_combi_region_dark_tower', 'regular', 1272, 725, 'wh3_dlc20_nor_dolgan', 'chaotic wasteland', 'Dark Tower'),
      566: settlementData('wh3_main_combi_region_broken_mount', 'regular', 1237, 740, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Broken Mount'),
      567: settlementData('wh3_main_combi_region_desolation_ridge', 'regular', 1199, 728, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Desolation Ridge'),
-     568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone')
+     568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone'),
+     569: settlementData('wh3_dlc29_combi_region_great_drakes_rest', 'regular', 499, 860, 'wh_dlc08_nor_naglfarlings', 'frozen', "Great Drake's Rest"),
+     570: settlementData('settlement:wh3_dlc29_combi_region_krakens_cove', 'regular', 556, 880, 'wh_main_nor_varg', 'frozen', "Kraken's Cove"),
+     571: settlementData('settlement:wh3_dlc29_combi_region_helspire_bay', 'regular', 403, 824, 'wh_dlc08_nor_helspire_tribe', 'frozen', 'Helspire Bay'),
 }
 
 realmOfChaos: dict[int, settlementData] = {}

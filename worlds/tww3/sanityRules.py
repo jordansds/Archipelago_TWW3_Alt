@@ -27,6 +27,12 @@ class ruleManager:
             "Gunnery Workshop Tier 3": CanReachLocation("Empire Gunnery School: Bjuna Bombard")
                                         & CanReachLocation("Empire Gunnery School: Amethyst Ironsides Cap Increase"),# & ((Has("Empire Unit: Amethyst Ironsides") | Has("Progressive Empire Unit: Ranged", 3 - world.options.starting_tier))
         }
+
+        self.buildingSanityRules = {
+            "Skaven Under Empire: Doomsphere": CanReachLocation("Skaven Under Empire: Deeper Tunnels") & CanReachLocation("Skaven Under Empire: Kill-Perches"),
+            "Skaven Under Empire: The Vermintide": CanReachLocation("Skaven Under Empire: Deeper Tunnels") & CanReachLocation("Skaven Under Empire: Kill-Perches"),
+        }
+
         self.techSanityRules = {
             "HighElf Tech: Appoint Sea Masters": CanReachLocation("HighElf Building: Harbour"),
             "HighElf Tech: Dragon's Bond": CanReachLocation("HighElf Building: Dragon's Lair"),
@@ -231,6 +237,9 @@ class ruleManager:
             "Slaanesh Unholy Manifestation: ": (Has("Administrative Capacity", 2) | Has("Diplomatic Range", 2)) if not world.options.hard_logic else True_(),
             "Slaanesh Unholy Manifestation: ": (Has("Administrative Capacity", 3) | Has("Diplomatic Range", 3)) if not world.options.hard_logic else True_(),
         }
+
+    def getBuildingRules(self, location):
+        return self.buildingSanityRules[location]
 
     def getTechRules(self, location):
         return self.techSanityRules[location]

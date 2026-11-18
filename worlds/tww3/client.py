@@ -648,30 +648,29 @@ class TWW3Context(CommonContext):
                 await self.check_locations(locationIds)
 
         except ValueError:
-            try:
-                self.map = "immortal empires"
-    
-                #location = next((value for value in sm.mapDict[self.map].values() if value.name == location),
-                #                None).readableName
-    
-                if self.explorerSanity:
-                    try:
-                        await self.check_locations([self.locationLookup[f"{self.settlementToReadableName[location]}"]])
-                    except KeyError:
-                        pass
-    
-                for index, settlement in enumerate(self.keyLocations):
-                    if self.mapCount <= index: #Check if player has enough maps to discover location
-                        break
-                    elif settlement == location:
-                        key = self.keys[index]
-    
-                        if self.logChecks:
-                            logger.info(f"Sending The {key} Key")
-    
-                        await self.check_locations([self.locationLookup[f"The {key} Key"]])
-                        for i in range(5):
-                            await self.check_locations([self.locationLookup[f"The {key} Key: Item {i + 1}"]])
+            self.map = "immortal empires"
+
+            #location = next((value for value in sm.mapDict[self.map].values() if value.name == location),
+            #                None).readableName
+
+            if self.explorerSanity:
+                try:
+                    await self.check_locations([self.locationLookup[f"{self.settlementToReadableName[location]}"]])
+                except KeyError:
+                    pass
+
+            for index, settlement in enumerate(self.keyLocations):
+                if self.mapCount <= index: #Check if player has enough maps to discover location
+                    break
+                elif settlement == location:
+                    key = self.keys[index]
+
+                    if self.logChecks:
+                        logger.info(f"Sending The {key} Key")
+
+                    await self.check_locations([self.locationLookup[f"The {key} Key"]])
+                    for i in range(5):
+                        await self.check_locations([self.locationLookup[f"The {key} Key: Item {i + 1}"]])
         except KeyError:
             pass
             #logger.error(f"There is a Key Mismatch. Release location manually and please report the false Key to the discord server (@jordansds). Key is: {location}")

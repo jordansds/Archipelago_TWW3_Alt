@@ -53,6 +53,11 @@ def setBuildingLocationRules(world: TWW3World, buildings):
                         rule = Has(building.readableName)
                         break
 
+            try:
+                rule = rule & world.sanityRules.getBuildingRules(item.readableName)
+            except KeyError:
+                pass
+
             #if not world.options.hard_logic:
             #    itemCount = item.tier if item.tier <= 3 else item.tier + 2
 

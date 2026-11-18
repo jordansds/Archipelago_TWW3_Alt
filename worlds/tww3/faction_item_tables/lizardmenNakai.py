@@ -79,7 +79,7 @@ techs: dict[int, itemData] = {
     68810: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_war_4', itemType.tech, 2, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Sequence of Command'),
     68811: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_war_5', itemType.tech, 3, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Sequence of Plunder'),
     68812: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_nakai_war_6', itemType.tech, 4, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Sequence of Traversal'),
-    68813: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_army_3', itemType.tech, 3, 'Progressive tech_lzd_war', 'Lzd Nakai Tech: Sequence of Strategy'),
+    68813: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_army_3', itemType.tech, 3, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Sequence of Strategy'),
     68814: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_campaign_3', itemType.tech, 4, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Blessing of the Old Ones'),
     68815: itemData(IC.useful, 1, 'wh2_main_tech_lzd_0_1', itemType.tech, 5, 'Progressive tech_lzd_nakai_war', "Lzd Nakai Tech: Interpreting the Old Ones' Meaning"),
     68816: itemData(IC.useful, 1, 'wh2_dlc13_tech_lzd_army_4', itemType.tech, 4, 'Progressive tech_lzd_nakai_war', 'Lzd Nakai Tech: Sequence of War'),

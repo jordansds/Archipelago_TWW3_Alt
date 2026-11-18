@@ -346,13 +346,14 @@ factionDict: dict[int, factionData] = {
     1289: factionData('wh3_dlc21_nor_wyrmkins', False, True, 'ai', None, False),
     1290: factionData('wh3_dlc20_nor_yusak', False, True, 'ai', None, False),
     1291: factionData('wh3_dlc27_the_narj', False, True, 'ai', None, False),
-    1292: factionData('wh2_dlc11_cst_rogue_bleak_coast_buccaneers', False, False, 'aiHorde', None, True),
-    1293: factionData('wh2_dlc11_cst_rogue_boyz_of_the_forbidden_coast', False, False, 'aiHorde', None, True),
-    1294: factionData('wh2_dlc11_cst_rogue_freebooters_of_port_royale', False, False, 'aiHorde', None, True),
-    1295: factionData('wh2_dlc11_cst_rogue_grey_point_scuttlers', False, False, 'aiHorde', None, True),
-    1296: factionData('wh2_dlc11_cst_rogue_terrors_of_the_dark_straights', False, False, 'aiHorde', None, True),
-    1297: factionData('wh2_dlc11_cst_rogue_the_churning_gulf_raiders', False, False, 'aiHorde', None, True),
-    1298: factionData('wh2_dlc11_cst_rogue_tyrants_of_the_black_ocean', False, False, 'aiHorde', None, True)
+    1292: factionData('wh_dlc08_nor_helspire_tribe', False, True, 'ai', None, False),
+    1293: factionData('wh2_dlc11_cst_rogue_bleak_coast_buccaneers', False, False, 'aiHorde', None, True),
+    1294: factionData('wh2_dlc11_cst_rogue_boyz_of_the_forbidden_coast', False, False, 'aiHorde', None, True),
+    1295: factionData('wh2_dlc11_cst_rogue_freebooters_of_port_royale', False, False, 'aiHorde', None, True),
+    1296: factionData('wh2_dlc11_cst_rogue_grey_point_scuttlers', False, False, 'aiHorde', None, True),
+    1297: factionData('wh2_dlc11_cst_rogue_terrors_of_the_dark_straights', False, False, 'aiHorde', None, True),
+    1298: factionData('wh2_dlc11_cst_rogue_the_churning_gulf_raiders', False, False, 'aiHorde', None, True),
+    1299: factionData('wh2_dlc11_cst_rogue_tyrants_of_the_black_ocean', False, False, 'aiHorde', None, True)
 }
 
 hordeList = [faction.name for faction in factionDict.values() if faction.isHorde]
