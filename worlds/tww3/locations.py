@@ -160,8 +160,12 @@ def createBattleLocations(world: TWW3World) -> None:
 
 def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
+    
     minCheck, maxCheck = 1, int(10 * world.options.game_length/100 + 1)
 
+    if not(world.options.conquerer_sanity):
+        maxCheck = maxCheck * 2
+    
     for i in range(minCheck, maxCheck):
         for decision in ["Sacked", "Razed"]:
             locName = f"{decision} {i*2} Settlements"
