@@ -75,17 +75,20 @@ class settlementRandomiser:
                     playerSettlement: settlementData = self.settlementDict[sKey]
                     if playerSettlement.type == "magical forest":
                         self.assignSettlement(sKey, playerSettlement, playerFaction)
+                        self.assignedSettlements.append(playerSettlement)
                         break
             elif playerFaction.race[:5] == "chaos" or playerFaction.race == "lobsters":
                 for i, sKey in enumerate(self.settlementKeys):
                     playerSettlement: settlementData = self.settlementDict[sKey]
                     if playerSettlement.type == "dark fortress":
                         self.assignSettlement(sKey, playerSettlement, playerFaction)
+                        self.assignedSettlements.append(playerSettlement)
                         break
             else:
                 sKey = self.settlementKeys[0]
                 playerSettlement: settlementData = self.settlementDict[sKey]
-                self.assignSettlement(sKey, self.settlementDict[sKey], playerFaction)
+                self.assignSettlement(sKey, playerSettlement, playerFaction)
+                self.assignedSettlements.append(playerSettlement)
             self.removeKeys()
             self.capitals.update({playerFaction.name: playerSettlement.name})
             self.playerCapital = playerSettlement
