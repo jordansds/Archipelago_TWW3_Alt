@@ -147,7 +147,7 @@ def createBattleLocations(world: TWW3World) -> None:
     minCheck, maxCheck = 1, int(20 * world.options.game_length/100 + 1)
 
     if world.options.game_length == 500:
-        maxCheck = 201
+        maxCheck = 161
 
     for i in range(minCheck, maxCheck):
         locName = f"Won {i*5} Battles"
