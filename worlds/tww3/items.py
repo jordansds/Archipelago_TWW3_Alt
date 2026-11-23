@@ -231,18 +231,35 @@ def generateFillerItems(world: TWW3World, pool: list) -> list:
     return pool
 
 def generateFiller(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(fillerDict.keys()))
+    while True:
+        key = world.random.choice(tuple(fillerDict.keys()))
+
+        # 75% chance of rerolling rare filler
+        if itemDict[key].type == itemType.filler:
+            break
+        elif itemDict[key].type == itemType.filler_rare and world.random.random() > 0.75:
+            break
+
     if key == 1205:
         name = world.random.choice(tuple(ancillariesDict.values())).readableName
     else:
         #key = world.random.choice(tuple(fillerDict.keys()))
         name = itemDict[key].readableName
 
+    if name == "Buff: Give me that":
+        print(name)
     item = world.create_item(name)
     return item
 
 def generateTrap(world: TWW3World) -> TWW3Item:
-    key = world.random.choice(tuple(trapDict.keys()))
+    while True:
+        key = world.random.choice(tuple(trapDict.keys()))
+
+        #75% chance of rerolling rare traps
+        if itemDict[key].type == itemType.trap:
+            break
+        elif itemDict[key].type == itemType.trap_rare and world.random.random() > 0.75:
+            break
 
     name = itemDict[key].readableName
     item = world.create_item(name)

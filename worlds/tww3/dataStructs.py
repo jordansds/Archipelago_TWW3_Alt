@@ -9,7 +9,9 @@ class itemType(IntEnum):
     unit = 4
     ritual = 5
     filler = 6
-    trap = 7
+    filler_rare = 7
+    trap = 8
+    trap_rare = 9
     progression = 10
     effect_character = 11
     effect_faction = 12
