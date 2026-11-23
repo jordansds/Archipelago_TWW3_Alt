@@ -571,8 +571,8 @@ immortalEmpires: dict[int, settlementData] = {
      567: settlementData('wh3_main_combi_region_desolation_ridge', 'regular', 1199, 728, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Desolation Ridge'),
      568: settlementData('wh3_main_combi_region_rotten_stone', 'regular', 1164, 733, 'wh3_dlc27_nor_avags', 'chaotic wasteland', 'Rotten Stone'),
      569: settlementData('wh3_dlc29_combi_region_great_drakes_rest', 'regular', 499, 860, 'wh_dlc08_nor_naglfarlings', 'frozen', "Great Drake's Rest"),
-     570: settlementData('settlement:wh3_dlc29_combi_region_krakens_cove', 'regular', 556, 880, 'wh_main_nor_varg', 'frozen', "Kraken's Cove"),
-     571: settlementData('settlement:wh3_dlc29_combi_region_helspire_bay', 'regular', 403, 824, 'wh_dlc08_nor_helspire_tribe', 'frozen', 'Helspire Bay'),
+     570: settlementData('wh3_dlc29_combi_region_krakens_cove', 'regular', 556, 880, 'wh_main_nor_varg', 'frozen', "Kraken's Cove"),
+     571: settlementData('wh3_dlc29_combi_region_helspire_bay', 'regular', 403, 824, 'wh_dlc08_nor_helspire_tribe', 'frozen', 'Helspire Bay'),
 }
 
 realmOfChaos: dict[int, settlementData] = {}

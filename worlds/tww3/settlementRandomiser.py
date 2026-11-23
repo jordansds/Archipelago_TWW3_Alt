@@ -63,6 +63,7 @@ class settlementRandomiser:
                                                       settlement.y, factionName,
                                                       settlement.climate,
                                                       settlement.readableName)
+
         self.shuffledFactionList.append(factionName)
         self.keysToRemove.append(key)
 
