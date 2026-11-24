@@ -6,7 +6,8 @@ I'll write this up at some point, for now, come ask questions in the Total War W
 Your Archipelago launcher is out of date. Update it.
 
 **Is this updated for the the End Times?**  
-No. 
+Yes... Except Nagash is a piece of shit and stopped working after a couple of patches
+And I'm bad at Lua so I can't figure out the issue.
 
 **There's an Archipelago mod on the steam workshop, should I use it?**  
 No.  
