@@ -44,45 +44,58 @@ use the Archipelago mod found on the Steam workshop, it is for another dev's out
 
 **faction_shuffle**: Randomize starting positions. Recommended to be on.
 
-*It's recommended that you use the [No Climate Penalties mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2789893460)
-with this setting turned on.*
+**randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
 
-### Global settings
+**endtimes**: Controls if the win condition requires you to beat the end times or not.
 
-**max_range**: How far away settlements can be from each other during world generation.
+**game_length**: Controls how many checks generation in your world.
 
-**tech_shuffle**: Locks the tech tree behind multiworld items.
+**custom_game_length**: Custom override for the game_length option, leave it at 0 if you don't understand what this does.
 
-**progressive_technologies**: Requires tech_shuffle to be on. Every step further into your tech tree is a progressive item,
-otherwise every tech is an individual item.
+## Sanity options (For extra checks and fun)
 
-**building_shuffle**: Locks buildings behind multiworld items.
+**conquerer_sanity**: Create locations for owning X settlements at a time.
+
+**exploerer_sanity**: Create locations for conquering/sacking/razing specific settlements.
+
+**despoiler_sanity**: Create locations for sacking and razing X settlements.
+
+**battle_sanity**: Create locations for winning X battles.
+
+## Item options
 
 **progressive_buildings**: Requires building_shuffle to be on. Instead of finding every single building seperately find
 progressive items unlocking the next building for each specific building chain. Setting this to progressive is recommended.
 
-**unit_shuffle**: Locks units behind multiworld items.
-
 **progressive_units**: Requires unit_shuffle to be on. Instead of unlocking every unit separately tiers 1-5 are
 progressive items for each unit type (progressive infantry, progressive cavalry, progressive monsters etc.).
 
-*Setting both buildings and units as non-progressive is **not** recommended.*
+**progressive_technologies**: Requires tech_shuffle to be on. Every step further into your tech tree is a progressive item,
+otherwise every tech is an individual item.
+
+**Fast Research**: If this is enabled, you don't unlock the ability to research techs, you just get the techs instantly researched.
 
 **starting_tier**: Start with buildings and units of this tier already unlocked.
 
-**filler and traps**: Adjust the weights of traps and filler. Traps only trigger once so they don't softlock you if you need
+**filler**: Adjust the weights of traps and filler. Traps only trigger once so they don't softlock you if you need
 to start over or load a save. Filler items include most legendary equipment items.
 
-**randomize_personalities**: Give AI factions random personalities. Makes the game less predictable.
+**filler_blacklist**: disable certain filler.
 
-**ritual_shuffle**: Locks certain faction mechanics behind multiworld items.
+**trap_blacklist**: disable certain traps.
 
-**balance**: Forces unlocks to be near the start of the multiworld so you're guaranteed to get useful items early.
-In a multiworld setting, 20 is probably the highest you'd want this. If you're not sure what to do with this option,
-either set it to 10 or leave it off. For singleplayer games a value of at least 40 should guarantee a smooth early game.
+## Miscellaneous Stuff
 
-**force_early**: Sets the max tiers that can be forced to generate early.
-5 allows all tiers to generate, 0 disables early generation.
+**death_link**: Enables death link... Pretty obvious I hope :)
+
+**death_link_effects**: Controls how deathlink screws you over.
+
+**Hard_logic**: Does nothing at this time.
+
+**reveal_hints**: I think I broke this :)
+
+**mod_list**: Tell it if you have any of the supported mods enabled.
+
 
 ## Recommended mods: 
 
