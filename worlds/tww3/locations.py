@@ -64,7 +64,7 @@ def createKeyLocations(world: TWW3World) -> None:
         worldRegion.locations.append(location)
         locations = [location]
 
-        settlement = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed=world.options.game_length/100*2.5)
+        settlement = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed=world.game_length/100*2.5)
         world.keyLocations.append(settlement.name)
 
         #Add 5 items that spawn in each key location as a reward
@@ -144,9 +144,9 @@ def createRitualLocations(world: TWW3World) -> None:
 
 def createBattleLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Battles")
-    minCheck, maxCheck = 1, int(20 * world.options.game_length/100 + 1)
+    minCheck, maxCheck = 1, int(20 * world.game_length/100 + 1)
 
-    if world.options.game_length == 500:
+    if world.game_length == 500:
         maxCheck = 161
 
     for i in range(minCheck, maxCheck):
@@ -161,7 +161,7 @@ def createBattleLocations(world: TWW3World) -> None:
 def createDespoilerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Despoiler")
     
-    minCheck, maxCheck = 1, int(10 * world.options.game_length/100 + 1)
+    minCheck, maxCheck = 1, int(10 * world.game_length/100 + 1)
 
     if not(world.options.conquerer_sanity):
         maxCheck = maxCheck * 2
@@ -187,9 +187,9 @@ def createConquererLocations(world: TWW3World) -> None:
     else:
         startingCheck = world.options.starting_settlements + 1
 
-    minCheck, maxCheck = 1, int(20 * world.options.game_length/100 + 1)
+    minCheck, maxCheck = 1, int(20 * world.game_length/100 + 1)
     print(maxCheck)
-    if world.options.game_length == 500:
+    if world.game_length == 500:
         maxCheck = sm.getMaximumSettlementCount()
     # Fill location checks based on number of locations and checks per location
     for i in range(startingCheck, maxCheck):
@@ -205,7 +205,7 @@ def createExplorerLocations(world: TWW3World) -> None:
     worldRegion = world.get_region("Exploration")
 
     for index in range(len(world.keys)):
-        settlements = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed = world.options.game_length/100, returnAll=True)
+        settlements = world.settlementRandomiser.getSettlementWithinRange(index, gameSpeed = world.game_length/100, returnAll=True)
         locations = []
         for settlement in settlements:
             locName = settlement.readableName

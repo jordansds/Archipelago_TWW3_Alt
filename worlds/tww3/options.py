@@ -265,6 +265,14 @@ class gameLength(Choice):
     option_world_conquest = 500
     default = option_default
 
+class CustomgameLength(Range):
+    """When not 0, this overrides gameLength with your own choice for the multiplier.
+    Just put in a random numbers and see what happens if you want to try this, otherwise leave it at 0.
+    No guarantee from me that generation succeeds, I have no idea lol."""
+    range_start = 0
+    range_end = 500
+    default = 0
+
 class sanity(DefaultOnToggle):
     """If you want every building and tech to be a location.
     [EXPERIMENTAL, WILL ENABLE BUILDING AND TECH SHUFFLE]"""
@@ -406,6 +414,7 @@ class TWW3Options(PerGameCommonOptions):
     starting_settlements: startingSettlements
     endtimes: endTimes
     game_length: gameLength
+    custom_game_length: CustomgameLength
 
     #sanity: sanity
     conquerer_sanity: conquererSanity

@@ -67,6 +67,11 @@ class TWW3World(World):
 
     def generate_early(self) -> None:
 
+        if self.options.custom_game_length != 0:
+            self.game_length = self.options.custom_game_length.value
+        else:
+            self.game_length = self.options.game_length.value
+
         self.keys = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"]
 
         """re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
