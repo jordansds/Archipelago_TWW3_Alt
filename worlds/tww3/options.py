@@ -420,28 +420,25 @@ class TWW3Options(PerGameCommonOptions):
     conquerer_sanity: conquererSanity
     explorer_sanity: explorerSanity
     #ritual_sanity: ritualSanity
-    battle_sanity: battleSanity
     despoiler_sanity: despoilerSanity
+    battle_sanity: battleSanity
 
-    #tech_shuffle: techShuffle
-    progressive_technologies: progressiveTechnologies
     #building_shuffle: buildingShuffle
     progressive_buildings: progressiveBuildings
     #unit_shuffle: unitShuffle
     progressive_units: progressiveUnits
+    #tech_shuffle: techShuffle
+    progressive_technologies: progressiveTechnologies
+    fast_research: fastResearch
     #ritual_shuffle: ritualShuffle
+    starting_tier: startingTier
 
     filler: filler
+    filler_blacklist: fillerBlacklist
+    trap_blacklist: trapBlacklist
 
     death_link: deathLink
     death_link_effects: deathLinkEffect
-
-    starting_tier: startingTier
-
     hard_logic: hardLogic
-    fast_research: fastResearch
     reveal_hints: revealHints
-
     mod_list: modList
-    filler_blacklist: fillerBlacklist
-    trap_blacklist: trapBlacklist
